@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Release: build",
+            "type": "shell",
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make release"
+            ]
+        },
+        {
+            "label": "Release: build & run",
+            "type": "shell",
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make rel_run"
+            ]
+        },
+        {
+            "label": "Debug: build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make debug"
+            ]
+        },
+        {
+            "label": "Debug: build & run",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make dbg_run"
+            ]
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make clean"
+            ]
+        }
+    ]
+}
