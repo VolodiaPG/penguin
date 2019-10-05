@@ -33,9 +33,9 @@
 	},
 
 	// Uncomment the next line if you want to publish any ports.
-	"appPort": [
-		2000
-	],
+	// "appPort": [
+	// 	2000
+	// ],
 
 	"postCreateCommand": "gcc -v",
 
@@ -44,6 +44,9 @@
 
 	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [
-		"ms-vscode.cpptools"
+		"ms-vscode.cpptools",
+		"jbenden.c-cpp-flylint",
+		"mitaki28.vscode-clang",
+		"cschlosser.doxdocgen"
 	]
 }
