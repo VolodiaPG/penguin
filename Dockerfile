@@ -10,7 +10,7 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
 
-RUN apt-get install gcc-9 g++-9 cmake gdb gdbserver cppcheck valgrind-y  && \
+RUN apt-get install -y gcc-9 g++-9 cmake cppcheck clang gdb valgrind git && \
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
@@ -22,10 +22,6 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 999 \
 
 RUN useradd -ms /bin/bash develop
 RUN echo "develop   ALL=(ALL:ALL) ALL" >> /etc/sudoers
-
-
-# for gdbserver
-EXPOSE 2000
 
 USER develop
 RUN mkdir /home/develop/project
