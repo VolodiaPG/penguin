@@ -64,7 +64,7 @@ public:
     Board();
 
     //inherited from AbstractBoard
-    void performMove(int player, Position pos) override;
+    void performMove(GameStatus player, Position pos) override;
     GameStatus checkStatus() override;
     std::shared_ptr<std::list<Position>> getEmptyPositions() override;
 };

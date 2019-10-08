@@ -13,7 +13,7 @@ Board::Board()
     }
 }
 
-void Board::performMove(int player, Position pos)
+void Board::performMove(GameStatus player, Position pos)
 {
     ++totalMoves;
     boardValues[pos.x][pos.y] = player;

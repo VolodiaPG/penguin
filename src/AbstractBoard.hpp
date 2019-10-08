@@ -24,7 +24,7 @@ public:
     * @param player the player that realizes the movement (id)
     * @param pos the position targeted
     */
-    virtual void performMove(int player, Position pos) = 0;
+    virtual void performMove(game_status_t player, Position pos) = 0;
 
     /**
      * @brief Status of the game
