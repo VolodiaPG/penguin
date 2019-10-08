@@ -15,3 +15,4 @@ If you can't setup the environment you can use `WSL` and manually execute `docs/
 - `jbenden.c-cpp-flylint`
 - `mitaki28.vscode-clang`
 - `cschlosser.doxdocgen`
+- `visualstudioexptteam.vscodeintellicode`
