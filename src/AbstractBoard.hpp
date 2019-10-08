@@ -9,23 +9,21 @@
 namespace mcts
 {
 
-typedef enum
-{
-    IN_PROGRESS = 0,
-    DRAW,
-    P1,
-    P2
-} game_status;
-
+/**
+ * @brief Describe the basics of a Board
+ * 
+ * @tparam game_status_t the type of the value that checkStatus should return
+ */
+template <typename game_status_t>
 class AbstractBoard
 {
 public:
     /**
- * @brief perform a movement on the board
- * 
- * @param player the player that realizes the movement (id)
- * @param pos the position targeted
- */
+    * @brief perform a movement on the board
+    * 
+    * @param player the player that realizes the movement (id)
+    * @param pos the position targeted
+    */
     virtual void performMove(int player, Position pos) = 0;
 
     /**
@@ -33,14 +31,14 @@ public:
      * 
      * @return game_status 
      */
-    virtual game_status checkStatus() = 0;
+    virtual game_status_t checkStatus() = 0;
 
     /**
      * @brief Get the Empty Positions Left
      * 
      * @return std::list<Position> 
      */
-    virtual std::unique_ptr<std::list<Position>> getEmptyPositions() = 0;
+    virtual std::shared_ptr<std::list<Position>> getEmptyPositions() = 0;
 };
 
 } // namespace mcts
