@@ -45,7 +45,8 @@
             "args": [
                 "-c",
                 "make debug"
-            ]
+            ],
+            "problemMatcher": []
         },
         {
             "label": "Debug: build & run",
