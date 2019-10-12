@@ -6,7 +6,7 @@
 
 #include "Position.hpp"
 
-namespace mcts
+namespace game
 {
 
 /**
@@ -24,7 +24,7 @@ public:
     * @param player the player that realizes the movement (id)
     * @param pos the position targeted
     */
-    virtual void performMove(game_status_t player, Position pos) = 0;
+    virtual void performMove(int player, Position pos) = 0;
 
     /**
      * @brief Status of the game
@@ -41,6 +41,6 @@ public:
     virtual std::shared_ptr<std::list<Position>> getEmptyPositions() = 0;
 };
 
-} // namespace mcts
+} // namespace game
 
 #endif

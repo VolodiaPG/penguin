@@ -1,15 +1,16 @@
 #ifndef BOARD_HPP_
 #define BOARD_HPP_
 
-#define BOARD_SIZE 3
-
 #include <iterator>
 #include <array>
 
 #include "AbstractBoard.hpp"
+#include "BoardCell.hpp"
 
-namespace mcts
+namespace game
 {
+
+#define BOARD_SIZE 3
 
 /**
  * @brief Describe possibles states of the game
@@ -28,18 +29,18 @@ typedef enum
      */
     DRAW,
     /**
-     * @brief P1's turn
+     * @brief P1's won
      * 
      */
-    P1,
+    P1_WON,
     /**
-     * @brief P2's turn
+     * @brief P2's won
      * 
      */
-    P2
+    P2_WON
 } GameStatus;
 
-using boardLine = std::array<int, BOARD_SIZE>;
+using boardLine = std::array<BoardCell, BOARD_SIZE>;
 using boardMatrix = std::array<boardLine, BOARD_SIZE>;
 
 class Board : AbstractBoard<GameStatus>
@@ -58,17 +59,19 @@ protected:
 
 public:
     /**
-    * @brief Construct a new Board object
-    * 
-    */
+     * @brief Construct a new Board object
+     * 
+     */
     Board();
 
     //inherited from AbstractBoard
-    void performMove(GameStatus player, Position pos) override;
+    void performMove(int player, Position pos) override;
     GameStatus checkStatus() override;
     std::shared_ptr<std::list<Position>> getEmptyPositions() override;
+
+    Position begin();
 };
 
-} // namespace mcts
+} // namespace game
 
 #endif

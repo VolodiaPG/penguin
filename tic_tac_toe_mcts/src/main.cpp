@@ -2,12 +2,12 @@
 
 #include "Board.hpp"
 
-using namespace mcts;
 
-void print_free_spaces(Board &board)
+void print_free_spaces(game::Board &board)
 {
 	auto ptr_list = board.getEmptyPositions();
-	for(Position pos : *ptr_list){
+	for (game::Position pos : *ptr_list)
+	{
 		std::cout << pos.x << ", " << pos.y << std::endl;
 	}
 }
@@ -16,10 +16,11 @@ int main()
 {
 	std::cout << "Hello Easy C++ project!" << std::endl;
 
-	Board board = Board();
+	// 3*3 board
+	game::Board board = game::Board();
 	print_free_spaces(board);
 
-	board.performMove(P1, Position(0, 0));
+	board.performMove(1, {0, 0});
 	print_free_spaces(board);
 
 	return EXIT_SUCCESS;

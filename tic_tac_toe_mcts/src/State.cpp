@@ -4,10 +4,10 @@ namespace mcts
 {
 State::State()
 {
-    _board = std::make_shared<Board>();
+    _board = std::make_shared<game::Board>();
 }
 
-State::State(std::shared_ptr<Board> board)
+State::State(std::shared_ptr<game::Board> board)
 {
     _board = board;
 }

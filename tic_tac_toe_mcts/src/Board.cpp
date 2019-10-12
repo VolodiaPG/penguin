@@ -1,19 +1,20 @@
 #include "Board.hpp"
+#include <array>
 
-namespace mcts
+namespace game
 {
 Board::Board()
 {
-    for (int ii = 0; ii < (int)boardValues.size(); ++ii)
+    for (int ii = 0; ii < BOARD_SIZE; ++ii)
     {
-        for (int jj = 0; jj < (int)boardValues[ii].size(); ++jj)
+        for (int jj = 0; jj < BOARD_SIZE; ++jj)
         {
             boardValues[ii][jj] = 0;
         }
     }
 }
 
-void Board::performMove(GameStatus player, Position pos)
+void Board::performMove(int player, Position pos)
 {
     ++totalMoves;
     boardValues[pos.x][pos.y] = player;
@@ -21,11 +22,12 @@ void Board::performMove(GameStatus player, Position pos)
 
 int Board::checkForWin(boardLine &line)
 {
-    int previous = line[0];
+    int previous = line[0].getValue();
 
     // check if this is the same value all along the line
-    for (int &value : line)
+    for (BoardCell &cell : line)
     {
+        int value = cell.getValue();
         if (value != previous)
         {
             // line is not full of the same values
@@ -40,15 +42,15 @@ int Board::checkForWin(boardLine &line)
 GameStatus Board::checkStatus()
 {
     // declare the two diags
-    boardLine diag1 = boardLine();
-    boardLine diag2 = boardLine();
+    boardLine diag1; //= std::array<BoardCell, BOARD_SIZE>();
+    boardLine diag2; //= boardLine();
 
     int win = 0;
 
     for (int ii = 0; ii < BOARD_SIZE; ++ii)
     {
         boardLine row = boardValues[ii];
-        boardLine col = boardLine();
+        boardLine col; // = boardLine();
 
         for (int jj = 0; jj < BOARD_SIZE; ++jj)
         {
@@ -95,13 +97,14 @@ std::shared_ptr<std::list<Position>> Board::getEmptyPositions()
 {
     std::shared_ptr<std::list<Position>> ret = std::make_shared<std::list<Position>>();
 
-     for (int ii = 0; ii < (int)boardValues.size(); ++ii)
+    for (int ii = 0; ii < (int)boardValues.size(); ++ii)
     {
         for (int jj = 0; jj < (int)boardValues[ii].size(); ++jj)
         {
-            if (boardValues[ii][jj])
+            BoardCell cell = boardValues[ii][jj];
+            if (cell.isClaimed())
             {
-               ret->push_back(Position(ii, jj));
+                ret->push_back(*cell.position);
             }
         }
     }
@@ -109,4 +112,4 @@ std::shared_ptr<std::list<Position>> Board::getEmptyPositions()
     return ret;
 }
 
-} // namespace mcts
+} // namespace game
