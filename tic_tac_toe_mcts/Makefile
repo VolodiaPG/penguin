@@ -2,7 +2,7 @@
 # Compiler files
 #
 CC		:= g++
-C_FLAGS := -std=c++17 -Wall -Wextra
+C_FLAGS := -std=c++17 -Wall -Wextra `sdl2-config --cflags --libs`
 
 #
 # Exe file
