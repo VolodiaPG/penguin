@@ -3,4 +3,4 @@
 #File: install-dependencies.sh
 #Author: Volodia
 #
-echo "No depencies yet."
+apt-get install -y libsdl2-dev
