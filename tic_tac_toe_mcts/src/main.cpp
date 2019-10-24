@@ -2,7 +2,6 @@
 
 #include "Board.hpp"
 
-
 void print_free_spaces(game::Board &board)
 {
 	auto ptr_list = board.getEmptyPositions();
