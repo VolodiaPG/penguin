@@ -12,7 +12,7 @@
             },
             "args": [
                 "-c",
-                "make release"
+                "make BUILD_ENV=release release"
             ]
         },
         {
@@ -26,7 +26,7 @@
             },
             "args": [
                 "-c",
-                "make rel_run"
+                "make BUILD_ENV=release rel_run"
             ]
         },
         {
@@ -44,7 +44,7 @@
             },
             "args": [
                 "-c",
-                "make debug"
+                "make BUILD_ENV=debug debug"
             ],
             "problemMatcher": []
         },
@@ -63,7 +63,7 @@
             },
             "args": [
                 "-c",
-                "make dbg_run"
+                "make BUILD_ENV=debug dbg_run"
             ]
         },
         {
