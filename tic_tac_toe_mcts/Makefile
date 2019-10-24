@@ -63,7 +63,7 @@ OBJECTS := $(patsubst $(SRC)/%.cpp, $(BINARIES)/%.o, $(wildcard $(SRC)/*.cpp))
 #
 # Commands that are phony (not files)
 #
-.PHONY: all clean prep
+.PHONY: all clean prep build
 
 #
 # Default build
@@ -79,10 +79,10 @@ $(BINARIES)/$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 $(BINARIES)/%.o: $(SRC)/%.cpp
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
+	@$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
 
 $(BINARIES)/%.o: $(SRC)/%.cpp $(SRC)/%.hpp
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
+	@$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
 
 #
 # Debug rules
