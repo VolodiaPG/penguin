@@ -93,18 +93,19 @@ GameStatus Board::checkStatus()
     return getEmptyPositions()->size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::shared_ptr<std::list<Position>> Board::getEmptyPositions()
+std::shared_ptr<std::list<Position> Board::getEmptyPositions()
 {
-    std::shared_ptr<std::list<Position>> ret = std::make_shared<std::list<Position>>();
+    std::shared_ptr<std::list<Position*>> ret = std::make_shared<std::list<Position*>>();
+    // *ret = std::list<Position>();
 
     for (int ii = 0; ii < (int)boardValues.size(); ++ii)
     {
-        for (int jj = 0; jj < (int)boardValues[ii].size(); ++jj)
+        for (int jj = 0; jj < (int)boardValues[0].size(); ++jj)
         {
             BoardCell cell = boardValues[ii][jj];
-            if (cell.isClaimed())
+            if (!cell.isClaimed())
             {
-                ret->push_back(*cell.position);
+                ret->push_back(cell.position);
             }
         }
     }

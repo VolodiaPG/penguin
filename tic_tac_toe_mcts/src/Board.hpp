@@ -47,6 +47,11 @@ class Board : AbstractBoard<GameStatus>
 {
 protected:
     boardMatrix boardValues = boardMatrix();
+
+    /**
+     * @brief keep track of the total amout of moves already accomplished
+     * 
+     */
     int totalMoves = 0;
 
     /**
@@ -65,11 +70,24 @@ public:
     Board();
 
     //inherited from AbstractBoard
+    /**
+     * @brief Performs a particular move
+     * 
+     * @param player the player who moves
+     * @param pos the destination position
+     */
     void performMove(int player, Position pos) override;
-    GameStatus checkStatus() override;
-    std::shared_ptr<std::list<Position>> getEmptyPositions() override;
 
-    Position begin();
+    GameStatus checkStatus() override;
+
+    /**
+     * @brief Get a list of empty positions
+     * 
+     * @return the list of empty positions 
+     */
+    std::shared_ptr<std::list<Position*>> getEmptyPositions() override;
+
+    // Position begin();
 };
 
 } // namespace game
