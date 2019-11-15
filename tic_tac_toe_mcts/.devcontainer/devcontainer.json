@@ -48,6 +48,7 @@
 		"ms-vscode.cpptools",
 		"jbenden.c-cpp-flylint",
 		"mitaki28.vscode-clang",
-		"cschlosser.doxdocgen"
+		"cschlosser.doxdocgen",
+		"eamodio.gitlens"
 	]
 }
