@@ -10,6 +10,7 @@ AbstractGame::AbstractGame(AbstractBoard *board)
 
 void AbstractGame::loop()
 {
+    draw();
     while (!isFinished())
     {
         play();

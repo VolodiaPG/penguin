@@ -21,6 +21,7 @@ public:
     void draw() const override;
     bool isFinished() const override;
     void play() override;
+    void loop() override;
 };
 } // namespace game
 

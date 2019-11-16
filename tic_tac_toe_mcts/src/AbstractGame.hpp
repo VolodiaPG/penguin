@@ -38,7 +38,7 @@ public:
      * @brief Loop while the game is not finished, told by the `isFinished` method
      * 
      */
-    void loop();
+    virtual void loop();
 };
 } // namespace game
 

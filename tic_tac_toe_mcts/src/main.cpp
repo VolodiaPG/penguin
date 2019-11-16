@@ -67,9 +67,12 @@ int main()
 	// board.performMove(1, {2, 2});
 	// print_board_clean_before(board);
 	// pause_msg();
+
+	game::AbstractGame *consoleGame = new game::ConsoleGame();
 	
-	game::ConsoleGame consoleGame;
-	consoleGame.loop();
+	consoleGame->loop();
+	
+	delete consoleGame;
 
 	return EXIT_SUCCESS;
 }
