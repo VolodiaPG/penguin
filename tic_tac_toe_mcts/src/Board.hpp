@@ -97,6 +97,13 @@ public:
      */
     std::shared_ptr<std::list<Position>> getEmptyPositions() const override;
 
+    /**
+     * @brief Get the Board Values
+     * 
+     * @return boardMatrix of BoardCells
+     */
+    const boardMatrix getBoardValues() const { return boardValues; };
+
     // Position begin();
 };
 

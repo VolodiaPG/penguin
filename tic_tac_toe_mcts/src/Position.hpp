@@ -1,12 +1,14 @@
 #ifndef POSITION_HPP_
 #define POSITION_HPP_
 
+#include <stdlib.h>
+
 namespace game
 {
 typedef struct
 {
-     int x = 0;
-     int y = 0;
+     unsigned int x = 0;
+     unsigned int y = 0;
 } Position;
 } // namespace game
 
