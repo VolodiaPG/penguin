@@ -38,7 +38,7 @@ public:
      * 
      * @return std::list<Position> 
      */
-    virtual std::shared_ptr<std::list<Position*>> getEmptyPositions() = 0;
+    virtual std::shared_ptr<std::list<Position>> getEmptyPositions() const = 0;
 };
 
 } // namespace game

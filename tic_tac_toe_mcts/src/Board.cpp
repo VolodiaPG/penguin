@@ -9,9 +9,17 @@ Board::Board()
     {
         for (int jj = 0; jj < BOARD_SIZE; ++jj)
         {
-            boardValues[ii][jj] = 0;
+            Position pos;
+            pos.x = ii;
+            pos.y = jj;
+            //  = {.x = ii, .y = jj};
+            boardValues[ii][jj] = BoardCell(pos);
         }
     }
+}
+
+Board::~Board()
+{
 }
 
 void Board::performMove(int player, Position pos)
@@ -20,12 +28,12 @@ void Board::performMove(int player, Position pos)
     boardValues[pos.x][pos.y] = player;
 }
 
-int Board::checkForWin(boardLine &line)
+int Board::checkForWin(boardLine line)
 {
     int previous = line[0].getValue();
 
     // check if this is the same value all along the line
-    for (BoardCell &cell : line)
+    for (const BoardCell &cell : line)
     {
         int value = cell.getValue();
         if (value != previous)
@@ -93,19 +101,18 @@ GameStatus Board::checkStatus()
     return getEmptyPositions()->size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::shared_ptr<std::list<Position> Board::getEmptyPositions()
+std::shared_ptr<std::list<Position>> Board::getEmptyPositions() const
 {
-    std::shared_ptr<std::list<Position*>> ret = std::make_shared<std::list<Position*>>();
-    // *ret = std::list<Position>();
+    std::shared_ptr<std::list<Position>> ret = std::make_shared<std::list<Position>>();
 
     for (int ii = 0; ii < (int)boardValues.size(); ++ii)
     {
         for (int jj = 0; jj < (int)boardValues[0].size(); ++jj)
         {
-            BoardCell cell = boardValues[ii][jj];
+            const BoardCell &cell = boardValues[ii][jj];
             if (!cell.isClaimed())
             {
-                ret->push_back(cell.position);
+                ret->push_back(cell.getPosition());
             }
         }
     }

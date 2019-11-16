@@ -17,32 +17,32 @@ private:
      */
     int value = 0;
 
-public:
     /**
     * @brief Represents the position of the cell on the board
     * 
     */
-    std::shared_ptr<Position> position = NULL;
+    Position position;
 
-    /**
-    * @brief Construct a new Board Cell object
-    * 
-    * @param position cf position
-    */
-    BoardCell(std::shared_ptr<Position> &position);
-
+public:
     /**
      * @brief Construct a new Board Cell object
      * 
      */
-    BoardCell();
+    explicit BoardCell();
+
+    /**
+    * @brief Construct a new Board Cell object
+    * 
+    * @param position passed by value to guarantee copy
+    */
+    explicit BoardCell(const Position &position);
 
     /**
     * @brief Get the value of the cell
     * 
     * @return int 
     */
-    int getValue();
+    int getValue() const;
 
     /**
     * @brief Set the value of the cell
@@ -50,7 +50,7 @@ public:
     * @param value the value
     * @return int the value
     */
-    int setValue(int value);
+    int setValue(const int value);
 
     /**
      * @brief Set the value of the cell
@@ -58,10 +58,17 @@ public:
      * @param value the value wanted
      * @return int the value set 
      */
-    int operator=(int value)
+    int operator=(const int value)
     {
         return setValue(value);
     }
+
+    /**
+     * @brief Get the Position object
+     * 
+     * @return the position
+     */
+    const Position &getPosition() const { return position; }
 
     /**
      * @brief tells if the cell is claimed or not
@@ -69,7 +76,7 @@ public:
      * @return true the cell is claimed
      * @return false the cell isn't
      */
-    bool isClaimed();
+    bool isClaimed() const;
 };
 
 } // namespace game

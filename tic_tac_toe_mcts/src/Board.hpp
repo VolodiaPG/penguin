@@ -46,7 +46,11 @@ using boardMatrix = std::array<boardLine, BOARD_SIZE>;
 class Board : AbstractBoard<GameStatus>
 {
 protected:
-    boardMatrix boardValues = boardMatrix();
+    /**
+     * @brief Array of the cell values
+     * 
+     */
+    boardMatrix boardValues;
 
     /**
      * @brief keep track of the total amout of moves already accomplished
@@ -60,7 +64,7 @@ protected:
     * @param line array: col or row or diag
     * @return int the player who won, 0 if nobody has won at the call  
     */
-    int checkForWin(boardLine &line);
+    int checkForWin(boardLine line);
 
 public:
     /**
@@ -68,6 +72,12 @@ public:
      * 
      */
     Board();
+
+    /**
+     * @brief Destroy the Board object
+     * 
+     */
+    ~Board();
 
     //inherited from AbstractBoard
     /**
@@ -85,7 +95,7 @@ public:
      * 
      * @return the list of empty positions 
      */
-    std::shared_ptr<std::list<Position*>> getEmptyPositions() override;
+    std::shared_ptr<std::list<Position>> getEmptyPositions() const override;
 
     // Position begin();
 };

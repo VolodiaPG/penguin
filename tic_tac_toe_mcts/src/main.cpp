@@ -7,7 +7,7 @@ void print_free_spaces(game::Board &board)
 	auto ptr_list = board.getEmptyPositions();
 	for (game::Position pos : *ptr_list)
 	{
-		std::cout << pos.x << ", " << pos.y << std::endl;
+		std::cout << "(" << pos.x << ", " << pos.y << ")" << std::endl;
 	}
 }
 
@@ -17,8 +17,10 @@ int main()
 	game::Board board = game::Board();
 	print_free_spaces(board);
 
-	// board.performMove(1, {0, 0});
-	// print_free_spaces(board);
+	std::cout << "Move performed" << std::endl;
+
+	board.performMove(1, {0, 0});
+	print_free_spaces(board);
 
 	return EXIT_SUCCESS;
 }
