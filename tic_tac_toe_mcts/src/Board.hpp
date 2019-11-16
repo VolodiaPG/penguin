@@ -46,12 +46,6 @@ using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 class Board : AbstractBoard<GameStatus>
 {
 protected:
-    // /**
-    //  * @brief Array of the cell values of dimension BOARD_SIZE**2
-    //  *
-    //  */
-    // std::array<std::array<BoardCell, BOARD_SIZE>, BOARD_SIZE> boardValues;
-
     /**
      * @brief Array of the cell const pointers to  variable element indexed in boardValues
      * 
