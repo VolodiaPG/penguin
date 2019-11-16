@@ -40,10 +40,10 @@ typedef enum
     P2_WON
 } GameStatus;
 
-using board_line_t = std::array<BoardCell*, BOARD_SIZE>;
+using board_line_t = std::array<BoardCell *, BOARD_SIZE>;
 using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 
-class Board : AbstractBoard<GameStatus>
+class Board : public AbstractBoard
 {
 protected:
     /**
@@ -88,21 +88,25 @@ public:
      */
     void performMove(int player, const Position &pos) override;
 
-    GameStatus checkStatus() const override;
+    int checkStatus() const override;
 
     /**
-     * @brief Get a list of empty positions
+     * @brief Get a list of empty cells, ie player not passed yet
      * 
-     * @return the list of empty positions 
+     * @return the list of empty cells
      */
-    std::list<Position> getEmptyPositions() const override;
+    std::list<const AbstractBoardCell *> getEmptyCells() const override;
 
     /**
-     * @brief Get the Board Values
+     * @brief Get a list of all cells
      * 
-     * @return matrix of copy of BoardCells
+     * @return the list of all cells 
      */
-    board_matrix_t getBoardValues() const { return boardValues; };
+    std::list<const AbstractBoardCell *> getBoardCells() const override;
+
+    size_t size() const override { return BOARD_SIZE; };
+
+    int getTotalMoves() const { return totalMoves; };
 
     // Position begin();
 };

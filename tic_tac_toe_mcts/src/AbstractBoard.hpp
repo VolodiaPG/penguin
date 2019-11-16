@@ -4,6 +4,7 @@
 #include <list>
 #include <memory>
 
+#include "AbstractBoardCell.hpp"
 #include "Position.hpp"
 
 namespace game
@@ -12,12 +13,13 @@ namespace game
 /**
  * @brief Describe the basics of a Board
  * 
- * @tparam game_status_t the type of the value that checkStatus should return
  */
-template <typename game_status_t>
 class AbstractBoard
 {
 public:
+    virtual ~AbstractBoard(){};
+
+    // TODO Refactor using an action object instead, but is it really necessary
     /**
     * @brief perform a movement on the board
     * 
@@ -31,14 +33,23 @@ public:
      * 
      * @return game_status 
      */
-    virtual game_status_t checkStatus() const = 0;
+    virtual int checkStatus() const = 0;
 
     /**
-     * @brief Get the Empty Positions Left
+     * @brief Get the Empty AbstractBoardCell Left
      * 
-     * @return std::list<Position> 
+     * @return std::list<AbstractBoardCell> 
      */
-    virtual std::list<Position> getEmptyPositions() const = 0;
+    virtual std::list<const AbstractBoardCell *> getEmptyCells() const = 0;
+
+    /**
+     * @brief Get all of the AbstractBoardCell
+     * 
+     * @return std::list<AbstractBoardCell> 
+     */
+    virtual std::list<const AbstractBoardCell *> getBoardCells() const = 0;
+
+    virtual size_t size() const = 0;
 };
 
 } // namespace game

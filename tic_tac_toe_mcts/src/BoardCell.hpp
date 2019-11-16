@@ -4,11 +4,12 @@
 #include <memory>
 
 #include "Position.hpp"
+#include "AbstractBoardCell.hpp"
 
 namespace game
 {
 
-class BoardCell
+class BoardCell : public AbstractBoardCell
 {
 private:
     /**
@@ -26,7 +27,7 @@ private:
 public:
     // /**
     //  * @brief Construct a new Board Cell object
-    //  * 
+    //  *
     //  */
     // explicit BoardCell();
 

@@ -4,6 +4,7 @@
 namespace game
 {
 Board::Board()
+    : AbstractBoard()
 {
     for (int ii = 0; ii < BOARD_SIZE; ++ii)
     {
@@ -53,7 +54,7 @@ int Board::checkForWin(const board_line_t &line) const
     return previous;
 }
 
-GameStatus Board::checkStatus() const
+int Board::checkStatus() const
 {
     // declare the two diags
     board_line_t diag1; //= std::array<BoardCell, BOARD_SIZE>();
@@ -104,12 +105,12 @@ GameStatus Board::checkStatus() const
         return (GameStatus)win;
     }
 
-    return getEmptyPositions().size() > 0 ? IN_PROGRESS : DRAW;
+    return getEmptyCells().size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::list<Position> Board::getEmptyPositions() const
+std::list<const AbstractBoardCell *> Board::getEmptyCells() const
 {
-    std::list<Position> ret;
+    std::list<const AbstractBoardCell *> ret;
 
     for (int ii = 0; ii < (int)boardValues.size(); ++ii)
     {
@@ -118,12 +119,27 @@ std::list<Position> Board::getEmptyPositions() const
             const BoardCell *cell = boardValues[ii][jj];
             if (!cell->isClaimed())
             {
-                ret.push_back(cell->getPosition());
+                ret.push_back(cell);
             }
         }
     }
 
     // return a copy
+    return ret;
+}
+
+std::list<const AbstractBoardCell *> Board::getBoardCells() const
+{
+    std::list<const AbstractBoardCell *> ret;
+    for (const board_line_t &line : boardValues)
+    {
+        for (const BoardCell *cell : line)
+        {
+            ret.push_back(cell);
+        }
+    }
+
+    // copy return
     return ret;
 }
 
