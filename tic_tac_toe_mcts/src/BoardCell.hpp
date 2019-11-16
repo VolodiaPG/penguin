@@ -21,14 +21,14 @@ private:
     * @brief Represents the position of the cell on the board
     * 
     */
-    Position position;
+    const Position position;
 
 public:
-    /**
-     * @brief Construct a new Board Cell object
-     * 
-     */
-    explicit BoardCell();
+    // /**
+    //  * @brief Construct a new Board Cell object
+    //  * 
+    //  */
+    // explicit BoardCell();
 
     /**
     * @brief Construct a new Board Cell object
@@ -50,18 +50,7 @@ public:
     * @param value the value
     * @return int the value
     */
-    int setValue(const int value);
-
-    /**
-     * @brief Set the value of the cell
-     * 
-     * @param value the value wanted
-     * @return int the value set 
-     */
-    int operator=(const int value)
-    {
-        return setValue(value);
-    }
+    int setValue(int value);
 
     /**
      * @brief Get the Position object

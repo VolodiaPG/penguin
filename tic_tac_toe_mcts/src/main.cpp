@@ -5,11 +5,10 @@
 #define PAUSE_TEXT "Please press any key to continue."
 #define pause_msg() pause(PAUSE_TEXT)
 
-
 void print_free_spaces(game::Board &board)
 {
-	auto ptr_list = board.getEmptyPositions();
-	for (const game::Position &pos : *ptr_list)
+	const std::list<game::Position> &list = board.getEmptyPositions();
+	for (const game::Position &pos : list)
 	{
 		std::cout << "(" << pos.x << ", " << pos.y << ")" << std::endl;
 	}
@@ -18,14 +17,14 @@ void print_free_spaces(game::Board &board)
 void print_board(const game::Board &board)
 {
 	unsigned int index = 0;
-	game::boardMatrix boardMatrix = board.getBoardValues();
+	const game::board_matrix_t &boardMatrix = board.getBoardValues();
 
-	for (const game::boardLine &line : boardMatrix)
+	for (const game::board_line_t &line : boardMatrix)
 	{
-		for (const game::BoardCell &cell : line)
+		for (const game::BoardCell *cell : line)
 		{
-			const game::Position &pos = cell.getPosition();
-			std::cout << cell.getValue() << (pos.y < (unsigned int)line.size() - 1 ? " │ " : "");
+			const game::Position &pos = cell->getPosition();
+			std::cout << cell->getValue() << (pos.y < (unsigned int)line.size() - 1 ? " │ " : "");
 		}
 
 		if (index++ < boardMatrix.size() - 1)
@@ -47,8 +46,10 @@ void print_board_clean_before(const game::Board &board)
 	print_board(board);
 }
 
-void pause(const char * msg){
-	if (msg){
+void pause(const char *msg)
+{
+	if (msg)
+	{
 		std::cout << msg << std::endl;
 	}
 	std::cin.get();

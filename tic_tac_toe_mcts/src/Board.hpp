@@ -40,17 +40,23 @@ typedef enum
     P2_WON
 } GameStatus;
 
-using boardLine = std::array<BoardCell, BOARD_SIZE>;
-using boardMatrix = std::array<boardLine, BOARD_SIZE>;
+using board_line_t = std::array<BoardCell*, BOARD_SIZE>;
+using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 
 class Board : AbstractBoard<GameStatus>
 {
 protected:
+    // /**
+    //  * @brief Array of the cell values of dimension BOARD_SIZE**2
+    //  *
+    //  */
+    // std::array<std::array<BoardCell, BOARD_SIZE>, BOARD_SIZE> boardValues;
+
     /**
-     * @brief Array of the cell values
+     * @brief Array of the cell const pointers to  variable element indexed in boardValues
      * 
      */
-    boardMatrix boardValues;
+    board_matrix_t boardValues;
 
     /**
      * @brief keep track of the total amout of moves already accomplished
@@ -64,7 +70,7 @@ protected:
     * @param line array: col or row or diag
     * @return int the player who won, 0 if nobody has won at the call  
     */
-    int checkForWin(boardLine line);
+    int checkForWin(const board_line_t &line) const;
 
 public:
     /**
@@ -86,23 +92,23 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    void performMove(int player, Position pos) override;
+    void performMove(int player, const Position &pos) override;
 
-    GameStatus checkStatus() override;
+    GameStatus checkStatus() const override;
 
     /**
      * @brief Get a list of empty positions
      * 
      * @return the list of empty positions 
      */
-    std::shared_ptr<std::list<Position>> getEmptyPositions() const override;
+    std::list<Position> getEmptyPositions() const override;
 
     /**
      * @brief Get the Board Values
      * 
-     * @return boardMatrix of BoardCells
+     * @return matrix of copy of BoardCells
      */
-    const boardMatrix getBoardValues() const { return boardValues; };
+    board_matrix_t getBoardValues() const { return boardValues; };
 
     // Position begin();
 };

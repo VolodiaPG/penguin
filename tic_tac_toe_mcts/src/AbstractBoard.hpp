@@ -24,21 +24,21 @@ public:
     * @param player the player that realizes the movement (id)
     * @param pos the position targeted
     */
-    virtual void performMove(int player, Position pos) = 0;
+    virtual void performMove(int player, const Position &pos) = 0;
 
     /**
      * @brief Status of the game
      * 
      * @return game_status 
      */
-    virtual game_status_t checkStatus() = 0;
+    virtual game_status_t checkStatus() const = 0;
 
     /**
      * @brief Get the Empty Positions Left
      * 
      * @return std::list<Position> 
      */
-    virtual std::shared_ptr<std::list<Position>> getEmptyPositions() const = 0;
+    virtual std::list<Position> getEmptyPositions() const = 0;
 };
 
 } // namespace game
