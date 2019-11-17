@@ -6,7 +6,7 @@ ConsoleGame::ConsoleGame()
     : AbstractGame(nullptr)
 {
     player1 = new HumanPlayer(1);
-    player1 = new HumanPlayer(2);
+    player1 = new MCTSPlayer(2, this);
     board = new Board();
 }
 

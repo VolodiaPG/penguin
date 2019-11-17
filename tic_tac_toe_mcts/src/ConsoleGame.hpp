@@ -5,6 +5,7 @@
 #include "AbstractGame.hpp"
 #include "Board.hpp"
 #include "HumanPlayer.hpp"
+#include "MCTSPlayer.hpp"
 
 namespace game
 {
