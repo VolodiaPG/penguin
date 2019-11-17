@@ -66,7 +66,14 @@ protected:
     */
     int checkForWin(const board_line_t &line) const;
 
-    bool checkForCorrectness(const Position& pos) const;
+    /**
+     * @brief Check if the pos is allowed to move to
+     * 
+     * @param pos the requested position
+     * @return true if correct
+     * @return false otherwise
+     */
+    bool checkForCorrectness(const Position &pos) const;
 
 public:
     /**
@@ -88,7 +95,7 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(int player, const Position &pos) override;
+    bool performMove(int player, AbstractBoardCell *cell) override;
 
     int checkStatus() const override;
 
@@ -97,14 +104,14 @@ public:
      * 
      * @return the list of empty cells
      */
-    std::list<const AbstractBoardCell *> getEmptyCells() const override;
+    std::vector<AbstractBoardCell *> getEmptyCells() const override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::list<const AbstractBoardCell *> getBoardCells() const override;
+    std::vector<AbstractBoardCell *> getBoardCells() const override;
 
     size_t size() const override { return BOARD_SIZE; };
 

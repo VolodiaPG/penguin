@@ -35,8 +35,16 @@ bool Board::checkForCorrectness(const Position &pos) const
     return boardValues[pos.x][pos.y]->isClaimed();
 }
 
-bool Board::performMove(int player, const Position &pos)
+bool Board::performMove(int player, AbstractBoardCell *absCell)
 {
+    BoardCell * cell = nullptr;
+    if (!(cell = dynamic_cast<BoardCell *>(absCell)))
+    {
+        return false;
+    }
+
+    const Position& pos = cell->getPosition();
+
     if (!checkForCorrectness(pos))
     {
         return false;
@@ -44,7 +52,7 @@ bool Board::performMove(int player, const Position &pos)
 
     ++totalMoves;
     boardValues[pos.x][pos.y]->setValue(player);
-    
+
     return true;
 }
 
@@ -120,15 +128,15 @@ int Board::checkStatus() const
     return getEmptyCells().size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::list<const AbstractBoardCell *> Board::getEmptyCells() const
+std::vector<AbstractBoardCell *> Board::getEmptyCells() const
 {
-    std::list<const AbstractBoardCell *> ret;
+    std::vector<AbstractBoardCell *> ret;
 
     for (int ii = 0; ii < (int)boardValues.size(); ++ii)
     {
         for (int jj = 0; jj < (int)boardValues[0].size(); ++jj)
         {
-            const BoardCell *cell = boardValues[ii][jj];
+            BoardCell *cell = boardValues[ii][jj];
             if (!cell->isClaimed())
             {
                 ret.push_back(cell);
@@ -140,12 +148,13 @@ std::list<const AbstractBoardCell *> Board::getEmptyCells() const
     return ret;
 }
 
-std::list<const AbstractBoardCell *> Board::getBoardCells() const
+std::vector<AbstractBoardCell *> Board::getBoardCells() const
 {
-    std::list<const AbstractBoardCell *> ret;
+    std::vector<AbstractBoardCell *> ret;
+
     for (const board_line_t &line : boardValues)
     {
-        for (const BoardCell *cell : line)
+        for (BoardCell *cell : line)
         {
             ret.push_back(cell);
         }

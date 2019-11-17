@@ -7,19 +7,30 @@ namespace game
 {
 class AbstractPlayer
 {
-public:
-    virtual ~AbstractPlayer(){};
+private:
     /**
      * @brief The player's id
      * 
      */
     unsigned int id;
 
+public:
+    /**
+     * @brief Construct a new Abstract Player object
+     * 
+     * @param id the id of the player
+     */
+    explicit AbstractPlayer(unsigned int id);
+
+    virtual ~AbstractPlayer(){};
+
     /**
      * @brief The player performs an action
      * 
      */
     virtual void action(AbstractBoard *board) = 0;
+
+    unsigned int getId() const { return id; }
 };
 } // namespace game
 

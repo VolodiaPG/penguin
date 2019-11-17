@@ -1,7 +1,7 @@
 #ifndef ABSTRACT_BOARD_HPP_
 #define ABSTRACT_BOARD_HPP_
 
-#include <list>
+#include <vector>
 #include <memory>
 
 #include "AbstractBoardCell.hpp"
@@ -28,7 +28,7 @@ public:
     * 
     * @return true if the move is allowed, false otherwise
     */
-    virtual bool performMove(int player, const Position &pos) = 0;
+    virtual bool performMove(int player, AbstractBoardCell *cell) = 0;
 
     /**
      * @brief Status of the game
@@ -42,14 +42,14 @@ public:
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::list<const AbstractBoardCell *> getEmptyCells() const = 0;
+    virtual std::vector<AbstractBoardCell *> getEmptyCells() const = 0;
 
     /**
      * @brief Get all of the AbstractBoardCell
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::list<const AbstractBoardCell *> getBoardCells() const = 0;
+    virtual std::vector<AbstractBoardCell *> getBoardCells() const = 0;
 
     virtual size_t size() const = 0;
 };

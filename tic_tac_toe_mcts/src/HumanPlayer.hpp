@@ -9,7 +9,7 @@ namespace game
 class HumanPlayer : public AbstractPlayer
 {
 public:
-    HumanPlayer();
+    explicit HumanPlayer(unsigned int id);
     void action(AbstractBoard *board) override;
 };
 } // namespace game
