@@ -3,19 +3,31 @@
 
 #include "AbstractInterface.hpp"
 #include "AbstractBoard.hpp"
+#include "AbstractPlayer.hpp"
 
 namespace game
 {
 class AbstractGame : public AbstractInterface
 {
-protected:
+public:
     /**
      * @brief Constant pointer to the board used
      * 
      */
     AbstractBoard *board;
 
-public:
+    /**
+     * @brief First player to play
+     * 
+     */
+    AbstractPlayer *player1 = nullptr;
+
+    /**
+     * @brief Second player
+     * 
+     */
+    AbstractPlayer *player2 = nullptr;
+
     explicit AbstractGame(AbstractBoard *board);
 
     virtual ~AbstractGame(){};
@@ -29,10 +41,13 @@ public:
     virtual bool isFinished() const = 0;
 
     /**
-     * @brief Encapsulation of the play method with an argument, must be details on how to use the one wioth arguments 
+     * @brief play one round of the game
      * 
+     * @return the played cell
      */
-    virtual void play() = 0;
+    virtual AbstractBoardCell *play(AbstractPlayer *p1, AbstractPlayer *p2) = 0;
+
+    virtual void revertPlay(AbstractBoardCell *move) = 0;
 
     /**
      * @brief Loop while the game is not finished, told by the `isFinished` method

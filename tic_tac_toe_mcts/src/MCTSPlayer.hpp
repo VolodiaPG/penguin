@@ -3,14 +3,20 @@
 
 #include "AbstractPlayer.hpp"
 #include "AbstractBoard.hpp"
+#include "AbstractGame.hpp"
+#include "Tree.hpp"
 
 namespace game
 {
 
 class MCTSPlayer : public AbstractPlayer
 {
+protected:
+    AbstractGame *game;
+
 public:
-    void action(AbstractBoard *board) override;
+    explicit MCTSPlayer(unsigned int id, AbstractGame* game);
+    AbstractBoardCell *action(AbstractBoard *board) override;
 };
 
 } // namespace game

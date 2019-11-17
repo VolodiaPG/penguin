@@ -30,6 +30,8 @@ public:
     */
     virtual bool performMove(int player, AbstractBoardCell *cell) = 0;
 
+    virtual void revertMove(AbstractBoardCell *cell) = 0;
+
     /**
      * @brief Status of the game
      * 
@@ -50,6 +52,15 @@ public:
      * @return std::list<AbstractBoardCell> 
      */
     virtual std::vector<AbstractBoardCell *> getBoardCells() const = 0;
+
+    /**
+     * @brief Get the Cell
+     * 
+     * @param line line coord
+     * @param col col coord
+     * @return the targeted cell
+     */
+    virtual AbstractBoardCell *getCell(int line, int col) const = 0;
 
     virtual size_t size() const = 0;
 };

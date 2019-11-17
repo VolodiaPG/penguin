@@ -13,7 +13,7 @@ class RandomPlayer : public AbstractPlayer
 
 public:
     explicit RandomPlayer(unsigned int id);
-    void action(AbstractBoard* board) override;
+    AbstractBoardCell *action(AbstractBoard *board) override;
 };
 
 } // namespace game

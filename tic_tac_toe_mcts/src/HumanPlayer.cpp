@@ -7,9 +7,10 @@ HumanPlayer::HumanPlayer(unsigned int id)
 {
 }
 
-void HumanPlayer::action(AbstractBoard *board)
+AbstractBoardCell *HumanPlayer::action(AbstractBoard *board)
 {
     Position pos;
+    AbstractBoardCell *cell = nullptr;
     bool correct = false;
 
     // while the input is not correct, ask
@@ -23,9 +24,11 @@ void HumanPlayer::action(AbstractBoard *board)
         correct = pos.x < board->size() && pos.y < board->size();
         if (correct)
         {
+            cell = board->getCell(pos.x, pos.y);
             // do the move
-            correct = board->performMove(getId(), pos);
+            correct = board->performMove(getId(), cell);
         }
     } while (!correct);
+    return cell;
 }
 } // namespace game

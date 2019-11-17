@@ -10,17 +10,14 @@ namespace game
 {
 class ConsoleGame : public AbstractGame
 {
-protected:
-    HumanPlayer player1;
-    HumanPlayer player2;
-
 public:
     ConsoleGame();
     ~ConsoleGame();
 
     void draw() const override;
     bool isFinished() const override;
-    void play() override;
+    AbstractBoardCell *play(AbstractPlayer *player1, AbstractPlayer *player2) override;
+    void revertPlay(AbstractBoardCell *move) override;
     void loop() override;
 };
 } // namespace game

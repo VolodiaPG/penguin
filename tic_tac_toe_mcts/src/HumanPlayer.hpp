@@ -10,7 +10,7 @@ class HumanPlayer : public AbstractPlayer
 {
 public:
     explicit HumanPlayer(unsigned int id);
-    void action(AbstractBoard *board) override;
+    AbstractBoardCell* action(AbstractBoard *board) override;
 };
 } // namespace game
 

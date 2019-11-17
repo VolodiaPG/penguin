@@ -5,29 +5,38 @@ namespace game
 ConsoleGame::ConsoleGame()
     : AbstractGame(nullptr)
 {
+    player1 = new HumanPlayer(1);
+    player1 = new HumanPlayer(2);
     board = new Board();
 }
 
 ConsoleGame::~ConsoleGame()
 {
+    delete player1;
+    delete player2;
     delete board;
 }
 
-void ConsoleGame::play()
+AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
 {
     Board *bo = (Board *)board;
     AbstractPlayer *player = nullptr;
 
     if (bo->getTotalMoves() % 2 == 0)
     {
-        player = &player1;
+        player = player1;
     }
     else
     {
-        player = &player2;
+        player = player2;
     }
 
-    player->action(board);
+    return player->action(board);
+}
+
+void ConsoleGame::revertPlay(AbstractBoardCell *move)
+{
+    board->revertMove(move);
 }
 
 void ConsoleGame::draw() const
@@ -35,7 +44,7 @@ void ConsoleGame::draw() const
     // clear the output stdout
     std::cout << "\033c";
 
-    const std::list<const AbstractBoardCell *> &cells = board->getBoardCells();
+    const std::vector<AbstractBoardCell *> &cells = board->getBoardCells();
 
     for (const AbstractBoardCell *absCell : cells)
     {

@@ -97,6 +97,8 @@ public:
      */
     bool performMove(int player, AbstractBoardCell *cell) override;
 
+    void revertMove(AbstractBoardCell *cell) override;
+
     int checkStatus() const override;
 
     /**
@@ -116,6 +118,8 @@ public:
     size_t size() const override { return BOARD_SIZE; };
 
     int getTotalMoves() const { return totalMoves; };
+
+    AbstractBoardCell *getCell(int line, int col) const override;
 
     // Position begin();
 };

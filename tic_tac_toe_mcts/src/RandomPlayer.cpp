@@ -7,7 +7,7 @@ RandomPlayer::RandomPlayer(unsigned int id) : AbstractPlayer(id)
 {
 }
 
-void RandomPlayer::action(AbstractBoard *board)
+AbstractBoardCell *RandomPlayer::action(AbstractBoard *board)
 {
     std::vector<AbstractBoardCell *> cells = board->getEmptyCells();
 
@@ -15,6 +15,7 @@ void RandomPlayer::action(AbstractBoard *board)
     unsigned int index = rand() % cells.size();
 
     board->performMove(getId(), cells[index]);
+    return cells[index];
 }
 
 } // namespace game

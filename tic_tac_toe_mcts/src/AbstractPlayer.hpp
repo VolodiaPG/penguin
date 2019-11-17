@@ -27,8 +27,9 @@ public:
     /**
      * @brief The player performs an action
      * 
+     * @return the played Cell
      */
-    virtual void action(AbstractBoard *board) = 0;
+    virtual AbstractBoardCell* action(AbstractBoard *board) = 0;
 
     unsigned int getId() const { return id; }
 };

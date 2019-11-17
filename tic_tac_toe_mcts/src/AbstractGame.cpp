@@ -13,7 +13,7 @@ void AbstractGame::loop()
     draw();
     while (!isFinished())
     {
-        play();
+        play(player1, player2);
         draw();
     }
 }

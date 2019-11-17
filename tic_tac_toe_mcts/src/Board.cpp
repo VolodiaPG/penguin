@@ -37,13 +37,13 @@ bool Board::checkForCorrectness(const Position &pos) const
 
 bool Board::performMove(int player, AbstractBoardCell *absCell)
 {
-    BoardCell * cell = nullptr;
+    BoardCell *cell = nullptr;
     if (!(cell = dynamic_cast<BoardCell *>(absCell)))
     {
         return false;
     }
 
-    const Position& pos = cell->getPosition();
+    const Position &pos = cell->getPosition();
 
     if (!checkForCorrectness(pos))
     {
@@ -54,6 +54,17 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
     boardValues[pos.x][pos.y]->setValue(player);
 
     return true;
+}
+
+void Board::revertMove(AbstractBoardCell *absCell)
+{
+    BoardCell *cell;
+    if ((cell = dynamic_cast<BoardCell *>(absCell)))
+    {
+        --totalMoves;
+        const Position &pos = cell->getPosition();
+        boardValues[pos.x][pos.y] = 0;
+    }
 }
 
 int Board::checkForWin(const board_line_t &line) const
@@ -162,6 +173,11 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
 
     // copy return
     return ret;
+}
+
+AbstractBoardCell *Board::getCell(int line, int col) const
+{
+    return boardValues[line][col];
 }
 
 } // namespace game
