@@ -71,8 +71,10 @@ int main()
 	game::AbstractGame *consoleGame = new game::ConsoleGame();
 	
 	consoleGame->loop();
-	
+
 	delete consoleGame;
+
+	// TODO fix override on the board ... player should only be able to add on a free cell
 
 	return EXIT_SUCCESS;
 }
