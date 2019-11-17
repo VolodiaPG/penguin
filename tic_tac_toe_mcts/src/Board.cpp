@@ -30,10 +30,22 @@ Board::~Board()
     }
 }
 
-void Board::performMove(int player, const Position &pos)
+bool Board::checkForCorrectness(const Position &pos) const
 {
+    return boardValues[pos.x][pos.y]->isClaimed();
+}
+
+bool Board::performMove(int player, const Position &pos)
+{
+    if (!checkForCorrectness(pos))
+    {
+        return false;
+    }
+
     ++totalMoves;
     boardValues[pos.x][pos.y]->setValue(player);
+    
+    return true;
 }
 
 int Board::checkForWin(const board_line_t &line) const

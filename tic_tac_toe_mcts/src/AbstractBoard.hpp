@@ -25,8 +25,10 @@ public:
     * 
     * @param player the player that realizes the movement (id)
     * @param pos the position targeted
+    * 
+    * @return true if the move is allowed, false otherwise
     */
-    virtual void performMove(int player, const Position &pos) = 0;
+    virtual bool performMove(int player, const Position &pos) = 0;
 
     /**
      * @brief Status of the game

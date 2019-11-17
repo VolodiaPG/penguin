@@ -66,6 +66,8 @@ protected:
     */
     int checkForWin(const board_line_t &line) const;
 
+    bool checkForCorrectness(const Position& pos) const;
+
 public:
     /**
      * @brief Construct a new Board object
@@ -86,7 +88,7 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    void performMove(int player, const Position &pos) override;
+    bool performMove(int player, const Position &pos) override;
 
     int checkStatus() const override;
 
