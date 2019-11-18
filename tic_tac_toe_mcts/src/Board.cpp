@@ -32,7 +32,7 @@ Board::~Board()
 
 bool Board::checkForCorrectness(const Position &pos) const
 {
-    return boardValues[pos.x][pos.y]->isClaimed();
+    return !boardValues[pos.x][pos.y]->isClaimed();
 }
 
 bool Board::performMove(int player, AbstractBoardCell *absCell)
@@ -45,13 +45,15 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
 
     const Position &pos = cell->getPosition();
 
-    if (!checkForCorrectness(pos))
-    {
-        return false;
-    }
+    // if (!checkForCorrectness(pos))
+    // {
+    //     return false;
+    // }
+    // TODO bug with these lines
 
     ++totalMoves;
-    boardValues[pos.x][pos.y]->setValue(player);
+    cell->setValue(player);
+    // boardValues[pos.x][pos.y]->setValue(player);
 
     return true;
 }
@@ -63,7 +65,7 @@ void Board::revertMove(AbstractBoardCell *absCell)
     {
         --totalMoves;
         const Position &pos = cell->getPosition();
-        boardValues[pos.x][pos.y] = 0;
+        boardValues[pos.x][pos.y]->setValue(0);
     }
 }
 

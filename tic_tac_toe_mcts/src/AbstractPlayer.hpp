@@ -31,7 +31,7 @@ public:
      */
     virtual AbstractBoardCell* action(AbstractBoard *board) = 0;
 
-    unsigned int getId() const { return id; }
+    unsigned int getId() const { return id; };
 };
 } // namespace game
 
