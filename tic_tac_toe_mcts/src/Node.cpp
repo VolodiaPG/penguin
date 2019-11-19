@@ -145,22 +145,14 @@ void Node::simulation()
         playedCells.pop();
     }
 
-    // tree->game->draw();
-
     backpropagation(won);
 }
 
 void Node::backpropagation(int increment)
 {
     // undo the actions
-    // tree->game->revertPlay(state.myAction);
 
     ++totalScenarii;
-
-    // if (increment > 0)
-    // {
-    //     ++totalVictories;
-    // }
 
     totalVictories += increment;
 
