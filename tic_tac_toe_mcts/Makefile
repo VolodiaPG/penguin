@@ -22,6 +22,7 @@ REL_DIR    := release
 #
 # Debug build settings
 #
+# debug :C_FLAGS += -O3
 debug :C_FLAGS += -g -O0
 DBG_DIR    := debug
 
