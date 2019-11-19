@@ -18,15 +18,21 @@ Tree::~Tree()
 void Tree::begin()
 {
     timer t;
-    while (t.milliseconds_elapsed() < (unsigned long)constraints.time)
+    while (t.milliseconds_elapsed() < (unsigned long)constraints.time && !rootNode->getIsFullyDone())
     {
-        rootNode->execute();
+        for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
+        {
+            rootNode->execute();
+        }
     }
+
+    DEBUG(rootNode->getTotalScenarii());
 }
 
-game::AbstractBoardCell* Tree::bestMove() const
+game::AbstractBoardCell *Tree::bestMove() const
 {
-    return rootNode->nodeWithMaxVictories()->getState().myAction;
+
+    return rootNode->nodeWithMaxVisits()->getState().myAction;
 }
 
 } // namespace mcts

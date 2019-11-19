@@ -6,6 +6,9 @@
 #include "AbstractPlayer.hpp"
 #include "MCTSPlayer.hpp"
 #include "AbstractGame.hpp"
+#include "log.hpp"
+
+#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
 namespace game
 {
@@ -57,6 +60,7 @@ public:
 
     void begin();
     game::AbstractBoardCell *bestMove() const;
+    const Node *getRootNode() const { return rootNode; };
 };
 
 } // namespace mcts

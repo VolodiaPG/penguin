@@ -4,6 +4,8 @@
 #include <iterator>
 #include <array>
 
+#include "log.hpp"
+
 #include "AbstractBoard.hpp"
 #include "BoardCell.hpp"
 
@@ -27,17 +29,17 @@ typedef enum
      * @brief Draw
      * 
      */
-    DRAW,
+    DRAW = -1,
     /**
      * @brief P1's won
      * 
      */
-    P1_WON,
+    P1_WON = 1,
     /**
      * @brief P2's won
      * 
      */
-    P2_WON
+    P2_WON = 2
 } GameStatus;
 
 using board_line_t = std::array<BoardCell *, BOARD_SIZE>;

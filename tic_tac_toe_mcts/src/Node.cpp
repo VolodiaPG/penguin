@@ -24,33 +24,71 @@ void Node::selection()
 {
     Node *chosenNode = nullptr;
 
-    // case of children
-    if (childNodes.size())
+    // execute my action
+    executeMyAction();
+
+    // check if it is a terminal node, ie win or draw / lost
+    if (tree->game->isFinished())
     {
-        double max = 0.0;
+        // time to propagate before banning access to this node!
 
-        // select the node that has the most value using the selection formula
-        for (Node *node : childNodes)
+        // check the victory
+        int won = tree->game->board->checkStatus() == (int)tree->playerMe->getId();
+
+        // draw or lose (-1 for draw)
+        if (!won)
         {
-            double res = formula(node->totalVictories, node->totalScenarii, this->totalScenarii);
-            if (res > max)
-            {
-                max = res;
-                chosenNode = node;
-            }
+            won = tree->game->board->checkStatus() == -1 ? 0 : -1;
         }
 
-        // make sure not null
-        if (chosenNode)
-        {
-            chosenNode->selection();
-        }
+        backpropagation(won);
+        isFullyDone = true;
     }
     else
     {
-        // we need to expanse, there is not children to select anymore
-        expansion();
+        // case of children
+        if (childNodes.size())
+        {
+            double max = 0.0;
+            bool hasIterated = false;
+
+            // select the node that has the most value using the selection formula
+            for (Node *node : childNodes)
+            {
+                if (!node->isFullyDone)
+                {
+                    double res = formula(node->totalVictories, node->totalScenarii, this->totalScenarii);
+
+                    if (res >= max)
+                    {
+                        max = res;
+                        chosenNode = node;
+                    }
+
+                    hasIterated = true;
+                }
+            }
+
+            // if didn' iterate, then we are a terminalNode
+            if (!hasIterated)
+            {
+                isFullyDone = true;
+            }
+
+            // make sure not null
+            if (chosenNode)
+            {
+                chosenNode->selection();
+            }
+        }
+        else
+        {
+            // we need to expanse, there is not children to select anymore
+            expansion();
+        }
     }
+
+    tree->game->revertPlay(state.myAction);
 }
 
 void Node::expansion()
@@ -79,8 +117,6 @@ void Node::executeMyAction()
 
 void Node::simulation()
 {
-    executeMyAction();
-
     // 'convert' the two playes into random players (decisional)
     game::RandomPlayer player1(tree->game->player1->getId()), player2(tree->game->player2->getId());
 
@@ -91,8 +127,15 @@ void Node::simulation()
     {
         playedCells.push(tree->game->play(&player1, &player2));
     }
+
     // check the victory
-    bool won = (unsigned int)tree->game->board->checkStatus() == tree->playerMe->getId();
+    int won = tree->game->board->checkStatus() == (int)tree->playerMe->getId();
+
+    // draw or lose (-1 for draw)
+    if (!won)
+    {
+        won = tree->game->board->checkStatus() == -1 ? 0 : -1;
+    }
 
     // revert the random game
     while (!playedCells.empty())
@@ -101,24 +144,30 @@ void Node::simulation()
         // remove the element
         playedCells.pop();
     }
+
+    // tree->game->draw();
+
     backpropagation(won);
 }
 
-void Node::backpropagation(bool victoryOnRandomPlay)
+void Node::backpropagation(int increment)
 {
     // undo the actions
-    tree->game->revertPlay(state.myAction);
+    // tree->game->revertPlay(state.myAction);
 
     ++totalScenarii;
-    if (victoryOnRandomPlay)
-    {
-        ++totalVictories;
-    }
+
+    // if (increment > 0)
+    // {
+    //     ++totalVictories;
+    // }
+
+    totalVictories += increment;
 
     // backpropagate
     if (parentNode)
     {
-        parentNode->backpropagation(victoryOnRandomPlay);
+        parentNode->backpropagation(increment);
     }
 }
 
@@ -127,16 +176,16 @@ void Node::execute()
     selection();
 }
 
-const Node *Node::nodeWithMaxVictories() const
+const Node *Node::nodeWithMaxVisits() const
 {
-    Node *chosen;
+    Node *chosen = nullptr;
     int max = 0;
 
     for (Node *node : childNodes)
     {
-        if (node->totalVictories >= max)
+        if (node->totalScenarii >= max)
         {
-            max = node->totalVictories;
+            max = node->totalScenarii;
             chosen = node;
         }
     }

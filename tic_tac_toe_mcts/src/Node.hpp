@@ -10,6 +10,9 @@
 #include "Tree.hpp"
 #include "AbstractBoardCell.hpp"
 
+#include "log.hpp"
+#include "BoardCell.hpp"
+
 namespace mcts
 {
 
@@ -37,6 +40,8 @@ protected:
     Tree *tree;
     State state;
 
+    bool isFullyDone = false;
+
     inline static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
     void executeMyAction();
 
@@ -53,11 +58,15 @@ public:
     void selection();
     void expansion();
     void simulation();
-    void backpropagation(bool victoryOnRandomPlay);
+    void backpropagation(int increment);
 
     State getState() const { return state; };
 
-    const Node *nodeWithMaxVictories() const;
+    const Node *nodeWithMaxVisits() const;
+
+    inline int getTotalScenarii() const { return totalScenarii; };
+    inline int getTotalVictories() const { return totalVictories; };
+    inline bool getIsFullyDone() const { return isFullyDone; };
 };
 } // namespace mcts
 

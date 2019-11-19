@@ -68,11 +68,14 @@ int main()
 	// print_board_clean_before(board);
 	// pause_msg();
 
-	game::AbstractGame *consoleGame = new game::ConsoleGame();
-	
-	consoleGame->loop();
+	for (int ii = 0; ii < 5; ++ii)
+	{
+		game::AbstractGame *consoleGame = new game::ConsoleGame();
 
-	delete consoleGame;
+		consoleGame->loop();
+
+		delete consoleGame;
+	}
 
 	// TODO fix override on the board ... player should only be able to add on a free cell
 

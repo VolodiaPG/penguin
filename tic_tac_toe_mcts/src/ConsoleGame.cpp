@@ -5,7 +5,8 @@ namespace game
 ConsoleGame::ConsoleGame()
     : AbstractGame(nullptr)
 {
-    player1 = new HumanPlayer(1);
+    player1 = new MCTSPlayer(1, this);
+    // player1 = new HumanPlayer(1);
     player2 = new MCTSPlayer(2, this);
     board = new Board();
 }
@@ -42,7 +43,7 @@ void ConsoleGame::revertPlay(AbstractBoardCell *move)
 void ConsoleGame::draw() const
 {
     // clear the output stdout
-    std::cout << "\033c";
+    // std::cout << "\033c";
 
     const std::vector<AbstractBoardCell *> &cells = board->getBoardCells();
 
@@ -80,13 +81,13 @@ void ConsoleGame::loop()
     AbstractGame::loop();
 
     // print results
-    if (board->checkStatus() == DRAW)
+    if (board->checkStatus() == -1)
     {
         std::cout << "This is a draw :(" << std::endl;
     }
     else
     {
-        std::cout << "Player #" << (board->checkStatus() == P1_WON ? "1" : "2")
+        std::cout << "Player #" << board->checkStatus()
                   << " won!" << std::endl;
     }
 }

@@ -2,7 +2,8 @@
 
 namespace game
 {
-DefinedPlayer::DefinedPlayer(unsigned int id, AbstractBoardCell *target) : AbstractPlayer(id), target(target)
+DefinedPlayer::DefinedPlayer(unsigned int id, AbstractBoardCell *target)
+    : AbstractPlayer(id), target(target)
 {
 }
 

@@ -16,6 +16,11 @@ AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
     mcts::Tree tree(game, this, constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
+
+    // see the best path
+    // mcts::TreeVisualizer visu(&tree);
+    // visu.visualizeBestPath();
+
     board->performMove(getId(), bestMove);
     return bestMove;
 }

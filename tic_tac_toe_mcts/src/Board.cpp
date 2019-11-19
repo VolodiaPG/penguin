@@ -83,7 +83,8 @@ int Board::checkForWin(const board_line_t &line) const
         }
     }
 
-    // it has been the same value all along from the beginning
+    // it has been the same value all along from the beginning,
+    // return the id of the line's owner
     return previous;
 }
 
@@ -102,21 +103,19 @@ int Board::checkStatus() const
 
         for (int jj = 0; jj < BOARD_SIZE; ++jj)
         {
-            col[ii] = boardValues[jj][ii];
+            col[jj] = boardValues[jj][ii];
         }
 
         // row
-        win = checkForWin(row);
-        if (win)
+        if ((win = checkForWin(row)))
         {
-            return (GameStatus)win;
+            return win;
         }
 
         // col
-        win = checkForWin(col);
-        if (win)
+        if ((win = checkForWin(col)))
         {
-            return (GameStatus)win;
+            return win;
         }
 
         // filling the 2 big diagonals
@@ -125,17 +124,15 @@ int Board::checkStatus() const
     }
 
     // diag1
-    win = checkForWin(diag1);
-    if (win)
+    if ((win = checkForWin(diag1)))
     {
-        return (GameStatus)win;
+        return win;
     }
 
     // diag2
-    win = checkForWin(diag2);
-    if (win)
+    if ((win = checkForWin(diag1)))
     {
-        return (GameStatus)win;
+        return win;
     }
 
     return getEmptyCells().size() > 0 ? IN_PROGRESS : DRAW;

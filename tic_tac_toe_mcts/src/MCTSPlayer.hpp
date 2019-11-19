@@ -5,6 +5,7 @@
 #include "AbstractBoard.hpp"
 #include "AbstractGame.hpp"
 #include "Tree.hpp"
+#include "TreeVisualizer.hpp"
 
 namespace game
 {
