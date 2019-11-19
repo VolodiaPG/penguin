@@ -16,7 +16,7 @@ endif
 #
 # Release build settings
 #
-release :C_FLAGS += -O3
+release :C_FLAGS += -O1
 REL_DIR    := release
 
 #

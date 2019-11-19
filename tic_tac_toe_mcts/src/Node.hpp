@@ -64,9 +64,9 @@ public:
 
     const Node *nodeWithMaxVisits() const;
 
-    inline int getTotalScenarii() const { return totalScenarii; };
-    inline int getTotalVictories() const { return totalVictories; };
-    inline bool getIsFullyDone() const { return isFullyDone; };
+    int getTotalScenarii() const { return totalScenarii; };
+    int getTotalVictories() const { return totalVictories; };
+    bool getIsFullyDone() const { return isFullyDone; };
 };
 } // namespace mcts
 
