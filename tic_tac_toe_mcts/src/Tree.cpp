@@ -18,7 +18,9 @@ Tree::~Tree()
 void Tree::begin()
 {
     timer t;
-    while (t.milliseconds_elapsed() < (unsigned long)constraints.time && !rootNode->getIsFullyDone())
+    while (t.milliseconds_elapsed() < (unsigned long)constraints.time
+           // && !rootNode->getIsFullyDone()
+    )
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
@@ -31,7 +33,6 @@ void Tree::begin()
 
 game::AbstractBoardCell *Tree::bestMove() const
 {
-
     return rootNode->nodeWithMaxVisits()->getState().myAction;
 }
 

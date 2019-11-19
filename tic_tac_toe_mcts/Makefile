@@ -2,7 +2,7 @@
 # Compiler files
 #
 CC		:= g++
-C_FLAGS := -std=c++17 -Wall -Wextra `sdl2-config --cflags --libs`
+C_FLAGS := -std=c++17 -Wall -Wextra -pedantic -pedantic-errors `sdl2-config --cflags --libs`
 
 #
 # Exe file
@@ -16,14 +16,14 @@ endif
 #
 # Release build settings
 #
-release :C_FLAGS += -O1
+release :C_FLAGS += -O3
 REL_DIR    := release
 
 #
 # Debug build settings
 #
 # debug :C_FLAGS += -O3
-debug :C_FLAGS += -g -O0
+debug :C_FLAGS += -g -O0 
 DBG_DIR    := debug
 
 #

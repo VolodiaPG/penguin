@@ -121,7 +121,7 @@ int Board::checkStatus() const
     }
 
     // diag2
-    if ((win = checkForWin(diag1)))
+    if ((win = checkForWin(diag2)))
     {
         return win;
     }

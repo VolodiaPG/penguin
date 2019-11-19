@@ -17,7 +17,7 @@ Node::~Node()
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
 {
-    return (double)winsSuccessor / (double)numberVisitsFather + sqrt(2) * sqrt(log2((double)numberVisitsFather) / (double)numberVisitsSuccessor);
+    return (double)winsSuccessor / (double)numberVisitsSuccessor + sqrt(2) * sqrt(log((double)numberVisitsFather) / (double)numberVisitsSuccessor);
 }
 
 void Node::selection()
@@ -42,7 +42,7 @@ void Node::selection()
         }
 
         backpropagation(won);
-        isFullyDone = true;
+        // isFullyDone = true;
     }
     else
     {
@@ -50,30 +50,30 @@ void Node::selection()
         if (childNodes.size())
         {
             double max = 0.0;
-            bool hasIterated = false;
+            // bool hasIterated = false;
 
             // select the node that has the most value using the selection formula
             for (Node *node : childNodes)
             {
-                if (!node->isFullyDone)
+                // if (!node->isFullyDone)
+                // {
+                double res = formula(node->totalVictories, node->totalScenarii, this->totalScenarii);
+
+                if (res >= max)
                 {
-                    double res = formula(node->totalVictories, node->totalScenarii, this->totalScenarii);
-
-                    if (res >= max)
-                    {
-                        max = res;
-                        chosenNode = node;
-                    }
-
-                    hasIterated = true;
+                    max = res;
+                    chosenNode = node;
                 }
+
+                // hasIterated = true;
+                // }
             }
 
             // if didn' iterate, then we are a terminalNode
-            if (!hasIterated)
-            {
-                isFullyDone = true;
-            }
+            // if (!hasIterated)
+            // {
+            //     isFullyDone = true;
+            // }
 
             // make sure not null
             if (chosenNode)
@@ -96,7 +96,8 @@ void Node::expansion()
     // list all possible moves, ie remaining empty cells to move to, and add them to our children
     for (game::AbstractBoardCell *cell : tree->game->board->getEmptyCells())
     {
-        State childState = {.myAction = cell};
+        State childState;
+        childState.myAction = cell;
         Node *node = new Node(tree, this, childState);
         childNodes.push_back(node);
         // add a new leaf to the tree
@@ -171,13 +172,14 @@ void Node::execute()
 const Node *Node::nodeWithMaxVisits() const
 {
     Node *chosen = nullptr;
-    int max = 0;
+    double max = -1;
 
     for (Node *node : childNodes)
     {
-        if (node->totalScenarii >= max)
+        DEBUG(max);
+        if ((double)node->totalVictories / (double)this->totalScenarii >= max)
         {
-            max = node->totalScenarii;
+            max = (double)node->totalVictories / (double)this->totalScenarii;
             chosen = node;
         }
     }

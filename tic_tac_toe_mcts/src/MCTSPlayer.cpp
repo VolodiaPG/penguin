@@ -10,9 +10,8 @@ MCTSPlayer::MCTSPlayer(unsigned int id, AbstractGame *game)
 
 AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
 {
-    mcts::MCTSConstraints constraints = {
-        .time = 1000 //ms
-    };
+    mcts::MCTSConstraints constraints;
+    constraints.time = 1000;
     mcts::Tree tree(game, this, constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();

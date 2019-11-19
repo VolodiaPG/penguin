@@ -40,9 +40,9 @@ protected:
     Tree *tree;
     State state;
 
-    bool isFullyDone = false;
+    // bool isFullyDone = false;
 
-    inline static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
+    static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
     void executeMyAction();
 
 public:
@@ -66,7 +66,7 @@ public:
 
     int getTotalScenarii() const { return totalScenarii; };
     int getTotalVictories() const { return totalVictories; };
-    bool getIsFullyDone() const { return isFullyDone; };
+    // bool getIsFullyDone() const { return isFullyDone; };
 };
 } // namespace mcts
 
