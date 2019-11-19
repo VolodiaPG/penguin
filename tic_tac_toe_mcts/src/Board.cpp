@@ -43,7 +43,7 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
         return false;
     }
 
-    const Position &pos = cell->getPosition();
+    // const Position &pos = cell->getPosition();
 
     // if (!checkForCorrectness(pos))
     // {
