@@ -43,17 +43,8 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
         return false;
     }
 
-    // const Position &pos = cell->getPosition();
-
-    // if (!checkForCorrectness(pos))
-    // {
-    //     return false;
-    // }
-    // TODO bug with these lines
-
     ++totalMoves;
     cell->setValue(player);
-    // boardValues[pos.x][pos.y]->setValue(player);
 
     return true;
 }
