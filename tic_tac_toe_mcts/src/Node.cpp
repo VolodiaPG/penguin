@@ -1,10 +1,20 @@
 #include "Node.hpp"
 
+#include "BoardCell.hpp"
+
 namespace mcts
 {
 Node::Node(Tree *tree, Node *parent, const State &state)
     : parentNode(parent), tree(tree), state(state)
 {
+    //TODO handle myAction nullity
+
+    if (this->state.associatedPlayer != nullptr && this->parentNode != nullptr)
+    {
+        this->state.associatedPlayer = this->tree->game->getNextPlayer(
+            this->parentNode->getState()
+                .associatedPlayer);
+    }
 }
 
 Node::~Node()
@@ -17,6 +27,10 @@ Node::~Node()
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
 {
+    if (!numberVisitsSuccessor)
+    {
+        return std::numeric_limits<double>::max();
+    }
     return (double)winsSuccessor / (double)numberVisitsSuccessor + sqrt(2) * sqrt(log((double)numberVisitsFather) / (double)numberVisitsSuccessor);
 }
 
@@ -57,7 +71,7 @@ void Node::selection()
             {
                 // if (!node->isFullyDone)
                 // {
-                double res = formula(node->totalVictories, node->totalScenarii, this->totalScenarii);
+                double res = formula(node->totalVictories, node->totalScenarii, parentNode ? parentNode->totalScenarii : 0);
 
                 if (res >= max)
                 {
@@ -96,13 +110,16 @@ void Node::expansion()
     // list all possible moves, ie remaining empty cells to move to, and add them to our children
     for (game::AbstractBoardCell *cell : tree->game->board->getEmptyCells())
     {
-        State childState;
-        childState.myAction = cell;
+        State childState = {cell};
         Node *node = new Node(tree, this, childState);
         childNodes.push_back(node);
-        // add a new leaf to the tree
         node->simulation();
+        // add a new leaf to the tree
     }
+
+    // choose a random one and simulate
+    // unsigned int index = rand() % childNodes.size();
+    // childNodes[index]->simulation();
 }
 
 void Node::executeMyAction()
@@ -151,11 +168,15 @@ void Node::simulation()
 
 void Node::backpropagation(int increment)
 {
-    // undo the actions
-
     ++totalScenarii;
 
-    totalVictories += increment;
+    // checking the addresses only
+    if (
+        state.associatedPlayer != nullptr &&
+        state.associatedPlayer == tree->playerMe)
+    {
+        totalVictories += increment;
+    }
 
     // backpropagate
     if (parentNode)
@@ -172,15 +193,20 @@ void Node::execute()
 const Node *Node::nodeWithMaxVisits() const
 {
     Node *chosen = nullptr;
-    double max = -1;
+    int max = 0;
+    DEBUG(childNodes.size());
 
     for (Node *node : childNodes)
     {
-        DEBUG(max);
-        if ((double)node->totalVictories / (double)this->totalScenarii >= max)
+        DEBUG(node->childNodes.size());
+        if (node->totalScenarii >= max)
         {
-            max = (double)node->totalVictories / (double)this->totalScenarii;
+            max = node->totalScenarii;
             chosen = node;
+            const game::Position &pos = ((game::BoardCell *)chosen->getState().myAction)->getPosition();
+            DEBUG(max);
+            DEBUG(pos.x);
+            DEBUG(pos.y);
         }
     }
 

@@ -6,7 +6,7 @@ namespace mcts
 Tree::Tree(game::AbstractGame *game, game::MCTSPlayer *me, const MCTSConstraints &constraints)
     : playerMe(me), game(game), constraints(constraints)
 {
-    State state = {nullptr};
+    State state = {nullptr, me};
     rootNode = new Node(this, nullptr, state);
 }
 
@@ -24,7 +24,8 @@ void Tree::begin()
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
-            rootNode->execute();
+            // rootNode->execute();
+            
         }
     }
 

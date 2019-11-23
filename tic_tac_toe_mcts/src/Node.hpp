@@ -5,6 +5,7 @@
 #include <stack>
 #include <iostream>
 #include <math.h>
+#include <limits>
 #include "RandomPlayer.hpp"
 #include "DefinedPlayer.hpp"
 #include "Tree.hpp"
@@ -21,7 +22,7 @@ class Tree;
 typedef struct
 {
     game::AbstractBoardCell *myAction = nullptr;
-    // game::AbstractPlayer *associatedPlayer = nullptr;
+    game::AbstractPlayer *associatedPlayer = nullptr;
 } State;
 
 class Node

@@ -54,6 +54,14 @@ public:
      * 
      */
     virtual void loop();
+
+    /**
+     * @brief Get the Next Player
+     * 
+     * @param player the curretnt playing player
+     * @return AbstractPlayer* the complementary player
+     */
+    AbstractPlayer *getNextPlayer(AbstractPlayer const *player) { return player == player1 ? player2 : player1; };
 };
 } // namespace game
 
