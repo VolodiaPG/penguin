@@ -12,7 +12,7 @@ AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
 {
     DEBUG(getId());
     mcts::MCTSConstraints constraints;
-    constraints.time = 50;
+    constraints.time = 1000;
     mcts::Tree tree(game, this, constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
