@@ -101,6 +101,11 @@ public:
 
     void revertMove(AbstractBoardCell *cell) override;
 
+    /**
+     * @brief Chek wether or not the game is finished.
+     * 
+     * @return If not finised it will return 0, otherwise the id of the winning player or -1 if a draw
+     */
     int checkStatus() const override;
 
     /**
