@@ -42,11 +42,6 @@ void Tree::begin()
                     game->board->getEmptyCells(),
                     player);
             }
-            else
-            {
-                game->draw();
-                DEBUG("victory");
-            }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
 

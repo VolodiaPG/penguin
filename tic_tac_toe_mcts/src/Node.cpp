@@ -95,7 +95,7 @@ int Node::randomSimulation(game::AbstractGame *game) const
     }
 
     // check the victory
-    int winner = (int)player->getId();
+    int winner = game->board->checkStatus();
 
     // revert the random game
     while (!playedCells.empty())
@@ -115,10 +115,10 @@ void Node::backPropagateAndRevertAction(const int winnerId, game::AbstractBoard 
     {
         victories++;
     }
-    // else if (winnerId != 0)
-    // { // other player but not draw
-    //     victories--;
-    // }
+    else if (winnerId == -1)
+    { // a draw is a victory for both player1 & 2
+        victories++;
+    }
 
     if (parent != nullptr)
     {
