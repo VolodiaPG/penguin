@@ -68,7 +68,7 @@ int main()
 	// print_board_clean_before(board);
 	// pause_msg();
 
-	for (int ii = 0; ii < 25; ++ii)
+	for (int ii = 0; ii < 100; ++ii)
 	{
 		game::AbstractGame *consoleGame = new game::ConsoleGame();
 
