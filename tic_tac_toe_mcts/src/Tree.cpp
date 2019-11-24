@@ -4,15 +4,19 @@ namespace mcts
 {
 
 Tree::Tree(game::AbstractGame *game, game::MCTSPlayer *me, const MCTSConstraints &constraints)
-    : playerMe(me), game(game), constraints(constraints)
+    : playerMe(me),
+      game(game),
+      constraints(constraints)
 {
-    State state = {nullptr, me};
-    rootNode = new Node(this, nullptr, state);
+    rootNode = new Node(nullptr, me, nullptr);
 }
 
 Tree::~Tree()
 {
-    delete rootNode;
+    if (rootNode)
+    {
+        delete rootNode;
+    }
 }
 
 void Tree::begin()
@@ -24,17 +28,44 @@ void Tree::begin()
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
-            // rootNode->execute();
-            
+            Node *promisingNode = rootNode->selectBestChildAndDoAction(game->board);
+
+            if (!game->isFinished())
+            {
+                // DEBUG(promisingNode->getPlayer()->getId());
+                game::AbstractPlayer *player = promisingNode == rootNode
+                                                   ? promisingNode->getPlayer()
+                                                   : game->getNextPlayer(promisingNode->getPlayer());
+                // DEBUG(promisingNode->getPlayer()->getId());
+                // DEBUG(player->getId());
+                promisingNode->expandNode(
+                    game->board->getEmptyCells(),
+                    player);
+            }
+            else
+            {
+                game->draw();
+                DEBUG("victory");
+            }
+
+            Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
+
+            if (nodeToExplore != promisingNode)
+            {
+                nodeToExplore->doAction(game->board);
+            }
+            int winnerId = nodeToExplore->randomSimulation(game);
+
+            nodeToExplore->backPropagateAndRevertAction(winnerId, game->board);
         }
     }
 
-    DEBUG(rootNode->getTotalScenarii());
+    DEBUG(rootNode->visits);
 }
 
 game::AbstractBoardCell *Tree::bestMove() const
 {
-    return rootNode->nodeWithMaxVisits()->getState().myAction;
+    return rootNode->nodeWithMaxVisits()->getTargetedCell();
 }
 
 } // namespace mcts

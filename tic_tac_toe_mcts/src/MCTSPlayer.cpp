@@ -10,8 +10,9 @@ MCTSPlayer::MCTSPlayer(unsigned int id, AbstractGame *game)
 
 AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
 {
+    DEBUG(getId());
     mcts::MCTSConstraints constraints;
-    constraints.time = 1000;
+    constraints.time = 50;
     mcts::Tree tree(game, this, constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
@@ -19,7 +20,6 @@ AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
     // see the best path
     // mcts::TreeVisualizer visu(&tree);
     // visu.visualizeBestPath();
-
     board->performMove(getId(), bestMove);
     return bestMove;
 }

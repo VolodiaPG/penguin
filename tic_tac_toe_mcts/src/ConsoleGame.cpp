@@ -7,7 +7,7 @@ ConsoleGame::ConsoleGame()
 {
     player1 = new MCTSPlayer(1, this);
     player2 = new MCTSPlayer(2, this);
-    
+
     // player1 = new HumanPlayer(1);
     // player2 = new HumanPlayer(2);
 
@@ -24,13 +24,9 @@ ConsoleGame::~ConsoleGame()
 AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
 {
     Board *bo = (Board *)board;
-    AbstractPlayer *player = nullptr;
+    AbstractPlayer *player = player1;
 
-    if (bo->getTotalMoves() % 2 == 0)
-    {
-        player = player1;
-    }
-    else
+    if (bo->getTotalMoves() % 2)
     {
         player = player2;
     }

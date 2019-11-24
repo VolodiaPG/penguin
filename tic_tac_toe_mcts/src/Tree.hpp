@@ -2,7 +2,7 @@
 #define TREE_HPP_
 
 #include <chrono>
-// #include "Node.hpp"
+#include "Node.hpp"
 #include "AbstractPlayer.hpp"
 #include "MCTSPlayer.hpp"
 #include "AbstractGame.hpp"
@@ -49,6 +49,7 @@ class Tree
 {
 protected:
     Node *rootNode;
+    void expandNode();
 
 public:
     game::MCTSPlayer *playerMe;
@@ -60,7 +61,7 @@ public:
 
     void begin();
     game::AbstractBoardCell *bestMove() const;
-    const Node *getRootNode() const { return rootNode; };
+    // NodegetRootNode() const { return rootNode; };
 };
 
 } // namespace mcts

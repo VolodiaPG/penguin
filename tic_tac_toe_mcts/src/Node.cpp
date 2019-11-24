@@ -4,17 +4,9 @@
 
 namespace mcts
 {
-Node::Node(Tree *tree, Node *parent, const State &state)
-    : parentNode(parent), tree(tree), state(state)
+Node::Node(Node *parent, game::AbstractPlayer *player, game::AbstractBoardCell *targetedCell)
+    : parent(parent), player(player), targetedCell(targetedCell)
 {
-    //TODO handle myAction nullity
-
-    if (this->state.associatedPlayer != nullptr && this->parentNode != nullptr)
-    {
-        this->state.associatedPlayer = this->tree->game->getNextPlayer(
-            this->parentNode->getState()
-                .associatedPlayer);
-    }
 }
 
 Node::~Node()
@@ -27,190 +19,162 @@ Node::~Node()
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
 {
-    if (!numberVisitsSuccessor)
+    if (numberVisitsSuccessor == 0)
     {
         return std::numeric_limits<double>::max();
     }
-    return (double)winsSuccessor / (double)numberVisitsSuccessor + sqrt(2) * sqrt(log((double)numberVisitsFather) / (double)numberVisitsSuccessor);
+
+    return (double)winsSuccessor / (double)numberVisitsSuccessor + sqrt(2.0 * log((double)numberVisitsFather) / (double)numberVisitsSuccessor);
 }
 
-void Node::selection()
+Node *Node::selectBestChildAndDoAction(game::AbstractBoard *board)
 {
-    Node *chosenNode = nullptr;
+    Node *ret = this;
 
-    // execute my action
-    executeMyAction();
-
-    // check if it is a terminal node, ie win or draw / lost
-    if (tree->game->isFinished())
+    if (ret->targetedCell)
     {
-        // time to propagate before banning access to this node!
-
-        // check the victory
-        int won = tree->game->board->checkStatus() == (int)tree->playerMe->getId();
-
-        // draw or lose (-1 for draw)
-        if (!won)
-        {
-            won = tree->game->board->checkStatus() == -1 ? 0 : -1;
-        }
-
-        backpropagation(won);
-        // isFullyDone = true;
+        ret->doAction(board);
     }
-    else
+
+    while (ret->childNodes.size() != 0)
     {
-        // case of children
-        if (childNodes.size())
+        int parentVisits = ret->visits;
+
+        double max = std::numeric_limits<double>::min();
+        Node *temp = ret;
+        // One child must be selected to further develop
+        for (Node *node : ret->childNodes)
         {
-            double max = 0.0;
-            // bool hasIterated = false;
+            double res = formula(
+                node->victories,
+                node->visits,
+                parentVisits);
 
-            // select the node that has the most value using the selection formula
-            for (Node *node : childNodes)
+            if (res > max)
             {
-                // if (!node->isFullyDone)
-                // {
-                double res = formula(node->totalVictories, node->totalScenarii, parentNode ? parentNode->totalScenarii : 0);
-
-                if (res >= max)
-                {
-                    max = res;
-                    chosenNode = node;
-                }
-
-                // hasIterated = true;
-                // }
-            }
-
-            // if didn' iterate, then we are a terminalNode
-            // if (!hasIterated)
-            // {
-            //     isFullyDone = true;
-            // }
-
-            // make sure not null
-            if (chosenNode)
-            {
-                chosenNode->selection();
+                // update ret
+                max = res;
+                temp = node;
             }
         }
-        else
+
+        ret = temp;
+
+        // exclude the root node that doesn't have any action associated...
+        if (ret->targetedCell)
         {
-            // we need to expanse, there is not children to select anymore
-            expansion();
+            ret->doAction(board);
         }
     }
 
-    tree->game->revertPlay(state.myAction);
+    return ret;
 }
 
-void Node::expansion()
+bool Node::doAction(game::AbstractBoard *board)
 {
-    // list all possible moves, ie remaining empty cells to move to, and add them to our children
-    for (game::AbstractBoardCell *cell : tree->game->board->getEmptyCells())
-    {
-        State childState = {cell};
-        Node *node = new Node(tree, this, childState);
-        childNodes.push_back(node);
-        node->simulation();
-        // add a new leaf to the tree
-    }
-
-    // choose a random one and simulate
-    // unsigned int index = rand() % childNodes.size();
-    // childNodes[index]->simulation();
-}
-
-void Node::executeMyAction()
-{
-    // TODO better rework ?
-
     // do our move
-    game::DefinedPlayer player1(tree->game->player1->getId(), state.myAction), player2(tree->game->player2->getId(), state.myAction);
-
-    // make sure our action is executed whoever's turn it is
-    tree->game->play(&player1, &player2);
+    return board->performMove(player->getId(), targetedCell);
 }
 
-void Node::simulation()
+void Node::revertAction(game::AbstractBoard *board)
+{
+    return board->revertMove(targetedCell);
+}
+
+int Node::randomSimulation(game::AbstractGame *game) const
 {
     // 'convert' the two playes into random players (decisional)
-    game::RandomPlayer player1(tree->game->player1->getId()), player2(tree->game->player2->getId());
+    game::RandomPlayer player1(game->player1->getId()), player2(game->player2->getId());
 
     // save the actions done so we can revert them;
     std::stack<game::AbstractBoardCell *> playedCells;
 
-    while (!tree->game->isFinished())
+    while (!game->isFinished())
     {
-        playedCells.push(tree->game->play(&player1, &player2));
+        playedCells.push(game->play(&player1, &player2));
     }
 
     // check the victory
-    int won = tree->game->board->checkStatus() == (int)tree->playerMe->getId();
-
-    // draw or lose (-1 for draw)
-    if (!won)
-    {
-        won = tree->game->board->checkStatus() == -1 ? 0 : -1;
-    }
+    int winner = (int)player->getId();
 
     // revert the random game
     while (!playedCells.empty())
     {
-        tree->game->revertPlay(playedCells.top());
+        game->revertPlay(playedCells.top());
         // remove the element
         playedCells.pop();
     }
 
-    backpropagation(won);
+    return winner;
 }
 
-void Node::backpropagation(int increment)
+void Node::backPropagateAndRevertAction(const int winnerId, game::AbstractBoard *board)
 {
-    ++totalScenarii;
-
-    // checking the addresses only
-    if (
-        state.associatedPlayer != nullptr &&
-        state.associatedPlayer == tree->playerMe)
+    ++visits;
+    if (winnerId == (const int)player->getId())
     {
-        totalVictories += increment;
+        victories++;
     }
+    // else if (winnerId != 0)
+    // { // other player but not draw
+    //     victories--;
+    // }
 
-    // backpropagate
-    if (parentNode)
+    if (parent != nullptr)
     {
-        parentNode->backpropagation(increment);
+        revertAction(board);
+
+        // backpropagate again
+        parent->backPropagateAndRevertAction(winnerId, board);
     }
 }
 
-void Node::execute()
-{
-    selection();
-}
-
-const Node *Node::nodeWithMaxVisits() const
+Node *Node::nodeWithMaxVisits() const
 {
     Node *chosen = nullptr;
-    int max = 0;
-    DEBUG(childNodes.size());
+    int max = -1;
+    // int totalVisits = 0;
+    // DEBUG(childNodes.size());
 
     for (Node *node : childNodes)
     {
-        DEBUG(node->childNodes.size());
-        if (node->totalScenarii >= max)
+        // totalVisits += node->visits;
+        // DEBUG(node->visits);
+        // DEBUG(node->victories);
+        if (node->visits > max)
         {
-            max = node->totalScenarii;
+            max = node->visits;
             chosen = node;
-            const game::Position &pos = ((game::BoardCell *)chosen->getState().myAction)->getPosition();
-            DEBUG(max);
-            DEBUG(pos.x);
-            DEBUG(pos.y);
+            // const game::Position &pos = ((game::BoardCell *)chosen->targetedCell)->getPosition();
+            // DEBUG(max);
+            // DEBUG(pos.x);
+            // DEBUG(pos.y);
         }
     }
+    // DEBUG(totalVisits);
 
     return chosen;
+}
+
+Node *Node::randomChooseChildOrDefaultMe()
+{
+    Node *ret = this;
+    if (childNodes.size())
+    {
+        unsigned int index = rand() % childNodes.size();
+        ret = childNodes[index];
+    }
+
+    return ret;
+}
+
+void Node::expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer)
+{
+    for (game::AbstractBoardCell *move : possibleMove)
+    {
+        Node *node = new Node(this, nextPlayer, move);
+        childNodes.push_back(node);
+    }
 }
 
 } // namespace mcts

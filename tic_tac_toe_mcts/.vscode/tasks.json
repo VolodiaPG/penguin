@@ -67,6 +67,24 @@
             ]
         },
         {
+            "label": "Debug: build & log",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make BUILD_ENV=debug debug && ./bin/debug/main > ./bin/debug/log.log"
+            ]
+        },
+        {
             "label": "clean",
             "type": "shell",
             "windows": {

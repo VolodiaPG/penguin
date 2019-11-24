@@ -55,8 +55,7 @@ void Board::revertMove(AbstractBoardCell *absCell)
     if ((cell = dynamic_cast<BoardCell *>(absCell)))
     {
         --totalMoves;
-        const Position &pos = cell->getPosition();
-        boardValues[pos.x][pos.y]->setValue(0);
+        cell->setValue(0);
     }
 }
 

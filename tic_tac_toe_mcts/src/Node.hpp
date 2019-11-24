@@ -14,60 +14,58 @@
 #include "log.hpp"
 #include "BoardCell.hpp"
 
+namespace game
+{
+class AbstractGame;
+}
+
 namespace mcts
 {
 
-class Tree;
-
-typedef struct
-{
-    game::AbstractBoardCell *myAction = nullptr;
-    game::AbstractPlayer *associatedPlayer = nullptr;
-} State;
-
 class Node
 {
-private:
-    int totalVictories = 0;
-    int totalScenarii = 0;
-
 protected:
     /**
      * @brief Nodes, lifetime tied to the parent object
      * 
      */
     std::vector<Node *> childNodes;
-    Node *parentNode;
-    Tree *tree;
-    State state;
-
-    // bool isFullyDone = false;
+    Node *parent = nullptr;
+    game::AbstractPlayer *player = nullptr;
+    game::AbstractBoardCell *targetedCell = nullptr;
 
     static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
-    void executeMyAction();
+
+    Node *selectPromisingNode() const;
 
 public:
-    explicit Node(Tree *tree, Node *parent, const State &state);
+    int victories = 0;
+    int visits = 0;
+
+    explicit Node(Node *parent, game::AbstractPlayer *player, game::AbstractBoardCell *targetedCell);
     ~Node();
 
-    /**
-     * @brief execute the MCTS
-     * 
-     */
-    void execute();
+    bool doAction(game::AbstractBoard *board);
 
-    void selection();
-    void expansion();
-    void simulation();
-    void backpropagation(int increment);
+    void revertAction(game::AbstractBoard *board);
 
-    State getState() const { return state; };
+    Node *selectBestChildAndDoAction(game::AbstractBoard *board);
 
-    const Node *nodeWithMaxVisits() const;
+    Node *nodeWithMaxVisits() const;
 
-    int getTotalScenarii() const { return totalScenarii; };
-    int getTotalVictories() const { return totalVictories; };
-    // bool getIsFullyDone() const { return isFullyDone; };
+    void expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer);
+
+    game::AbstractPlayer *getPlayer() const { return player; };
+    
+    Node *getParent() const { return parent; };
+
+    game::AbstractBoardCell *getTargetedCell() const { return targetedCell; };
+
+    int randomSimulation(game::AbstractGame *game) const;
+
+    Node* randomChooseChildOrDefaultMe();
+
+    void backPropagateAndRevertAction(const int winnerId, game::AbstractBoard *board);
 };
 } // namespace mcts
 
