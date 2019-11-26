@@ -19,6 +19,8 @@ BUILD_ENV ?= -
 
 ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
+EXECUTABLE_C_FLAGS := --bind
+C_FLAGS := -Wno-dollar-in-identifier-extension
 endif
 
 ifeq ($(TARGET_ENV),-)
@@ -27,9 +29,10 @@ endif
 
 CC ?= g++
 
-C_FLAGS := -std=c++17 -Wall -Wextra -pedantic -pedantic-errors
+EXECUTABLE_C_FLAGS ?= 
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors
 
-#
+#c
 # Project files
 #
 BIN		:= bin
@@ -107,7 +110,7 @@ all: build
 build: prep ./$(BINARIES)/$(EXECUTABLE)
 
 $(BINARIES)/$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(EXECUTABLE_C_FLAGS) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 $(BINARIES)/%.o: $(SRC)/%.cpp
 	@$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
