@@ -1,12 +1,20 @@
 <!doctype html>
 <html>
 <script>
-
-  var test_js = (number) =>
+  var player_action_callback = (id) =>
   {
-    console.log(number);
-    alert(number);
+    var pos = new Module.Position();
+    var posGetter = prompt(`Please enter a coord player #${id}(eg. 0,0):`);
+    if (posGetter != null && posGetter != "")
+    {
+      pos.x = parseInt(posGetter[0]);
+      pos.x = parseInt(posGetter[2]);
+    }
+    console.log(pos.x);
+    console.log(pos.y);
+    return pos;
   };
+
   var Module = {
     onRuntimeInitialized: function ()
     {

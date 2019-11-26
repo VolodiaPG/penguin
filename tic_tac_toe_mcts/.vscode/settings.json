@@ -54,6 +54,9 @@
         "bit": "cpp",
         "chrono": "cpp",
         "ctime": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp",
+        "thread": "cpp"
     }
 }

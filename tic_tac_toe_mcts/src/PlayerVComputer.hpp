@@ -1,20 +1,19 @@
-#ifndef CONSOLE_GAME_HPP_
-#define CONSOLE_GAME_HPP_
+#ifndef PLAYER_V_COMPUTER_HPP_
+#define PLAYER_V_COMPUTER_HPP_
 
 #include <iostream>
 #include "AbstractGame.hpp"
 #include "Board.hpp"
-#include "HumanPlayer.hpp"
 #include "JSPlayer.hpp"
 #include "MCTSPlayer.hpp"
 
 namespace game
 {
-class ConsoleGame : public AbstractGame
+class PlayerVComputer : public AbstractGame
 {
 public:
-    ConsoleGame();
-    ~ConsoleGame();
+    explicit PlayerVComputer(JSPlayer::action_callback humanActionCallback);
+    ~PlayerVComputer();
 
     void draw() const override;
     bool isFinished() const override;

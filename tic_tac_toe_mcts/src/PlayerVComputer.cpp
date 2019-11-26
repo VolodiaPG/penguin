@@ -1,12 +1,12 @@
-#include "ConsoleGame.hpp"
+#include "PlayerVComputer.hpp"
 
 namespace game
 {
-ConsoleGame::ConsoleGame()
+PlayerVComputer::PlayerVComputer(JSPlayer::action_callback humanActionCallback)
     : AbstractGame(nullptr)
 {
-    player1 = new MCTSPlayer(1, this);
-    // player1 = new JSPlayer(1);
+    // player1 = new MCTSPlayer(1, this);
+    player1 = new JSPlayer(1, humanActionCallback);
     player2 = new MCTSPlayer(2, this);
 
     // player2 = new HumanPlayer(2);
@@ -14,14 +14,14 @@ ConsoleGame::ConsoleGame()
     board = new Board();
 }
 
-ConsoleGame::~ConsoleGame()
+PlayerVComputer::~PlayerVComputer()
 {
     delete player1;
     delete player2;
     delete board;
 }
 
-AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
+AbstractBoardCell *PlayerVComputer::play(AbstractPlayer *player1, AbstractPlayer *player2)
 {
     Board *bo = (Board *)board;
     AbstractPlayer *player = player1;
@@ -34,12 +34,12 @@ AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *pl
     return player->action(board);
 }
 
-void ConsoleGame::revertPlay(AbstractBoardCell *move)
+void PlayerVComputer::revertPlay(AbstractBoardCell *move)
 {
     board->revertMove(move);
 }
 
-void ConsoleGame::draw() const
+void PlayerVComputer::draw() const
 {
     // clear the output stdout
     // std::cout << "\033c";
@@ -68,12 +68,12 @@ void ConsoleGame::draw() const
     std::cout << std::endl;
 }
 
-bool ConsoleGame::isFinished() const
+bool PlayerVComputer::isFinished() const
 {
     return board->checkStatus() != 0;
 }
 
-void ConsoleGame::loop()
+void PlayerVComputer::loop()
 {
     std::cout << "test" << std::endl;
 

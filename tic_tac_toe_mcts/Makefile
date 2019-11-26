@@ -19,8 +19,8 @@ BUILD_ENV ?= -
 
 ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
-EXECUTABLE_C_FLAGS := --bind
-C_FLAGS := -Wno-dollar-in-identifier-extension
+EXECUTABLE_C_FLAGS :=
+C_FLAGS := --bind -Wno-dollar-in-identifier-extension
 endif
 
 ifeq ($(TARGET_ENV),-)
