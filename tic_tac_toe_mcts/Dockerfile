@@ -34,11 +34,14 @@ USER develop
 
 RUN git clone https://github.com/emscripten-core/emsdk.git /home/develop/emsdk
 WORKDIR /home/develop/emsdk
-RUN echo ${EMSCRIPTEN_VERSION}
+RUN echo $EMSCRIPTEN_VERSION
 RUN chmod +x ./emsdk && chmod +x ./emsdk_env.sh
-RUN ./emsdk install ${EMSCRIPTEN_VERSION}
-RUN ./emsdk activate ${EMSCRIPTEN_VERSION}
+RUN ./emsdk install $EMSCRIPTEN_VERSION-fastcomp
+RUN ./emsdk activate $EMSCRIPTEN_VERSION-fastcomp
 RUN /bin/bash -c "source ./emsdk_env.sh"
+
+# expose port to access the wasm files later from the host
+EXPOSE 8080
 
 VOLUME /home/develop
 WORKDIR /home/develop

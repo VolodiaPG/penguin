@@ -1,16 +1,49 @@
 #
-# Compiler files
+# Env variables
 #
-CC		:= g++
-C_FLAGS := -std=c++17 -Wall -Wextra -pedantic -pedantic-errors `sdl2-config --cflags --libs`
+
+ENV_EMSCRIPTEN_FASTCOMP := /home/develop/emsdk/fastcomp/emscripten
 
 #
-# Exe file
+# Default variables
 #
+
+# emscripten ...
+TARGET_ENV ?= -
+# debug, release ...
+BUILD_ENV ?= -
+
+#
+# Compiler files
+#
+
+ifeq ($(TARGET_ENV),emscripten)
+CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
+endif
+
+ifeq ($(TARGET_ENV),-)
+C_FLAGS := `sdl2-config --cflags --libs`
+endif
+
+CC ?= g++
+
+C_FLAGS := -std=c++17 -Wall -Wextra -pedantic -pedantic-errors
+
+#
+# Final exe file
+#
+ifeq ($(TARGET_ENV),emscripten)
+
+EXECUTABLE  := www/main.html
+
+else
+
 ifeq ($(OS),Windows_NT)
 EXECUTABLE	:= main.exe
 else
 EXECUTABLE	:= main
+endif
+
 endif
 
 #
@@ -45,8 +78,6 @@ LIBRARIES	:=
 # Definition of makefile's working dirs 
 # Specify an envionement to create the named speratee folder in the bin folder
 #
-BUILD_ENV ?= -
-
 ifneq ($(BUILD_ENV),-)
 BINARIES := $(BIN)/$(BUILD_ENV)
 endif
@@ -106,8 +137,14 @@ rel_run: release
 clean:
 	$(RM) -r $(BIN)/*
 
+ifeq ($(TARGET_ENV),emscripten)
 prep:
 	mkdir -p $(BINARIES)
+	mkdir -p $(BINARIES)/www/
+else
+prep:
+	mkdir -p $(BINARIES)
+endif
 
 run: all
 	./$(BINARIES)/$(EXECUTABLE)

@@ -12,7 +12,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=release release"
+                "make TARGET_ENV=emscripten BUILD_ENV=release release"
             ]
         },
         {
@@ -26,7 +26,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=release rel_run"
+                "make TARGET_ENV=emscripten BUILD_ENV=release rel_run"
             ]
         },
         {
@@ -44,7 +44,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug debug"
+                "make TARGET_ENV=emscripten BUILD_ENV=debug debug"
             ],
             "problemMatcher": []
         },
@@ -63,7 +63,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug dbg_run"
+                "make TARGET_ENV=emscripten BUILD_ENV=debug dbg_run"
             ]
         },
         {
@@ -81,7 +81,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug debug && ./bin/debug/main > ./bin/debug/log.log"
+                "make TARGET_ENV=emscripten BUILD_ENV=debug debug && ./bin/debug/main > ./bin/debug/log.log"
             ]
         },
         {
