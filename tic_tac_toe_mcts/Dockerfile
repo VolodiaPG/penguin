@@ -40,6 +40,11 @@ RUN ./emsdk install $EMSCRIPTEN_VERSION-fastcomp
 RUN ./emsdk activate $EMSCRIPTEN_VERSION-fastcomp
 RUN /bin/bash -c "source ./emsdk_env.sh"
 
+# adding libs to system
+USER root
+RUN cp -r /home/develop/emsdk/fastcomp/emscripten/system/include/* /usr/local/include/
+
+USER develop
 
 # VOLUME /home/develop
 WORKDIR /home/develop
