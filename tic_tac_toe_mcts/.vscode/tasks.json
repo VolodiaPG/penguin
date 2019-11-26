@@ -30,6 +30,20 @@
             ]
         },
         {
+            "label": "Release: build & serve",
+            "type": "shell",
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make TARGET_ENV=emscripten BUILD_ENV=release serve"
+            ]
+        },
+        {
             "label": "Debug: build",
             "type": "shell",
             "group": {
@@ -82,6 +96,24 @@
             "args": [
                 "-c",
                 "make TARGET_ENV=emscripten BUILD_ENV=debug debug && ./bin/debug/main > ./bin/debug/log.log"
+            ]
+        },
+        {
+            "label": "Debug: build & serve",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "powershell"
+            },
+            "linux": {
+                "command": "bash"
+            },
+            "args": [
+                "-c",
+                "make TARGET_ENV=emscripten BUILD_ENV=debug serve"
             ]
         },
         {

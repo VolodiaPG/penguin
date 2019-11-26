@@ -40,10 +40,8 @@ RUN ./emsdk install $EMSCRIPTEN_VERSION-fastcomp
 RUN ./emsdk activate $EMSCRIPTEN_VERSION-fastcomp
 RUN /bin/bash -c "source ./emsdk_env.sh"
 
-# expose port to access the wasm files later from the host
-EXPOSE 8080
 
-VOLUME /home/develop
+# VOLUME /home/develop
 WORKDIR /home/develop
 
 #####################
@@ -67,3 +65,6 @@ RUN /usr/install-dependencies.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER develop
+
+# expose port to access the wasm files later from the host
+EXPOSE 8080:8080

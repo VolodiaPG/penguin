@@ -30,11 +30,22 @@ CC ?= g++
 C_FLAGS := -std=c++17 -Wall -Wextra -pedantic -pedantic-errors
 
 #
+# Project files
+#
+BIN		:= bin
+SRC		:= src
+INCLUDE	:= include
+LIB		:= lib
+WWW		:= www
+
+LIBRARIES	:=
+
+#
 # Final exe file
 #
 ifeq ($(TARGET_ENV),emscripten)
 
-EXECUTABLE  := www/main.html
+EXECUTABLE  := $(WWW)/main.html
 
 else
 
@@ -57,17 +68,6 @@ REL_DIR    := release
 #
 debug :C_FLAGS += -g -O0 
 DBG_DIR    := debug
-
-#
-# Project files
-#
-BIN		:= bin
-SRC		:= src
-INCLUDE	:= include
-LIB		:= lib
-
-LIBRARIES	:=
-
 
 #
 # Definition of build environement, choosing what target you want: release, debug, ... (not to be definied here but rather passed when executing the command make)
@@ -138,13 +138,21 @@ clean:
 	$(RM) -r $(BIN)/*
 
 ifeq ($(TARGET_ENV),emscripten)
+
+# Create dirs and recursively hardlink files
 prep:
 	mkdir -p $(BINARIES)
-	mkdir -p $(BINARIES)/www/
+	mkdir -p $(BINARIES)/$(WWW)/
+	ln -f ./$(WWW)/* ./$(BINARIES)/$(WWW)
+
+serve: build
+	cd ./$(BINARIES)/$(WWW) && python -m SimpleHTTPServer 8080
+
 else
 prep:
 	mkdir -p $(BINARIES)
 endif
+
 
 run: all
 	./$(BINARIES)/$(EXECUTABLE)
