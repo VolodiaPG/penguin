@@ -1,24 +1,35 @@
 <!doctype html>
 <html>
-<script>
-  var player_action_callback = (id) =>
-  {
-    var pos = new Module.Position();
-    var posGetter = prompt(`Please enter a coord player #${id}(eg. 0,0):`);
-    if (posGetter != null && posGetter != "")
-    {
-      pos.x = parseInt(posGetter[0]);
-      pos.x = parseInt(posGetter[2]);
-    }
-    console.log(pos.x);
-    console.log(pos.y);
-    return pos;
-  };
 
+<body>
+  Hello world!
+</body>
+<script async>
+  
   var Module = {
     onRuntimeInitialized: function ()
     {
+      var player_action_callback = Module.addFunction((id) =>
+      {
+        var pos = new Module.Position();
+        var posGetter = prompt(`Please enter a coord player #${id}(eg. 0,0):`);
+        if (posGetter != null && posGetter != "")
+        {
+          pos.x = parseInt(posGetter[0]);
+          pos.x = parseInt(posGetter[2]);
+        }
+        console.log(pos.x);
+        console.log(pos.y);
+        return pos;
+      });
+
       console.log('main_emscripten result: ' + Module.main_emscripten(1));
+      var game = new Module.PlayerVComputer(player_action_callback);
+      while (!game.isFinished())
+      {
+        game.playGame();
+      }
+      game.delete();
     }
   };
 </script>
