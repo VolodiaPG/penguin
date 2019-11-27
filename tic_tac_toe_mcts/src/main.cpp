@@ -48,14 +48,14 @@ int main_emscripten(int test)
 {
 	std::cout << test << std::endl;
 
-	for (int ii = 0; ii < 1; ++ii)
-	{
-		game::AbstractGame *game = new game::PlayerVComputer(&player_action_callback);
+	// for (int ii = 0; ii < 1; ++ii)
+	// {
+	// 	game::AbstractGame *game = new game::PlayerVComputer(&player_action_callback);
 
-		game->loop();
+	// 	game->loop();
 
-		delete game;
-	}
+	// 	delete game;
+	// }
 	// test_js(4242);
 	// EM_ASM_ARGS({
 	// 	test_js($0);
@@ -65,12 +65,17 @@ int main_emscripten(int test)
 	return 42;
 }
 
+#ifndef MAIN_HPP_
+#define MAIN_HPP_
+
 EMSCRIPTEN_BINDINGS(module_test)
 {
 	class_<game::Position>("Position")
-         .constructor<>()
-         .property("x", &game::Position::x)
-         .property("y", &game::Position::y);
+		.constructor<>()
+		.property("x", &game::Position::x)
+		.property("y", &game::Position::y);
 
 	function("main_emscripten", &main_emscripten);
 }
+
+#endif
