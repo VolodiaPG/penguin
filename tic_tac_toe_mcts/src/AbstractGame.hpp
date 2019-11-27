@@ -7,7 +7,7 @@
 
 namespace game
 {
-class AbstractGame : public AbstractInterface
+class AbstractGame
 {
 public:
     /**
@@ -48,12 +48,6 @@ public:
     virtual AbstractBoardCell *play(AbstractPlayer *p1, AbstractPlayer *p2) = 0;
 
     virtual void revertPlay(AbstractBoardCell *move) = 0;
-
-    /**
-     * @brief Loop while the game is not finished, told by the `isFinished` method
-     * 
-     */
-    virtual void loop();
 
     /**
      * @brief Get the Next Player

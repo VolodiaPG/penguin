@@ -77,7 +77,12 @@ void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
-    AbstractGame::loop();
+    draw();
+    while (!isFinished())
+    {
+        play(player1, player2);
+        draw();
+    }
 
     // print results
     if (board->checkStatus() == -1)
@@ -90,4 +95,5 @@ void ConsoleGame::loop()
                   << " won!" << std::endl;
     }
 }
+
 } // namespace game

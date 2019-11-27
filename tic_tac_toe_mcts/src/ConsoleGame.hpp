@@ -10,7 +10,7 @@
 
 namespace game
 {
-class ConsoleGame : public AbstractGame
+class ConsoleGame : public AbstractGame, public AbstractInterface
 {
 public:
     ConsoleGame();
@@ -20,7 +20,12 @@ public:
     bool isFinished() const override;
     AbstractBoardCell *play(AbstractPlayer *player1, AbstractPlayer *player2) override;
     void revertPlay(AbstractBoardCell *move) override;
-    void loop() override;
+    
+    /**
+     * @brief Loop while the game is not finished, told by the `isFinished` method
+     * 
+     */
+    virtual void loop();
 };
 } // namespace game
 
