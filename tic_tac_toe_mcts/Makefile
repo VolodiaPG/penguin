@@ -146,6 +146,7 @@ ifeq ($(TARGET_ENV),emscripten)
 prep:
 	mkdir -p $(BINARIES)
 	mkdir -p $(BINARIES)/$(WWW)/
+	ls ./$(WWW)/ | xargs -i rm -r -f ./$(BINARIES)/$(WWW)/{}
 	ln -f ./$(WWW)/* ./$(BINARIES)/$(WWW)
 
 serve: build
