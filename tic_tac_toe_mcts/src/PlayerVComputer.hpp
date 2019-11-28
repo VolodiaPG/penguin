@@ -6,7 +6,7 @@
 #include "HumanPlayer.hpp"
 #include "MCTSPlayer.hpp"
 
-// #include <emscripten/bind.h>
+#include <emscripten/bind.h>
 
 namespace game
 {
@@ -20,16 +20,18 @@ public:
     explicit PlayerVComputer();
     ~PlayerVComputer();
 
-    bool playPlayer1(const Position &pos);
+    bool playPlayer1(int x, int y);
+    bool playPlayer2();
 };
 } // namespace game
 
-// EMSCRIPTEN_BINDINGS(module_playervcomputer)
-// {
-//     emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
-//         .constructor<game::JSPlayer::action_callback>()
-//         .function("playGame", &game::PlayerVComputer::playGame)
-//         .function("isFinished", &game::PlayerVComputer::isFinished);
-// }
+EMSCRIPTEN_BINDINGS(module_playervcomputer)
+{
+    emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
+        .constructor<>()
+        .function("playPlayer1", &game::PlayerVComputer::playPlayer1)
+        .function("playPlayer2", &game::PlayerVComputer::playPlayer2)
+        .function("isFinished", &game::PlayerVComputer::isFinished);
+}
 
 #endif
