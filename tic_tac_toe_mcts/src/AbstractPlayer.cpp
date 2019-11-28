@@ -3,7 +3,9 @@
 namespace game
 {
 
-AbstractPlayer::AbstractPlayer(unsigned int id) : id(id)
+AbstractPlayer::AbstractPlayer(unsigned int id, AbstractGame *game)
+    : id(id),
+      game(game)
 {
 }
 
