@@ -138,25 +138,15 @@ Node *Node::nodeWithMaxVisits() const
 {
     Node *chosen = nullptr;
     int max = -1;
-    // int totalVisits = 0;
-    // DEBUG(childNodes.size());
 
     for (Node *node : childNodes)
     {
-        // totalVisits += node->visits;
-        // DEBUG(node->visits);
-        // DEBUG(node->victories);
         if (node->visits > max)
         {
             max = node->visits;
             chosen = node;
-            // const game::Position &pos = ((game::BoardCell *)chosen->targetedCell)->getPosition();
-            // DEBUG(max);
-            // DEBUG(pos.x);
-            // DEBUG(pos.y);
         }
     }
-    // DEBUG(totalVisits);
 
     return chosen;
 }
