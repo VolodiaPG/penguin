@@ -22,11 +22,9 @@ int main()
 {
 	for (int ii = 0; ii < 1; ++ii)
 	{
-		game::AbstractGame *consoleGame = new game::ConsoleGame();
+		game::ConsoleGame consoleGame;
 
-		consoleGame->loop();
-
-		delete consoleGame;
+		consoleGame.loop();
 	}
 
 	return EXIT_SUCCESS;
@@ -65,17 +63,17 @@ int main_emscripten(int test)
 	return 42;
 }
 
-#ifndef MAIN_HPP_
-#define MAIN_HPP_
+// #ifndef MAIN_HPP_
+// #define MAIN_HPP_
 
-EMSCRIPTEN_BINDINGS(module_test)
-{
-	class_<game::Position>("Position")
-		.constructor<>()
-		.property("x", &game::Position::x)
-		.property("y", &game::Position::y);
+// EMSCRIPTEN_BINDINGS(module_test)
+// {
+// 	class_<game::Position>("Position")
+// 		.constructor<>()
+// 		.property("x", &game::Position::x)
+// 		.property("y", &game::Position::y);
 
-	function("main_emscripten", &main_emscripten);
-}
+// 	function("main_emscripten", &main_emscripten);
+// }
 
-#endif
+// #endif
