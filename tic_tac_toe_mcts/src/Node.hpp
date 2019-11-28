@@ -7,7 +7,6 @@
 #include <math.h>
 #include <limits>
 #include "RandomPlayer.hpp"
-#include "DefinedPlayer.hpp"
 #include "Tree.hpp"
 #include "AbstractBoardCell.hpp"
 
@@ -33,6 +32,7 @@ protected:
     Node *parent = nullptr;
     game::AbstractPlayer *player = nullptr;
     game::AbstractBoardCell *targetedCell = nullptr;
+    game::AbstractGame *game = nullptr;
 
     static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
 
@@ -42,30 +42,34 @@ public:
     int victories = 0;
     int visits = 0;
 
-    explicit Node(Node *parent, game::AbstractPlayer *player, game::AbstractBoardCell *targetedCell);
+    explicit Node(
+        Node *parent,
+        game::AbstractPlayer *player,
+        game::AbstractBoardCell *targetedCell,
+        game::AbstractGame *game);
     ~Node();
 
-    bool doAction(game::AbstractBoard *board);
+    bool doAction();
 
-    void revertAction(game::AbstractBoard *board);
+    void revertAction();
 
-    Node *selectBestChildAndDoAction(game::AbstractBoard *board);
+    Node *selectBestChildAndDoAction();
 
     Node *nodeWithMaxVisits() const;
 
     void expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer);
 
     game::AbstractPlayer *getPlayer() const { return player; };
-    
+
     Node *getParent() const { return parent; };
 
     game::AbstractBoardCell *getTargetedCell() const { return targetedCell; };
 
-    int randomSimulation(game::AbstractGame *game) const;
+    int randomSimulation() const;
 
-    Node* randomChooseChildOrDefaultMe();
+    Node *randomChooseChildOrDefaultMe();
 
-    void backPropagateAndRevertAction(const int winnerId, game::AbstractBoard *board);
+    void backPropagateAndRevertAction(const int winnerId);
 };
 } // namespace mcts
 

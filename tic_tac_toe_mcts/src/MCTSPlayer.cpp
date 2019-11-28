@@ -4,11 +4,11 @@ namespace game
 {
 
 MCTSPlayer::MCTSPlayer(unsigned int id, AbstractGame *game)
-    : AbstractPlayer(id), game(game)
+    : AbstractPlayer(id, game)
 {
 }
 
-AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
+bool MCTSPlayer::action(AbstractBoardCell *)
 {
     DEBUG(getId());
     mcts::MCTSConstraints constraints;
@@ -17,10 +17,6 @@ AbstractBoardCell *MCTSPlayer::action(AbstractBoard *board)
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
 
-    // see the best path
-    // mcts::TreeVisualizer visu(&tree);
-    // visu.visualizeBestPath();
-    board->performMove(getId(), bestMove);
-    return bestMove;
+    return AbstractPlayer::action(bestMove);
 }
 } // namespace game

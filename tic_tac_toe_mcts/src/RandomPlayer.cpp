@@ -3,18 +3,20 @@
 namespace game
 {
 
-RandomPlayer::RandomPlayer(unsigned int id) : AbstractPlayer(id)
+RandomPlayer::RandomPlayer(unsigned int id, AbstractGame *game)
+    : AbstractPlayer(id, game)
 {
 }
 
-AbstractBoardCell *RandomPlayer::action(AbstractBoard *board)
+AbstractBoardCell *RandomPlayer::randomAction()
 {
-    std::vector<AbstractBoardCell *> cells = board->getEmptyCells();
+    std::vector<AbstractBoardCell *> cells = game->board->getEmptyCells();
 
     // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
     unsigned int index = rand() % cells.size();
 
-    board->performMove(getId(), cells[index]);
+    AbstractPlayer::action(cells[index]);
+
     return cells[index];
 }
 

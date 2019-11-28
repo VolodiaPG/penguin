@@ -43,7 +43,6 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
         return false;
     }
 
-    ++totalMoves;
     cell->setValue(player);
 
     return true;
@@ -54,7 +53,6 @@ void Board::revertMove(AbstractBoardCell *absCell)
     BoardCell *cell;
     if ((cell = dynamic_cast<BoardCell *>(absCell)))
     {
-        --totalMoves;
         cell->setValue(0);
     }
 }

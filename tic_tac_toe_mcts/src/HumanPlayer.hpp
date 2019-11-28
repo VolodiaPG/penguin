@@ -9,8 +9,8 @@ namespace game
 class HumanPlayer : public AbstractPlayer
 {
 public:
-    explicit HumanPlayer(unsigned int id);
-    AbstractBoardCell* action(AbstractBoard *board) override;
+    explicit HumanPlayer(unsigned int id, AbstractGame* game);
+    bool action(AbstractBoardCell *cell) override;
 };
 } // namespace game
 

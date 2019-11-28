@@ -10,10 +10,18 @@ namespace game
 
 class RandomPlayer : public AbstractPlayer
 {
+private:
+    /**
+     * @brief Deactivate the behavior of the action, as it shouldn't be used that way
+     * 
+     * @param cell  
+     * @return false all the time
+     */
+    bool action(AbstractBoardCell *) override { return false; };
 
 public:
-    explicit RandomPlayer(unsigned int id);
-    AbstractBoardCell *action(AbstractBoard *board) override;
+    explicit RandomPlayer(unsigned int id, AbstractGame *game);
+    AbstractBoardCell *randomAction();
 };
 
 } // namespace game

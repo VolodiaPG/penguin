@@ -1,10 +1,12 @@
 #ifndef ABSTRACT_PLAYER_HPP_
 #define ABSTRACT_PLAYER_HPP_
 
-#include "AbstractBoard.hpp"
+#include "AbstractGame.hpp"
 
 namespace game
 {
+class AbstractGame;
+
 class AbstractPlayer
 {
 private:
@@ -14,13 +16,20 @@ private:
      */
     unsigned int id;
 
+protected:
+    /**
+     * @brief The game linked where this player's playing
+     * 
+     */
+    AbstractGame *game;
+
 public:
     /**
      * @brief Construct a new Abstract Player object
      * 
      * @param id the id of the player
      */
-    explicit AbstractPlayer(unsigned int id);
+    explicit AbstractPlayer(unsigned int id, AbstractGame *game);
 
     virtual ~AbstractPlayer(){};
 
@@ -29,10 +38,16 @@ public:
      * 
      * @return the played Cell
      */
-    virtual AbstractBoardCell* action(AbstractBoard *board) = 0;
+    virtual bool action(AbstractBoardCell *cell) = 0;
 
-    unsigned int getId() const { return id; };
+    /**
+     * @brief Get player's id
+     * 
+     * @return constexpr unsigned int the id
+     */
+    constexpr unsigned int getId() const { return id; };
 };
+
 } // namespace game
 
 #endif

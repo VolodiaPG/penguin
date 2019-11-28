@@ -7,26 +7,12 @@
 
 namespace game
 {
+class AbstractPlayer;
+
 class AbstractGame
 {
 public:
-    /**
-     * @brief Constant pointer to the board used
-     * 
-     */
     AbstractBoard *board;
-
-    /**
-     * @brief First player to play
-     * 
-     */
-    AbstractPlayer *player1 = nullptr;
-
-    /**
-     * @brief Second player
-     * 
-     */
-    AbstractPlayer *player2 = nullptr;
 
     explicit AbstractGame(AbstractBoard *board);
 
@@ -40,22 +26,37 @@ public:
      */
     virtual bool isFinished() const = 0;
 
-    /**
-     * @brief play one round of the game
-     * 
-     * @return the played cell
-     */
-    virtual AbstractBoardCell *play(AbstractPlayer *p1, AbstractPlayer *p2) = 0;
+    // /**
+    //  * @brief play one round of the game
+    //  *
+    //  * @return the played cell
+    //  */
+    // virtual AbstractBoardCell *play(AbstractPlayer *p1, AbstractPlayer *p2) = 0;
 
-    virtual void revertPlay(AbstractBoardCell *move) = 0;
+    virtual bool play(AbstractPlayer *player, AbstractBoardCell *cell) = 0;
+
+    virtual void revertPlay(AbstractBoardCell *cell) = 0;
+
+    /**
+     * @brief Get the Next Player's id
+     * 
+     * @return the next player's id
+     */
+    virtual unsigned int getNextPlayerId() const = 0;
 
     /**
      * @brief Get the Next Player
      * 
-     * @param player the curretnt playing player
-     * @return AbstractPlayer* the complementary player
+     * @return the next player
      */
-    AbstractPlayer *getNextPlayer(AbstractPlayer const *player) { return player->getId() == player1->getId() ? player2 : player1; };
+    virtual AbstractPlayer *getNextPlayer() const = 0;
+
+    /**
+     * @brief Checks the status of the game, if won, draw
+     * 
+     * @return int when won : the id of the winner, -1 if draw, 0 otherwise
+     */
+    virtual int checkStatus() const = 0;
 };
 } // namespace game
 

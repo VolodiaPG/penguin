@@ -12,12 +12,9 @@ namespace game
 
 class MCTSPlayer : public AbstractPlayer
 {
-protected:
-    AbstractGame *game;
-
 public:
     explicit MCTSPlayer(unsigned int id, AbstractGame* game);
-    AbstractBoardCell *action(AbstractBoard *board) override;
+    bool action(AbstractBoardCell *cell) override;
 };
 
 } // namespace game
