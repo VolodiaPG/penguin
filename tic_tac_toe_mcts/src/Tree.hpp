@@ -5,6 +5,7 @@
 #include "Node.hpp"
 #include "AbstractPlayer.hpp"
 #include "MCTSPlayer.hpp"
+#include "DefinedPlayer.hpp"
 #include "AbstractGame.hpp"
 #include "log.hpp"
 

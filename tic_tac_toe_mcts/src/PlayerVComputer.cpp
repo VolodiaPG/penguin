@@ -34,3 +34,14 @@ bool PlayerVComputer::playPlayer2()
 }
 
 } // namespace game
+
+// EMSCRIPTEN_BINDINGS(module_player_v_computer)
+// {
+//     // function("playPlayer1", &playPlayer1);
+//     // function("playPlayer2", &playPlayer2);
+//     class_<game::PlayerVComputer>("PlayerVComputer")
+//         .constructor<>()
+//         .function("playPlayer1", &game::PlayerVComputer::playPlayer1)
+//         .function("playPlayer2", &game::PlayerVComputer::playPlayer2)
+//         .function("isFinished", &game::PlayerVComputer::isFinished);
+// }

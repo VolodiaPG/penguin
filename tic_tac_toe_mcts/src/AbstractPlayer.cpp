@@ -9,4 +9,9 @@ AbstractPlayer::AbstractPlayer(unsigned int id, AbstractGame *game)
 {
 }
 
+bool AbstractPlayer::action(AbstractBoardCell *cell)
+{
+  return game->play(this, cell);
+}
+
 } // namespace game

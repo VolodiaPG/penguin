@@ -130,9 +130,9 @@ std::vector<AbstractBoardCell *> Board::getEmptyCells() const
 {
     std::vector<AbstractBoardCell *> ret;
 
-    for (int ii = 0; ii < (int)boardValues.size(); ++ii)
+    for (size_t ii = 0; ii < boardValues.size(); ++ii)
     {
-        for (int jj = 0; jj < (int)boardValues[0].size(); ++jj)
+        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
         {
             BoardCell *cell = boardValues[ii][jj];
             if (!cell->isClaimed())

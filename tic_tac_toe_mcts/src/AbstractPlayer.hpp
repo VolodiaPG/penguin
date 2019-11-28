@@ -1,6 +1,7 @@
 #ifndef ABSTRACT_PLAYER_HPP_
 #define ABSTRACT_PLAYER_HPP_
 
+#include "AbstractBoardCell.hpp"
 #include "AbstractGame.hpp"
 
 namespace game
@@ -38,7 +39,7 @@ public:
      * 
      * @return the played Cell
      */
-    virtual bool action(AbstractBoardCell *cell) = 0;
+    virtual bool action(AbstractBoardCell *cell);
 
     /**
      * @brief Get player's id

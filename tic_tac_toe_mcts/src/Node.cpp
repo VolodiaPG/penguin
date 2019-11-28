@@ -8,10 +8,10 @@ Node::Node(Node *parent,
            game::AbstractBoardCell *targetedCell,
            game::AbstractGame *game)
     : parent(parent),
-      player(player),
       targetedCell(targetedCell),
       game(game)
 {
+    this->player = new game::DefinedPlayer(player->getId(), game);
 }
 
 Node::~Node()
@@ -20,6 +20,9 @@ Node::~Node()
     {
         delete node;
     }
+
+    if (player)
+        delete player;
 }
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
@@ -116,7 +119,7 @@ int Node::randomSimulation() const
 void Node::backPropagateAndRevertAction(const int winnerId)
 {
     ++visits;
-    if (winnerId == (const int)player->getId())
+    if (winnerId == (int)player->getId())
     {
         victories++;
     }

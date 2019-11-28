@@ -7,6 +7,7 @@
 #include <math.h>
 #include <limits>
 #include "RandomPlayer.hpp"
+#include "DefinedPlayer.hpp"
 #include "Tree.hpp"
 #include "AbstractBoardCell.hpp"
 
@@ -30,7 +31,7 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::AbstractPlayer *player = nullptr;
+    game::DefinedPlayer *player = nullptr;
     game::AbstractBoardCell *targetedCell = nullptr;
     game::AbstractGame *game = nullptr;
 

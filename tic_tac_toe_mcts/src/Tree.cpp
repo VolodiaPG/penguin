@@ -21,6 +21,7 @@ Tree::~Tree()
 
 void Tree::begin()
 {
+    std::cout << "Beginning MCTS search" << std::endl;
     timer t;
     while (t.milliseconds_elapsed() < (unsigned long)constraints.time
            // && !rootNode->getIsFullyDone()

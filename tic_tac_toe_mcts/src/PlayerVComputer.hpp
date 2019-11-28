@@ -6,7 +6,8 @@
 #include "HumanPlayer.hpp"
 #include "MCTSPlayer.hpp"
 
-#include <emscripten/bind.h>
+// #include <emscripten/bind.h>
+// #include <emscripten.h>
 
 namespace game
 {
@@ -17,7 +18,7 @@ namespace game
 class PlayerVComputer : public TicTacToe
 {
 public:
-    explicit PlayerVComputer();
+    PlayerVComputer();
     ~PlayerVComputer();
 
     bool playPlayer1(int x, int y);
@@ -25,13 +26,22 @@ public:
 };
 } // namespace game
 
-EMSCRIPTEN_BINDINGS(module_playervcomputer)
-{
-    emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
-        .constructor<>()
-        .function("playPlayer1", &game::PlayerVComputer::playPlayer1)
-        .function("playPlayer2", &game::PlayerVComputer::playPlayer2)
-        .function("isFinished", &game::PlayerVComputer::isFinished);
-}
+// using namespace emscripten;
+
+// #ifdef __EMSCRIPTEN__
+// extern "C"{
+//  game::PlayerVComputer gameInstance;
+// bool playPlayer1(int x, int y)
+// {
+//     return gameInstance.playPlayer1(x, y);
+// }
+
+// bool playPlayer2()
+// {
+//     return gameInstance.playPlayer2();
+// }
+// }
+// #endif
+
 
 #endif
