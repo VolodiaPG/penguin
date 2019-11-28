@@ -20,7 +20,7 @@ public:
      * @brief Loop while the game is not finished, told by the `isFinished` method
      * 
      */
-    virtual void loop();
+    void loop();
 };
 } // namespace game
 
