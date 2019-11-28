@@ -19,18 +19,20 @@ BUILD_ENV ?= -
 
 ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
-EXECUTABLE_C_FLAGS :=
-C_FLAGS := --bind -Wno-dollar-in-identifier-extension
+# EXECUTABLE_C_FLAGS := -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s WASM=1
+# C_FLAGS := -Wno-dollar-in-identifier-extension --bind
+EXECUTABLE_C_FLAGS := -s WASM=1
+C_FLAGS :=
 endif
 
 ifeq ($(TARGET_ENV),-)
 C_FLAGS := `sdl2-config --cflags --libs`
+CC := g++
 endif
 
-CC ?= g++
 
 EXECUTABLE_C_FLAGS ?= 
-C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ 
 
 #c
 # Project files
@@ -110,7 +112,7 @@ all: build
 build: prep ./$(BINARIES)/$(EXECUTABLE)
 
 $(BINARIES)/$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(EXECUTABLE_C_FLAGS) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(C_FLAGS) $(EXECUTABLE_C_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 $(BINARIES)/%.o: $(SRC)/%.cpp
 	@$(CC) $(C_FLAGS) -I$(INCLUDE) -L$(LIB) -c $< -o $@ $(LIBRARIES)
@@ -146,7 +148,8 @@ ifeq ($(TARGET_ENV),emscripten)
 prep:
 	mkdir -p $(BINARIES)
 	mkdir -p $(BINARIES)/$(WWW)/
-	ls ./$(WWW)/ | xargs -i rm -r -f ./$(BINARIES)/$(WWW)/{}
+	# ls ./$(WWW)/ | xargs -i rm -r -f ./$(BINARIES)/$(WWW)/{}
+	rm -f ./$(BINARIES)/$(WWW)/*
 	ln -f ./$(WWW)/* ./$(BINARIES)/$(WWW)
 
 serve: build
