@@ -1,3 +1,7 @@
+# Modelisation
+Here is the basic structure of the project, not all classes are represented, only the ones needed to fully understand the construction of the project
+![UML schema](./doc/modelisation.svg)
+
 # Usage
 ## Normal usage
 - `make` or `make release` to compile the release, or `make rel_run` to compile & run
