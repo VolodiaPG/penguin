@@ -43,7 +43,6 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
         return false;
     }
 
-    ++totalMoves;
     cell->setValue(player);
 
     return true;
@@ -54,7 +53,6 @@ void Board::revertMove(AbstractBoardCell *absCell)
     BoardCell *cell;
     if ((cell = dynamic_cast<BoardCell *>(absCell)))
     {
-        --totalMoves;
         cell->setValue(0);
     }
 }
@@ -125,16 +123,16 @@ int Board::checkStatus() const
         return win;
     }
 
-    return getEmptyCells().size() > 0 ? IN_PROGRESS : DRAW;
+    return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::vector<AbstractBoardCell *> Board::getEmptyCells() const
+std::vector<AbstractBoardCell *> Board::getAvailableCells() const
 {
     std::vector<AbstractBoardCell *> ret;
 
-    for (int ii = 0; ii < (int)boardValues.size(); ++ii)
+    for (size_t ii = 0; ii < boardValues.size(); ++ii)
     {
-        for (int jj = 0; jj < (int)boardValues[0].size(); ++jj)
+        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
         {
             BoardCell *cell = boardValues[ii][jj];
             if (!cell->isClaimed())

@@ -57,6 +57,7 @@
         "ratio": "cpp",
         "__locale": "cpp",
         "locale": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "__functional_03": "cpp"
     }
 }

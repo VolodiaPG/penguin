@@ -1,81 +1,70 @@
+#include <emscripten.h>
 #include <iostream>
 
 #include "ConsoleGame.hpp"
 #include "PlayerVComputer.hpp"
 #include "Position.hpp"
 
-#include <emscripten/bind.h>
-#include <emscripten.h>
+// #include <emscripten/bind.h>
+// #include <emscripten.h>
 
-using namespace emscripten;
+// using namespace emscripten;
 
-// external function
-// extern "C"
+// int main()
 // {
-// 	extern void test_js(int number);
+// 	for (int ii = 0; ii < 1; ++ii)
+// 	{
+// 		game::ConsoleGame consoleGame;
+
+// 		consoleGame.loop();
+// 	}
+
+// 	return EXIT_SUCCESS;
 // }
 
-// Do not include main loop if emscripten is used to compile
-#ifndef __EMSCRIPTEN__
-
-int main()
+extern "C"
 {
-	for (int ii = 0; ii < 1; ++ii)
+	EMSCRIPTEN_KEEPALIVE
+	game::PlayerVComputer gameInstance;
+
+	EMSCRIPTEN_KEEPALIVE
+	int main()
 	{
-		game::AbstractGame *consoleGame = new game::ConsoleGame();
+		std::cout << "Hello World" << std::endl;
+		// EM_ASM(
+		// 	InitWrappers()
+		// );
+		std::cout << "Initialization Complete" << std::endl;
 
-		consoleGame->loop();
-
-		delete consoleGame;
+		return EXIT_SUCCESS;
 	}
 
-	return EXIT_SUCCESS;
+	EMSCRIPTEN_KEEPALIVE
+	void playPlayer1(int row, int col)
+	{
+		std::cout << "Joué en (" << row << "," << col << ")" << std::endl;
+		gameInstance.playPlayer1(row, col);
+	}
+
+	EMSCRIPTEN_KEEPALIVE
+	int playPlayer2()
+	{
+		int ret = -1;
+		game::BoardCell *cell;
+
+		game::AbstractBoardCell *absCell = gameInstance.playPlayer2();
+		if ((cell = dynamic_cast<game::BoardCell *>(absCell)) != nullptr)
+		{
+			game::Position pos = cell->getPosition();
+			ret = pos.x * 3 + pos.y;
+		}
+
+		return ret;
+	}
 }
 
-#endif
+/* 
+Commande pour build mon-site.html :
 
-game::Position player_action_callback(unsigned int id)
-{
-	game::Position pos;
-	EM_ASM_ARGS({
-		$1 = player_action_callback($0);
-	},
-				id, &pos);
-	return pos;
-}
-
-int main_emscripten(int test)
-{
-	std::cout << test << std::endl;
-
-	// for (int ii = 0; ii < 1; ++ii)
-	// {
-	// 	game::AbstractGame *game = new game::PlayerVComputer(&player_action_callback);
-
-	// 	game->loop();
-
-	// 	delete game;
-	// }
-	// test_js(4242);
-	// EM_ASM_ARGS({
-	// 	test_js($0);
-	// },
-	// 			42);
-
-	return 42;
-}
-
-#ifndef MAIN_HPP_
-#define MAIN_HPP_
-
-EMSCRIPTEN_BINDINGS(module_test)
-{
-	class_<game::Position>("Position")
-		.constructor<>()
-		.property("x", &game::Position::x)
-		.property("y", &game::Position::y);
-
-	function("main_emscripten", &main_emscripten);
-}
-
-#endif
+em++ src/main.cpp -std=c++17 -o morpion.html -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_play', '_main']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
+*/

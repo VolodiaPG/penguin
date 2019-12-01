@@ -4,7 +4,6 @@
 #include <chrono>
 #include "Node.hpp"
 #include "AbstractPlayer.hpp"
-#include "MCTSPlayer.hpp"
 #include "AbstractGame.hpp"
 #include "log.hpp"
 
@@ -52,11 +51,11 @@ protected:
     void expandNode();
 
 public:
-    game::MCTSPlayer *playerMe;
+    game::AbstractPlayer *playerMe;
     game::AbstractGame *game;
     MCTSConstraints constraints;
 
-    explicit Tree(game::AbstractGame *game, game::MCTSPlayer *me, const MCTSConstraints &constraints);
+    explicit Tree(game::AbstractGame *game, game::AbstractPlayer *me, const MCTSConstraints &constraints);
     ~Tree();
 
     void begin();

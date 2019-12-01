@@ -55,12 +55,6 @@ protected:
     board_matrix_t boardValues;
 
     /**
-     * @brief keep track of the total amout of moves already accomplished
-     * 
-     */
-    int totalMoves = 0;
-
-    /**
     * @brief Check a line (col or row) for a win
     * 
     * @param line array: col or row or diag
@@ -113,7 +107,7 @@ public:
      * 
      * @return the list of empty cells
      */
-    std::vector<AbstractBoardCell *> getEmptyCells() const override;
+    std::vector<AbstractBoardCell *> getAvailableCells() const override;
 
     /**
      * @brief Get a list of all cells
@@ -123,8 +117,6 @@ public:
     std::vector<AbstractBoardCell *> getBoardCells() const override;
 
     size_t size() const override { return BOARD_SIZE; };
-
-    int getTotalMoves() const { return totalMoves; };
 
     AbstractBoardCell *getCell(int line, int col) const override;
 

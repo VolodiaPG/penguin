@@ -2,46 +2,54 @@
 
 namespace game
 {
-PlayerVComputer::PlayerVComputer(JSPlayer::action_callback humanActionCallback)
-    : AbstractGame(nullptr)
+PlayerVComputer::PlayerVComputer()
+    : TicTacToe(nullptr, nullptr) // instanciate these variables in the body of the constructor
 {
-    // player1 = new MCTSPlayer(1, this);
-    player1 = new JSPlayer(1, humanActionCallback);
-    // player2 = new MCTSPlayer(1, this);
-    player2 = new MCTSPlayer(2, this);
-
-    // player2 = new HumanPlayer(2);
-
-    board = new Board();
+    player1 = new Player(1);
+    player2 = new Player(2);
 }
 
 PlayerVComputer::~PlayerVComputer()
 {
     delete player1;
     delete player2;
-    delete board;
 }
 
-AbstractBoardCell *PlayerVComputer::play(AbstractPlayer *player1, AbstractPlayer *player2)
+bool PlayerVComputer::playPlayer1(int x, int y)
 {
-    Board *bo = (Board *)board;
-    AbstractPlayer *player = player1;
+    AbstractBoardCell *cell = board->getCell(x, y);
+    bool ret = false;
 
-    if (bo->getTotalMoves() % 2)
+    if (cell)
     {
-        player = player2;
+        ret = play(player1, cell);
     }
 
-    return player->action(board);
+    return ret;
 }
 
-void PlayerVComputer::revertPlay(AbstractBoardCell *move)
+AbstractBoardCell *PlayerVComputer::playPlayer2()
 {
-    board->revertMove(move);
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+    mcts::Tree tree(this, player2, constraints);
+    tree.begin();
+    AbstractBoardCell *bestMove = tree.bestMove();
+
+    bool ok = play(player2, bestMove);
+
+    return ok ? bestMove : nullptr;
 }
 
-bool PlayerVComputer::isFinished() const
-{
-    return board->checkStatus() != 0;
-}
 } // namespace game
+
+// EMSCRIPTEN_BINDINGS(module_player_v_computer)
+// {
+//     // function("playPlayer1", &playPlayer1);
+//     // function("playPlayer2", &playPlayer2);
+//     class_<game::PlayerVComputer>("PlayerVComputer")
+//         .constructor<>()
+//         .function("playPlayer1", &game::PlayerVComputer::playPlayer1)
+//         .function("playPlayer2", &game::PlayerVComputer::playPlayer2)
+//         .function("isFinished", &game::PlayerVComputer::isFinished);
+// }

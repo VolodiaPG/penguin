@@ -3,41 +3,30 @@
 namespace game
 {
 ConsoleGame::ConsoleGame()
-    : AbstractGame(nullptr)
+    : TicTacToe(nullptr, nullptr) // instanciate the players afterwards
 {
-    player1 = new MCTSPlayer(1, this);
-    // player1 = new JSPlayer(1);
-    player2 = new MCTSPlayer(2, this);
-
-    // player2 = new HumanPlayer(2);
-
-    board = new Board();
+    player1 = new Player(1);
+    player2 = new Player(2);
 }
 
 ConsoleGame::~ConsoleGame()
 {
     delete player1;
     delete player2;
-    delete board;
 }
 
-AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
-{
-    Board *bo = (Board *)board;
-    AbstractPlayer *player = player1;
+// AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
+// {
+//     Board *bo = (Board *)board;
+//     AbstractPlayer *player = player1;
 
-    if (bo->getTotalMoves() % 2)
-    {
-        player = player2;
-    }
+//     if (bo->getTotalMoves() % 2)
+//     {
+//         player = player2;
+//     }
 
-    return player->action(board);
-}
-
-void ConsoleGame::revertPlay(AbstractBoardCell *move)
-{
-    board->revertMove(move);
-}
+//     return player->action(board);
+// }
 
 void ConsoleGame::draw() const
 {
@@ -68,19 +57,19 @@ void ConsoleGame::draw() const
     std::cout << std::endl;
 }
 
-bool ConsoleGame::isFinished() const
-{
-    return board->checkStatus() != 0;
-}
-
 void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
     draw();
-    while (!isFinished())
+    while (!TicTacToe::isFinished())
     {
-        play(player1, player2);
+        mcts::MCTSConstraints constraints;
+        constraints.time = 250;
+        mcts::Tree tree(this, player2, constraints);
+        tree.begin();
+        AbstractBoardCell *bestMove = tree.bestMove();
+        play(getNextPlayer(), bestMove);
         draw();
     }
 

@@ -2,35 +2,46 @@
 #define PLAYER_V_COMPUTER_HPP_
 
 #include <iostream>
-#include "AbstractGame.hpp"
-#include "Board.hpp"
-#include "JSPlayer.hpp"
-#include "MCTSPlayer.hpp"
+#include "TicTacToe.hpp"
+#include "Player.hpp"
+#include "Tree.hpp"
 
-#include <emscripten/bind.h>
+// #include <emscripten/bind.h>
+// #include <emscripten.h>
 
 namespace game
 {
-class PlayerVComputer : public AbstractGame
+/**
+ * @brief Player vs Computer modelisation, player1 is the player and player 2 the MCTS player
+ * 
+ */
+class PlayerVComputer : public TicTacToe
 {
 public:
-    explicit PlayerVComputer(JSPlayer::action_callback humanActionCallback);
+    PlayerVComputer();
     ~PlayerVComputer();
 
-    bool isFinished() const override;
-    AbstractBoardCell *play(AbstractPlayer *player1, AbstractPlayer *player2) override;
-    void revertPlay(AbstractBoardCell *move) override;
-
-    void playGame() { play(player1, player2); };
+    bool playPlayer1(int x, int y);
+    AbstractBoardCell* playPlayer2();
 };
 } // namespace game
 
-EMSCRIPTEN_BINDINGS(module_playervcomputer)
-{
-    emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
-        .constructor<game::JSPlayer::action_callback>()
-        .function("playGame", &game::PlayerVComputer::playGame)
-        .function("isFinished", &game::PlayerVComputer::isFinished);
-}
+// using namespace emscripten;
+
+// #ifdef __EMSCRIPTEN__
+// extern "C"{
+//  game::PlayerVComputer gameInstance;
+// bool playPlayer1(int x, int y)
+// {
+//     return gameInstance.playPlayer1(x, y);
+// }
+
+// bool playPlayer2()
+// {
+//     return gameInstance.playPlayer2();
+// }
+// }
+// #endif
+
 
 #endif

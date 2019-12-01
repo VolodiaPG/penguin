@@ -1,11 +1,15 @@
 #include "Node.hpp"
 
-#include "BoardCell.hpp"
-
 namespace mcts
 {
-Node::Node(Node *parent, game::AbstractPlayer *player, game::AbstractBoardCell *targetedCell)
-    : parent(parent), player(player), targetedCell(targetedCell)
+Node::Node(Node *parent,
+           game::AbstractPlayer *player,
+           game::AbstractBoardCell *targetedCell,
+           game::AbstractGame *game)
+    : parent(parent),
+      player(player),
+      targetedCell(targetedCell),
+      game(game)
 {
 }
 
@@ -15,6 +19,9 @@ Node::~Node()
     {
         delete node;
     }
+
+    if (player)
+        delete player;
 }
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
@@ -27,13 +34,13 @@ double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVis
     return (double)winsSuccessor / (double)numberVisitsSuccessor + sqrt(2.0 * log((double)numberVisitsFather) / (double)numberVisitsSuccessor);
 }
 
-Node *Node::selectBestChildAndDoAction(game::AbstractBoard *board)
+Node *Node::selectBestChildAndDoAction()
 {
     Node *ret = this;
 
     if (ret->targetedCell)
     {
-        ret->doAction(board);
+        ret->doAction();
     }
 
     while (ret->childNodes.size() != 0)
@@ -63,39 +70,53 @@ Node *Node::selectBestChildAndDoAction(game::AbstractBoard *board)
         // exclude the root node that doesn't have any action associated...
         if (ret->targetedCell)
         {
-            ret->doAction(board);
+            ret->doAction();
         }
     }
 
     return ret;
 }
 
-bool Node::doAction(game::AbstractBoard *board)
+bool Node::doAction()
 {
     // do our move
-    return board->performMove(player->getId(), targetedCell);
+    return game->play(player, targetedCell);
 }
 
-void Node::revertAction(game::AbstractBoard *board)
+void Node::revertAction()
 {
-    return board->revertMove(targetedCell);
+    return game->revertPlay(targetedCell);
 }
 
-int Node::randomSimulation(game::AbstractGame *game) const
+game::AbstractBoardCell *Node::getRandomAvailableCell() const
+{
+    std::vector<game::AbstractBoardCell *> cells = game->board->getAvailableCells();
+
+    // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
+    unsigned int index = rand() % cells.size();
+
+    return cells[index];
+}
+
+int Node::randomSimulation() const
 {
     // 'convert' the two playes into random players (decisional)
-    game::RandomPlayer player1(game->player1->getId()), player2(game->player2->getId());
 
     // save the actions done so we can revert them;
     std::stack<game::AbstractBoardCell *> playedCells;
 
     while (!game->isFinished())
     {
-        playedCells.push(game->play(&player1, &player2));
+        game::AbstractBoardCell *cell = getRandomAvailableCell();
+
+        game->play(
+            game->getNextPlayer(),
+            cell);
+        playedCells.push(cell);
     }
 
     // check the victory
-    int winner = game->board->checkStatus();
+    int winner = game->checkStatus();
 
     // revert the random game
     while (!playedCells.empty())
@@ -108,10 +129,10 @@ int Node::randomSimulation(game::AbstractGame *game) const
     return winner;
 }
 
-void Node::backPropagateAndRevertAction(const int winnerId, game::AbstractBoard *board)
+void Node::backPropagateAndRevertAction(const int winnerId)
 {
     ++visits;
-    if (winnerId == (const int)player->getId())
+    if (winnerId == (int)player->getId())
     {
         victories++;
     }
@@ -122,10 +143,10 @@ void Node::backPropagateAndRevertAction(const int winnerId, game::AbstractBoard 
 
     if (parent != nullptr)
     {
-        revertAction(board);
+        revertAction();
 
         // backpropagate again
-        parent->backPropagateAndRevertAction(winnerId, board);
+        parent->backPropagateAndRevertAction(winnerId);
     }
 }
 
@@ -133,25 +154,15 @@ Node *Node::nodeWithMaxVisits() const
 {
     Node *chosen = nullptr;
     int max = -1;
-    // int totalVisits = 0;
-    // DEBUG(childNodes.size());
 
     for (Node *node : childNodes)
     {
-        // totalVisits += node->visits;
-        // DEBUG(node->visits);
-        // DEBUG(node->victories);
         if (node->visits > max)
         {
             max = node->visits;
             chosen = node;
-            // const game::Position &pos = ((game::BoardCell *)chosen->targetedCell)->getPosition();
-            // DEBUG(max);
-            // DEBUG(pos.x);
-            // DEBUG(pos.y);
         }
     }
-    // DEBUG(totalVisits);
 
     return chosen;
 }
@@ -172,7 +183,7 @@ void Node::expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game:
 {
     for (game::AbstractBoardCell *move : possibleMove)
     {
-        Node *node = new Node(this, nextPlayer, move);
+        Node *node = new Node(this, nextPlayer, move, game);
         childNodes.push_back(node);
     }
 }

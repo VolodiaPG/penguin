@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>New Emscripten Shell</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <!--lien vers l'affichage du Download et spinner-->
+</head>
+
+
+<body>
+  <div class="input_box">&nbsp;</div>
+
+  <div class="input_box">
+    <button id="click_me" class="em_button">Click Me!</button>
+  </div>
+
+  <div class="container">
+    <section class="board">
+      <h1>Le jeu du tic-tac-toe</h1>
+      <div id="Jeu">
+        <div>
+          <button type="button" class="case" id="0"></button>
+          <button type="button" class="case" id="1"></button>
+          <button type="button" class="case" id="2"></button>
+        </div>
+        <div>
+          <button type="button" class="case" id="3"></button>
+          <button type="button" class="case" id="4"></button>
+          <button type="button" class="case" id="5"></button>
+        </div>
+        <div>
+          <button type="button" class="case" id="6"></button>
+          <button type="button" class="case" id="7"></button>
+          <button type="button" class="case" id="8"></button>
+        </div>
+
+        <div id="StatutJeu"></div>
+      </div>
+
+      <footer class="pied" style="margin-top: 15px;">
+        <button type="button" value="Rejouer" id="refresh" />
+      </footer>
+    </section>
+
+
+    <textarea class="em_textarea" id="output" rows="8"></textarea>
+
+    <!--JavaScript-->
+    <script type='text/javascript'>
+
+      //fct create wrappers that can call fct defined in the WebAssembly
+      function InitWrappers()
+      {
+        var play = Module.cwrap('play', 'undefined', ['int', 'int']);  //cwrap(name of the C fct, return type, param type)
+
+        let els = document.getElementsByClassName("case");
+        Array.from(els).forEach((el) =>
+        {
+          el.onclick = () =>
+          {
+            let id = event.srcElement.id;            
+            
+            if (play != null)
+            {
+              let row = parseInt(id / 3);
+              let col = parseInt(id % 3);
+              
+              console.log(row, col);
+
+              play(row, col);
+            }
+          }
+        });
+      }
+
+      function runbefore()
+      {
+        console.log("before module load");
+      }
+
+      function runafter()
+      {
+        console.log("after module load");
+      }
+
+      /*Interface that the Emscripten-generated JavaScript glue code uses to interact with our WebAssembly module*/
+      var Module = {
+        //arrays of functions that will be run before and after the module is loaded
+        preRun: [runbefore, InitWrappers],
+        postRun: [runafter],
+
+        //fct to print out the output of the printf
+        print: (function ()
+        {
+          var element = document.getElementById('output');
+          if (element) element.value = ''; // clear browser cache
+          return function (text)
+          {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            /*
+            // The printf statement in C is currently writing to a textarea.  If we wanted to instead
+            // write to an HTML tag, we would need to run these lines of codes to make our text HTML safe
+            text = text.replace(/&/g, "&amp;");
+            text = text.replace(/</g, "&lt;");
+            text = text.replace(/>/g, "&gt;");
+            text = text.replace('\n', '<br>', 'g');
+            */
+            console.log(text);
+            if (element)
+            {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+
+          };
+        })(),
+
+        //fct run by the glue code when an error or warning occurs
+        printErr: function (text)
+        {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          if (0)
+          { // XXX disabled for safety typeof dump == 'function') {
+            dump(text + '\n'); // fast, straight to the real console
+          } else
+          {
+            console.error(text);
+          }
+        },
+
+
+        setStatus: function (text)
+        {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return; // if this is a progress update, skip it if too soon
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m)
+          {
+            text = m[1];
+          }
+          console.log("status: " + text);
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function (left)
+        {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      Module.setStatus('Downloading...');
+      window.onerror = function ()
+      {
+        Module.setStatus('Exception thrown, see JavaScript console');
+        Module.setStatus = function (text)
+        {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+
+    </script>
+    <script src="main.js"></script>
+    {{{ SCRIPT }}}
+</body>
+
+</html>

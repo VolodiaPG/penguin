@@ -3,12 +3,12 @@
 namespace mcts
 {
 
-Tree::Tree(game::AbstractGame *game, game::MCTSPlayer *me, const MCTSConstraints &constraints)
+Tree::Tree(game::AbstractGame *game, game::AbstractPlayer *me, const MCTSConstraints &constraints)
     : playerMe(me),
       game(game),
       constraints(constraints)
 {
-    rootNode = new Node(nullptr, me, nullptr);
+    rootNode = new Node(nullptr, me, nullptr, game);
 }
 
 Tree::~Tree()
@@ -21,6 +21,7 @@ Tree::~Tree()
 
 void Tree::begin()
 {
+    std::cout << "Beginning MCTS search" << std::endl;
     timer t;
     while (t.milliseconds_elapsed() < (unsigned long)constraints.time
            // && !rootNode->getIsFullyDone()
@@ -28,30 +29,24 @@ void Tree::begin()
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
-            Node *promisingNode = rootNode->selectBestChildAndDoAction(game->board);
+            Node *promisingNode = rootNode->selectBestChildAndDoAction();
 
             if (!game->isFinished())
             {
-                // DEBUG(promisingNode->getPlayer()->getId());
-                game::AbstractPlayer *player = promisingNode == rootNode
-                                                   ? promisingNode->getPlayer()
-                                                   : game->getNextPlayer(promisingNode->getPlayer());
-                // DEBUG(promisingNode->getPlayer()->getId());
-                // DEBUG(player->getId());
                 promisingNode->expandNode(
-                    game->board->getEmptyCells(),
-                    player);
+                    game->board->getAvailableCells(),
+                    game->getNextPlayer());
             }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
 
             if (nodeToExplore != promisingNode)
             {
-                nodeToExplore->doAction(game->board);
+                nodeToExplore->doAction();
             }
-            int winnerId = nodeToExplore->randomSimulation(game);
+            int winnerId = nodeToExplore->randomSimulation();
 
-            nodeToExplore->backPropagateAndRevertAction(winnerId, game->board);
+            nodeToExplore->backPropagateAndRevertAction(winnerId);
         }
     }
 

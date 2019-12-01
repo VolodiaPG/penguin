@@ -6,11 +6,10 @@
 
 namespace game
 {
-class HumanPlayer : public AbstractPlayer
+class Player : public AbstractPlayer
 {
 public:
-    explicit HumanPlayer(unsigned int id);
-    AbstractBoardCell* action(AbstractBoard *board) override;
+    explicit Player(unsigned int id);
 };
 } // namespace game
 

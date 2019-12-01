@@ -1,10 +1,13 @@
 #ifndef ABSTRACT_PLAYER_HPP_
 #define ABSTRACT_PLAYER_HPP_
 
-#include "AbstractBoard.hpp"
+#include "AbstractBoardCell.hpp"
+#include "AbstractGame.hpp"
 
 namespace game
 {
+class AbstractGame;
+
 class AbstractPlayer
 {
 private:
@@ -25,14 +28,13 @@ public:
     virtual ~AbstractPlayer(){};
 
     /**
-     * @brief The player performs an action
+     * @brief Get player's id
      * 
-     * @return the played Cell
+     * @return constexpr unsigned int the id
      */
-    virtual AbstractBoardCell* action(AbstractBoard *board) = 0;
-
-    unsigned int getId() const { return id; };
+    constexpr unsigned int getId() const { return id; };
 };
+
 } // namespace game
 
 #endif
