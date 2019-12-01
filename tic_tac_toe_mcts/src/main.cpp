@@ -40,6 +40,18 @@ extern "C"
 	}
 
 	EMSCRIPTEN_KEEPALIVE
+	int getNextPlayerId()
+	{
+		return gameInstance.getNextPlayerId();
+	}
+
+	EMSCRIPTEN_KEEPALIVE
+	int checkStatus()
+	{
+		return gameInstance.checkStatus();
+	}
+
+	EMSCRIPTEN_KEEPALIVE
 	void playPlayer1(int row, int col)
 	{
 		std::cout << "Joué en (" << row << "," << col << ")" << std::endl;
