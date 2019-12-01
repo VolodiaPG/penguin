@@ -4,7 +4,8 @@
 #include <iostream>
 #include "TicTacToe.hpp"
 #include "Board.hpp"
-#include "MCTSPlayer.hpp"
+#include "Player.hpp"
+#include "Tree.hpp"
 
 namespace game
 {

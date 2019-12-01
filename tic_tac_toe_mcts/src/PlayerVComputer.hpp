@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include "TicTacToe.hpp"
-#include "HumanPlayer.hpp"
-#include "MCTSPlayer.hpp"
+#include "Player.hpp"
+#include "Tree.hpp"
 
 // #include <emscripten/bind.h>
 // #include <emscripten.h>
@@ -22,7 +22,7 @@ public:
     ~PlayerVComputer();
 
     bool playPlayer1(int x, int y);
-    bool playPlayer2();
+    AbstractBoardCell* playPlayer2();
 };
 } // namespace game
 

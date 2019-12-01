@@ -17,29 +17,15 @@ private:
      */
     unsigned int id;
 
-protected:
-    /**
-     * @brief The game linked where this player's playing
-     * 
-     */
-    AbstractGame *game;
-
 public:
     /**
      * @brief Construct a new Abstract Player object
      * 
      * @param id the id of the player
      */
-    explicit AbstractPlayer(unsigned int id, AbstractGame *game);
+    explicit AbstractPlayer(unsigned int id);
 
     virtual ~AbstractPlayer(){};
-
-    /**
-     * @brief The player performs an action
-     * 
-     * @return the played Cell
-     */
-    virtual bool action(AbstractBoardCell *cell);
 
     /**
      * @brief Get player's id
