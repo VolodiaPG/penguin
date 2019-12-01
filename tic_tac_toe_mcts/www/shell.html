@@ -61,13 +61,13 @@
         {
           el.onclick = () =>
           {
-            let id = event.srcElement.id;            
-            
+            let id = event.srcElement.id;
+
             if (play != null)
             {
               let row = parseInt(id / 3);
               let col = parseInt(id % 3);
-              
+
               console.log(row, col);
 
               play(row, col);
