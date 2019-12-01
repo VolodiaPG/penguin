@@ -1,4 +1,9 @@
 
+/**
+ * Pre defined here to be used later
+ */
+var init;
+
 var initWrappers = () =>
 {
     console.log("Initializing wrappers...");
@@ -14,7 +19,7 @@ var initWrappers = () =>
     /**
      * Deletes the global c++ side game instance
      */
-    var deleteGame = Module.cwrap('deleteGame', 'number', []);
+    var deleteGame = Module.cwrap('deleteGame', 'undefined', []);
 
     /**
      * Gets the next player Id 
@@ -49,45 +54,45 @@ var initWrappers = () =>
     console.log("Wrappers initialized");
 
     /**
- * Size of the board
- */
+    * Size of the board
+    */
     var N_SIZE = 3;
-
+    
     /**
      * First turn
      */
     var turn = 'X';
-
+    
     /**
      * defines an empty cell
      */
     var EMPTY = '&nbsp;';
-
+    
     /**
      * List of cells
      */
     var cells = [];
-
+    
     /**
      * Transforms a turn into a status
      * @param {string} turn the turn : 'X' or 'O'
      * @returns {number} the turn
      */
     var statusFromTurn = (turn) => turn === 'X' ? 1 : 2;
-
+    
     /**
      * Transforms the status into a turn
      * @param {number} status the status
      * @returns {string} the turn
      */
     var turnFromStatus = (status) => status === 1 ? 'X' : 'O';
-
-    var init = () =>
+    
+    init = () =>
     {
         var board = document.createElement('table');
         board.setAttribute('border', 1);
         board.setAttribute('cellspacing', 0);
-
+    
         var identifier = 0;
         for (var i = 0; i < N_SIZE; i++)
         {
@@ -113,17 +118,17 @@ var initWrappers = () =>
                 cell.setAttribute('identifier', identifier);
                 cell.onclick = setOnEvent;
                 row.appendChild(cell);
-
+    
                 cells.push(cell);
                 identifier++;
-
+    
             }
         }
-
+    
         document.getElementById('tictactoe').appendChild(board);
         startNewGame();
     }
-
+    
     var startNewGame = () =>
     {
         deleteGame();
@@ -133,8 +138,9 @@ var initWrappers = () =>
         {
             el.innerHTML = EMPTY;
         });
+        document.getElementById('turn').textContent = 'Player ' + turn;
     }
-
+    
     var getCellByIdentifier = (identifier) =>
     {
         for (let ii = 0; ii < cells.length; ++ii)
@@ -142,45 +148,45 @@ var initWrappers = () =>
             if (parseInt(cells[ii].getAttribute('identifier')) === parseInt(identifier))
             {
                 console.log(cells[ii]);
-
+    
                 return cells[ii];
             }
         }
         return undefined;
     }
-
+    
     var setOnEvent = (event) =>
     {
         let identifier = event.srcElement.getAttribute('identifier');
         console.log(`Clicked cell #${identifier}`);
-
+    
         set(identifier);
     }
-
+    
     var set = (identifier) =>
     {
         var self = getCellByIdentifier(identifier);
-
+    
         if (!self || self.innerHTML !== EMPTY)
         {
             return;
         }
-
+    
         self.innerHTML = turn;
-
-
+    
+    
         let row = parseInt(identifier / 3);
         let col = parseInt(identifier % 3);
-
+    
         play(row, col);
-
+    
         // flip the turns
         turn = turn === 'X' ? 'O' : 'X';
         document.getElementById('turn').textContent = 'Player ' + turn;
-
+    
         let status = checkGameStatus();
         console.log(status);
-
+    
         if (status > 0)
         { // A player won
             alert(`Player ${turnFromStatus(status)} won!`);
@@ -197,11 +203,10 @@ var initWrappers = () =>
             {
                 let cellId = mctsResult();
                 console.log(`Advised Cell #${cellId}`);
-
+    
                 set(cellId);
             }
         }
     }
-
-    init();
 }
+
