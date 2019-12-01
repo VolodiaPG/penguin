@@ -19,9 +19,6 @@ Node::~Node()
     {
         delete node;
     }
-
-    if (player)
-        delete player;
 }
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
