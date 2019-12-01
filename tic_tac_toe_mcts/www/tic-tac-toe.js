@@ -2,6 +2,20 @@
 var initWrappers = () =>
 {
     console.log("Initializing wrappers...");
+
+    /**
+     * Creates the global c++ side game instance
+     * 
+     * @returns {number} an exit value
+     */
+    var initGame = Module.cwrap('initGame', 'number', []);
+
+
+    /**
+     * Deletes the global c++ side game instance
+     */
+    var deleteGame = Module.cwrap('deleteGame', 'number', []);
+
     /**
      * Gets the next player Id 
      * 
@@ -112,6 +126,8 @@ var initWrappers = () =>
 
     var startNewGame = () =>
     {
+        deleteGame();
+        initGame();
         turn = 'X';
         cells.forEach(el =>
         {

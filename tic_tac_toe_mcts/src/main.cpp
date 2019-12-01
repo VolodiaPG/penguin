@@ -28,6 +28,13 @@ extern "C"
 	game::PlayerVComputer *gameInstance;
 
 	EMSCRIPTEN_KEEPALIVE
+	int main()
+	{
+		std::cout << "Runtime launched" << std::endl;
+		return EXIT_SUCCESS;
+	}
+
+	EMSCRIPTEN_KEEPALIVE
 	int initGame()
 	{
 		gameInstance = new game::PlayerVComputer();
@@ -41,7 +48,7 @@ extern "C"
 	{
 		if (gameInstance)
 			delete gameInstance;
-			
+
 		std::cout << "Free Complete" << std::endl;
 	}
 
