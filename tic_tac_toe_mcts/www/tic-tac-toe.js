@@ -121,10 +121,6 @@ var initWrappers = () =>
 
     var getCellByIdentifier = (identifier) =>
     {
-        console.log(identifier);
-        console.log(cells);
-        
-
         for (let ii = 0; ii < cells.length; ++ii)
         {
             if (parseInt(cells[ii].getAttribute('identifier')) === parseInt(identifier))
@@ -154,42 +150,39 @@ var initWrappers = () =>
             return;
         }
 
-        console.log(self.innerHTML);
         self.innerHTML = turn;
 
+
+        let row = parseInt(identifier / 3);
+        let col = parseInt(identifier % 3);
+
+        play(row, col);
+
+        // flip the turns
+        turn = turn === 'X' ? 'O' : 'X';
+        document.getElementById('turn').textContent = 'Player ' + turn;
+
         let status = checkGameStatus();
+        console.log(status);
 
         if (status > 0)
         { // A player won
             alert(`Player ${turnFromStatus(status)} won!`);
             startNewGame();
-        } else if (status === -1)
+        } else if (status < 0)
         { // draw
             alert('Draw');
             startNewGame();
         } else
         { // nothing yet
-
-            if (getPlayerToPlayId() === 1)
-            {
-                let row = parseInt(identifier % 3);
-                let col = parseInt(identifier / 3);
-                play(row, col);
-            }
-
-            // flip the turns
-            turn = turn === 'X' ? 'O' : 'X';
-            document.getElementById('turn').textContent = 'Player ' + turn;
-
+            console.log(`Playing player #${getPlayerToPlayId()}`);
             // play player2
             if (getPlayerToPlayId() === 2)
             {
-
                 let cellId = mctsResult();
-                // execute the binded method
+                console.log(`Advised Cell #${cellId}`);
+
                 set(cellId);
-                // let cell = getCellByIdentifier(cellId);
-                // if (cell) set(cell);
             }
         }
     }
