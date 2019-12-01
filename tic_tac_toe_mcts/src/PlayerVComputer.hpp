@@ -21,8 +21,9 @@ public:
     PlayerVComputer();
     ~PlayerVComputer();
 
-    bool playPlayer1(int x, int y);
-    AbstractBoardCell* playPlayer2();
+    using TicTacToe::play;
+    bool play(int row, int col);
+    AbstractBoardCell* mctsResult();
 };
 } // namespace game
 

@@ -15,30 +15,20 @@ PlayerVComputer::~PlayerVComputer()
     delete player2;
 }
 
-bool PlayerVComputer::playPlayer1(int x, int y)
+bool PlayerVComputer::play(int row, int col)
 {
-    AbstractBoardCell *cell = board->getCell(x, y);
-    bool ret = false;
-
-    if (cell)
-    {
-        ret = play(player1, cell);
-    }
-
-    return ret;
+    return play(getPlayerToPlay(), board->getCell(row, col));
 }
 
-AbstractBoardCell *PlayerVComputer::playPlayer2()
+AbstractBoardCell *PlayerVComputer::mctsResult()
 {
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
-    mcts::Tree tree(this, player2, constraints);
+    mcts::Tree tree(this, getPlayerToPlay(), constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
 
-    bool ok = play(player2, bestMove);
-
-    return ok ? bestMove : nullptr;
+    return bestMove;
 }
 
 } // namespace game

@@ -37,8 +37,7 @@ public:
     bool isFinished() const override;
     bool play(AbstractPlayer *player, AbstractBoardCell *cell) override;
     void revertPlay(AbstractBoardCell *move) override;
-    unsigned int getNextPlayerId() const override;
-    AbstractPlayer *getNextPlayer() const override;
+    AbstractPlayer *getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
 };
 } // namespace game

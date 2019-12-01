@@ -107,7 +107,7 @@ int Node::randomSimulation() const
         game::AbstractBoardCell *cell = getRandomAvailableCell();
 
         game->play(
-            game->getNextPlayer(),
+            game->getPlayerToPlay(),
             cell);
         playedCells.push(cell);
     }

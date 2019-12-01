@@ -35,7 +35,7 @@ void Tree::begin()
             {
                 promisingNode->expandNode(
                     game->board->getAvailableCells(),
-                    game->getNextPlayer());
+                    game->getPlayerToPlay());
             }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();

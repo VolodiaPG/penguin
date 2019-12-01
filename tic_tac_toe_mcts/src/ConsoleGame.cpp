@@ -69,7 +69,7 @@ void ConsoleGame::loop()
         mcts::Tree tree(this, player2, constraints);
         tree.begin();
         AbstractBoardCell *bestMove = tree.bestMove();
-        play(getNextPlayer(), bestMove);
+        play(getPlayerToPlay(), bestMove);
         draw();
     }
 
