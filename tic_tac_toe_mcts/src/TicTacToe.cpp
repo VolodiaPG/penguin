@@ -32,7 +32,7 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-AbstractPlayer *TicTacToe::getNextPlayer() const
+AbstractPlayer *TicTacToe::getPlayerToPlay() const
 {
     AbstractPlayer *nextPlayer = player1;
 
@@ -42,11 +42,6 @@ AbstractPlayer *TicTacToe::getNextPlayer() const
     }
 
     return nextPlayer;
-}
-
-unsigned int TicTacToe::getNextPlayerId() const
-{
-    return getNextPlayer()->getId();
 }
 
 } // namespace game

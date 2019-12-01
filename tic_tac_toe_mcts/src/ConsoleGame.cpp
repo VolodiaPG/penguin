@@ -5,8 +5,8 @@ namespace game
 ConsoleGame::ConsoleGame()
     : TicTacToe(nullptr, nullptr) // instanciate the players afterwards
 {
-    player1 = new MCTSPlayer(1, this);
-    player2 = new MCTSPlayer(2, this);
+    player1 = new Player(1);
+    player2 = new Player(2);
 }
 
 ConsoleGame::~ConsoleGame()
@@ -64,7 +64,12 @@ void ConsoleGame::loop()
     draw();
     while (!TicTacToe::isFinished())
     {
-        TicTacToe::getNextPlayer()->action(nullptr);
+        mcts::MCTSConstraints constraints;
+        constraints.time = 250;
+        mcts::Tree tree(this, player2, constraints);
+        tree.begin();
+        AbstractBoardCell *bestMove = tree.bestMove();
+        play(getPlayerToPlay(), bestMove);
         draw();
     }
 

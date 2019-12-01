@@ -123,10 +123,10 @@ int Board::checkStatus() const
         return win;
     }
 
-    return getEmptyCells().size() > 0 ? IN_PROGRESS : DRAW;
+    return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::vector<AbstractBoardCell *> Board::getEmptyCells() const
+std::vector<AbstractBoardCell *> Board::getAvailableCells() const
 {
     std::vector<AbstractBoardCell *> ret;
 

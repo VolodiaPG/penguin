@@ -44,7 +44,7 @@ public:
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::vector<AbstractBoardCell *> getEmptyCells() const = 0;
+    virtual std::vector<AbstractBoardCell *> getAvailableCells() const = 0;
 
     /**
      * @brief Get all of the AbstractBoardCell

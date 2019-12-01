@@ -107,7 +107,7 @@ public:
      * 
      * @return the list of empty cells
      */
-    std::vector<AbstractBoardCell *> getEmptyCells() const override;
+    std::vector<AbstractBoardCell *> getAvailableCells() const override;
 
     /**
      * @brief Get a list of all cells

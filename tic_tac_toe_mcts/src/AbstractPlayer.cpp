@@ -3,15 +3,9 @@
 namespace game
 {
 
-AbstractPlayer::AbstractPlayer(unsigned int id, AbstractGame *game)
-    : id(id),
-      game(game)
+AbstractPlayer::AbstractPlayer(unsigned int id)
+    : id(id)
 {
-}
-
-bool AbstractPlayer::action(AbstractBoardCell *cell)
-{
-  return game->play(this, cell);
 }
 
 } // namespace game

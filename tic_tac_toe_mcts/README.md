@@ -15,3 +15,4 @@ eg. `make BUILD_ENV=debugDir debug` will generate all the files inside `./bin/de
 
 # Useful commands
 - `c++filt _ZN4game14AbstractPlayer6actionEPNS_17AbstractBoardCellE` gives us `game::AbstractPlayer::action(game::AbstractBoardCell*)`
+- to access container from another computer, for DockerWindows : https://github.com/docker/for-win/issues/4391#issuecomment-520420942

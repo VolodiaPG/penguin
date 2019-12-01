@@ -6,10 +6,9 @@
 #include <iostream>
 #include <math.h>
 #include <limits>
-#include "RandomPlayer.hpp"
-#include "DefinedPlayer.hpp"
 #include "Tree.hpp"
 #include "AbstractBoardCell.hpp"
+#include "AbstractPlayer.hpp"
 
 #include "log.hpp"
 #include "BoardCell.hpp"
@@ -31,7 +30,7 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::DefinedPlayer *player = nullptr;
+    game::AbstractPlayer* player = nullptr;
     game::AbstractBoardCell *targetedCell = nullptr;
     game::AbstractGame *game = nullptr;
 
@@ -65,6 +64,8 @@ public:
     Node *getParent() const { return parent; };
 
     game::AbstractBoardCell *getTargetedCell() const { return targetedCell; };
+
+    game::AbstractBoardCell *getRandomAvailableCell() const;
 
     int randomSimulation() const;
 

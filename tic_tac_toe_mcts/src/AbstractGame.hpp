@@ -37,19 +37,12 @@ public:
 
     virtual void revertPlay(AbstractBoardCell *cell) = 0;
 
-    /**
-     * @brief Get the Next Player's id
+   /**
+     * @brief Get the player who hadn't play yet
      * 
-     * @return the next player's id
+     * @return AbstractPlayer* 
      */
-    virtual unsigned int getNextPlayerId() const = 0;
-
-    /**
-     * @brief Get the Next Player
-     * 
-     * @return the next player
-     */
-    virtual AbstractPlayer *getNextPlayer() const = 0;
+    virtual AbstractPlayer *getPlayerToPlay() const = 0;
 
     /**
      * @brief Checks the status of the game, if won, draw

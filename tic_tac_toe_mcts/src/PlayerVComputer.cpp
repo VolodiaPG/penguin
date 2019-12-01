@@ -5,8 +5,8 @@ namespace game
 PlayerVComputer::PlayerVComputer()
     : TicTacToe(nullptr, nullptr) // instanciate these variables in the body of the constructor
 {
-    player1 = new HumanPlayer(1, this);
-    player2 = new MCTSPlayer(2, this);
+    player1 = new Player(1);
+    player2 = new Player(2);
 }
 
 PlayerVComputer::~PlayerVComputer()
@@ -15,22 +15,20 @@ PlayerVComputer::~PlayerVComputer()
     delete player2;
 }
 
-bool PlayerVComputer::playPlayer1(int x, int y)
+bool PlayerVComputer::play(int row, int col)
 {
-    AbstractBoardCell *cell = board->getCell(x, y);
-    bool ret = false;
-
-    if (cell)
-    {
-        ret = player1->action(cell);
-    }
-
-    return ret;
+    return play(getPlayerToPlay(), board->getCell(row, col));
 }
 
-bool PlayerVComputer::playPlayer2()
+AbstractBoardCell *PlayerVComputer::mctsResult()
 {
-    return player2->action(nullptr);
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+    mcts::Tree tree(this, getPlayerToPlay(), constraints);
+    tree.begin();
+    AbstractBoardCell *bestMove = tree.bestMove();
+
+    return bestMove;
 }
 
 } // namespace game

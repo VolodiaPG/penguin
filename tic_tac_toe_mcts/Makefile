@@ -21,8 +21,8 @@ ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
 # EXECUTABLE_C_FLAGS := -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s WASM=1
 # C_FLAGS := -Wno-dollar-in-identifier-extension --bind
-EXECUTABLE_C_FLAGS := -s WASM=1
-C_FLAGS :=
+EXECUTABLE_C_FLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main', '_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
+C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 
 ifeq ($(TARGET_ENV),-)
@@ -32,7 +32,7 @@ endif
 
 
 EXECUTABLE_C_FLAGS ?= 
-C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ 
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ -Werror
 
 #c
 # Project files
@@ -99,7 +99,7 @@ OBJECTS := $(patsubst $(SRC)/%.cpp, $(BINARIES)/%.o, $(wildcard $(SRC)/*.cpp))
 #
 # Commands that are phony (not files)
 #
-.PHONY: all clean prep build
+# .PHONY: all clean prep
 
 #
 # Default build
@@ -144,13 +144,15 @@ clean:
 
 ifeq ($(TARGET_ENV),emscripten)
 
+rmwww: 
+	$(RM) ./$(BINARIES)/$(WWW)/*
+
 # Create dirs and recursively hardlink files
-prep:
+prep: rmwww
 	mkdir -p $(BINARIES)
 	mkdir -p $(BINARIES)/$(WWW)/
 	# ls ./$(WWW)/ | xargs -i rm -r -f ./$(BINARIES)/$(WWW)/{}
-	rm -f ./$(BINARIES)/$(WWW)/*
-	ln -f ./$(WWW)/* ./$(BINARIES)/$(WWW)
+	ln ./$(WWW)/* ./$(BINARIES)/$(WWW)/
 
 serve: build
 	cd ./$(BINARIES)/$(WWW) && python -m SimpleHTTPServer 8080

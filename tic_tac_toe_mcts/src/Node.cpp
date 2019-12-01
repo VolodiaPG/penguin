@@ -1,5 +1,4 @@
 #include "Node.hpp"
-#include "BoardCell.hpp"
 
 namespace mcts
 {
@@ -8,10 +7,10 @@ Node::Node(Node *parent,
            game::AbstractBoardCell *targetedCell,
            game::AbstractGame *game)
     : parent(parent),
+      player(player),
       targetedCell(targetedCell),
       game(game)
 {
-    this->player = new game::DefinedPlayer(player->getId(), game);
 }
 
 Node::~Node()
@@ -20,9 +19,6 @@ Node::~Node()
     {
         delete node;
     }
-
-    if (player)
-        delete player;
 }
 
 double Node::formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather)
@@ -81,12 +77,22 @@ Node *Node::selectBestChildAndDoAction()
 bool Node::doAction()
 {
     // do our move
-    return player->action(targetedCell);
+    return game->play(player, targetedCell);
 }
 
 void Node::revertAction()
 {
     return game->revertPlay(targetedCell);
+}
+
+game::AbstractBoardCell *Node::getRandomAvailableCell() const
+{
+    std::vector<game::AbstractBoardCell *> cells = game->board->getAvailableCells();
+
+    // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
+    unsigned int index = rand() % cells.size();
+
+    return cells[index];
 }
 
 int Node::randomSimulation() const
@@ -98,8 +104,12 @@ int Node::randomSimulation() const
 
     while (!game->isFinished())
     {
-        game::RandomPlayer player(game->getNextPlayerId(), game);
-        playedCells.push(player.randomAction());
+        game::AbstractBoardCell *cell = getRandomAvailableCell();
+
+        game->play(
+            game->getPlayerToPlay(),
+            cell);
+        playedCells.push(cell);
     }
 
     // check the victory
