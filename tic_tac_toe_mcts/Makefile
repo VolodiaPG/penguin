@@ -21,7 +21,7 @@ ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
 # EXECUTABLE_C_FLAGS := -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s WASM=1
 # C_FLAGS := -Wno-dollar-in-identifier-extension --bind
-EXECUTABLE_C_FLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main','_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
+EXECUTABLE_C_FLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
 C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 

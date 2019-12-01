@@ -25,19 +25,24 @@ int main()
 extern "C"
 {
 	// EMSCRIPTEN_KEEPALIVE
-	game::PlayerVComputer* gameInstance;
+	game::PlayerVComputer *gameInstance;
 
 	EMSCRIPTEN_KEEPALIVE
-	int main()
+	int initGame()
 	{
 		gameInstance = new game::PlayerVComputer();
-		std::cout << "Hello World" << std::endl;
-		// EM_ASM(
-		// 	InitWrappers()
-		// );
 		std::cout << "Initialization Complete" << std::endl;
 
 		return EXIT_SUCCESS;
+	}
+
+	EMSCRIPTEN_KEEPALIVE
+	void deleteGame()
+	{
+		if (gameInstance)
+			delete gameInstance;
+			
+		std::cout << "Free Complete" << std::endl;
 	}
 
 	EMSCRIPTEN_KEEPALIVE
