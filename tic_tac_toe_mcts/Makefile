@@ -21,8 +21,8 @@ ifeq ($(TARGET_ENV),emscripten)
 CC := $(ENV_EMSCRIPTEN_FASTCOMP)/em++
 # EXECUTABLE_C_FLAGS := -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s WASM=1
 # C_FLAGS := -Wno-dollar-in-identifier-extension --bind
-EXECUTABLE_C_FLAGS := -s WASM=1 -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main','_playPlayer1', '_playPlayer2', '_checkStatus', '_getNextPlayerId']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
-C_FLAGS := 
+EXECUTABLE_C_FLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main','_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
+C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 
 ifeq ($(TARGET_ENV),-)
@@ -32,7 +32,7 @@ endif
 
 
 EXECUTABLE_C_FLAGS ?= 
-C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ 
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ -Werror
 
 #c
 # Project files
