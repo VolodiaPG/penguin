@@ -191,13 +191,16 @@ var initWrappers = () =>
         if (status > 0)
         { // A player won
             //alert(`Player ${turnFromStatus(status)} won!`);
+            searchCombinaison();
             document.getElementById('hidden').style.display = 'block';
             document.getElementById('turn').textContent = 'Player ' + turnFromStatus(status) + ' won !';
             document.getElementById('playAgain').onclick = startNewGame;
+
         } else if (status < 0)
         { // draw
-            alert('Draw');
-            startNewGame();
+            document.getElementById('hidden').style.display = 'block';
+            document.getElementById('turn').textContent = 'Draw !';
+            document.getElementById('playAgain').onclick = startNewGame;
         } else
         { // nothing yet
             console.log(`Playing player #${getPlayerToPlayId()}`);
@@ -210,6 +213,81 @@ var initWrappers = () =>
                 set(cellId);
             }
         }
+    }
+
+    var searchCombinaison = (turn) => 
+    {
+        if (cells[0].innerHTML == turn &&
+            cells[1].innerHTML == turn &&
+            cells[2].innerHTML == turn)
+      {
+        cells[0].setAttribute('background-color', "#5CB85C");
+        cells[1].setAttribute('background-color', "#5CB85C");
+        cells[2].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[3].innerHTML == turn &&
+          cells[4].innerHTML == turn &&
+          cells[5].innerHTML == turn)
+      {
+        cells[3].setAttribute('background-color', "#5CB85C");
+        cells[4].setAttribute('background-color', "#5CB85C");
+        cells[5].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[6].innerHTML == turn &&
+          cells[7].innerHTML == turn &&
+          cells[8].innerHTML == turn)
+      {
+        cells[6].setAttribute('background-color', "#5CB85C");
+        cells[7].setAttribute('background-color', "#5CB85C");
+        cells[8].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[0].innerHTML == turn &&
+          cells[3].innerHTML == turn &&
+          cells[6].innerHTML == turn)
+      {
+        cells[0].setAttribute('background-color', "#5CB85C");
+        cells[3].setAttribute('background-color', "#5CB85C");
+        cells[6].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[1].innerHTML == turn &&
+          cells[4].innerHTML == turn &&
+          cells[7].innerHTML == turn)
+      {
+        cells[1].setAttribute('background-color', "#5CB85C");
+        cells[4].setAttribute('background-color', "#5CB85C");
+        cells[7].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[2].innerHTML == turn &&
+          cells[5].innerHTML == turn &&
+          cells[8].innerHTML == turn)
+      {
+        cells[2].setAttribute('background-color', "#5CB85C");
+        cells[5].setAttribute('background-color', "#5CB85C");
+        cells[8].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[0].innerHTML == turn &&
+          cells[4].innerHTML == turn &&
+          cells[8].innerHTML == turn)
+      {
+        cells[0].setAttribute('background-color', "#5CB85C");
+        cells[4].setAttribute('background-color', "#5CB85C");
+        cells[8].setAttribute('background-color', "#5CB85C");
+      }
+
+      if (cells[2].innerHTML == turn &&
+          cells[4].innerHTML == turn &&
+          cells[6].innerHTML == turn)
+      {
+        cells[2].setAttribute('background-color', "#5CB85C");
+        cells[4].setAttribute('background-color', "#5CB85C");
+        cells[6].setAttribute('background-color', "#5CB85C");
+      }
     }
 }
 

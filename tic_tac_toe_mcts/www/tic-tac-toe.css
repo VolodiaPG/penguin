@@ -3,6 +3,17 @@
     padding: 0;
     margin: 0;
   }
+
+  h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  p {
+    color: black;
+    text-align: center;
+  }
   
   .container {
     display: flex;
@@ -70,6 +81,14 @@
   td:visited {
     background-color: lightblue;
   }
+
+  #turn {
+    color: grey;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 5px ridge #EBEBEB;
+  }
   
   #player {
     padding: 1rem;
@@ -82,7 +101,7 @@
     overflow: hidden;
   }
 
-  down {
+  .down {
     text-align: center;
     font-size: 18px;
 }
