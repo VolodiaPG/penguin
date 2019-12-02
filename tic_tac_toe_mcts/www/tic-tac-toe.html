@@ -13,10 +13,6 @@
 <body>
     <div class="input_box">&nbsp;</div>
 
-    <div class="input_box">
-        <button id="click_me" class="em_button">Click Me!</button>
-    </div>
-
     <div class="container">
         <section class="board">
             <h1>Le jeu du tic-tac-toe</h1>
@@ -25,9 +21,15 @@
                 <span id="turn" align="">Player X</span>
             </div>
 
-            <!-- <footer class="pied" style="margin-top: 15px;">
-        <button type="button" value="Rejouer" id="refresh" />
-      </footer> -->
+            <div id="hidden" align="center" style="display:none">
+                <button class="button" id="playAgain">Play again</button>
+             </div>
+
+            <footer class="down" style="margin-top: 15px;">
+                <div class="container" align="center"> 
+                    <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br /><br />Version 2.0</p>
+                </div>
+            </footer>
         </section>
     </div>
 

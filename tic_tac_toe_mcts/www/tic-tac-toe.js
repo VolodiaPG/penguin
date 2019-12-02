@@ -128,7 +128,7 @@ var initWrappers = () =>
         document.getElementById('tictactoe').appendChild(board);
         startNewGame();
     }
-    
+
     var startNewGame = () =>
     {
         deleteGame();
@@ -139,6 +139,7 @@ var initWrappers = () =>
             el.innerHTML = EMPTY;
         });
         document.getElementById('turn').textContent = 'Player ' + turn;
+        document.getElementById('hidden').style.display = 'none';
     }
     
     var getCellByIdentifier = (identifier) =>
@@ -189,8 +190,10 @@ var initWrappers = () =>
     
         if (status > 0)
         { // A player won
-            alert(`Player ${turnFromStatus(status)} won!`);
-            startNewGame();
+            //alert(`Player ${turnFromStatus(status)} won!`);
+            document.getElementById('hidden').style.display = 'block';
+            document.getElementById('turn').textContent = 'Player ' + turnFromStatus(status) + ' won !';
+            document.getElementById('playAgain').onclick = startNewGame;
         } else if (status < 0)
         { // draw
             alert('Draw');

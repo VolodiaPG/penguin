@@ -14,19 +14,61 @@
     min-height: 500px;
     border-radius: 5%;
     margin: auto;
+
   }
   
+  button {
+    width: 45%;
+    height: 40px;
+    background-color: orangered;
+    color: white;
+    border: 0px;
+    font-size: 20px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px #aaa;
+    transition-duration: 0.2s;
+  
+}
+
+  button:hover {
+    background-color: orange;
+  }
+
+  button:active {
+    background-color: yellow;
+  }
+  
+
   table {
     border-collapse: collapse;
     margin: auto;
+
+    /* box-shadow: 8px 8px 8px 8px #aaa; */
   }
   
   td {
-    background-color: #666;
+    background-color: blue;
+    color: white;
+    transition-duration: 0.2s;
+
     border: 5px solid white;
-    font-size: 80px;
-    color: #fff;
     border-radius: 10%;
+    /* box-shadow: 8px 8px 8px 8px #aaa; */
+
+    font-weight: bold;
+    font-size: 80px;
+ }
+
+  td:hover {
+    background-color: lightslategrey;
+  }
+
+  td:active {
+    background-color: lightsteelblue;
+  }
+
+  td:visited {
+    background-color: lightblue;
   }
   
   #player {
@@ -39,3 +81,8 @@
     width: 100%;
     overflow: hidden;
   }
+
+  down {
+    text-align: center;
+    font-size: 18px;
+}
