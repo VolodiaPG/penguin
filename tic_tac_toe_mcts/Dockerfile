@@ -17,6 +17,7 @@ RUN apt-get update
 
 RUN apt-get install -y gcc-9 g++-9 cmake cppcheck clang gdb valgrind git && \
     apt-get install -y python2.7 default-jre && \
+    apt-get install doxygen doxygen-doc graphviz\
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
