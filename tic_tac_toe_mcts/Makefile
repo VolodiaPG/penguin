@@ -2,7 +2,7 @@
 # Env variables
 #
 
-ENV_EMSCRIPTEN_FASTCOMP := /home/develop/emsdk/fastcomp/emscripten
+ENV_EMSCRIPTEN_FASTCOMP := /mnt/c/Users/Maxime/emsdk/upstream/emscripten
 
 #
 # Default variables
@@ -32,7 +32,7 @@ endif
 
 
 EXECUTABLE_C_FLAGS ?= 
-C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -lstdc++ -Werror
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror #-lstdc++
 
 #c
 # Project files
