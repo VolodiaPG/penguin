@@ -6,6 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Tic-Tac-Toe WebAssembly</title>
     <link href="tic-tac-toe.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.js"></script>
     <!--lien vers l'affichage du Download et spinner-->
 </head>
 
@@ -26,7 +28,7 @@
             </div>
 
             <footer class="down" style="margin-top: 15px;">
-                <div class="container" align="center"> 
+                <div class="container" align="center">
                     <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br /><br />Version 2.0</p>
                 </div>
             </footer>
@@ -39,6 +41,10 @@
     <!--JavaScript-->
     <script src="tic-tac-toe.js"></script>
     <script type='text/javascript'>
+        var multiple = new Multiple({
+            selector: '.cell',
+            background: 'linear-gradient(to right, #00f260, #0575e6);'
+        });
 
         function runbefore()
         {
@@ -48,15 +54,16 @@
         function runafter()
         {
             init();
+            multiple.update();
             console.log("after module load");
         }
-        
+
         /*Interface that the Emscripten-generated JavaScript glue code uses to interact with our WebAssembly module*/
         var Module = {
             //arrays of functions that will be run before and after the module is loaded
             preRun: [runbefore, initWrappers],
             postRun: [runafter],
-            
+
             //fct to print out the output of the printf
             print: (function ()
             {
@@ -73,16 +80,16 @@
                     text = text.replace(/>/g, "&gt;");
                     text = text.replace('\n', '<br>', 'g');
                     */
-                   console.log(text);
-                   if (element)
-                   {
-                       element.value += text + "\n";
-                       element.scrollTop = element.scrollHeight; // focus on bottom
+                    console.log(text);
+                    if (element)
+                    {
+                        element.value += text + "\n";
+                        element.scrollTop = element.scrollHeight; // focus on bottom
                     }
-                    
+
                 };
             })(),
-            
+
             //fct run by the glue code when an error or warning occurs
             printErr: function (text)
             {

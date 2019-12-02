@@ -100,12 +100,18 @@ var initWrappers = () =>
             board.appendChild(row);
             for (var j = 0; j < N_SIZE; j++)
             {
-                var cell = document.createElement('td');
-                cell.setAttribute('height', 120);
-                cell.setAttribute('width', 120);
-                cell.setAttribute('align', 'center');
-                cell.setAttribute('valign', 'center');
-                // cell.classList.add('col' + j, 'row' + i);
+                var td = document.createElement('td');
+                var cell = document.createElement('div');
+                var content = document.createElement('div');
+                td.setAttribute('height', 120);
+                td.setAttribute('width', 120);
+                td.setAttribute('align', 'center');
+                td.setAttribute('valign', 'center');
+                
+                td.classList.add('cell');
+                cell.classList.add('cell-child');
+                content.classList.add('cell-child-content');
+
                 // if (i == j)
                 // {
                 //     cell.classList.add('diagonal0');
@@ -115,11 +121,14 @@ var initWrappers = () =>
                 //     cell.classList.add('diagonal1');
                 // }
                 // cell.identifier = identifier;
-                cell.setAttribute('identifier', identifier);
-                cell.onclick = setOnEvent;
-                row.appendChild(cell);
+                content.setAttribute('identifier', identifier);
+                content.onclick = setOnEvent;
+                cells.push(content);
+
+                cell.appendChild(content);
+                td.appendChild(cell);
+                row.appendChild(td);
     
-                cells.push(cell);
                 identifier++;
     
             }
