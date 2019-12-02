@@ -4,7 +4,7 @@
 
 # FROM trzeci/emscripten:sdk-tag-1.38.25-64bit
 # FROM trzeci/emscripten-slim:sdk-tag-${EMSCRIPTEN_VERSION}-64bit
-FROM ubuntu:bionic-20191029
+FROM ubuntu:18.04
 ENV EMSCRIPTEN_VERSION 1.39.2
 LABEL maintainer="volodia.parolguarino@gmail.com"
 
@@ -17,7 +17,6 @@ RUN apt-get update
 
 RUN apt-get install -y gcc-9 g++-9 cmake cppcheck clang gdb valgrind git && \
     apt-get install -y python2.7 default-jre && \
-    apt-get install doxygen doxygen-doc graphviz\
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
@@ -65,6 +64,9 @@ RUN sed -i -e 's/\r$//' /usr/install-dependencies.sh
 RUN chmod +x /usr/install-dependencies.sh
 
 RUN apt-get update
+
+RUN apt-get install -y doxygen doxygen-doc graphviz
+
 RUN /usr/install-dependencies.sh
 
 # Clean up APT when done.
