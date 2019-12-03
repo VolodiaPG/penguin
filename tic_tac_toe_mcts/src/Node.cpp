@@ -134,8 +134,12 @@ void Node::backPropagateAndRevertAction(const int winnerId)
         victories++;
     }
     else if (winnerId == -1)
-    { // a draw is a victory for both player1 & 2
-        victories++;
+    { 
+        // victories++;
+    }
+    else
+    {
+        // victories--;
     }
 
     if (parent != nullptr)
