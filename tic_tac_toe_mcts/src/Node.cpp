@@ -135,7 +135,7 @@ void Node::backPropagateAndRevertAction(const int winnerId)
     }
     else if (winnerId == -1)
     { 
-        // victories++;
+        victories++;
     }
     else
     {
