@@ -21,17 +21,18 @@
                 <span id="turn" align="">Player X</span>
             </div>
 
-            <div id="hidden" align="center" style="display:none">
+            <div id="hidden" align="center" style="visibility:hidden">
                 <button class="button" id="playAgain">Play again</button>
             </div>
-
-            <footer class="down" style="margin-top: 15px;">
-                <div class="container" align="center">
-                    <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br /><br />Version 2.0</p>
-                </div>
-            </footer>
         </section>
+        <footer class="down" style="margin-top: 15px;">
+            <div class="container" align="center">
+                <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br />Version 2.0</p>
+            </div>
+        </footer>
     </div>
+
+  
 
 
     <textarea class="terminal" id="output" rows="6"></textarea>
@@ -45,11 +46,11 @@
 
         });
 
-        var multipleVictory = new Multiple({
-            selector: '.highlight-victory',
-            background: 'linear-gradient(to right, #000000, #0f9b0f);'
-            //background: 'linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);'
-        });
+        // var multipleVictory = new Multiple({
+        //     selector: '.highlight-victory',
+        //     background: 'radial-gradient(#000000, #0f9b0f);'
+        //     //background: 'linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);'
+        // });
 
         function runbefore()
         {
