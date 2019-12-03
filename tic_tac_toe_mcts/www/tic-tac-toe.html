@@ -13,8 +13,6 @@
 
 
 <body>
-    <div class="input_box">&nbsp;</div>
-
     <div class="container">
         <section class="board">
             <h1>Le jeu du tic-tac-toe</h1>
@@ -36,14 +34,21 @@
     </div>
 
 
-    <textarea class="em_textarea" id="output" rows="8"></textarea>
+    <textarea class="terminal" id="output" rows="6"></textarea>
 
     <!--JavaScript-->
     <script src="tic-tac-toe.js"></script>
     <script type='text/javascript'>
         var multiple = new Multiple({
-            selector: '.cell',
-            background: 'linear-gradient(to right, #00f260, #0575e6);'
+            selector: ['.cell', '.terminal'],
+            background: 'linear-gradient(to right, #03001e, #7303c0);'
+
+        });
+
+        var multipleVictory = new Multiple({
+            selector: '.highlight-victory',
+            background: 'linear-gradient(to right, #000000, #0f9b0f);'
+            //background: 'linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);'
         });
 
         function runbefore()
@@ -139,7 +144,6 @@
     </script>
     <script src="main.js"></script>
     <script src="tic-tac-toe.js"></script>
-    {{{ SCRIPT }}}
 </body>
 
 </html>
