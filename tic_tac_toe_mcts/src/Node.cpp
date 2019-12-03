@@ -131,7 +131,7 @@ void Node::backPropagateAndRevertAction(const int winnerId)
     ++visits;
     if (winnerId == (int)player->getId())
     {
-        victories++;
+        victories+=10;
     }
     else if (winnerId == -1)
     { 
@@ -139,7 +139,7 @@ void Node::backPropagateAndRevertAction(const int winnerId)
     }
     else
     {
-        // victories--;
+        // victories+=20;
     }
 
     if (parent != nullptr)
