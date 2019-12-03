@@ -67,7 +67,7 @@ extern "C"
 	EMSCRIPTEN_KEEPALIVE
 	void play(int row, int col)
 	{
-		std::cout << "Joué en (" << row << "," << col << ")" << std::endl;
+		//std::cout << "Joué en (" << row << "," << col << ")" << std::endl;
 		gameInstance->play(row, col);
 	}
 
