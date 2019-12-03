@@ -140,13 +140,14 @@ var initWrappers = () =>
 
     var startNewGame = () =>
     {
+        document.getElementById('output').value = '';
         deleteGame();
         initGame();
         turn = 'X';
         cells.forEach(el =>
         {
             el.innerHTML = EMPTY;
-            el.classList.remove('highlight-victory');
+            el.parentElement.classList.remove('highlight-victory');
         });
         document.getElementById('turn').textContent = 'Player ' + turn;
         document.getElementById('hidden').style.visibility = 'hidden';
