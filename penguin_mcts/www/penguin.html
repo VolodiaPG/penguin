@@ -14,13 +14,112 @@
       type = "canvas"
     }
 
-    PIXI.utils.sayHello(type)
+    PIXI.utils.sayHello(type);
+
+    //Aliases
+    let Application = PIXI.Application,
+             loader = PIXI.loader,
+          resources = PIXI.loader.resources,
+             Sprite = PIXI.Sprite,
+          Rectangle = PIXI.Rectangle;
 
     //Create a Pixi Application
-    let app = new PIXI.Application({width: 256, height: 256});
+    let app = new Application({ 
+      width: 800,         // default: 800
+      height: 600,        // default: 600
+      antialias: true,    // default: false
+      transparent: false, // default: false
+      resolution: 1       // default: 1
+    }
+    );
+
+    app.renderer.backgroundColor = 0x061639;
+    app.renderer.view.style.position = "absolute";
+    app.renderer.view.style.display = "block";
+    app.renderer.autoResize = true;
+    app.renderer.resize(window.innerWidth, window.innerHeight);
 
     //Add the canvas that Pixi automatically created for you to the HTML document
     document.body.appendChild(app.view);
+
+    //load an image and run the `setup` function when it's done
+    loader
+      .add("images/penguin.png")
+      .on("progress", loadProgressHandler)
+      .load(setup);
+
+    function loadProgressHandler(loader, resource) {
+      //Display the file `url` currently being loaded
+      console.log("loading: " + resource.url); 
+
+      //Display the percentage of files currently loaded
+      console.log("progress: " + loader.progress + "%"); 
+    }
+
+    let state;
+    let followOn;
+
+    let penguin;
+    
+    //This `setup` function will run when the image has loaded
+    function setup() {
+      console.log("All files loaded");
+      //Create the penguin sprite
+      penguin = new Sprite(loader.resources["images/penguin.png"].texture);
+
+      penguin.scale.set(0.2, 0.2);
+      penguin.position.set(300, 200);
+      penguin.vx = 0;
+      penguin.vy = 0;
+
+      penguin.interactive = true;
+      penguin.mousedown = initFollow;
+      penguin.mouseup = stopFollow;
+      penguin.mousemove = follow;
+     
+      //Add the penguin to the stage
+      app.stage.addChild(penguin);
+
+      //Set the game state
+      //state = play;
+
+      //Start the game loop 
+      app.ticker.add(delta => gameLoop(delta));
+    }
+
+    function initFollow() {
+      followOn = true;
+    }
+    
+    function stopFollow() {
+      followOn = false;
+    }
+
+    function follow(mouseData) {
+      if(followOn) {
+        penguin.x += mouseData.data.originalEvent.movementX;
+        penguin.y += mouseData.data.originalEvent.movementY;
+      }
+    }
+
+
+    gameLoop();
+
+    function gameLoop(){
+      //state()
+      requestAnimationFrame(gameLoop);
+      //app.renderer.render(stage);
+    }
+
+   
+    function play(delta){
+      penguin.vx = 1;
+      penguin.vy = 1;
+
+      //Move the penguin 1 pixel 
+      penguin.x += penguin.vx;
+      penguin.y += penguin.vy;
+    }
   </script>
 </body>
 </html>
