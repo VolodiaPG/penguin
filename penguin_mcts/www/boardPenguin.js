@@ -5,9 +5,9 @@
     var hp = window.HexPixi;
     var map = null,
         stage = new hp.PIXI.Stage(0xe0e0e0),
-        renderer = new hp.PIXI.autoDetectRenderer(800, 600, {
+        renderer = new hp.PIXI.autoDetectRenderer(555, 440, {
             antialiasing: false,
-            transparent: false,
+            transparent: true,
             resolution: 1
         });
 
@@ -23,7 +23,7 @@
 
     function getOptions() {
         return {
-            mapWidth: 10,
+            mapWidth: 8,
             mapHeight: 8,
             coordinateSystem: 2,
             hexLineWidth: 2,
@@ -33,21 +33,12 @@
             hexBottomPad: 24,
             onHexClick: onHexClick,
             textures: [
-                "images/game/tileGrass.png",
-                "images/game/tileSand.png",
-                "images/game/tileDirt.png",
-                "images/game/tileRock.png",
                 "images/game/tileSnow.png",
-                "images/game/tileWater.png"
+                "images/game/tileWater_full.png"
             ],
             terrainTypes: [
-                { name: "empty", color: 0xffffff, isEmpty: true },
-                { name: "grass", tileIndex: 0, color: 0x10fa10 },
-                { name: "sand", tileIndex: 1, color: 0xdBd588 },
-                { name: "dirt", tileIndex: 2, color: 0x9B5523 },
-                { name: "rock", tileIndex: 3, color: 0x808080 },
-                { name: "snow", tileIndex: 4, color: 0xe2e2fa },
-                { name: "water", tileIndex: 5, color: 0x4060fa }
+                { name: "snow", tileIndex: 0, color: 0xe2e2fa },
+                { name: "water", tileIndex: 1, color: 0x4060fa }
             ],
             onAssetsLoaded: function () { requestAnimFrame(animate); }
         };

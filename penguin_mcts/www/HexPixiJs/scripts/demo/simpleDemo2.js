@@ -1,5 +1,5 @@
-﻿/// <reference path="vend/pixi.dev.js" />
-/// <reference path="hexpixi.js" />
+﻿// <reference path="vend/pixi.dev.js" />
+// <reference path="hexpixi.js" />
 (function (window) {
     'use strict';
     var hp = window.HexPixi;
