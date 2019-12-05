@@ -57,7 +57,7 @@
             mapWidth: 8,
             mapHeight: 8,
             coordinateSystem: 3,
-            showCoordinates: true,
+            // showCoordinates: true,
             hexLineWidth: 2,
             hexLineColor: 0xd0d0d0,
             hexWidth: 65,
