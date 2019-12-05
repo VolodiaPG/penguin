@@ -1,17 +1,17 @@
-/// <reference path="vend/pixi.dev.js" />
-/// <reference path="HexPixiJs/scripts/hexpixi.js" />
+// <reference path="vend/pixi.dev.js" />
+// <reference path="HexPixiJs/scripts/hexpixi.js" />
 (function (window) {
     'use strict';
     var hp = window.HexPixi;
     var map = null,
         stage = new hp.PIXI.Stage(0xe0e0e0),
-        renderer = new hp.PIXI.autoDetectRenderer(555, 440, {
+        renderer = new hp.PIXI.autoDetectRenderer(1000, 500, { //555, 440
             antialiasing: false,
-            transparent: true,
+            transparent: false,
             resolution: 1
         });
 
-    function onHexClick(cell) {
+    function onHexClick(m, cell) {
         map.setCellTerrainType(cell, 0);
     }
 
@@ -25,7 +25,8 @@
         return {
             mapWidth: 8,
             mapHeight: 8,
-            coordinateSystem: 2,
+            coordinateSystem: 3,
+            showCoordinates: true,
             hexLineWidth: 2,
             hexLineColor: 0xd0d0d0,
             hexWidth: 65,
@@ -37,8 +38,8 @@
                 "images/game/tileWater_full.png"
             ],
             terrainTypes: [
-                { name: "snow", tileIndex: 0, color: 0xe2e2fa },
-                { name: "water", tileIndex: 1, color: 0x4060fa }
+                { name: "empty", color: 0xffffff, isEmpty: true },
+                { name: "snow", tileIndex: 0, color: 0xe2e2fa }
             ],
             onAssetsLoaded: function () { requestAnimFrame(animate); }
         };
@@ -54,7 +55,9 @@
 
     function initPage() {
         setupPixiJs();
-        map.generateRandomMap();
+        map.generateMap(1);
+
+        console.log(map.cells[4].length);
     }
 
     window.requestAnimFrame = (function(callback) {
