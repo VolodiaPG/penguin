@@ -182,13 +182,13 @@ prep: prep_common
 link_doc:
 	$(RM) -r ./$(SERVE)/$(DOC)/* && \
 	touch ./$(DOC)/$(DOXYGEN)/html/*
-	ln -f ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
+	cp -laf ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
 
 link_bin:
 	$(RM) -r ./$(SERVE)/$(WWW)/*
 	touch ./$(WWW)/*
-	ln -f ./$(WWW)/* ./$(SERVE)/$(WWW)/
-	ln -f ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
+	cp -laf ./$(WWW)/* ./$(SERVE)/$(WWW)/
+	cp -laf ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
 
 serve: build link_bin link_doc
 	cd $(SERVE) && python -m SimpleHTTPServer 8080
