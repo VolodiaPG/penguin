@@ -180,15 +180,15 @@ prep: prep_common
 	mkdir -p $(SERVE)/$(DOC)
 
 link_doc:
-	$(RM) -r ./$(SERVE)/$(DOC)/*
-	cp -al ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
+	$(RM) -r ./$(SERVE)/$(DOC)/* && \
+	touch ./$(DOC)/$(DOXYGEN)/html/*
+	ln -f ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
 
-rm_bin:
+link_bin:
 	$(RM) -r ./$(SERVE)/$(WWW)/*
-
-link_bin: rm_bin
-	cp -fal ./$(WWW)/* ./$(SERVE)/$(WWW)/
-	ln ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
+	touch ./$(WWW)/*
+	ln -f ./$(WWW)/* ./$(SERVE)/$(WWW)/
+	ln -f ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
 
 serve: build link_bin link_doc
 	cd $(SERVE) && python -m SimpleHTTPServer 8080
