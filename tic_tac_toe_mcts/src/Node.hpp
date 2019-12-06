@@ -30,7 +30,7 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::AbstractPlayer* player = nullptr;
+    game::AbstractPlayer *player = nullptr;
     game::AbstractBoardCell *targetedCell = nullptr;
     game::AbstractGame *game = nullptr;
 
@@ -57,7 +57,9 @@ public:
 
     Node *nodeWithMaxVisits() const;
 
-    void expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer);
+    void expandNode(
+        std::vector<game::AbstractBoardCell *> possibleMove,
+        game::AbstractPlayer *nextPlayer);
 
     game::AbstractPlayer *getPlayer() const { return player; };
 
@@ -72,6 +74,17 @@ public:
     Node *randomChooseChildOrDefaultMe();
 
     void backPropagateAndRevertAction(const int winnerId);
+};
+
+struct Node_bis
+{
+    std::vector<Node_bis *> childNodes;
+    Node_bis *parent = nullptr;
+    game::AbstractPlayer &player;
+    game::AbstractBoardCell &targetedCell;
+
+    int score = 0;
+    int visits = 0;
 };
 } // namespace mcts
 

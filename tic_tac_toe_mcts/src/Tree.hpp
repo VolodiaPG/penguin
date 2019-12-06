@@ -8,6 +8,9 @@
 #include "log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
+#define INCREMENT_VICTORY 1
+#define INCREMENT_DRAW 1
+#define INCREMENT_DEFEAT -1
 
 namespace game
 {
@@ -50,15 +53,33 @@ protected:
     Node *rootNode;
     void expandNode();
 
+    Node_bis* randomChooseChildOrFallbackOnNode(Node_bis* node);
+
+    void backPropagateAndRevertAction(Node_bis &terminalNode);
+
+    game::AbstractBoardCell& getRandomAvailableCellFromBoard() const;
+
+    double formula(
+        const Node_bis& node,
+        const Node_bis& nodeSuccessor) const;
+
+    Node_bis* nodeWithMaxVisits() const;
+
+    void doActionOnBoard(const Node_bis& nodeToGetTheActionFrom);
+
 public:
     game::AbstractPlayer *playerMe;
     game::AbstractGame *game;
     MCTSConstraints constraints;
 
-    explicit Tree(game::AbstractGame *game, game::AbstractPlayer *me, const MCTSConstraints &constraints);
+    explicit Tree(
+        game::AbstractGame *game,
+        game::AbstractPlayer *me,
+        const MCTSConstraints &constraints);
     ~Tree();
 
     void begin();
+
     game::AbstractBoardCell *bestMove() const;
     // NodegetRootNode() const { return rootNode; };
 };
