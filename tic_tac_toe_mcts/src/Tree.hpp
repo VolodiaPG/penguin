@@ -50,22 +50,44 @@ typedef struct
 class Tree
 {
 protected:
-    Node *rootNode;
+    struct Node_bis
+    {
+        ~Node_bis()
+        {
+            for (Node_bis *child : childNodes)
+                delete child;
+        }
+
+        std::vector<Node_bis *> childNodes;
+        Node_bis *parent = nullptr;
+        game::AbstractPlayer *player;
+        game::AbstractBoardCell *targetedCell = nullptr;
+
+        int score = 0;
+        int visits = 0;
+    } rootNode;
+    // Node *rootNode;
     void expandNode();
 
-    Node_bis* randomChooseChildOrFallbackOnNode(Node_bis* node);
+    Node_bis *selectBestChildAndDoAction(Node_bis *node);
+
+    Node_bis *randomChooseChildOrFallbackOnNode(Node_bis *node) const;
+
+    int randomSimulation(Node_bis *nodeFrom) const;
+
+    void expandNode(Node_bis *nodeToExpand);
+
+    Node_bis* nodeWithMaxVisits(const Node_bis* nodeFrom) const;
 
     void backPropagateAndRevertAction(Node_bis &terminalNode);
 
-    game::AbstractBoardCell& getRandomAvailableCellFromBoard() const;
+    game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
 
     double formula(
-        const Node_bis& node,
-        const Node_bis& nodeSuccessor) const;
+        const Node_bis &node,
+        const Node_bis &nodeSuccessor) const;
 
-    Node_bis* nodeWithMaxVisits() const;
-
-    void doActionOnBoard(const Node_bis& nodeToGetTheActionFrom);
+    void doActionOnBoard(const Node_bis &nodeToGetTheActionFrom);
 
 public:
     game::AbstractPlayer *playerMe;

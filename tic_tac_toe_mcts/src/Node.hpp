@@ -76,16 +76,7 @@ public:
     void backPropagateAndRevertAction(const int winnerId);
 };
 
-struct Node_bis
-{
-    std::vector<Node_bis *> childNodes;
-    Node_bis *parent = nullptr;
-    game::AbstractPlayer &player;
-    game::AbstractBoardCell &targetedCell;
 
-    int score = 0;
-    int visits = 0;
-};
 } // namespace mcts
 
 #endif /*NODE_HPP_*/
