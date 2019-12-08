@@ -2,15 +2,16 @@
 #define TREE_HPP_
 
 #include <chrono>
-#include "Node.hpp"
+#include <math.h>
+#include <queue>
 #include "AbstractPlayer.hpp"
 #include "AbstractGame.hpp"
 #include "log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
-#define INCREMENT_VICTORY 1
+#define INCREMENT_VICTORY 10
 #define INCREMENT_DRAW 1
-#define INCREMENT_DEFEAT -1
+#define INCREMENT_DEFEAT 0
 
 namespace game
 {
@@ -49,6 +50,10 @@ typedef struct
 
 class Tree
 {
+private:
+    static bool isGreater(int a, int b) { return a > b; };
+    static bool isLower(int a, int b) { return a < b; };
+
 protected:
     struct Node_bis
     {
@@ -73,13 +78,13 @@ protected:
 
     Node_bis *randomChooseChildOrFallbackOnNode(Node_bis *node) const;
 
-    int randomSimulation(Node_bis *nodeFrom) const;
+    int randomSimulation() const;
 
     void expandNode(Node_bis *nodeToExpand);
 
-    Node_bis* nodeWithMaxVisits(const Node_bis* nodeFrom) const;
+    Node_bis *nodeWithMaxVisits(const Node_bis *nodeFrom) const;
 
-    void backPropagateAndRevertAction(Node_bis &terminalNode);
+    void backPropagateAndRevertAction(int winnerId, Node_bis *terminalNode);
 
     game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
 

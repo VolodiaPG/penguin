@@ -188,6 +188,7 @@ link_bin:
 	$(RM) -r ./$(SERVE)/$(WWW)/*
 	touch ./$(WWW)/*
 	cp -laf ./$(WWW)/* ./$(SERVE)/$(WWW)/
+	touch ./$(BINARIES)/$(WWW)/*
 	cp -laf ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
 
 serve: build link_bin link_doc

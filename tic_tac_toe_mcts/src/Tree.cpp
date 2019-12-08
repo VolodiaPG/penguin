@@ -46,7 +46,7 @@ void Tree::begin()
                     nodeToExplore->player,
                     nodeToExplore->targetedCell);
             }
-            int winnerId = randomSimulation(nodeToExplore);
+            int winnerId = randomSimulation();
 
             backPropagateAndRevertAction(winnerId, nodeToExplore);
         }
@@ -122,26 +122,24 @@ game::AbstractBoardCell *Tree::getRandomAvailableCellFromBoard() const
     return cells[index];
 }
 
-void Tree::backPropagateAndRevertAction(Node_bis &terminalNode)
+void Tree::backPropagateAndRevertAction(int winnerId, Node_bis *terminalNode)
 {
-    int stateOfGame = game->checkStatus();
+    Node_bis *node = terminalNode;
+    int increment = INCREMENT_DEFEAT;
 
-    Node_bis *node = &terminalNode;
+    if ((int)node->player->getId() == winnerId)
+    { // victory
+        increment = INCREMENT_VICTORY;
+    }
+    else if (winnerId == -1)
+    { // draw
+        increment = INCREMENT_DRAW;
+    }
+
     do
     {
-        ++node->visits;
-        if ((int)node->player->getId() == stateOfGame)
-        {
-            node->score += INCREMENT_VICTORY;
-        }
-        else if (stateOfGame == -1)
-        {
-            node->score += INCREMENT_DRAW;
-        }
-        else
-        {
-            node->score += INCREMENT_DEFEAT;
-        }
+        node->visits++;
+        node->score += increment;
 
         game->revertPlay(node->targetedCell);
 
@@ -160,12 +158,12 @@ Tree::Node_bis *Tree::randomChooseChildOrFallbackOnNode(Node_bis *node) const
     return ret;
 }
 
-int Tree::randomSimulation(Node_bis* nodeFrom) const
+int Tree::randomSimulation() const
 {
     // 'convert' the two playes into random players (decisional)
 
     // save the actions done so we can revert them;
-    std::stack<game::AbstractBoardCell *> playedCells;
+    std::queue<game::AbstractBoardCell *> playedCells;
 
     while (!game->isFinished())
     {
@@ -183,7 +181,7 @@ int Tree::randomSimulation(Node_bis* nodeFrom) const
     // revert the random game
     while (!playedCells.empty())
     {
-        game->revertPlay(playedCells.top());
+        game->revertPlay(playedCells.front());
         // remove the element
         playedCells.pop();
     }
@@ -191,7 +189,7 @@ int Tree::randomSimulation(Node_bis* nodeFrom) const
     return winner;
 }
 
-Tree::Node_bis *Tree::selectBestChildAndDoAction(Node_bis *input)
+Tree::Node_bis *Tree::selectBestChildAndDoAction(Tree::Node_bis *input)
 {
     Node_bis *ret = input;
 
@@ -204,8 +202,8 @@ Tree::Node_bis *Tree::selectBestChildAndDoAction(Node_bis *input)
 
     while (ret->childNodes.size() != 0)
     {
-        double max = std::numeric_limits<double>::min();
-        Node_bis *temp = ret;
+        double max = std::numeric_limits<double>::lowest();
+        Node_bis *temp = nullptr;
         // One child must be selected to further develop
         for (Node_bis *node : ret->childNodes)
         {
