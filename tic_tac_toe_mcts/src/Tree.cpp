@@ -199,27 +199,48 @@ Tree::Node_bis *Tree::selectBestChildAndDoAction(Tree::Node_bis *input)
             ret->player,
             ret->targetedCell);
     }
+    double interestingValue = std::numeric_limits<double>::lowest();
+    bool (*strategy)(double, double) = isGreater;
 
     while (ret->childNodes.size() != 0)
     {
-        double max = std::numeric_limits<double>::lowest();
-        Node_bis *temp = nullptr;
+        Node_bis *interestingToReturn = nullptr;
+
         // One child must be selected to further develop
+        // std::cout << "nbre chidlren: " << ret->childNodes.size() << std::endl;
         for (Node_bis *node : ret->childNodes)
         {
             double res = formula(
                 *ret,
                 *node);
 
-            if (res > max)
+            // std::cout << res << std::endl;
+
+            if (strategy(res, interestingValue))
             {
                 // update ret
-                max = res;
-                temp = node;
+                interestingValue = res;
+                interestingToReturn = node;
+            }
+            else if (res == std::numeric_limits<double>::max())
+            { // not explored yet
+                interestingToReturn = node;
+                break;
             }
         }
 
-        ret = temp;
+        ret = interestingToReturn;
+
+        if (ret->player->getId() == playerMe->getId())
+        {
+            strategy = isGreater;
+            interestingValue = std::numeric_limits<double>::lowest();
+        }
+        else
+        {
+            strategy = isLower;
+            interestingValue = std::numeric_limits<double>::max();
+        }
 
         // exclude the root node that doesn't have any action associated...
         if (ret->targetedCell)

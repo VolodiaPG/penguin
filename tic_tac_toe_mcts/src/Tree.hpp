@@ -9,9 +9,9 @@
 #include "log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
-#define INCREMENT_VICTORY 10
-#define INCREMENT_DRAW 1
-#define INCREMENT_DEFEAT 0
+#define INCREMENT_VICTORY 1
+#define INCREMENT_DRAW 0
+#define INCREMENT_DEFEAT -1
 
 namespace game
 {
@@ -51,8 +51,8 @@ typedef struct
 class Tree
 {
 private:
-    static bool isGreater(int a, int b) { return a > b; };
-    static bool isLower(int a, int b) { return a < b; };
+    static bool isGreater(double a, double b) { return a > b; };
+    static bool isLower(double a, double b) { return a < b; };
 
 protected:
     struct Node_bis
