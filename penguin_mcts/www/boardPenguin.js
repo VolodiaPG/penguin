@@ -1,5 +1,5 @@
-// <reference path="vend/pixi.dev.js" />
-// <reference path="HexPixiJs/scripts/hexpixi.js" />
+/// <reference path="pixi/pixi.min.js" />
+/// <reference path="HexPixiJs/scripts/hexpixi.js" />
 (function (window) {
     'use strict';
     var hp = window.HexPixi;
@@ -10,6 +10,11 @@
             transparent: false,
             resolution: 1
         });
+
+    //load an image and run the `setup` function when it's done
+    PIXI.loader
+      .add("images/penguin.png")
+      .load(setup);
 
     function onHexClick(m, cell) {
         var r, c;
@@ -75,6 +80,20 @@
             ],
             onAssetsLoaded: function () { requestAnimFrame(animate); }
         };
+    }
+
+    //This `setup` function will run when the image has loaded
+    function setup() {
+        console.log("All files loaded");
+        //Create the penguin sprite
+        penguin = new PIXI.Sprite(PIXI.loader.resources["images/penguin.png"].texture);
+            penguin.scale.set(0.2, 0.2);
+            penguin.position.set(300, 200);
+            penguin.vx = 0;
+            penguin.vy = 0;
+
+        //Add the penguin to the stage
+        stage.addChild(penguin);
     }
 
     function setupPixiJs() {
