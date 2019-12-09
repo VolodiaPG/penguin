@@ -26,7 +26,7 @@ void TreeVisualizer::exportLog()
         // else
         // {
         // }
-        printTree(node, flux, 0);
+        printTree(node, flux, 1);
     }
 }
 
@@ -37,6 +37,11 @@ void TreeVisualizer::printTree(const Node *node, std::ofstream &flux, int zindex
         std::cout << node->targetedCell->to_string() << std::endl;
         flux << zindex << ";" << node->targetedCell->to_string() << ";" << node->score << ";" << node->visits << std::endl;
     }
+    else
+    {
+        flux << zindex << ";" << 0 << ";" << node->score << ";" << node->visits << std::endl;
+    }
+
     for (Node *child : node->childNodes)
     {
         printTree(child, flux, zindex + 1);
