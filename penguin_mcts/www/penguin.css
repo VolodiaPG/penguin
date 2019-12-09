@@ -21,13 +21,38 @@
 
   }
   
-  .board{
-    padding: 2em;
+  .board {
+    position: relative;
+    top: 0;
+    left: 0;
+    /* padding: 2em; */
+    height: 450px;
+    width: 550px;
+    
     /* background: #061639; */
-
-    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                  url("./images/water.png");
+    /* background-image:  linear-gradient(rgba(0, 0, 255, 0.5), rgba(0, 0, 150, 0.5)),
+                  url("./images/water.png"); */
   }
+  
+  .board .stage {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+  }
+
+  .board .water {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image:  linear-gradient(rgba(31, 31, 143, 0.5), rgba(116, 116, 240, 0.5)),
+                  url("./images/water.png");
+    background-size: cover;
+    filter: url("#turbulence");
+  }
+  
 
   button {
     width: 45%;
