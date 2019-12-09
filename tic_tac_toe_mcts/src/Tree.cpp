@@ -99,6 +99,11 @@ double Tree::formula(
     double ret = std::numeric_limits<double>::max();
     if (nodeSuccessor.visits != 0)
     {
+        // int multiplier = 1;
+        // if (nodeSuccessor.player->getId() != playerMe->getId())
+        // {
+        //     multiplier = -1;
+        // }
         ret = (double)nodeSuccessor.score / (double)nodeSuccessor.visits +
               sqrt(2.0 * log((double)node.visits) / (double)nodeSuccessor.visits);
     }
@@ -125,20 +130,20 @@ game::AbstractBoardCell *Tree::getRandomAvailableCellFromBoard() const
 void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
 {
     Node *node = terminalNode;
-    int increment = INCREMENT_DEFEAT;
-
-    if ((int)node->player->getId() == winnerId)
-    { // victory
-        increment = INCREMENT_VICTORY;
-    }
-    else if (winnerId == -1)
-    { // draw
-        increment = INCREMENT_DRAW;
-    }
 
     do
     {
+        int increment = INCREMENT_DEFEAT;
+        if ((int)node->player->getId() == winnerId)
+        { // victory
+            increment = INCREMENT_VICTORY;
+        }
+        else if (winnerId == -1)
+        { // draw
+            increment = INCREMENT_DRAW;
+        }
         node->visits++;
+
         node->score += increment;
 
         game->revertPlay(node->targetedCell);
@@ -216,31 +221,31 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 
             // std::cout << res << std::endl;
 
-            if (strategy(res, interestingValue))
+            if (res == std::numeric_limits<double>::max())
+            { // not explored yet
+                interestingToReturn = node;
+                break;
+            }
+            else if (strategy(res, interestingValue))
             {
                 // update ret
                 interestingValue = res;
                 interestingToReturn = node;
             }
-            else if (res == std::numeric_limits<double>::max())
-            { // not explored yet
-                interestingToReturn = node;
-                break;
-            }
         }
 
         ret = interestingToReturn;
 
-        if (ret->player->getId() == playerMe->getId())
-        {
-            strategy = isGreater;
-            interestingValue = std::numeric_limits<double>::lowest();
-        }
-        else
-        {
-            strategy = isLower;
-            interestingValue = std::numeric_limits<double>::max();
-        }
+        // if (ret->player->getId() == playerMe->getId())
+        // {
+        strategy = isGreater;
+        interestingValue = std::numeric_limits<double>::lowest();
+        // }
+        // else
+        // {
+        //     strategy = isLower;
+        //     interestingValue = std::numeric_limits<double>::max();
+        // }
 
         // exclude the root node that doesn't have any action associated...
         if (ret->targetedCell)
