@@ -22,7 +22,8 @@
   }
   
   .board{
-    /* margin: 2em; */
+    padding: 2em;
+    background: #061639;
   }
 
   button {
