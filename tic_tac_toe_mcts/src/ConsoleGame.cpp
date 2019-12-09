@@ -70,9 +70,9 @@ void ConsoleGame::loop()
 
         std::string filename = "turn_" + std::to_string(turn++) + ".txt";
         mcts::Tree tree(this, player2, constraints);
-        mcts::TreeVisualizer visualizer(&tree, filename);
-
         tree.begin();
+
+        mcts::TreeVisualizer visualizer(&tree, 4, filename);
         visualizer.exportLog();
 
         AbstractBoardCell *bestMove = tree.bestMove();
