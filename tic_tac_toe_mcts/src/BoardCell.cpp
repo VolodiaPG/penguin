@@ -28,4 +28,9 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
+std::string BoardCell::to_string() const
+{
+    return "(x: " + std::to_string(position.x) + ", y:" + std::to_string(position.y) + ")";
+}
+
 } // namespace game

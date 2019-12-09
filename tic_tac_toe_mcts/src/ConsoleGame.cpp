@@ -61,13 +61,20 @@ void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
+    int turn = 0;
     draw();
     while (!TicTacToe::isFinished())
     {
         mcts::MCTSConstraints constraints;
         constraints.time = 250;
+
+        std::string filename = "turn_" + std::to_string(turn++) + ".txt";
         mcts::Tree tree(this, player2, constraints);
+        mcts::TreeVisualizer visualizer(&tree, filename);
+
         tree.begin();
+        visualizer.exportLog();
+
         AbstractBoardCell *bestMove = tree.bestMove();
         play(getPlayerToPlay(), bestMove);
         draw();

@@ -21,8 +21,6 @@ class MCTSPlayer;
 namespace mcts
 {
 
-class Node;
-
 struct timer
 {
     typedef std::chrono::steady_clock clock;
@@ -48,51 +46,55 @@ typedef struct
     int time;
 } MCTSConstraints;
 
+struct Node
+{
+    ~Node()
+    {
+        for (Node *child : childNodes)
+            delete child;
+    }
+
+    std::vector<Node *> childNodes;
+    Node *parent = nullptr;
+    game::AbstractPlayer *player;
+    game::AbstractBoardCell *targetedCell = nullptr;
+
+    int score = 0;
+    int visits = 0;
+};
+
 class Tree
 {
+
 private:
     static bool isGreater(double a, double b) { return a > b; };
     static bool isLower(double a, double b) { return a < b; };
 
 protected:
-    struct Node_bis
-    {
-        ~Node_bis()
-        {
-            for (Node_bis *child : childNodes)
-                delete child;
-        }
-
-        std::vector<Node_bis *> childNodes;
-        Node_bis *parent = nullptr;
-        game::AbstractPlayer *player;
-        game::AbstractBoardCell *targetedCell = nullptr;
-
-        int score = 0;
-        int visits = 0;
-    } rootNode;
+    friend class TreeVisualizer;
+    Node rootNode;
     // Node *rootNode;
     void expandNode();
 
-    Node_bis *selectBestChildAndDoAction(Node_bis *node);
+    Node *selectBestChildAndDoAction(Node *node);
 
-    Node_bis *randomChooseChildOrFallbackOnNode(Node_bis *node) const;
+    Node *randomChooseChildOrFallbackOnNode(Node *node) const;
 
     int randomSimulation() const;
 
-    void expandNode(Node_bis *nodeToExpand);
+    void expandNode(Node *nodeToExpand);
 
-    Node_bis *nodeWithMaxVisits(const Node_bis *nodeFrom) const;
+    Node *nodeWithMaxVisits(const Node *nodeFrom) const;
 
-    void backPropagateAndRevertAction(int winnerId, Node_bis *terminalNode);
+    void backPropagateAndRevertAction(int winnerId, Node *terminalNode);
 
     game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
 
     double formula(
-        const Node_bis &node,
-        const Node_bis &nodeSuccessor) const;
+        const Node &node,
+        const Node &nodeSuccessor) const;
 
-    void doActionOnBoard(const Node_bis &nodeToGetTheActionFrom);
+    void doActionOnBoard(const Node &nodeToGetTheActionFrom);
 
 public:
     game::AbstractPlayer *playerMe;
