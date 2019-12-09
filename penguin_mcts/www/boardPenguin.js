@@ -1,15 +1,17 @@
-/// <reference path="pixi/pixi.min.js" />
-/// <reference path="HexPixiJs/scripts/hexpixi.js" />
+// <reference path="pixi/pixi.min.js" />
+// <reference path="HexPixiJs/scripts/hexpixi.js" />
 (function (window) {
     'use strict';
     var hp = window.HexPixi;
     var map = null,
-        stage = new hp.PIXI.Stage(0xe0e0e0),
+        stage = new hp.PIXI.Stage(0x061639),
         renderer = new hp.PIXI.autoDetectRenderer(555, 440, { //555, 440
             antialiasing: false,
             transparent: false,
             resolution: 1
         });
+        
+    var penguin;
 
     //load an image and run the `setup` function when it's done
     PIXI.loader
@@ -71,7 +73,8 @@
             onHexClick: onHexClick,
             textures: [
                 "images/game/tileStone_full.png",
-                "images/game/tileSnow.png"               
+                "images/game/tileSnow.png",
+                "images/penguin.png"               
             ],
             terrainTypes: [
                 { name: "empty", color: 0xffffff, isEmpty: true },
@@ -86,14 +89,14 @@
     function setup() {
         console.log("All files loaded");
         //Create the penguin sprite
-        penguin = new PIXI.Sprite(PIXI.loader.resources["images/penguin.png"].texture);
+        penguin = new PIXI.Sprite(map.textures[2]);
             penguin.scale.set(0.2, 0.2);
             penguin.position.set(300, 200);
             penguin.vx = 0;
             penguin.vy = 0;
 
         //Add the penguin to the stage
-        stage.addChild(penguin);
+        //map.container.addChild(penguin);
     }
 
     function setupPixiJs() {

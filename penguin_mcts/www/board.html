@@ -10,16 +10,29 @@
     <!--
     <link href="tic-tac-toe.css" rel="stylesheet" type="text/css">
     -->
-
-
-    <title>HexPixiJs - Simple Demo 2</title>
+    <title>PenguinGame - Demo</title>
     <script src="pixi/pixi.min.js"></script>
+    <link href="penguin.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.js"></script>
 </head>
 <body>
-    <div style="margin:0 0 20px 0;">
-        <p>This demo does not use any jquery and does not have any dependencies other than pixijs and hexpixijs.</p>
-    </div>
-    <div id="stage"></div>
+        <div class="container">
+                <section class="board">
+                    <h1>Penguin Game</h1>
+                    
+                    <div id="stage"></div>
+
+                    <div id="player" align="center">
+                        <span id="turn" align="">Player X</span>
+                    </div>
+                </section>
+                <footer class="down">
+                    <div class="container" align="center">
+                        <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br />Version 2.0</p>
+                    </div>
+                </footer>
+            </div>
 
     <script type="text/javascript" src="HexPixiJs/bin/hexpixi.js"></script>
     <!--
