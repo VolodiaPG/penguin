@@ -23,7 +23,10 @@
   
   .board{
     padding: 2em;
-    background: #061639;
+    /* background: #061639; */
+
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                  url("./images/water.png");
   }
 
   button {

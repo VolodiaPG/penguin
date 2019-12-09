@@ -7,7 +7,7 @@
         stage = new hp.PIXI.Stage(0x061639),
         renderer = new hp.PIXI.autoDetectRenderer(520, 430, { //520, 430
             antialiasing: false,
-            transparent: false,
+            transparent: true,
             resolution: 1
         });
         
