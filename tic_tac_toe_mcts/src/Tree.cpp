@@ -98,7 +98,7 @@ double Tree::formula(
     const Node &node,
     const Node &nodeSuccessor) const
 {
-    double ret = std::numeric_limits<double>::max();
+    double ret = std::numeric_limits<double>::max()-1;
     if (nodeSuccessor.visits != 0)
     {
         // int multiplier = 1;
@@ -220,7 +220,7 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
                 *ret,
                 *node);
 
-            // std::cout << res << std::endl;
+            std::cout << res << std::endl;
 
             if (res == std::numeric_limits<double>::max())
             { // not explored yet
@@ -235,7 +235,6 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
             }
         }
 
-        ret = interestingToReturn;
 
         // if (ret->player->getId() == playerMe->getId())
         // {
@@ -249,10 +248,14 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
         // }
 
         // exclude the root node that doesn't have any action associated...
-        if (ret->parent != nullptr)
+
+
+        // TODO NaN
+        if (interestingToReturn->parent != nullptr)
         {
-            doActionOnBoard(*ret);
+            doActionOnBoard(*interestingToReturn);
         }
+        ret = interestingToReturn;
     }
 
     return ret;
