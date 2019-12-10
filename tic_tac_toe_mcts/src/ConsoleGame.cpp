@@ -73,6 +73,8 @@ void ConsoleGame::loop()
         mcts::Tree tree(this, player, constraints);
         tree.begin();
 
+        std::cout << filename << std::endl;
+
         mcts::TreeVisualizer visualizer(&tree, 2, filename + "_rough.txt");
         visualizer.exportLog();
 

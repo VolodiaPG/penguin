@@ -9,9 +9,9 @@
 #include "log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
-#define INCREMENT_VICTORY 1
-#define INCREMENT_DRAW 0
-#define INCREMENT_DEFEAT 0
+#define INCREMENT_VICTORY 1.0
+#define INCREMENT_DRAW 0.5
+#define INCREMENT_DEFEAT -1.0
 
 namespace game
 {
@@ -59,7 +59,7 @@ struct Node
     game::AbstractPlayer *player;
     game::AbstractBoardCell *targetedCell = nullptr;
 
-    int score = 0;
+    double score = 0.0;
     int visits = 0;
 };
 

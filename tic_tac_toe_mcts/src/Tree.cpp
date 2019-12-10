@@ -42,10 +42,9 @@ void Tree::begin()
 
             if (nodeToExplore != promisingNode)
             {
-                game->play(
-                    nodeToExplore->player,
-                    nodeToExplore->targetedCell);
+                doActionOnBoard(*nodeToExplore);
             }
+
             int winnerId = randomSimulation();
 
             backPropagateAndRevertAction(winnerId, nodeToExplore);
@@ -59,6 +58,9 @@ void Tree::expandNode(Node *nodeToExpand)
 {
     // the turn has already been played, now it's the next player's turn
     game::AbstractPlayer *nextPlayer = game->getPlayerToPlay();
+
+    std::cout << "id node created for player : " << nextPlayer->getId() << std::endl;
+
     for (game::AbstractBoardCell *move : game->board->getAvailableCells())
     {
         Node *node = new Node();
@@ -104,7 +106,7 @@ double Tree::formula(
         // {
         //     multiplier = -1;
         // }
-        ret = (double)nodeSuccessor.score / (double)nodeSuccessor.visits +
+        ret = nodeSuccessor.score / (double)nodeSuccessor.visits +
               sqrt(2.0 * log((double)node.visits) / (double)nodeSuccessor.visits);
     }
 
@@ -113,6 +115,7 @@ double Tree::formula(
 
 void Tree::doActionOnBoard(const Node &nodeToGetTheActionFrom)
 {
+    std::cout << "played player#" << nodeToGetTheActionFrom.player->getId() << std::endl;
     game->play(nodeToGetTheActionFrom.player,
                nodeToGetTheActionFrom.targetedCell);
 }
@@ -131,9 +134,9 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
 {
     Node *node = terminalNode;
 
-    do
+    while (node->parent != nullptr)
     {
-        int increment = INCREMENT_DEFEAT;
+        double increment = INCREMENT_DEFEAT;
         if ((int)node->player->getId() == winnerId)
         { // victory
             increment = INCREMENT_VICTORY;
@@ -148,7 +151,8 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
 
         game->revertPlay(node->targetedCell);
 
-    } while ((node = node->parent) != nullptr);
+        node = node->parent;
+    }
 }
 
 Node *Tree::randomChooseChildOrFallbackOnNode(Node *node) const
@@ -173,7 +177,6 @@ int Tree::randomSimulation() const
     while (!game->isFinished())
     {
         game::AbstractBoardCell *cell = getRandomAvailableCellFromBoard();
-
         game->play(
             game->getPlayerToPlay(),
             cell);
@@ -198,11 +201,9 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 {
     Node *ret = input;
 
-    if (ret->targetedCell)
+    if (ret->parent != nullptr)
     {
-        game->play(
-            ret->player,
-            ret->targetedCell);
+        doActionOnBoard(*ret);
     }
     double interestingValue = std::numeric_limits<double>::lowest();
     bool (*strategy)(double, double) = isGreater;
@@ -212,7 +213,7 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
         Node *interestingToReturn = nullptr;
 
         // One child must be selected to further develop
-        // std::cout << "nbre chidlren: " << ret->childNodes.size() << std::endl;
+        std::cout << "ret: " << ret << std::endl;
         for (Node *node : ret->childNodes)
         {
             double res = formula(
@@ -248,11 +249,9 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
         // }
 
         // exclude the root node that doesn't have any action associated...
-        if (ret->targetedCell)
+        if (ret->parent != nullptr)
         {
-            game->play(
-                ret->player,
-                ret->targetedCell);
+            doActionOnBoard(*ret);
         }
     }
 
