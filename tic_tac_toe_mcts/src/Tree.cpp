@@ -98,7 +98,7 @@ double Tree::formula(
     const Node &node,
     const Node &nodeSuccessor) const
 {
-    double ret = std::numeric_limits<double>::max()-1;
+    double ret = std::numeric_limits<double>::max();
     if (nodeSuccessor.visits != 0)
     {
         // int multiplier = 1;
@@ -134,7 +134,8 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
 {
     Node *node = terminalNode;
 
-    while (node->parent != nullptr)
+    // iterate until the root node, not excluded tho!
+    do
     {
         double increment = INCREMENT_DEFEAT;
         if ((int)node->player->getId() == winnerId)
@@ -148,11 +149,11 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
         node->visits++;
 
         node->score += increment;
-
-        game->revertPlay(node->targetedCell);
-
-        node = node->parent;
-    }
+        if (node->parent)
+        { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
+            game->revertPlay(node->targetedCell);
+        }
+    } while ((node = node->parent) != nullptr);
 }
 
 Node *Tree::randomChooseChildOrFallbackOnNode(Node *node) const
@@ -222,19 +223,19 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 
             std::cout << res << std::endl;
 
-            if (res == std::numeric_limits<double>::max())
-            { // not explored yet
-                interestingToReturn = node;
-                break;
-            }
-            else if (strategy(res, interestingValue))
+            // if (res == std::numeric_limits<double>::max())
+            // { // not explored yet
+            //     interestingToReturn = node;
+            //     break;
+            // }
+            // else
+            if (strategy(res, interestingValue))
             {
                 // update ret
                 interestingValue = res;
                 interestingToReturn = node;
             }
         }
-
 
         // if (ret->player->getId() == playerMe->getId())
         // {
@@ -249,8 +250,6 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 
         // exclude the root node that doesn't have any action associated...
 
-
-        // TODO NaN
         if (interestingToReturn->parent != nullptr)
         {
             doActionOnBoard(*interestingToReturn);
