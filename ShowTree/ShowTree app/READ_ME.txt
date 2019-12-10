@@ -1,4 +1,7 @@
-Bon c'est simple, lancer puis cliquer sur le bon fichier a visualiser.
+2 méthodes de lancements sont possibles:
+	1: double cliquer sur le jar
+	2: executer par l'invite de commande:
+		./ShowTree.jar <fichier source>
 
 Le format du fichier d'import:
 
@@ -29,3 +32,4 @@ noeud3: 2;;;
 
 Dans le 1er cas, noeud1 et noeud3 seront freres et le noeud2 sera le fils du noeud 1.
 Alors que dans le 2e cas, noeud1 et noeud2 seront frêres er noeud3 sera le fils de noeud2
+
