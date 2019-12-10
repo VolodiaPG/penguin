@@ -16,3 +16,6 @@ If you can't setup the environment you can use `WSL` and manually execute `docs/
 - `mitaki28.vscode-clang`
 - `cschlosser.doxdocgen`
 - `visualstudioexptteam.vscodeintellicode`
+
+## `ShowTree.jar`
+In order to export the log of the tree into an `.svg` you need to be executing the script inside a graphical environement because of `Processing lang` limitations.
