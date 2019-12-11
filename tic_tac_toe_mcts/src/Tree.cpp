@@ -59,7 +59,7 @@ void Tree::expandNode(Node *nodeToExpand)
     // the turn has already been played, now it's the next player's turn
     game::AbstractPlayer *nextPlayer = game->getPlayerToPlay();
 
-    std::cout << "id node created for player : " << nextPlayer->getId() << std::endl;
+    // std::cout << "id node created for player : " << nextPlayer->getId() << std::endl;
 
     for (game::AbstractBoardCell *move : game->board->getAvailableCells())
     {
@@ -115,7 +115,7 @@ double Tree::formula(
 
 void Tree::doActionOnBoard(const Node &nodeToGetTheActionFrom)
 {
-    std::cout << "played player#" << nodeToGetTheActionFrom.player->getId() << std::endl;
+    // std::cout << "played player#" << nodeToGetTheActionFrom.player->getId() << std::endl;
     game->play(nodeToGetTheActionFrom.player,
                nodeToGetTheActionFrom.targetedCell);
 }
@@ -214,14 +214,14 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
         Node *interestingToReturn = nullptr;
 
         // One child must be selected to further develop
-        std::cout << "ret: " << ret << std::endl;
+        // std::cout << "ret: " << ret << std::endl;
         for (Node *node : ret->childNodes)
         {
             double res = formula(
                 *ret,
                 *node);
 
-            std::cout << res << std::endl;
+            // std::cout << res << std::endl;
 
             // if (res == std::numeric_limits<double>::max())
             // { // not explored yet
