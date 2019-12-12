@@ -10,13 +10,6 @@
             transparent: true,
             resolution: 1
         });
-        
-    var penguin;
-
-    //load an image and run the `setup` function when it's done
-    PIXI.loader
-      .add("images/penguin.png")
-      .load(setup);
 
     function onHexClick(m, cell) {
         var r, c;
@@ -74,7 +67,6 @@
             textures: [
                 "images/game/tileStone_full.png",
                 "images/game/tileSnow.png",
-                "images/penguin.png"               
             ],
             terrainTypes: [
                 { name: "empty", color: 0xffffff, isEmpty: true },
@@ -85,19 +77,6 @@
         };
     }
 
-    //This `setup` function will run when the image has loaded
-    function setup() {
-        console.log("All files loaded");
-        //Create the penguin sprite
-        penguin = new PIXI.Sprite(map.textures[2]);
-            penguin.scale.set(0.2, 0.2);
-            penguin.position.set(300, 200);
-            penguin.vx = 0;
-            penguin.vy = 0;
-
-        //Add the penguin to the stage
-        //map.container.addChild(penguin);
-    }
 
     function setupPixiJs() {
         // add the renderer view element to the DOM
@@ -111,13 +90,13 @@
         setupPixiJs();
         map.generateMap(2);
 
-        console.log("Ordre du tableau : ");
+        // console.log("Ordre du tableau : ");
 
-        for(var r = 0; r < map.cells.length ; r+=1) {
-            for(var c = 0 ; c < map.cells[r].length ; c+=1) {
-                console.log("Cell : (" + map.cells[r][c].row + "," + map.cells[r][c].column + ")");
-            }
-        }
+        // for(var r = 0; r < map.cells.length ; r+=1) {
+        //     for(var c = 0 ; c < map.cells[r].length ; c+=1) {
+        //         console.log("Cell : (" + map.cells[r][c].row + "," + map.cells[r][c].column + ")");
+        //     }
+        // }
     }
 
     window.requestAnimFrame = (function(callback) {

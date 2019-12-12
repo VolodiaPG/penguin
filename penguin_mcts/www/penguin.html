@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <title>Hello World</title>
   <script src="pixi/pixi.min.js"></script>
-
+<!-- 
   <style>
     canvas {
       margin: 0 auto;
       display: block;
     }
-  </style>
+  </style> 
+-->
 
 </head>
 <body>
@@ -24,15 +25,9 @@
 
     PIXI.utils.sayHello(type);
 
-    //Aliases
-    let Application = PIXI.Application,
-             loader = PIXI.loader,
-          resources = PIXI.loader.resources,
-             Sprite = PIXI.Sprite,
-          Rectangle = PIXI.Rectangle;
 
     //Create a Pixi Application
-    let app = new Application({ 
+    var app = new PIXI.Application({ 
       width: 800,         // default: 800
       height: 600,        // default: 600
       antialias: true,    // default: false
@@ -52,8 +47,8 @@
     document.body.appendChild(app.view);
 
     //load an image and run the `setup` function when it's done
-    loader
-      .add("images/penguin.png")
+    PIXI.loader
+      .add("images/mini_penguin.png")
       .on("progress", loadProgressHandler)
       .load(setup);
 
@@ -65,16 +60,15 @@
       console.log("progress: " + loader.progress + "%"); 
     }
 
-    let state;
-    let followOn;
+    var followOn;
 
-    let penguin, penguin2;
+    var penguin, penguin2;
     
     //This `setup` function will run when the image has loaded
     function setup() {
       console.log("All files loaded");
       //Create the penguin sprite
-      penguin = new Sprite(loader.resources["images/penguin.png"].texture);
+      penguin = new PIXI.Sprite(PIXI.loader.resources["images/mini_penguin.png"].texture);
           penguin.scale.set(0.2, 0.2);
           penguin.position.set(300, 200);
           penguin.vx = 0;
@@ -86,23 +80,6 @@
           penguin.mousemove = follow;
       //Add the penguin to the stage
       app.stage.addChild(penguin);
-
-      //Create the penguin sprite
-      penguin2 = new Sprite(loader.resources["images/penguin.png"].texture);
-          penguin2.scale.set(0.2, 0.2);
-          penguin2.position.set(0, 0);
-          penguin2.gravity = 0.2;
-          penguin2.bounceFactor = 0.75;
-          penguin2.vx = 1;
-          penguin2.vy = 2;
-      //Add the penguin to the stage
-      app.stage.addChild(penguin2);
-
-      //Set the game state
-      //state = play;
-
-      //Start the game loop 
-      // app.ticker.add(delta => gameLoop(delta));
     }
 
     function initFollow() {
@@ -124,10 +101,8 @@
     gameLoop();
 
     function gameLoop(){
-      //state()
       requestAnimationFrame(gameLoop);
-      fall();
-      //app.renderer.render(stage);
+      // app.renderer.render(stage);
     }
 
    
@@ -140,16 +115,6 @@
       penguin.y += penguin.vy;
     }
 
-    function fall() {
-      if(penguin2.x < app.renderer.width - penguin2.width) {
-        penguin2.x += penguin2.vx;
-        penguin2.y += penguin2.vy;
-        penguin2.vy += penguin2.gravity;
-        if(penguin2.y > app.renderer.height - penguin2.height  - penguin2.vy) {
-          penguin2.vy *= -penguin2.bounceFactor;
-        }  
-      }
-    }
   </script>
 </body>
 </html>
