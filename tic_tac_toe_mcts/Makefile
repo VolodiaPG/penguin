@@ -192,7 +192,7 @@ link_bin:
 	touch ./$(BINARIES)/$(WWW)/*
 	cp -af ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
 
-serve: build link_bin link_doc
+serve: build doc link_bin link_doc
 	cd $(SERVE) && python -m SimpleHTTPServer 8080
 
 else
