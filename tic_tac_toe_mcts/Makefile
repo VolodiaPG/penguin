@@ -2,7 +2,7 @@
 # Env variables
 #
 # TODO make it works outside docker !
-ENV_EMSCRIPTEN_FASTCOMP := /home/develop/emsdk/fastcomp/emscripten
+ENV_EMSCRIPTEN_FASTCOMP := /home/vagrant/emsdk/fastcomp/emscripten
 
 #
 # Default variables
@@ -29,7 +29,8 @@ C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 
 ifeq ($(TARGET_ENV),-)
-C_FLAGS := `sdl2-config --cflags --libs`
+# C_FLAGS := `sdl2-config --cflags --libs`
+C_FLAGS := 
 CC := g++
 endif
 
@@ -182,16 +183,16 @@ prep: prep_common
 link_doc:
 	$(RM) -r ./$(SERVE)/$(DOC)/* && \
 	touch ./$(DOC)/$(DOXYGEN)/html/*
-	cp -laf ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
+	cp -af ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
 
 link_bin:
 	$(RM) -r ./$(SERVE)/$(WWW)/*
 	touch ./$(WWW)/*
-	cp -laf ./$(WWW)/* ./$(SERVE)/$(WWW)/
+	cp -af ./$(WWW)/* ./$(SERVE)/$(WWW)/
 	touch ./$(BINARIES)/$(WWW)/*
-	cp -laf ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
+	cp -af ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
 
-serve: build link_bin link_doc
+serve: build doc link_bin link_doc
 	cd $(SERVE) && python -m SimpleHTTPServer 8080
 
 else
