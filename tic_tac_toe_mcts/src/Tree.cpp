@@ -12,15 +12,10 @@ Tree::Tree(
       constraints(constraints)
 {
     rootNode.player = playerMe;
-    // rootNode = new Node(nullptr, me, nullptr, game);
 }
 
 Tree::~Tree()
 {
-    // if (rootNode)
-    // {
-    //     delete rootNode;
-    // }
 }
 
 void Tree::begin()
@@ -58,8 +53,6 @@ void Tree::expandNode(Node *nodeToExpand)
 {
     // the turn has already been played, now it's the next player's turn
     game::AbstractPlayer *nextPlayer = game->getPlayerToPlay();
-
-    // std::cout << "id node created for player : " << nextPlayer->getId() << std::endl;
 
     for (game::AbstractBoardCell *move : game->board->getAvailableCells())
     {
@@ -101,11 +94,6 @@ double Tree::formula(
     double ret = std::numeric_limits<double>::max();
     if (nodeSuccessor.visits != 0)
     {
-        // int multiplier = 1;
-        // if (nodeSuccessor.player->getId() != playerMe->getId())
-        // {
-        //     multiplier = -1;
-        // }
         ret = nodeSuccessor.score / (double)nodeSuccessor.visits +
               sqrt(2.0 * log((double)node.visits) / (double)nodeSuccessor.visits);
     }
@@ -115,7 +103,6 @@ double Tree::formula(
 
 void Tree::doActionOnBoard(const Node &nodeToGetTheActionFrom)
 {
-    // std::cout << "played player#" << nodeToGetTheActionFrom.player->getId() << std::endl;
     game->play(nodeToGetTheActionFrom.player,
                nodeToGetTheActionFrom.targetedCell);
 }
@@ -170,8 +157,6 @@ Node *Tree::randomChooseChildOrFallbackOnNode(Node *node) const
 
 int Tree::randomSimulation() const
 {
-    // 'convert' the two playes into random players (decisional)
-
     // save the actions done so we can revert them;
     std::queue<game::AbstractBoardCell *> playedCells;
 
@@ -206,30 +191,20 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
     {
         doActionOnBoard(*ret);
     }
-    double interestingValue = std::numeric_limits<double>::lowest();
-    bool (*strategy)(double, double) = isGreater;
 
     while (ret->childNodes.size() != 0)
     {
         Node *interestingToReturn = nullptr;
+        double interestingValue = std::numeric_limits<double>::lowest();
 
         // One child must be selected to further develop
-        // std::cout << "ret: " << ret << std::endl;
         for (Node *node : ret->childNodes)
         {
             double res = formula(
                 *ret,
                 *node);
 
-            // std::cout << res << std::endl;
-
-            // if (res == std::numeric_limits<double>::max())
-            // { // not explored yet
-            //     interestingToReturn = node;
-            //     break;
-            // }
-            // else
-            if (strategy(res, interestingValue))
+            if (res > interestingValue)
             {
                 // update ret
                 interestingValue = res;
@@ -237,19 +212,7 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
             }
         }
 
-        // if (ret->player->getId() == playerMe->getId())
-        // {
-        strategy = isGreater;
-        interestingValue = std::numeric_limits<double>::lowest();
-        // }
-        // else
-        // {
-        //     strategy = isLower;
-        //     interestingValue = std::numeric_limits<double>::max();
-        // }
-
         // exclude the root node that doesn't have any action associated...
-
         if (interestingToReturn->parent != nullptr)
         {
             doActionOnBoard(*interestingToReturn);

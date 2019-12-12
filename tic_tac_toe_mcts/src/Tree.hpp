@@ -65,11 +65,6 @@ struct Node
 
 class Tree
 {
-
-private:
-    static bool isGreater(double a, double b) { return a > b; };
-    static bool isLower(double a, double b) { return a < b; };
-
 protected:
     friend class TreeVisualizer;
     Node rootNode;
