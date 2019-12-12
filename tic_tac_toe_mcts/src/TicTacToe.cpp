@@ -17,8 +17,10 @@ TicTacToe::~TicTacToe()
 
 bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
 {
+    static AbstractPlayer* lastPlayer = nullptr;
     ++numberMoves;
-    return board->performMove(player->getId(), move);
+    lastPlayer = player;
+    return board->performMove(lastPlayer->getId(), move);
 }
 
 void TicTacToe::revertPlay(AbstractBoardCell *cell)

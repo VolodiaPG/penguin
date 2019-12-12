@@ -2,7 +2,7 @@
 #define BOARD_CELL_HPP_
 
 #include <memory>
-
+#include <iostream>
 #include "Position.hpp"
 #include "AbstractBoardCell.hpp"
 
@@ -67,6 +67,8 @@ public:
      * @return false the cell isn't
      */
     bool isClaimed() const;
+
+    std::string to_string() const override;
 };
 
 } // namespace game

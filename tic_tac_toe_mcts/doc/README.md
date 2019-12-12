@@ -17,7 +17,10 @@ If you can't setup the environment you can use `WSL` and manually execute `docs/
 - `cschlosser.doxdocgen`
 - `visualstudioexptteam.vscodeintellicode`
 
-# gource
+## `ShowTree.jar`
+In order to export the log of the tree into an `.svg` you need to be executing the script inside a graphical environement because of `Processing lang` limitations.
+
+## gource
 Sizes tend to be really big (eg. 16Gigs for 1080p)
 ```bash
 gource --elasticity 0.5 --background 000000 --disable-progress --seconds-per-day 2ls --stop-on-idle --auto-skip-seconds 0.1 --title "TicTacToe MCTS" --file-idle-time 0 --hide filenames,progress,mouse -o gource.ppm

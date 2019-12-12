@@ -1,1 +1,4 @@
 bin/
+*.lock
+doxygen/
+turn*.txt

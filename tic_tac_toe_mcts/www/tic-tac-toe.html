@@ -4,39 +4,47 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>New Emscripten Shell</title>
+    <title>Tic-Tac-Toe WebAssembly</title>
     <link href="tic-tac-toe.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/multiple.js/0.0.1/multiple.min.js"></script>
     <!--lien vers l'affichage du Download et spinner-->
 </head>
 
 
 <body>
-    <div class="input_box">&nbsp;</div>
-
-    <div class="input_box">
-        <button id="click_me" class="em_button">Click Me!</button>
-    </div>
-
     <div class="container">
         <section class="board">
-            <h1>Le jeu du tic-tac-toe</h1>
+            <h1>Tic-Tac-Toe Game</h1>
             <div id="tictactoe"></div>
             <div id="player" align="center">
                 <span id="turn" align="">Player X</span>
             </div>
 
-            <!-- <footer class="pied" style="margin-top: 15px;">
-        <button type="button" value="Rejouer" id="refresh" />
-      </footer> -->
+            <div id="hidden" align="center" style="visibility:hidden">
+                <button class="button" id="playAgain">Play again</button>
+            </div>
         </section>
+        <footer class="down" style="margin-top: 15px;">
+            <div class="container" align="center">
+                <p id="Copyright">Réalisé en WebAssembly <br />©2019-2020<br />Version 2.0</p>
+            </div>
+        </footer>
     </div>
 
+  
 
-    <textarea class="em_textarea" id="output" rows="8"></textarea>
+
+    <textarea class="terminal" id="output" rows="6"></textarea>
 
     <!--JavaScript-->
     <script src="tic-tac-toe.js"></script>
     <script type='text/javascript'>
+        var multiple = new Multiple({
+            selector: ['.cell', '.terminal'],
+            background: 'linear-gradient(to right, #03001e, #7303c0);'
+
+        });
 
         function runbefore()
         {
@@ -46,15 +54,16 @@
         function runafter()
         {
             init();
+            multiple.update();
             console.log("after module load");
         }
-        
+
         /*Interface that the Emscripten-generated JavaScript glue code uses to interact with our WebAssembly module*/
         var Module = {
             //arrays of functions that will be run before and after the module is loaded
             preRun: [runbefore, initWrappers],
             postRun: [runafter],
-            
+
             //fct to print out the output of the printf
             print: (function ()
             {
@@ -71,16 +80,16 @@
                     text = text.replace(/>/g, "&gt;");
                     text = text.replace('\n', '<br>', 'g');
                     */
-                   console.log(text);
-                   if (element)
-                   {
-                       element.value += text + "\n";
-                       element.scrollTop = element.scrollHeight; // focus on bottom
+                    console.log(text);
+                    if (element)
+                    {
+                        element.value += text + "\n";
+                        element.scrollTop = element.scrollHeight; // focus on bottom
                     }
-                    
+
                 };
             })(),
-            
+
             //fct run by the glue code when an error or warning occurs
             printErr: function (text)
             {
@@ -130,7 +139,6 @@
     </script>
     <script src="main.js"></script>
     <script src="tic-tac-toe.js"></script>
-    {{{ SCRIPT }}}
 </body>
 
 </html>
