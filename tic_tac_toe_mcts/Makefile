@@ -2,7 +2,7 @@
 # Env variables
 #
 # TODO make it works outside docker !
-ENV_EMSCRIPTEN_FASTCOMP := /home/develop/emsdk/fastcomp/emscripten
+ENV_EMSCRIPTEN_FASTCOMP := /home/vagrant/emsdk/fastcomp/emscripten
 
 #
 # Default variables
@@ -29,7 +29,8 @@ C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 
 ifeq ($(TARGET_ENV),-)
-C_FLAGS := `sdl2-config --cflags --libs`
+# C_FLAGS := `sdl2-config --cflags --libs`
+C_FLAGS := 
 CC := g++
 endif
 
