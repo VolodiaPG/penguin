@@ -65,7 +65,7 @@
             hexBottomPad: 24,
             onHexClick: onHexClick,
             textures: [
-                "images/game/tileStone_full.png",
+                "images/game/tileWater_full.png",
                 "images/game/tileSnow.png",
             ],
             terrainTypes: [
