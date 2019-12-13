@@ -4,7 +4,7 @@ MCTS tic-tac-toe in C++
 # Installation
 ## Vagrant
 
-In order to ease the development process, we use Vagrant alongside VirtualBox.
+In order to ease the development process, we use Vagrant alongside VirtualBox (6.0 is the recommended one at the moment, higher versions do not work).
 The commands are then easy (do them in the root directory, where the `VagrantFile` is located):
 - `vagrant up --provider=virtualbox` to run the box
 - `vagrant halt` to shutdown the box
