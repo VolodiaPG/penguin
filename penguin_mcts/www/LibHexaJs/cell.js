@@ -2,7 +2,7 @@
 *
 * The HexPixi.Cell object represents one map hex cell.
 */
-class Cell {
+export class Cell {
 
     constructor(rowNo, columnNo, terrainIndex, cellData) {
         this.row = rowNo;
@@ -30,6 +30,5 @@ class Cell {
         this.hex = null; // The parent container of the hex's graphics objects.
     }
 }
-
 
 
