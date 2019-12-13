@@ -5,7 +5,7 @@
     var hp = window.HexPixi;
     var map = null,
         stage = new hp.PIXI.Stage(0x061639),
-        renderer = new hp.PIXI.autoDetectRenderer(520, 430, { //520, 430
+        renderer = new hp.PIXI.autoDetectRenderer(800, 600, { //520, 430
             antialiasing: false,
             transparent: true,
             resolution: 1
@@ -60,13 +60,13 @@
             // showCoordinates: true,
             hexLineWidth: 2,
             hexLineColor: 0xd0d0d0,
-            hexWidth: 65,
-            hexHeight: 65,
-            hexBottomPad: 24,
+            hexWidth: 90,
+            hexHeight: 90,
+            hexBottomPad: 33,
             onHexClick: onHexClick,
             textures: [
                 "images/game/tileWater_full.png",
-                "images/game/tileSnow.png",
+                "images/game/tileSnow_fish.png",
             ],
             terrainTypes: [
                 { name: "empty", color: 0xffffff, isEmpty: true },
