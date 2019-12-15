@@ -1,7 +1,8 @@
 import {Cell} from './cell.js';
 import { Board } from './board.js';
+import { Penguin } from './penguin.js';
 
-var map, board;
+var map, board, penguin;
 const canvas = document.getElementById('mycanvas');
 
 // Create our application instance
@@ -19,6 +20,7 @@ map = new PIXI.Application({
 var loader = PIXI.Loader.shared;
 loader.add("images/game/tileWater_full.png")
     .add("images/game/tileSnow.png")
+    .add("images/penguin.png")
     .on("progress", handleLoadProgress)
     .on("load", handleLoadAsset)
     .on("error", handleLoadError)
@@ -30,6 +32,10 @@ loader.add("images/game/tileWater_full.png")
 function setupPixiJs() {
 
   board = new Board(map, loader);
+
+  penguin = new Penguin(board, loader, 2, 2);
+
+  board.pixiApp.stage.addChild(penguin.sprite);
   
 }
 
@@ -47,8 +53,13 @@ function initPage() {
   // }
 }
 
+let delta = 0;
 function animate() {
-  board.pixiApp.renderer.render(board.pixiApp.stage);
+  delta += 0.1;
+  if(penguin.isOver){
+    penguin.uniforms.delta = 0.5 + Math.sin(delta) * 0.5;
+    penguin.sprite.y = penguin.sprite.y + Math.sin(delta) * 0.2;
+  }
 }
 
 function handleLoadProgress(loader, resource) {

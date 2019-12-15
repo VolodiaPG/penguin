@@ -4,7 +4,7 @@
 */
 export class Cell {
 
-    constructor(rowNo, columnNo, terrainIndex, cellData) {
+    constructor(rowNo, columnNo, terrainIndex) {
         this.row = rowNo;
         this.column = columnNo;
         this.center = { x: 0, y: 0 };
@@ -14,12 +14,7 @@ export class Cell {
         this.inner = []; // If a non-textured cell then this is the PIXI.Graphics of the hex inner, otherwise a PIXI.Sprite.
         this.hex = null; // The parent container of the hex's graphics objects.
         this.isEmpty = false; // The cell is empty if set to true.
-        this.data = cellData;
         this.isOver = false;
-    }
-
-    getRow() {
-        return this.row;
     }
 
     resetGraphics() {
@@ -70,12 +65,12 @@ export class Cell {
 
     onCellHover(map) {
         this.isOver = true;
-        this.updateColorOutline(0xff0000);
+        this.updateColorOutline(map.hexLineColorSelected);
     }
 
     onCellOut(map) {   
         this.isOver = false;
-        this.updateColorOutline(0xffffff);
+        this.updateColorOutline(map.hexLineColor);
     }
 
     updateColorOutline(color){   
