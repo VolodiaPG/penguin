@@ -4,6 +4,7 @@ import { Board } from './board.js';
 var map, board;
 const canvas = document.getElementById('mycanvas');
 
+// Create our application instance
 map = new PIXI.Application({
   view: canvas,
   width: window.innerWidth,         // default: 800
@@ -27,16 +28,16 @@ loader.add("images/game/tileWater_full.png")
 
 
 function setupPixiJs() {
+
   board = new Board(map, loader);
   
-  // map.pixiApp.ticker.add(animate);
-  // map.pixiApp.ticker.start();
-
 }
 
 function initPage() {
   setupPixiJs();
-  board.generateCell();
+  board.generateMap();
+  
+  board.pixiApp.ticker.add(animate);
 
   // console.log("Ordre du tableau : ");
   // for(var r = 0; r < map.cells.length ; r+=1) {
@@ -44,6 +45,10 @@ function initPage() {
   //         console.log("Cell : (" + map.cells[r][c].row + "," + map.cells[r][c].column + ")");
   //     }
   // }
+}
+
+function animate() {
+  board.pixiApp.renderer.render(board.pixiApp.stage);
 }
 
 function handleLoadProgress(loader, resource) {
@@ -59,8 +64,8 @@ function handleLoadComplete() {
   console.log("Load completed");
 
   initPage();
-  // var img = new PIXI.Sprite(loader.resources.tileNormal.texture);
-  // map.stage.addChild(img);
+
+
 }
 
 

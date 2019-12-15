@@ -30,40 +30,62 @@ export class Cell {
         this.hex = null; // The parent container of the hex's graphics objects.
     }
 
-    onHexClick(m, cell) {
+    
+    onCellClick(map) {
         var r, c;
-        console.log("Cell selected : (" + cell.row + "," + cell.column + ")");
+        console.log("Cell selected : (" + this.row + "," + this.column + ")");
         
-        for(c = 0; c < m.cells[cell.row].length ; c+=1) {
-            // console.log("Cell row : (" + map.cells[cell.row][c].row + "," + map.cells[cell.row][c].column + ")")
-            m.setCellTerrainType(m.cells[cell.row][c], 1);
-        }
+        // for(c = 0; c < m.cells[cell.row].length ; c+=1) {
+        //     // console.log("Cell row : (" + map.cells[cell.row][c].row + "," + map.cells[cell.row][c].column + ")")
+        //     m.setCellTerrainType(m.cells[cell.row][c], 1);
+        // }
       
-        //diago droite
-        var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
+        // //diago droite
+        // var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
       
-        //ligne
-        var cellZ = cell.row;
+        // //ligne
+        // var cellZ = cell.row;
       
-        //diago gauche
-        var cellY = - cellX - cellZ;
+        // //diago gauche
+        // var cellY = - cellX - cellZ;
       
-        for(var r = 0; r < m.cells.length ; r+=1) {
-            for(var c = 0 ; c < m.cells[r].length ; c+=1) {
-                var tempX = m.cells[r][c].column - (m.cells[r][c].row + (m.cells[r][c].row & 1)) / 2;
-                var tempZ = m.cells[r][c].row;
-                var tempY = - tempX - tempZ;
+        // for(var r = 0; r < m.cells.length ; r+=1) {
+        //     for(var c = 0 ; c < m.cells[r].length ; c+=1) {
+        //         var tempX = m.cells[r][c].column - (m.cells[r][c].row + (m.cells[r][c].row & 1)) / 2;
+        //         var tempZ = m.cells[r][c].row;
+        //         var tempY = - tempX - tempZ;
       
-                if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)){
-                    m.setCellTerrainType(m.cells[r][c], 1);
-                }
+        //         if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)){
+        //             m.setCellTerrainType(m.cells[r][c], 1);
+        //         }
       
-            }
-        }
-      
-        m.setCellTerrainType(cell, 0);
+        //     }
+        // }
+
+        this.isEmpty = true;
+    
+        map.setCellTerrainType(this, 0);
       
     }
+
+    onCellHover(map) {
+        this.isOver = true;
+        this.updateColorOutline(0xff0000);
+    }
+
+    onCellOut(map) {   
+        this.isOver = false;
+        this.updateColorOutline(0xffffff);
+    }
+
+    updateColorOutline(color){   
+        var len = this.outline.geometry.graphicsData.length;    
+        for (var i = 0; i < len; i++) {        
+          var data = this.outline.geometry.graphicsData[i];
+          data.lineStyle.color = color;     
+        }  
+        this.outline.geometry.invalidate();  
+      };
 
 }
 

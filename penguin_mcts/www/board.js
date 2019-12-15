@@ -40,7 +40,7 @@ import {Cell} from './cell.js';
         this.hexHeight = 90;
         // This is the pixel height specifying an area of overlap for hex cells. Necessary when
         // working with isometric view art systems.
-        this.hexBottomPad = 33;  
+        this.hexBottomPad = 33; 
 
         // The radius of the hex. Ignored if hexWidth and hexHeight are set to non-null.
         this.hexSize = this.hexWidth / 2;
@@ -53,8 +53,7 @@ import {Cell} from './cell.js';
         // The width in pixels of the hex outline.
         this.hexLineWidth = 2;
         // Callback function (cell) that handles a hex being clicked on or tapped.
-        // this.onHexClick = onHexClick;
-        // this.onHexHover = null;
+
         this.sizeBasedOnTexture = true;
         this.offsetX = 0;
         this.offsetY = 0;
@@ -84,16 +83,10 @@ import {Cell} from './cell.js';
     
         if(this.hexLineWidth){
             // Setup cell hilighter
-            var cell = new Cell(0, 0, 0);
+            var cell = new Cell(0, 0, 0, null);
             cell.poly = this.createHexPoly(this.hexDrawAxis);
-            var chg = this.createDrawHex_internal(cell, true, false);
-            if (chg) {
-                this.updateLineStyle(chg, 3, 0xff5521);
-                this.cellHighlighter = new PIXI.Container();
-                this.cellHighlighter.addChild(chg);
-            } else {
-                console.log("Error creating cell hilighter");
-            }
+            this.cellHighlighter = this.createDrawHex_internal(cell, 0xff5521, true, false);
+           
         }
 
         console.log("Board ok");
@@ -128,10 +121,9 @@ import {Cell} from './cell.js';
 
     // Creates a drawn hex while ignoring the cell's position. A new PIXI.Graphics object is created
     // and used to draw and (possibly) fill in the hex. The PIXI.Graphics is returned to the caller.
-    createDrawHex_internal(cell, hasOutline, hasFill) {
+    createDrawHex_internal(cell, color, hasOutline, hasFill) {
         var graphics = new PIXI.Graphics(),
-            i = 0,
-            color = this.terrainTypes[cell.terrainIndex].color ? this.terrainTypes[cell.terrainIndex].color : 0xffffff;
+            i = 0;
 
         if (cell.poly === null) {
             console.log("Cell's poly must first be defined by calling createHexPoly");
@@ -142,7 +134,7 @@ import {Cell} from './cell.js';
             // If this is for masking then we don't need the line itself. Just the poly filled.
             graphics.lineStyle(0, 0, 1);
         } else {
-            graphics.lineStyle(this.hexLineWidth, this.hexLineColor, 1);
+            graphics.lineStyle(this.hexLineWidth, color, 1);
         }
 
         if (hasFill !== false) {
@@ -169,9 +161,8 @@ import {Cell} from './cell.js';
         
         var sprite = new PIXI.Sprite(this.pixiLoader.resources[this.textures[this.terrainTypes[cell.terrainIndex].tileIndex]].texture),
             parentContainer = new PIXI.Container(),
-            mask = null,
             topPercent = 0.5;
-
+        
         sprite.width = this.hexWidth;
         sprite.height = this.hexHeight + this.hexBottomPad;
 
@@ -179,19 +170,29 @@ import {Cell} from './cell.js';
         sprite.anchor.x = 0.5;
         sprite.anchor.y = topPercent / 2;
 
+        sprite.interactive = true;
+        sprite.buttonMode = true;
+        sprite.hitArea = cell.poly;
+        sprite.on('click', (event) => {cell.onCellClick(this)})
+                       .on('pointerover', (event) => {cell.onCellHover(this)})
+                       .on('pointerout', (event) => {cell.onCellOut(this)});
+                       
+                       
         parentContainer.addChild(sprite);
 
         cell.inner = sprite;
 
-        if (this.hexLineWidth > 0) {
-            cell.outline = this.createDrawHex_internal(cell, true, false);
-            parentContainer.addChild(cell.outline);
+        if (!cell.isOver) {
+            cell.outline = this.createDrawHex_internal(cell, 0xffffff, true, false);
+        } else {
+            cell.outline = this.cellHighlighter;        
         }
+
+        parentContainer.addChild(cell.outline);
 
         parentContainer.position.x = cell.center.x;
         parentContainer.position.y = cell.center.y;
 
- 
         return parentContainer;
     };
 
@@ -201,7 +202,7 @@ import {Cell} from './cell.js';
         cell.inner = null;
 
         if (this.hexLineWidth > 0) {
-            cell.outline = this.createDrawHex_internal(cell, true, false);
+            cell.outline = this.createDrawHex_internal(cell, 0xffffff, false, false);
             parentContainer.addChild(cell.outline);
         }
 
@@ -281,7 +282,6 @@ import {Cell} from './cell.js';
         return hex;
     };
 
-
 /***************************************************************************************************************************
 ************************************* MAP/TEXTURES *************************************************************************
 ***************************************************************************************************************************/
@@ -325,7 +325,6 @@ import {Cell} from './cell.js';
     generateCell(){
         console.log("Generate Cell");
         var cell = new Cell(0, 0, 2, null);
-        // var cell2 = this.createCell(cell);
 
         this.pixiApp.stage.addChild(this.createCell(cell));
         //var t = this.createCell(cell);
@@ -336,93 +335,7 @@ import {Cell} from './cell.js';
         this.createSceneGraph();
     }
 
-    changeCellTerrainIndex(cell, terrainIndex) {
-
-        cell.terrainIndex = terrainIndex;
-    
-        var textureIndex = this.terrainTypes[cell.terrainIndex].textureIndex;
-        var texure = this.textures[textureIndex];
-    
-        cell.inner.setTexture(texure);
-    };
-
-/***************************************************************************************************************************
-************************************* INTERACTIVE CELL *********************************************************************
-***************************************************************************************************************************/
-
-    // A wrapper for createCell that adds interactivity to the individual cells.
-    createInteractiveCell(_cell) {
-        var hex = this.createCell(_cell);
-        hex.hitArea = _cell.hitPoly;
-        hex.interactive = true;
-        var _this = this;
-
-        // set the mouseover callback..
-        hex.mouseover = function (data) {
-            var cell = getEventCell(data);
-
-            if(cell && _this.cellHighlighter){
-                _this.cellHighlighter.position.x = cell.center.x;
-                _this.cellHighlighter.position.y = cell.center.y;
-
-                if (_this.inCellCount === 0) {
-                    _this.hexes.addChild(_this.cellHighlighter);
-                }
-            }
-
-            if (cell && cell.isOver !== true) {
-                cell.isOver = true;
-                _this.inCellCount++;
-            }
-
-            if (cell && _this.onHexHover) {
-                _this.onHexHover(_this, cell);
-            }
-        };
-
-        // set the mouseout callback..
-        hex.mouseout = function (data) {
-            var cell = getEventCell(data);
-            if (cell && cell.isOver === true) {
-                _this.inCellCount--;
-
-                if (_this.inCellCount === 0 && _this.cellHighlighter) {
-                    _this.hexes.removeChild(_this.cellHighlighter);
-                }
-
-                cell.isOver = false;
-            }
-            if (cell && _this.onHexOut) {
-                _this.onHexOut(_this, cell);
-            }
-        };
-
-        hex.click = function (data) {
-            var cell = getEventCell(data);
-            if (cell && _this.onHexClick) {
-                _this.onHexClick(_this, data.target.p_cell);
-            }
-        };
-
-        hex.tap = function (data) {
-            var cell = getEventCell(data);
-            if (cell && _this.onHexClick) {
-                _this.onHexClick(_this, data.target.p_cell);
-            }
-        };
-
-        return hex;
-    };
-
-    getEventCell (event) {
-        if(typeof event.target.p_cell !== 'undefined' && event.target.p_cell instanceof Cell)
-            return event.target.p_cell;
-        else
-            return false;
-    }
-
     createSceneGraph() {
-        console.log("Creating Scene Graph");
         var cell = null,
             row = null,
             rowIndex = 0,
@@ -439,43 +352,5 @@ import {Cell} from './cell.js';
             }
             rowIndex++;
         }
-        console.log("Scene Graph ok");
     };
-    
-/***************************************************************************************************************************
-************************************* PIXI HELPERS *************************************************************************
-***************************************************************************************************************************/
-    updateLineStyle(lineWidth, color, alpha) {
-        var len = this.hexes.geometry.graphicsData.length;
-        for (var i = 0; i < len; i++) {
-            var data = this.hexes.geometry.graphicsData[i];
-            if (data.lineWidth && lineWidth) {
-                data.lineWidth = lineWidth;
-            }
-            if (data.lineColor && color) {
-                data.lineColor = color;
-            }
-            if (data.alpha && alpha) {
-                data.alpha = alpha;
-            }
-            this.hexes.dirty = true;
-            this.hexes.clearDirty = true;
-        }
-    };
-
-    updateFillColor(fillColor, alpha) {
-        var len = this.graphicsData.length;
-        for (var i = 0; i < len; i++) {
-            var data = this.graphicsData[i];
-            if (data.fillColor && fillColor) {
-                data.fillColor = fillColor;
-            }
-            if (data.alpha && alpha) {
-                data.alpha = alpha;
-            }
-            this.dirty = true;
-            this.clearDirty = true;
-        }
-    };
-
  }
