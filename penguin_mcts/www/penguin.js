@@ -7,6 +7,7 @@ export class Penguin {
     constructor(map, loader, rowNo, columnNo) {
         this.row = rowNo;
         this.column = columnNo;
+        this.cellPosition = map.cells[this.row][this.column];
         this.center = map.getCellCenter(this.row, this.column);
         this.sprite = new PIXI.Sprite(loader.resources["images/penguin.png"].texture);
 
@@ -31,13 +32,7 @@ export class Penguin {
                    .on('pointermove', (event) => {this.onDragMove(map)})
                    .on('pointerup', (event) => {this.onDragEnd(map)})
                    .on('pointerupoutside', (event) => {this.onDragEnd(map)})
-                   
-
-                       
-                       
-                       ;
-
-
+                   ;
 
         this.poly = null; // The cell's poly that is used as a hit area.
         this.outline = null; // The PIXI.Graphics outline of the cell's hex.
@@ -47,9 +42,7 @@ export class Penguin {
 
         this.uniforms = {delta: 0};
     }
-
-
-    
+  
     onPenguinClick(map) {
         var r, c;
         console.log("Pos Penguin selected : (" + this.row + "," + this.column + ")");
@@ -109,27 +102,34 @@ export class Penguin {
         // store a reference to the data
         // the reason for this is because of multitouch
         // we want to track the movement of this particular touch
-        this.sprite.data = event.data;
+        // this.sprite.data = event.data;
         this.sprite.alpha = 0.75;
-        this.sprite.dragging = true;
+        // this.sprite.dragging = true;
 
         map.setDiagoSelectedTexture(map.cells[this.row][this.column], true, 1);
     }
     
     onDragEnd(map) {
         this.sprite.alpha = 1;
-        this.sprite.dragging = false;
+        // this.sprite.dragging = false;
         // set the interaction data to null
         this.sprite.data = null;
     }
     
     onDragMove(map) {
-        if (this.sprite.dragging) {
-            const newPosition = this.sprite.data.getLocalPosition(this.sprite.parent);
+            var newCellPosition = map.getCellHover();
 
-            this.sprite.x = newPosition.x;
-            this.sprite.y = newPosition.y;
-        }
+            if(newCellPosition !== null){
+                this.cellPosition = newCellPosition;
+                const newPosition = this.cellPosition.getCellCenter();
+                this.sprite.x = newPosition.x;
+                this.sprite.y = newPosition.y;
+            } else {
+
+            }
+
+            // const newPosition = this.sprite.data.getLocalPosition(this.sprite.parent);
+             
     }
     
 

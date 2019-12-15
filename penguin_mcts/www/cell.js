@@ -57,6 +57,7 @@ export class Cell {
 
     onCellHover(map) {
         this.isOver = true;
+        console.log("Cell Hover : (" + this.row + "," + this.column + ")");
         this.updateColorOutline(map.hexLineColorSelected);
     }
 

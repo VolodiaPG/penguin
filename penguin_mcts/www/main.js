@@ -37,6 +37,17 @@ function setupPixiJs() {
 
   board = new Board(map, loader);
 
+  board.generateRandomMap();
+
+  console.log("Ordre du tableau : ");
+  for(var r = 0; r < board.cells.length ; r+=1) {
+      for(var c = 0 ; c < board.cells[r].length ; c+=1) {
+          console.log("Cell : (" + board.cells[r][c].row + "," + board.cells[r][c].column + ")");
+      }
+  }
+
+  board.pixiApp.ticker.add(animate);
+
   penguin = new Penguin(board, loader, 2, 2);
 
   board.pixiApp.stage.addChild(penguin.sprite);
@@ -45,16 +56,6 @@ function setupPixiJs() {
 
 function initPage() {
   setupPixiJs();
-  board.generateRandomMap();
-  
-  board.pixiApp.ticker.add(animate);
-
-  // console.log("Ordre du tableau : ");
-  // for(var r = 0; r < map.cells.length ; r+=1) {
-  //     for(var c = 0 ; c < map.cells[r].length ; c+=1) {
-  //         console.log("Cell : (" + map.cells[r][c].row + "," + map.cells[r][c].column + ")");
-  //     }
-  // }
 }
 
 let delta = 0;
