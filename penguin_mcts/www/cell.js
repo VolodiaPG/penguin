@@ -30,11 +30,7 @@ export class Cell {
         var r, c;
         console.log("Cell selected : (" + this.row + "," + this.column + ")");
         
-        // for(c = 0; c < m.cells[cell.row].length ; c+=1) {
-        //     // console.log("Cell row : (" + map.cells[cell.row][c].row + "," + map.cells[cell.row][c].column + ")")
-        //     m.setCellTerrainType(m.cells[cell.row][c], 1);
-        // }
-      
+     
         // //diago droite
         // var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
       

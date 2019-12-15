@@ -38,8 +38,7 @@ export class Penguin {
     onPenguinClick(map) {
         var r, c;
         console.log("Pos Penguin selected : (" + this.row + "," + this.column + ")");
-        
-    
+         
         //diago droite
         var cellX = this.column - (this.row + (this.row & 1)) / 2;
       
@@ -66,8 +65,7 @@ export class Penguin {
 
     onPenguinHover(map) {
         this.isOver = true;
-     
-
+    
         // pixi.js/packages/core/src/fragments/default.vert
         var vertexShader = `
             attribute vec2 aVertexPosition;
