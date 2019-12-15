@@ -15,6 +15,7 @@ export class Cell {
         this.hex = null; // The parent container of the hex's graphics objects.
         this.isEmpty = false; // The cell is empty if set to true.
         this.isOver = false;
+        this.alpha = 1;
     }
 
     resetGraphics() {

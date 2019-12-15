@@ -10,17 +10,32 @@ export class Penguin {
         this.center = map.getCellCenter(this.row, this.column);
         this.sprite = new PIXI.Sprite(loader.resources["images/penguin.png"].texture);
 
-        this.sprite.width = map.hexWidth / 1.2;
-        this.sprite.height = map.hexHeight / 1.2;
+        // center the penguins's anchor point
+        this.sprite.anchor.set(0.5);
 
-        this.sprite.x = this.center.x - this.sprite.width / 2;
-        this.sprite.y = this.center.y - this.sprite.height / 2;
+        this.sprite.scale.set(0.16);
+        // this.sprite.width = map.hexWidth / 1.2;
+        // this.sprite.height = map.hexHeight / 1.2;
+
+        this.sprite.position.set(this.center.x, this.center.y);
+
 
         this.sprite.interactive = true;
         this.sprite.buttonMode = true;
-        this.sprite.on('click', (event) => {this.onPenguinClick(map)})
-                       .on('pointerover', (event) => {this.onPenguinHover(map)})
-                       .on('pointerout', (event) => {this.onPenguinOut(map)});
+        this.sprite.dragging = false;
+        // setup events for mouse + touch using
+        // the pointer events
+        this.sprite.on('pointerover', (event) => {this.onPenguinHover(map)})
+                   .on('pointerout', (event) => {this.onPenguinOut(map)})
+                   .on('pointerdown', (event) => {this.onDragStart(event, map)})
+                   .on('pointermove', (event) => {this.onDragMove(map)})
+                   .on('pointerup', (event) => {this.onDragEnd(map)})
+                   .on('pointerupoutside', (event) => {this.onDragEnd(map)})
+                   
+
+                       
+                       
+                       ;
 
 
 
@@ -39,27 +54,7 @@ export class Penguin {
         var r, c;
         console.log("Pos Penguin selected : (" + this.row + "," + this.column + ")");
          
-        //diago droite
-        var cellX = this.column - (this.row + (this.row & 1)) / 2;
-      
-        //ligne
-        var cellZ = this.row;
-      
-        //diago gauche
-        var cellY = - cellX - cellZ;
-      
-        for(var r = 0; r < map.cells.length ; r+=1) {
-            for(var c = 0 ; c < map.cells[r].length ; c+=1) {
-                var tempX = map.cells[r][c].column - (map.cells[r][c].row + (map.cells[r][c].row & 1)) / 2;
-                var tempZ = map.cells[r][c].row;
-                var tempY = - tempX - tempZ;
-      
-                if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)){
-                    map.setCellSelectedTexture(map.cells[r][c], true);
-                }
-      
-            }
-        }
+        map.setDiagoSelectedTexture(map.cells[this.row][this.column], true, 1);
 
     }
 
@@ -97,13 +92,45 @@ export class Penguin {
 
             
         this.sprite.filters = [myFilter];
+
+        map.setDiagoSelectedTexture(map.cells[this.row][this.column], true, 0.75);
     }
 
     onPenguinOut(map) {   
         this.isOver = false;
-        this.sprite.x = this.center.x - this.sprite.width / 2;
-        this.sprite.y = this.center.y - this.sprite.height / 2;
+        this.sprite.position.set(this.center.x, this.center.y);
+        this.sprite.alpha = 1;
         this.sprite.filters = [];
+
+        map.setDiagoSelectedTexture(map.cells[this.row][this.column], false, 1);
     }
+
+    onDragStart(event, map) {
+        // store a reference to the data
+        // the reason for this is because of multitouch
+        // we want to track the movement of this particular touch
+        this.sprite.data = event.data;
+        this.sprite.alpha = 0.75;
+        this.sprite.dragging = true;
+
+        map.setDiagoSelectedTexture(map.cells[this.row][this.column], true, 1);
+    }
+    
+    onDragEnd(map) {
+        this.sprite.alpha = 1;
+        this.sprite.dragging = false;
+        // set the interaction data to null
+        this.sprite.data = null;
+    }
+    
+    onDragMove(map) {
+        if (this.sprite.dragging) {
+            const newPosition = this.sprite.data.getLocalPosition(this.sprite.parent);
+
+            this.sprite.x = newPosition.x;
+            this.sprite.y = newPosition.y;
+        }
+    }
+    
 
 }

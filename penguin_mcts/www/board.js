@@ -157,6 +157,8 @@ import {Cell} from './cell.js';
         sprite.anchor.x = 0.5;
         sprite.anchor.y = topPercent / 2;
 
+        sprite.alpha = cell.alpha;
+
         sprite.interactive = true;
         sprite.buttonMode = false;
         sprite.hitArea = cell.poly;
@@ -337,14 +339,43 @@ import {Cell} from './cell.js';
         this.createSceneGraph();
     }
 
-    setCellSelectedTexture(cell, select) {
-        if(select){
+    setCellSelectedTexture(cell, select, alpha) {
+        if(select && cell.terrainIndex <= 3 ){
             cell.terrainIndex += 3;
-        } else {
+        } else if(!select && cell.terrainIndex > 3) {
             cell.terrainIndex -= 3;
+        } else {
+
         }
 
+        cell.alpha = alpha;
+
         this.createSceneGraph();
+    }
+
+    setDiagoSelectedTexture(cell, select, alpha) {
+        //diago droite
+        var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
+      
+        //ligne
+        var cellZ = cell.row;
+      
+        //diago gauche
+        var cellY = - cellX - cellZ;
+      
+        for(var r = 0; r < this.cells.length ; r+=1) {
+            for(var c = 0 ; c < this.cells[r].length ; c+=1) {
+                var tempX = this.cells[r][c].column - (this.cells[r][c].row + (this.cells[r][c].row & 1)) / 2;
+                var tempZ = this.cells[r][c].row;
+                var tempY = - tempX - tempZ;
+      
+                if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)){
+                    this.setCellSelectedTexture(this.cells[r][c], select, alpha); // cell, Selected, alpha
+                }
+      
+            }
+        }
+
     }
 
     createSceneGraph() {
