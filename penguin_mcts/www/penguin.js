@@ -103,6 +103,8 @@ export class Penguin {
 
     onPenguinOut(map) {   
         this.isOver = false;
+        this.sprite.x = this.center.x - this.sprite.width / 2;
+        this.sprite.y = this.center.y - this.sprite.height / 2;
         this.sprite.filters = [];
     }
 
