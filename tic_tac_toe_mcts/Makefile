@@ -1,8 +1,8 @@
 #
 # Env variables
 #
-
-ENV_EMSCRIPTEN_FASTCOMP := /mnt/c/Users/Maxime/emsdk/upstream/emscripten
+# TODO make it works outside docker !
+ENV_EMSCRIPTEN_FASTCOMP := /home/vagrant/emsdk/fastcomp/emscripten
 
 #
 # Default variables
@@ -12,6 +12,9 @@ ENV_EMSCRIPTEN_FASTCOMP := /mnt/c/Users/Maxime/emsdk/upstream/emscripten
 TARGET_ENV ?= -
 # debug, release ...
 BUILD_ENV ?= -
+
+DOXYGEN := doxygen
+DOXYGEN_FLAGS := 
 
 #
 # Compiler files
@@ -26,7 +29,8 @@ C_FLAGS := -s ASSERTIONS=2 -s WASM=1
 endif
 
 ifeq ($(TARGET_ENV),-)
-C_FLAGS := `sdl2-config --cflags --libs`
+# C_FLAGS := `sdl2-config --cflags --libs`
+C_FLAGS := 
 CC := g++
 endif
 
@@ -42,6 +46,8 @@ SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
 WWW		:= www
+DOC     := doc
+SERVE   := $(BIN)/served
 
 LIBRARIES	:=
 
@@ -99,7 +105,7 @@ OBJECTS := $(patsubst $(SRC)/%.cpp, $(BINARIES)/%.o, $(wildcard $(SRC)/*.cpp))
 #
 # Commands that are phony (not files)
 #
-# .PHONY: all clean prep
+.PHONY: clean prep serve doc
 
 #
 # Default build
@@ -123,7 +129,11 @@ $(BINARIES)/%.o: $(SRC)/%.cpp $(SRC)/%.hpp
 #
 # Debug rules
 #
+ifeq ($(TARGET_ENV),emscripten)
+debug: build link_bin
+else
 debug: build
+endif
 
 dbg_run: debug
 	./$(BINARIES)/$(EXECUTABLE)
@@ -131,10 +141,28 @@ dbg_run: debug
 #
 # Release rules
 #
+ifeq ($(TARGET_ENV),empscripten)
+release: build link_bin
+else
 release: build
+endif
 
 rel_run: release
 	./$(BINARIES)/$(EXECUTABLE)
+
+#
+# Other rules
+#
+
+ifeq ($(TARGET_ENV),emscripten)
+doc: doc_common link_doc
+else
+doc: doc_common
+endif
+
+doc_common: prep	
+	$(RM) -r ./$(DOC)/$(DOXYGEN)/*
+	cd $(DOC)/ && $(DOXYGEN) $(DOXYGEN_FLAGS)
 
 #
 # Other rules
@@ -144,24 +172,36 @@ clean:
 
 ifeq ($(TARGET_ENV),emscripten)
 
-rmwww: 
-	$(RM) ./$(BINARIES)/$(WWW)/*
-
 # Create dirs and recursively hardlink files
-prep: rmwww
+prep: prep_common
 	mkdir -p $(BINARIES)
 	mkdir -p $(BINARIES)/$(WWW)/
-	# ls ./$(WWW)/ | xargs -i rm -r -f ./$(BINARIES)/$(WWW)/{}
-	ln ./$(WWW)/* ./$(BINARIES)/$(WWW)/
+	mkdir -p $(DOC)/$(DOXYGEN)
+	mkdir -p $(SERVE)/$(WWW)
+	mkdir -p $(SERVE)/$(DOC)
 
-serve: build
-	cd ./$(BINARIES)/$(WWW) && python -m SimpleHTTPServer 8080
+link_doc:
+	$(RM) -r ./$(SERVE)/$(DOC)/* && \
+	touch ./$(DOC)/$(DOXYGEN)/html/*
+	cp -af ./$(DOC)/$(DOXYGEN)/html/* ./$(SERVE)/$(DOC)/
+
+link_bin:
+	$(RM) -r ./$(SERVE)/$(WWW)/*
+	touch ./$(WWW)/*
+	cp -af ./$(WWW)/* ./$(SERVE)/$(WWW)/
+	touch ./$(BINARIES)/$(WWW)/*
+	cp -af ./$(BINARIES)/$(WWW)/* ./$(SERVE)/$(WWW)/
+
+serve: build doc link_bin link_doc
+	cd $(SERVE) && python -m SimpleHTTPServer 8080
 
 else
-prep:
-	mkdir -p $(BINARIES)
+prep: prep_common
 endif
 
+prep_common:
+	mkdir -p $(BINARIES)
+	mkdir -p $(DOC)/$(DOXYGEN)
 
 run: all
 	./$(BINARIES)/$(EXECUTABLE)

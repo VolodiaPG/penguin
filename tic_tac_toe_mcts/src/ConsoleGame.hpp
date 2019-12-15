@@ -6,6 +6,7 @@
 #include "Board.hpp"
 #include "Player.hpp"
 #include "Tree.hpp"
+#include "TreeVisualizer.hpp"
 
 namespace game
 {

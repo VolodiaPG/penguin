@@ -1,0 +1,77 @@
+/*
+
+*/
+
+h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+p {
+    color: black;
+    text-align: center;
+}
+
+
+
+
+#Jeu
+ {
+    width: 600px;
+    height: 600px;
+    overflow: auto;
+    margin: auto;
+    padding: 10px;
+}
+
+
+#Jeu div
+ {
+    width: 500px;
+    margin: auto;
+    clear: both;
+
+}
+
+#Jeu button {
+    width: 150px;
+    height: 150px;
+    font-weight: bold;
+    font-size: 50px;
+    float: left;
+    margin: 2px;
+    border: 0px;
+    border-radius: 8px;
+
+    background-color: blue;
+    color: white;
+  
+    transition-duration: 0.2s;
+}
+
+#Jeu button:hover {
+    background-color: lightslategrey;
+}
+
+#Jeu button:active {
+    background-color: lightsteelblue;
+}
+
+#Jeu button:visited {
+    background-color: lightblue;
+}
+
+#StatutJeu
+ {
+    color: grey;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 5px ridge #EBEBEB;
+}
+
+#pied {
+    text-align: center;
+    font-size: 18px;
+}
