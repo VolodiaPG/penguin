@@ -10,14 +10,6 @@ import {Cell} from './cell.js';
 ************************************* CONSTRUCTOR *************************************************************************
 ***************************************************************************************************************************/
      constructor(map, loader) {
-        // // Loader for the textures.
-        // this.loader = PIXI.Loader.shared;
-        // this.loader.add("tileSelected","images/game/tileWater_full.png")
-        //     .add("tileNormal","images/game/tileSnow.png")
-        //     .on("progress", handleLoadProgress)
-        //     .on("load", handleLoadAsset)
-        //     .on("error", handleLoadError)
-        //     .load(handleLoadComplete);
 
         this.hexes = new PIXI.Graphics();
         this.pixiApp = map;
@@ -50,13 +42,10 @@ import {Cell} from './cell.js';
 
         // The color to use when drawing hex outlines.
         this.hexLineColor = 0xd0d0d0;
+        this.hexLineColorSelected = 0xff5521;
+
         // The width in pixels of the hex outline.
         this.hexLineWidth = 2;
-        // Callback function (cell) that handles a hex being clicked on or tapped.
-
-        this.sizeBasedOnTexture = true;
-        this.offsetX = 0;
-        this.offsetY = 0;
 
         // Specify the types of terrain available on the map. Map cells reference these terrain
         // types by index. Add custom properties to extend functionality.
@@ -73,21 +62,11 @@ import {Cell} from './cell.js';
         ];
 
         this.cells = [];
-        this.cellHighlighter = null;
-        this.inCellCount = 0;
         this.hexAxis = { x: 0, y: 0 };
         this.hexDrawAxis = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };
 
         this.pixiApp.stage.addChild(this.hexes);
         this.hexes.clear();
-    
-        if(this.hexLineWidth){
-            // Setup cell hilighter
-            var cell = new Cell(0, 0, 0, null);
-            cell.poly = this.createHexPoly(this.hexDrawAxis);
-            this.cellHighlighter = this.createDrawHex_internal(cell, 0xff5521, true, false);
-           
-        }
 
         console.log("Board ok");
     }
@@ -171,22 +150,18 @@ import {Cell} from './cell.js';
         sprite.anchor.y = topPercent / 2;
 
         sprite.interactive = true;
-        sprite.buttonMode = true;
+        sprite.buttonMode = false;
         sprite.hitArea = cell.poly;
         sprite.on('click', (event) => {cell.onCellClick(this)})
-                       .on('pointerover', (event) => {cell.onCellHover(this)})
-                       .on('pointerout', (event) => {cell.onCellOut(this)});
+                       .on('mouseover', (event) => {cell.onCellHover(this)})
+                       .on('mouseout', (event) => {cell.onCellOut(this)});
                        
                        
         parentContainer.addChild(sprite);
 
         cell.inner = sprite;
 
-        if (!cell.isOver) {
-            cell.outline = this.createDrawHex_internal(cell, 0xffffff, true, false);
-        } else {
-            cell.outline = this.cellHighlighter;        
-        }
+        cell.outline = this.createDrawHex_internal(cell, this.hexLineColor, true, false);
 
         parentContainer.addChild(cell.outline);
 
@@ -202,7 +177,7 @@ import {Cell} from './cell.js';
         cell.inner = null;
 
         if (this.hexLineWidth > 0) {
-            cell.outline = this.createDrawHex_internal(cell, 0xffffff, false, false);
+            cell.outline = this.createDrawHex_internal(cell, 0xffffff, false, false); // Border false
             parentContainer.addChild(cell.outline);
         }
 
@@ -245,10 +220,6 @@ import {Cell} from './cell.js';
                 // odd
                 center.x = (column * incX) + this.hexWidth;
             }
-
-        //center.y -= this.hexBottomPad;
-        center.x += this.offsetX;
-        center.y += this.offsetY;
 
         return center;
     };
@@ -300,13 +271,13 @@ import {Cell} from './cell.js';
             this.cells.push([]);
             if((row % 2) == 0) {
                 for (column = 0; column < this.mapWidth - 1 ; column += 1) {
-                    cell = new Cell(row, column, 2, null);
+                    cell = new Cell(row, column, 2);
                     this.cells[cell.row].push(cell);
                 }
 
             } else {
                 for (column = 0; column < this.mapWidth ; column += 1) {
-                    cell = new Cell(row, column, 2, null);
+                    cell = new Cell(row, column, 2);
                     this.cells[cell.row].push(cell);
                 }
             }
@@ -322,14 +293,6 @@ import {Cell} from './cell.js';
         this.createSceneGraph();
     };
 
-    generateCell(){
-        console.log("Generate Cell");
-        var cell = new Cell(0, 0, 2, null);
-
-        this.pixiApp.stage.addChild(this.createCell(cell));
-        //var t = this.createCell(cell);
-    }
-
     setCellTerrainType(cell, terrainIndex) {
         cell.terrainIndex = terrainIndex;
         this.createSceneGraph();
@@ -342,6 +305,7 @@ import {Cell} from './cell.js';
             colIndex = 0;
     
         this.clearHexes();
+
         while (rowIndex < this.cells.length) {
             row = this.cells[rowIndex];
             colIndex = 0;
