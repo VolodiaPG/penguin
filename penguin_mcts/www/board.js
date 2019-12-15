@@ -9,17 +9,19 @@ import {Cell} from './cell.js';
 /***************************************************************************************************************************
 ************************************* CONSTRUCTOR *************************************************************************
 ***************************************************************************************************************************/
-     constructor() {
+     constructor(map, loader) {
+        // // Loader for the textures.
+        // this.loader = PIXI.Loader.shared;
+        // this.loader.add("tileSelected","images/game/tileWater_full.png")
+        //     .add("tileNormal","images/game/tileSnow.png")
+        //     .on("progress", handleLoadProgress)
+        //     .on("load", handleLoadAsset)
+        //     .on("error", handleLoadError)
+        //     .load(handleLoadComplete);
+
         this.hexes = new PIXI.Graphics();
-        this.container = new PIXI.Container();
-        this.pixiApp = new PIXI.Application({
-            width: 800,         // default: 800
-            height: 600,        // default: 600
-            antialias: true,    // default: false
-            transparent: true, // default: false
-            resolution: 1,      // default: 1
-            resizeTo: Window
-        });
+        this.pixiApp = map;
+        this.pixiLoader = loader;
 
         this.pixiApp.renderer.backgroundColor = 0x061639;
         this.pixiApp.renderer.view.style.position = "absolute";
@@ -53,8 +55,7 @@ import {Cell} from './cell.js';
         // Callback function (cell) that handles a hex being clicked on or tapped.
         // this.onHexClick = onHexClick;
         // this.onHexHover = null;
-        this.dontBlurryImages = false;
-        this.sizeBasedOnTexture = false;
+        this.sizeBasedOnTexture = true;
         this.offsetX = 0;
         this.offsetY = 0;
 
@@ -65,45 +66,41 @@ import {Cell} from './cell.js';
             { name: "selected", tileIndex: 0, color: 0x808080 },
             { name: "snow", tileIndex: 1, color: 0xe2e2fa }
         ];
-        // Array of strings that specify the url of a texture. Can be referenced by index in terrainType.
+        
+        // Array of textures. Can be referenced by index in terrainType.
         this.textures = [
             "images/game/tileWater_full.png",
-            "images/game/tileSnow.png",
+            "images/game/tileSnow.png"
         ];
-
-        this.onAssetsLoaded = function(){}
-
 
         this.cells = [];
         this.cellHighlighter = null;
         this.inCellCount = 0;
         this.hexAxis = { x: 0, y: 0 };
         this.hexDrawAxis = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };
-        
-        this.container.addChild(this.hexes);
-        this.pixiApp.stage.addChild(this.container);
+
+        this.pixiApp.stage.addChild(this.hexes);
         this.hexes.clear();
-        this.loadTextures();
     
         if(this.hexLineWidth){
             // Setup cell hilighter
-            var cell = new Cell(0, 0, 0, null);
-    
+            var cell = new Cell(0, 0, 0);
             cell.poly = this.createHexPoly(this.hexDrawAxis);
             var chg = this.createDrawHex_internal(cell, true, false);
             if (chg) {
-                //this.updateLineStyle(chg, 3, 0xff5521);
+                this.updateLineStyle(chg, 3, 0xff5521);
                 this.cellHighlighter = new PIXI.Container();
                 this.cellHighlighter.addChild(chg);
             } else {
                 console.log("Error creating cell hilighter");
             }
-        } 
-    
+        }
+
+        console.log("Board ok");
     }
 
 /***************************************************************************************************************************
-************************************* HEXAGON *************************************************************************
+************************************* HEXAGON ******************************************************************************
 ***************************************************************************************************************************/
 
     // Creates a hex shaped polygon that is used for the hex's hit area.
@@ -165,58 +162,12 @@ import {Cell} from './cell.js';
         return graphics;
     };
 
-    // Used for manually drawing a hex cell. Creates the filled in hex, creates the outline (if there is one)
-    // and then wraps them in a PIXI.Container.
-    createDrawnHex (cell) {
-        var parentContainer = new PIXI.Container();
-
-        cell.inner = this.createDrawHex_internal(cell, false, true);
-        parentContainer.addChild(cell.inner);
-
-        if (this.hexLineWidth > 0) {
-            cell.outline = this.createDrawHex_internal(cell, true, false);
-            parentContainer.addChild(cell.outline);
-        }
-
-        parentContainer.position.x = cell.center.x;
-        parentContainer.position.y = cell.center.y;
-
-        return parentContainer;
-    };
-
-    // Use for creating a hex cell with a textured background. First creates a PIXI.Graphics of the hex shape.
-    // Next creates a PIXI.Sprite and uses the PIXI.Graphics hex as a mask. Masked PIXI.Sprite is added to parent
-    // PIXI.Container. Hex outline (if there is one) is created and added to parent container.
-    // Parent container is returned.
-    createTexturedHex (cell) {
-        var sprite = new PIXI.Sprite(this.textures[this.terrainTypes[cell.terrainIndex].textureIndex]);
-        var parentContainer = new PIXI.Container();
-
-        sprite.anchor.x = 0.5;
-        sprite.anchor.y = 0.5;
-        if(!this.sizeBasedOnTexture){
-            sprite.width = this.hexWidth;
-            sprite.height = this.hexHeight;
-        }
-        parentContainer.addChild(sprite);
-
-        cell.inner = sprite;
-
-        if (this.hexLineWidth > 0) {
-            cell.outline = this.createDrawHex_internal(cell, true, false);
-            parentContainer.addChild(cell.outline);
-        }
-
-        parentContainer.position.x = cell.center.x;
-        parentContainer.position.y = cell.center.y;
-
-        return parentContainer;
-    };
 
     // Use for creating a hex cell with a textured background that stands on it's own. The hex outline will
     // bee added if hexLineWidth is greater than 0. Parent container is returned.
     createTileHex (cell) {
-        var sprite = new PIXI.Sprite(this.textures[this.terrainTypes[cell.terrainIndex].tileIndex]),
+        
+        var sprite = new PIXI.Sprite(this.pixiLoader.resources[this.textures[this.terrainTypes[cell.terrainIndex].tileIndex]].texture),
             parentContainer = new PIXI.Container(),
             mask = null,
             topPercent = 0.5;
@@ -240,6 +191,7 @@ import {Cell} from './cell.js';
         parentContainer.position.x = cell.center.x;
         parentContainer.position.y = cell.center.y;
 
+ 
         return parentContainer;
     };
 
@@ -302,7 +254,7 @@ import {Cell} from './cell.js';
 
     // Takes a cell and creates all the graphics to display it.
     createCell(cell) {
-        cell.center = this.getCellCenter(cell.column, cell.row, this.coordinateSystem);
+        cell.center = this.getCellCenter(cell.column, cell.row);
 
         // Generate poly first then use poly to draw hex and create masks and all that.
         cell.poly = this.createHexPoly(this.hexDrawAxis);
@@ -316,30 +268,12 @@ import {Cell} from './cell.js';
 
             hex = this.createEmptyHex(cell);
 
-        } else if (terrain.textureIndex >= 0) {
-
-            hex = this.createTexturedHex(cell);
-
-        } else if (terrain.tileIndex >= 0) {
+        } else {
 
             hex = this.createTileHex(cell);
 
-        } else {
-            hex = this.createDrawnHex(cell);
-
         }
-
-        if(this.dontBlurryImages){
-            hex.position.x = Math.ceil(hex.position.x);
-            hex.position.y = Math.ceil(hex.position.y);
-
-            if(Math.round(hex.width) % 2 !== 0 )
-                hex.position.x += 0.5;
-
-            if(Math.round(hex.height) % 2 !== 0 )
-                hex.position.y += 0.5;
-        }
-
+            
         // Set a property on the hex that references the cell.
         hex.p_cell = cell;
         hex.p_cell.hex = hex;
@@ -351,49 +285,6 @@ import {Cell} from './cell.js';
 /***************************************************************************************************************************
 ************************************* MAP/TEXTURES *************************************************************************
 ***************************************************************************************************************************/
-
-    // Loads all the textures specified in 
-    loadTextures() {
-        this.textures = [];
-
-        var texturesStrings = [];
-        var i;
-
-        for (i = 0; i < this.textures.length; i++) {
-            if(typeof this.textures[i] === 'string' || this.textures[i] instanceof String ){
-                texturesStrings.push(this.textures[i]);
-            }
-        }
-
-        for (i = 0; i < this.textures.length; i++) {
-            if(this.textures[i] instanceof HTMLCanvasElement){
-                this.textures.push(new PIXI.Texture.fromCanvas(this.textures[i]));
-            }else if(typeof this.textures[i] === 'string' || this.textures[i] instanceof String){
-                this.textures.push(new PIXI.Texture.fromImage(this.textures[i]));
-            }else if(typeof this.textures[i]._uvs !== 'undefined'){
-                this.textures.push(this.textures[i]);
-            }else{
-                console.log('Error in texture loading! Format not compatible.');
-            }
-        }
-
-        if (texturesStrings.length > 0) {
-            // create a new loader
-            var loader = new PIXI.AssetLoader(texturesStrings, true);
-
-            // use callback
-            loader.onComplete = this.onAssetsLoaded;
-
-            //begin load
-            loader.load();
-
-        } else {
-            // No assets to load so just call onAssetsLoaded function to notify game that we are done.
-            if(this.onAssetsLoaded)
-                this.onAssetsLoaded();
-        }
-    };
-
     // Clears out all objects from this.hexes.children.
     clearHexes() {
         while (this.hexes.children.length) {
@@ -402,25 +293,43 @@ import {Cell} from './cell.js';
     };
 
     
-    generateMap(index) {
+    generateMap() {
+        console.log("Generate Map");
         var column, cell;
         for (var row = 0; row < this.mapHeight; row++) {
             this.cells.push([]);
             if((row % 2) == 0) {
                 for (column = 0; column < this.mapWidth - 1 ; column += 1) {
-                    cell = new Cell(row, column, index, null);
+                    cell = new Cell(row, column, 2, null);
                     this.cells[cell.row].push(cell);
                 }
 
             } else {
                 for (column = 0; column < this.mapWidth ; column += 1) {
-                    cell = new Cell(row, column, index, null);
+                    cell = new Cell(row, column, 2, null);
                     this.cells[cell.row].push(cell);
                 }
             }
         }
+
+        // console.log("Ordre du tableau : ");
+        // for(var r = 0; r < this.cells.length ; r+=1) {
+        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
+        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
+        //     }
+        // }
+
         this.createSceneGraph();
     };
+
+    generateCell(){
+        console.log("Generate Cell");
+        var cell = new Cell(0, 0, 2, null);
+        // var cell2 = this.createCell(cell);
+
+        this.pixiApp.stage.addChild(this.createCell(cell));
+        //var t = this.createCell(cell);
+    }
 
     setCellTerrainType(cell, terrainIndex) {
         cell.terrainIndex = terrainIndex;
@@ -438,7 +347,7 @@ import {Cell} from './cell.js';
     };
 
 /***************************************************************************************************************************
-************************************* INTERACTIVE CELL *************************************************************************
+************************************* INTERACTIVE CELL *********************************************************************
 ***************************************************************************************************************************/
 
     // A wrapper for createCell that adds interactivity to the individual cells.
@@ -513,6 +422,7 @@ import {Cell} from './cell.js';
     }
 
     createSceneGraph() {
+        console.log("Creating Scene Graph");
         var cell = null,
             row = null,
             rowIndex = 0,
@@ -524,20 +434,21 @@ import {Cell} from './cell.js';
             colIndex = 0;
             while (colIndex < row.length) {
                 cell = row[colIndex];
-                this.hexes.addChild(this.createInteractiveCell(cell));
+                this.hexes.addChild(this.createCell(cell)); // Choice of type of cell
                 colIndex++;
             }
             rowIndex++;
         }
+        console.log("Scene Graph ok");
     };
     
 /***************************************************************************************************************************
 ************************************* PIXI HELPERS *************************************************************************
 ***************************************************************************************************************************/
     updateLineStyle(lineWidth, color, alpha) {
-        var len = this.graphicsData.length;
+        var len = this.hexes.geometry.graphicsData.length;
         for (var i = 0; i < len; i++) {
-            var data = this.graphicsData[i];
+            var data = this.hexes.geometry.graphicsData[i];
             if (data.lineWidth && lineWidth) {
                 data.lineWidth = lineWidth;
             }
@@ -547,8 +458,8 @@ import {Cell} from './cell.js';
             if (data.alpha && alpha) {
                 data.alpha = alpha;
             }
-            this.dirty = true;
-            this.clearDirty = true;
+            this.hexes.dirty = true;
+            this.hexes.clearDirty = true;
         }
     };
 
