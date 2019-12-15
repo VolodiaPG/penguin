@@ -10,8 +10,8 @@ export class Penguin {
         this.center = map.getCellCenter(this.row, this.column);
         this.sprite = new PIXI.Sprite(loader.resources["images/penguin.png"].texture);
 
-        this.sprite.width = map.hexWidth / 1.3;
-        this.sprite.height = map.hexHeight / 1.3;
+        this.sprite.width = map.hexWidth / 1.2;
+        this.sprite.height = map.hexHeight / 1.2;
 
         this.sprite.x = this.center.x - this.sprite.width / 2;
         this.sprite.y = this.center.y - this.sprite.height / 2;
@@ -55,7 +55,7 @@ export class Penguin {
                 var tempY = - tempX - tempZ;
       
                 if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)){
-                    map.setCellTerrainType(map.cells[r][c], 1);
+                    map.setCellSelectedTexture(map.cells[r][c], true);
                 }
       
             }
@@ -105,14 +105,5 @@ export class Penguin {
         this.sprite.y = this.center.y - this.sprite.height / 2;
         this.sprite.filters = [];
     }
-
-    updateColorOutline(color){   
-        var len = this.outline.geometry.graphicsData.length;    
-        for (var i = 0; i < len; i++) {        
-          var data = this.outline.geometry.graphicsData[i];
-          data.lineStyle.color = color;     
-        }  
-        this.outline.geometry.invalidate();  
-      };
 
 }

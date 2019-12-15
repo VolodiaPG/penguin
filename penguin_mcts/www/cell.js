@@ -51,12 +51,7 @@ export class Cell {
         //         }
       
         //     }
-        // }
-
-        this.isEmpty = true;
-    
-        map.setCellTerrainType(this, 0);
-      
+        // }     
     }
 
     onCellHover(map) {

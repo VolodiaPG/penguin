@@ -51,14 +51,22 @@ import {Cell} from './cell.js';
         // types by index. Add custom properties to extend functionality.
         this.terrainTypes = [
             { name: "empty", color: 0xffffff, isEmpty: true },
-            { name: "selected", tileIndex: 0, color: 0x808080 },
-            { name: "snow", tileIndex: 1, color: 0xe2e2fa }
+            { name: "fish1", tileIndex: 0, color: 0x808080 },
+            { name: "fish2", tileIndex: 1, color: 0xe2e2fa },
+            { name: "fish3", tileIndex: 2, color: 0xe2e2fa },
+            { name: "fish1_Selected", tileIndex: 3, color: 0x808080 },
+            { name: "fish2_Selected", tileIndex: 4, color: 0xe2e2fa },
+            { name: "fish3_Selected", tileIndex: 5, color: 0xe2e2fa }
         ];
         
         // Array of textures. Can be referenced by index in terrainType.
         this.textures = [
-            "images/game/tileWater_full.png",
-            "images/game/tileSnow.png"
+            "images/game/tileSnow_fish1.png",
+            "images/game/tileSnow_fish2.png",
+            "images/game/tileSnow_fish3.png",
+            "images/game/tileWater_fish1.png",
+            "images/game/tileWater_fish2.png",
+            "images/game/tileWater_fish3.png"
         ];
 
         this.cells = [];
@@ -271,7 +279,7 @@ import {Cell} from './cell.js';
             this.cells.push([]);
             if((row % 2) == 0) {
                 for (column = 0; column < this.mapWidth - 1 ; column += 1) {
-                    cell = new Cell(row, column, 2);
+                    cell = new Cell(row, column, 1);
                     this.cells[cell.row].push(cell);
                 }
 
@@ -293,8 +301,49 @@ import {Cell} from './cell.js';
         this.createSceneGraph();
     };
 
+    generateRandomMap() {
+        console.log("Generate Random Map");
+        var column, rnd, cell;
+        for (var row = 0; row < this.mapHeight; row++) {
+            this.cells.push([]);
+            if((row % 2) == 0) {
+                for (column = 0; column < this.mapWidth - 1 ; column += 1) {
+                    rnd = Math.floor(1 + (Math.random() * 3));
+                    cell = new Cell(row, column, rnd);
+                    this.cells[cell.row].push(cell);
+                }
+
+            } else {
+                for (column = 0; column < this.mapWidth ; column += 1) {
+                    rnd = Math.floor(1 + (Math.random() * 3));
+                    cell = new Cell(row, column, rnd);
+                    this.cells[cell.row].push(cell);
+                }
+            }
+        }
+
+        // console.log("Ordre du tableau : ");
+        // for(var r = 0; r < this.cells.length ; r+=1) {
+        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
+        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
+        //     }
+        // }
+
+        this.createSceneGraph();
+    };
+
     setCellTerrainType(cell, terrainIndex) {
         cell.terrainIndex = terrainIndex;
+        this.createSceneGraph();
+    }
+
+    setCellSelectedTexture(cell, select) {
+        if(select){
+            cell.terrainIndex += 3;
+        } else {
+            cell.terrainIndex -= 3;
+        }
+
         this.createSceneGraph();
     }
 

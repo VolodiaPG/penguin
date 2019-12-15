@@ -18,8 +18,12 @@ map = new PIXI.Application({
 
 // Loader for the textures.
 var loader = PIXI.Loader.shared;
-loader.add("images/game/tileWater_full.png")
-    .add("images/game/tileSnow.png")
+loader.add("images/game/tileSnow_fish1.png")
+    .add("images/game/tileSnow_fish2.png")
+    .add("images/game/tileSnow_fish3.png")
+    .add("images/game/tileWater_fish1.png")
+    .add("images/game/tileWater_fish2.png")
+    .add("images/game/tileWater_fish3.png")
     .add("images/penguin.png")
     .on("progress", handleLoadProgress)
     .on("load", handleLoadAsset)
@@ -41,7 +45,7 @@ function setupPixiJs() {
 
 function initPage() {
   setupPixiJs();
-  board.generateMap();
+  board.generateRandomMap();
   
   board.pixiApp.ticker.add(animate);
 
