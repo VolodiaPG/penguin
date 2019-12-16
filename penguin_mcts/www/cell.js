@@ -11,6 +11,7 @@ export class Cell {
         this.terrainIndex = terrainIndex ? terrainIndex : 0;
         this.poly = null; // The cell's poly that is used as a hit area.
         this.outline = null; // The PIXI.Graphics outline of the cell's hex.
+
         this.inner = []; // If a non-textured cell then this is the PIXI.Graphics of the hex inner, otherwise a PIXI.Sprite.
         this.hex = null; // The parent container of the hex's graphics objects.
         this.isEmpty = false; // The cell is empty if set to true.
@@ -57,7 +58,7 @@ export class Cell {
 
     onCellHover(map) {
         this.isOver = true;
-        console.log("Cell Hover : (" + this.row + "," + this.column + ")");
+        // console.log("Cell Hover : (" + this.row + "," + this.column + ")");
         this.updateColorOutline(map.hexLineColorSelected);
     }
 

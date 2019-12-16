@@ -15,7 +15,7 @@ import {Cell} from './cell.js';
         this.pixiApp = map;
         this.pixiLoader = loader;
 
-        this.pixiApp.renderer.backgroundColor = 0x061639;
+        this.pixiApp.stage.background = new PIXI.Sprite(this.pixiLoader.resources["images/water.png"].texture);
         this.pixiApp.renderer.view.style.position = "absolute";
         this.pixiApp.renderer.view.style.display = "block";
         this.pixiApp.renderer.autoDensity = true;
@@ -207,7 +207,7 @@ import {Cell} from './cell.js';
     };
 
     // Calculates and returns the height of a hex cell.
-    getHexHeight () {
+    getHexHeight() {
         var result = null;
         result = this.hexSize * 2;
 
@@ -215,7 +215,7 @@ import {Cell} from './cell.js';
     };
 
     // Calculate the center of a cell based on column, row and coordinate system.
-    getCellCenter (column, row) {
+    getCellCenter(column, row) {
         var incX = 0.75 * this.hexWidth,
             incY = this.hexHeight,
             center = { x: 0, y: 0 },
@@ -376,16 +376,6 @@ import {Cell} from './cell.js';
             }
         }
 
-    }
-
-    getCellHover() {
-        for(var r = 0; r < this.cells.length ; r+=1) {
-            for(var c = 0 ; c < this.cells[r].length ; c+=1) {
-                if(this.cells[r][c].isOver === true) {
-                    return this.cells[r][c];
-                }      
-            }
-        }
     }
 
     createSceneGraph() {

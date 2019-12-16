@@ -4,13 +4,13 @@
 */
 export class Penguin {
 
-    constructor(map, loader, rowNo, columnNo) {
-        this.row = rowNo;
-        this.column = columnNo;
-        this.cellPosition = map.cells[this.row][this.column];
-        this.center = map.getCellCenter(this.row, this.column);
-        this.sprite = new PIXI.Sprite(loader.resources["images/penguin.png"].texture);
+    constructor(map, loader, cellPos) {
+        this.row = cellPos.row;
+        this.column = cellPos.column;
+        this.cellPosition = cellPos;
+        this.center = map.getCellCenter(this.column, this.row);
 
+        this.sprite = new PIXI.Sprite(loader.resources["images/penguin.png"].texture);
         // center the penguins's anchor point
         this.sprite.anchor.set(0.5);
 
@@ -34,6 +34,10 @@ export class Penguin {
                    .on('pointerupoutside', (event) => {this.onDragEnd(map)})
                    ;
 
+
+
+        
+
         this.poly = null; // The cell's poly that is used as a hit area.
         this.outline = null; // The PIXI.Graphics outline of the cell's hex.
         this.inner = []; // If a non-textured cell then this is the PIXI.Graphics of the hex inner, otherwise a PIXI.Sprite.
@@ -42,7 +46,7 @@ export class Penguin {
 
         this.uniforms = {delta: 0};
     }
-  
+
     onPenguinClick(map) {
         var r, c;
         console.log("Pos Penguin selected : (" + this.row + "," + this.column + ")");
@@ -102,33 +106,39 @@ export class Penguin {
         // store a reference to the data
         // the reason for this is because of multitouch
         // we want to track the movement of this particular touch
-        // this.sprite.data = event.data;
+        this.sprite.data = event.data;
         this.sprite.alpha = 0.75;
-        // this.sprite.dragging = true;
+        this.sprite.dragging = true;
 
         map.setDiagoSelectedTexture(map.cells[this.row][this.column], true, 1);
     }
     
     onDragEnd(map) {
         this.sprite.alpha = 1;
-        // this.sprite.dragging = false;
+        this.sprite.dragging = false;
         // set the interaction data to null
         this.sprite.data = null;
     }
     
     onDragMove(map) {
-            var newCellPosition = map.getCellHover();
+        // if(this.sprite.dragging) {
+        //     var newCellPosition = map.getCellHover();
 
-            if(newCellPosition !== null){
-                this.cellPosition = newCellPosition;
-                const newPosition = this.cellPosition.getCellCenter();
-                this.sprite.x = newPosition.x;
-                this.sprite.y = newPosition.y;
-            } else {
+        //     if(typeof newCellPosition !== 'undefined'){
+        //         const newPosition = map.getCellCenter(this.newCellPosition);
+        //         this.sprite.x = newPosition.x;
+        //         this.sprite.y = newPosition.y;
+        //     }
 
-            }
+        // }
 
-            // const newPosition = this.sprite.data.getLocalPosition(this.sprite.parent);
+        if(this.sprite.dragging){
+            const newPosition = this.sprite.data.getLocalPosition(this.sprite.parent);
+            this.sprite.x = newPosition.x;
+            this.sprite.y = newPosition.y;
+        }
+        
+
              
     }
     
