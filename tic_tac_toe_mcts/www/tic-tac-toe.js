@@ -140,7 +140,7 @@ var initWrappers = () =>
 
     var startNewGame = () =>
     {
-        document.getElementById('output').value = '';
+        document.getElementById('output').innerHTML = '';
         deleteGame();
         initGame();
         turn = 'X';
@@ -150,7 +150,7 @@ var initWrappers = () =>
             el.parentElement.classList.remove('highlight-victory');
         });
         document.getElementById('turn').textContent = 'Player ' + turn;
-        document.getElementById('hidden').style.visibility = 'hidden';
+        document.getElementById('hidden').style.opacity = '0';
     }
 
     var getCellByIdentifier = (identifier) =>
@@ -202,13 +202,13 @@ var initWrappers = () =>
         { // A player won
             //alert(`Player ${turnFromStatus(status)} won!`);
             searchCombinaison(turnFromStatus(status));
-            document.getElementById('hidden').style.visibility = 'visible';
+            document.getElementById('hidden').style.opacity = '1';
             document.getElementById('turn').textContent = 'Player ' + turnFromStatus(status) + ' won !';
             document.getElementById('playAgain').onclick = startNewGame;
 
         } else if (status < 0)
         { // draw
-            document.getElementById('hidden').style.visibility = 'visible';
+            document.getElementById('hidden').style.opacity = '1';
             document.getElementById('turn').textContent = 'Draw !';
             document.getElementById('playAgain').onclick = startNewGame;
         } else
