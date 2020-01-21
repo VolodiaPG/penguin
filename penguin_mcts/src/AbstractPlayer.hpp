@@ -32,7 +32,7 @@ public:
      * 
      * @return constexpr unsigned int the id
      */
-    constexpr unsigned int getId() const { return id; };
+    unsigned int getId() const { return id; };
 };
 
 } // namespace game
