@@ -1,3 +1,5 @@
-bin/
+# auto-generated
 *.lock
+bin/
 doxygen/
+nginx.conf
