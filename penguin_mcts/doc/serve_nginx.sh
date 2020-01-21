@@ -1,0 +1,1 @@
+sudo nginx -c /vagrant/penguin_mcts/nginx.conf -g "daemon off; error_log stderr info;"
