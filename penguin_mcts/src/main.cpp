@@ -2,6 +2,7 @@
 #include "ConsoleGame.hpp"
 #include "PlayerVComputer.hpp"
 #include "Position.hpp"
+#include "test/Test.hpp"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -12,6 +13,9 @@
 #ifndef __EMSCRIPTEN__
 int main()
 {
+	Test test;
+	test.print();
+	
 	for (int ii = 0; ii < 1; ++ii)
 	{
 		game::ConsoleGame consoleGame;
