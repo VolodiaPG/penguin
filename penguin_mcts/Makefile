@@ -1,19 +1,21 @@
 EMSCRIPTEN_FASTCOMP ?= /home/vagrant/emsdk/fastcomp/emscripten
 
-all: build
-
 # default environement
 
 # native env needs to be specified,
 # otherwise it is the emscripten one that is used
 ENV ?= emscripten
 
-ifeq ($(ENV),emscripten)
-TARGET_EXEC := main.html
+ifeq ($(ENV),native)
+TARGET_EXEC ?= main
+CXX := gcc
+else
+TARGET_EXEC ?= main.html
 CXX := $(EMSCRIPTEN_FASTCOMP)/em++
 endif
 
-TARGET_EXEC ?= main
+
+
 
 
 BUILD_DIR ?= ./bin
@@ -36,13 +38,14 @@ else
 	CPPFLAGS += -O3
 endif
 
-ifneq ($(ENV),emscripten)
+ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s ASSERTIONS=2 -s WASM=1
 	EXECPPFLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main', '_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
 endif
 
 TARGETCPPFLAGS ?= 
 
+all: build
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(CPPFLAGS) $(EXECPPFLAGS) $(OBJS) -o $@ $(LDFLAGS)

@@ -12,11 +12,11 @@
             },
             "args": [
                 "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=release release"
+                "make ENV=emscripten MODE=release"
             ]
         },
         {
-            "label": "Emscripten Release: build & run",
+            "label": "serve",
             "type": "shell",
             "windows": {
                 "command": "powershell"
@@ -26,11 +26,11 @@
             },
             "args": [
                 "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=release rel_run"
+                "make serve"
             ]
         },
         {
-            "label": "Emscripten Release: build & serve",
+            "label": "install",
             "type": "shell",
             "windows": {
                 "command": "powershell"
@@ -40,7 +40,7 @@
             },
             "args": [
                 "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=release serve"
+                "make install"
             ]
         },
         {
@@ -58,27 +58,9 @@
             },
             "args": [
                 "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=debug debug"
+                "make ENV=emscripten MODE=debug"
             ],
             "problemMatcher": []
-        },
-        {
-            "label": "Emscripten Debug: build & run",
-            "type": "shell",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "windows": {
-                "command": "powershell"
-            },
-            "linux": {
-                "command": "bash"
-            },
-            "args": [
-                "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=debug dbg_run"
-            ]
         },
         {
             "label": "Debug: build",
@@ -95,7 +77,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug debug"
+                "make ENV=native MODE=debug"
             ],
             "problemMatcher": []
         },
@@ -114,7 +96,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug dbg_run"
+                "make ENV=native MODE=debug && ./bin/main"
             ]
         },
         {
@@ -132,25 +114,7 @@
             },
             "args": [
                 "-c",
-                "make BUILD_ENV=debug debug && ./bin/debug/main > ./bin/debug/log.log"
-            ]
-        },
-        {
-            "label": "Emscripten Debug: build & serve",
-            "type": "shell",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "windows": {
-                "command": "powershell"
-            },
-            "linux": {
-                "command": "bash"
-            },
-            "args": [
-                "-c",
-                "make TARGET_ENV=emscripten BUILD_ENV=debug serve"
+                "make ENV=native MODE=debug && ./bin/main > ./bin/log.log"
             ]
         },
         {
