@@ -77,7 +77,12 @@ Vagrant.configure("2") do |config|
   
   echo "========================= Install gcc, Python, Java ======================="
   apt-get install -y gcc-9 g++-9 cmake cppcheck clang gdb valgrind git && \
-  apt-get install -y python2.7 default-jre && \
+  apt-get install -y python2.7 default-jre
+  
+  echo "========================= Install Nginx (light) ======================="
+  apt-get install -y nginx-light  
+  
+  echo "========================= Clean ======================="
   apt-get clean autoclean && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/*
@@ -87,7 +92,7 @@ Vagrant.configure("2") do |config|
   && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-9 999 \
   && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 999
   
-  echo "========================= Clean ======================="
+  echo "========================= Clean after update ======================="
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   SHELL
   
