@@ -2,4 +2,3 @@
 *.lock
 bin/
 doxygen/
-nginx.conf
