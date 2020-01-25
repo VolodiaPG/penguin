@@ -8,15 +8,11 @@ ENV ?= emscripten
 
 ifeq ($(ENV),native)
 TARGET_EXEC ?= main
-CXX := gcc
+CXX := g++
 else
 TARGET_EXEC ?= main.html
 CXX := $(EMSCRIPTEN_FASTCOMP)/em++
 endif
-
-
-
-
 
 BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src
@@ -30,7 +26,8 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
+# CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
+CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -lstdc++
 
 ifeq ($(MODE),debug)
 	CPPFLAGS += -O0 -g
@@ -42,8 +39,6 @@ ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s ASSERTIONS=2 -s WASM=1
 	EXECPPFLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main', '_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
 endif
-
-TARGETCPPFLAGS ?= 
 
 all: build
 
@@ -58,14 +53,10 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 #specific rules
 build: $(BUILD_DIR)/$(TARGET_EXEC)
 
-
-.PHONY: clean serve install
+.PHONY: clean serve
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-
-install:
-	$(DOC_DIRS)/install.sh $(shell pwd)
 
 serve:
 	$(DOC_DIRS)/serve_nginx.sh
