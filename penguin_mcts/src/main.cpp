@@ -1,8 +1,7 @@
 #include <iostream>
-#include "ConsoleGame.hpp"
-#include "PlayerVComputer.hpp"
-#include "Position.hpp"
-#include "test/Test.hpp"
+#include "game_logic/tic_tac_toe/ConsoleGame.hpp"
+#include "game_logic/tic_tac_toe/PlayerVComputer.hpp"
+#include "game_logic/tic_tac_toe/Position.hpp"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -12,10 +11,7 @@
 // using namespace emscripten;
 #ifndef __EMSCRIPTEN__
 int main()
-{
-	Test test;
-	test.print();
-	
+{	
 	for (int ii = 0; ii < 1; ++ii)
 	{
 		game::ConsoleGame consoleGame;
