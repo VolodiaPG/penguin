@@ -4,9 +4,9 @@
 #include <iterator>
 #include <array>
 
-#include "log.hpp"
+#include "../../log.hpp"
 
-#include "AbstractBoard.hpp"
+#include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
 
 namespace game

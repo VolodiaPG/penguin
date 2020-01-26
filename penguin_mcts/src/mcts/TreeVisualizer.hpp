@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "Tree.hpp"
-#include "BoardCell.hpp"
 
 namespace mcts
 {

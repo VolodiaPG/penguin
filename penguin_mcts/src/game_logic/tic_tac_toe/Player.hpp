@@ -2,7 +2,7 @@
 #define HUMAN_PLAYER_HPP_
 
 #include <iostream>
-#include "AbstractPlayer.hpp"
+#include "../AbstractPlayer.hpp"
 
 namespace game
 {

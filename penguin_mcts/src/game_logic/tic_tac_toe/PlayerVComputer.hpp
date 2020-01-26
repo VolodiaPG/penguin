@@ -4,7 +4,7 @@
 #include <iostream>
 #include "TicTacToe.hpp"
 #include "Player.hpp"
-#include "Tree.hpp"
+#include "../../mcts/Tree.hpp"
 
 // #include <emscripten/bind.h>
 // #include <emscripten.h>

@@ -6,12 +6,12 @@
 #include <iostream>
 #include <math.h>
 #include <limits>
+
 #include "Tree.hpp"
-#include "AbstractBoardCell.hpp"
+#include "../game_logic/AbstractBoardCell.hpp"
 #include "AbstractPlayer.hpp"
 
-#include "log.hpp"
-#include "BoardCell.hpp"
+#include "../log.hpp"
 
 namespace game
 {

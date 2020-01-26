@@ -5,7 +5,7 @@
 #include "TicTacToe.hpp"
 #include "Board.hpp"
 #include "Player.hpp"
-#include "Tree.hpp"
+#include "../../mcts/Tree.hpp"
 
 namespace game
 {

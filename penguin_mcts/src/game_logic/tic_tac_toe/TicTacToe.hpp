@@ -2,7 +2,7 @@
 #define TIC_TAC_TOE_HPP_
 
 #include <iostream>
-#include "AbstractGame.hpp"
+#include "../AbstractGame.hpp"
 #include "Board.hpp"
 
 // #include <emscripten/bind.h>

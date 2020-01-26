@@ -3,9 +3,9 @@
 
 #include <chrono>
 #include "Node.hpp"
-#include "AbstractPlayer.hpp"
-#include "AbstractGame.hpp"
-#include "log.hpp"
+#include "../game_logic/AbstractPlayer.hpp"
+#include "../game_logic/AbstractGame.hpp"
+#include "../log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
