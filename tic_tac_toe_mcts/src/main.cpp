@@ -12,13 +12,14 @@
 #ifndef __EMSCRIPTEN__
 int main()
 {
+	
 	for (int ii = 0; ii < 50; ++ii)
 	{
 		game::ConsoleGame consoleGame;
 
 		consoleGame.loop();
 	}
-
+	
 	return EXIT_SUCCESS;
 }
 #else

@@ -91,6 +91,8 @@ protected:
 
     void doActionOnBoard(const Node &nodeToGetTheActionFrom);
 
+    
+
 public:
     game::AbstractPlayer *playerMe;
     game::AbstractGame *game;
@@ -105,6 +107,13 @@ public:
     void begin();
 
     game::AbstractBoardCell *bestMove() const;
+    Node * bestNode();
+    /**
+     * @brief Makes this node the rootnode of the tree (keeps all of his children and deletes every thing else)
+     * 
+     * @param node 
+     */
+    void moveRootToNode(Node * node);
     // NodegetRootNode() const { return rootNode; };
 };
 

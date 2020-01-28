@@ -61,32 +61,42 @@ void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
-    int turn = 0;
+    //int turn = 0;
     draw();
     AbstractPlayer *player = player1;
+    //Sets the time constraint (in ms)
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+
     while (!TicTacToe::isFinished())
     {
-        mcts::MCTSConstraints constraints;
-        constraints.time = 250;
 
         std::string filename = "turn_" + std::to_string(turn++);
         mcts::Tree tree(this, player, constraints);
+
+        //Creates the tree
         tree.begin();
 
         std::cout << filename << std::endl;
 
+        //The next few lines exports the tree into a .txt file
+        //This exports all the tree
         mcts::TreeVisualizer visualizer(&tree, 2, filename + "_rough.txt");
         visualizer.exportLog();
 
+        //This exports a portion of the tree
         mcts::TreeVisualizer visualizer2(&tree, 4, filename + "_precise.txt");
         visualizer2.exportLog();
 
+        //Finds the best move for the AI to play
         AbstractBoardCell *bestMove = tree.bestMove();
         play(player, bestMove);
         draw();
 
+        //Changes the player to play
         player = getPlayerToPlay();
     }
+    
 
     // print results
     if (board->checkStatus() == -1)
@@ -98,6 +108,7 @@ void ConsoleGame::loop()
         std::cout << "Player #" << board->checkStatus()
                   << " won!" << std::endl;
     }
+    
 }
 
 } // namespace game

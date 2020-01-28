@@ -16,6 +16,10 @@ public:
     ConsoleGame();
     ~ConsoleGame();
 
+    /**
+     * @brief Draws the board
+     * 
+     */
     void draw() const override;
     
     /**

@@ -87,6 +87,11 @@ Node *Tree::nodeWithMaxVisits(const Node *nodeFrom) const
     return chosen;
 }
 
+Node * Tree::bestNode()
+{
+    return nodeWithMaxVisits(&rootNode);
+}
+
 double Tree::formula(
     const Node &node,
     const Node &nodeSuccessor) const
@@ -222,5 +227,30 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 
     return ret;
 }
+
+    void Tree::moveRootToNode(Node * node)
+    {
+        Node * parent = node->parent;
+        if(parent != nullptr)
+        {
+            //Removes the node from its parent
+            std::vector<Node *> * childNodes = &(parent->childNodes);
+            for(long unsigned int i = 0; i < childNodes->size(); i++)
+            {
+                if(childNodes->at(i) == node)
+                {
+                    childNodes->erase(childNodes->begin() + i);
+                }
+            }
+            std::vector<Node *> nodes = rootNode.childNodes;
+            for(Node * n : nodes)
+            {
+                delete n;
+            }
+            //Change the current rootnode to this node
+            node->parent = nullptr;
+            rootNode = *node;
+        }
+    }
 
 } // namespace mcts
