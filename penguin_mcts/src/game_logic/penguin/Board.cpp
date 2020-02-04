@@ -3,12 +3,13 @@
 
 namespace game
 {
-Board::Board()
-    : AbstractBoard()
+Board::Board(size_t dimension)
+    : AbstractBoard(),
+      _dimension(dimension)
 {
-    for (int ii = 0; ii < BOARD_SIZE; ++ii)
+    for (int ii = -dimension/2; ii < (int)dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
     {
-        for (int jj = 0; jj < BOARD_SIZE; ++jj)
+        for (int jj = -dimension/2; jj < (int)dimension; ++jj)
         {
             Position pos;
             pos.x = ii;
@@ -30,10 +31,10 @@ Board::~Board()
     }
 }
 
-bool Board::checkForCorrectness(const Position &pos) const
-{
-    return !boardValues[pos.x][pos.y]->isClaimed();
-}
+// bool Board::checkForCorrectness(const Position &pos) const
+// {
+//     return !boardValues[pos.x][pos.y]->isClaimed();
+// }
 
 bool Board::performMove(int player, AbstractBoardCell *absCell)
 {
@@ -57,24 +58,24 @@ void Board::revertMove(AbstractBoardCell *absCell)
     }
 }
 
-int Board::checkForWin(const board_line_t &line) const
-{
-    int previous = line[0]->getValue();
-    // check if this is the same value all along the line
-    for (const BoardCell *cell : line)
-    {
-        int value = cell->getValue();
-        if (value != previous)
-        {
-            // line is not full of the same values
-            return 0;
-        }
-    }
+// int Board::checkForWin(const board_line_t &line) const
+// {
+//     int previous = line[0]->getValue();
+//     // check if this is the same value all along the line
+//     for (const BoardCell *cell : line)
+//     {
+//         int value = cell->getValue();
+//         if (value != previous)
+//         {
+//             // line is not full of the same values
+//             return 0;
+//         }
+//     }
 
-    // it has been the same value all along from the beginning,
-    // return the id of the line's owner
-    return previous;
-}
+//     // it has been the same value all along from the beginning,
+//     // return the id of the line's owner
+//     return previous;
+// }
 
 int Board::checkStatus() const
 {
