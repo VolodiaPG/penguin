@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Position.hpp"
+#include "../Position.hpp"
 #include "../AbstractBoardCell.hpp"
 
 namespace game
