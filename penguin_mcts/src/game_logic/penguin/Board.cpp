@@ -14,7 +14,7 @@ Board::Board(size_t dimension)
         for (int jj = -_dimension / 2; jj < (int)_dimension; ++jj)
         {
             const Position pos = Position{ii, jj};
-            
+
             boardValues.insert_or_assign(pos, new BoardCell(pos));
         }
     }
@@ -111,7 +111,8 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
 
 AbstractBoardCell *Board::getCell(int line, int col) const
 {
-    return boardValues.at(Position{line, col});
+    const Position pos = Position{line, col};
+    return boardValues.at(pos);
 }
 } // namespace penguin
 } // namespace game
