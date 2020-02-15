@@ -1,7 +1,7 @@
 #include <iostream>
 #include "game_logic/tic_tac_toe/ConsoleGame.hpp"
 #include "game_logic/tic_tac_toe/PlayerVComputer.hpp"
-#include "game_logic/tic_tac_toe/Position.hpp"
+#include "game_logic/Position.hpp"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -14,7 +14,7 @@ int main()
 {	
 	for (int ii = 0; ii < 1; ++ii)
 	{
-		game::ConsoleGame consoleGame;
+		game::tic_tac_toe::ConsoleGame consoleGame;
 
 		consoleGame.loop();
 	}
