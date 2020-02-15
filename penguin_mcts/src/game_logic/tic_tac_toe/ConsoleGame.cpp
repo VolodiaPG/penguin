@@ -42,10 +42,10 @@ void ConsoleGame::draw() const
         const BoardCell *cell = (BoardCell *)absCell;
         const Position &pos = cell->getPosition();
 
-        std::cout << cell->getValue() << (pos.y < board->size() - 1 ? " │ " : "");
+        std::cout << cell->getValue() << (pos.y < (int)board->size() - 1 ? " │ " : "");
 
         // ignore last line
-        if (pos.y == board->size() - 1 && pos.x < board->size() - 1)
+        if (pos.y == (int)board->size() - 1 && pos.x < (int)board->size() - 1)
         {
             std::cout << std::endl;
             // ignore last column
