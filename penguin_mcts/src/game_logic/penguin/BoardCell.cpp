@@ -2,6 +2,8 @@
 
 namespace game
 {
+namespace penguin
+{
 
 // BoardCell::BoardCell()
 // {
@@ -28,4 +30,5 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
+} // namespace penguin
 } // namespace game

@@ -14,8 +14,10 @@
 
 namespace game
 {
+namespace penguin
+{
 // Here we'll be using an unodered_map in order to achieve an average of O(1)
-using penguin_board_map_t = std::unordered_map <const Position, BoardCell, position_hash_function>;
+using penguin_board_map_t = std::unordered_map<const Position, BoardCell, position_hash_function>;
 
 /**
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
@@ -104,6 +106,7 @@ public:
     // Position begin();
 };
 
+} // namespace penguin
 } // namespace game
 
 #endif

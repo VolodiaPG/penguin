@@ -8,7 +8,8 @@
 
 namespace game
 {
-
+namespace penguin
+{
 class BoardCell : public AbstractBoardCell
 {
 private:
@@ -68,7 +69,7 @@ public:
      */
     bool isClaimed() const;
 };
-
+} // namespace penguin
 } // namespace game
 
 #endif

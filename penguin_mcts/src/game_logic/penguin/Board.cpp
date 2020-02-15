@@ -3,18 +3,20 @@
 
 namespace game
 {
+namespace penguin
+{
 Board::Board(size_t dimension)
     : AbstractBoard(),
       _dimension(dimension)
 {
-    for (int ii = -dimension/2; ii < (int)dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
+    for (int ii = -dimension / 2; ii < (int)dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
     {
-        for (int jj = -dimension/2; jj < (int)dimension; ++jj)
+        for (int jj = -dimension / 2; jj < (int)dimension; ++jj)
         {
             Position pos;
             pos.x = ii;
             pos.y = jj;
-            
+
             boardValues.insert_or_assign(pos, new BoardCell(pos));
         }
     }
@@ -22,7 +24,8 @@ Board::Board(size_t dimension)
 
 Board::~Board()
 {
-    for (const auto& entry: boardValues){
+    for (const auto &entry : boardValues)
+    {
         delete &entry.second; //TODO is a reference really necessairy of a bug ?
     }
 }
@@ -163,5 +166,5 @@ AbstractBoardCell *Board::getCell(int line, int col) const
 {
     return boardValues[line][col];
 }
-
+} // namespace penguin
 } // namespace game
