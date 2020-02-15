@@ -19,7 +19,10 @@ Board::Board(size_t dimension)
             // cols in x and rows in y
             const Position pos = Position{jj, ii};
 
-            boardValues.insert_or_assign(pos, new BoardCell(pos));
+            boardValues.insert_or_assign(pos,
+                                         new BoardCell(pos,
+                                                       rand() % 3 + 1 // random number of fish between 1 and 3 (included)
+                                                       ));
         }
 
         if (ii % 2 == 1)
@@ -44,13 +47,15 @@ Board::~Board()
 
 bool Board::performMove(int player, AbstractBoardCell *absCell)
 {
+    player = player; // so the parameter is used until proper todo is realised
+    //TODO perform move logic
     BoardCell *cell = nullptr;
     if (!(cell = dynamic_cast<BoardCell *>(absCell)))
     {
         return false;
     }
 
-    cell->setValue(player);
+    // cell->setGone(true);
 
     return true;
 }
@@ -60,7 +65,7 @@ void Board::revertMove(AbstractBoardCell *absCell)
     BoardCell *cell;
     if ((cell = dynamic_cast<BoardCell *>(absCell)))
     {
-        cell->setValue(0);
+        cell->setGone(false);
     }
 }
 
@@ -95,7 +100,7 @@ std::vector<AbstractBoardCell *> Board::getAvailableCells() const
     for (const auto &entry : boardValues)
     {
         BoardCell *cell = entry.second;
-        if (!cell->isClaimed())
+        if (!cell->isGone())
         {
             ret.push_back(cell);
         }

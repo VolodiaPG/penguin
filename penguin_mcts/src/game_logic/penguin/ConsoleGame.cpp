@@ -23,7 +23,7 @@ void ConsoleGame::draw() const
         for (int jj = offset; jj < (int)dimension + offset; ++jj) // jj for the cols
         {
             BoardCell *cell = (BoardCell *)board.getCell(jj, ii);
-            std::cout << "(" << cell->getPosition().x << ";" << cell->getPosition().y << ") ";
+            std::cout << "(" << cell->getPosition().x << ";" << cell->getPosition().y << ";" << cell->getFish() << ") ";
         }
 
         if (ii % 2 == 1)

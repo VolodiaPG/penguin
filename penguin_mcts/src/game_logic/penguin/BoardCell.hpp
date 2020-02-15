@@ -14,10 +14,10 @@ class BoardCell : public AbstractBoardCell
 {
 private:
     /**
-     * @brief Value of the cell
+     * @brief if cell is still available for the player to move onto
      * 
      */
-    int value = 0;
+    bool _gone = false;
 
     /**
     * @brief Represents the position of the cell on the board
@@ -25,34 +25,20 @@ private:
     */
     const Position position;
 
+    /**
+     * @brief The number of fish contained in the cell
+     * 
+     */
+    const int _number_fish;
+
 public:
-    // /**
-    //  * @brief Construct a new Board Cell object
-    //  *
-    //  */
-    // explicit BoardCell();
-
     /**
-    * @brief Construct a new Board Cell object
-    * 
-    * @param position passed by value to guarantee copy
-    */
-    explicit BoardCell(const Position &position);
-
-    /**
-    * @brief Get the value of the cell
-    * 
-    * @return int 
-    */
-    int getValue() const;
-
-    /**
-    * @brief Set the value of the cell
-    * 
-    * @param value the value
-    * @return int the value
-    */
-    int setValue(int value);
+     * @brief Construct a new Board Cell object
+     * 
+     * @param position The position
+     * @param number_fish the number of fish contained in this cell
+     */
+    explicit BoardCell(const Position &position, int number_fish);
 
     /**
      * @brief Get the Position object
@@ -62,12 +48,21 @@ public:
     const Position &getPosition() const { return position; }
 
     /**
-     * @brief tells if the cell is claimed or not
+     * @brief tells if the cell is gone or not
      * 
-     * @return true the cell is claimed
-     * @return false the cell isn't
+     * @return true the cell is gone
+     * @return false the cell is still available for the players to move onto
      */
-    bool isClaimed() const;
+    bool isGone() const { return _gone; };
+
+    void setGone(bool gone) { _gone = gone; };
+
+    /**
+     * @brief Get the number of fish contained inside the cell
+     * 
+     * @return int the number of fish
+     */
+    int getFish() const { return _number_fish; }
 };
 } // namespace penguin
 } // namespace game

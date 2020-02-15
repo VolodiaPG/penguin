@@ -4,30 +4,10 @@ namespace game
 {
 namespace penguin
 {
-
-// BoardCell::BoardCell()
-// {
-// }
-
-BoardCell::BoardCell(const Position &position)
-    : position(position)
+BoardCell::BoardCell(const Position &position, int number_fish)
+    : position(position),
+      _number_fish(number_fish)
 {
-}
-
-int BoardCell::getValue() const
-{
-    return value;
-}
-
-int BoardCell::setValue(int value)
-{
-    this->value = value;
-    return this->value;
-}
-
-bool BoardCell::isClaimed() const
-{
-    return value;
 }
 
 } // namespace penguin
