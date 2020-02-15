@@ -28,7 +28,7 @@ typedef struct position_t
 struct position_hash_function
 {
 
-     std::size_t operator()(const Position &position)
+     std::size_t operator()(const Position &position) const
      {
           std::size_t h_x = std::hash<unsigned int>()(position.x);
           std::size_t h_y = std::hash<unsigned int>()(position.y);
