@@ -9,7 +9,8 @@
 
 namespace game
 {
-    namespace tic_tac_toe{
+namespace tic_tac_toe
+{
 class TicTacToe : public AbstractGame
 {
 protected:
@@ -41,7 +42,7 @@ public:
     AbstractPlayer *getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
 };
-    }
+} // namespace tic_tac_toe
 } // namespace game
 
 // EMSCRIPTEN_BINDINGS(module_playervcomputer)
