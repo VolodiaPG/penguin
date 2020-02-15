@@ -8,8 +8,8 @@ namespace game
 {
 typedef struct position_t
 {
-     unsigned int x = 0;
-     unsigned int y = 0;
+     int x = 0;
+     int y = 0;
 
      /**
       * @brief Comparaison operator, first used in order to provide a collision escape in an unordered_map
