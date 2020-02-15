@@ -9,14 +9,12 @@ Board::Board(size_t dimension)
     : AbstractBoard(),
       _dimension(dimension)
 {
-    for (int ii = -dimension / 2; ii < (int)dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
+    for (int ii = -_dimension / 2; ii < (int)_dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
     {
-        for (int jj = -dimension / 2; jj < (int)dimension; ++jj)
+        for (int jj = -_dimension / 2; jj < (int)_dimension; ++jj)
         {
-            Position pos;
-            pos.x = ii;
-            pos.y = jj;
-
+            const Position pos = Position{ii, jj};
+            
             boardValues.insert_or_assign(pos, new BoardCell(pos));
         }
     }
@@ -26,7 +24,7 @@ Board::~Board()
 {
     for (const auto &entry : boardValues)
     {
-        delete &entry.second; //TODO is a reference really necessairy of a bug ?
+        delete entry.second;
     }
 }
 
@@ -78,51 +76,6 @@ void Board::revertMove(AbstractBoardCell *absCell)
 
 int Board::checkStatus() const
 {
-    // declare the two diags
-    board_line_t diag1; //= std::array<BoardCell, BOARD_SIZE>();
-    board_line_t diag2; //= boardLine();
-
-    int win = 0;
-
-    for (int ii = 0; ii < BOARD_SIZE; ++ii)
-    {
-        const board_line_t &row = boardValues[ii];
-        board_line_t col; // = boardLine();
-
-        for (int jj = 0; jj < BOARD_SIZE; ++jj)
-        {
-            col[jj] = boardValues[jj][ii];
-        }
-
-        // row
-        if ((win = checkForWin(row)))
-        {
-            return win;
-        }
-
-        // col
-        if ((win = checkForWin(col)))
-        {
-            return win;
-        }
-
-        // filling the 2 big diagonals
-        diag1[ii] = boardValues[ii][ii];
-        diag2[ii] = boardValues[ii][BOARD_SIZE - 1 - ii];
-    }
-
-    // diag1
-    if ((win = checkForWin(diag1)))
-    {
-        return win;
-    }
-
-    // diag2
-    if ((win = checkForWin(diag2)))
-    {
-        return win;
-    }
-
     return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
 }
 
@@ -130,15 +83,12 @@ std::vector<AbstractBoardCell *> Board::getAvailableCells() const
 {
     std::vector<AbstractBoardCell *> ret;
 
-    for (size_t ii = 0; ii < boardValues.size(); ++ii)
+    for (const auto &entry : boardValues)
     {
-        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
+        BoardCell *cell = entry.second;
+        if (!cell->isClaimed())
         {
-            BoardCell *cell = boardValues[ii][jj];
-            if (!cell->isClaimed())
-            {
-                ret.push_back(cell);
-            }
+            ret.push_back(cell);
         }
     }
 
@@ -150,12 +100,9 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
 {
     std::vector<AbstractBoardCell *> ret;
 
-    for (const board_line_t &line : boardValues)
+    for (const auto &entry : boardValues)
     {
-        for (BoardCell *cell : line)
-        {
-            ret.push_back(cell);
-        }
+        ret.push_back(entry.second);
     }
 
     // copy return
@@ -164,7 +111,7 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
 
 AbstractBoardCell *Board::getCell(int line, int col) const
 {
-    return boardValues[line][col];
+    return boardValues.at(Position{line, col});
 }
 } // namespace penguin
 } // namespace game
