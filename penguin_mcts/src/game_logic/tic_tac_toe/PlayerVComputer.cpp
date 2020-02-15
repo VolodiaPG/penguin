@@ -2,6 +2,8 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 PlayerVComputer::PlayerVComputer()
     : TicTacToe(nullptr, nullptr) // instanciate these variables in the body of the constructor
 {
@@ -30,7 +32,7 @@ AbstractBoardCell *PlayerVComputer::mctsResult()
 
     return bestMove;
 }
-
+} // namespace tic_tac_toe
 } // namespace game
 
 // EMSCRIPTEN_BINDINGS(module_player_v_computer)

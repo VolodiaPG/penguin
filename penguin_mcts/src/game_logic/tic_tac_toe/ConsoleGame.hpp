@@ -9,6 +9,8 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 class ConsoleGame : public TicTacToe, public AbstractInterface
 {
 public:
@@ -16,13 +18,14 @@ public:
     ~ConsoleGame();
 
     void draw() const override;
-    
+
     /**
      * @brief Loop while the game is not finished, told by the `isFinished` method
      * 
      */
     void loop();
 };
+} // namespace tic_tac_toe
 } // namespace game
 
 #endif

@@ -2,6 +2,9 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
+
 TicTacToe::TicTacToe(AbstractPlayer *player1, AbstractPlayer *player2)
     : AbstractGame(nullptr), // nullptr during construct, then we define the board
       player1(player1),
@@ -43,5 +46,5 @@ AbstractPlayer *TicTacToe::getPlayerToPlay() const
 
     return nextPlayer;
 }
-
+} // namespace tic_tac_toe
 } // namespace game

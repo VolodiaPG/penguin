@@ -2,6 +2,8 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 ConsoleGame::ConsoleGame()
     : TicTacToe(nullptr, nullptr) // instanciate the players afterwards
 {
@@ -85,4 +87,5 @@ void ConsoleGame::loop()
     }
 }
 
+} // namespace tic_tac_toe
 } // namespace game

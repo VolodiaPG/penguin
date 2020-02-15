@@ -9,6 +9,9 @@
 namespace game
 {
 
+namespace tic_tac_toe
+{
+
 class BoardCell : public AbstractBoardCell
 {
 private:
@@ -69,6 +72,7 @@ public:
     bool isClaimed() const;
 };
 
+} // namespace tic_tac_toe
 } // namespace game
 
 #endif

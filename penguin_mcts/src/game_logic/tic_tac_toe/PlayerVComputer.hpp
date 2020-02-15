@@ -11,6 +11,8 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 /**
  * @brief Player vs Computer modelisation, player1 is the player and player 2 the MCTS player
  * 
@@ -23,8 +25,9 @@ public:
 
     using TicTacToe::play;
     bool play(int row, int col);
-    AbstractBoardCell* mctsResult();
+    AbstractBoardCell *mctsResult();
 };
+} // namespace tic_tac_toe
 } // namespace game
 
 // using namespace emscripten;
@@ -43,6 +46,5 @@ public:
 // }
 // }
 // #endif
-
 
 #endif

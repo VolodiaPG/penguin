@@ -12,6 +12,9 @@
 namespace game
 {
 
+namespace tic_tac_toe
+{
+
 #define BOARD_SIZE 3
 
 /**
@@ -123,6 +126,6 @@ public:
     // Position begin();
 };
 
+} // namespace tic_tac_toe
 } // namespace game
-
 #endif

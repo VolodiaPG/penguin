@@ -6,11 +6,14 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 class Player : public AbstractPlayer
 {
 public:
     explicit Player(unsigned int id);
 };
+} // namespace tic_tac_toe
 } // namespace game
 
 #endif

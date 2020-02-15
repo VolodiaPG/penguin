@@ -3,6 +3,9 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
+
 Board::Board()
     : AbstractBoard()
 {
@@ -167,4 +170,5 @@ AbstractBoardCell *Board::getCell(int line, int col) const
     return boardValues[line][col];
 }
 
+} // namespace tic_tac_toe
 } // namespace game
