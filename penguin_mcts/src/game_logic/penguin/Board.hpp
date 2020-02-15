@@ -3,7 +3,7 @@
 
 #include <iterator>
 #include <array>
-#include <map>
+#include <unordered_map>
 
 #include "../../log.hpp"
 
@@ -14,8 +14,8 @@
 
 namespace game
 {
-
-using board_map_t = std::map<const Position, BoardCell>;
+// Here we'll be using an unodered_map in order to achieve an average of O(1)
+using penguin_board_map_t = std::unordered_map <const Position, BoardCell, position_hash_function>;
 
 /**
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
@@ -31,7 +31,7 @@ protected:
      * @brief Array of the cell const pointers to  variable element indexed in boardValues
      * 
      */
-    board_map_t boardValues;
+    penguin_board_map_t boardValues;
 
     /**
     * @brief Check a line (col or row) for a win
