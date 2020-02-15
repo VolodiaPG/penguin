@@ -16,8 +16,36 @@ namespace game
 {
 namespace penguin
 {
+/**
+ * @brief Describe possibles states of the game
+ * 
+ */
+typedef enum
+{
+    /**
+     * @brief Game in progress
+     * 
+     */
+    IN_PROGRESS = 0,
+    /**
+     * @brief Draw
+     * 
+     */
+    DRAW = -1,
+    /**
+     * @brief P1's won
+     * 
+     */
+    P1_WON = 1,
+    /**
+     * @brief P2's won
+     * 
+     */
+    P2_WON = 2
+} GameStatus;
+
 // Here we'll be using an unodered_map in order to achieve an average of O(1)
-using penguin_board_map_t = std::unordered_map<const Position, BoardCell, position_hash_function>;
+using penguin_board_map_t = std::unordered_map<const Position, BoardCell*, position_hash_function>;
 
 /**
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
