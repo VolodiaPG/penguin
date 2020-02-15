@@ -9,13 +9,22 @@ Board::Board(size_t dimension)
     : AbstractBoard(),
       _dimension(dimension)
 {
-    for (int ii = -_dimension / 2; ii < (int)_dimension; ++ii) // the board center is @(0,0) and so the min and max on a line are @ -dimension/2 and +dimension /2
+    //TODO découpler la génération et le parcours de la structure elle même (pattern visiteur)
+    int offset = 0;
+    for (int ii = 0; ii < (int)_dimension; ++ii) // ii for the rows
     {
-        for (int jj = -_dimension / 2; jj < (int)_dimension; ++jj)
+        for (int jj = offset; jj < (int)_dimension + offset; ++jj) // jj for the cols
         {
-            const Position pos = Position{ii, jj};
+
+            // cols in x and rows in y
+            const Position pos = Position{jj, ii};
 
             boardValues.insert_or_assign(pos, new BoardCell(pos));
+        }
+
+        if (ii % 2 == 1)
+        {
+            --offset;
         }
     }
 }

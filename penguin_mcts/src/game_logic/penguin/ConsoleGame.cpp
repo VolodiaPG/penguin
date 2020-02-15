@@ -5,7 +5,7 @@ namespace game
 namespace penguin
 {
 ConsoleGame::ConsoleGame()
-    : board(3)
+    : board(7)
 {
 }
 
@@ -15,6 +15,23 @@ ConsoleGame::~ConsoleGame()
 
 void ConsoleGame::draw() const
 {
+    int dimension = board.size();
+
+    int offset = 0;
+    for (int ii = 0; ii < (int)dimension; ++ii) // ii for the rows
+    {
+        for (int jj = offset; jj < (int)dimension + offset; ++jj) // jj for the cols
+        {
+            BoardCell *cell = (BoardCell *)board.getCell(jj, ii);
+            std::cout << "(" << cell->getPosition().x << ";" << cell->getPosition().y << ") ";
+        }
+
+        if (ii % 2 == 1)
+        {
+            --offset;
+        }
+        std::cout << std::endl;
+    }
 }
 
 void ConsoleGame::loop()
