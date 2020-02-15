@@ -14,20 +14,16 @@ Board::Board(size_t dimension)
             Position pos;
             pos.x = ii;
             pos.y = jj;
-
-            boardValues[ii][jj] = new BoardCell(pos);
+            
+            boardValues.insert_or_assign(pos, new BoardCell(pos));
         }
     }
 }
 
 Board::~Board()
 {
-    for (int ii = 0; ii < BOARD_SIZE; ++ii)
-    {
-        for (int jj = 0; jj < BOARD_SIZE; ++jj)
-        {
-            delete boardValues[ii][jj];
-        }
+    for (const auto& entry: boardValues){
+        delete &entry.second; //TODO is a reference really necessairy of a bug ?
     }
 }
 
