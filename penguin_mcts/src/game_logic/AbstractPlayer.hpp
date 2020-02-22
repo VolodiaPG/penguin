@@ -6,8 +6,6 @@
 
 namespace game
 {
-class AbstractGame;
-
 class AbstractPlayer
 {
 private:
