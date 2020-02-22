@@ -9,6 +9,7 @@
 
 #include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
+#include "PenguinPlayer.hpp"
 
 // TODO Command pattern pour le reverse
 

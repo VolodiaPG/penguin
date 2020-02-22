@@ -1,5 +1,4 @@
 #include "Board.hpp"
-#include <array>
 
 namespace game
 {
@@ -45,9 +44,11 @@ Board::~Board()
 //     return !boardValues[pos.x][pos.y]->isClaimed();
 // }
 
-bool Board::performMove(AbstractPlayer& player, AbstractBoardCell *absCell)
+// TODO maybe find a better solution to cast ?
+bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *absCell)
 {
-    player = player; // so the parameter is used until proper todo is realised
+    PenguinPlayer& player = static_cast<PenguinPlayer&>(abs_player);
+ 
     //TODO perform move logic
     BoardCell *cell = nullptr;
     if (!(cell = dynamic_cast<BoardCell *>(absCell)))
