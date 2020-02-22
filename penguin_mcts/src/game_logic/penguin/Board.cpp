@@ -39,7 +39,6 @@ Board::~Board()
     }
 }
 
-//TODO check for correctness
 bool Board::checkForCorrectness(const Position &start_axial, const Position &destination_axial) const
 {
     const Position3D start = hex_axial_to_cube(start_axial);
