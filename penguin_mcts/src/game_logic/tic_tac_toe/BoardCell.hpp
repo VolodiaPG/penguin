@@ -1,5 +1,5 @@
-#ifndef BOARD_CELL_HPP_
-#define BOARD_CELL_HPP_
+#ifndef TIC_TAC_TOE_BOARD_CELL_HPP_
+#define TIC_TAC_TOE_BOARD_CELL_HPP_
 
 #include <memory>
 

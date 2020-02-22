@@ -1,5 +1,5 @@
-#ifndef PLAYER_V_COMPUTER_HPP_
-#define PLAYER_V_COMPUTER_HPP_
+#ifndef TIC_TAC_TOE_PLAYER_V_COMPUTER_HPP_
+#define TIC_TAC_TOE_PLAYER_V_COMPUTER_HPP_
 
 #include <iostream>
 #include "TicTacToe.hpp"

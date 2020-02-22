@@ -1,5 +1,5 @@
-#ifndef HUMAN_PLAYER_HPP_
-#define HUMAN_PLAYER_HPP_
+#ifndef TIC_TAC_TOE_HUMAN_PLAYER_HPP_
+#define TIC_TAC_TOE_HUMAN_PLAYER_HPP_
 
 #include <iostream>
 #include "../AbstractPlayer.hpp"

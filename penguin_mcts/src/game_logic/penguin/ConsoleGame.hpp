@@ -1,5 +1,5 @@
-#ifndef CONSOLE_GAME_HPP_
-#define CONSOLE_GAME_HPP_
+#ifndef  PENGUIN_CONSOLE_GAME_HPP_
+#define  PENGUIN_CONSOLE_GAME_HPP_
 
 #include <iostream>
 #include "../AbstractInterface.hpp"

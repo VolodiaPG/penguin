@@ -1,5 +1,5 @@
-#ifndef BOARD_HPP_
-#define BOARD_HPP_
+#ifndef PENGUIN_BOARD_HPP_
+#define PENGUIN_BOARD_HPP_
 
 #include <iterator>
 #include <array>

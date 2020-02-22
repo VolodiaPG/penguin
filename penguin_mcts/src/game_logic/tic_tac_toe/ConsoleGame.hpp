@@ -1,5 +1,5 @@
-#ifndef CONSOLE_GAME_HPP_
-#define CONSOLE_GAME_HPP_
+#ifndef TIC_TAC_TOE_CONSOLE_GAME_HPP_
+#define TIC_TAC_TOE_CONSOLE_GAME_HPP_
 
 #include <iostream>
 #include "TicTacToe.hpp"

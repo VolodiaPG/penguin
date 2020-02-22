@@ -1,5 +1,5 @@
-#ifndef BOARD_CELL_HPP_
-#define BOARD_CELL_HPP_
+#ifndef PENGUIN_BOARD_CELL_HPP_
+#define PENGUIN_BOARD_CELL_HPP_
 
 #include <memory>
 

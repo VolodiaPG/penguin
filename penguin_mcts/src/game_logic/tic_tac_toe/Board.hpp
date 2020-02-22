@@ -1,5 +1,5 @@
-#ifndef BOARD_HPP_
-#define BOARD_HPP_
+#ifndef TIC_TAC_TOE_BOARD_HPP_
+#define TIC_TAC_TOE_BOARD_HPP_
 
 #include <iterator>
 #include <array>
