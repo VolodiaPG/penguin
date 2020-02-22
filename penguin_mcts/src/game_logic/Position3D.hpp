@@ -1,5 +1,5 @@
-#ifndef POSITION_HPP_
-#define POSITION_HPP_
+#ifndef POSITION_3D_HPP_
+#define POSITION_3D_HPP_
 
 #include <stdlib.h>
 #include <unordered_map>
