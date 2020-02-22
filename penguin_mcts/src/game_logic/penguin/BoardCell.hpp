@@ -5,11 +5,14 @@
 
 #include "../Position.hpp"
 #include "../AbstractBoardCell.hpp"
+#include "PenguinPlayer.hpp"
 
 namespace game
 {
 namespace penguin
 {
+class PenguinPlayer;
+
 class BoardCell : public AbstractBoardCell
 {
 private:
@@ -30,6 +33,12 @@ private:
      * 
      */
     const int _number_fish;
+
+    /**
+     * @brief The player that currently owns the cell
+     * 
+     */
+    const PenguinPlayer *_owner = nullptr;
 
 public:
     /**
@@ -55,7 +64,25 @@ public:
      */
     bool isGone() const { return _gone; };
 
+    /**
+     * @brief Sets the gone flag
+     * 
+     * @param gone 
+     */
     void setGone(bool gone) { _gone = gone; };
+
+    /**
+     * @brief Set the penguin who stands on the cell, ie the cell's owner atm
+     * 
+     * @param penguin The penguin that stands on top of the cell
+     */
+    void setOwner(const PenguinPlayer &penguin) { _owner = &penguin; };
+
+    /**
+     * @brief Nobody owns the cell now
+     * 
+     */
+    void clearOwner() { _owner = nullptr; };
 
     /**
      * @brief Get the number of fish contained inside the cell

@@ -45,19 +45,20 @@ Board::~Board()
 // }
 
 // TODO maybe find a better solution to cast ?
-bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *absCell)
+bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
 {
-    PenguinPlayer& player = static_cast<PenguinPlayer&>(abs_player);
- 
-    //TODO perform move logic
-    BoardCell *cell = nullptr;
-    if (!(cell = dynamic_cast<BoardCell *>(absCell)))
-    {
-        return false;
-    }
+    PenguinPlayer &player = static_cast<PenguinPlayer &>(abs_player);
+    BoardCell *cell = static_cast<BoardCell *>(abs_cell);
 
-    // cell->setGone(true);
+    BoardCell *previousCell = player.getStandingOn();
+    previousCell->clearOwner(); // clear the owner and create a hole in the board
+    previousCell->setGone(true);
 
+    cell->setOwner(player);
+    player.getOwner().addScore(cell->getFish());
+    player.setStandingOn(cell);
+
+    // TODO Add check for correcteness of the move
     return true;
 }
 

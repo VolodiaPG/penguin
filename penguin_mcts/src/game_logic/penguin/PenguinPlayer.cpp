@@ -6,7 +6,7 @@ namespace penguin
 {
 PenguinPlayer::PenguinPlayer(unsigned int id, HumanPlayer &owner)
     : AbstractPlayer(id),
-      owner(owner)
+      _owner(owner)
 {
 }
 } // namespace penguin

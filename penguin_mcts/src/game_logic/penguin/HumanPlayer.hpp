@@ -10,8 +10,29 @@ namespace penguin
 {
 class HumanPlayer : public AbstractPlayer
 {
+private:
+    /**
+     * @brief The score accumulated : the number of fish that each owned penguin ate
+     * 
+     */
+    unsigned int _score = 0;
+
 public:
     explicit HumanPlayer(unsigned int id);
+
+    /**
+     * @brief Adds to the score;
+     * 
+     * @param score the score to add
+     */
+    void addScore(unsigned int score) { _score += score; };
+
+    /**
+     * @brief Substract to the score
+     * 
+     * @param score the score to substract
+     */
+    void substractScore(unsigned int score) { _score -= score; };
 };
 } // namespace penguin
 } // namespace game
