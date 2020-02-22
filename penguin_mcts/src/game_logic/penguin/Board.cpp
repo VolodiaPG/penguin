@@ -71,7 +71,6 @@ bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
         player.setStandingOn(cell);
     }
 
-    // TODO Add check for correcteness of the move
     return isCorrect;
 }
 
