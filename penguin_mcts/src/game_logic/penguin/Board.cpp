@@ -45,7 +45,7 @@ Board::~Board()
 //     return !boardValues[pos.x][pos.y]->isClaimed();
 // }
 
-bool Board::performMove(int player, AbstractBoardCell *absCell)
+bool Board::performMove(AbstractPlayer& player, AbstractBoardCell *absCell)
 {
     player = player; // so the parameter is used until proper todo is realised
     //TODO perform move logic

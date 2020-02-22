@@ -5,9 +5,12 @@
 #include <memory>
 
 #include "AbstractBoardCell.hpp"
+#include "AbstractPlayer.hpp"
 
 namespace game
 {
+
+class AbstractPlayer;
 
 /**
  * @brief Describe the basics of a Board
@@ -18,16 +21,15 @@ class AbstractBoard
 public:
     virtual ~AbstractBoard(){};
 
-    // TODO Refactor using an action object instead, but is it really necessary
     /**
     * @brief perform a movement on the board
     * 
-    * @param player the player that realizes the movement (id)
+    * @param player the player that realizes the movement
     * @param cell the cell targeted
     * 
     * @return true if the move is allowed, false otherwise
     */
-    virtual bool performMove(int player, AbstractBoardCell *cell) = 0;
+    virtual bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) = 0;
 
     virtual void revertMove(AbstractBoardCell *cell) = 0;
 

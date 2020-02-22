@@ -94,7 +94,7 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(int player, AbstractBoardCell *cell) override;
+    bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
 
     void revertMove(AbstractBoardCell *cell) override;
 

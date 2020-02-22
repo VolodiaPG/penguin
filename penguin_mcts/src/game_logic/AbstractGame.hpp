@@ -8,6 +8,7 @@
 namespace game
 {
 class AbstractPlayer;
+class AbstractBoard;
 
 class AbstractGame
 {

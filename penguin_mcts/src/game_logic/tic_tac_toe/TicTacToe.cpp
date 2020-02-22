@@ -21,7 +21,7 @@ TicTacToe::~TicTacToe()
 bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
 {
     ++numberMoves;
-    return board->performMove(player->getId(), move);
+    return board->performMove(*player, move);
 }
 
 void TicTacToe::revertPlay(AbstractBoardCell *cell)

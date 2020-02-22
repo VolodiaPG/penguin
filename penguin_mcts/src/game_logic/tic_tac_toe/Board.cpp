@@ -38,7 +38,7 @@ bool Board::checkForCorrectness(const Position &pos) const
     return !boardValues[pos.x][pos.y]->isClaimed();
 }
 
-bool Board::performMove(int player, AbstractBoardCell *absCell)
+bool Board::performMove(AbstractPlayer& player, AbstractBoardCell *absCell)
 {
     BoardCell *cell = nullptr;
     if (!(cell = dynamic_cast<BoardCell *>(absCell)))
@@ -46,7 +46,7 @@ bool Board::performMove(int player, AbstractBoardCell *absCell)
         return false;
     }
 
-    cell->setValue(player);
+    cell->setValue(player.getId());
 
     return true;
 }
