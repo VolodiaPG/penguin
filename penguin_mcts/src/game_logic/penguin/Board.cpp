@@ -39,10 +39,18 @@ Board::~Board()
     }
 }
 
-// bool Board::checkForCorrectness(const Position &pos) const
-// {
-//     return !boardValues[pos.x][pos.y]->isClaimed();
-// }
+//TODO check for correctness
+bool Board::checkForCorrectness(const Position &start_axial, const Position &destination_axial) const
+{
+    const Position3D start = hex_axial_to_cube(start_axial);
+    const Position3D destination = hex_axial_to_cube(destination_axial);
+
+    // checking if the move is allowed <=> checking if the hex cell is on a direct line from one of the side of the start one
+    // <=> in a cube coordinate system, it is the same as looking if one of the coordinate is the same
+    return !boardValues.at(destination_axial)->isOwned() && (start.x == destination.x ||
+                                                             start.y == destination.y ||
+                                                             start.z == destination.z);
+}
 
 // TODO maybe find a better solution to cast ?
 bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
@@ -50,16 +58,21 @@ bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
     PenguinPlayer &player = static_cast<PenguinPlayer &>(abs_player);
     BoardCell *cell = static_cast<BoardCell *>(abs_cell);
 
-    BoardCell *previousCell = player.getStandingOn();
-    previousCell->clearOwner(); // clear the owner and create a hole in the board
-    previousCell->setGone(true);
+    bool isCorrect = checkForCorrectness(player.getStandingOn()->getPosition(), cell->getPosition());
 
-    cell->setOwner(player);
-    player.getOwner().addScore(cell->getFish());
-    player.setStandingOn(cell);
+    if (isCorrect)
+    {
+        BoardCell *previousCell = player.getStandingOn();
+        previousCell->clearOwner(); // clear the owner and create a hole in the board
+        previousCell->setGone(true);
+
+        cell->setOwner(player);
+        player.getOwner().addScore(cell->getFish());
+        player.setStandingOn(cell);
+    }
 
     // TODO Add check for correcteness of the move
-    return true;
+    return isCorrect;
 }
 
 void Board::revertMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
@@ -75,6 +88,7 @@ void Board::revertMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
     player.setStandingOn(previousCell);
 }
 
+//TODO check for win
 // int Board::checkForWin(const board_line_t &line) const
 // {
 //     int previous = line[0]->getValue();
