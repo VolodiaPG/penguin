@@ -91,15 +91,20 @@ public:
      */
     PenguinPlayer *getOwner() { return _owner; };
 
-        /**
+    /**
+     * @brief Is a penguin on the cell
+     * 
+     * @return true there is a penguin on the cell
+     * @return false there is no penguin on the cell
+     */
+    bool isOwned() { return _owner != nullptr; };
+
+    /**
      * @brief Get the number of fish contained inside the cell
      * 
      * @return int the number of fish
      */
-        int getFish() const
-    {
-        return _number_fish;
-    }
+    int getFish() const { return _number_fish; }
 };
 } // namespace penguin
 } // namespace game
