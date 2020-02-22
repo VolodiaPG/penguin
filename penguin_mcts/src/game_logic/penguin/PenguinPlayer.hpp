@@ -21,10 +21,10 @@ private:
     HumanPlayer &_owner;
 
     /**
-     * @brief The cell on which the penguin is standing on
+     * @brief The cell on which the penguin is standing on, and the previous one
      * 
      */
-    BoardCell *_standingOn = nullptr;
+    BoardCell *_standingOn = nullptr, *_previousStandingOn = nullptr;
 
 public:
     /**
@@ -40,7 +40,7 @@ public:
      * 
      * @param standingOn the cell on wich the player is currently standing
      */
-    void setStandingOn(BoardCell *standingOn) { _standingOn = standingOn; };
+    void setStandingOn(BoardCell *standingOn) { _previousStandingOn = _standingOn;  _standingOn = standingOn; };
 
     /**
      * @brief Get the Standing On Cell
@@ -48,6 +48,13 @@ public:
      * @return BoardCell* returns the cell where the penguin is currenlty standing
      */
     BoardCell *getStandingOn() { return _standingOn; };
+
+    /**
+     * @brief Get the Previous Standing On cell
+     * 
+     * @return BoardCell* The cell where the penguin was previously standing on, before he moved
+     */
+    BoardCell *getPreviousStandingOn() { return _previousStandingOn; };
 
     /**
      * @brief Get the Owner
