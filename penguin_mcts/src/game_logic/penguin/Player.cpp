@@ -2,7 +2,7 @@
 
 namespace game
 {
-namespace tic_tac_toe
+namespace penguin
 {
 Player::Player(unsigned int id)
     : AbstractPlayer(id)
