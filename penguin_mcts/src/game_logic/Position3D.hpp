@@ -26,7 +26,7 @@ typedef struct position_3D_t
  * @brief Proper hash function specialized for Position
  * 
  */
-struct position_hash_function
+struct position_3D_hash_function
 {
 
      std::size_t operator()(const Position3D &position) const
