@@ -62,19 +62,17 @@ bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
     return true;
 }
 
-void Board::revertMove(AbstractBoardCell *abs_cell)
+void Board::revertMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
 {
+    PenguinPlayer &player = static_cast<PenguinPlayer &>(abs_player);
     BoardCell *cell = static_cast<BoardCell *>(abs_cell);
-    PenguinPlayer *player = cell->getOwner();
-    if (player != nullptr)
-    {
-        BoardCell *previousCell = player->getPreviousStandingOn();
-        cell->clearOwner(); // clear the owner of the current cell
-        
-        previousCell->setOwner(*player); // set the penguin as the owner of the previous cell
-        player->getOwner().substractScore(cell->getFish()); // update the score
-        player->setStandingOn(previousCell);
-    }
+
+    BoardCell *previousCell = player.getPreviousStandingOn();
+    cell->clearOwner(); // clear the owner of the current cell
+
+    previousCell->setOwner(player);                    // set the penguin as the owner of the previous cell
+    player.getOwner().substractScore(cell->getFish()); // update the score
+    player.setStandingOn(previousCell);
 }
 
 // int Board::checkForWin(const board_line_t &line) const

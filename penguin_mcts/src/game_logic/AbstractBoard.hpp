@@ -31,7 +31,7 @@ public:
     */
     virtual bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) = 0;
 
-    virtual void revertMove(AbstractBoardCell *cell) = 0;
+    virtual void revertMove(AbstractPlayer& player, AbstractBoardCell *cell) = 0;
 
     /**
      * @brief Status of the game

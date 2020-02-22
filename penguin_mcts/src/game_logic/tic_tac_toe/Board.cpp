@@ -51,8 +51,10 @@ bool Board::performMove(AbstractPlayer& player, AbstractBoardCell *absCell)
     return true;
 }
 
-void Board::revertMove(AbstractBoardCell *absCell)
+void Board::revertMove(AbstractPlayer& player, AbstractBoardCell *absCell)
 {
+    (void)player; // player here is useless but we still need it to be present
+    
     BoardCell *cell;
     if ((cell = dynamic_cast<BoardCell *>(absCell)))
     {

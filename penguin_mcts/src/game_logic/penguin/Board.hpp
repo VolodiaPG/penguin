@@ -105,7 +105,7 @@ public:
      */
     bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
 
-    void revertMove(AbstractBoardCell *cell) override;
+    void revertMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
 
     /**
      * @brief Chek wether or not the game is finished.
