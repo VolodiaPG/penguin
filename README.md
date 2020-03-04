@@ -54,3 +54,7 @@ Once evrything is done and you are inside the VSCode menu to select where to lan
 
 ### Penguins
 - https://gitlab.insa-rennes.fr/francesco-bariatti/pingouins/tree/master
+
+### Angular
+- installation came using this resource : https://github.com/nvm-sh/nvm (tutorial : http://redgreenrepeat.com/2018/02/09/setting-up-angular-in-virtualbox/)
+- https://github.com/nodesource/distributions/tree/master/deb

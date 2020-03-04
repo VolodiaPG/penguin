@@ -33,7 +33,9 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8080 # Nginx
+  config.vm.network "forwarded_port", guest: 4200, host: 4200 # Angular
+  config.vm.network "forwarded_port", guest: 9876, host: 9876 # Angular Testing
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -80,7 +82,7 @@ Vagrant.configure("2") do |config|
   apt-get install -y python2.7 default-jre
   
   echo "========================= Install Nginx (light) ======================="
-  apt-get install -y nginx-light  
+  apt-get install -y nginx-light   
   
   echo "========================= Clean ======================="
   apt-get clean autoclean && \
@@ -110,8 +112,20 @@ Vagrant.configure("2") do |config|
   echo "========================= Copy libraries ======================="
   cp -r /home/vagrant/emsdk/fastcomp/emscripten/system/include/* /usr/local/include/
   
-  echo "========================= Install doxygen ======================="
   apt-get update
+
+  echo "========================= Install Angular ======================="
+  cd /vagrant
+  
+  curl -sL https://deb.nodesource.com/setup_13.x | bash -
+  apt-get update
+
+  apt-get install -y nodejs
+  npm install npm --global
+
+  npm install --unsafe-perm -g @angular/cli
+
+  echo "========================= Install doxygen ======================="
   
   apt-get install -y doxygen doxygen-doc graphviz
   
