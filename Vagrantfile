@@ -116,12 +116,12 @@ Vagrant.configure("2") do |config|
   cd /home/vagrant
 
   # escape issues concerning links in ubuntu vs on a NFS partition where the folder is shared to the VM
-  curl -sL https://deb.nodesource.com/setup_13.x | bash -
+  curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
   apt-get install -y nodejs
  
-  npm install npm --global  
-  npm install --unsafe-perm -g @angular/cli
-  npm install -g @ngx-rocket/scripts
+  sudo npm install npm --global  
+  sudo npm install --unsafe-perm -g @angular/cli
+  sudo npm install -g @ngx-rocket/scripts
 
   cd /vagrant/penguin_mcts/www/
   npm i --no-bin-links # prevent the creation of symlinks when installing the dependencies
