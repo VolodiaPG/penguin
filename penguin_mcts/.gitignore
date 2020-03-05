@@ -2,3 +2,4 @@
 *.lock
 bin/
 doxygen/
+node_modules/
