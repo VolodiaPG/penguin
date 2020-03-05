@@ -2,3 +2,5 @@
 *.lock
 bin/
 doxygen/
+package-lock.json
+node_modules/

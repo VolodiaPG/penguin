@@ -116,7 +116,7 @@ Vagrant.configure("2") do |config|
   cd /home/vagrant
 
   # escape issues concerning links in ubuntu vs on a NFS partition where the folder is shared to the VM
-  curl -sL https://deb.nodesource.com/setup_13.x | sh
+  curl -sL https://deb.nodesource.com/setup_13.x | bash -
   apt-get install -y nodejs
  
   npm install npm --global  
@@ -125,6 +125,7 @@ Vagrant.configure("2") do |config|
 
   cd /vagrant/penguin_mcts/www/
   npm i --no-bin-links # prevent the creation of symlinks when installing the dependencies
+  npm run env
   
   echo "========================= Install doxygen ======================="
   apt-get update
