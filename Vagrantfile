@@ -120,11 +120,11 @@ Vagrant.configure("2") do |config|
   apt-get install -y nodejs
  
   npm install npm --global  
-  npm install -g @ngx-rocket/scripts
   npm install --unsafe-perm -g @angular/cli
+  npm install -g @ngx-rocket/scripts
 
   cd /vagrant/penguin_mcts/www/
-  npm i --not-bin-links # prevent the creation of symlinks when installing the dependencies
+  npm i --no-bin-links # prevent the creation of symlinks when installing the dependencies
   
   echo "========================= Install doxygen ======================="
   apt-get update
