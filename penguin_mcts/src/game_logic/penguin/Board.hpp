@@ -118,9 +118,9 @@ public:
     int checkStatus() const override;
 
     /**
-     * @brief Get a list of empty cells, ie player not passed yet
+     * @brief Get a list of available cells, ie player can move onto
      * 
-     * @return the list of empty cells
+     * @return the list of available cells to move onto
      */
     std::vector<AbstractBoardCell *> getAvailableCells() const override;
 
