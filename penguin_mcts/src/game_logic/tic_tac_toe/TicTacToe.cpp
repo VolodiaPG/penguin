@@ -27,7 +27,14 @@ bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
 void TicTacToe::revertPlay(AbstractBoardCell *cell)
 {
     --numberMoves;
-    board->revertMove(cell);
+    AbstractPlayer *player = player1;
+
+    if (numberMoves % 2)
+    {
+        player = player2;
+    }
+    // TODO maybe not the correct semantic, but should not infer anyway
+    board->revertMove(*player, cell);
 }
 
 bool TicTacToe::isFinished() const
