@@ -112,20 +112,22 @@ Vagrant.configure("2") do |config|
   echo "========================= Copy libraries ======================="
   cp -r /home/vagrant/emsdk/fastcomp/emscripten/system/include/* /usr/local/include/
   
-  apt-get update
+  echo "========================= Install NodeJS, NPM, Angular ======================="
+  cd /home/vagrant
 
-  echo "========================= Install Angular ======================="
-  cd /vagrant
-  
-  curl -sL https://deb.nodesource.com/setup_13.x | bash -
-  apt-get update
-
+  # escape issues concerning links in ubuntu vs on a NFS partition where the folder is shared to the VM
+  curl -sL https://deb.nodesource.com/setup_13.x | sh
   apt-get install -y nodejs
-  npm install npm --global
-
+ 
+  npm install npm --global  
+  npm install -g @ngx-rocket/scripts
   npm install --unsafe-perm -g @angular/cli
 
+  cd /vagrant/penguin_mcts/www/
+  npm i --not-bin-links # prevent the creation of symlinks when installing the dependencies
+  
   echo "========================= Install doxygen ======================="
+  apt-get update
   
   apt-get install -y doxygen doxygen-doc graphviz
   
