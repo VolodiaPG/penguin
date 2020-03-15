@@ -7,7 +7,9 @@ namespace tic_tac_toe
 {
 
 Board::Board()
-    : AbstractBoard()
+    : AbstractBoard(),
+      player1(1),
+      player2(2)
 {
     for (int ii = 0; ii < BOARD_SIZE; ++ii)
     {
@@ -38,28 +40,16 @@ bool Board::checkForCorrectness(const Position &pos) const
     return !boardValues[pos.x][pos.y]->isClaimed();
 }
 
-bool Board::performMove(AbstractPlayer& player, AbstractBoardCell *absCell)
+bool Board::performMove(const int player_id, BoardCell *cell)
 {
-    BoardCell *cell = nullptr;
-    if (!(cell = dynamic_cast<BoardCell *>(absCell)))
-    {
-        return false;
-    }
-
-    cell->setValue(player.getId());
+    cell->setValue(player_id);
 
     return true;
 }
 
-void Board::revertMove(AbstractPlayer& player, AbstractBoardCell *absCell)
+void Board::revertMove(const int, BoardCell *cell)
 {
-    (void)player; // player here is useless but we still need it to be present
-    
-    BoardCell *cell;
-    if ((cell = dynamic_cast<BoardCell *>(absCell)))
-    {
-        cell->setValue(0);
-    }
+    cell->setValue(0);
 }
 
 int Board::checkForWin(const board_line_t &line) const
@@ -128,12 +118,13 @@ int Board::checkStatus() const
         return win;
     }
 
-    return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
+    // dummy parameter, here there is no use for IT!
+    return getAvailableCells(-1).size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::vector<AbstractBoardCell *> Board::getAvailableCells() const
+std::vector<BoardCell *> Board::getAvailableCells(const int) const
 {
-    std::vector<AbstractBoardCell *> ret;
+    std::vector<BoardCell *> ret;
 
     for (size_t ii = 0; ii < boardValues.size(); ++ii)
     {
@@ -151,9 +142,9 @@ std::vector<AbstractBoardCell *> Board::getAvailableCells() const
     return ret;
 }
 
-std::vector<AbstractBoardCell *> Board::getBoardCells() const
+std::vector<BoardCell *> Board::getBoardCells() const
 {
-    std::vector<AbstractBoardCell *> ret;
+    std::vector<BoardCell *> ret;
 
     for (const board_line_t &line : boardValues)
     {
@@ -167,9 +158,30 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
     return ret;
 }
 
-AbstractBoardCell *Board::getCell(int line, int col) const
+BoardCell *Board::getCell(int line, int col) const
 {
     return boardValues[line][col];
+}
+
+std::vector<Player *> Board::getPlayersOnBoard()
+{
+    std::vector<Player *> players;
+    players.push_back(&player1);
+    players.push_back(&player2);
+    return players;
+}
+
+Player *Board::getPlayerById(const int id)
+{
+    switch (id)
+    {
+    case 1:
+        return &player1;
+    case 2:
+        return &player2;
+    default:
+        return nullptr;
+    }
 }
 
 } // namespace tic_tac_toe

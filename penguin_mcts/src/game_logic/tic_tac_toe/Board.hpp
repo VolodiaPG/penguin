@@ -8,6 +8,7 @@
 
 #include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
+#include "Player.hpp"
 
 namespace game
 {
@@ -48,8 +49,12 @@ typedef enum
 using board_line_t = std::array<BoardCell *, BOARD_SIZE>;
 using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 
-class Board : public AbstractBoard
+class Board : public AbstractBoard<Player, BoardCell>
 {
+private:
+    Player player1;
+    Player player2;
+    
 protected:
     /**
      * @brief Array of the cell const pointers to  variable element indexed in boardValues
@@ -94,9 +99,9 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
+    bool performMove(const int player_id, BoardCell *cell) override;
 
-    void revertMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
+    void revertMove(const int player_id, BoardCell *cell) override;
 
     /**
      * @brief Chek wether or not the game is finished.
@@ -110,18 +115,22 @@ public:
      * 
      * @return the list of empty cells
      */
-    std::vector<AbstractBoardCell *> getAvailableCells() const override;
+    std::vector<BoardCell *> getAvailableCells(const int player_id) const override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::vector<AbstractBoardCell *> getBoardCells() const override;
+    std::vector<BoardCell *> getBoardCells() const override;
 
     size_t size() const override { return BOARD_SIZE; };
 
-    AbstractBoardCell *getCell(int line, int col) const override;
+    BoardCell *getCell(int line, int col) const override;
+
+    virtual std::vector<Player *> getPlayersOnBoard() override;
+
+    virtual Player *getPlayerById(const int id) override;
 
     // Position begin();
 };
