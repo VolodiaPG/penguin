@@ -13,10 +13,10 @@ Board::Board(const size_t dimension, const int number_of_penguins)
     for (int ii = 0; ii < 2; ++ii)
     {
         _players.push_back(HumanPlayer(ii));
-        HumanPlayer& player = _players[ii]; // make sure to get the copy inside the vector and not the local one...
+        HumanPlayer &player = _players[ii]; // make sure to get the copy inside the vector and not the local one...
         for (int jj = 0; jj < number_of_penguins; ++jj)
         {
-            _penguins_on_board.push_back(PenguinPlayer(ii*number_of_penguins+jj, player)); //TODO verify no crashing because doing shadowy things with references
+            _penguins_on_board.push_back(PenguinPlayer(ii * number_of_penguins + jj, player)); //TODO verify no crashing because doing shadowy things with references
         }
     }
 
@@ -156,6 +156,17 @@ BoardCell *Board::getCell(int line, int col) const
 {
     const Position pos = Position{line, col};
     return boardValues.at(pos);
+}
+
+std::vector<PenguinPlayer *> Board::getPlayersOnBoard()
+{
+    std::vector<PenguinPlayer *> ret;
+    for (PenguinPlayer &penguin : _penguins_on_board)
+    {
+        ret.push_back(&penguin);
+    }
+
+    return ret;
 }
 } // namespace penguin
 } // namespace game

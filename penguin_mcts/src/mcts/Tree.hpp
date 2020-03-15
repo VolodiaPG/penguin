@@ -5,6 +5,7 @@
 #include "Node.hpp"
 #include "../game_logic/AbstractPlayer.hpp"
 #include "../game_logic/AbstractGame.hpp"
+#include "../game_logic/AbstractBoardCell.hpp"
 #include "../log.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
@@ -52,10 +53,13 @@ protected:
 
 public:
     game::AbstractPlayer *playerMe;
-    game::AbstractGame *game;
+    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game;
     MCTSConstraints constraints;
 
-    explicit Tree(game::AbstractGame *game, game::AbstractPlayer *me, const MCTSConstraints &constraints);
+    explicit Tree(
+        game::AbstractGame<game::AbstractPlayer,game::AbstractBoardCell> *game,
+        game::AbstractPlayer *me,
+        const MCTSConstraints &constraints);
     ~Tree();
 
     void begin();

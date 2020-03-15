@@ -11,12 +11,13 @@ class AbstractPlayer;
 template<class PlayerT, class CellT>
 class AbstractBoard;
 
+template<class PlayerT, class CellT>
 class AbstractGame
 {
 public:
-    AbstractBoard<class PlayerT, class CellT> *board;
+    AbstractBoard<PlayerT, CellT> *board;
 
-    explicit AbstractGame(AbstractBoard<class PlayerT, class CellT> *board);
+    explicit AbstractGame(AbstractBoard<PlayerT, CellT> *board);
 
     virtual ~AbstractGame(){};
 
@@ -35,16 +36,16 @@ public:
     //  */
     // virtual AbstractBoardCell *play(AbstractPlayer *p1, AbstractPlayer *p2) = 0;
 
-    virtual bool play(AbstractPlayer *player, AbstractBoardCell *cell) = 0;
+    virtual bool play(const int player_id, CellT *cell) = 0;
 
-    virtual void revertPlay(AbstractBoardCell *cell) = 0;
+    virtual void revertPlay(CellT *cell) = 0;
 
    /**
      * @brief Get the player who hadn't play yet
      * 
-     * @return AbstractPlayer* 
+     * @return const int the player id 
      */
-    virtual AbstractPlayer *getPlayerToPlay() const = 0;
+    virtual int getPlayerToPlay() const = 0;
 
     /**
      * @brief Checks the status of the game, if won, draw

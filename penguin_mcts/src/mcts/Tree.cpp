@@ -3,7 +3,10 @@
 namespace mcts
 {
 
-Tree::Tree(game::AbstractGame *game, game::AbstractPlayer *me, const MCTSConstraints &constraints)
+Tree::Tree(
+    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game,
+    game::AbstractPlayer *me,
+    const MCTSConstraints &constraints)
     : playerMe(me),
       game(game),
       constraints(constraints)
@@ -34,8 +37,8 @@ void Tree::begin()
             if (!game->isFinished())
             {
                 promisingNode->expandNode(
-                    game->board->getAvailableCells(),
-                    game->getPlayerToPlay());
+                    game->board->getAvailableCells(promisingNode->getPlayer()->getId()),
+                    game->board->getPlayerById(game->getPlayerToPlay()));
             }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();

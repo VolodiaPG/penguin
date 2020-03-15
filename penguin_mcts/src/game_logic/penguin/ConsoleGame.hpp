@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../AbstractInterface.hpp"
+#include "../AbstractGame.hpp"
 #include "Board.hpp"
 
 namespace game

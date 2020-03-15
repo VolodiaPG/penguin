@@ -5,12 +5,10 @@ namespace game
 namespace tic_tac_toe
 {
 
-TicTacToe::TicTacToe(AbstractPlayer *player1, AbstractPlayer *player2)
-    : AbstractGame(nullptr), // nullptr during construct, then we define the board
-      player1(player1),
-      player2(player2)
+TicTacToe::TicTacToe()
+    : AbstractGame(new Board()) // nullptr during construct, then we define the board
 {
-    board = new Board();
+    // board = new Board();
 }
 
 TicTacToe::~TicTacToe()
@@ -18,23 +16,23 @@ TicTacToe::~TicTacToe()
     delete board;
 }
 
-bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
+bool TicTacToe::play(const int player_id, BoardCell *move)
 {
     ++numberMoves;
-    return board->performMove(*player, move);
+    return board->performMove(player_id, move);
 }
 
-void TicTacToe::revertPlay(AbstractBoardCell *cell)
+void TicTacToe::revertPlay(BoardCell *cell)
 {
     --numberMoves;
-    AbstractPlayer *player = player1;
+    int  player = 0;
 
     if (numberMoves % 2)
     {
-        player = player2;
+        player = 1;
     }
     // TODO maybe not the correct semantic, but should not infer anyway
-    board->revertMove(*player, cell);
+    board->revertMove(player, cell);
 }
 
 bool TicTacToe::isFinished() const
@@ -42,13 +40,13 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-AbstractPlayer *TicTacToe::getPlayerToPlay() const
+int TicTacToe::getPlayerToPlay() const
 {
-    AbstractPlayer *nextPlayer = player1;
+    int nextPlayer = 0;
 
     if (numberMoves % 2)
     {
-        nextPlayer = player2;
+        nextPlayer = 1;
     }
 
     return nextPlayer;

@@ -5,16 +5,12 @@ namespace game
 namespace tic_tac_toe
 {
 PlayerVComputer::PlayerVComputer()
-    : TicTacToe(nullptr, nullptr) // instanciate these variables in the body of the constructor
+    : TicTacToe()
 {
-    player1 = new Player(1);
-    player2 = new Player(2);
 }
 
 PlayerVComputer::~PlayerVComputer()
 {
-    delete player1;
-    delete player2;
 }
 
 bool PlayerVComputer::play(int row, int col)
@@ -26,7 +22,8 @@ AbstractBoardCell *PlayerVComputer::mctsResult()
 {
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
-    mcts::Tree tree(this, getPlayerToPlay(), constraints);
+    auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
+    mcts::Tree tree(game, board->getPlayerById(getPlayerToPlay()), constraints);
     tree.begin();
     AbstractBoardCell *bestMove = tree.bestMove();
 

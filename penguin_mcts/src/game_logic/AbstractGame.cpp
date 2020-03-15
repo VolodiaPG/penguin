@@ -3,7 +3,8 @@
 namespace game
 {
 
-AbstractGame::AbstractGame(AbstractBoard *board)
+template<class PlayerT, class CellT>
+AbstractGame<PlayerT, CellT>::AbstractGame(AbstractBoard<PlayerT, CellT> *board)
     : board(board)
 {
 }

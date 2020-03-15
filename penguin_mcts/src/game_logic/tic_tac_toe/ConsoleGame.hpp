@@ -4,6 +4,7 @@
 #include <iostream>
 #include "TicTacToe.hpp"
 #include "Board.hpp"
+#include "BoardCell.hpp"
 #include "Player.hpp"
 #include "../../mcts/Tree.hpp"
 

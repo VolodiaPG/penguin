@@ -5,7 +5,7 @@ namespace game
 namespace penguin
 {
 ConsoleGame::ConsoleGame()
-    : board(7)
+    : board(7, 4)
 {
 }
 

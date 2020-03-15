@@ -11,21 +11,9 @@ namespace game
 {
 namespace tic_tac_toe
 {
-class TicTacToe : public AbstractGame
+class TicTacToe : public AbstractGame<Player, BoardCell>
 {
 protected:
-    /**
-     * @brief First player to play
-     * 
-     */
-    AbstractPlayer *player1 = nullptr;
-
-    /**
-     * @brief Second player
-     * 
-     */
-    AbstractPlayer *player2 = nullptr;
-
     /**
      * @brief The cound of the moves done
      * 
@@ -33,13 +21,13 @@ protected:
     int numberMoves = 0;
 
 public:
-    explicit TicTacToe(AbstractPlayer *player1, AbstractPlayer *player2);
+    explicit TicTacToe();
     ~TicTacToe();
 
     bool isFinished() const override;
-    bool play(AbstractPlayer *player, AbstractBoardCell *cell) override;
-    void revertPlay(AbstractBoardCell *move) override;
-    AbstractPlayer *getPlayerToPlay() const override;
+    bool play(const int player_id, BoardCell *cell) override;
+    void revertPlay(BoardCell *move) override;
+    int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
 };
 } // namespace tic_tac_toe

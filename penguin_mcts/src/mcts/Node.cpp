@@ -5,7 +5,7 @@ namespace mcts
 Node::Node(Node *parent,
            game::AbstractPlayer *player,
            game::AbstractBoardCell *targetedCell,
-           game::AbstractGame *game)
+           game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game)
     : parent(parent),
       player(player),
       targetedCell(targetedCell),
@@ -77,7 +77,7 @@ Node *Node::selectBestChildAndDoAction()
 bool Node::doAction()
 {
     // do our move
-    return game->play(player, targetedCell);
+    return game->play(player->getId(), targetedCell);
 }
 
 void Node::revertAction()
@@ -87,7 +87,9 @@ void Node::revertAction()
 
 game::AbstractBoardCell *Node::getRandomAvailableCell() const
 {
-    std::vector<game::AbstractBoardCell *> cells = game->board->getAvailableCells();
+
+    auto cells = game->board->getAvailableCells(player->getId());
+    // auto cells = dynamic_cast<std::vector<game::AbstractBoardCell *>&>();
 
     // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
     unsigned int index = rand() % cells.size();
@@ -131,10 +133,10 @@ void Node::backPropagateAndRevertAction(const int winnerId)
     ++visits;
     if (winnerId == (int)player->getId())
     {
-        victories+=10;
+        victories += 10;
     }
     else if (winnerId == -1)
-    { 
+    {
         victories++;
     }
     else
