@@ -8,14 +8,15 @@
 namespace game
 {
 class AbstractPlayer;
+template<class PlayerT, class CellT>
 class AbstractBoard;
 
 class AbstractGame
 {
 public:
-    AbstractBoard *board;
+    AbstractBoard<class PlayerT, class CellT> *board;
 
-    explicit AbstractGame(AbstractBoard *board);
+    explicit AbstractGame(AbstractBoard<class PlayerT, class CellT> *board);
 
     virtual ~AbstractGame(){};
 

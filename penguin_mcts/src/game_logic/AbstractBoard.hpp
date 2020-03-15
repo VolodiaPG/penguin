@@ -16,8 +16,9 @@ class AbstractPlayer;
  * @brief Describe the basics of a Board
  * 
  * @tparam PlayerT The type of player linked to the board itself (the player that moves directly on the board)
+ * @tparam CellT The type of the cell composing the board
  */
-template<class PlayerT>
+template<class PlayerT = AbstractPlayer, class CellT = AbstractBoardCell>
 class AbstractBoard
 {
 public:
@@ -31,9 +32,9 @@ public:
     * 
     * @return true if the move is allowed, false otherwise
     */
-    virtual bool performMove(PlayerT& player, AbstractBoardCell *cell) = 0;
+    virtual bool performMove(const int player_id, CellT *cell) = 0;
 
-    virtual void revertMove(PlayerT& player, AbstractBoardCell *cell) = 0;
+    virtual void revertMove(const int player_id, CellT *cell) = 0;
 
     /**
      * @brief Status of the game
@@ -45,16 +46,16 @@ public:
     /**
      * @brief Get the Empty AbstractBoardCell Left
      * 
-     * @return std::list<AbstractBoardCell> 
+     * @return std::list<CellT> 
      */
-    virtual std::vector<AbstractBoardCell *> getAvailableCells(const PlayerT& player) const = 0;
+    virtual std::vector<CellT *> getAvailableCells(const int player_id) const = 0;
 
     /**
      * @brief Get all of the AbstractBoardCell
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::vector<AbstractBoardCell *> getBoardCells() const = 0;
+    virtual std::vector<CellT *> getBoardCells() const = 0;
 
     /**
      * @brief Get the Cell
@@ -63,7 +64,22 @@ public:
      * @param col col coord
      * @return the targeted cell
      */
-    virtual AbstractBoardCell *getCell(int line, int col) const = 0;
+    virtual CellT *getCell(int line, int col) const = 0;
+
+    /**
+     * @brief Get the Players that are presently palying on the board
+     * 
+     * @return std::vector<PlayerT *> a vector of the players
+     */
+    virtual std::vector<PlayerT *> getPlayersOnBoard();
+
+    /**
+     * @brief Get a player by it's id
+     * 
+     * @param id the id of the player wanted
+     * @return PlayerT* the player wanted, or null if it doesn't exists
+     */
+    virtual PlayerT * getPlayerById(const int id);
 
     virtual size_t size() const = 0;
 };
