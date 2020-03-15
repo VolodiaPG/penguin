@@ -15,7 +15,9 @@ class AbstractPlayer;
 /**
  * @brief Describe the basics of a Board
  * 
+ * @tparam PlayerT The type of player linked to the board itself (the player that moves directly on the board)
  */
+template<class PlayerT>
 class AbstractBoard
 {
 public:
@@ -29,9 +31,9 @@ public:
     * 
     * @return true if the move is allowed, false otherwise
     */
-    virtual bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) = 0;
+    virtual bool performMove(PlayerT& player, AbstractBoardCell *cell) = 0;
 
-    virtual void revertMove(AbstractPlayer& player, AbstractBoardCell *cell) = 0;
+    virtual void revertMove(PlayerT& player, AbstractBoardCell *cell) = 0;
 
     /**
      * @brief Status of the game
@@ -45,7 +47,7 @@ public:
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::vector<AbstractBoardCell *> getAvailableCells() const = 0;
+    virtual std::vector<AbstractBoardCell *> getAvailableCells(const PlayerT& player) const = 0;
 
     /**
      * @brief Get all of the AbstractBoardCell
