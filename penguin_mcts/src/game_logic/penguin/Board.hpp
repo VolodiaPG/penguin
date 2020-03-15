@@ -55,10 +55,27 @@ using penguin_board_map_t = std::unordered_map<const Position, BoardCell*, posit
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
  * 
  */
-class Board : public AbstractBoard
+class Board : public AbstractBoard<PenguinPlayer, BoardCell>
 {
 private:
+    /**
+     * @brief Dimensions of the board
+     * 
+     */
     size_t _dimension;
+
+    /**
+     * @brief The penguins for both teams
+     * 
+     */
+    std::vector<PenguinPlayer> _penguins_on_board;
+
+    /**
+     * @brief Penguins owner, ie players
+     * 
+     */
+
+    std::vector<HumanPlayer> _players;
 
 protected:
     /**
@@ -90,8 +107,9 @@ public:
      * @brief Construct a new Board object
      * 
      * @param dimension the board dimensions
+     * @param number_of_penguins the number of penguins available in 1 team
      */
-    Board(size_t dimension);
+    Board(const size_t dimension, const int number_of_penguins);
 
     /**
      * @brief Destroy the Board object
@@ -106,9 +124,9 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
+    bool performMove(const int penguin_id, BoardCell *cell) override;
 
-    void revertMove(AbstractPlayer& player, AbstractBoardCell *cell) override;
+    void revertMove(const int penguin_id, BoardCell *cell) override;
 
     /**
      * @brief Chek wether or not the game is finished.
@@ -122,18 +140,22 @@ public:
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<AbstractBoardCell *> getAvailableCells() const override;
+    std::vector<BoardCell *> getAvailableCells(const int penguin_id) const override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::vector<AbstractBoardCell *> getBoardCells() const override;
+    std::vector<BoardCell *> getBoardCells() const override;
 
     size_t size() const override { return _dimension; };
 
-    AbstractBoardCell *getCell(int line, int col) const override;
+    BoardCell *getCell(int line, int col) const override;
+
+    std::vector<PenguinPlayer *> getPlayersOnBoard() override;
+
+    PenguinPlayer * getPlayerById(const int penguin_id) override { return &_penguins_on_board[penguin_id]; };
 
     // Position begin();
 };

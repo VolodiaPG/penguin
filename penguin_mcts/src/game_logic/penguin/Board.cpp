@@ -4,10 +4,22 @@ namespace game
 {
 namespace penguin
 {
-Board::Board(size_t dimension)
+Board::Board(const size_t dimension, const int number_of_penguins)
     : AbstractBoard(),
       _dimension(dimension)
 {
+    // generate the 2 players &
+    // Generate the penguins for each team (x2)
+    for (int ii = 0; ii < 2; ++ii)
+    {
+        _players.push_back(HumanPlayer(ii));
+        HumanPlayer& player = _players[ii]; // make sure to get the copy inside the vector and not the local one...
+        for (int jj = 0; jj < number_of_penguins; ++jj)
+        {
+            _penguins_on_board.push_back(PenguinPlayer(ii*number_of_penguins+jj, player)); //TODO verify no crashing because doing shadowy things with references
+        }
+    }
+
     //TODO découpler la génération et le parcours de la structure elle même (pattern visiteur)
     int offset = 0;
     for (int ii = 0; ii < (int)_dimension; ++ii) // ii for the rows
@@ -52,38 +64,34 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
 }
 
 // TODO maybe find a better solution to cast ?
-bool Board::performMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
+bool Board::performMove(const int penguin_id, BoardCell *cell)
 {
-    PenguinPlayer &player = static_cast<PenguinPlayer &>(abs_player);
-    BoardCell *cell = static_cast<BoardCell *>(abs_cell);
-
-    bool isCorrect = checkForCorrectness(player.getStandingOn()->getPosition(), cell->getPosition());
+    PenguinPlayer *penguin_player = getPlayerById(penguin_id);
+    bool isCorrect = checkForCorrectness(penguin_player->getStandingOn()->getPosition(), cell->getPosition());
 
     if (isCorrect)
     {
-        BoardCell *previousCell = player.getStandingOn();
+        BoardCell *previousCell = penguin_player->getStandingOn();
         previousCell->clearOwner(); // clear the owner and create a hole in the board
         previousCell->setGone(true);
 
-        cell->setOwner(player);
-        player.getOwner().addScore(cell->getFish());
-        player.setStandingOn(cell);
+        cell->setOwner(*penguin_player);
+        penguin_player->getOwner().addScore(cell->getFish());
+        penguin_player->setStandingOn(cell);
     }
 
     return isCorrect;
 }
 
-void Board::revertMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
+void Board::revertMove(const int penguin_id, BoardCell *cell)
 {
-    PenguinPlayer &player = static_cast<PenguinPlayer &>(abs_player);
-    BoardCell *cell = static_cast<BoardCell *>(abs_cell);
-
-    BoardCell *previousCell = player.getPreviousStandingOn();
+    PenguinPlayer *penguin_player = getPlayerById(penguin_id);
+    BoardCell *previousCell = penguin_player->getPreviousStandingOn();
     cell->clearOwner(); // clear the owner of the current cell
 
-    previousCell->setOwner(player);                    // set the penguin as the owner of the previous cell
-    player.getOwner().substractScore(cell->getFish()); // update the score
-    player.setStandingOn(previousCell);
+    previousCell->setOwner(*penguin_player);                    // set the penguin as the owner of the previous cell
+    penguin_player->getOwner().substractScore(cell->getFish()); // update the score
+    penguin_player->setStandingOn(previousCell);
 }
 
 //TODO check for win
@@ -107,15 +115,15 @@ void Board::revertMove(AbstractPlayer &abs_player, AbstractBoardCell *abs_cell)
 // }
 
 // TODO which player is the winner ?
-int Board::checkStatus() const
-{
-    return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
-}
+// int Board::checkStatus() const
+// {
+//     return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
+// }
 
 // TODO get cells available from the penguin player perspective
-std::vector<AbstractBoardCell *> Board::getAvailableCells() const
+std::vector<BoardCell *> Board::getAvailableCells(const int) const
 {
-    std::vector<AbstractBoardCell *> ret;
+    std::vector<BoardCell *> ret;
 
     for (const auto &entry : boardValues)
     {
@@ -131,9 +139,9 @@ std::vector<AbstractBoardCell *> Board::getAvailableCells() const
 }
 
 // TODO check if we want all the cells or just the ones that aren't gone yet
-std::vector<AbstractBoardCell *> Board::getBoardCells() const
+std::vector<BoardCell *> Board::getBoardCells() const
 {
-    std::vector<AbstractBoardCell *> ret;
+    std::vector<BoardCell *> ret;
 
     for (const auto &entry : boardValues)
     {
@@ -144,7 +152,7 @@ std::vector<AbstractBoardCell *> Board::getBoardCells() const
     return ret;
 }
 
-AbstractBoardCell *Board::getCell(int line, int col) const
+BoardCell *Board::getCell(int line, int col) const
 {
     const Position pos = Position{line, col};
     return boardValues.at(pos);
