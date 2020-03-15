@@ -7,7 +7,6 @@
 
 namespace game
 {
-class AbstractPlayer;
 template<class PlayerT, class CellT>
 class AbstractBoard;
 
