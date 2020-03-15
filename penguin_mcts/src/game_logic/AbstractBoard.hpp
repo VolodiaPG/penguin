@@ -71,7 +71,7 @@ public:
      * 
      * @return std::vector<PlayerT *> a vector of the players
      */
-    virtual std::vector<PlayerT *> getPlayersOnBoard();
+    virtual std::vector<PlayerT *> getPlayersOnBoard() = 0;
 
     /**
      * @brief Get a player by it's id
@@ -79,7 +79,7 @@ public:
      * @param id the id of the player wanted
      * @return PlayerT* the player wanted, or null if it doesn't exists
      */
-    virtual PlayerT * getPlayerById(const int id);
+    virtual PlayerT * getPlayerById(const int id) = 0;
 
     virtual size_t size() const = 0;
 };
