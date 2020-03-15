@@ -128,9 +128,9 @@ public:
 
     BoardCell *getCell(int line, int col) const override;
 
-    virtual std::vector<Player *> getPlayersOnBoard() override;
+    std::vector<Player *> getPlayersOnBoard() override;
 
-    virtual Player *getPlayerById(const int id) override;
+    Player *getPlayerById(const int id) override;
 
     // Position begin();
 };
