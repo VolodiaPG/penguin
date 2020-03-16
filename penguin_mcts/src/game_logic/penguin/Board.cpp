@@ -115,10 +115,11 @@ void Board::revertMove(const int penguin_id, BoardCell *cell)
 // }
 
 // TODO which player is the winner ?
-// int Board::checkStatus() const
-// {
-//     return getAvailableCells().size() > 0 ? IN_PROGRESS : DRAW;
-// }
+int Board::checkStatus() const
+{
+    // TODO FIX LOGIC 
+    return getAvailableCells(0).size() > 0 ? IN_PROGRESS : DRAW;
+}
 
 // TODO get cells available from the penguin player perspective
 std::vector<BoardCell *> Board::getAvailableCells(const int) const
