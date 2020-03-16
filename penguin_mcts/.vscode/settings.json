@@ -59,6 +59,8 @@
         "locale": "cpp",
         "thread": "cpp",
         "__functional_03": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp"
     }
 }
