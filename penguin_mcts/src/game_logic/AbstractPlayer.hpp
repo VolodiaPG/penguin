@@ -1,9 +1,6 @@
 #ifndef ABSTRACT_PLAYER_HPP_
 #define ABSTRACT_PLAYER_HPP_
 
-#include "AbstractBoardCell.hpp"
-#include "AbstractGame.hpp"
-
 namespace game
 {
 class AbstractPlayer
