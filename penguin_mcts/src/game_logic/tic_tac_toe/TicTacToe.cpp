@@ -8,7 +8,6 @@ namespace tic_tac_toe
 TicTacToe::TicTacToe()
     : AbstractGame(new Board()) // nullptr during construct, then we define the board
 {
-    // board = new Board();
 }
 
 TicTacToe::~TicTacToe()
@@ -25,7 +24,7 @@ bool TicTacToe::play(const int player_id, BoardCell *move)
 void TicTacToe::revertPlay(BoardCell *cell)
 {
     --numberMoves;
-    int  player = 0;
+    int player = 0;
 
     if (numberMoves % 2)
     {
