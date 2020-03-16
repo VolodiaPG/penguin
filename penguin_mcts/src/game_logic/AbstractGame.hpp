@@ -3,7 +3,9 @@
 
 #include "AbstractInterface.hpp"
 #include "AbstractBoard.hpp"
-#include "AbstractPlayer.hpp"
+
+#include "tic_tac_toe/Player.hpp" // needed for template instanciation in .cpp
+#include "tic_tac_toe/BoardCell.hpp" // needed for template instanciation in .cpp
 
 namespace game
 {
