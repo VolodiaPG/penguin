@@ -1,4 +1,4 @@
-EMSCRIPTEN_FASTCOMP ?= /home/vagrant/emsdk/fastcomp/emscripten
+EMSCRIPTEN_FASTCOMP ?= /home/develop/emsdk/fastcomp/emscripten
 
 # default environement
 

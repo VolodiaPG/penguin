@@ -4,7 +4,7 @@
 
 # FROM trzeci/emscripten:sdk-tag-1.38.25-64bit
 # FROM trzeci/emscripten-slim:sdk-tag-${EMSCRIPTEN_VERSION}-64bit
-FROM ubuntu:bionic-20191029
+FROM node:13.10-buster
 ENV EMSCRIPTEN_VERSION 1.39.2
 LABEL maintainer="volodia.parolguarino@gmail.com"
 
@@ -12,22 +12,27 @@ LABEL maintainer="volodia.parolguarino@gmail.com"
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
 
-RUN apt-get install -y gcc-9 g++-9 cmake cppcheck clang gdb valgrind git && \
+RUN apt-get install -y apt-utils build-essential manpages-dev
+RUN apt-get install -y cmake cppcheck clang gdb valgrind git && \
     apt-get install -y python2.7 default-jre && \
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+
+# Angular
+RUN npm install -g @angular/cli
+RUN npm install -g @ngx-rocket/scripts
+
     
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 999 \
- && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 999 \
- && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-9 999 \
- && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 999
+# RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 999 \
+#  && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 999 \
+#  && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-9 999 \
+#  && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 999
 
 RUN useradd -ms /bin/bash develop
-RUN echo "develop   ALL=(ALL:ALL) ALL" >> /etc/sudoers
+# RUN echo "develop   ALL=(ALL:ALL) ALL" >> /etc/sudoers
 # RUN mkdir /home/develop
 
 USER develop
@@ -72,4 +77,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 USER develop
 
 # expose port to access the wasm files later from the host
-EXPOSE 8080:8080
+EXPOSE 8080:8080 9876:9876 4200:4200
