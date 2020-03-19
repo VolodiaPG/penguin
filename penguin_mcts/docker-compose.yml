@@ -1,0 +1,11 @@
+version: '3'
+services:
+  penguin:
+    build: .
+    volumes:
+     - /home/develop/www/node_modules
+     - ./www:/home/develop/www
+    ports:
+     - "8080:8080"
+     - "4200:4200"
+     - "9876:9876"

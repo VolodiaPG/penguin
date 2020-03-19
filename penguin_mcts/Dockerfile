@@ -6,7 +6,7 @@
 # FROM trzeci/emscripten-slim:sdk-tag-${EMSCRIPTEN_VERSION}-64bit
 FROM node:13.10-buster
 ENV EMSCRIPTEN_VERSION 1.39.2
-LABEL maintainer="volodia.parolguarino@gmail.com"
+MAINTAINER Volodia "volodia.parolguarino@gmail.com"
 
 # ENV EMSDK_VERSION 1.38.45
 
@@ -75,6 +75,13 @@ RUN /usr/install-dependencies.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER develop
+
+RUN mkdir /home/develop/cache
+WORKDIR /home/develop/cache
+
+COPY www/package.json ./
+COPY www/package-lock.json ./
+RUN npm i
 
 # expose port to access the wasm files later from the host
 EXPOSE 8080:8080 9876:9876 4200:4200

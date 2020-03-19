@@ -1,23 +1,23 @@
-import { browser, ExpectedConditions as until } from 'protractor';
-import { AppSharedPage } from './page-objects/app-shared.po';
-import { ShellPage } from './page-objects/shell.po';
+import { AppPage } from './app.po';
+import { browser, logging } from 'protractor';
 
-describe('when the app loads', () => {
-  const app = new AppSharedPage();
-  const shell = new ShellPage();
+describe('workspace-project App', () => {
+  let page: AppPage;
 
-  beforeAll(async () => {
-    await app.navigateAndSetLanguage();
+  beforeEach(() => {
+    page = new AppPage();
   });
 
-  it('should display the shell page', async () => {
-    expect(await browser.getCurrentUrl()).toContain('/');
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('test app is running!');
   });
 
-  describe('and the page loads', () => {
-    it('should display the hello message', async () => {
-      await browser.wait(until.visibilityOf(shell.welcomeText), 5000, 'Element taking too long to appear');
-      expect(await shell.getParagraphText()).toEqual('Hello world !');
-    });
+  afterEach(async () => {
+    // Assert that there are no errors emitted from the browser
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(jasmine.objectContaining({
+      level: logging.Level.SEVERE,
+    } as logging.Entry));
   });
 });

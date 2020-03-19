@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
-  // Fallback when no prior route is matched
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-];
+
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: []
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

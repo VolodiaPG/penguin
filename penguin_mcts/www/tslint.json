@@ -1,86 +1,14 @@
 {
-  "extends": [
-    "tslint:recommended",
-    "tslint-config-prettier"
-  ],
-  "rulesDirectory": [
-    "codelyzer"
-  ],
+  "extends": "tslint:recommended",
   "rules": {
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
-      "severity": "warn"
+      "severity": "warning"
     },
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
-    "max-line-length": [
-      true,
-      120
-    ],
-    "member-access": false,
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "public-static-field",
-          "protected-static-field",
-          "private-static-field",
-          "public-instance-field",
-          "protected-instance-field",
-          "private-instance-field",
-          "public-static-method",
-          "protected-static-method",
-          "private-static-method",
-          "constructor",
-          "public-instance-method",
-          "protected-instance-method",
-          "private-instance-method"
-        ]
-      }
-    ],
-    "interface-name": false,
-    "max-classes-per-file": false,
-    "no-consecutive-blank-lines": false,
-    "no-console": [
-      true,
-      "debug",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-duplicate-variable": [
-      true,
-      "check-parameters"
-    ],
-    "no-empty": false,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
-    "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
-    "no-switch-case-fall-through": true,
-    "no-unnecessary-initializer": true,
-    "object-literal-sort-keys": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "typedef": [
-      true,
-      "parameter",
-      "property-declaration"
-    ],
-    "variable-name": false,
-    "no-var-requires": false,
-    "object-literal-key-quotes": false,
-    "ordered-imports": false,
-    "trailing-comma": false,
-    "no-conflicting-lifecycle": true,
-    "no-output-native": true,
+    "component-class-suffix": true,
+    "contextual-lifecycle": true,
+    "directive-class-suffix": true,
     "directive-selector": [
       true,
       "attribute",
@@ -90,22 +18,74 @@
     "component-selector": [
       true,
       "element",
-      "page",
       "app",
       "kebab-case"
     ],
-    "template-banana-in-box": true,
-    "template-no-negated-async": true,
-    "no-output-on-prefix": true,
-    "no-inputs-metadata-property": true,
-    "no-outputs-metadata-property": true,
+    "import-blacklist": [
+      true,
+      "rxjs/Rx"
+    ],
+    "interface-name": false,
+    "max-classes-per-file": false,
+    "max-line-length": [
+      true,
+      140
+    ],
+    "member-access": false,
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-consecutive-blank-lines": false,
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-empty": false,
+    "no-inferrable-types": [
+      true,
+      "ignore-params"
+    ],
+    "no-non-null-assertion": true,
+    "no-redundant-jsdoc": true,
+    "no-switch-case-fall-through": true,
+    "no-var-requires": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "trailing-comma": false,
+    "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,
+    "no-inputs-metadata-property": true,
+    "no-output-native": true,
+    "no-output-on-prefix": true,
     "no-output-rename": true,
+    "no-outputs-metadata-property": true,
+    "template-banana-in-box": true,
+    "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "contextual-lifecycle": true,
-    "directive-class-suffix": true
-  }
+    "use-pipe-transform-interface": true
+  },
+  "rulesDirectory": [
+    "codelyzer"
+  ]
 }
