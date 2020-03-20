@@ -76,12 +76,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER develop
 
-RUN mkdir /home/develop/cache
-WORKDIR /home/develop/cache
-
-COPY www/package.json ./
-COPY www/package-lock.json ./
-RUN npm i
+# COPY ./entrypoint.sh /home/develop/workspace
 
 # expose port to access the wasm files later from the host
-EXPOSE 8080:8080 9876:9876 4200:4200
+EXPOSE 8080 9876 4200
