@@ -2,13 +2,9 @@
 # Main Docker Image #
 #####################
 
-# FROM trzeci/emscripten:sdk-tag-1.38.25-64bit
-# FROM trzeci/emscripten-slim:sdk-tag-${EMSCRIPTEN_VERSION}-64bit
 FROM node:13.10-buster
 ENV EMSCRIPTEN_VERSION 1.39.2
-MAINTAINER Volodia "volodia.parolguarino@gmail.com"
-
-# ENV EMSDK_VERSION 1.38.45
+LABEL maintainer="volodia.parolguarino@gmail.com"
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common
@@ -23,17 +19,14 @@ RUN apt-get install -y cmake cppcheck clang gdb valgrind git && \
 
 # Angular
 RUN npm install -g @angular/cli
-RUN npm install -g @ngx-rocket/scripts
-
     
-# RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 999 \
-#  && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 999 \
-#  && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-9 999 \
-#  && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 999
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 999 \
+ && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 999 \
+ && update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc-9 999 \
+ && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-9 999
 
 RUN useradd -ms /bin/bash develop
 # RUN echo "develop   ALL=(ALL:ALL) ALL" >> /etc/sudoers
-# RUN mkdir /home/develop
 
 USER develop
 
@@ -49,34 +42,10 @@ RUN /bin/bash -c "source ./emsdk_env.sh"
 USER root
 RUN cp -r /home/develop/emsdk/fastcomp/emscripten/system/include/* /usr/local/include/
 
-USER develop
-
-# VOLUME /home/develop
-WORKDIR /home/develop
-
-#####################
-# User Docker Image #
-#####################
-
-WORKDIR /home/develop
-
-USER root
-COPY ./doc/install-dependencies.sh /usr/
-
-# Remove windows EOL
-RUN sed -i -e 's/\r$//' /usr/install-dependencies.sh
-
-RUN chmod +x /usr/install-dependencies.sh
-
-RUN apt-get update
-RUN /usr/install-dependencies.sh
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER develop
-
-# COPY ./entrypoint.sh /home/develop/workspace
 
 # expose port to access the wasm files later from the host
 EXPOSE 8080 9876 4200

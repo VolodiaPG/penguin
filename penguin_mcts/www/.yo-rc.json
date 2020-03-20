@@ -1,0 +1,26 @@
+{
+  "generator-ngx-rocket": {
+    "version": "7.1.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "appName": "penguin_mcts",
+      "target": ["web"],
+      "pwa": false,
+      "ui": "ionic",
+      "layout": "side-menu",
+      "auth": false,
+      "lazy": true,
+      "angulartics": false,
+      "tools": ["prettier", "hads"],
+      "utility": [],
+      "projectName": "penguin-mcts",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}
