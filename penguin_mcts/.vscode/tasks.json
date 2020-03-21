@@ -30,20 +30,6 @@
             ]
         },
         {
-            "label": "install",
-            "type": "shell",
-            "windows": {
-                "command": "powershell"
-            },
-            "linux": {
-                "command": "bash"
-            },
-            "args": [
-                "-c",
-                "make install"
-            ]
-        },
-        {
             "label": "Emscripten Debug: build",
             "type": "shell",
             "group": {
