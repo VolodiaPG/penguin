@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    user: develop
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
       - .:/home/develop/workspace:cached
