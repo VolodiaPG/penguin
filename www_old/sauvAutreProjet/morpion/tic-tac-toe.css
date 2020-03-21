@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  p {
+    color: black;
+    text-align: center;
+  }
+  
+  .container {
+    display: flex;
+    background: whitesmoke;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 1em;
+    margin: auto;
+
+  }
+  
+  .board{
+    margin: 2em;
+  }
+
+  button {
+    width: 45%;
+    height: 40px;
+    background-color: orangered;
+    color: white;
+    border: 0px;
+    font-size: 20px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px #aaa;
+    transition-duration: 0.2s;
+  
+}
+
+  button:hover {
+    background-color: orange;
+  }
+
+  button:active {
+    background-color: yellow;
+  }
+  
+
+  table {
+    border-collapse: collapse;
+    margin: auto;
+
+    /* box-shadow: 8px 8px 8px 8px #aaa; */
+  }
+  
+  td {
+    /* background-color: blue; */
+    color: white;
+    transition-duration: 0.2s;
+
+    border: 5px solid whitesmoke;
+    /* border-radius: .25em; */
+    /* box-shadow: 8px 8px 8px 8px #aaa; */
+
+    font-weight: bold;
+    font-size: 80px;
+ }
+
+  td:hover {
+    background-color: lightslategrey !important;
+  }
+  
+  .cell-child{
+    width: 100%;
+    height:100%;
+    /* border-radius: .25em; */
+  }
+
+  .cell-child-content{    
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .cell-child:hover{
+    background-color: rgb(176, 196, 222, 0.5);
+  }
+  
+  .highlight-victory{
+    background-color: rgb(0, 90, 0);
+  }
+
+  #turn {
+    color: grey;
+    padding: 5px 5px 5px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 5px ridge #EBEBEB;
+  }
+  
+  #player {
+    padding: 1rem;
+  }
+  
+  body {
+    display: flex;    
+    /* height: 60%;
+    width: 100%; */
+    /* overflow: hidden; */
+    background-color: #222;
+    
+  }
+
+  .hidden{
+    padding: 1em;
+  }
+
+  .down {
+    text-align: center;
+    font-size: 18px;
+}
+
+#output {
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  display: block;
+  width: 40%;
+  height: 100vh;
+  border: none;
+}

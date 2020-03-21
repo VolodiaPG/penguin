@@ -1,7 +1,0 @@
-# auto-generated
-*.lock
-bin/
-doxygen/
-package-lock.json
-yarn.lock
-node_modules/
