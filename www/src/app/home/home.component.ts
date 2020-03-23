@@ -9,6 +9,7 @@ import { QuoteService } from './quote.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  text: string = 'Default starting text';
   quote: string | undefined;
   isLoading = false;
 
@@ -26,5 +27,9 @@ export class HomeComponent implements OnInit {
       .subscribe((quote: string) => {
         this.quote = quote;
       });
+  }
+
+  onChangeText() {
+    this.text = 'Changed !';
   }
 }

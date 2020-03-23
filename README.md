@@ -8,6 +8,12 @@ Docker is required in order to set up the development environment, so it can wor
 1. Open VSCode and make sure you have the *Remote - Containers* extension installed (`ms-vscode-remote.remote-containers`)
 2. Choose (at the bottom left corner) `open folder in container`
 3. Let the process finish (sometimes when building the docker image the process can be stuck and you'll need to restart VSCode)
+
+> ### Some issues
+> * Check you switched and used Linux container in the Docker Desktop
+> * Check you have enough memory in your disk
+> * If you are reading this line, you have to change your DNS address to etablish the connection with the server
+
 ### For the Web Part
 When developing the angular side of the project, you'll need to go the the `www/` folder and do a `yarn install`.
 

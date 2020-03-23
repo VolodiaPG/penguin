@@ -7,3 +7,47 @@ q {
   font-style: italic;
   quotes: "« " " »";
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#helloworld {
+  position: relative;
+  background-color:#34495e;
+  color: #77b5fe;
+  font-size: 200%;
+  font-weight: 700;
+  outline: none;
+  text-align: center;
+  height: 100%;
+  text-shadow: 4px 1px 0 #FFF5EE;
+}
+
+h1 {
+  font-size: 5em;
+  text-align: center;
+  font-weight: 700;
+  font-family: tahoma;
+  /* color: white; */
+  width: 100%;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
