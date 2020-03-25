@@ -30,7 +30,7 @@ void TicTacToe::revertPlay(BoardCell *cell)
     {
         player = 1;
     }
-    // TODO maybe not the correct semantic, but should not infer anyway
+    
     board->revertMove(player, cell);
 }
 
