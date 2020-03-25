@@ -15,7 +15,7 @@ int main()
 {	
 	for (int ii = 0; ii < 1; ++ii)
 	{
-		game::tic_tac_toe::ConsoleGame consoleGame;
+		game::penguin::ConsoleGame consoleGame;
 
 		consoleGame.loop();
 	}
