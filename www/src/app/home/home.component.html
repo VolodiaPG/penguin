@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><span translate>Home</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Title -->
+  <ion-card text-center>
+    <!-- <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" /> -->
+    <img class="logo" src="assets/crazy_penguin.png" alt="game logo" />
+    <ion-card-content>
+      <ion-card-title>
+        <span translate>Hello world !</span>
+      </ion-card-title>
+      <p>
+        <app-loader [isLoading]="isLoading"></app-loader>
+        <q [hidden]="isLoading">{{ quote }}</q>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Contents -->
+  <ion-card text-center padding>
+    <ion-card-title>
+      <span translate>Test</span>
+    </ion-card-title>
+    <ion-card-content>
+      <p>{{ text }}</p>
+      <ion-button (click)="onChangeText()">Change Text</ion-button>
+
+      <ion-item>
+        <ion-label position="floating">Floating Label</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
