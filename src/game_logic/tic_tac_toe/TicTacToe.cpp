@@ -41,7 +41,7 @@ bool TicTacToe::isFinished() const
 
 int TicTacToe::getPlayerToPlay() const
 {
-    int nextPlayer = 0;
+    int nextPlayer = 2;
 
     if (numberMoves % 2)
     {
