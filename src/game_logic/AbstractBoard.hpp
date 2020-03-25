@@ -41,21 +41,21 @@ public:
      * 
      * @return game_status 
      */
-    virtual int checkStatus() const = 0;
+    virtual int checkStatus() = 0;
 
     /**
      * @brief Get the Empty AbstractBoardCell Left
      * 
      * @return std::list<CellT> 
      */
-    virtual std::vector<CellT *> getAvailableCells(const int player_id) const = 0;
+    virtual std::vector<CellT *> getAvailableCells(const int player_id) = 0;
 
     /**
      * @brief Get all of the AbstractBoardCell
      * 
      * @return std::list<AbstractBoardCell> 
      */
-    virtual std::vector<CellT *> getBoardCells() const = 0;
+    virtual std::vector<CellT *> getBoardCells() = 0;
 
     /**
      * @brief Get the Cell
@@ -64,7 +64,7 @@ public:
      * @param col col coord
      * @return the targeted cell
      */
-    virtual CellT *getCell(int line, int col) const = 0;
+    virtual CellT *getCell(int line, int col) = 0;
 
     /**
      * @brief Get the Players that are presently palying on the board

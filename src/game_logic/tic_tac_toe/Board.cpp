@@ -71,7 +71,7 @@ int Board::checkForWin(const board_line_t &line) const
     return previous;
 }
 
-int Board::checkStatus() const
+int Board::checkStatus()
 {
     // declare the two diags
     board_line_t diag1; //= std::array<BoardCell, BOARD_SIZE>();
@@ -122,7 +122,7 @@ int Board::checkStatus() const
     return getAvailableCells(-1).size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::vector<BoardCell *> Board::getAvailableCells(const int) const
+std::vector<BoardCell *> Board::getAvailableCells(const int)
 {
     std::vector<BoardCell *> ret;
 
@@ -142,7 +142,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int) const
     return ret;
 }
 
-std::vector<BoardCell *> Board::getBoardCells() const
+std::vector<BoardCell *> Board::getBoardCells()
 {
     std::vector<BoardCell *> ret;
 
@@ -158,7 +158,7 @@ std::vector<BoardCell *> Board::getBoardCells() const
     return ret;
 }
 
-BoardCell *Board::getCell(int line, int col) const
+BoardCell *Board::getCell(int line, int col)
 {
     return boardValues[line][col];
 }

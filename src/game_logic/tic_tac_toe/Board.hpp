@@ -108,25 +108,25 @@ public:
      * 
      * @return If not finised it will return 0, otherwise the id of the winning player or -1 if a draw
      */
-    int checkStatus() const override;
+    int checkStatus() override;
 
     /**
      * @brief Get a list of empty cells, ie player not passed yet
      * 
      * @return the list of empty cells
      */
-    std::vector<BoardCell *> getAvailableCells(const int player_id) const override;
+    std::vector<BoardCell *> getAvailableCells(const int player_id) override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::vector<BoardCell *> getBoardCells() const override;
+    std::vector<BoardCell *> getBoardCells() override;
 
     size_t size() const override { return BOARD_SIZE; };
 
-    BoardCell *getCell(int line, int col) const override;
+    BoardCell *getCell(int line, int col) override;
 
     std::vector<Player *> getPlayersOnBoard() override;
 

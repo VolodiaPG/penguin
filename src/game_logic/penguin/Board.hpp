@@ -117,7 +117,6 @@ public:
      */
     ~Board();
 
-    // TODO create an action wrapper to wrap both the cell and player informations (in our case because there are multiples penguins)
     /**
      * @brief Performs a particular move
      * 
@@ -133,25 +132,25 @@ public:
      * 
      * @return If not finised it will return 0, otherwise the id of the winning player or -1 if a draw
      */
-    int checkStatus() const override;
+    int checkStatus() override;
 
     /**
      * @brief Get a list of available cells, ie player can move onto
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<BoardCell *> getAvailableCells(const int penguin_id) const override;
+    std::vector<BoardCell *> getAvailableCells(const int penguin_id) override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::vector<BoardCell *> getBoardCells() const override;
+    std::vector<BoardCell *> getBoardCells() override;
 
     size_t size() const override { return _dimension; };
 
-    BoardCell *getCell(int line, int col) const override;
+    BoardCell *getCell(int line, int col) override;
 
     std::vector<PenguinPlayer *> getPlayersOnBoard() override;
 
