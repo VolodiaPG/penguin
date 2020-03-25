@@ -129,17 +129,19 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
     std::vector<BoardCell *> ret;
     
     int inc_val = -1;
-    int ii = 0, jj = 0;
+    int ii, jj;
     BoardCell* ptr_cell;
     while (inc_val == -1 || inc_val == 1)
     {
+        ii = penguin_current_pos.x;
+        jj = penguin_current_pos.y;
         // check first diag, jj is varying
         while((ptr_cell = boardValues[Position{ii, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
         {
             ret.push_back(ptr_cell);
         }
 
-        jj = 0;
+        jj = penguin_current_pos.y;
 
         // check second diag, ii is varying
         while((ptr_cell = boardValues[Position{ii+=inc_val, jj}]) != nullptr && !ptr_cell->isGone())
@@ -147,7 +149,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
             ret.push_back(ptr_cell);
         }
 
-        ii = 0;
+        ii = penguin_current_pos.x;
 
         // check row, both varying
         while((ptr_cell = boardValues[Position{ii+=inc_val, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
