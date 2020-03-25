@@ -19,7 +19,7 @@ public:
     ConsoleGame();
     ~ConsoleGame();
 
-    void draw() const override;
+    void draw() override;
 
     /**
      * @brief Loop while the game is not finished, told by the `isFinished` method

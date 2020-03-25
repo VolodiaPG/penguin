@@ -26,7 +26,7 @@ ConsoleGame::~ConsoleGame()
 //     return player->action(board);
 // }
 
-void ConsoleGame::draw() const
+void ConsoleGame::draw()
 {
     // clear the output stdout
     // std::cout << "\033c";

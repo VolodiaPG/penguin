@@ -7,7 +7,7 @@ class AbstractInterface
 {
 public:
     virtual ~AbstractInterface(){};
-    virtual void draw() const = 0;
+    virtual void draw() = 0;
 
 };
 } // namespace game

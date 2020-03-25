@@ -13,7 +13,7 @@ ConsoleGame::~ConsoleGame()
 {
 }
 
-void ConsoleGame::draw() const
+void ConsoleGame::draw()
 {
     int dimension = board.size();
 
