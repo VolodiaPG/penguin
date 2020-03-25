@@ -63,7 +63,6 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
                                                              start.z == destination.z);
 }
 
-// TODO maybe find a better solution to cast ?
 bool Board::performMove(const int penguin_id, BoardCell *cell)
 {
     PenguinPlayer *penguin_player = getPlayerById(penguin_id);
@@ -115,24 +114,48 @@ void Board::revertMove(const int penguin_id, BoardCell *cell)
 // }
 
 // TODO which player is the winner ?
-int Board::checkStatus() const
+int Board::checkStatus()
 {
     // TODO FIX LOGIC 
     return getAvailableCells(0).size() > 0 ? IN_PROGRESS : DRAW;
 }
 
 // TODO get cells available from the penguin player perspective
-std::vector<BoardCell *> Board::getAvailableCells(const int) const
+std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
-    std::vector<BoardCell *> ret;
+    PenguinPlayer* penguin = getPlayerById(penguin_id);
+    Position penguin_current_pos = penguin->getStandingOn()->getPosition();
 
-    for (const auto &entry : boardValues)
+    std::vector<BoardCell *> ret;
+    
+    int inc_val = -1;
+    int ii = 0, jj = 0;
+    BoardCell* ptr_cell;
+    while (inc_val == -1 || inc_val == 1)
     {
-        BoardCell *cell = entry.second;
-        if (!cell->isGone())
+        // check first diag, jj is varying
+        while((ptr_cell = boardValues[Position{ii, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
         {
-            ret.push_back(cell);
+            ret.push_back(ptr_cell);
         }
+
+        jj = 0;
+
+        // check second diag, ii is varying
+        while((ptr_cell = boardValues[Position{ii+=inc_val, jj}]) != nullptr && !ptr_cell->isGone())
+        {
+            ret.push_back(ptr_cell);
+        }
+
+        ii = 0;
+
+        // check row, both varying
+        while((ptr_cell = boardValues[Position{ii+=inc_val, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
+        {
+            ret.push_back(ptr_cell);
+        }
+
+        inc_val += 2; // -1; 1; out of scope, while is over
     }
 
     // return a copy
@@ -140,7 +163,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int) const
 }
 
 // TODO check if we want all the cells or just the ones that aren't gone yet
-std::vector<BoardCell *> Board::getBoardCells() const
+std::vector<BoardCell *> Board::getBoardCells()
 {
     std::vector<BoardCell *> ret;
 
@@ -153,7 +176,7 @@ std::vector<BoardCell *> Board::getBoardCells() const
     return ret;
 }
 
-BoardCell *Board::getCell(int line, int col) const
+BoardCell *Board::getCell(int line, int col)
 {
     const Position pos = Position{line, col};
     return boardValues.at(pos);
