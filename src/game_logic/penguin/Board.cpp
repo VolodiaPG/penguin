@@ -1,5 +1,5 @@
 #include "Board.hpp"
-#include "dbg.h"
+#include "../../dbg.h"
 
 namespace game
 {
@@ -114,14 +114,38 @@ void Board::revertMove(const int penguin_id, BoardCell *cell)
 //     return previous;
 // }
 
-// TODO which player is the winner ?
 int Board::checkStatus()
 {
-    // TODO FIX LOGIC 
-    return getAvailableCells(0).size() > 0 ? IN_PROGRESS : DRAW;
+    bool all_zero = true;
+    int winner_id = IN_PROGRESS;
+    
+    //TODO Optimize, we can just look at the cells around
+    for (auto& penguin : getPlayersOnBoard())
+    {
+        if (getAvailableCells(penguin->getId()).size() > 0){
+            all_zero = false;
+            break;
+        }
+    }
+
+
+    if (all_zero){
+        winner_id = _players[1].getId();
+        int score_player_0 = _players[0].getScore();
+        int score_player_1 = _players[1].getScore();
+        if ( score_player_0 > score_player_1)
+        {
+            winner_id = _players[0].getId();
+        }
+        else if (score_player_0 == score_player_1)
+        {
+            winner_id = DRAW;
+        }
+    }
+
+    return winner_id;
 }
 
-// TODO get cells available from the penguin player perspective
 std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
     dbg(penguin_id);
