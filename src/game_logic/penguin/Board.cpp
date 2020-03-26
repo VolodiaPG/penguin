@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include "dbg.h"
 
 namespace game
 {
@@ -123,20 +124,23 @@ int Board::checkStatus()
 // TODO get cells available from the penguin player perspective
 std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
+    dbg(penguin_id);
     PenguinPlayer* penguin = getPlayerById(penguin_id);
+    dbg(penguin->getStandingOn());
     Position penguin_current_pos = penguin->getStandingOn()->getPosition();
+
+    dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
 
     std::vector<BoardCell *> ret;
     
     int inc_val = -1;
-    int ii, jj;
-    BoardCell* ptr_cell;
     while (inc_val == -1 || inc_val == 1)
     {
-        ii = penguin_current_pos.x;
-        jj = penguin_current_pos.y;
+        int ii = penguin_current_pos.x;
+        int jj = penguin_current_pos.y;
+        BoardCell* ptr_cell;
         // check first diag, jj is varying
-        while((ptr_cell = boardValues[Position{ii, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
+        while((ptr_cell = boardValues[Position{ii, jj+=inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
@@ -144,7 +148,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
         jj = penguin_current_pos.y;
 
         // check second diag, ii is varying
-        while((ptr_cell = boardValues[Position{ii+=inc_val, jj}]) != nullptr && !ptr_cell->isGone())
+        while((ptr_cell = boardValues[Position{ii+=inc_val, jj}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
@@ -152,7 +156,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
         ii = penguin_current_pos.x;
 
         // check row, both varying
-        while((ptr_cell = boardValues[Position{ii+=inc_val, jj+=inc_val}]) != nullptr && !ptr_cell->isGone())
+        while((ptr_cell = boardValues[Position{ii+=inc_val, jj-=inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
