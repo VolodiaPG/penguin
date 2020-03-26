@@ -1,4 +1,5 @@
 #include "ConsoleGame.hpp"
+#include "../../dbg.h"
 
 namespace game
 {
@@ -32,12 +33,17 @@ void ConsoleGame::draw()
         }
         std::cout << std::endl;
     }
+
+    board.getPlayerById(0)->setStandingOn(board.getCell(1,1));
+    dbg(board.getCell(1,1)->getOwner());
+    for (auto& cell : board.getAvailableCells(0))
+    {
+        std::cout << "(" << cell->getPosition().x << ";" << cell->getPosition().y << ") ";   
+    }
 }
 
 void ConsoleGame::loop()
 {
-    std::cout << "test" << std::endl;
-
     draw();
     // while (!TicTacToe::isFinished())
     // {
