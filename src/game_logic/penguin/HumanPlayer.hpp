@@ -33,6 +33,13 @@ public:
      * @param score the score to substract
      */
     void substractScore(unsigned int score) { _score -= score; };
+
+    /**
+     * @brief Returns the player's score
+     * 
+     * @return int the score
+     */
+    int getScore(){ return _score; };
 };
 } // namespace penguin
 } // namespace game
