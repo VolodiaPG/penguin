@@ -1,5 +1,6 @@
 {
   "APP_NAME": "penguin_mcts",
+  "Game": "Jeu",
   "About": "A propos",
   "Hello world !": "Bonjour le monde !",
   "Home": "Accueil",
