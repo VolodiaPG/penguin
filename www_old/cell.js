@@ -1,6 +1,6 @@
 /**
 *
-* The HexPixi.Cell object represents one map hex cell.
+* The cell object represents one map hex cell.
 */
 export class Cell {
 
