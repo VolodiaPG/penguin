@@ -12,28 +12,28 @@ let loader: any = Loader.shared;
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements AfterViewInit {
+export class BoardComponent implements OnInit { // or AfterViewInit
 
-  @ViewChild('imageCanvas', { static: false }) canvas: any;
-  canvasElement: any;
+  // @ViewChild('imageCanvas', { static: false }) canvas: any;
+  // canvasElement: any;
   public board: Board;
   public app: Application;
 
-  constructor(public platform: Platform, public renderer: Renderer, private elementRef: ElementRef, private ngZone: NgZone) { }
+  constructor(public platform: Platform, private elementRef: ElementRef, private ngZone: NgZone) { }
 
-  ngAfterViewInit() {
-    // Set the Canvas Element
-    this.canvasElement = this.canvas.nativeElement;
+  // ngAfterViewInit() {
+  //   // Set the Canvas Element
+  //   // this.canvasElement = this.canvas.nativeElement;
 
-    // this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + '');
-    // this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + ''); 
-  }
+  //   // this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + '');
+  //   // this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + ''); 
+  // }
 
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {
       this.app = new Application({
-        view: this.canvas,
-        width: this.platform.width(),         // window.innerWidth default: 800
+        // view: this.canvas,
+        width: this.platform.width(),         // window.innerWidth, default: 800
         height: this.platform.height(),        // window.innerHeight default: 600
         antialias: true,    // default: false
         transparent: true, // default: false
@@ -83,6 +83,8 @@ export class BoardComponent implements AfterViewInit {
     this.app.renderer.view.style.display = "block";
     this.app.renderer.autoDensity = true;
 
+    // Add the view to the DOM
+    // document.body.appendChild(app.view);
     this.elementRef.nativeElement.appendChild(this.app.view);
   }
 
@@ -103,6 +105,9 @@ export class BoardComponent implements AfterViewInit {
     // this.app.stage.addChild(penguin.sprite);
 
     this.board = new Board(this.app);
+
+    // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
+    // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
     this.board.generateRandomMap();
 
