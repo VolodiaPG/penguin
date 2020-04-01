@@ -23,7 +23,7 @@ export class Cell {
 
         isEmpty: boolean;
         isOver: boolean;
-        alpha: number;
+        alpha: number = 1;
 
         constructor(row: number, column: number, terrainIndex: number) {
                 this.row = row;

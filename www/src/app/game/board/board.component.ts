@@ -36,7 +36,7 @@ export class BoardComponent implements AfterViewInit {
         width: this.platform.width(),         // window.innerWidth default: 800
         height: this.platform.height(),        // window.innerHeight default: 600
         antialias: true,    // default: false
-        transparent: false, // default: false
+        transparent: true, // default: false
         resolution: 1,      // default: 1
         // resizeTo: parent
       });
@@ -78,9 +78,10 @@ export class BoardComponent implements AfterViewInit {
       // console.log(utils.TextureCache);
     });
 
-    this.app.renderer.backgroundColor = 0x061639;
+    this.app.renderer.backgroundColor = 0x061639; //useless if transparent is true
     // this.app.renderer.view.style.position = "absolute";
-    // this.app.renderer.view.style.display = "block";
+    this.app.renderer.view.style.display = "block";
+    this.app.renderer.autoDensity = true;
 
     this.elementRef.nativeElement.appendChild(this.app.view);
   }
