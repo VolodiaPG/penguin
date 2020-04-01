@@ -6,6 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { I18nService } from '@app/core';
 
+import { changeTheme } from '../app.component';
+
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
@@ -20,6 +22,11 @@ export class ShellComponent {
     private actionSheetController: ActionSheetController,
     private i18nService: I18nService
   ) {}
+
+  toggleTheme(): void {
+    console.log("toggle dark theme");
+    changeTheme();
+  }
 
   get isWeb(): boolean {
     return !this.platform.is('cordova');

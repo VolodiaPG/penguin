@@ -252,3 +252,11 @@ body.dark {
   --color-toolbar-background: black;
   --color-toolbar-text: white;
 }
+
+
+// Here's the export you add.
+:export  {
+  lightColor:  var(--ion-color-light);
+  primaryColor: var(--ion-color-primary);
+  secondaryColor: var(--ion-color-secondary);
+}

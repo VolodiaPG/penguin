@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "css-loader": "^3.4.2",
+    "sass-loader": "^8.0.2",
     "webpack-cli": "^3.3.11"
   }
 }

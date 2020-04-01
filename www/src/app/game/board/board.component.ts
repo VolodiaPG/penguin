@@ -81,7 +81,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
       // console.log(utils.TextureCache);
     });
 
-    this.app.renderer.backgroundColor = 0x061639; //useless if transparent is true
+    // this.app.renderer.backgroundColor = 0x061639; //useless if transparent is true
     // this.app.renderer.view.style.position = "absolute";
     this.app.renderer.view.style.display = "block";
     this.app.renderer.autoDensity = true;
