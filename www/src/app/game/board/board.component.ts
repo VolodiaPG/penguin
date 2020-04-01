@@ -19,6 +19,9 @@ export class BoardComponent implements OnInit { // or AfterViewInit
   public board: Board;
   public app: Application;
 
+  boardWidth: number = 8 * 90;
+  boardHeight: number = 8 * 90;
+
   constructor(public platform: Platform, private elementRef: ElementRef, private ngZone: NgZone) { }
 
   // ngAfterViewInit() {
@@ -33,11 +36,11 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     this.ngZone.runOutsideAngular(() => {
       this.app = new Application({
         // view: this.canvas,
-        width: this.platform.width(),         // window.innerWidth, default: 800
-        height: this.platform.height(),        // window.innerHeight default: 600
-        antialias: true,    // default: false
-        transparent: true, // default: false
-        resolution: 1,      // default: 1
+        width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
+        height: this.boardHeight, //this.platform.height(),        // window.innerHeight default: 600
+        antialias: true,          // default: false
+        transparent: false,        // default: false
+        resolution: 1,            // default: 1
         // resizeTo: parent
       });
 
@@ -106,6 +109,8 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
     this.board = new Board(this.app);
 
+    this.app.stage.width = this.board.mapWidth * this.board.hexWidth;
+    this.app.stage.height = this.board.mapHeight * this.board.hexHeight;
     // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
     // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 

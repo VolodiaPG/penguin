@@ -1,12 +1,13 @@
 {
   "APP_NAME": "penguin_mcts",
   "Game": "Jeu",
-  "About": "A propos",
-  "Hello world !": "Bonjour le monde !",
+  "About": "A Propos",
+  "Hello World !": "Bonjour le Monde !",
   "Home": "Accueil",
   "Cancel": "Annuler",
-  "Change language": "Changer la langue",
+  "Change language": "Changer la Langue",
   "Language": "Langue",
   "Ok": "Ok",
-  "Version": "Version"
+  "Version": "Version",
+  "Toggle Dark Theme": "Activer Theme Sombre"
 }

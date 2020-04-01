@@ -4,16 +4,88 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title><span translate>Game</span></ion-title>
+        <ion-chip slot="end">
+            <ion-avatar>
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+" />
+            </ion-avatar>
+            <ion-label>Avatar Chip</ion-label>
+            <ion-icon name="close-circle"></ion-icon>
+        </ion-chip>
     </ion-toolbar>
 </ion-header>
-<ion-content>
-    <ion-card>
-        <ion-card-header>
-            <p>game works!</p>
-        </ion-card-header>
-        <ion-card-content>
-            <app-board></app-board>
-        </ion-card-content>
-    </ion-card>
 
+<ion-content fullscreen>
+
+    <ion-fab horizontal="end" vertical="top" slot="fixed">
+        <ion-fab-button color="secondary">
+            <ion-icon src="/assets/icon/options-outline.svg" click=""></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list>
+            <ion-fab-button color="light">
+                <ion-icon src="/assets/icon/settings-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="/assets/icon/reload-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="/assets/icon/information-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="/assets/icon/log-out-outline.svg"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+
+    <ion-grid>
+        <ion-row justify-content-center style="height: 100%">
+            <ion-col>
+                <ion-card text-center translucent>
+                    <ion-card-header></ion-card-header>
+                    <ion-card-content>
+                        <app-board></app-board>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-title>
+                            <h2>Settings</h2>
+                        </ion-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>
+                                    <h2>Education</h2>
+                                </ion-label>
+                                <ion-toggle slot="end" color="primary" disabled="false"></ion-toggle>
+                            </ion-item>
+
+                            <ion-item lines="full">
+                                <ion-label>
+                                    <h2>Hard</h2>
+                                </ion-label>
+                                <ion-checkbox slot="end"></ion-checkbox>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label>Number of Hex</ion-label>
+                                <ion-range min="5" max="12" step="1" value="8" snaps color="primary">
+                                    <ion-label slot="start">5</ion-label>
+                                    <ion-label slot="end">12</ion-label>
+                                </ion-range>
+                            </ion-item>
+                        </ion-list>
+
+                        <ion-button slot="end" color="danger">Cancel</ion-button>
+
+                        <ion-button slot="end">Confirm</ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
 </ion-content>

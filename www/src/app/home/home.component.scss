@@ -8,19 +8,6 @@ q {
   quotes: "« " " »";
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: Verdana, sans-serif;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
 #helloworld {
   position: relative;
   background-color: #34495e;
