@@ -39,7 +39,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
         width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
         height: this.boardHeight, //this.platform.height(),        // window.innerHeight default: 600
         antialias: true,          // default: false
-        transparent: false,        // default: false
+        transparent: true,        // default: false
         resolution: 1,            // default: 1
         // resizeTo: parent
       });
