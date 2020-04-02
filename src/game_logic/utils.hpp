@@ -20,6 +20,15 @@ Position3D hex_axial_to_cube(const Position &position);
  * @return Position3D the resulting position
  */
 Position hex_cube_to_axial(const Position3D &position);
+
+/**
+ * @brief Converts a cube position in an offset system
+ * 
+ * @param position the position to be converted
+ * @return Position the position, in an offset fashion
+ */
+Position hex_cube_to_offset(const Position3D &position);
+
 } // namespace game
 
 #endif
