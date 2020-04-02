@@ -9,7 +9,7 @@ import { environment } from '@env/environment';
 import { Logger, I18nService, untilDestroyed } from '@app/core';
 
 const log = new Logger('App');
-let darkTheme = true;
+export let darkTheme = true;
 
 // Called when the app loads
 export function toggleDarkTheme(shouldAdd: boolean): void {
