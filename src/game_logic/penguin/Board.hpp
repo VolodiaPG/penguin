@@ -150,7 +150,7 @@ public:
 
     size_t size() const override { return _dimension; };
 
-    BoardCell *getCell(int line, int col) override;
+    BoardCell *getCell(int xx, int yy) override;
 
     std::vector<PenguinPlayer *> getPlayersOnBoard() override;
 
