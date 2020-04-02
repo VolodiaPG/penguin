@@ -5,6 +5,7 @@
 #include "../AbstractInterface.hpp"
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
+#include "PrintHex.hpp"
 
 namespace game
 {
