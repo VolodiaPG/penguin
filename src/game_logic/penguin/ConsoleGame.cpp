@@ -1,5 +1,4 @@
 #include "ConsoleGame.hpp"
-#include "../../dbg.h"
 
 namespace game
 {
@@ -16,6 +15,11 @@ ConsoleGame::~ConsoleGame()
 
 void ConsoleGame::draw()
 {
+    dbg(board.getCell(1,1)->getOwner());
+    board.getPlayerById(0)->setStandingOn(board.getCell(1,1));
+    board.getCell(1,1)->setOwner(*board.getPlayerById(0));
+    dbg(board.getCell(1,1)->getOwner());
+
     PrintHex print_hex(board.size());
     print_hex.print(board);
     

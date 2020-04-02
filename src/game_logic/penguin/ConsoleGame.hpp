@@ -7,6 +7,8 @@
 #include "Board.hpp"
 #include "PrintHex.hpp"
 
+#include "../../dbg.h"
+
 namespace game
 {
 namespace penguin
