@@ -1,5 +1,4 @@
 #include "Board.hpp"
-#include "../../dbg.h"
 
 namespace game
 {
@@ -147,12 +146,12 @@ int Board::checkStatus()
 
 std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
-    dbg(penguin_id);
+    // dbg(penguin_id);
     PenguinPlayer* penguin = getPlayerById(penguin_id);
-    dbg(penguin->getStandingOn());
+    // dbg(penguin->getStandingOn());
     Position penguin_current_pos = penguin->getStandingOn()->getPosition();
 
-    dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
+    // dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
 
     std::vector<BoardCell *> ret;
     
@@ -205,9 +204,9 @@ std::vector<BoardCell *> Board::getBoardCells()
     return ret;
 }
 
-BoardCell *Board::getCell(int line, int col)
+BoardCell *Board::getCell(int xx, int yy)
 {
-    const Position pos = Position{line, col};
+    const Position pos = Position{xx, yy};
     return boardValues.at(pos);
 }
 
