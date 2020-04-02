@@ -23,13 +23,12 @@ Board::Board(const size_t dimension, const int number_of_penguins)
 
     //TODO découpler la génération et le parcours de la structure elle même (pattern visiteur)
     int offset = 0;
-    for (int ii = 0; ii < (int)_dimension; ++ii) // ii for the rows
+    for (int yy = 0; yy < (int)_dimension; ++yy) // ii for the rows
     {
-        for (int jj = offset; jj < (int)_dimension + offset; ++jj) // jj for the cols
+        for (int xx = offset; xx < (int)_dimension + offset; ++xx) // jj for the cols
         {
-
-            // cols in x and rows in y
-            const Position pos = Position{jj, ii};
+            // rows in x and cols in y
+            const Position pos = Position{xx, yy};
 
             boardValues.insert_or_assign(pos,
                                          new BoardCell(pos,
@@ -37,7 +36,7 @@ Board::Board(const size_t dimension, const int number_of_penguins)
                                                        ));
         }
 
-        if (ii % 2 == 1)
+        if (yy % 2 == 1)
         {
             --offset;
         }
@@ -197,7 +196,7 @@ std::vector<BoardCell *> Board::getBoardCells()
 {
     std::vector<BoardCell *> ret;
 
-    for (const auto &entry : boardValues)
+    for (const auto &entry : boardValues) // iterate over the "map"
     {
         ret.push_back(entry.second);
     }
