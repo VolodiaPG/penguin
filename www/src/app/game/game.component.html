@@ -15,7 +15,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content fullscreen scroll-y="false">
 
     <ion-fab horizontal="end" vertical="top" slot="fixed">
         <ion-fab-button color="secondary">
@@ -37,53 +37,24 @@
         </ion-fab-list>
     </ion-fab>
 
-    <ion-grid>
+    <ion-grid class="ion-no-padding">
         <ion-row justify-content-center style="height: 100%">
-            <ion-col>
-                <ion-card text-center translucent>
+            <ion-col style="height: 100%"  size="auto">
+                <ion-card text-center translucent fixed size="auto">
                     <ion-card-header></ion-card-header>
                     <ion-card-content>
                         <app-board></app-board>
                     </ion-card-content>
                 </ion-card>
             </ion-col>
-            <ion-col>
-                <ion-card>
-                    <ion-card-header>
-                        <ion-title>
-                            <h2>Settings</h2>
-                        </ion-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        <ion-list>
-                            <ion-item>
-                                <ion-label>
-                                    <h2>Education</h2>
-                                </ion-label>
-                                <ion-toggle slot="end" color="primary" disabled="false"></ion-toggle>
-                            </ion-item>
+            <ion-col style="height: 100%">
+                <ion-row fixed>
+                    <app-control></app-control>
+                </ion-row>
+                <ion-row fixed>
+                    <app-console></app-console>
+                </ion-row>
 
-                            <ion-item lines="full">
-                                <ion-label>
-                                    <h2>Hard</h2>
-                                </ion-label>
-                                <ion-checkbox slot="end"></ion-checkbox>
-                            </ion-item>
-
-                            <ion-item>
-                                <ion-label>Number of Hex</ion-label>
-                                <ion-range min="5" max="12" step="1" value="8" snaps color="primary">
-                                    <ion-label slot="start">5</ion-label>
-                                    <ion-label slot="end">12</ion-label>
-                                </ion-range>
-                            </ion-item>
-                        </ion-list>
-
-                        <ion-button slot="end" color="danger">Cancel</ion-button>
-
-                        <ion-button slot="end">Confirm</ion-button>
-                    </ion-card-content>
-                </ion-card>
             </ion-col>
         </ion-row>
 

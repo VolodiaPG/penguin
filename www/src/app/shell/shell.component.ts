@@ -16,6 +16,8 @@ import { darkTheme, changeTheme } from '../app.component';
 export class ShellComponent implements OnInit {
   public isToggled: boolean;
 
+  maDate: string = new Date().toISOString();
+
   constructor(
     private router: Router,
     private translateService: TranslateService,

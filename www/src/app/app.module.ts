@@ -19,7 +19,11 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      rippleEffect: true,
+      backButtonText: 'Go Back',
+      mode: 'md'
+    }),
     CoreModule,
     SharedModule,
     ShellModule,

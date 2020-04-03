@@ -7,10 +7,11 @@ import { GameRoutingModule } from './game-routing.module';
 import { GameComponent } from './game.component';
 import { BoardComponent } from './board/board.component';
 import { ControlComponent } from './control/control.component';
+import { ConsoleComponent } from './console/console.component';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, IonicModule, GameRoutingModule],
   entryComponents: [GameComponent],
-  declarations: [GameComponent, BoardComponent, ControlComponent]
+  declarations: [GameComponent, BoardComponent, ControlComponent, ConsoleComponent]
 })
 export class GameModule {}
