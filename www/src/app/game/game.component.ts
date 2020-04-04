@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BoardComponent } from './board/board.component';
 
 @Component({
   selector: 'app-game',
@@ -7,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class GameComponent implements OnInit {
-  
+  @ViewChild(BoardComponent, {static: true}) 
+  private boardComponent: BoardComponent;
+
+  nbHexagonal: number = 8;
+  nbPenguin: number = 4;
+
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
 
+  nbHexagonalChanged(event: any) {
+    this.nbHexagonal = event.detail.value;
+    console.log("New nb of hexagonals : " + this.nbHexagonal);
+    this.boardComponent.reloadGameBoard(this.nbHexagonal, this.nbPenguin);
+  }
+
+  nbPenguinChanged(event: any) {
+    this.nbPenguin = event.detail.value;
+    console.log("New nb of penguins : " + this.nbPenguin);
+    this.boardComponent.reloadGameBoard(this.nbHexagonal, this.nbPenguin);
   }
 }

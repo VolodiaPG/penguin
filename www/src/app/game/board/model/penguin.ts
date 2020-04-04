@@ -2,7 +2,7 @@ import { Sprite, Loader } from 'pixi.js';
 
 import { Pos } from './pos';
 
-let loader:any = Loader.shared;
+let loader: any = Loader.shared
 
 export class Penguin {
     cellPosition: any;

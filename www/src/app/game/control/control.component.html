@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card class="control">
     <ion-card-header>
         <ion-title>
             <h2>Settings</h2>
@@ -27,9 +27,18 @@
                 </ion-segment>
             </ion-item>
             <ion-item>
-                <ion-range min="5" max="12" step="1" value="8" snaps color="primary" disabled>
-                    <ion-label slot="start">5</ion-label>
+                <ion-label>Number of Hexagonals : </ion-label>
+                <ion-range  min="6" max="12" step="1" snaps color="primary" value={{valueRangeHexagonal}} (ionChange)="newNumberHexagonal($event)"> 
+                    <ion-label slot="start">6</ion-label>
                     <ion-label slot="end">12</ion-label>
+                </ion-range>
+            </ion-item>
+            <ion-item>
+                <ion-label>Number of Penguins : </ion-label>
+                <!-- [(ngModel)]="valueRangePenguin" //  value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"-->
+                <ion-range  min="2" max="6" step="1" snaps color="primary" value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"> 
+                    <ion-label slot="start">2</ion-label>
+                    <ion-label slot="end">6</ion-label>
                 </ion-range>
             </ion-item>
         </ion-list>

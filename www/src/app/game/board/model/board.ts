@@ -8,6 +8,7 @@ import { TerrainType } from './terrainType';
  * 
  */
 
+//  import { loader } from '../controller/penguinGame';
 let loader: any = Loader.shared;
 
 export class Board {

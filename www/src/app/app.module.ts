@@ -12,6 +12,7 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ControlComponent } from './game/control/control.component';
 
 @NgModule({
   imports: [
