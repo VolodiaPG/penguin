@@ -1,11 +1,28 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 import { Platform, ToastController } from '@ionic/angular';
-import { Application, Loader, Sprite, utils } from 'pixi.js';
+import { Application, Loader, Sprite, utils, Graphics, filters } from 'pixi.js';
 
 import { Board } from './model/board';
 import { Penguin } from './model/penguin';
+import { filter } from 'rxjs/operators';
+
+export const PENGUINS_NUMBER: number = 4;
+export const HEXAGONALS_NUMBER: number = 8;
+
+export let pixiApp: Application;
 
 let loader: any = Loader.shared;
+
+
+export function setBlurFilter(enable: boolean) {
+  let blurFilter: filters.BlurFilter = new filters.BlurFilter();
+  if (enable) {
+    // Display blur filter
+    pixiApp.stage.filters = [blurFilter];
+  } else {
+    pixiApp.stage.filters = [];
+  }
+}
 
 @Component({
   selector: 'app-board',
@@ -16,11 +33,10 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
   // @ViewChild('imageCanvas', { static: false }) canvas: any;
   // canvasElement: any;
-  public board: Board;
-  public app: Application;
+  board: Board;
 
-  boardWidth: number = 8 * 90;
-  boardHeight: number = 8 * 90;
+  boardWidth: number = HEXAGONALS_NUMBER * 90;
+  boardHeight: number = HEXAGONALS_NUMBER * 90;
 
   constructor(public platform: Platform, private elementRef: ElementRef, private ngZone: NgZone) { }
 
@@ -34,7 +50,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {
-      this.app = new Application({
+      pixiApp = new Application({
         // view: this.canvas,
         width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
         height: this.boardHeight, //this.platform.height(),        // window.innerHeight default: 600
@@ -44,7 +60,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
         // resizeTo: parent
       });
 
-      if (loader.progress === 0) {
+      if (loader.progress === 0) { //already charged
         // Loader for the textures.
         loader.add("/assets/game/tileSnow_fish1.png")
           .add("/assets/game/tileSnow_fish2.png")
@@ -57,15 +73,6 @@ export class BoardComponent implements OnInit { // or AfterViewInit
           // The `load` method loads the queue of resources, and calls the passed in callback called once all
           // resources have loaded.
           .load((loader: any, resources: any) => {
-            // resources is an object where the key is the name of the resource loaded and the value is the resource object.
-            // They have a couple default properties:
-            // - `url`: The URL that the resource was loaded from
-            // - `error`: The error that happened when trying to load (if any)
-            // - `data`: The raw data that was loaded
-            // also may contain other properties based on the middleware that runs.
-            // sprites.bunny = new PIXI.TilingSprite(resources.bunny.texture);
-            // sprites.spaceship = new PIXI.TilingSprite(resources.spaceship.texture);
-            // sprites.scoreFont = new PIXI.TilingSprite(resources.scoreFont.texture);
             console.log(loader);
             this.setupPixiJs();
           });
@@ -81,14 +88,14 @@ export class BoardComponent implements OnInit { // or AfterViewInit
       // console.log(utils.TextureCache);
     });
 
-    // this.app.renderer.backgroundColor = 0x061639; //useless if transparent is true
-    // this.app.renderer.view.style.position = "absolute";
-    this.app.renderer.view.style.display = "block";
-    this.app.renderer.autoDensity = true;
+    // pixiApp.renderer.backgroundColor = 0x061639; //useless if transparent is true
+    // pixiApp.renderer.view.style.position = "absolute";
+    pixiApp.renderer.view.style.display = "block";
+    pixiApp.renderer.autoDensity = true;
 
     // Add the view to the DOM
     // document.body.appendChild(app.view);
-    this.elementRef.nativeElement.appendChild(this.app.view);
+    this.elementRef.nativeElement.appendChild(pixiApp.view);
   }
 
   ngOnDestroy(): void {
@@ -98,23 +105,17 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
   setupPixiJs(): void {
     console.log("All files loaded -> Setup pixi.js");
-    //Create the penguin sprite
-    // let penguin = new Sprite(this.loader.resources["/assets/penguin.png"].texture);
-    // penguin.scale.set(0.2);
-    // penguin.position.set(300, 200);
 
-    // let penguin = new Penguin({ x: 300, y: 200 });
-    //Add the penguin to the stage
-    // this.app.stage.addChild(penguin.sprite);
+    this.board = new Board(pixiApp, HEXAGONALS_NUMBER, PENGUINS_NUMBER);
 
-    this.board = new Board(this.app);
-
-    this.app.stage.width = this.board.mapWidth * this.board.hexWidth;
-    this.app.stage.height = this.board.mapHeight * this.board.hexHeight;
+    pixiApp.stage.width = this.board.mapWidth * this.board.hexWidth;
+    pixiApp.stage.height = this.board.mapHeight * this.board.hexHeight;
     // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
     // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
     this.board.generateRandomMap();
+
+    setBlurFilter(true);
 
     // // console.log("Ordre du tableau : ");
     // // for(var r = 0; r < board.cells.length ; r+=1) {
@@ -128,12 +129,8 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     // this.penguin = new Penguin(this.board, loader, board.cells[2][2]);
     // // penguin2 = new Penguin(board, loader, board.cells[5][5]);
 
-    // this.app.stage.addChild(penguin.sprite);
+    // pixiApp.stage.addChild(penguin.sprite);
     // // board.pixiApp.stage.addChild(penguin2.sprite);
-  }
-
-  public getPixiApplication(): Application {
-    return this.app;
   }
 
   handleLoadStart(): void {

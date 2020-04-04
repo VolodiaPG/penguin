@@ -1,5 +1,5 @@
-<ion-split-pane>
-  <ion-menu>
+<ion-split-pane when="(min-width: 2000px)">
+  <ion-menu type="overlay" drag-content="true" class="app-menu">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-buttons *ngIf="isWeb" slot="end">
@@ -12,6 +12,7 @@
         <ion-title>{{ 'APP_NAME' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
+
     <ion-content>
       <div ion-fixed>
         <ion-list>

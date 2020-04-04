@@ -19,6 +19,8 @@ export class Board {
     // The map's number of cells high (cell row count).
     mapHeight: number = 8;      // 8
 
+    nbPenguin: number = 4;
+
     // The pixel width of a hex.
     hexWidth: number = 90;       // 90
     // The pixel height of a hex.
@@ -66,8 +68,13 @@ export class Board {
     hexAxis: Pos = { x: 0, y: 0 };
     hexDrawAxis: Pos = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };
 
-    constructor(private app: Application) {
+    constructor(private app: Application, size: number, nbPawn: number) {
         this.pixiApp = app;
+
+        this.mapHeight = size;
+        this.mapWidth = size;
+
+        this.nbPenguin = nbPawn;
 
         this.cells = new Array(this.mapHeight);
 

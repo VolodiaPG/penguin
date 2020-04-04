@@ -15,7 +15,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen scroll-y="false">
+<ion-content fullscreen>
 
     <ion-fab horizontal="end" vertical="top" slot="fixed">
         <ion-fab-button color="secondary">
@@ -39,6 +39,9 @@
 
     <ion-grid class="ion-no-padding">
         <ion-row justify-content-center style="height: 100%">
+            <ion-col style="height: 100%">
+                <app-console></app-console>
+            </ion-col>
             <ion-col style="height: 100%"  size="auto">
                 <ion-card text-center translucent fixed size="auto">
                     <ion-card-header></ion-card-header>
@@ -48,13 +51,7 @@
                 </ion-card>
             </ion-col>
             <ion-col style="height: 100%">
-                <ion-row fixed>
                     <app-control></app-control>
-                </ion-row>
-                <ion-row fixed>
-                    <app-console></app-console>
-                </ion-row>
-
             </ion-col>
         </ion-row>
 

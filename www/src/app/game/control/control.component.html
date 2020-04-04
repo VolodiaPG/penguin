@@ -18,16 +18,16 @@
                 <ion-segment value="normal">
                     <ion-segment-button value="normal">
                         <ion-label>Normal</ion-label>
-                        <ion-icon name="call"></ion-icon>
+                        <ion-icon name="heart"></ion-icon>
                     </ion-segment-button>
                     <ion-segment-button value="hard">
                         <ion-label>Hard</ion-label>
-                        <ion-icon name="heart"></ion-icon>
+                        <ion-icon src="/assets/icon/skull.svg"></ion-icon>
                     </ion-segment-button>
                 </ion-segment>
             </ion-item>
             <ion-item>
-                <ion-range min="5" max="12" step="1" value="8" snaps color="primary">
+                <ion-range min="5" max="12" step="1" value="8" snaps color="primary" disabled>
                     <ion-label slot="start">5</ion-label>
                     <ion-label slot="end">12</ion-label>
                 </ion-range>
@@ -36,6 +36,6 @@
 
         <ion-button slot="end" color="danger">Cancel</ion-button>
 
-        <ion-button slot="end" translate>Start</ion-button>
+        <ion-button slot="end" (click)="startGame()" translate>Start</ion-button>
     </ion-card-content>
 </ion-card>
