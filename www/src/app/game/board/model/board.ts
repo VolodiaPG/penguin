@@ -52,7 +52,8 @@ export class Board {
         { name: "fish3", tileIndex: 2, color: 0xe2e2fa, isEmpty: false },
         { name: "fish1_Selected", tileIndex: 3, color: 0x808080, isEmpty: false },
         { name: "fish2_Selected", tileIndex: 4, color: 0xe2e2fa, isEmpty: false },
-        { name: "fish3_Selected", tileIndex: 5, color: 0xe2e2fa, isEmpty: false }
+        { name: "fish3_Selected", tileIndex: 5, color: 0xe2e2fa, isEmpty: false },
+        { name: "neutral", tileIndex: 6, color: 0xe2e2fa, isEmpty: false }
     ];
 
     // Array of textures. Can be referenced by index in terrainType.
@@ -62,7 +63,8 @@ export class Board {
         "/assets/game/tileSnow_fish3.png",
         "/assets/game/tileWater_fish1.png",
         "/assets/game/tileWater_fish2.png",
-        "/assets/game/tileWater_fish3.png"
+        "/assets/game/tileWater_fish3.png",
+        "/assets/game/tileSnow_big.png"
     ];
 
     cells: Array<Array<Cell>>;
@@ -284,34 +286,7 @@ export class Board {
 
     generateMap() {
         console.log("Generate Map");
-        var column, cell;
-        for (var row = 0; row < this.mapHeight; row++) {
-            if ((row % 2) == 0) {
-                for (column = 0; column < this.mapWidth - 1; column += 1) {
-                    cell = new Cell(row, column, 1);
-                    this.cells[cell.row].push(cell);
-                }
-            } else {
-                for (column = 0; column < this.mapWidth; column += 1) {
-                    cell = new Cell(row, column, 2);
-                    this.cells[cell.row].push(cell);
-                }
-            }
-        }
-
-        // console.log("Ordre du tableau : ");
-        // for(var r = 0; r < this.cells.length ; r+=1) {
-        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
-        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
-        //     }
-        // }
-
-        this.createSceneGraph();
-    };
-
-    generateRandomMap() {
-        console.log("Generate Random Map");
-        let column: number, rnd: number, cell: Cell;
+        let column: number, cell: Cell;
         for (var row = 0; row < this.mapHeight; row++) {
 
             if ((row % 2) == 0) {
@@ -321,9 +296,28 @@ export class Board {
             }
 
             for (column = 0; column < this.cells[row].length; column++) {
-                rnd = Math.floor(1 + (Math.random() * 3));
-                cell = new Cell(row, column, rnd);
+                cell = new Cell(row, column, 7);
                 this.cells[row][column] = cell;
+            }
+        }
+
+        // console.log("Ordre du tableau : ");
+        // for(var r = 0; r < this.cells.length ; r+=1) {
+        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
+        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
+        //     }
+        // }
+
+        this.createSceneGraph();
+    };
+
+    setRandomCells() {
+        console.log("Set Random Cells");
+        let column: number, rnd: number, cell: Cell;
+        for (var row = 0; row < this.mapHeight; row++) {
+            for (column = 0; column < this.cells[row].length; column++) {
+                rnd = Math.floor(1 + (Math.random() * 3));
+                this.setCellTerrainType(this.cells[row][column], rnd);
             }
         }
         // console.log("Ordre du tableau : ");
@@ -336,67 +330,67 @@ export class Board {
         this.createSceneGraph();
     };
 
-setCellTerrainType(cell: Cell, terrainIndex: number) {
-    cell.terrainIndex = terrainIndex;
-    this.createSceneGraph();
-}
-
-setCellSelectedTexture(cell: Cell, select: boolean, alpha: number) {
-    if (select && cell.terrainIndex <= 3) {
-        cell.terrainIndex += 3;
-    } else if (!select && cell.terrainIndex > 3) {
-        cell.terrainIndex -= 3;
-    } else {
-
+    setCellTerrainType(cell: Cell, terrainIndex: number) {
+        cell.terrainIndex = terrainIndex;
+        this.createSceneGraph();
     }
 
-    cell.alpha = alpha;
+    setCellSelectedTexture(cell: Cell, select: boolean, alpha: number) {
+        if (select && cell.terrainIndex <= 3) {
+            cell.terrainIndex += 3;
+        } else if (!select && cell.terrainIndex > 3) {
+            cell.terrainIndex -= 3;
+        } else {
 
-    this.createSceneGraph();
-}
+        }
 
-setDiagoSelectedTexture(cell: Cell, select: boolean, alpha: number) {
-    //diago droite
-    var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
+        cell.alpha = alpha;
 
-    //ligne
-    var cellZ = cell.row;
+        this.createSceneGraph();
+    }
 
-    //diago gauche
-    var cellY = - cellX - cellZ;
+    setDiagoSelectedTexture(cell: Cell, select: boolean, alpha: number) {
+        //diago droite
+        var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
 
-    for (var r = 0; r < this.cells.length; r += 1) {
-        for (var c = 0; c < this.cells[r].length; c += 1) {
-            var tempX = this.cells[r][c].column - (this.cells[r][c].row + (this.cells[r][c].row & 1)) / 2;
-            var tempZ = this.cells[r][c].row;
-            var tempY = - tempX - tempZ;
+        //ligne
+        var cellZ = cell.row;
 
-            if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)) {
-                this.setCellSelectedTexture(this.cells[r][c], select, alpha); // cell, Selected, alpha
+        //diago gauche
+        var cellY = - cellX - cellZ;
+
+        for (var r = 0; r < this.cells.length; r += 1) {
+            for (var c = 0; c < this.cells[r].length; c += 1) {
+                var tempX = this.cells[r][c].column - (this.cells[r][c].row + (this.cells[r][c].row & 1)) / 2;
+                var tempZ = this.cells[r][c].row;
+                var tempY = - tempX - tempZ;
+
+                if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)) {
+                    this.setCellSelectedTexture(this.cells[r][c], select, alpha); // cell, Selected, alpha
+                }
+
             }
-
         }
+
     }
 
-}
+    createSceneGraph() {
+        let cell: Cell,
+            columnCells: Array<Cell>,
+            rowIndex: number = 0,
+            colIndex: number = 0;
 
-createSceneGraph() {
-    let cell: Cell,
-        columnCells: Array<Cell>,
-        rowIndex: number = 0,
-        colIndex: number = 0;
+        this.clearHexes();
 
-    this.clearHexes();
-
-    while (rowIndex < this.cells.length) {
-        columnCells = this.cells[rowIndex];
-        colIndex = 0;
-        while (colIndex < columnCells.length) {
-            cell = columnCells[colIndex];
-            this.hexes.addChild(this.createCell(cell)); // Choice of type of cell
-            colIndex++;
+        while (rowIndex < this.cells.length) {
+            columnCells = this.cells[rowIndex];
+            colIndex = 0;
+            while (colIndex < columnCells.length) {
+                cell = columnCells[colIndex];
+                this.hexes.addChild(this.createCell(cell)); // Choice of type of cell
+                colIndex++;
+            }
+            rowIndex++;
         }
-        rowIndex++;
-    }
-};
+    };
 }

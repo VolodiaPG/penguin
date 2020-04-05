@@ -53,4 +53,8 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     // document.body.appendChild(app.view);
     this.elementRef.nativeElement.appendChild(penguinGame.pixiApp.view);
   }
+
+  launchGame() {
+    penguinGame.board.setRandomCells();
+  }
 }

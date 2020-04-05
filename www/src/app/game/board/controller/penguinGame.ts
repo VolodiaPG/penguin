@@ -47,7 +47,8 @@ export class PenguinGame {
   initLoader() {
     if (loader.progress === 0) { //already charged
       // Loader for the textures.
-      loader.add("/assets/game/tileSnow_fish1.png")
+      loader.add("/assets/game/tileSnow_big.png")
+        .add("/assets/game/tileSnow_fish1.png")
         .add("/assets/game/tileSnow_fish2.png")
         .add("/assets/game/tileSnow_fish3.png")
         .add("/assets/game/tileWater_fish1.png")
@@ -83,7 +84,7 @@ export class PenguinGame {
     // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
     // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
-    this.board.generateRandomMap();
+    this.board.generateMap();
 
     // // console.log("Ordre du tableau : ");
     // // for(var r = 0; r < board.cells.length ; r+=1) {

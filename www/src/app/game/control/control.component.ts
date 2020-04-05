@@ -1,4 +1,5 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
 
 import { penguinGame } from '../board/board.component';
 
@@ -18,14 +19,14 @@ export class ControlComponent implements OnInit {
   nbHexagonal: number;
   valueRangeHexagonal: number = 8;
 
-  constructor() { }
+  constructor(private alertController: AlertController, private toastController: ToastController) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   startGame():void {
     penguinGame.setBlurFilter(false);
+    penguinGame.board.setRandomCells();
+    this.presentToast();
   }
 
   newNumberPenguin(event:any) {
@@ -34,5 +35,38 @@ export class ControlComponent implements OnInit {
 
   newNumberHexagonal(event:any) {
     this.nbHexagonalChanged.emit(event);
+  }
+
+  async presentConfirm() {
+    let alert = await this.alertController.create({
+      // title: 'Confirm purchase',
+      message: 'Do you want to start this game ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Confirm clicked');
+            this.startGame();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "Let's go !!! ",
+      position: 'top',
+      duration: 3000,
+    });
+    toast.present();
   }
 }
