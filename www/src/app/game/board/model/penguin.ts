@@ -8,9 +8,11 @@ export class Penguin {
     cellPosition: any;
     center: Pos;
     sprite: any;
+    playerPenguin: boolean;
 
-    constructor(center: Pos) {
+    constructor(center: Pos, playerPenguin: boolean) {
         this.center = center;
+        this.playerPenguin = playerPenguin;
         // loader.add("/assets/penguin.png")
         this.sprite = new Sprite(loader.resources["/assets/penguin.png"].texture);
         // center the penguins's anchor point

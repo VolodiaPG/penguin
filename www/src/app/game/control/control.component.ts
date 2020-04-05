@@ -24,7 +24,6 @@ export class ControlComponent implements OnInit {
   ngOnInit(): void { }
 
   startGame():void {
-    penguinGame.setBlurFilter(false);
     penguinGame.board.setRandomCells();
     this.presentToast();
   }
@@ -64,7 +63,7 @@ export class ControlComponent implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: "Let's go !!! ",
-      position: 'top',
+      position: 'bottom',
       duration: 3000,
     });
     toast.present();

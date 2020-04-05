@@ -14,8 +14,6 @@ export class BoardComponent implements OnInit { // or AfterViewInit
   // @ViewChild('imageCanvas', { static: false }) canvas: any;
   // canvasElement: any;
 
-  nbPenguin: number;
-
   constructor(private elementRef: ElementRef, private ngZone: NgZone) { }
 
   // ngAfterViewInit() {
@@ -27,7 +25,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
   // }
 
   ngOnInit(): void {
-    this.setUpGameBoard(8,4);
+    this.setUpGameBoard(8, 4);
   }
 
   ngOnDestroy(): void {
@@ -35,7 +33,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     // loader.destroy();
   }
 
-  setUpGameBoard(nbHex:number, nbPeng:number) {
+  setUpGameBoard(nbHex: number, nbPeng: number) {
     this.ngZone.runOutsideAngular(() => {
       penguinGame = new PenguinGame(nbHex, nbPeng);
     });
@@ -44,7 +42,23 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     this.elementRef.nativeElement.appendChild(penguinGame.pixiApp.view);
   }
 
-  reloadGameBoard(nbHex:number, nbPeng:number) {
+  addHexagonal(): void {
+    penguinGame.addHexagonal();
+  }
+
+  removeHexagonal(): void {
+    penguinGame.removeHexagonal();
+  }
+
+  // addPenguin(): void {
+  //   penguinGame.addPenguin();
+  // }
+
+  // removePenguin(): void {
+  //   penguinGame.removePenguin();
+  // }
+
+  reloadGameBoard(nbHex: number, nbPeng: number) {
     this.elementRef.nativeElement.removeChild(penguinGame.pixiApp.view);
     this.ngZone.runOutsideAngular(() => {
       penguinGame = new PenguinGame(nbHex, nbPeng);

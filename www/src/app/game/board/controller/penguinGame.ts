@@ -2,6 +2,7 @@ import { Application, Loader, Sprite, utils, Graphics, filters } from 'pixi.js';
 
 import { Board } from '../model/board';
 import { Penguin } from '../model/penguin';
+import { ViewChild } from '@angular/core';
 
 
 let loader: any = Loader.shared;
@@ -13,18 +14,16 @@ export class PenguinGame {
   boardWidth: number;
   boardHeight: number;
 
-  nbPenguins: number;
-  nbHexagonals: number;
+  nbPenguin: number;
+  nbHexagonal: number;
 
-  constructor(nbHexagonals: number, nbPenguins: number) {
-    this.nbHexagonals = nbHexagonals;
-    this.nbPenguins = nbPenguins;
-    this.boardWidth = nbHexagonals * 90;
-    this.boardHeight = nbHexagonals * 90;
+  constructor(nbHexagonal: number, nbPenguin: number) {
+    this.nbHexagonal = nbHexagonal;
+    this.nbPenguin = nbPenguin;
+    this.boardWidth = nbHexagonal * 90;
+    this.boardHeight = nbHexagonal * 90;
     this.initPixiApp();
     this.initLoader();
-    // this.setupPixiJs();
-    this.setBlurFilter(true);
   }
 
   initPixiApp() {
@@ -35,13 +34,14 @@ export class PenguinGame {
       antialias: true,          // default: false
       transparent: true,        // default: false
       resolution: 1,            // default: 1
-      // resizeTo: parent
     });
 
     // this.pixiApp.renderer.backgroundColor = 0x061639; //useless if transparent is true
     // this.pixiApp.renderer.view.style.position = "absolute";
     this.pixiApp.renderer.view.style.display = "block";
     this.pixiApp.renderer.autoDensity = true;
+    
+    this.pixiApp.resizeTo = this.pixiApp.renderer.view;
   }
 
   initLoader() {
@@ -77,14 +77,20 @@ export class PenguinGame {
   setupPixiJs(): void {
     console.log("All files loaded -> Setup pixi.js");
 
-    this.board = new Board(this.pixiApp, this.nbHexagonals, this.nbPenguins);
+    this.board = new Board(this.pixiApp, this.nbHexagonal, this.nbPenguin);
 
-    this.pixiApp.stage.width = this.board.mapWidth * this.board.hexWidth;
-    this.pixiApp.stage.height = this.board.mapHeight * this.board.hexHeight;
+    // this.pixiApp.stage.width = this.board.mapWidth * this.board.hexWidth;
+    // this.pixiApp.stage.height = this.board.mapHeight * this.board.hexHeight;
+    this.pixiApp.renderer.view.width = this.board.mapWidth * this.board.hexWidth;
+    this.pixiApp.renderer.view.height = this.board.mapHeight * this.board.hexHeight;
+    this.pixiApp.renderer.view.style.width = this.boardWidth.toString() + 'px';
+    this.pixiApp.renderer.view.style.height = this.boardHeight.toString() + 'px';
     // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
     // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
     this.board.generateMap();
+
+    this.pixiApp.resize();
 
     // // console.log("Ordre du tableau : ");
     // // for(var r = 0; r < board.cells.length ; r+=1) {
@@ -102,16 +108,44 @@ export class PenguinGame {
     // // board.pixiApp.stage.addChild(penguin2.sprite);
   }
 
-  setBlurFilter(enable: boolean) {
-    let blurFilter: filters.BlurFilter = new filters.BlurFilter();
-    if (enable) {
-      // Display blur filter
-      this.pixiApp.stage.filters = [blurFilter];
-    } else {
-      this.pixiApp.stage.filters = [];
-    }
+  addHexagonal(): void {
+    this.nbHexagonal++;
+    this.updatePixiAppSize();
+
+    this.board.addHexagonal();
   }
 
+  removeHexagonal(): void {
+    this.nbHexagonal--;
+    this.updatePixiAppSize();
+
+    this.board.removeHexagonal();
+  }
+
+  // addPenguin(): void {
+  //   this.nbPenguin++;
+  //   this.updatePixiAppSize();
+
+  //   this.board.addPenguin();
+  // }
+
+  // removePenguin(): void {
+  //   this.nbPenguin--;
+  //   this.updatePixiAppSize();
+
+  //   this.board.removePenguin();
+  // }
+
+  updatePixiAppSize(): void {
+    this.boardWidth = this.nbHexagonal * 90;
+    this.boardHeight = this.nbHexagonal * 90;
+    this.pixiApp.renderer.view.width = this.boardWidth;
+    this.pixiApp.renderer.view.height = this.boardHeight;
+    this.pixiApp.renderer.view.style.width = this.boardWidth.toString() + 'px';
+    this.pixiApp.renderer.view.style.height = this.boardHeight.toString() + 'px';
+
+    this.pixiApp.resize();
+  }
 }
 
 function handleLoadStart(): void {
