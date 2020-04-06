@@ -1,11 +1,12 @@
 import { Sprite, Loader, filters } from 'pixi.js';
 
 import { Pos } from './pos';
+import { Cell }  from './cell';
 
 let loader: any = Loader.shared
 
 export class Penguin {
-    cellPosition: any;
+    cellPosition: Cell = null;
     center: Pos;
     sprite: any;
     playerPenguin: boolean;
@@ -24,15 +25,35 @@ export class Penguin {
 
         this.sprite.position.set(this.center.x, this.center.y);
 
-        let colorMatrix = new filters.ColorMatrixFilter();
-        this.sprite.filters = [colorMatrix];
-        colorMatrix.contrast(3, false);
+        this.sprite.filters = [];
+
+        let contrastMatrix = new filters.ColorMatrixFilter();
+        contrastMatrix.contrast(3, false);
+        this.sprite.filters.push(contrastMatrix);
 
         if (playerPenguin) {
-            
-        } else {
+            let colorMatrix = new filters.ColorMatrixFilter();
+            colorMatrix.sepia(false);
+            this.sprite.filters.push(colorMatrix);
 
+        } else {
+            let colorMatrix1 = new filters.ColorMatrixFilter();
+            let colorMatrix2 = new filters.ColorMatrixFilter();
+            colorMatrix1.night(0.3, false);
+            colorMatrix2.toBGR(false);
+            this.sprite.filters.push(colorMatrix1);
+            this.sprite.filters.push(colorMatrix2);
         }
+    }
+
+    moveTo(newCell: Cell) {
+        if (this.cellPosition !== null) {
+            this.cellPosition.hasPenguin = false;
+        }
+        this.cellPosition = newCell;
+        this.cellPosition.hasPenguin = true;
+        this.center = newCell.getCellCenter();
+        this.sprite.position.set(this.center.x, this.center.y);
     }
 
 

@@ -28,7 +28,8 @@ export class Board {
     nbPenguin: number = 4;
 
     cells: Array<Array<Cell>>;
-    penguins: Array<Penguin>;
+    penguinsAllies: Array<Penguin>;
+    penguinsEnemis: Array<Penguin>;
 
     constructor(private app: Application, size: number, nbPawn: number) {
         this.pixiApp = app;
@@ -37,8 +38,9 @@ export class Board {
         this.mapWidth = size;
 
         this.nbPenguin = nbPawn;
-        this.penguins = new Array(this.nbPenguin*2);
-        console.log("Lg penguins : "+ this.penguins.length);
+        this.penguinsAllies = new Array(this.nbPenguin);
+        this.penguinsEnemis = new Array(this.nbPenguin);
+        console.log("Lg penguins : "+ this.penguinsAllies.length);
 
         this.cells = new Array(this.mapHeight);
 
@@ -95,12 +97,22 @@ export class Board {
     }
 
     addPenguin(): void {
-        this.nbPenguin++;
+        this.penguinsAllies.push(new Penguin(this.cells[2][this.nbPenguin].getCellCenter(), true));
+        this.pixiApp.stage.addChild(this.penguinsAllies[this.nbPenguin].sprite);
 
-        this.penguins.push(new Penguin(this.cells[2][(this.nbPenguin - 1)* 2].getCellCenter(), true));
-        this.pixiApp.stage.addChild(this.penguins[(this.nbPenguin-1)*2].sprite);
-        this.penguins.push(new Penguin(this.cells[2][this.nbPenguin* 2 - 1].getCellCenter(), false));
-        this.pixiApp.stage.addChild(this.penguins[this.nbPenguin*2 - 1].sprite);
+        this.penguinsEnemis.push(new Penguin(this.cells[4][this.nbPenguin].getCellCenter(), false));
+        this.pixiApp.stage.addChild(this.penguinsEnemis[this.nbPenguin].sprite);
+
+        this.nbPenguin++;
+    }
+
+    removePenguin(): void {
+        this.pixiApp.stage.removeChild(this.penguinsAllies[this.nbPenguin - 1].sprite);
+        this.penguinsAllies.pop();
+
+        this.pixiApp.stage.removeChild(this.penguinsEnemis[this.nbPenguin - 1].sprite);
+        this.penguinsEnemis.pop();
+        this.nbPenguin--;
     }
 
     /***************************************************************************************************************************
@@ -135,13 +147,12 @@ export class Board {
     };
 
     generatePreviewPenguin() {
-        for(let pg = 0; pg < this.penguins.length; pg++) {
-            if((pg % 2) == 0) {
-                this.penguins[pg] = new Penguin(this.cells[2][pg].getCellCenter(), true);
-            } else {
-                this.penguins[pg] = new Penguin(this.cells[4][this.penguins.length - pg - 1].getCellCenter(), false);
-            }
-            this.pixiApp.stage.addChild(this.penguins[pg].sprite);
+        for(let pg = 0; pg < this.penguinsAllies.length; pg++) {
+                this.penguinsAllies[pg] = new Penguin(this.cells[2][pg].getCellCenter(), true);
+                this.penguinsEnemis[pg] = new Penguin(this.cells[4][pg].getCellCenter(), false);
+            
+            this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
+            this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
         }
     }
 
@@ -164,6 +175,31 @@ export class Board {
 
         this.loadSceneGraph();
     };
+
+    setRandomPenguins() {
+        console.log("Set Random Penguins Positions");
+        let rndRow: number, rndColumn: number;
+
+        for (let pg = 0; pg < this.penguinsAllies.length; pg++) {
+            while(this.penguinsAllies[pg].cellPosition === null) {
+                rndRow = Math.floor(0 + Math.random() * (this.cells.length));
+                rndColumn = Math.floor(0 + Math.random() * (this.cells[rndRow].length));
+                if (!this.cells[rndRow][rndColumn].hasPenguin) {
+                    this.penguinsAllies[pg].moveTo(this.cells[rndRow][rndColumn]);
+                }
+            }
+        }
+
+        for (let pg = 0; pg < this.penguinsEnemis.length; pg++) {
+            while(this.penguinsEnemis[pg].cellPosition === null) {
+                rndRow = Math.floor(0 + Math.random() * (this.cells.length));
+                rndColumn = Math.floor(0 + Math.random() * (this.cells[rndRow].length));
+                if (!this.cells[rndRow][rndColumn].hasPenguin) {
+                    this.penguinsEnemis[pg].moveTo(this.cells[rndRow][rndColumn]);
+                }
+            }
+        }
+    }
 
 
     setDiagoSelectedTexture(cell: Cell, select: boolean, alpha: number) {

@@ -31,7 +31,9 @@ export class Cell {
 
         isEmpty: boolean;
         isOver: boolean;
-        alpha: number = 1;
+        alpha: number = 0.8;
+
+        hasPenguin: boolean;
 
         // The pixel width of a hex.
         hexWidth: number = 90;       // 90
@@ -84,6 +86,7 @@ export class Cell {
         constructor(row: number, column: number, terrainIndex: number) {
                 this.row = row;
                 this.column = column;
+                this.hasPenguin = false;
                 if (terrainIndex === -1) {
                         this.isEmpty = true;
                 } else {
@@ -153,13 +156,13 @@ export class Cell {
 
                 if (hasOutline === false) {
                         // If this is for masking then we don't need the line itself. Just the poly filled.
-                        graphics.lineStyle(0, 0, 1);
+                        graphics.lineStyle(0, 0, this.alpha);
                 } else {
-                        graphics.lineStyle(this.hexLineWidth, color, 1);
+                        graphics.lineStyle(this.hexLineWidth, color, this.alpha);
                 }
 
                 if (hasFill !== false) {
-                        graphics.beginFill(color, 1);
+                        graphics.beginFill(color, this.alpha);
                 }
 
                 graphics.moveTo(this.poly.points[i], this.poly.points[i + 1]);

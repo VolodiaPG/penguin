@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
     if ((this.nbPenguin - event.detail.value) < 0) {
       this.boardComponent.addPenguin();
     } else {
-      // this.boardComponent.removePenguin();
+      this.boardComponent.removePenguin();
     }
     this.nbPenguin = event.detail.value;
     console.log("New nb of penguins : " + this.nbPenguin);
