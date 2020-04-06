@@ -1,4 +1,4 @@
-EMSCRIPTEN_FASTCOMP ?= /home/develop/emsdk/fastcomp/emscripten
+EMSCRIPTEN_FASTCOMP ?= /emsdk/fastcomp/emscripten
 
 # default environement
 
