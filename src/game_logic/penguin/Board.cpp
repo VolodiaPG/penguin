@@ -4,7 +4,7 @@ namespace game
 {
 namespace penguin
 {
-Board::Board(const size_t dimension, const int number_of_penguins)
+Board::Board(const size_t dimension, const size_t number_of_penguins)
     : AbstractBoard(),
       _dimension(dimension)
 {

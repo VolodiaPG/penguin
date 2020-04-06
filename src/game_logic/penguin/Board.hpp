@@ -109,7 +109,7 @@ public:
      * @param dimension the board dimensions
      * @param number_of_penguins_per_team the number of penguins available in 1 team
      */
-    Board(const size_t dimension, const int number_of_penguins_per_team);
+    Board(const size_t dimension, const size_t number_of_penguins_per_team);
 
     /**
      * @brief Destroy the Board object
