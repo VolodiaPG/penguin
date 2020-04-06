@@ -242,21 +242,21 @@ export class Cell {
         };
 
         // Calculate the center of a cell based on column, row and coordinate system.
-        getCellCenter(column: number, row: number) {
+        getCellCenter() {
                 let incX: number = this.hexWidth,
                         incY: number = this.hexHeight,
                         center: Pos = { x: 0, y: 0 };
                 // incX = 0.75 * this.hexWidth;
                 incY = 0.75 * this.hexHeight;
 
-                center.y = (row * incY) + (this.hexHeight / 2);
+                center.y = (this.row * incY) + (this.hexHeight / 2);
 
-                if (row % 2) {
+                if (this.row % 2) {
                         // even
-                        center.x = (column * incX) + (this.hexWidth / 2);
+                        center.x = (this.column * incX) + (this.hexWidth / 2);
                 } else {
                         // odd
-                        center.x = (column * incX) + this.hexWidth;
+                        center.x = (this.column * incX) + this.hexWidth;
                 }
 
                 return center;
@@ -264,7 +264,7 @@ export class Cell {
 
         // Takes a cell and creates all the graphics to display it.
         createCell(): Container {
-                this.center = this.getCellCenter(this.column, this.row);
+                this.center = this.getCellCenter();
 
                 // Generate poly first then use poly to draw hex and create masks and all that.
                 this.poly = this.createHexPoly(this.hexDrawAxis);

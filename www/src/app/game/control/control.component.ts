@@ -13,6 +13,8 @@ export class ControlComponent implements OnInit {
   @Output() nbPenguinChanged = new EventEmitter<any>();
   @Output() nbHexagonalChanged = new EventEmitter<any>();
 
+  gameStarted: boolean;
+
   nbPenguin: number;
   valueRangePenguin: number = 4;
 
@@ -21,9 +23,12 @@ export class ControlComponent implements OnInit {
 
   constructor(private alertController: AlertController, private toastController: ToastController) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.gameStarted = false;
+  }
 
   startGame():void {
+    this.gameStarted = true;
     penguinGame.board.setRandomCells();
     this.presentToast();
   }

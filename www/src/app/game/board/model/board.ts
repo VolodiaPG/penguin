@@ -27,7 +27,6 @@ export class Board {
 
     nbPenguin: number = 4;
 
-
     cells: Array<Array<Cell>>;
     penguins: Array<Penguin>;
 
@@ -38,6 +37,8 @@ export class Board {
         this.mapWidth = size;
 
         this.nbPenguin = nbPawn;
+        this.penguins = new Array(this.nbPenguin*2);
+        console.log("Lg penguins : "+ this.penguins.length);
 
         this.cells = new Array(this.mapHeight);
 
@@ -93,6 +94,15 @@ export class Board {
         this.pixiApp.resize();
     }
 
+    addPenguin(): void {
+        this.nbPenguin++;
+
+        this.penguins.push(new Penguin(this.cells[2][(this.nbPenguin - 1)* 2].getCellCenter(), true));
+        this.pixiApp.stage.addChild(this.penguins[(this.nbPenguin-1)*2].sprite);
+        this.penguins.push(new Penguin(this.cells[2][this.nbPenguin* 2 - 1].getCellCenter(), false));
+        this.pixiApp.stage.addChild(this.penguins[this.nbPenguin*2 - 1].sprite);
+    }
+
     /***************************************************************************************************************************
     ************************************* MAP/TEXTURES *************************************************************************
     ***************************************************************************************************************************/
@@ -124,9 +134,16 @@ export class Board {
         this.loadSceneGraph();
     };
 
-    // generatePreviewPenguin() {
-    //     for(let pg = 0; )
-    // }
+    generatePreviewPenguin() {
+        for(let pg = 0; pg < this.penguins.length; pg++) {
+            if((pg % 2) == 0) {
+                this.penguins[pg] = new Penguin(this.cells[2][pg].getCellCenter(), true);
+            } else {
+                this.penguins[pg] = new Penguin(this.cells[4][this.penguins.length - pg - 1].getCellCenter(), false);
+            }
+            this.pixiApp.stage.addChild(this.penguins[pg].sprite);
+        }
+    }
 
     setRandomCells() {
         console.log("Set Random Cells");

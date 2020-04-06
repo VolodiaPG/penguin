@@ -25,7 +25,7 @@ export class BoardComponent implements OnInit { // or AfterViewInit
   // }
 
   ngOnInit(): void {
-    this.setUpGameBoard(8, 4);
+    this.setUpGameBoard(8, 4); //default : 8 hexagonals, 4 penguins
   }
 
   ngOnDestroy(): void {
@@ -50,13 +50,13 @@ export class BoardComponent implements OnInit { // or AfterViewInit
     penguinGame.removeHexagonal();
   }
 
-  // addPenguin(): void {
-  //   penguinGame.addPenguin();
-  // }
+  addPenguin(): void {
+    penguinGame.addPenguin();
+  }
 
-  // removePenguin(): void {
-  //   penguinGame.removePenguin();
-  // }
+  removePenguin(): void {
+    penguinGame.removePenguin();
+  }
 
   reloadGameBoard(nbHex: number, nbPeng: number) {
     this.elementRef.nativeElement.removeChild(penguinGame.pixiApp.view);

@@ -89,6 +89,7 @@ export class PenguinGame {
     // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
     this.board.generateMap();
+    this.board.generatePreviewPenguin();
 
     this.pixiApp.resize();
 
@@ -122,19 +123,19 @@ export class PenguinGame {
     this.board.removeHexagonal();
   }
 
-  // addPenguin(): void {
-  //   this.nbPenguin++;
-  //   this.updatePixiAppSize();
+  addPenguin(): void {
+    this.nbPenguin++;
+    this.updatePixiAppSize();
 
-  //   this.board.addPenguin();
-  // }
+    this.board.addPenguin();
+  }
 
-  // removePenguin(): void {
-  //   this.nbPenguin--;
-  //   this.updatePixiAppSize();
+  removePenguin(): void {
+    this.nbPenguin--;
+    this.updatePixiAppSize();
 
-  //   this.board.removePenguin();
-  // }
+    this.board.removePenguin();
+  }
 
   updatePixiAppSize(): void {
     this.boardWidth = this.nbHexagonal * 90;

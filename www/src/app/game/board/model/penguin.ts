@@ -1,4 +1,4 @@
-import { Sprite, Loader } from 'pixi.js';
+import { Sprite, Loader, filters } from 'pixi.js';
 
 import { Pos } from './pos';
 
@@ -23,6 +23,16 @@ export class Penguin {
         // this.sprite.height = map.hexHeight / 1.2;
 
         this.sprite.position.set(this.center.x, this.center.y);
+
+        let colorMatrix = new filters.ColorMatrixFilter();
+        this.sprite.filters = [colorMatrix];
+        colorMatrix.contrast(3, false);
+
+        if (playerPenguin) {
+            
+        } else {
+
+        }
     }
 
 
