@@ -40,8 +40,8 @@ else
 endif
 
 ifeq ($(ENV),emscripten)
-	CPPFLAGS += -s ASSERTIONS=2 -s WASM=1
-	EXECPPFLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main', '_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
+	CPPFLAGS += -s ASSERTIONS=2 -s WASM=1 --bind
+	EXECPPFLAGS := 
 endif
 
 all: build
