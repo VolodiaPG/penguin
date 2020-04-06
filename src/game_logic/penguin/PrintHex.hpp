@@ -25,7 +25,7 @@ private:
    \\ /   \n\0";
     const size_t HEIGHT = 6;
     const size_t WIDTH = 10; // 10 prevoously
-    const size_t SIDE_LENGTH = 4;
+    // const size_t SIDE_LENGTH = 4;
     const size_t SIDE_HEIGHT = 2;
     const size_t BORDERS_LENGTH = 2;
     const size_t MAX_TEXT_LENGTH = 3;
