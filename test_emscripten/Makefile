@@ -8,6 +8,7 @@ SRC_DIRS ?= ./src
 WWW_DIRS ?= ./www
 DOC_DIRS ?= ./doc
 
+# SRCS := $(shell find ./src -type f \( -iname "*.cpp" ! -iname "*.bind.cpp" \))
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)

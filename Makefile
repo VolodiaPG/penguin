@@ -19,7 +19,11 @@ SRC_DIRS ?= ./src
 WWW_DIRS ?= ./www
 DOC_DIRS ?= ./doc
 
-SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+ifeq ($(ENV),emscripten)
+	SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+else
+	SRCS := $(shell find ./src -type f \( -iname "*.cpp" ! -iname "*.bind.cpp" \))
+endif
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
