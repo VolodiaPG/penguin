@@ -97,10 +97,10 @@ export class Board {
     }
 
     addPenguin(): void {
-        this.penguinsAllies.push(new Penguin(this.cells[2][this.nbPenguin].getCellCenter(), true));
+        this.penguinsAllies.push(new Penguin(this.cells[1][this.nbPenguin].getCellCenter(), true));
         this.pixiApp.stage.addChild(this.penguinsAllies[this.nbPenguin].sprite);
 
-        this.penguinsEnemis.push(new Penguin(this.cells[4][this.nbPenguin].getCellCenter(), false));
+        this.penguinsEnemis.push(new Penguin(this.cells[3][this.nbPenguin].getCellCenter(), false));
         this.pixiApp.stage.addChild(this.penguinsEnemis[this.nbPenguin].sprite);
 
         this.nbPenguin++;
@@ -148,8 +148,8 @@ export class Board {
 
     generatePreviewPenguin() {
         for(let pg = 0; pg < this.penguinsAllies.length; pg++) {
-                this.penguinsAllies[pg] = new Penguin(this.cells[2][pg].getCellCenter(), true);
-                this.penguinsEnemis[pg] = new Penguin(this.cells[4][pg].getCellCenter(), false);
+                this.penguinsAllies[pg] = new Penguin(this.cells[1][pg].getCellCenter(), true);
+                this.penguinsEnemis[pg] = new Penguin(this.cells[3][pg].getCellCenter(), false);
             
             this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
             this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
