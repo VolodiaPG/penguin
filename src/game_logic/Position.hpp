@@ -6,7 +6,7 @@
 
 namespace game
 {
-typedef struct position_t
+struct Position
 {
      int x = 0;
      int y = 0;
@@ -15,11 +15,11 @@ typedef struct position_t
       * @brief Comparaison operator, first used in order to provide a collision escape in an unordered_map
       * 
       */
-     bool operator==(const position_t &position) const
+     bool operator==(const Position &position) const
      {
           return x == position.x && y == position.y;
      }
-} Position;
+};
 
 /**
  * @brief Proper hash function specialized for Position
