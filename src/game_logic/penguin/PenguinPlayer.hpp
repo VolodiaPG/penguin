@@ -18,7 +18,7 @@ private:
      * @brief The player that owns this penguin
      * 
      */
-    HumanPlayer &_owner;
+    HumanPlayer *_owner;
 
     /**
      * @brief The cell on which the penguin is standing on, and the previous one
@@ -33,14 +33,18 @@ public:
      * @param id the id of the penguin
      * @param owner the owner of the penguin
      */
-    explicit PenguinPlayer(unsigned int id, HumanPlayer &owner);
+    explicit PenguinPlayer(unsigned int id, HumanPlayer *owner);
 
     /**
      * @brief Set the Standing On Cell
      * 
      * @param standingOn the cell on wich the player is currently standing
      */
-    void setStandingOn(BoardCell *standingOn) { _previousStandingOn = _standingOn;  _standingOn = standingOn; };
+    void setStandingOn(BoardCell *standingOn)
+    {
+        _previousStandingOn = _standingOn;
+        _standingOn = standingOn;
+    };
 
     /**
      * @brief Get the Standing On Cell
@@ -61,7 +65,7 @@ public:
      * 
      * @return HumanPlayer& the owner of the penguin
      */
-    HumanPlayer &getOwner() const { return _owner; };
+    HumanPlayer *getOwner() const { return _owner; };
 };
 } // namespace penguin
 } // namespace game
