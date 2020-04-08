@@ -1,4 +1,4 @@
-EMSCRIPTEN_FASTCOMP ?= /emsdk/fastcomp/emscripten
+EMSCRIPTEN_FASTCOMP ?= /emsdk/upstream/emscripten
 
 TARGET_EXEC ?= main.html
 CXX := $(EMSCRIPTEN_FASTCOMP)/em++
@@ -17,7 +17,7 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 # CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
-CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -lstdc++
+CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
 CPPFLAGS += -O3
 
 CPPFLAGS += -s ASSERTIONS=2 -s WASM=1

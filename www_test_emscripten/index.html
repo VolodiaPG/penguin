@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Binding</title>
+    <script async src="bin/main.js"></script>
+    <script>
+        Module = {
+            preRun: [],
+            postRun: [post_run],
+            print: (function () {
+                var element = document.getElementById('output');
+                if (element) element.value = ''; // clear browser cache
+                return function (text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    // These replacements are necessary if you render to raw HTML
+                    //text = text.replace(/&/g, "&amp;");
+                    //text = text.replace(/</g, "&lt;");
+                    //text = text.replace(/>/g, "&gt;");
+                    //text = text.replace('\n', '<br>', 'g');
+                    console.log(text);
+                    if (element) {
+                        element.value += text + "\n";
+                        element.scrollTop = element.scrollHeight; // focus on bottom
+                    }
+                };
+            })(),
+            printErr: function (e) {
+                1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(" ")), console.error(e)
+            }
+        };
+
+        function post_run() {
+            // var game = new Module.BindedGame(7, 4);
+            
+            // var board = game.getBoard();
+            // var cell = board.getCell(0, 0);
+            // // var penguin = board.getPlayerById(0);
+
+            // // console.log(penguin);
+            // board.performMove(0, cell);
+            // board.performMove(1, board.getCell(1,1));
+            // board.performMove(2, board.getCell(2,2));
+            // board.performMove(3, board.getCell(0,3));
+            
+            // var print_hex = new Module.PrintHexASCII(7);
+            // print_hex.print(board);
+            // print_hex.delete();
+
+            // game.delete();
+        }
+    </script>
+</head>
+
+<body>
+    See console
+    <textarea id="output" rows="8"></textarea>
+</body>
+
+</html>
