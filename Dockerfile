@@ -3,7 +3,7 @@
 #####################
 
 FROM node:13.10-buster
-ENV EMSCRIPTEN_VERSION 1.39.2
+ENV EMSCRIPTEN_VERSION 1.39.11
 LABEL maintainer="volodia.parolguarino@gmail.com"
 
 RUN apt-get update
@@ -21,13 +21,13 @@ RUN git clone https://github.com/emscripten-core/emsdk.git /emsdk
 WORKDIR /emsdk
 RUN echo $EMSCRIPTEN_VERSION
 RUN chmod +x ./emsdk && chmod +x ./emsdk_env.sh
-RUN ./emsdk install $EMSCRIPTEN_VERSION-fastcomp
-RUN ./emsdk activate $EMSCRIPTEN_VERSION-fastcomp
+RUN ./emsdk install $EMSCRIPTEN_VERSION
+RUN ./emsdk activate $EMSCRIPTEN_VERSION
 RUN /bin/bash -c "source ./emsdk_env.sh"
 
 # adding libs to system
 USER root
-RUN cp -r /emsdk/fastcomp/emscripten/system/include/* /usr/local/include/
+RUN cp -r /emsdk/upstream/emscripten/system/include/* /usr/local/include/
 
 # Clean up APT when done.
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
