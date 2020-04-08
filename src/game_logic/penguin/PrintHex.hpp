@@ -35,8 +35,8 @@ private:
 
     void printHex(
         const Position &axial_coords,
-        char *line1,
-        char *line2);
+        const char *line1,
+        const char *line2);
 
     void mapHexCoordsToCharCoords(
         const Position &axial_coords,
