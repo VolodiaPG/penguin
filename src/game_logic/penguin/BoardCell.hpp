@@ -32,7 +32,7 @@ private:
      * @brief The number of fish contained in the cell
      * 
      */
-    const int _number_fish;
+    const unsigned int _number_fish;
 
     /**
      * @brief The player that currently owns the cell
@@ -47,7 +47,7 @@ public:
      * @param position The position
      * @param number_fish the number of fish contained in this cell
      */
-    explicit BoardCell(const Position &position, int number_fish);
+    explicit BoardCell(const Position &position, unsigned int number_fish);
 
     /**
      * @brief Get the Position object
@@ -76,7 +76,7 @@ public:
      * 
      * @param penguin The penguin that stands on top of the cell
      */
-    void setOwner(PenguinPlayer &penguin) { _owner = &penguin; };
+    void setOwner(PenguinPlayer* penguin) { _owner = penguin; };
 
     /**
      * @brief Nobody owns the cell now
@@ -104,7 +104,7 @@ public:
      * 
      * @return int the number of fish
      */
-    int getFish() const { return _number_fish; }
+    unsigned int getFish() const { return _number_fish; }
 };
 } // namespace penguin
 } // namespace game
