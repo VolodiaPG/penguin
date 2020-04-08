@@ -15,7 +15,7 @@ private:
      * @brief The score accumulated : the number of fish that each owned penguin ate
      * 
      */
-    unsigned int _score = 0;
+    int _score;
 
 public:
     explicit HumanPlayer(unsigned int id);
@@ -25,14 +25,14 @@ public:
      * 
      * @param score the score to add
      */
-    void addScore(unsigned int score) { _score += score; };
+    void addScore(int score);
 
     /**
      * @brief Substract to the score
      * 
      * @param score the score to substract
      */
-    void substractScore(unsigned int score) { _score -= score; };
+    void substractScore(int score);
 
     /**
      * @brief Returns the player's score
