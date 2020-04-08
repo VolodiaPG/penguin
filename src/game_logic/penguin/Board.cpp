@@ -12,11 +12,11 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
     // Generate the penguins for each team (x2)
     for (int ii = 0; ii < 2; ++ii)
     {
-        _players.push_back(HumanPlayer(ii));
-        HumanPlayer &player = _players[ii]; // make sure to get the copy inside the vector and not the local one...
-        for (int jj = 0; jj < number_of_penguins; ++jj)
+        HumanPlayer* player = new HumanPlayer(ii);
+        _players.push_back(player);
+        for (size_t jj = 0; jj < number_of_penguins; ++jj)
         {
-            _penguins_on_board.push_back(PenguinPlayer(ii * number_of_penguins + jj, player)); //TODO verify no crashing because doing shadowy things with references
+            _penguins_on_board.push_back(new PenguinPlayer(ii * number_of_penguins + jj, player)); //TODO verify no crashing because doing shadowy things with references
         }
     }
 
@@ -27,7 +27,9 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
         for (int xx = offset; xx < (int)_dimension + offset; ++xx) // jj for the cols
         {
             // rows in x and cols in y
-            const Position pos = Position{xx, yy};
+            Position pos;
+            pos.x = xx;
+            pos.y = yy;
 
             boardValues.insert_or_assign(pos,
                                          new BoardCell(pos,
@@ -44,9 +46,22 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
 Board::~Board()
 {
-    for (const auto &entry : boardValues)
+    for (auto entry : boardValues)
     {
-        delete entry.second;
+        if (entry.second)
+            delete entry.second;
+    }
+
+    for (auto player : _players)
+    {
+        if (player)
+            delete player;
+    }
+
+    for (auto player : _penguins_on_board)
+    {
+        if (player)
+            delete player;
     }
 }
 
@@ -65,16 +80,28 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
 bool Board::performMove(const int penguin_id, BoardCell *cell)
 {
     PenguinPlayer *penguin_player = getPlayerById(penguin_id);
-    bool isCorrect = checkForCorrectness(penguin_player->getStandingOn()->getPosition(), cell->getPosition());
+    BoardCell *cell_standing_on = penguin_player->getStandingOn();
+    bool isCorrect = true;
+
+    std::cout << "passing" << std::endl;
+
+    if (cell_standing_on)
+    {
+        isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
+        std::cout << "inside cell standing on statement" << std::endl;
+    }
 
     if (isCorrect)
     {
-        BoardCell *previousCell = penguin_player->getStandingOn();
-        previousCell->clearOwner(); // clear the owner and create a hole in the board
-        previousCell->setGone(true);
+        std::cout << "inside is correct statement" << std::endl;
+        if (cell_standing_on)
+        {
+            cell_standing_on->clearOwner(); // clear the owner and create a hole in the board
+            cell_standing_on->setGone(true);
+        }
 
-        cell->setOwner(*penguin_player);
-        penguin_player->getOwner().addScore(cell->getFish());
+        cell->setOwner(penguin_player);
+        penguin_player->getOwner()->addScore(cell->getFish());
         penguin_player->setStandingOn(cell);
     }
 
@@ -87,8 +114,8 @@ void Board::revertMove(const int penguin_id, BoardCell *cell)
     BoardCell *previousCell = penguin_player->getPreviousStandingOn();
     cell->clearOwner(); // clear the owner of the current cell
 
-    previousCell->setOwner(*penguin_player);                    // set the penguin as the owner of the previous cell
-    penguin_player->getOwner().substractScore(cell->getFish()); // update the score
+    previousCell->setOwner(penguin_player);                    // set the penguin as the owner of the previous cell
+    penguin_player->getOwner()->substractScore(cell->getFish()); // update the score
     penguin_player->setStandingOn(previousCell);
 }
 
@@ -116,24 +143,25 @@ int Board::checkStatus()
 {
     bool all_zero = true;
     int winner_id = IN_PROGRESS;
-    
+
     //TODO Optimize, we can just look at the cells around
-    for (auto& penguin : getPlayersOnBoard())
+    for (auto &penguin : getPlayersOnBoard())
     {
-        if (getAvailableCells(penguin->getId()).size() > 0){
+        if (getAvailableCells(penguin->getId()).size() > 0)
+        {
             all_zero = false;
             break;
         }
     }
 
-
-    if (all_zero){
-        winner_id = _players[1].getId();
-        int score_player_0 = _players[0].getScore();
-        int score_player_1 = _players[1].getScore();
-        if ( score_player_0 > score_player_1)
+    if (all_zero)
+    {
+        winner_id = _players[1]->getId();
+        int score_player_0 = _players[0]->getScore();
+        int score_player_1 = _players[1]->getScore();
+        if (score_player_0 > score_player_1)
         {
-            winner_id = _players[0].getId();
+            winner_id = _players[0]->getId();
         }
         else if (score_player_0 == score_player_1)
         {
@@ -147,22 +175,22 @@ int Board::checkStatus()
 std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
     // dbg(penguin_id);
-    PenguinPlayer* penguin = getPlayerById(penguin_id);
+    PenguinPlayer *penguin = getPlayerById(penguin_id);
     // dbg(penguin->getStandingOn());
     Position penguin_current_pos = penguin->getStandingOn()->getPosition();
 
     // dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
 
     std::vector<BoardCell *> ret;
-    
+
     int inc_val = -1;
     while (inc_val == -1 || inc_val == 1)
     {
         int ii = penguin_current_pos.x;
         int jj = penguin_current_pos.y;
-        BoardCell* ptr_cell;
+        BoardCell *ptr_cell;
         // check first diag, jj is varying
-        while((ptr_cell = boardValues[Position{ii, jj+=inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
+        while ((ptr_cell = boardValues[Position{ii, jj += inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
@@ -170,7 +198,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
         jj = penguin_current_pos.y;
 
         // check second diag, ii is varying
-        while((ptr_cell = boardValues[Position{ii+=inc_val, jj}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
+        while ((ptr_cell = boardValues[Position{ii += inc_val, jj}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
@@ -178,7 +206,7 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
         ii = penguin_current_pos.x;
 
         // check row, both varying
-        while((ptr_cell = boardValues[Position{ii+=inc_val, jj-=inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
+        while ((ptr_cell = boardValues[Position{ii += inc_val, jj -= inc_val}]) != nullptr && !ptr_cell->isGone() && !ptr_cell->isOwned())
         {
             ret.push_back(ptr_cell);
         }
@@ -213,9 +241,9 @@ BoardCell *Board::getCell(int xx, int yy)
 std::vector<PenguinPlayer *> Board::getPlayersOnBoard()
 {
     std::vector<PenguinPlayer *> ret;
-    for (PenguinPlayer &penguin : _penguins_on_board)
+    for (PenguinPlayer* penguin : _penguins_on_board)
     {
-        ret.push_back(&penguin);
+        ret.push_back(penguin);
     }
 
     return ret;

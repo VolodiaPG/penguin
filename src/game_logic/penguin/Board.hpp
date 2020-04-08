@@ -68,14 +68,14 @@ private:
      * @brief The penguins for both teams
      * 
      */
-    std::vector<PenguinPlayer> _penguins_on_board;
+    std::vector<PenguinPlayer*> _penguins_on_board;
 
     /**
      * @brief Penguins owner, ie players
      * 
      */
 
-    std::vector<HumanPlayer> _players;
+    std::vector<HumanPlayer*> _players;
 
 protected:
     /**
@@ -154,7 +154,7 @@ public:
 
     std::vector<PenguinPlayer *> getPlayersOnBoard() override;
 
-    PenguinPlayer * getPlayerById(const int penguin_id) override { return &_penguins_on_board[penguin_id]; };
+    PenguinPlayer * getPlayerById(const int penguin_id) override { return _penguins_on_board[penguin_id]; };
 
     // Position begin();
 };
