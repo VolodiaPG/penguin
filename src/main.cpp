@@ -3,6 +3,8 @@
 #include "game_logic/tic_tac_toe/ConsoleGame.hpp"
 #include "game_logic/tic_tac_toe/PlayerVComputer.hpp"
 #include "game_logic/Position.hpp"
+#include "game_logic/penguin/BindedGame.hpp"
+#include "game_logic/penguin/PrintHex.hpp"
 
 // #ifdef __EMSCRIPTEN__
 // #include <emscripten.h>
@@ -11,17 +13,28 @@
 
 // // using namespace emscripten;
 // #ifndef __EMSCRIPTEN__
+
+// #ifndef __EMSCRIPTEN__
 int main()
 {	
-	for (int ii = 0; ii < 1; ++ii)
-	{
-		game::penguin::ConsoleGame consoleGame;
+	// for (int ii = 0; ii < 1; ++ii)
+	// {
+	// 	game::penguin::ConsoleGame consoleGame;
 
-		consoleGame.loop();
-	}
+	// 	consoleGame.loop();
+	// }
+	std::cout << "toto" << std::endl;
+	game::penguin::BindedGame game(7, 4);
+	game::penguin::Board* board = game.getBoard();
+	board->performMove(0, board->getCell(1, 1));
+	// board->performMove(1, board->getCell(0, 4));
+
+	game::penguin::PrintHex print_hex(7);
+	print_hex.print(*board);
 
 	return EXIT_SUCCESS;
 }
+// #endif
 
 /* 
 Commande pour build mon-site.html :
