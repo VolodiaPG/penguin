@@ -69,14 +69,16 @@ void PrintHex::printHex(
     int xx, yy;
     const size_t buf_length = strlen(TEMPLATE) + 1;
     char *buff = (char *)malloc(sizeof(char) * buf_length);
-    char *ptr;
+    char *ptr, *ptr1;
     char delim[] = {'\n'};
 
     mapHexCoordsToCharCoords(coords_axial, &xx, &yy);
 
     memcpy(buff, TEMPLATE, strlen(TEMPLATE) + 1);
-    memcpy(strstr(buff, "X  "), line_top, std::min(strlen(line_top), MAX_TEXT_LENGTH));
-    memcpy(strstr(buff, "Y  "), line_bottom, std::min(strlen(line_bottom), MAX_TEXT_LENGTH));
+    ptr = strstr(buff, "X  "); // to make sure we have the position before inserting new characters
+    ptr1 = strstr(buff, "Y  ");
+    memcpy(ptr, line_top, std::min(strlen(line_top), MAX_TEXT_LENGTH));
+    memcpy(ptr1, line_bottom, std::min(strlen(line_bottom), MAX_TEXT_LENGTH));
 
     ptr = strtok(buff, delim); // split string over '\n'
     while (ptr != nullptr)
