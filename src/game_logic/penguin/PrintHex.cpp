@@ -39,11 +39,11 @@ void PrintHex::print(Board &board)
                 char line1[4], line2[4];
                 PenguinPlayer *owner = cell->getOwner();
                 if (owner)
-                    sprintf(line1, "P:%d", owner->getId());
+                    sprintf(line1, "p:%d", (int)owner->getId());
                 else
                     sprintf(line1, " ");
                     
-                sprintf(line2, "F:%d", cell->getFish());
+                sprintf(line2, "f:%u", cell->getFish());
 
                 printHex(
                     pos,
@@ -58,13 +58,13 @@ void PrintHex::print(Board &board)
         }
     }
 
-    std::cout << _char_map;
+    std::cout << _char_map << std::endl;
 }
 
 void PrintHex::printHex(
     const Position &coords_axial,
-    char *line_top,
-    char *line_bottom)
+    const char *line_top,
+    const char *line_bottom)
 {
     int xx, yy;
     const size_t buf_length = strlen(TEMPLATE) + 1;
