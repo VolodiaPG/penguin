@@ -12,5 +12,6 @@ AbstractGame<PlayerT, CellT>::AbstractGame(AbstractBoard<PlayerT, CellT> *board)
 // Compile specifically to prevent undefined errors on that specific type of combination
 
 template class AbstractGame<tic_tac_toe::Player, tic_tac_toe::BoardCell>;
+template class AbstractGame<penguin::PenguinPlayer, penguin::BoardCell>;
 
 } // namespace game
