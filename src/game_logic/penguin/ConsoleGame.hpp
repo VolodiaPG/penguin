@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../AbstractInterface.hpp"
 #include "../AbstractGame.hpp"
-#include "Board.hpp"
+#include "PenguinGame.hpp"
 #include "PrintHex.hpp"
 
 // #include "../../dbg.h"
@@ -16,7 +16,7 @@ namespace penguin
 class ConsoleGame : public AbstractInterface
 {
 private:
-    Board _board;
+    PenguinGame _game;
     PrintHex _print_hex;
 
 public:
