@@ -2,7 +2,7 @@
 #ifdef __EMSCRIPTEN__
 
 #include <emscripten/bind.h>
-#include "utils.hpp"
+#include "conversions.hpp"
 #include "Position.hpp"
 #include "Position3D.hpp"
 
@@ -13,7 +13,7 @@ namespace penguin
 using namespace emscripten;
 
 // Binding code
-EMSCRIPTEN_BINDINGS(game_logic_utisl_bind)
+EMSCRIPTEN_BINDINGS(game_logic_utils_bind)
 {
     // TODO add Position, PenguinPlayer
 
