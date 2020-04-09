@@ -16,7 +16,8 @@ namespace penguin
 class ConsoleGame : public AbstractInterface
 {
 private:
-    penguin::Board board;
+    Board _board;
+    PrintHex _print_hex;
 
 public:
     ConsoleGame();
