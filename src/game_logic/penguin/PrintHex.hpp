@@ -16,6 +16,7 @@ class PrintHex
 {
 private:
     char *_char_map;
+    char *_buffer_template;
     const char *TEMPLATE = "\
    / \\   \n\
  /     \\ \n\
@@ -32,6 +33,9 @@ private:
 
     size_t _dimension;
     size_t _size_line;
+    size_t _size_char_map;
+
+    Board* _board;
 
     void printHex(
         const Position &axial_coords,
@@ -43,10 +47,12 @@ private:
         int *res_xx,
         int *res_yy);
 
+    void clear_map();
+
 public:
-    explicit PrintHex(size_t dimension);
+    explicit PrintHex(Board* board);
     ~PrintHex();
-    void print(Board &board);
+    void print();
 };
 } // namespace penguin
 } // namespace game
