@@ -17,8 +17,12 @@ PenguinGame::~PenguinGame()
 
 bool PenguinGame::play(const int player_id, BoardCell *move)
 {
-    ++numberMoves;
-    return board->performMove(player_id, move);
+    bool moved = board->performMove(player_id, move);
+    if (moved)
+    {
+        ++numberMoves;
+    }
+    return moved;
 }
 
 void PenguinGame::revertPlay(BoardCell *cell)
@@ -30,7 +34,7 @@ void PenguinGame::revertPlay(BoardCell *cell)
     {
         player = 1;
     }
-    
+
     board->revertMove(player, cell);
 }
 
@@ -50,5 +54,5 @@ int PenguinGame::getPlayerToPlay() const
 
     return nextPlayer;
 }
-} // namespace tic_tac_toe
+} // namespace penguin
 } // namespace game
