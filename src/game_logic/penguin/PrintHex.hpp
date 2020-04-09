@@ -29,7 +29,7 @@ private:
     // const size_t SIDE_LENGTH = 4;
     const size_t SIDE_HEIGHT = 2;
     const size_t BORDERS_LENGTH = 2;
-    const size_t MAX_TEXT_LENGTH = 3;
+    #define MAX_TEXT_LENGTH 3
 
     size_t _dimension;
     size_t _size_line;

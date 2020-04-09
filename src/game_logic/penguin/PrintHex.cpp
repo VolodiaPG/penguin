@@ -45,7 +45,7 @@ void PrintHex::print()
 
             if (!cell->isGone())
             {
-                const Position &pos = {xx, yy};
+                const Position pos = {xx, yy};
                 char line1[MAX_TEXT_LENGTH + 1], line2[MAX_TEXT_LENGTH + 1];
                 PenguinPlayer *owner = cell->getOwner();
                 if (owner)
@@ -85,8 +85,9 @@ void PrintHex::printHex(
     memcpy(_buffer_template, TEMPLATE, strlen(TEMPLATE) + 1);
     ptr = strstr(_buffer_template, "X  "); // to make sure we have the position before inserting new characters
     ptr1 = strstr(_buffer_template, "Y  ");
-    memcpy(ptr, line_top, std::min(strlen(line_top), MAX_TEXT_LENGTH));
-    memcpy(ptr1, line_bottom, std::min(strlen(line_bottom), MAX_TEXT_LENGTH));
+    const size_t len = MAX_TEXT_LENGTH;
+    memcpy(ptr, line_top, std::min(strlen(line_top), len));
+    memcpy(ptr1, line_bottom, std::min(strlen(line_bottom), len));
 
     ptr = strtok(_buffer_template, delim); // split string over '\n'
     while (ptr != nullptr)
