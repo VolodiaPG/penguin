@@ -29,23 +29,40 @@ void ConsoleGame::draw()
 
 void ConsoleGame::loop()
 {
-    std::cout << "looping" << std::endl;
-    draw();
-    // while (!TicTacToe::isFinished())
-    // {
+    std::cout << "Looping, wheeeeeeeeee" << std::endl;
 
-    // }
+    while (!_game.isFinished())
+    {
+        bool keep_asking = true;
+        unsigned int penguin_id, xx, yy;
+        const unsigned int player_to_play = _game.getPlayerToPlay();
+
+        draw();
+
+        while (keep_asking)
+        {
+            std::cout << "Player #" << player_to_play << " please make your move: " << std::endl
+                      << "<PenguinId> <Position x> <Position y>" << std::endl;
+            std::cin >> penguin_id >> xx >> yy;
+            std::cout << std::endl;
+
+            keep_asking = !(penguin_id < (player_to_play + 1) * 2 && penguin_id >= player_to_play);
+        }
+
+        _game.play(penguin_id, _game.board->getCell(xx, yy));
+    }
+    
 
     // print results
-    // if (board->checkStatus() == -1)
-    // {
-    //     std::cout << "This is a draw :(" << std::endl;
-    // }
-    // else
-    // {
-    //     std::cout << "Player #" << board->checkStatus()
-    //               << " won!" << std::endl;
-    // }
+    if (_game.board->checkStatus() == -1)
+    {
+        std::cout << "This is a draw :(" << std::endl;
+    }
+    else
+    {
+        std::cout << "Player #" << _game.board->checkStatus()
+                  << " won!" << std::endl;
+    }
 }
 
 } // namespace penguin
