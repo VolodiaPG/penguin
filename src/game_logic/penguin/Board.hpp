@@ -11,7 +11,7 @@
 #include "BoardCell.hpp"
 #include "PenguinPlayer.hpp"
 #include "../Position3D.hpp"
-#include "../utils.hpp"
+#include "../utils/conversions.hpp"
 
 
 // TODO Command pattern pour le reverse
