@@ -5,9 +5,17 @@ namespace game
 namespace penguin
 {
 ConsoleGame::ConsoleGame()
-    : _board(7, 4),
-      _print_hex(&_board)
+    : _game(7, 2),
+      _print_hex((Board *)_game.board)
 {
+    Board *board = (Board *)_game.board;
+    // Placing all the penguins
+    // team 1
+    board->performMove(0, board->getCell(0, 0));
+    board->performMove(1, board->getCell(3, 6));
+    // team 2
+    board->performMove(2, board->getCell(-3, 6));
+    board->performMove(3, board->getCell(6, 0));
 }
 
 ConsoleGame::~ConsoleGame()
@@ -21,6 +29,7 @@ void ConsoleGame::draw()
 
 void ConsoleGame::loop()
 {
+    std::cout << "looping" << std::endl;
     draw();
     // while (!TicTacToe::isFinished())
     // {
