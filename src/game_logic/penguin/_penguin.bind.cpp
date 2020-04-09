@@ -48,10 +48,6 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     class_<PrintHex>("PrintHexASCII")
         .constructor<size_t>()
         .function("print", &PrintHex::print);
-
-    class_<BindedGame>("BindedGame")
-        .constructor<const size_t, const size_t>()
-        .function("getBoard", &BindedGame::getBoard, allow_raw_pointers());
 }
 } // namespace penguin
 } // namespace game
