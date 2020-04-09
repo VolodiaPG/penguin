@@ -14,27 +14,19 @@
 // // using namespace emscripten;
 // #ifndef __EMSCRIPTEN__
 
-// #ifndef __EMSCRIPTEN__
+#ifndef __EMSCRIPTEN__
 int main()
 {	
-	// for (int ii = 0; ii < 1; ++ii)
-	// {
-	// 	game::penguin::ConsoleGame consoleGame;
+	for (int ii = 0; ii < 1; ++ii)
+	{
+		game::penguin::ConsoleGame consoleGame;
 
-	// 	consoleGame.loop();
-	// }
-	std::cout << "toto" << std::endl;
-	game::penguin::BindedGame game(7, 4);
-	game::penguin::Board* board = game.getBoard();
-	board->performMove(0, board->getCell(1, 1));
-	// board->performMove(1, board->getCell(0, 4));
-
-	game::penguin::PrintHex print_hex(7);
-	print_hex.print(*board);
+		consoleGame.loop();
+	}
 
 	return EXIT_SUCCESS;
 }
-// #endif
+#endif
 
 /* 
 Commande pour build mon-site.html :
