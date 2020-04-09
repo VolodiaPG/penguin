@@ -83,17 +83,14 @@ bool Board::performMove(const int penguin_id, BoardCell *cell)
     BoardCell *cell_standing_on = penguin_player->getStandingOn();
     bool isCorrect = true;
 
-    std::cout << "passing" << std::endl;
 
     if (cell_standing_on)
     {
         isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
-        std::cout << "inside cell standing on statement" << std::endl;
     }
 
     if (isCorrect)
     {
-        std::cout << "inside is correct statement" << std::endl;
         if (cell_standing_on)
         {
             cell_standing_on->clearOwner(); // clear the owner and create a hole in the board
