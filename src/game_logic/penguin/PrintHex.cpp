@@ -34,6 +34,8 @@ void PrintHex::clear_map()
 
 void PrintHex::print()
 {
+    clear_map();
+
     int offset = 0;
     for (int yy = 0; yy < (int)_dimension; ++yy) // ii for the rows
     {
@@ -44,7 +46,7 @@ void PrintHex::print()
             if (!cell->isGone())
             {
                 const Position &pos = {xx, yy};
-                char line1[4], line2[4];
+                char line1[MAX_TEXT_LENGTH + 1], line2[MAX_TEXT_LENGTH + 1];
                 PenguinPlayer *owner = cell->getOwner();
                 if (owner)
                     sprintf(line1, "p:%d", (int)owner->getId());
