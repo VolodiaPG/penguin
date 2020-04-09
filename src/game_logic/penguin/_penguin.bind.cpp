@@ -8,7 +8,7 @@
 #include "Position.hpp"
 #include "HumanPlayer.hpp"
 #include "PenguinPlayer.hpp"
-#include "BindedGame.hpp"
+#include "PenguinGame.hpp"
 
 namespace game
 {
@@ -33,12 +33,12 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("getOwner", &BoardCell::getOwner, allow_raw_pointers())
         .function("isOwned", &BoardCell::isOwned)
         .function("getFish", &BoardCell::getFish);
-    
+
     class_<Board>("Board")
         .function("performMove", &Board::performMove, allow_raw_pointers())
         .function("revertMove", &Board::revertMove, allow_raw_pointers())
         .function("checkStatus", &Board::checkStatus)
-        .function("getAvailableCells", &Board::getAvailableCells,allow_raw_pointers())
+        .function("getAvailableCells", &Board::getAvailableCells, allow_raw_pointers())
         .function("getBoardCells", &Board::getBoardCells, allow_raw_pointers())
         .function("size", &Board::size)
         .function("getCell", &Board::getCell, allow_raw_pointers())
@@ -48,6 +48,14 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     class_<PrintHex>("PrintHexASCII")
         .constructor<size_t>()
         .function("print", &PrintHex::print);
+
+    class_<PenguinGame>("PenguinGame")
+        .constructor<const size_t, const size_t>()
+        .function("isFinished", &PenguinGame::isFinished)
+        .function("play", &PenguinGame::play, allow_raw_pointers())
+        .function("revertPlay", &PenguinGame::revertPlay, allow_raw_pointers())
+        .function("getPlayerToPlay", &PenguinGame::getPlayerToPlay)
+        .function("checkStatus", &PenguinGame::checkStatus);
 }
 } // namespace penguin
 } // namespace game
