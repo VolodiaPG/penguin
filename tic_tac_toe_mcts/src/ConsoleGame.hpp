@@ -7,6 +7,7 @@
 #include "Player.hpp"
 #include "Tree.hpp"
 #include "TreeVisualizer.hpp"
+#include "MCTSPlayer.hpp"
 
 namespace game
 {
@@ -16,10 +17,6 @@ public:
     ConsoleGame();
     ~ConsoleGame();
 
-    /**
-     * @brief Draws the board
-     * 
-     */
     void draw() const override;
     
     /**

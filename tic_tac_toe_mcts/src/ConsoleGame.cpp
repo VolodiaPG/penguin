@@ -5,8 +5,14 @@ namespace game
 ConsoleGame::ConsoleGame()
     : TicTacToe(nullptr, nullptr) // instanciate the players afterwards
 {
+    /*
     player1 = new Player(1);
     player2 = new Player(2);
+    */
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+    player1 = new MCTSPlayer(this, 1, constraints);
+    player2 = new MCTSPlayer(this, 2, constraints);
 }
 
 ConsoleGame::~ConsoleGame()
@@ -57,46 +63,37 @@ void ConsoleGame::draw() const
     std::cout << std::endl;
 }
 
+/*
 void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
-    //int turn = 0;
+    int turn = 0;
     draw();
     AbstractPlayer *player = player1;
-    //Sets the time constraint (in ms)
-    mcts::MCTSConstraints constraints;
-    constraints.time = 250;
-
     while (!TicTacToe::isFinished())
     {
+        mcts::MCTSConstraints constraints;
+        constraints.time = 250;
 
         std::string filename = "turn_" + std::to_string(turn++);
         mcts::Tree tree(this, player, constraints);
-
-        //Creates the tree
         tree.begin();
 
         std::cout << filename << std::endl;
 
-        //The next few lines exports the tree into a .txt file
-        //This exports all the tree
         mcts::TreeVisualizer visualizer(&tree, 2, filename + "_rough.txt");
         visualizer.exportLog();
 
-        //This exports a portion of the tree
         mcts::TreeVisualizer visualizer2(&tree, 4, filename + "_precise.txt");
         visualizer2.exportLog();
 
-        //Finds the best move for the AI to play
         AbstractBoardCell *bestMove = tree.bestMove();
         play(player, bestMove);
         draw();
 
-        //Changes the player to play
         player = getPlayerToPlay();
     }
-    
 
     // print results
     if (board->checkStatus() == -1)
@@ -108,7 +105,49 @@ void ConsoleGame::loop()
         std::cout << "Player #" << board->checkStatus()
                   << " won!" << std::endl;
     }
-    
+}
+*/
+
+
+void ConsoleGame::loop()
+{
+    std::cout << "test" << std::endl;
+
+    //int turn = 0;
+    draw();
+    AbstractPlayer *player = player1;
+    while (!TicTacToe::isFinished())
+    {
+        AbstractBoardCell *bestMove = nullptr;
+        if(dynamic_cast<MCTSPlayer*>(player) != nullptr)
+        {
+            MCTSPlayer * mcts_player = ((MCTSPlayer *) player);
+            AbstractBoardCell * bestMove = mcts_player->bestMove();
+            play(mcts_player, bestMove);
+            mcts_player->updateTree(*bestMove);
+        }
+        
+
+        player = getPlayerToPlay();
+        if(dynamic_cast<MCTSPlayer*>(player) != nullptr)
+        {
+            MCTSPlayer * mcts_player_opponent = ((MCTSPlayer *) player);
+            if(bestMove != nullptr)
+                mcts_player_opponent->updateTree(*bestMove);
+        }
+        draw();
+    }
+
+    // print results
+    if (board->checkStatus() == -1)
+    {
+        std::cout << "This is a draw :(" << std::endl;
+    }
+    else
+    {
+        std::cout << "Player #" << board->checkStatus()
+                  << " won!" << std::endl;
+    }
 }
 
 } // namespace game
