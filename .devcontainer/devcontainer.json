@@ -22,7 +22,8 @@
         "eamodio.gitlens",
         "ms-vsliveshare.vsliveshare",
 		"mutantdino.resourcemonitor",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"coenraads.bracket-pair-colorizer"
 	],
 
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
