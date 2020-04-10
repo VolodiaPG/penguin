@@ -29,9 +29,9 @@ public:
     void revertPlay(BoardCell *move) override;
     int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
+    Board *getBoard() { return (Board *)board; };
 };
 } // namespace penguin
 } // namespace game
-
 
 #endif

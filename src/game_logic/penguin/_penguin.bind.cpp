@@ -46,11 +46,12 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("getPlayerById", &Board::getPlayerById, allow_raw_pointers());
 
     class_<PrintHex>("PrintHexASCII")
-        .constructor<size_t>()
+        .constructor<Board *>()
         .function("print", &PrintHex::print);
 
     class_<PenguinGame>("PenguinGame")
         .constructor<const size_t, const size_t>()
+        .function("getBoard", &PenguinGame::getBoard, allow_raw_pointers())
         .function("isFinished", &PenguinGame::isFinished)
         .function("play", &PenguinGame::play, allow_raw_pointers())
         .function("revertPlay", &PenguinGame::revertPlay, allow_raw_pointers())
