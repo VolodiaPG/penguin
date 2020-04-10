@@ -46,12 +46,13 @@ void ConsoleGame::loop()
             std::cin >> penguin_id >> xx >> yy;
             std::cout << std::endl;
 
-            keep_asking = !(penguin_id < (player_to_play + 1) * 2 && penguin_id >= player_to_play);
+            keep_asking = !(
+                penguin_id < (player_to_play + 1) * 2 &&
+                penguin_id >=  (player_to_play - 1) * 2);
         }
 
         _game.play(penguin_id, _game.board->getCell(xx, yy));
     }
-    
 
     // print results
     if (_game.board->checkStatus() == -1)
