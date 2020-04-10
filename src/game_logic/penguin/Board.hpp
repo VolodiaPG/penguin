@@ -100,7 +100,7 @@ protected:
      * @return true the move can be performed
      * @return false the move is illegal
      */
-    bool checkForCorrectness(const Position &start, const Position &destination) const;
+    bool checkForCorrectness(const Position &start, const Position &destination);
 
 public:
     /**
