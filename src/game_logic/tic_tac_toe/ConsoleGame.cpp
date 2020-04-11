@@ -2,17 +2,15 @@
 
 namespace game
 {
-ConsoleGame::ConsoleGame()
-    : TicTacToe(nullptr, nullptr) // instanciate the players afterwards
+namespace tic_tac_toe
 {
-    player1 = new Player(1);
-    player2 = new Player(2);
+ConsoleGame::ConsoleGame()
+    : TicTacToe() // instanciate the players afterwards
+{
 }
 
 ConsoleGame::~ConsoleGame()
 {
-    delete player1;
-    delete player2;
 }
 
 // AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
@@ -28,22 +26,22 @@ ConsoleGame::~ConsoleGame()
 //     return player->action(board);
 // }
 
-void ConsoleGame::draw() const
+void ConsoleGame::draw()
 {
     // clear the output stdout
     // std::cout << "\033c";
 
-    const std::vector<AbstractBoardCell *> &cells = board->getBoardCells();
+    const std::vector<BoardCell *>
+        cells = board->getBoardCells();
 
-    for (const AbstractBoardCell *absCell : cells)
+    for (const BoardCell *cell : cells)
     {
-        const BoardCell *cell = (BoardCell *)absCell;
         const Position &pos = cell->getPosition();
 
-        std::cout << cell->getValue() << (pos.y < board->size() - 1 ? " │ " : "");
+        std::cout << cell->getValue() << (pos.y < (int)board->size() - 1 ? " │ " : "");
 
         // ignore last line
-        if (pos.y == board->size() - 1 && pos.x < board->size() - 1)
+        if (pos.y == (int)board->size() - 1 && pos.x < (int)board->size() - 1)
         {
             std::cout << std::endl;
             // ignore last column
@@ -66,9 +64,12 @@ void ConsoleGame::loop()
     {
         mcts::MCTSConstraints constraints;
         constraints.time = 250;
-        mcts::Tree tree(this, player2, constraints);
+        // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
+        auto game = (AbstractGame<AbstractPlayer, AbstractBoardCell>*)this;
+        mcts::Tree tree(game, board->getPlayerById(1), constraints); // play the second player
         tree.begin();
-        AbstractBoardCell *bestMove = tree.bestMove();
+        AbstractBoardCell *abs_bestMove = tree.bestMove();
+        BoardCell *bestMove = static_cast<BoardCell *>(abs_bestMove);
         play(getPlayerToPlay(), bestMove);
         draw();
     }
@@ -85,4 +86,5 @@ void ConsoleGame::loop()
     }
 }
 
+} // namespace tic_tac_toe
 } // namespace game

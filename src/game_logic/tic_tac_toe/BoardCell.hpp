@@ -1,12 +1,15 @@
-#ifndef BOARD_CELL_HPP_
-#define BOARD_CELL_HPP_
+#ifndef TIC_TAC_TOE_BOARD_CELL_HPP_
+#define TIC_TAC_TOE_BOARD_CELL_HPP_
 
 #include <memory>
 
-#include "Position.hpp"
+#include "../Position.hpp"
 #include "../AbstractBoardCell.hpp"
 
 namespace game
+{
+
+namespace tic_tac_toe
 {
 
 class BoardCell : public AbstractBoardCell
@@ -69,6 +72,7 @@ public:
     bool isClaimed() const;
 };
 
+} // namespace tic_tac_toe
 } // namespace game
 
 #endif

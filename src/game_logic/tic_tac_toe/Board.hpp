@@ -1,5 +1,5 @@
-#ifndef BOARD_HPP_
-#define BOARD_HPP_
+#ifndef TIC_TAC_TOE_BOARD_HPP_
+#define TIC_TAC_TOE_BOARD_HPP_
 
 #include <iterator>
 #include <array>
@@ -8,8 +8,12 @@
 
 #include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
+#include "Player.hpp"
 
 namespace game
+{
+
+namespace tic_tac_toe
 {
 
 #define BOARD_SIZE 3
@@ -45,8 +49,12 @@ typedef enum
 using board_line_t = std::array<BoardCell *, BOARD_SIZE>;
 using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 
-class Board : public AbstractBoard
+class Board : public AbstractBoard<Player, BoardCell>
 {
+private:
+    Player player1;
+    Player player2;
+    
 protected:
     /**
      * @brief Array of the cell const pointers to  variable element indexed in boardValues
@@ -91,38 +99,42 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(int player, AbstractBoardCell *cell) override;
+    bool performMove(const int player_id, BoardCell *cell) override;
 
-    void revertMove(AbstractBoardCell *cell) override;
+    void revertMove(const int player_id, BoardCell *cell) override;
 
     /**
      * @brief Chek wether or not the game is finished.
      * 
      * @return If not finised it will return 0, otherwise the id of the winning player or -1 if a draw
      */
-    int checkStatus() const override;
+    int checkStatus() override;
 
     /**
      * @brief Get a list of empty cells, ie player not passed yet
      * 
      * @return the list of empty cells
      */
-    std::vector<AbstractBoardCell *> getAvailableCells() const override;
+    std::vector<BoardCell *> getAvailableCells(const int player_id) override;
 
     /**
      * @brief Get a list of all cells
      * 
      * @return the list of all cells 
      */
-    std::vector<AbstractBoardCell *> getBoardCells() const override;
+    std::vector<BoardCell *> getBoardCells() override;
 
     size_t size() const override { return BOARD_SIZE; };
 
-    AbstractBoardCell *getCell(int line, int col) const override;
+    BoardCell *getCell(int line, int col) override;
+
+    std::vector<Player *> getPlayersOnBoard() override;
+
+    Player *getPlayerById(const int id) override;
 
     // Position begin();
 };
 
+} // namespace tic_tac_toe
 } // namespace game
-
 #endif

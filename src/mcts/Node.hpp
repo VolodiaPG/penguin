@@ -9,12 +9,13 @@
 
 #include "Tree.hpp"
 #include "../game_logic/AbstractBoardCell.hpp"
-#include "AbstractPlayer.hpp"
+#include "../game_logic/AbstractPlayer.hpp"
 
 #include "../log.hpp"
 
 namespace game
 {
+template <class PlayerT, class CellT>
 class AbstractGame;
 }
 
@@ -30,9 +31,9 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::AbstractPlayer* player = nullptr;
+    game::AbstractPlayer *player = nullptr;
     game::AbstractBoardCell *targetedCell = nullptr;
-    game::AbstractGame *game = nullptr;
+    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game = nullptr;
 
     static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
 
@@ -46,7 +47,7 @@ public:
         Node *parent,
         game::AbstractPlayer *player,
         game::AbstractBoardCell *targetedCell,
-        game::AbstractGame *game);
+        game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game);
     ~Node();
 
     bool doAction();

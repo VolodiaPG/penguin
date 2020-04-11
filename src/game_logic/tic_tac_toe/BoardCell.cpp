@@ -2,6 +2,8 @@
 
 namespace game
 {
+namespace tic_tac_toe
+{
 
 // BoardCell::BoardCell()
 // {
@@ -28,4 +30,5 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
+} // namespace tic_tac_toe
 } // namespace game

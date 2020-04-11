@@ -2,12 +2,12 @@
 
 namespace game
 {
-TicTacToe::TicTacToe(AbstractPlayer *player1, AbstractPlayer *player2)
-    : AbstractGame(nullptr), // nullptr during construct, then we define the board
-      player1(player1),
-      player2(player2)
+namespace tic_tac_toe
 {
-    board = new Board();
+
+TicTacToe::TicTacToe()
+    : AbstractGame(new Board()) // nullptr during construct, then we define the board
+{
 }
 
 TicTacToe::~TicTacToe()
@@ -15,16 +15,23 @@ TicTacToe::~TicTacToe()
     delete board;
 }
 
-bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
+bool TicTacToe::play(const int player_id, BoardCell *move)
 {
     ++numberMoves;
-    return board->performMove(player->getId(), move);
+    return board->performMove(player_id, move);
 }
 
-void TicTacToe::revertPlay(AbstractBoardCell *cell)
+void TicTacToe::revertPlay(BoardCell *cell)
 {
     --numberMoves;
-    board->revertMove(cell);
+    int player = 0;
+
+    if (numberMoves % 2)
+    {
+        player = 1;
+    }
+    
+    board->revertMove(player, cell);
 }
 
 bool TicTacToe::isFinished() const
@@ -32,16 +39,16 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-AbstractPlayer *TicTacToe::getPlayerToPlay() const
+int TicTacToe::getPlayerToPlay() const
 {
-    AbstractPlayer *nextPlayer = player1;
+    int nextPlayer = 2;
 
     if (numberMoves % 2)
     {
-        nextPlayer = player2;
+        nextPlayer = 1;
     }
 
     return nextPlayer;
 }
-
+} // namespace tic_tac_toe
 } // namespace game

@@ -1,4 +1,4 @@
-EMSCRIPTEN_FASTCOMP ?= /home/develop/emsdk/fastcomp/emscripten
+EMSCRIPTEN_PATH ?= /emsdk/upstream/emscripten
 
 # default environement
 
@@ -11,7 +11,7 @@ TARGET_EXEC ?= main
 CXX := g++
 else
 TARGET_EXEC ?= main.html
-CXX := $(EMSCRIPTEN_FASTCOMP)/em++
+CXX := $(EMSCRIPTEN_PATH)/em++
 endif
 
 BUILD_DIR ?= ./bin
@@ -19,7 +19,11 @@ SRC_DIRS ?= ./src
 WWW_DIRS ?= ./www
 DOC_DIRS ?= ./doc
 
-SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+ifeq ($(ENV),emscripten)
+	SRCS := $(shell find $(SRC_DIRS) -name *.cpp)
+else
+	SRCS := $(shell find ./src -type f \( -iname "*.cpp" ! -iname "*.bind.cpp" \))
+endif
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
@@ -27,28 +31,36 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 # CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
-CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -lstdc++
+#-Wcast-align -Wover-aligned
+CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align
+
+ifeq ($(ENV),emscripten)
+	CPPFLAGS += --bind -s WASM=1
+	EXECPPFLAGS := 
+endif
 
 ifeq ($(MODE),debug)
 	CPPFLAGS += -O0 -g
+ifeq ($(ENV),emscripten)
+	CPPFLAGS += -s STACK_OVERFLOW_CHECK=2 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 -s SAFE_HEAP=1 -s WARN_UNALIGNED=1
+endif
 else
 	CPPFLAGS += -O3
-endif
-
-ifeq ($(ENV),emscripten)
-	CPPFLAGS += -s ASSERTIONS=2 -s WASM=1
-	EXECPPFLAGS := -s NO_EXIT_RUNTIME=1 -s EXPORTED_FUNCTIONS="['_main', '_initGame', '_deleteGame' ,'_play', '_mctsResult', '_checkStatus', '_getPlayerToPlay']" -s EXTRA_EXPORTED_RUNTIME_METHODS="['cwrap', 'ccall']"
 endif
 
 all: build
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(CPPFLAGS) $(EXECPPFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
 
 # c++ source
+$(BUILD_DIR)/%.cpp.o: %.cpp %.hpp
+	$(MKDIR_P) $(dir $@)
+	$(CXX) -c $< $(CPPFLAGS) -o $@
+
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(CPPFLAGS) -c $^ -o $@
+	$(CXX) -c $< $(CPPFLAGS) -o $@
 
 #specific rules
 build: $(BUILD_DIR)/$(TARGET_EXEC)
