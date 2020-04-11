@@ -64,7 +64,7 @@ public:
      * 
      * @return AbstractBoardCell* the current cell the player is standing on
      */
-    AbstractBoardCell* getCurrentCell() { return _moves_done.top(); };
+    AbstractBoardCell *getCurrentCell() { return _moves_done.top(); };
 };
 
 } // namespace game
