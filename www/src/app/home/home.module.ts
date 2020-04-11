@@ -10,7 +10,14 @@ import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, IonicModule, HomeRoutingModule],
+  imports: [
+    CommonModule, 
+    TranslateModule, 
+    CoreModule, 
+    SharedModule, 
+    IonicModule, 
+    HomeRoutingModule
+  ],
   entryComponents: [HomeComponent],
   declarations: [HomeComponent]
 })
