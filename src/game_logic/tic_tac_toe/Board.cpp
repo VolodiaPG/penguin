@@ -43,13 +43,16 @@ bool Board::checkForCorrectness(const Position &pos) const
 bool Board::performMove(const int player_id, BoardCell *cell)
 {
     cell->setValue(player_id);
-
+    getPlayerById(player_id)->addMoveDone(cell);
+    
     return true;
 }
 
-void Board::revertMove(const int, BoardCell *cell)
+void Board::revertMove(const int player_id)
 {
-    cell->setValue(0);
+    Player *player = getPlayerById(player_id);
+    BoardCell *current_cell = (BoardCell *)player->dequeueLastMove();
+    current_cell->setValue(0);
 }
 
 int Board::checkForWin(const board_line_t &line) const

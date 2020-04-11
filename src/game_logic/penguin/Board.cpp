@@ -105,6 +105,7 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
 bool Board::performMove(const int penguin_id, BoardCell *cell)
 {
     PenguinPlayer *penguin_player = getPlayerById(penguin_id);
+    HumanPlayer *human_player = penguin_player->getOwner();
     BoardCell *cell_standing_on = penguin_player->getStandingOn();
     bool isCorrect = true;
 
@@ -123,43 +124,36 @@ bool Board::performMove(const int penguin_id, BoardCell *cell)
         }
 
         cell->setOwner(penguin_player);
-        penguin_player->getOwner()->addScore(cell->getFish());
+        human_player->addScore(cell->getFish());
+        human_player->addMoveDone(cell);
         penguin_player->setStandingOn(cell);
     }
 
     return isCorrect;
 }
 
-void Board::revertMove(const int penguin_id, BoardCell *cell)
+void Board::revertMove(const int human_player_id)
 {
-    PenguinPlayer *penguin_player = getPlayerById(penguin_id);
-    BoardCell *previousCell = penguin_player->getPreviousStandingOn();
-    cell->clearOwner(); // clear the owner of the current cell
+    HumanPlayer *human_player = _players[human_player_id];
+    BoardCell *current_cell = (BoardCell *)human_player->dequeueLastMove();
 
-    previousCell->setOwner(penguin_player);                      // set the penguin as the owner of the previous cell
-    penguin_player->getOwner()->substractScore(cell->getFish()); // update the score
-    penguin_player->setStandingOn(previousCell);
+    PenguinPlayer *penguin_player = current_cell->getOwner();
+
+    current_cell->clearOwner();
+    current_cell->setGone(false);
+
+    if (human_player->getNumberMovesDone() != 0)
+    {
+        BoardCell *previous_cell = (BoardCell *)human_player->getCurrentCell();
+        previous_cell->setGone(false);
+        previous_cell->setOwner(penguin_player);
+        penguin_player->setStandingOn(previous_cell);
+    }
+    else
+    {
+        penguin_player->setStandingOn(nullptr);
+    }
 }
-
-//TODO check for win
-// int Board::checkForWin(const board_line_t &line) const
-// {
-//     int previous = line[0]->getValue();
-//     // check if this is the same value all along the line
-//     for (const BoardCell *cell : line)
-//     {
-//         int value = cell->getValue();
-//         if (value != previous)
-//         {
-//             // line is not full of the same values
-//             return 0;
-//         }
-//     }
-
-//     // it has been the same value all along from the beginning,
-//     // return the id of the line's owner
-//     return previous;
-// }
 
 int Board::checkStatus()
 {
@@ -198,8 +192,9 @@ std::vector<BoardCell *> Board::getAvailableCells(const int penguin_id)
 {
     // dbg(penguin_id);
     PenguinPlayer *penguin = getPlayerById(penguin_id);
+    HumanPlayer *human_player = penguin->getOwner();
     // dbg(penguin->getStandingOn());
-    Position penguin_current_pos = penguin->getStandingOn()->getPosition();
+    Position penguin_current_pos = ((BoardCell *)human_player->getCurrentCell())->getPosition();
 
     // dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
 

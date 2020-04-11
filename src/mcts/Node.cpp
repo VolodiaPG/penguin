@@ -82,7 +82,7 @@ bool Node::doAction()
 
 void Node::revertAction()
 {
-    return game->revertPlay(targetedCell);
+    return game->revertPlay();
 }
 
 game::AbstractBoardCell *Node::getRandomAvailableCell() const
@@ -99,11 +99,7 @@ game::AbstractBoardCell *Node::getRandomAvailableCell() const
 
 int Node::randomSimulation() const
 {
-    // 'convert' the two playes into random players (decisional)
-
-    // save the actions done so we can revert them;
-    std::stack<game::AbstractBoardCell *> playedCells;
-
+    int ii = 0;
     while (!game->isFinished())
     {
         game::AbstractBoardCell *cell = getRandomAvailableCell();
@@ -111,18 +107,16 @@ int Node::randomSimulation() const
         game->play(
             game->getPlayerToPlay(),
             cell);
-        playedCells.push(cell);
+        ++ii;
     }
 
     // check the victory
     int winner = game->checkStatus();
 
-    // revert the random game
-    while (!playedCells.empty())
+    // revert play the random game the number of times we moved
+    while (ii-- != 0)
     {
-        game->revertPlay(playedCells.top());
-        // remove the element
-        playedCells.pop();
+        game->revertPlay();
     }
 
     return winner;

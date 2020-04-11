@@ -13,6 +13,8 @@
 #include "../Position3D.hpp"
 #include "../utils/conversions.hpp"
 
+#include "../../dbg.h"
+
 
 // TODO Command pattern pour le reverse
 
@@ -125,7 +127,12 @@ public:
      */
     bool performMove(const int penguin_id, BoardCell *cell) override;
 
-    void revertMove(const int penguin_id, BoardCell *cell) override;
+    /**
+     * @brief Revert the last move made on the behalf of the human player
+     * 
+     * @param human_player_id the human player id
+     */
+    void revertMove(const int human_player_id) override;
 
     /**
      * @brief Chek wether or not the game is finished.

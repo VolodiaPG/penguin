@@ -101,7 +101,7 @@ public:
      */
     bool performMove(const int player_id, BoardCell *cell) override;
 
-    void revertMove(const int player_id, BoardCell *cell) override;
+    void revertMove(const int player_id) override;
 
     /**
      * @brief Chek wether or not the game is finished.
