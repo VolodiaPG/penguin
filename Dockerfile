@@ -33,4 +33,4 @@ RUN cp -r /emsdk/upstream/emscripten/system/include/* /usr/local/include/
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # expose port to access the wasm files later from the host
-EXPOSE 8080 9876 4200
+EXPOSE 8080 5500 9876 4200

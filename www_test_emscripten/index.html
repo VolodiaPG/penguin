@@ -5,7 +5,8 @@
     <title>Test Binding</title>
     <script async src="bin/main.js"></script>
     <script>
-        Module = {
+        Module =
+        {
             preRun: [],
             postRun: [post_run],
             print: (function () {
@@ -32,7 +33,7 @@
 
         function post_run() {
             // var game = new Module.BindedGame(7, 4);
-            
+
             // var board = game.getBoard();
             // var cell = board.getCell(0, 0);
             // // var penguin = board.getPlayerById(0);
@@ -42,7 +43,7 @@
             // board.performMove(1, board.getCell(1,1));
             // board.performMove(2, board.getCell(2,2));
             // board.performMove(3, board.getCell(0,3));
-            
+
             // var print_hex = new Module.PrintHexASCII(7);
             // print_hex.print(board);
             // print_hex.delete();
