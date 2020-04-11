@@ -36,31 +36,6 @@ public:
     explicit PenguinPlayer(unsigned int id, HumanPlayer *owner);
 
     /**
-     * @brief Set the Standing On Cell
-     * 
-     * @param standingOn the cell on wich the player is currently standing
-     */
-    void setStandingOn(BoardCell *standingOn)
-    {
-        _previousStandingOn = _standingOn;
-        _standingOn = standingOn;
-    };
-
-    /**
-     * @brief Get the Standing On Cell
-     * 
-     * @return BoardCell* returns the cell where the penguin is currenlty standing
-     */
-    BoardCell *getStandingOn() { return _standingOn; };
-
-    /**
-     * @brief Get the Previous Standing On cell
-     * 
-     * @return BoardCell* The cell where the penguin was previously standing on, before he moved
-     */
-    BoardCell *getPreviousStandingOn() { return _previousStandingOn; };
-
-    /**
      * @brief Get the Owner
      * 
      * @return HumanPlayer& the owner of the penguin
