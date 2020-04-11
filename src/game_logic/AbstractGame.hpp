@@ -42,7 +42,7 @@ public:
 
     virtual bool play(const int player_id, CellT *cell) = 0;
 
-    virtual void revertPlay(CellT *cell) = 0;
+    virtual void revertPlay() = 0;
 
    /**
      * @brief Get the player who hadn't play yet
