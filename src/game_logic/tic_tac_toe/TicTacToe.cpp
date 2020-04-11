@@ -21,17 +21,17 @@ bool TicTacToe::play(const int player_id, BoardCell *move)
     return board->performMove(player_id, move);
 }
 
-void TicTacToe::revertPlay(BoardCell *cell)
+void TicTacToe::revertPlay()
 {
     --numberMoves;
-    int player = 0;
+    int player = 2;
 
     if (numberMoves % 2)
     {
         player = 1;
     }
     
-    board->revertMove(player, cell);
+    board->revertMove(player);
 }
 
 bool TicTacToe::isFinished() const

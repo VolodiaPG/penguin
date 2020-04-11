@@ -26,7 +26,12 @@ public:
 
     bool isFinished() const override;
     bool play(const int player_id, BoardCell *cell) override;
-    void revertPlay(BoardCell *move) override;
+    void revertPlay() override;
+    /**
+     * @brief Get the Human player to play, not the penguin one
+     * 
+     * @return int the id of the human player to play
+     */
     int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
     Board *getBoard() { return (Board *)board; };

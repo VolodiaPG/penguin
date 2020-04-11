@@ -26,19 +26,11 @@ public:
 
     bool isFinished() const override;
     bool play(const int player_id, BoardCell *cell) override;
-    void revertPlay(BoardCell *move) override;
+    void revertPlay() override;
     int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
 };
 } // namespace tic_tac_toe
 } // namespace game
-
-// EMSCRIPTEN_BINDINGS(module_playervcomputer)
-// {
-//     emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
-//         .constructor<game::JSPlayer::action_callback>()
-//         .function("playGame", &game::PlayerVComputer::playGame)
-//         .function("isFinished", &game::PlayerVComputer::isFinished);
-// }
 
 #endif

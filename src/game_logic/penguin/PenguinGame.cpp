@@ -25,7 +25,7 @@ bool PenguinGame::play(const int player_id, BoardCell *move)
     return moved;
 }
 
-void PenguinGame::revertPlay(BoardCell *cell)
+void PenguinGame::revertPlay()
 {
     --numberMoves;
     int player = 0;
@@ -35,7 +35,7 @@ void PenguinGame::revertPlay(BoardCell *cell)
         player = 1;
     }
 
-    board->revertMove(player, cell);
+    board->revertMove(player);
 }
 
 bool PenguinGame::isFinished() const
