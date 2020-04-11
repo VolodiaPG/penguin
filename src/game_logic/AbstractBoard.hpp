@@ -34,7 +34,7 @@ public:
     */
     virtual bool performMove(const int player_id, CellT *cell) = 0;
 
-    virtual void revertMove(const int player_id, CellT *cell) = 0;
+    virtual void revertMove(const int player_id) = 0;
 
     /**
      * @brief Status of the game
