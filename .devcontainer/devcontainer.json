@@ -23,7 +23,8 @@
         "ms-vsliveshare.vsliveshare",
 		"mutantdino.resourcemonitor",
 		"gruntfuggly.todo-tree",
-		"coenraads.bracket-pair-colorizer"
+		"coenraads.bracket-pair-colorizer",
+		"ritwickdey.liveserver"
 	],
 
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
