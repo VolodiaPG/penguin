@@ -8,9 +8,9 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
     : AbstractBoard(),
       _dimension(dimension)
 {
-    // generate the 2 players &
+    // generate the 2 players (1 & 2, 0 is forbidden) &
     // Generate the penguins for each team (x2)
-    for (int ii = 0; ii < 2; ++ii)
+    for (int ii = 1; ii <= 2; ++ii)
     {
         HumanPlayer *player = new HumanPlayer(ii);
         _players.push_back(player);
