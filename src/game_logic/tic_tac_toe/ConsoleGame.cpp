@@ -65,7 +65,7 @@ void ConsoleGame::loop()
         mcts::MCTSConstraints constraints;
         constraints.time = 250;
         // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
-        auto game = (AbstractGame<AbstractPlayer, AbstractBoardCell>*)this;
+        auto game = (AbstractGame<AbstractPlayer, AbstractBoardCell> *)this;
         mcts::Tree tree(game, board->getPlayerById(1), constraints); // play the second player
         tree.begin();
         AbstractBoardCell *abs_bestMove = tree.bestMove();

@@ -2,11 +2,13 @@
 #define TREE_HPP_
 
 #include <chrono>
+#include<bits/stdc++.h> 
 #include "Node.hpp"
 #include "../game_logic/AbstractPlayer.hpp"
 #include "../game_logic/AbstractGame.hpp"
 #include "../game_logic/AbstractBoardCell.hpp"
 #include "../log.hpp"
+
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 

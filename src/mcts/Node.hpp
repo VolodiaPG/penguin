@@ -10,6 +10,7 @@
 #include "Tree.hpp"
 #include "../game_logic/AbstractBoardCell.hpp"
 #include "../game_logic/AbstractPlayer.hpp"
+#include "../game_logic/Move.hpp"
 
 #include "../log.hpp"
 
@@ -31,7 +32,7 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::AbstractPlayer *player = nullptr;
+    const unsigned int player_id;
     game::AbstractBoardCell *targetedCell = nullptr;
     game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game = nullptr;
 
@@ -45,7 +46,7 @@ public:
 
     explicit Node(
         Node *parent,
-        game::AbstractPlayer *player,
+        const unsigned int player_id,
         game::AbstractBoardCell *targetedCell,
         game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game);
     ~Node();
@@ -58,9 +59,10 @@ public:
 
     Node *nodeWithMaxVisits() const;
 
-    void expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer);
+    // void expandNode(std::vector<game::Move> possibleMove, game::AbstractPlayer *nextPlayer);
+    void expandNode(std::vector<game::Move> possibleMove);
 
-    game::AbstractPlayer *getPlayer() const { return player; };
+    unsigned int getPlayerID() const { return player_id; };
 
     Node *getParent() const { return parent; };
 

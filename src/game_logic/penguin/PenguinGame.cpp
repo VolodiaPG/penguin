@@ -15,9 +15,9 @@ PenguinGame::~PenguinGame()
     delete board;
 }
 
-bool PenguinGame::play(const int player_id, BoardCell *move)
+bool PenguinGame::play(const int penguin_player_id, BoardCell *move)
 {
-    bool moved = board->performMove(player_id, move);
+    bool moved = board->performMove(penguin_player_id, move);
     if (moved)
     {
         ++numberMoves;
@@ -43,7 +43,7 @@ bool PenguinGame::isFinished() const
     return board->checkStatus() != 0;
 }
 
-int PenguinGame::getPlayerToPlay() const
+unsigned int PenguinGame::getPlayerToPlay() const
 {
     int nextPlayer = 2;
 
@@ -53,6 +53,22 @@ int PenguinGame::getPlayerToPlay() const
     }
 
     return nextPlayer;
+}
+
+std::vector<Move> PenguinGame::getAvailableMoves(const unsigned int human_player_id)
+{
+    std::vector<Move> ret;
+    Board *penguin_board = (Board *)board;
+
+    HumanPlayer *human_player = penguin_board->getHumanPlayerById(human_player_id);
+    for (unsigned int penguin_id : human_player->getPenguins())
+    {
+        std::vector<BoardCell *> availableCells = penguin_board->getAvailableCells(penguin_id);
+        ret.reserve(ret.size() + availableCells.size());
+        std::transform(availableCells.begin(), availableCells.end(), ret.end(), [penguin_id](BoardCell *cell) -> Move { return Move{penguin_id, cell}; });
+    }
+
+    return ret;
 }
 } // namespace penguin
 } // namespace game

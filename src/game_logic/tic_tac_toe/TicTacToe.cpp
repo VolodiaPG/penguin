@@ -30,7 +30,7 @@ void TicTacToe::revertPlay()
     {
         player = 1;
     }
-    
+
     board->revertMove(player);
 }
 
@@ -39,7 +39,7 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-int TicTacToe::getPlayerToPlay() const
+unsigned int TicTacToe::getPlayerToPlay() const
 {
     int nextPlayer = 2;
 
@@ -49,6 +49,15 @@ int TicTacToe::getPlayerToPlay() const
     }
 
     return nextPlayer;
+}
+
+std::vector<Move> TicTacToe::getAvailableMoves(const unsigned int player_id)
+{
+    std::vector<BoardCell *> input = board->getAvailableCells(player_id);
+    std::vector<Move> ret(input.size());
+    std::transform(input.begin(), input.end(), ret.begin(), [player_id](BoardCell *cell) -> Move { return {player_id, cell}; });
+
+    return ret;
 }
 } // namespace tic_tac_toe
 } // namespace game

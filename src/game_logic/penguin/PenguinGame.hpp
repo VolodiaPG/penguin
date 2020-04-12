@@ -2,6 +2,7 @@
 #define PENGUIN_PENGUIN_GAME_HPP_
 
 #include <iostream>
+#include <algorithm>
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 
@@ -25,16 +26,17 @@ public:
     ~PenguinGame();
 
     bool isFinished() const override;
-    bool play(const int player_id, BoardCell *cell) override;
+    bool play(const int penguin_player_id, BoardCell *cell) override;
     void revertPlay() override;
     /**
      * @brief Get the Human player to play, not the penguin one
      * 
-     * @return int the id of the human player to play
+     * @return unsigned int the id of the human player to play
      */
-    int getPlayerToPlay() const override;
+    unsigned int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
     Board *getBoard() { return (Board *)board; };
+    std::vector<Move> getAvailableMoves(const unsigned int human_player_id) override;
 };
 } // namespace penguin
 } // namespace game

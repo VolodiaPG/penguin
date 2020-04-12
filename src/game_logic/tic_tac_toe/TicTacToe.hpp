@@ -2,6 +2,7 @@
 #define TIC_TAC_TOE_TIC_TAC_TOE_HPP_
 
 #include <iostream>
+#include <algorithm>
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 
@@ -27,8 +28,9 @@ public:
     bool isFinished() const override;
     bool play(const int player_id, BoardCell *cell) override;
     void revertPlay() override;
-    int getPlayerToPlay() const override;
+    unsigned int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
+    std::vector<Move> getAvailableMoves(const unsigned int player_id) override;
 };
 } // namespace tic_tac_toe
 } // namespace game

@@ -16,7 +16,9 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
         _players.push_back(player);
         for (size_t jj = 0; jj < number_of_penguins; ++jj)
         {
-            _penguins_on_board.push_back(new PenguinPlayer(ii * number_of_penguins + jj, player)); //TODO verify no crashing because doing shadowy things with references
+            const unsigned int penguin_id = ii * number_of_penguins + jj;
+            _penguins_on_board.push_back(new PenguinPlayer(penguin_id, player)); //TODO verify no crashing because doing shadowy things with references
+            player->addPenguin(penguin_id);
         }
     }
 

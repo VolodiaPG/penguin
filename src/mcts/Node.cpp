@@ -3,11 +3,11 @@
 namespace mcts
 {
 Node::Node(Node *parent,
-           game::AbstractPlayer *player,
+           const unsigned int player_id,
            game::AbstractBoardCell *targetedCell,
            game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game)
     : parent(parent),
-      player(player),
+      player_id(player_id),
       targetedCell(targetedCell),
       game(game)
 {
@@ -77,7 +77,7 @@ Node *Node::selectBestChildAndDoAction()
 bool Node::doAction()
 {
     // do our move
-    return game->play(player->getId(), targetedCell);
+    return game->play(player_id, targetedCell);
 }
 
 void Node::revertAction()
@@ -88,7 +88,7 @@ void Node::revertAction()
 game::AbstractBoardCell *Node::getRandomAvailableCell() const
 {
 
-    auto cells = game->board->getAvailableCells(player->getId());
+    auto cells = game->board->getAvailableCells(player_id);
     // auto cells = dynamic_cast<std::vector<game::AbstractBoardCell *>&>();
 
     // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
@@ -125,7 +125,7 @@ int Node::randomSimulation() const
 void Node::backPropagateAndRevertAction(const int winnerId)
 {
     ++visits;
-    if (winnerId == (int)player->getId())
+    if (winnerId == (int)player_id)
     {
         victories += 10;
     }
@@ -176,11 +176,20 @@ Node *Node::randomChooseChildOrDefaultMe()
     return ret;
 }
 
-void Node::expandNode(std::vector<game::AbstractBoardCell *> possibleMove, game::AbstractPlayer *nextPlayer)
+// void Node::expandNode(std::vector<game::Move>& possibleMove, game::AbstractPlayer *nextPlayer)
+// {
+//     for (game::Move& move : possibleMove)
+//     {
+//         Node *node = new Node(this, nextPlayer, move, game);
+//         childNodes.push_back(node);
+//     }
+// }
+
+void Node::expandNode(std::vector<game::Move> possibleMove)
 {
-    for (game::AbstractBoardCell *move : possibleMove)
+    for (game::Move &move : possibleMove)
     {
-        Node *node = new Node(this, nextPlayer, move, game);
+        Node *node = new Node(this, move.player_id, move.cell, game);
         childNodes.push_back(node);
     }
 }

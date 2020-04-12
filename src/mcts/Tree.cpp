@@ -11,7 +11,7 @@ Tree::Tree(
       game(game),
       constraints(constraints)
 {
-    rootNode = new Node(nullptr, me, nullptr, game);
+    rootNode = new Node(nullptr, INT_MAX, nullptr, game);
 }
 
 Tree::~Tree()
@@ -36,9 +36,11 @@ void Tree::begin()
 
             if (!game->isFinished())
             {
-                promisingNode->expandNode(
-                    game->board->getAvailableCells(promisingNode->getPlayer()->getId()),
-                    game->board->getPlayerById(game->getPlayerToPlay()));
+                // promisingNode->expandNode(
+                //     game->board->getAvailableCells(promisingNode->getPlayer()->getId()),
+                //     game->board->getPlayerById(game->getPlayerToPlay()));
+                const unsigned int id = game->getPlayerToPlay();
+                promisingNode->expandNode(game->getAvailableMoves(id));
             }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();

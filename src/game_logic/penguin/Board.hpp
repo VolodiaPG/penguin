@@ -10,11 +10,11 @@
 #include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
 #include "PenguinPlayer.hpp"
+#include "HumanPlayer.hpp"
 #include "../Position3D.hpp"
 #include "../utils/conversions.hpp"
 
 #include "../../dbg.h"
-
 
 // TODO Command pattern pour le reverse
 
@@ -51,7 +51,7 @@ typedef enum
 } GameStatus;
 
 // Here we'll be using an unodered_map in order to achieve an average of O(1)
-using penguin_board_map_t = std::unordered_map<const Position, BoardCell*, position_hash_function>;
+using penguin_board_map_t = std::unordered_map<const Position, BoardCell *, position_hash_function>;
 
 /**
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
@@ -70,14 +70,14 @@ private:
      * @brief The penguins for both teams
      * 
      */
-    std::vector<PenguinPlayer*> _penguins_on_board;
+    std::vector<PenguinPlayer *> _penguins_on_board;
 
     /**
      * @brief Penguins owner, ie players
      * 
      */
 
-    std::vector<HumanPlayer*> _players;
+    std::vector<HumanPlayer *> _players;
 
 protected:
     /**
@@ -161,7 +161,9 @@ public:
 
     std::vector<PenguinPlayer *> getPlayersOnBoard() override;
 
-    PenguinPlayer * getPlayerById(const int penguin_id) override { return _penguins_on_board[penguin_id]; };
+    PenguinPlayer *getPlayerById(const int penguin_id) override { return _penguins_on_board[penguin_id]; };
+
+    HumanPlayer *getHumanPlayerById(const int human_player_id) { return _players[human_player_id]; };
 
     // Position begin();
 };
