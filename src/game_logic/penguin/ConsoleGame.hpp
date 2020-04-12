@@ -6,6 +6,7 @@
 #include "../AbstractGame.hpp"
 #include "PenguinGame.hpp"
 #include "PrintHex.hpp"
+#include "../../mcts/Tree.hpp"
 
 // #include "../../dbg.h"
 
