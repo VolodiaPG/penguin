@@ -12,6 +12,7 @@ Tree::Tree(
       constraints(constraints)
 {
     rootNode = new Node(nullptr, INT_MAX, nullptr, game);
+    // TODO remove `playerMe` (useless)
 }
 
 Tree::~Tree()
@@ -39,7 +40,9 @@ void Tree::begin()
                 // promisingNode->expandNode(
                 //     game->board->getAvailableCells(promisingNode->getPlayer()->getId()),
                 //     game->board->getPlayerById(game->getPlayerToPlay()));
+                dbg(game);
                 const unsigned int id = game->getPlayerToPlay();
+                dbg(id);
                 promisingNode->expandNode(game->getAvailableMoves(id));
             }
 

@@ -9,6 +9,8 @@
 #include "../game_logic/AbstractBoardCell.hpp"
 #include "../log.hpp"
 
+#include "../dbg.h"
+
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
