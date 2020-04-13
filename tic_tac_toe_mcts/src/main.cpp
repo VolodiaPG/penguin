@@ -12,7 +12,7 @@
 #ifndef __EMSCRIPTEN__
 int main()
 {
-	for (int ii = 0; ii < 50; ++ii)
+	for (int ii = 0; ii < 5; ++ii)
 	{
 		game::ConsoleGame consoleGame;
 

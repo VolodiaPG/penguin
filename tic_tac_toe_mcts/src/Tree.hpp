@@ -61,6 +61,7 @@ struct Node
 
     double score = 0.0;
     int visits = 0;
+    bool isRoot = false;
 };
 
 class Tree
@@ -105,6 +106,14 @@ public:
     void begin();
 
     game::AbstractBoardCell *bestMove() const;
+
+    /**
+     * @brief Moves the root to a given cell
+     * 
+     * @param cell 
+     */
+    void moveRootToCell(game::AbstractBoardCell* cell);
+
     // NodegetRootNode() const { return rootNode; };
 };
 

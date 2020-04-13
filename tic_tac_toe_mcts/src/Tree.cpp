@@ -12,6 +12,7 @@ Tree::Tree(
       constraints(constraints)
 {
     rootNode.player = playerMe;
+    rootNode.isRoot = true;
 }
 
 Tree::~Tree()
@@ -28,7 +29,7 @@ void Tree::begin()
         {
             Node *promisingNode = selectBestChildAndDoAction(&rootNode);
 
-            if (!game->isFinished())
+            if (!game->isFinished() && promisingNode->childNodes.size() == 0)
             {
                 expandNode(promisingNode);
             }
@@ -110,7 +111,6 @@ void Tree::doActionOnBoard(const Node &nodeToGetTheActionFrom)
 game::AbstractBoardCell *Tree::getRandomAvailableCellFromBoard() const
 {
     std::vector<game::AbstractBoardCell *> cells = game->board->getAvailableCells();
-
     // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
     unsigned int index = rand() % cells.size();
 
@@ -122,6 +122,7 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
     Node *node = terminalNode;
 
     // iterate until the root node, not excluded tho!
+    //std::cout << "--------------------| Starting |----------------------" << std::endl;
     do
     {
         double increment = INCREMENT_DEFEAT;
@@ -139,14 +140,19 @@ void Tree::backPropagateAndRevertAction(int winnerId, Node *terminalNode)
         if (node->parent)
         { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
             game->revertPlay(node->targetedCell);
+            //std::cout << node->targetedCell->to_string() << std::endl;
+            //if(node->parent->targetedCell)
+            //    std::cout << node->parent->targetedCell->to_string() << std::endl;
         }
+        
     } while ((node = node->parent) != nullptr);
+    //std::cout << "--------------------| Finished |----------------------" << std::endl;
 }
 
 Node *Tree::randomChooseChildOrFallbackOnNode(Node *node) const
 {
     Node *ret = node;
-    if (node->childNodes.size())
+    if (node->childNodes.size() != 0)
     {
         unsigned int index = rand() % node->childNodes.size();
         ret = node->childNodes[index];
@@ -173,12 +179,15 @@ int Tree::randomSimulation() const
     int winner = game->checkStatus();
 
     // revert the random game
+    //std::cout << "--------------------| Starting |----------------------" << std::endl;
+    //std::cout << "Winner : " << winner << std::endl;
     while (!playedCells.empty())
     {
         game->revertPlay(playedCells.front());
         // remove the element
         playedCells.pop();
     }
+    //std::cout << "--------------------| Finished |----------------------" << std::endl;
 
     return winner;
 }
@@ -187,7 +196,8 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
 {
     Node *ret = input;
 
-    if (ret->parent != nullptr)
+    //if (ret->parent != nullptr)
+    if(!ret->isRoot)
     {
         doActionOnBoard(*ret);
     }
@@ -213,7 +223,8 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
         }
 
         // exclude the root node that doesn't have any action associated...
-        if (interestingToReturn->parent != nullptr)
+        //if (interestingToReturn->parent != nullptr)
+        if(!interestingToReturn->isRoot)
         {
             doActionOnBoard(*interestingToReturn);
         }
@@ -221,6 +232,37 @@ Node *Tree::selectBestChildAndDoAction(Node *input)
     }
 
     return ret;
+}
+
+void Tree::moveRootToCell(game::AbstractBoardCell* cell)
+{
+    Node* nextRoot = nullptr;
+    
+    while(rootNode.childNodes.size() != 0)
+    //for(unsigned long i = 0; i < rootNode.childNodes.size(); i++)
+    {
+        Node* n = rootNode.childNodes.back();
+        //Node* n = rootNode.childNodes.at(i);
+        rootNode.childNodes.pop_back();
+        if(n->targetedCell == cell)
+        {
+            nextRoot = n;
+        }else
+        {
+            delete n;
+        }
+    }
+    if(nextRoot != nullptr)
+    {
+        rootNode = *nextRoot;
+        rootNode.parent = nullptr;
+        rootNode.targetedCell = nullptr;
+        rootNode.isRoot = true;
+        for(unsigned long i = 0; i < rootNode.childNodes.size(); i++)
+        {
+            rootNode.childNodes.at(i)->parent = &rootNode;
+        }
+    }
 }
 
 } // namespace mcts

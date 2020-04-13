@@ -17,9 +17,9 @@ AbstractBoardCell * MCTSPlayer::bestMove()
     return tree->bestMove();
 }
 
-void MCTSPlayer::updateTree(AbstractBoardCell &cell)
+void MCTSPlayer::updateTree(AbstractBoardCell* cell)
 {
-    cell.to_string();
+    tree->moveRootToCell(cell);
 }
 
 } // namespace game

@@ -82,6 +82,8 @@
         "__tuple": "cpp",
         "ios": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "map": "cpp",
+        "__tree": "cpp"
     }
 }

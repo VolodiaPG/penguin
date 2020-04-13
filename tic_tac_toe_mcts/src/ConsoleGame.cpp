@@ -68,7 +68,7 @@ void ConsoleGame::loop()
 {
     std::cout << "test" << std::endl;
 
-    int turn = 0;
+    //int turn = 0;
     draw();
     AbstractPlayer *player = player1;
     while (!TicTacToe::isFinished())
@@ -76,17 +76,17 @@ void ConsoleGame::loop()
         mcts::MCTSConstraints constraints;
         constraints.time = 250;
 
-        std::string filename = "turn_" + std::to_string(turn++);
+        //std::string filename = "turn_" + std::to_string(turn++);
         mcts::Tree tree(this, player, constraints);
         tree.begin();
 
-        std::cout << filename << std::endl;
+        //std::cout << filename << std::endl;
 
-        mcts::TreeVisualizer visualizer(&tree, 2, filename + "_rough.txt");
-        visualizer.exportLog();
+        //mcts::TreeVisualizer visualizer(&tree, 2, filename + "_rough.txt");
+        //visualizer.exportLog();
 
-        mcts::TreeVisualizer visualizer2(&tree, 4, filename + "_precise.txt");
-        visualizer2.exportLog();
+        //mcts::TreeVisualizer visualizer2(&tree, 4, filename + "_precise.txt");
+        //visualizer2.exportLog();
 
         AbstractBoardCell *bestMove = tree.bestMove();
         play(player, bestMove);
@@ -118,22 +118,23 @@ void ConsoleGame::loop()
     AbstractPlayer *player = player1;
     while (!TicTacToe::isFinished())
     {
-        AbstractBoardCell *bestMove = nullptr;
+        std::cout << "Player : " << player->getId() << " is playing."<< std::endl;
+        AbstractBoardCell* bestMove = nullptr;
         if(dynamic_cast<MCTSPlayer*>(player) != nullptr)
         {
             MCTSPlayer * mcts_player = ((MCTSPlayer *) player);
-            AbstractBoardCell * bestMove = mcts_player->bestMove();
+            bestMove = mcts_player->bestMove();
             play(mcts_player, bestMove);
-            mcts_player->updateTree(*bestMove);
+            mcts_player->updateTree(bestMove);
         }
         
-
+        std::cout << "Switching players" << std::endl;
         player = getPlayerToPlay();
         if(dynamic_cast<MCTSPlayer*>(player) != nullptr)
         {
             MCTSPlayer * mcts_player_opponent = ((MCTSPlayer *) player);
             if(bestMove != nullptr)
-                mcts_player_opponent->updateTree(*bestMove);
+                mcts_player_opponent->updateTree(bestMove);
         }
         draw();
     }

@@ -16,8 +16,20 @@ public:
     explicit MCTSPlayer(game::AbstractGame *game, 
                         unsigned int id, 
                         const mcts::MCTSConstraints &constraints);
+
+    /**
+     * @brief Returns the best move after running the ai
+     * 
+     * @return AbstractBoardCell* 
+     */
     AbstractBoardCell * bestMove();
-    void updateTree(AbstractBoardCell &cell);
+
+    /**
+     * @brief Moves the root node to node with targeted cell
+     * 
+     * @param cell 
+     */
+    void updateTree(AbstractBoardCell* cell);
 
 private:
     mcts::Tree * tree;
