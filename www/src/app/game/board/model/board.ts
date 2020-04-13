@@ -8,6 +8,8 @@ import { Penguin } from './penguin';
  * 
  */
 
+declare var Module: any;
+
 let loader: any = Loader.shared;
 
 export class Board {
@@ -24,17 +26,19 @@ export class Board {
     // The pixel height of a hex.
     hexHeight: number = 90;      // 90
 
+    idHumanPlayer: number = 1;
+
     nbPenguin: number = 4;
 
     cells: Array<Cell>;
 
-    penguinPlayers: any;
+    pawns: any;
 
     // cells: Array<Array<Cell>>;
     penguinsAllies: Array<Penguin>;
     penguinsEnemis: Array<Penguin>;
 
-    constructor(private app: Application, nbHexagonal:number, nbPenguin: number) {
+    constructor(private app: Application, nbHexagonal: number, nbPenguin: number) {
         this.pixiApp = app;
 
         this.mapHeight = nbHexagonal;
@@ -42,7 +46,7 @@ export class Board {
 
 
         this.cells = new Array(this.mapHeight * this.mapWidth);
-        
+
         this.nbPenguin = nbPenguin;
         this.penguinsAllies = new Array(this.nbPenguin);
         this.penguinsEnemis = new Array(this.nbPenguin);
@@ -54,10 +58,9 @@ export class Board {
         console.log("Board ok");
     }
 
-
-/***************************************************************************************************************************
-************************************************ PREVIEW *******************************************************************
-***************************************************************************************************************************/
+    /***************************************************************************************************************************
+    ************************************************ PREVIEW *******************************************************************
+    ***************************************************************************************************************************/
     generatePreviewMap() {
         console.log("Generate Preview Map");
         let cell: Cell;
@@ -162,11 +165,13 @@ export class Board {
         this.nbPenguin--;
     }
 
-/***************************************************************************************************************************
-************************************************ MAP ***********************************************************************
-***************************************************************************************************************************/
+    /***************************************************************************************************************************
+    ************************************************ MAP ***********************************************************************
+    ***************************************************************************************************************************/
     generateMapFrom(gameBoard: any) {
         console.log("Generate Map");
+
+        // generate cells from the wasm directives
         var wasmCells = gameBoard.getBoardCells();
 
         for (let row = 0; row < this.mapHeight; row++) {
@@ -174,9 +179,34 @@ export class Board {
                 this.cells[row * this.mapHeight + column].setWasmCell(wasmCells.get(row * this.mapHeight + column));
             }
         }
+
+        this.pawns = gameBoard.getPlayersOnBoard();
+
+        this.setRandomPenguins(gameBoard);
+
+        // set on the board the penguins
+        for (let ii = 0; ii < this.pawns.size(); ii++) {
+            var pawn: any = this.pawns.get(ii);
+            var pawnPos: any = pawn.getStandingOn().getPosition();
+            pawnPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(pawnPos));
+            console.log(pawnPos);
+            // this.pixiApp.stage.addChild(new Penguin(this.cells[this.mapHeight + this.nbPenguin].getCellCenter(), true).sprite);
+        }
         this.loadSceneGraph();
     }
-    
+
+    setRandomPenguins(gameBoard: any) {
+        console.log("Set Random Penguins Positions");
+        let rndPos: number;
+
+        for (let ii = 0; ii < this.pawns.size(); ii++) {
+            var pawn: any = this.pawns.get(ii);
+            rndPos = Math.floor(0 + Math.random() * (this.mapHeight * this.mapWidth));
+            gameBoard.performMove(pawn.getId(), this.cells[rndPos].wasmCell);
+
+            this.pixiApp.stage.addChild(new Penguin(this.cells[rndPos].getCellCenter(), (pawn.getOwner() === this.idHumanPlayer)).sprite);
+        }
+    }
     loadSceneGraph() {
         var currentCell: Cell;
         while (this.hexes.children.length) {

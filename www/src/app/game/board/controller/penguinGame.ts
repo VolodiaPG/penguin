@@ -12,6 +12,8 @@ export class PenguinGame {
   pixiApp: Application;
   board: Board;
 
+  idHumanPlayer: number = 1;
+
   game: any;
 
   boardWidth: number;
@@ -99,7 +101,6 @@ export class PenguinGame {
   startWasmGame(): void {
     this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.board.generateMapFrom(this.game.getBoard());
-    this.board.penguinPlayers = this.game.getBoard().getPlayersOnBoard();
   }
 
   /***************************************************************************************************************************

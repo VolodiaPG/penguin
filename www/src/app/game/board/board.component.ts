@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
 
   ngOnDestroy(): void {
     console.log("Game destroyed");
+    penguinGame.game.delete();
   }
 
   /***************************************************************************************************************************

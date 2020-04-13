@@ -28,7 +28,8 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     class_<PenguinPlayer>("PenguinPlayer")
         .function("getStandingOn", &PenguinPlayer::getStandingOn, allow_raw_pointers())
         .function("getPreviousStandingOn", &PenguinPlayer::getPreviousStandingOn, allow_raw_pointers())
-        .function("getOwner", &PenguinPlayer::getOwner, allow_raw_pointers());
+        .function("getOwner", &PenguinPlayer::getOwner, allow_raw_pointers())
+        .function("getId", &PenguinPlayer::getId);
 
     class_<BoardCell>("BoardCell")
         .function("getPosition", &BoardCell::getPosition)
