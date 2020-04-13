@@ -27,22 +27,43 @@ export class Board {
 
     nbPenguin: number = 4;
 
-    cells: Array<Array<Cell>>;
+    cells:any;
+
+    penguinPlayers:any;
+
+    // cells: Array<Array<Cell>>;
     penguinsAllies: Array<Penguin>;
     penguinsEnemis: Array<Penguin>;
 
-    constructor(private app: Application, size: number, nbPawn: number) {
+    // constructor(private app: Application, size: number, nbPawn: number) {
+    //     this.pixiApp = app;
+
+    //     this.mapHeight = size;
+    //     this.mapWidth = size;
+
+    //     this.nbPenguin = nbPawn;
+    //     this.penguinsAllies = new Array(this.nbPenguin);
+    //     this.penguinsEnemis = new Array(this.nbPenguin);
+    //     console.log("Lg penguins : "+ this.penguinsAllies.length);
+
+    //     this.cells = new Array(this.mapHeight);
+
+    //     this.hexes = new Graphics();
+    //     this.pixiApp.stage.addChild(this.hexes);
+    //     this.hexes.clear();
+
+    //     console.log("Board ok");
+    // }
+
+    constructor(private app: Application, gameBoard:any) {
         this.pixiApp = app;
 
-        this.mapHeight = size;
-        this.mapWidth = size;
+        this.mapHeight = gameBoard.size();
+        this.mapWidth = gameBoard.size();
 
-        this.nbPenguin = nbPawn;
-        this.penguinsAllies = new Array(this.nbPenguin);
-        this.penguinsEnemis = new Array(this.nbPenguin);
-        console.log("Lg penguins : "+ this.penguinsAllies.length);
-
-        this.cells = new Array(this.mapHeight);
+        this.cells = gameBoard.getBoardCells();
+        this.penguinPlayers = gameBoard.getPlayersOnBoard();
+        console.log(this.penguinPlayers.size());
 
         this.hexes = new Graphics();
         this.pixiApp.stage.addChild(this.hexes);

@@ -10,7 +10,7 @@ ifeq ($(ENV),native)
 TARGET_EXEC ?= main
 CXX := g++
 else
-TARGET_EXEC ?= main.html
+TARGET_EXEC ?= main.js
 CXX := $(EMSCRIPTEN_PATH)/em++
 endif
 
@@ -35,8 +35,9 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align
 
 ifeq ($(ENV),emscripten)
+	# -s MODULARIZE=1 to wrap the code in a module, easier to consume in our angular app
 	CPPFLAGS += --bind -s WASM=1
-	EXECPPFLAGS := 
+	EXECPPFLAGS :=
 endif
 
 ifeq ($(MODE),debug)

@@ -4,12 +4,15 @@ import { Board } from '../model/board';
 import { Penguin } from '../model/penguin';
 import { ViewChild } from '@angular/core';
 
+declare var Module: any;
 
 let loader: any = Loader.shared;
 
 export class PenguinGame {
   pixiApp: Application;
   board: Board;
+
+  game: any;
 
   boardWidth: number;
   boardHeight: number;
@@ -20,6 +23,9 @@ export class PenguinGame {
   constructor(nbHexagonal: number, nbPenguin: number) {
     this.nbHexagonal = nbHexagonal;
     this.nbPenguin = nbPenguin;
+
+    this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+
     this.boardWidth = nbHexagonal * 90;
     this.boardHeight = nbHexagonal * 90;
     this.initPixiApp();
@@ -77,7 +83,7 @@ export class PenguinGame {
   setupPixiJs(): void {
     console.log("All files loaded -> Setup pixi.js");
 
-    this.board = new Board(this.pixiApp, this.nbHexagonal, this.nbPenguin);
+    this.board = new Board(this.pixiApp, this.game.getBoard());
 
     // this.pixiApp.stage.width = this.board.mapWidth * this.board.hexWidth;
     // this.pixiApp.stage.height = this.board.mapHeight * this.board.hexHeight;

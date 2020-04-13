@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoardComponent } from './board/board.component';
 
+
+declare var Module: any;
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
