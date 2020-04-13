@@ -24,12 +24,15 @@ export class PenguinGame {
     this.nbHexagonal = nbHexagonal;
     this.nbPenguin = nbPenguin;
 
-    this.boardWidth = (nbHexagonal+1) * 90;
+    this.boardWidth = (nbHexagonal + 1) * 90;
     this.boardHeight = nbHexagonal * 90;
     this.initPixiApp();
     this.initLoader();
   }
 
+  /***************************************************************************************************************************
+  ************************************************ INITIALIZATION ************************************************************
+  ***************************************************************************************************************************/
   initPixiApp() {
     this.pixiApp = new Application({
       width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
@@ -41,7 +44,7 @@ export class PenguinGame {
 
     this.pixiApp.renderer.view.style.display = "block";
     this.pixiApp.renderer.autoDensity = true;
-    
+
     this.pixiApp.resizeTo = this.pixiApp.renderer.view;
   }
 
@@ -90,27 +93,18 @@ export class PenguinGame {
 
     this.pixiApp.resize();
 
-    // // console.log("Ordre du tableau : ");
-    // // for(var r = 0; r < board.cells.length ; r+=1) {
-    // //     for(var c = 0 ; c < board.cells[r].length ; c+=1) {
-    // //         console.log("Cell : (" + board.cells[r][c].row + "," + board.cells[r][c].column + ")");
-    // //     }
-    // // }
-
-    // board.pixiApp.ticker.add(animate);
-
-    // this.penguin = new Penguin(this.board, loader, board.cells[2][2]);
-    // // penguin2 = new Penguin(board, loader, board.cells[5][5]);
-
-    // pixiApp.stage.addChild(penguin.sprite);
-    // // board.pixiApp.stage.addChild(penguin2.sprite);
+    // this.pixiApp.ticker.add(animate);
   }
 
-  startWasmGame():void {
+  startWasmGame(): void {
     this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.board.generateMapFrom(this.game.getBoard());
     this.board.penguinPlayers = this.game.getBoard().getPlayersOnBoard();
   }
+
+  /***************************************************************************************************************************
+  ************************************************ PREVIEW *******************************************************************
+  ***************************************************************************************************************************/
 
   addHexagonal(): void {
     this.nbHexagonal++;
@@ -141,7 +135,7 @@ export class PenguinGame {
   }
 
   updatePixiAppSize(): void {
-    this.boardWidth = (this.nbHexagonal+1) * 90;
+    this.boardWidth = (this.nbHexagonal + 1) * 90;
     this.boardHeight = this.nbHexagonal * 90;
     this.pixiApp.renderer.view.width = this.boardWidth;
     this.pixiApp.renderer.view.height = this.boardHeight;
@@ -151,6 +145,10 @@ export class PenguinGame {
     this.pixiApp.resize();
   }
 }
+
+/***************************************************************************************************************************
+************************************************ LOADER FUNCTION ***********************************************************
+***************************************************************************************************************************/
 
 function handleLoadStart(): void {
   console.log("load start");

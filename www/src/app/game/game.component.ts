@@ -11,7 +11,7 @@ declare var Module: any;
 })
 
 export class GameComponent implements OnInit {
-  @ViewChild(BoardComponent, {static: true}) 
+  @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
   nbHexagonal: number = 8;
@@ -21,6 +21,10 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /***************************************************************************************************************************
+  ************************************************ PREVIEW *******************************************************************
+  ***************************************************************************************************************************/
+
   nbHexagonalChanged(event: any) {
     if ((this.nbHexagonal - event.detail.value) < 0) {
       this.boardComponent.addHexagonal();
@@ -29,7 +33,6 @@ export class GameComponent implements OnInit {
     }
     this.nbHexagonal = event.detail.value;
     console.log("New nb of hexagonals : " + this.nbHexagonal);
-    // this.boardComponent.reloadGameBoard(this.nbHexagonal, this.nbPenguin);
   }
 
   nbPenguinChanged(event: any) {
@@ -40,6 +43,5 @@ export class GameComponent implements OnInit {
     }
     this.nbPenguin = event.detail.value;
     console.log("New nb of penguins : " + this.nbPenguin);
-    // this.boardComponent.reloadGameBoard(this.nbHexagonal, this.nbPenguin);
   }
 }

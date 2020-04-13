@@ -9,20 +9,9 @@ export let penguinGame: PenguinGame;
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit { // or AfterViewInit
-
-  // @ViewChild('imageCanvas', { static: false }) canvas: any;
-  // canvasElement: any;
+export class BoardComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private ngZone: NgZone) { }
-
-  // ngAfterViewInit() {
-  //   // Set the Canvas Element
-  //   // this.canvasElement = this.canvas.nativeElement;
-
-  //   // this.renderer.setElementAttribute(this.canvasElement, 'width', this.platform.width() + '');
-  //   // this.renderer.setElementAttribute(this.canvasElement, 'height', this.platform.height() + ''); 
-  // }
 
   ngOnInit(): void {
     this.setUpGameBoard(8, 4); //default : 8 hexagonals, 4 penguins
@@ -30,18 +19,25 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
   ngOnDestroy(): void {
     console.log("Game destroyed");
-    // loader.destroy();
   }
 
+  /***************************************************************************************************************************
+  ************************************************ START GAME ****************************************************************
+  ***************************************************************************************************************************/
   setUpGameBoard(nbHex: number, nbPeng: number) {
     this.ngZone.runOutsideAngular(() => {
       penguinGame = new PenguinGame(nbHex, nbPeng);
     });
-    // Add the view to the DOM
-    // document.body.appendChild(app.view);
     this.elementRef.nativeElement.appendChild(penguinGame.pixiApp.view);
   }
 
+  launchGame() {
+    penguinGame.startWasmGame();
+  }
+
+  /***************************************************************************************************************************
+  ************************************************ PREVIEW *******************************************************************
+  ***************************************************************************************************************************/
   addHexagonal(): void {
     penguinGame.addHexagonal();
   }
@@ -56,19 +52,5 @@ export class BoardComponent implements OnInit { // or AfterViewInit
 
   removePenguin(): void {
     penguinGame.removePenguin();
-  }
-
-  reloadGameBoard(nbHex: number, nbPeng: number) {
-    this.elementRef.nativeElement.removeChild(penguinGame.pixiApp.view);
-    this.ngZone.runOutsideAngular(() => {
-      penguinGame = new PenguinGame(nbHex, nbPeng);
-    });
-    // Add the view to the DOM
-    // document.body.appendChild(app.view);
-    this.elementRef.nativeElement.appendChild(penguinGame.pixiApp.view);
-  }
-
-  launchGame() {
-    penguinGame.startWasmGame();
   }
 }
