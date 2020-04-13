@@ -36,7 +36,7 @@ endif
 
 
 EXECUTABLE_C_FLAGS ?= 
-C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror #-lstdc++
+C_FLAGS += -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -pthread #-lstdc++
 
 #c
 # Project files

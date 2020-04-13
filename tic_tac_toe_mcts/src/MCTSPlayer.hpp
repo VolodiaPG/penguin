@@ -5,6 +5,10 @@
 #include "Tree.hpp"
 #include "AbstractBoardCell.hpp"
 #include "AbstractGame.hpp"
+#include "mcts.hpp"
+
+#include <thread>
+#include <functional>
 
 namespace game
 {
@@ -17,6 +21,8 @@ public:
                         unsigned int id, 
                         const mcts::MCTSConstraints &constraints);
 
+    ~MCTSPlayer();
+    
     /**
      * @brief Returns the best move after running the ai
      * 
@@ -33,6 +39,7 @@ public:
 
 private:
     mcts::Tree * tree;
+    game::AbstractGame *game;
 };
 
 }//namespace game

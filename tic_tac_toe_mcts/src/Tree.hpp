@@ -69,6 +69,7 @@ class Tree
 protected:
     friend class TreeVisualizer;
     Node rootNode;
+
     // Node *rootNode;
     void expandNode();
 
@@ -114,7 +115,7 @@ public:
      */
     void moveRootToCell(game::AbstractBoardCell* cell);
 
-    // NodegetRootNode() const { return rootNode; };
+    Node* getRootNode();
 };
 
 } // namespace mcts

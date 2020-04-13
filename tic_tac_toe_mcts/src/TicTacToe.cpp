@@ -26,8 +26,6 @@ bool TicTacToe::play(AbstractPlayer *player, AbstractBoardCell *move)
 void TicTacToe::revertPlay(AbstractBoardCell *cell)
 {
     --numberMoves;
-    //std::cout << numberMoves << std::endl;
-    //while(numberMoves < -50){}
     board->revertMove(cell);
 }
 
