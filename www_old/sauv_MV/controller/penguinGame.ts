@@ -24,7 +24,9 @@ export class PenguinGame {
     this.nbHexagonal = nbHexagonal;
     this.nbPenguin = nbPenguin;
 
-    this.boardWidth = (nbHexagonal+1) * 90;
+    this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+
+    this.boardWidth = nbHexagonal * 90;
     this.boardHeight = nbHexagonal * 90;
     this.initPixiApp();
     this.initLoader();
@@ -32,6 +34,7 @@ export class PenguinGame {
 
   initPixiApp() {
     this.pixiApp = new Application({
+      // view: this.canvas,
       width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
       height: this.boardHeight, //this.platform.height(),        // window.innerHeight default: 600
       antialias: true,          // default: false
@@ -39,6 +42,8 @@ export class PenguinGame {
       resolution: 1,            // default: 1
     });
 
+    // this.pixiApp.renderer.backgroundColor = 0x061639; //useless if transparent is true
+    // this.pixiApp.renderer.view.style.position = "absolute";
     this.pixiApp.renderer.view.style.display = "block";
     this.pixiApp.renderer.autoDensity = true;
     
@@ -78,14 +83,18 @@ export class PenguinGame {
   setupPixiJs(): void {
     console.log("All files loaded -> Setup pixi.js");
 
-    this.board = new Board(this.pixiApp, this.nbHexagonal, this.nbPenguin);
+    this.board = new Board(this.pixiApp, this.game.getBoard());
 
+    // this.pixiApp.stage.width = this.board.mapWidth * this.board.hexWidth;
+    // this.pixiApp.stage.height = this.board.mapHeight * this.board.hexHeight;
     this.pixiApp.renderer.view.width = this.board.mapWidth * this.board.hexWidth;
     this.pixiApp.renderer.view.height = this.board.mapHeight * this.board.hexHeight;
     this.pixiApp.renderer.view.style.width = this.boardWidth.toString() + 'px';
     this.pixiApp.renderer.view.style.height = this.boardHeight.toString() + 'px';
+    // width: this.board.mapWidth * this.board.hexWidth, // this.platform.width(),         // window.innerWidth, default: 800
+    // height: this.board.mapHeight * this.board.hexHeight,// this.platform.height(),        // window.innerHeight default: 600
 
-    this.board.generatePreviewMap();
+    this.board.generateMap();
     this.board.generatePreviewPenguin();
 
     this.pixiApp.resize();
@@ -104,12 +113,6 @@ export class PenguinGame {
 
     // pixiApp.stage.addChild(penguin.sprite);
     // // board.pixiApp.stage.addChild(penguin2.sprite);
-  }
-
-  startWasmGame():void {
-    this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
-    this.board.generateMapFrom(this.game.getBoard());
-    this.board.penguinPlayers = this.game.getBoard().getPlayersOnBoard();
   }
 
   addHexagonal(): void {
@@ -141,7 +144,7 @@ export class PenguinGame {
   }
 
   updatePixiAppSize(): void {
-    this.boardWidth = (this.nbHexagonal+1) * 90;
+    this.boardWidth = this.nbHexagonal * 90;
     this.boardHeight = this.nbHexagonal * 90;
     this.pixiApp.renderer.view.width = this.boardWidth;
     this.pixiApp.renderer.view.height = this.boardHeight;

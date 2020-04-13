@@ -18,10 +18,9 @@ using namespace emscripten;
 
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
-{   
+{
     register_vector<BoardCell *>("vector<BoardCell *>");
     register_vector<PenguinPlayer *>("vector<PenguinPlayer *>");
-    
 
     class_<HumanPlayer>("HumanPlayer")
         .function("getScore", &HumanPlayer::getScore);
@@ -37,7 +36,7 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("getOwner", &BoardCell::getOwner, allow_raw_pointers())
         .function("isOwned", &BoardCell::isOwned)
         .function("getFish", &BoardCell::getFish);
-    
+
     class_<Board>("Board")
         .function("performMove", &Board::performMove, allow_raw_pointers())
         .function("revertMove", &Board::revertMove, allow_raw_pointers())

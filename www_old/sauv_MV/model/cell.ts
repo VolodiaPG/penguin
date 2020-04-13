@@ -12,12 +12,9 @@ let loader: any = Loader.shared;
 */
 
 export class Cell {
-        column: number;
         row: number;
-
+        column: number;
         center: Pos = { x: 0, y: 0 };
-
-        wasmCell: any;
 
         terrainIndex: number;
 
@@ -52,7 +49,7 @@ export class Cell {
         aspectRatio: number = this.hexHeight / this.hexWidth;    // hexHeight / hexWidth
 
         hexAxis: Pos = { x: 0, y: 0 };
-        hexDrawAxis: Pos = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };
+        hexDrawAxis: Pos = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };   
 
         // The color to use when drawing hex outlines.
         hexLineColor: number = 0xd0d0d0;   // 0xd0d0d0
@@ -86,10 +83,9 @@ export class Cell {
         ];
 
 
-        constructor(column: number, row: number, terrainIndex: number) {
-                this.column = column;
+        constructor(row: number, column: number, terrainIndex: number) {
                 this.row = row;
-
+                this.column = column;
                 this.hasPenguin = false;
                 if (terrainIndex === -1) {
                         this.isEmpty = true;
@@ -117,11 +113,6 @@ export class Cell {
                 this.alpha = alpha;
 
                 this.createTileHex();
-        }
-
-        setWasmCell(wasmCell: any) {
-                this.wasmCell = wasmCell;
-                this.setCellTerrainType(wasmCell.getFish());
         }
 
 
@@ -190,7 +181,7 @@ export class Cell {
 
         // Use for creating a hex cell with a textured background that stands on it's own. The hex outline will
         // bee added if hexLineWidth is greater than 0. Parent container is returned.
-        createTileHex(): void {
+        createTileHex():void {
                 this.sprite = new Sprite(loader.resources[this.textures[this.terrainTypes[this.terrainIndex].tileIndex]].texture),
                         this.parentContainer,
                         this.topPercent;

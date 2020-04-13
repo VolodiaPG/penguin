@@ -8,7 +8,6 @@ import { Penguin } from './penguin';
  * 
  */
 
-//  import { loader } from '../controller/penguinGame';
 let loader: any = Loader.shared;
 
 export class Board {
@@ -27,43 +26,26 @@ export class Board {
 
     nbPenguin: number = 4;
 
-    cells:any;
+    cells: Array<Cell>;
 
-    penguinPlayers:any;
+    penguinPlayers: any;
 
     // cells: Array<Array<Cell>>;
     penguinsAllies: Array<Penguin>;
     penguinsEnemis: Array<Penguin>;
 
-    // constructor(private app: Application, size: number, nbPawn: number) {
-    //     this.pixiApp = app;
-
-    //     this.mapHeight = size;
-    //     this.mapWidth = size;
-
-    //     this.nbPenguin = nbPawn;
-    //     this.penguinsAllies = new Array(this.nbPenguin);
-    //     this.penguinsEnemis = new Array(this.nbPenguin);
-    //     console.log("Lg penguins : "+ this.penguinsAllies.length);
-
-    //     this.cells = new Array(this.mapHeight);
-
-    //     this.hexes = new Graphics();
-    //     this.pixiApp.stage.addChild(this.hexes);
-    //     this.hexes.clear();
-
-    //     console.log("Board ok");
-    // }
-
-    constructor(private app: Application, gameBoard:any) {
+    constructor(private app: Application, nbHexagonal:number, nbPenguin: number) {
         this.pixiApp = app;
 
-        this.mapHeight = gameBoard.size();
-        this.mapWidth = gameBoard.size();
+        this.mapHeight = nbHexagonal;
+        this.mapWidth = nbHexagonal;
 
-        this.cells = gameBoard.getBoardCells();
-        this.penguinPlayers = gameBoard.getPlayersOnBoard();
-        console.log(this.penguinPlayers.size());
+
+        this.cells = new Array(this.mapHeight * this.mapWidth);
+        
+        this.nbPenguin = nbPenguin;
+        this.penguinsAllies = new Array(this.nbPenguin);
+        this.penguinsEnemis = new Array(this.nbPenguin);
 
         this.hexes = new Graphics();
         this.pixiApp.stage.addChild(this.hexes);
@@ -72,56 +54,100 @@ export class Board {
         console.log("Board ok");
     }
 
-    addHexagonal(): void {
-        this.mapHeight++;
-        this.mapWidth++;
 
+    /***************************************************************************************************************************
+    ************************************* PREVIEW *************************************************************************
+    ***************************************************************************************************************************/
+    generatePreviewMap() {
+        console.log("Generate Preview Map");
+        let cell: Cell;
+        for (let row = 0; row < this.mapWidth; row++) {
+            for (let column = 0; column < this.mapHeight; column++) {
+                cell = new Cell(column, row, 7);
+                cell.setBlurFilter(true);
+                this.cells[row * this.mapWidth + column] = cell;
+            }
+
+        }
+        this.loadPreviewSceneGraph();
+    }
+
+    generatePreviewPenguin() {
+        for (let pg = 0; pg < this.penguinsAllies.length; pg++) {
+            this.penguinsAllies[pg] = new Penguin(this.cells[this.mapHeight + pg].getCellCenter(), true);
+            this.penguinsEnemis[pg] = new Penguin(this.cells[3 * this.mapHeight + pg].getCellCenter(), false);
+
+            this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
+            this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
+        }
+    }
+
+    loadPreviewSceneGraph() {
+        while (this.hexes.children.length) {
+            this.hexes.removeChild(this.hexes.children[0]);
+        }
+
+        for (let ii = 0; ii < this.cells.length; ii++) {
+            this.hexes.addChild(this.cells[ii].parentContainer);
+        }
+    }
+
+    addHexagonal(): void {
+        var newCells: Array<Cell> = new Array<Cell>();
         let cell: Cell;
 
         //Add a cell on all the row
-        for (let row = 0; row < this.cells.length; row++) {
-            cell = new Cell(row, this.cells[row].length, 7);
+        for (let row = 0; row < this.mapHeight; row++) {
+            for (let column = 0; column < this.mapWidth; column++) {
+                newCells.push(this.cells[row * this.mapWidth + column]);
+            }
+            cell = new Cell(this.mapWidth, row, 7);
             cell.setBlurFilter(true);
-            this.cells[row].push(cell);
+            newCells.push(cell);
         }
 
         //Add a row
-        if ((this.cells.length % 2) == 0) {
-            this.cells.push(new Array(this.mapWidth - 1));
-        } else {
-            this.cells.push(new Array(this.mapWidth));
-        }
-
-        for (let column = 0; column < this.cells[this.mapHeight - 1].length; column++) {
-            cell = new Cell(this.mapHeight - 1, column, 7);
+        for (let column = 0; column < this.mapWidth + 1; column++) {
+            cell = new Cell(column, this.mapWidth, 7);
             cell.setBlurFilter(true);
-            this.cells[this.mapHeight - 1][column] = cell;
+            newCells.push(cell);
         }
 
-        this.loadSceneGraph();
+        this.mapHeight++;
+        this.mapWidth++;
+
+        this.cells = newCells;
+
+        this.loadPreviewSceneGraph();
         this.pixiApp.resize();
     }
 
     removeHexagonal(): void {
+        var newCells: Array<Cell> = new Array<Cell>();
+
+        //Remove a cell on all the column and remove a column
+        for (let row = 0; row < this.mapHeight; row++) {
+            for (let column = 0; column < this.mapWidth; column++) {
+                if (row !== this.mapHeight - 1 && column !== this.mapWidth - 1) {
+                    newCells.push(this.cells[row * this.mapHeight + column]);
+                }
+            }
+        }
+
         this.mapHeight--;
         this.mapWidth--;
 
-        //Remove a cell on all the row
-        for (let row = 0; row < this.cells.length; row++) {
-            this.cells[row].pop();
-        }
-        //Remove a row
-        this.cells.pop();
+        this.cells = newCells;
 
-        this.loadSceneGraph();
+        this.loadPreviewSceneGraph();
         this.pixiApp.resize();
     }
 
     addPenguin(): void {
-        this.penguinsAllies.push(new Penguin(this.cells[1][this.nbPenguin].getCellCenter(), true));
+        this.penguinsAllies.push(new Penguin(this.cells[this.mapHeight + this.nbPenguin].getCellCenter(), true));
         this.pixiApp.stage.addChild(this.penguinsAllies[this.nbPenguin].sprite);
 
-        this.penguinsEnemis.push(new Penguin(this.cells[3][this.nbPenguin].getCellCenter(), false));
+        this.penguinsEnemis.push(new Penguin(this.cells[3 * this.mapHeight + this.nbPenguin].getCellCenter(), false));
         this.pixiApp.stage.addChild(this.penguinsEnemis[this.nbPenguin].sprite);
 
         this.nbPenguin++;
@@ -137,125 +163,31 @@ export class Board {
     }
 
     /***************************************************************************************************************************
-    ************************************* MAP/TEXTURES *************************************************************************
+    ************************************* MAP *************************************************************************
     ***************************************************************************************************************************/
-    generateMap() {
+    generateMapFrom(gameBoard: any) {
         console.log("Generate Map");
-        let cell: Cell;
-        for (let row = 0; row < this.cells.length; row++) {
+        var wasmCells = gameBoard.getBoardCells();
 
-            if ((row % 2) == 0) {
-                this.cells[row] = new Array(this.mapWidth - 1);
-            } else {
-                this.cells[row] = new Array(this.mapWidth);
-            }
-
-            for (let column = 0; column < this.cells[row].length; column++) {
-                cell = new Cell(row, column, 7);
-                cell.setBlurFilter(true);
-                this.cells[row][column] = cell;
+        for (let row = 0; row < this.mapHeight; row++) {
+            for (let column = 0; column < this.mapWidth; column++) {
+                this.cells[row * this.mapHeight + column].setWasmCell(wasmCells.get(row * this.mapHeight + column));
             }
         }
-
-        // console.log("Ordre du tableau : ");
-        // for(var r = 0; r < this.cells.length ; r+=1) {
-        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
-        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
-        //     }
-        // }
-
         this.loadSceneGraph();
-    };
-
-    generatePreviewPenguin() {
-        for(let pg = 0; pg < this.penguinsAllies.length; pg++) {
-                this.penguinsAllies[pg] = new Penguin(this.cells[1][pg].getCellCenter(), true);
-                this.penguinsEnemis[pg] = new Penguin(this.cells[3][pg].getCellCenter(), false);
-            
-            this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
-            this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
-        }
     }
-
-    setRandomCells() {
-        console.log("Set Random Cells");
-        let rnd: number;
-        for (let row = 0; row < this.cells.length; row++) {
-            for (let column = 0; column < this.cells[row].length; column++) {
-                rnd = Math.floor(1 + (Math.random() * 3));
-                this.cells[row][column].setBlurFilter(false);
-                this.cells[row][column].setCellTerrainType(rnd);
-            }
-        }
-        // console.log("Ordre du tableau : ");
-        // for(var r = 0; r < this.cells.length ; r+=1) {
-        //     for(var c = 0 ; c < this.cells[r].length ; c+=1) {
-        //         console.log("Cell : (" + this.cells[r][c].row + "," + this.cells[r][c].column + ")");
-        //     }
-        // }
-
-        this.loadSceneGraph();
-    };
-
-    setRandomPenguins() {
-        console.log("Set Random Penguins Positions");
-        let rndRow: number, rndColumn: number;
-
-        for (let pg = 0; pg < this.penguinsAllies.length; pg++) {
-            while(this.penguinsAllies[pg].cellPosition === null) {
-                rndRow = Math.floor(0 + Math.random() * (this.cells.length));
-                rndColumn = Math.floor(0 + Math.random() * (this.cells[rndRow].length));
-                if (!this.cells[rndRow][rndColumn].hasPenguin) {
-                    this.penguinsAllies[pg].moveTo(this.cells[rndRow][rndColumn]);
-                }
-            }
-        }
-
-        for (let pg = 0; pg < this.penguinsEnemis.length; pg++) {
-            while(this.penguinsEnemis[pg].cellPosition === null) {
-                rndRow = Math.floor(0 + Math.random() * (this.cells.length));
-                rndColumn = Math.floor(0 + Math.random() * (this.cells[rndRow].length));
-                if (!this.cells[rndRow][rndColumn].hasPenguin) {
-                    this.penguinsEnemis[pg].moveTo(this.cells[rndRow][rndColumn]);
-                }
-            }
-        }
-    }
-
-
-    setDiagoSelectedTexture(cell: Cell, select: boolean, alpha: number) {
-        //diago droite
-        var cellX = cell.column - (cell.row + (cell.row & 1)) / 2;
-
-        //ligne
-        var cellZ = cell.row;
-
-        //diago gauche
-        var cellY = - cellX - cellZ;
-
-        for (var r = 0; r < this.cells.length; r += 1) {
-            for (var c = 0; c < this.cells[r].length; c += 1) {
-                var tempX = this.cells[r][c].column - (this.cells[r][c].row + (this.cells[r][c].row & 1)) / 2;
-                var tempZ = this.cells[r][c].row;
-                var tempY = - tempX - tempZ;
-
-                if ((tempX == cellX) || (tempY == cellY) || (tempZ == cellZ)) {
-                    this.cells[r][c].setCellSelectedTexture(select, alpha); // cell, Selected, alpha
-                }
-
-            }
-        }
-
-    }
-
+    
     loadSceneGraph() {
+        var currentCell: Cell;
         while (this.hexes.children.length) {
             this.hexes.removeChild(this.hexes.children[0]);
         }
 
-        for (let row = 0; row < this.cells.length; row++) {
-            for (let column = 0; column < this.cells[row].length; column++) {
-                this.hexes.addChild(this.cells[row][column].parentContainer);
+        for (let row = 0; row < this.mapHeight; row++) {
+            for (let column = 0; column < this.mapWidth; column++) {
+                currentCell = this.cells[row * this.mapHeight + column];
+                currentCell.setBlurFilter(false);
+                this.hexes.addChild(currentCell.parentContainer);
             }
         }
     };

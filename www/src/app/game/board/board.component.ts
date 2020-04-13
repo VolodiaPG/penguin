@@ -69,7 +69,6 @@ export class BoardComponent implements OnInit { // or AfterViewInit
   }
 
   launchGame() {
-    penguinGame.board.setRandomCells();
-    penguinGame.board.setRandomPenguins();
+    penguinGame.startWasmGame();
   }
 }

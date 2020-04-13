@@ -29,8 +29,7 @@ export class ControlComponent implements OnInit {
 
   startGame():void {
     this.gameStarted = true;
-    penguinGame.board.setRandomCells();
-    penguinGame.board.setRandomPenguins();
+    penguinGame.startWasmGame();
     this.presentToast();
   }
 
