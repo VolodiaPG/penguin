@@ -1,8 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
-import { penguinGame } from '../board/board.component';
-
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -29,7 +27,7 @@ export class ControlComponent implements OnInit {
 
   startGame():void {
     this.gameStarted = true;
-    penguinGame.startWasmGame();
+    // penguinGame.startWasmGame();
     this.presentToast();
   }
 

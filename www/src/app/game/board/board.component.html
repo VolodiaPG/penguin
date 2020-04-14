@@ -1,1 +1,9 @@
-<!-- <canvas #imageCanvas></canvas> -->
+<ion-card>
+        <ion-grid>
+            <ion-row *ngFor="let row of board.cells; let x = index">
+                <ion-col *ngFor="let col of row; let y = index">
+                    <ion-img src="/assets/game/tileWater_fish1.png"></ion-img>
+                </ion-col>
+              </ion-row>
+        </ion-grid>
+</ion-card>

@@ -1,8 +1,10 @@
-import { Component, OnInit, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { PenguinGame } from './controller/penguinGame';
+import { Board } from './board';
+import { Cell } from './cell';
+import { Penguin } from './penguin';
 
-export let penguinGame: PenguinGame;
+declare var Module: any;
 
 @Component({
   selector: 'app-board',
@@ -10,48 +12,54 @@ export let penguinGame: PenguinGame;
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  board: Board;
 
-  constructor(private elementRef: ElementRef, private ngZone: NgZone) { }
+  nbHexagonal: number;
+  nbPenguin: number;
+
+  humanPlayerId: number = 1;
+
+  // Wasm objects
+  wasmGame: any;
+  wasmBoard: any;
+  wasmPenguins: any;
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.setUpGameBoard(8, 4); //default : 8 hexagonals, 4 penguins
+     this.board = new Board(this.nbHexagonal);
+     this.board.generateMap();
+      // this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
   }
 
   ngOnDestroy(): void {
     console.log("Game destroyed");
-    penguinGame.wasmGame.delete();
+    // this..wasmGame.delete();
   }
 
   /***************************************************************************************************************************
   ************************************************ START GAME ****************************************************************
   ***************************************************************************************************************************/
-  setUpGameBoard(nbHex: number, nbPeng: number) {
-    this.ngZone.runOutsideAngular(() => {
-      penguinGame = new PenguinGame(nbHex, nbPeng);
-    });
-    this.elementRef.nativeElement.appendChild(penguinGame.pixiApp.view);
-  }
-
   launchGame() {
-    penguinGame.startWasmGame();
+
   }
 
   /***************************************************************************************************************************
   ************************************************ PREVIEW *******************************************************************
   ***************************************************************************************************************************/
-  addHexagonal(): void {
-    penguinGame.addHexagonal();
-  }
+  // addHexagonal(): void {
+  //   penguinGame.addHexagonal();
+  // }
 
-  removeHexagonal(): void {
-    penguinGame.removeHexagonal();
-  }
+  // removeHexagonal(): void {
+  //   penguinGame.removeHexagonal();
+  // }
 
-  addPenguin(): void {
-    penguinGame.addPenguin();
-  }
+  // addPenguin(): void {
+  //   penguinGame.addPenguin();
+  // }
 
-  removePenguin(): void {
-    penguinGame.removePenguin();
-  }
+  // removePenguin(): void {
+  //   penguinGame.removePenguin();
+  // }
 }

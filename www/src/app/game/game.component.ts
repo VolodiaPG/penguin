@@ -25,23 +25,23 @@ export class GameComponent implements OnInit {
   ************************************************ PREVIEW *******************************************************************
   ***************************************************************************************************************************/
 
-  nbHexagonalChanged(event: any) {
-    if ((this.nbHexagonal - event.detail.value) < 0) {
-      this.boardComponent.addHexagonal();
-    } else {
-      this.boardComponent.removeHexagonal();
-    }
-    this.nbHexagonal = event.detail.value;
-    console.log("New nb of hexagonals : " + this.nbHexagonal);
-  }
+  // nbHexagonalChanged(event: any) {
+  //   if ((this.nbHexagonal - event.detail.value) < 0) {
+  //     this.boardComponent.addHexagonal();
+  //   } else {
+  //     this.boardComponent.removeHexagonal();
+  //   }
+  //   this.nbHexagonal = event.detail.value;
+  //   console.log("New nb of hexagonals : " + this.nbHexagonal);
+  // }
 
-  nbPenguinChanged(event: any) {
-    if ((this.nbPenguin - event.detail.value) < 0) {
-      this.boardComponent.addPenguin();
-    } else {
-      this.boardComponent.removePenguin();
-    }
-    this.nbPenguin = event.detail.value;
-    console.log("New nb of penguins : " + this.nbPenguin);
-  }
+  // nbPenguinChanged(event: any) {
+  //   if ((this.nbPenguin - event.detail.value) < 0) {
+  //     this.boardComponent.addPenguin();
+  //   } else {
+  //     this.boardComponent.removePenguin();
+  //   }
+  //   this.nbPenguin = event.detail.value;
+  //   console.log("New nb of penguins : " + this.nbPenguin);
+  // }
 }
