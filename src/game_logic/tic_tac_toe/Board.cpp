@@ -1,5 +1,13 @@
-#include "Board.hpp"
 #include <array>
+#include <assert.h>
+
+#include "../../log.hpp"
+
+#include "../AbstractBoard.hpp"
+#include "BoardCell.hpp"
+#include "Player.hpp"
+
+#include "Board.hpp"
 
 namespace game
 {
@@ -40,19 +48,18 @@ bool Board::checkForCorrectness(const Position &pos) const
     return !boardValues[pos.x][pos.y]->isClaimed();
 }
 
-bool Board::performMove(const int player_id, BoardCell *cell)
+bool Board::performMove(Player *player, BoardCell *cell)
 {
-    cell->setValue(player_id);
-    getPlayerById(player_id)->addMoveDone(cell);
-    
+    cell->setValue(player->getId());
+    player->makeMove(cell);
+
     return true;
 }
 
-void Board::revertMove(const int player_id)
+void Board::revertMove(Player *player)
 {
-    Player *player = getPlayerById(player_id);
-    BoardCell *current_cell = (BoardCell *)player->dequeueLastMove();
-    current_cell->setValue(0);
+    Move move = player->dequeueLastMove();
+    ((BoardCell *)move.target)->setValue(0);
 }
 
 int Board::checkForWin(const board_line_t &line) const
@@ -122,10 +129,10 @@ int Board::checkStatus()
     }
 
     // dummy parameter, here there is no use for IT!
-    return getAvailableCells(-1).size() > 0 ? IN_PROGRESS : DRAW;
+    return getAvailableCells(nullptr).size() > 0 ? IN_PROGRESS : DRAW;
 }
 
-std::vector<BoardCell *> Board::getAvailableCells(const int)
+std::vector<BoardCell *> Board::getAvailableCells(Player *)
 {
     std::vector<BoardCell *> ret;
 
@@ -166,7 +173,7 @@ BoardCell *Board::getCell(int line, int col)
     return boardValues[line][col];
 }
 
-std::vector<Player *> Board::getPlayersOnBoard()
+std::vector<Player *> Board::getPawnsOnBoard()
 {
     std::vector<Player *> players;
     players.push_back(&player1);
@@ -174,8 +181,10 @@ std::vector<Player *> Board::getPlayersOnBoard()
     return players;
 }
 
-Player *Board::getPlayerById(const int id)
+Player *Board::getPawnById(const unsigned int id)
 {
+    assert(id != 0);
+    assert(id <= 2);
     switch (id)
     {
     case 1:

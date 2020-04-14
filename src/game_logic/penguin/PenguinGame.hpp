@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <assert.h>
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 
@@ -12,7 +13,7 @@ namespace game
 {
 namespace penguin
 {
-class PenguinGame : public AbstractGame<PenguinPlayer, BoardCell>
+class PenguinGame : public AbstractGame<BoardCell, HumanPlayer, PenguinPawn>
 {
 protected:
     /**
@@ -26,7 +27,7 @@ public:
     ~PenguinGame();
 
     bool isFinished() const override;
-    bool play(const int penguin_player_id, BoardCell *cell) override;
+    bool play(PenguinPawn *pawn, BoardCell *cell) override;
     void revertPlay() override;
     /**
      * @brief Get the Human player to play, not the penguin one
@@ -36,7 +37,7 @@ public:
     unsigned int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
     Board *getBoard() { return (Board *)board; };
-    std::vector<Move> getAvailableMoves(const unsigned int human_player_id) override;
+    std::vector<Move> getAvailableMoves(HumanPlayer *player) override;
 };
 } // namespace penguin
 } // namespace game

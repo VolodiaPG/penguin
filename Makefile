@@ -45,7 +45,7 @@ ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s STACK_OVERFLOW_CHECK=2 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 -s SAFE_HEAP=1 -s WARN_UNALIGNED=1
 endif
 else
-	CPPFLAGS += -O3
+	CPPFLAGS += -O3 -DNDEBUG
 endif
 
 all: build

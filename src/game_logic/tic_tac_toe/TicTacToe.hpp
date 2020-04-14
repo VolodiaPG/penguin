@@ -6,13 +6,12 @@
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 
-// #include <emscripten/bind.h>
 
 namespace game
 {
 namespace tic_tac_toe
 {
-class TicTacToe : public AbstractGame<Player, BoardCell>
+class TicTacToe : public AbstractGame<BoardCell, Player, Player>
 {
 protected:
     /**
@@ -26,11 +25,11 @@ public:
     ~TicTacToe();
 
     bool isFinished() const override;
-    bool play(const int player_id, BoardCell *cell) override;
+    bool play(Player *player, BoardCell *cell) override;
     void revertPlay() override;
     unsigned int getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
-    std::vector<Move> getAvailableMoves(const unsigned int player_id) override;
+    std::vector<Move> getAvailableMoves(Player* player) override;
 };
 } // namespace tic_tac_toe
 } // namespace game

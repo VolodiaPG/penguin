@@ -11,11 +11,19 @@ ConsoleGame::ConsoleGame()
     Board *board = (Board *)_game.board;
     // Placing all the penguins
     // team 1
-    board->performMove(0, board->getCell(0, 0));
-    board->performMove(1, board->getCell(3, 6));
+    board->performMove(board->getPawnById(0), board->getCell(0, 0));
+    board->performMove(board->getPawnById(1), board->getCell(3, 6));
     // team 2
-    board->performMove(2, board->getCell(-3, 6));
-    board->performMove(3, board->getCell(6, 0));
+    board->performMove(board->getPawnById(2), board->getCell(-3, 6));
+    board->performMove(board->getPawnById(3), board->getCell(6, 0));
+
+    // board->performMove(3, board->getCell(-3, 6));
+    // std::vector<BoardCell *> allCells = board->getAvailableCells(3);
+    // for (auto cell : allCells)
+    // {
+    //     std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
+    // }
+    // dbg(allCells);
 }
 
 ConsoleGame::~ConsoleGame()
@@ -55,12 +63,11 @@ void ConsoleGame::loop()
         mcts::MCTSConstraints constraints;
         constraints.time = 250;
         // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
-        auto game = (AbstractGame<AbstractPlayer, AbstractBoardCell> *)&_game;
+        auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)&_game;
         mcts::Tree tree(game, nullptr, constraints); // play the second player
         tree.begin();
-        AbstractBoardCell *abs_bestMove = tree.bestMove();
-        BoardCell *bestMove = static_cast<BoardCell *>(abs_bestMove);
-        _game.play(_game.getPlayerToPlay(), bestMove);
+        Move best_move = tree.bestMove();
+        _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
 
         draw();
     }

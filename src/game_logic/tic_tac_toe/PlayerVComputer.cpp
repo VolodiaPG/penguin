@@ -15,19 +15,17 @@ PlayerVComputer::~PlayerVComputer()
 
 bool PlayerVComputer::play(int row, int col)
 {
-    return play(getPlayerToPlay(), board->getCell(row, col));
+    return play(board->getPlayerById(getPlayerToPlay()), board->getCell(row, col));
 }
 
-AbstractBoardCell *PlayerVComputer::mctsResult()
+Move PlayerVComputer::mctsResult()
 {
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
-    auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
+    auto game = dynamic_cast<AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *>(this);
     mcts::Tree tree(game, board->getPlayerById(getPlayerToPlay()), constraints);
     tree.begin();
-    AbstractBoardCell *bestMove = tree.bestMove();
-
-    return bestMove;
+    return tree.bestMove();
 }
 } // namespace tic_tac_toe
 } // namespace game

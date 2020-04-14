@@ -5,7 +5,8 @@ namespace game
 namespace tic_tac_toe
 {
 Player::Player(unsigned int id)
-    : AbstractPlayer(id)
+    : AbstractPlayer(id),
+      AbstractPawn(id, this)
 {
 }
 } // namespace tic_tac_toe

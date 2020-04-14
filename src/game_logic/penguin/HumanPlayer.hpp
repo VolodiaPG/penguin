@@ -4,14 +4,18 @@
 #include <iostream>
 #include <vector>
 #include "../AbstractPlayer.hpp"
+#include "PenguinPawn.hpp"
+#include "Board.hpp"
 
 namespace game
 {
+class AbstractPlayer;
 namespace penguin
 {
 
 // dummy declaration
 class Board;
+class PenguinPawn;
 
 class HumanPlayer : public AbstractPlayer
 {
@@ -26,14 +30,14 @@ private:
      * @brief vector of all the penguins this player possesses in game
      * 
      */
-    std::vector<unsigned int> _penguins;
+    std::vector<PenguinPawn *> _penguins;
 
     /**
      * @brief Allow the Board Object to access private properties and methods, especially useful for addPenguin
      * 
      */
     friend class Board;
-    void addPenguin(const unsigned int penguin_id) { _penguins.push_back(penguin_id); };
+    void addPenguin(PenguinPawn *penguin) { _penguins.push_back(penguin); };
 
 public:
     explicit HumanPlayer(unsigned int id);
@@ -64,7 +68,7 @@ public:
      * 
      * @return std::vector<const unsigned int> the list of all the penguins
      */
-    std::vector<unsigned int> getPenguins() const { return _penguins; };
+    std::vector<PenguinPawn *> getPenguins() const { return _penguins; };
 };
 } // namespace penguin
 } // namespace game

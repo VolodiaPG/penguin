@@ -1,20 +1,12 @@
 #ifndef PENGUIN_BOARD_HPP_
 #define PENGUIN_BOARD_HPP_
 
-#include <iterator>
-#include <array>
 #include <unordered_map>
+#include <vector>
 
-#include "../../log.hpp"
-
+#include "../Position.hpp"
 #include "../AbstractBoard.hpp"
-#include "BoardCell.hpp"
-#include "PenguinPlayer.hpp"
-#include "HumanPlayer.hpp"
-#include "../Position3D.hpp"
-#include "../utils/conversions.hpp"
 
-#include "../../dbg.h"
 
 // TODO Command pattern pour le reverse
 
@@ -22,6 +14,11 @@ namespace game
 {
 namespace penguin
 {
+
+class PenguinPawn;
+class HumanPlayer;
+class BoardCell;
+
 /**
  * @brief Describe possibles states of the game
  * 
@@ -57,7 +54,7 @@ using penguin_board_map_t = std::unordered_map<const Position, BoardCell *, posi
  * @brief Describes the hexagonal board of the game, based on an axial coordinate system
  * 
  */
-class Board : public AbstractBoard<PenguinPlayer, BoardCell>
+class Board : public AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>
 {
 private:
     /**
@@ -70,7 +67,7 @@ private:
      * @brief The penguins for both teams
      * 
      */
-    std::vector<PenguinPlayer *> _penguins_on_board;
+    std::vector<PenguinPawn *> _penguins_on_board;
 
     /**
      * @brief Penguins owner, ie players
@@ -125,14 +122,14 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(const int penguin_id, BoardCell *cell) override;
+    bool performMove(PenguinPawn* pawn, BoardCell *cell) override;
 
     /**
      * @brief Revert the last move made on the behalf of the human player
      * 
      * @param human_player_id the human player id
      */
-    void revertMove(const int human_player_id) override;
+    void revertMove(HumanPlayer* human_player) override;
 
     /**
      * @brief Chek wether or not the game is finished.
@@ -146,7 +143,7 @@ public:
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<BoardCell *> getAvailableCells(const int penguin_id) override;
+    std::vector<BoardCell *> getAvailableCells(PenguinPawn* penguin) override;
 
     /**
      * @brief Get a list of all cells
@@ -159,11 +156,11 @@ public:
 
     BoardCell *getCell(int xx, int yy) override;
 
-    std::vector<PenguinPlayer *> getPlayersOnBoard() override;
+    std::vector<PenguinPawn *> getPawnsOnBoard() override;
 
-    PenguinPlayer *getPlayerById(const int penguin_id) override { return _penguins_on_board[penguin_id]; };
+    PenguinPawn *getPawnById(const unsigned int penguin_id) override;
 
-    HumanPlayer *getHumanPlayerById(const int human_player_id) { return _players[human_player_id]; };
+    HumanPlayer *getPlayerById(const unsigned int human_player_id) override;
 
     // Position begin();
 };

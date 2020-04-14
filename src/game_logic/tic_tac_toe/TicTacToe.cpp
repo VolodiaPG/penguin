@@ -15,10 +15,10 @@ TicTacToe::~TicTacToe()
     delete board;
 }
 
-bool TicTacToe::play(const int player_id, BoardCell *move)
+bool TicTacToe::play(Player *player, BoardCell *move)
 {
     ++numberMoves;
-    return board->performMove(player_id, move);
+    return board->performMove(player, move);
 }
 
 void TicTacToe::revertPlay()
@@ -31,7 +31,7 @@ void TicTacToe::revertPlay()
         player = 1;
     }
 
-    board->revertMove(player);
+    board->revertMove(board->getPawnById(player));
 }
 
 bool TicTacToe::isFinished() const
@@ -51,11 +51,12 @@ unsigned int TicTacToe::getPlayerToPlay() const
     return nextPlayer;
 }
 
-std::vector<Move> TicTacToe::getAvailableMoves(const unsigned int player_id)
+std::vector<Move> TicTacToe::getAvailableMoves(Player *player)
 {
-    std::vector<BoardCell *> input = board->getAvailableCells(player_id);
+    std::vector<BoardCell *> input = board->getAvailableCells(player);
     std::vector<Move> ret(input.size());
-    std::transform(input.begin(), input.end(), ret.begin(), [player_id](BoardCell *cell) -> Move { return {player_id, cell}; });
+    BoardCell *current_cell = player->getCurrentCell();
+    std::transform(input.begin(), input.end(), ret.begin(), [current_cell, player](BoardCell *cell) -> Move { return {current_cell, cell, (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)player}; });
 
     return ret;
 }

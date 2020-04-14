@@ -3,12 +3,10 @@
 namespace mcts
 {
 Node::Node(Node *parent,
-           const unsigned int player_id,
-           game::AbstractBoardCell *targetedCell,
-           game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game)
+           game::Move move,
+           game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game)
     : parent(parent),
-      player_id(player_id),
-      targetedCell(targetedCell),
+      _move(move),
       game(game)
 {
 }
@@ -35,7 +33,9 @@ Node *Node::selectBestChildAndDoAction()
 {
     Node *ret = this;
 
-    if (ret->targetedCell)
+    if (ret->_move.target)
+    // TODO check if nothing went wrong commenting these multiple lines :)
+    // if (parent)
     {
         ret->doAction();
     }
@@ -65,7 +65,8 @@ Node *Node::selectBestChildAndDoAction()
         ret = temp;
 
         // exclude the root node that doesn't have any action associated...
-        if (ret->targetedCell)
+        if (ret->_move.target)
+        // if (parent)
         {
             ret->doAction();
         }
@@ -77,7 +78,7 @@ Node *Node::selectBestChildAndDoAction()
 bool Node::doAction()
 {
     // do our move
-    return game->play(player_id, targetedCell);
+    return game->play(_move.pawn, _move.target);
 }
 
 void Node::revertAction()
@@ -85,16 +86,19 @@ void Node::revertAction()
     return game->revertPlay();
 }
 
-game::AbstractBoardCell *Node::getRandomAvailableCell() const
+game::Move Node::getRandomAvailableMove(
+    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
+    const unsigned int player_id)
 {
+    std::vector<game::Move> moves = game->getAvailableMoves(game->board->getPlayerById(player_id));
 
-    auto cells = game->board->getAvailableCells(player_id);
-    // auto cells = dynamic_cast<std::vector<game::AbstractBoardCell *>&>();
+    size_t moves_size = moves.size();
+    assert(moves_size > 0);
 
-    // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
-    unsigned int index = rand() % cells.size();
+    // random index ranging between 0 and moves.size() not included; (eg. 0 and 3, 3 not included)
+    unsigned int index = rand() % moves_size;
 
-    return cells[index];
+    return moves[index];
 }
 
 int Node::randomSimulation() const
@@ -102,11 +106,16 @@ int Node::randomSimulation() const
     int ii = 0;
     while (!game->isFinished())
     {
-        game::AbstractBoardCell *cell = getRandomAvailableCell();
+        game::Move random_move = getRandomAvailableMove(game, game->getPlayerToPlay());
 
-        game->play(
-            game->getPlayerToPlay(),
-            cell);
+        // dbg(random_move.pawn->getId());
+        // dbg(((game::penguin::BoardCell *)random_move.cell)->getPosition().x);
+        // dbg(((game::penguin::BoardCell *)random_move.cell)->getPosition().y);
+
+        bool res = game->play(
+            random_move.pawn,
+            random_move.target);
+        assert(res == true);
         ++ii;
     }
 
@@ -125,6 +134,7 @@ int Node::randomSimulation() const
 void Node::backPropagateAndRevertAction(const int winnerId)
 {
     ++visits;
+    const unsigned int player_id = _move.pawn ? _move.pawn->getOwner()->getId() : INT_MAX;
     if (winnerId == (int)player_id)
     {
         victories += 10;
@@ -189,7 +199,7 @@ void Node::expandNode(std::vector<game::Move> possibleMove)
 {
     for (game::Move &move : possibleMove)
     {
-        Node *node = new Node(this, move.player_id, move.cell, game);
+        Node *node = new Node(this, move, game);
         childNodes.push_back(node);
     }
 }

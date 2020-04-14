@@ -4,14 +4,14 @@ namespace mcts
 {
 
 Tree::Tree(
-    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game,
+    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
     game::AbstractPlayer *me,
     const MCTSConstraints &constraints)
     : playerMe(me),
       game(game),
       constraints(constraints)
 {
-    rootNode = new Node(nullptr, INT_MAX, nullptr, game);
+    rootNode = new Node(nullptr, {nullptr, nullptr, nullptr}, game);
     // TODO remove `playerMe` (useless)
 }
 
@@ -40,10 +40,10 @@ void Tree::begin()
                 // promisingNode->expandNode(
                 //     game->board->getAvailableCells(promisingNode->getPlayer()->getId()),
                 //     game->board->getPlayerById(game->getPlayerToPlay()));
-                dbg(game);
+                // dbg(game);
                 const unsigned int id = game->getPlayerToPlay();
-                dbg(id);
-                promisingNode->expandNode(game->getAvailableMoves(id));
+                // dbg(id);
+                promisingNode->expandNode(game->getAvailableMoves(game->board->getPlayerById(id)));
             }
 
             Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
@@ -61,9 +61,9 @@ void Tree::begin()
     DEBUG(rootNode->visits);
 }
 
-game::AbstractBoardCell *Tree::bestMove() const
+game::Move Tree::bestMove() const
 {
-    return rootNode->nodeWithMaxVisits()->getTargetedCell();
+    return rootNode->nodeWithMaxVisits()->getMove();
 }
 
 } // namespace mcts

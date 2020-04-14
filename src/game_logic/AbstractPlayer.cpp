@@ -1,3 +1,6 @@
+#include "Move.hpp"
+#include "AbstractBoardCell.hpp"
+#include "AbstractPawn.hpp"
 #include "AbstractPlayer.hpp"
 
 namespace game
@@ -8,16 +11,16 @@ AbstractPlayer::AbstractPlayer(unsigned int id)
 {
 }
 
-AbstractBoardCell *AbstractPlayer::dequeueLastMove()
+Move AbstractPlayer::dequeueLastMove()
 {
-    AbstractBoardCell *cell = _moves_done.top();
+    Move move = _moves_done.top();
     _moves_done.pop();
-    return cell;
+    return move;
 }
 
-void AbstractPlayer::addMoveDone(AbstractBoardCell *cell)
+Move AbstractPlayer::getLastMoveDone() const
 {
-    _moves_done.push(cell);
+    return _moves_done.top();
 }
 
 } // namespace game

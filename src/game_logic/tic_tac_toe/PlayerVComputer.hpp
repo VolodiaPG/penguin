@@ -25,26 +25,9 @@ public:
 
     using TicTacToe::play;
     bool play(int row, int col);
-    AbstractBoardCell *mctsResult();
+    Move mctsResult();
 };
 } // namespace tic_tac_toe
 } // namespace game
-
-// using namespace emscripten;
-
-// #ifdef __EMSCRIPTEN__
-// extern "C"{
-//  game::PlayerVComputer gameInstance;
-// bool playPlayer1(int x, int y)
-// {
-//     return gameInstance.playPlayer1(x, y);
-// }
-
-// bool playPlayer2()
-// {
-//     return gameInstance.playPlayer2();
-// }
-// }
-// #endif
 
 #endif

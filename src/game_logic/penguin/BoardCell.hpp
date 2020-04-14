@@ -5,13 +5,13 @@
 
 #include "../Position.hpp"
 #include "../AbstractBoardCell.hpp"
-#include "PenguinPlayer.hpp"
+#include "PenguinPawn.hpp"
 
 namespace game
 {
 namespace penguin
 {
-class PenguinPlayer;
+class PenguinPawn;
 
 class BoardCell : public AbstractBoardCell
 {
@@ -38,7 +38,7 @@ private:
      * @brief The player that currently owns the cell
      * 
      */
-    PenguinPlayer *_owner = nullptr;
+    PenguinPawn *_owner = nullptr;
 
 public:
     /**
@@ -76,7 +76,7 @@ public:
      * 
      * @param penguin The penguin that stands on top of the cell
      */
-    void setOwner(PenguinPlayer* penguin) { _owner = penguin; };
+    void setOwner(PenguinPawn* penguin) { _owner = penguin; };
 
     /**
      * @brief Nobody owns the cell now
@@ -87,9 +87,9 @@ public:
     /**
      * @brief Get the penguin standing on the cell
      * 
-     * @return PenguinPlayer* the penguin
+     * @return PenguinPawn* the penguin
      */
-    PenguinPlayer *getOwner() { return _owner; };
+    PenguinPawn *getOwner() { return _owner; };
 
     /**
      * @brief Is a penguin on the cell

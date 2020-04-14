@@ -2,10 +2,22 @@
 #define ABSTRACT_PLAYER_HPP_
 
 #include <stack>
-#include "AbstractBoardCell.hpp"
+#include "Move.hpp"
 
 namespace game
 {
+
+namespace tic_tac_toe
+{
+class Player;
+class BoardCell;
+} // namespace tic_tac_toe
+namespace penguin
+{
+class HumanPlayer;
+class BoardCell;
+} // namespace penguin
+
 class AbstractPlayer
 {
 private:
@@ -19,7 +31,10 @@ private:
      * @brief Store all the moves done
      * 
      */
-    std::stack<AbstractBoardCell *> _moves_done;
+    std::stack<Move> _moves_done;
+
+    template <typename PlayerT, typename CellT>
+    friend class AbstractPawn;
 
 public:
     /**
@@ -39,20 +54,6 @@ public:
     unsigned int getId() const { return id; };
 
     /**
-     * @brief Dequeue the last move registered in the stack
-     * 
-     * @return AbstractBoardCell* the last move done
-     */
-    AbstractBoardCell *dequeueLastMove();
-
-    /**
-     * @brief Queue the move done at the top of the stack
-     * 
-     * @param move the move to stack
-     */
-    void addMoveDone(AbstractBoardCell *move);
-
-    /**
      * @brief Get the number of moves that have been registered in the stack
      * 
      * @return size_t the number of moves still in the stack
@@ -60,11 +61,18 @@ public:
     size_t getNumberMovesDone() const { return _moves_done.size(); };
 
     /**
+     * @brief Dequeue the last move registered in the stack
+     * 
+     * @return Move the last move done
+     */
+    Move dequeueLastMove();
+
+    /**
      * @brief Get the current cell
      * 
-     * @return AbstractBoardCell* the current cell the player is standing on
+     * @return Move the current cell the player is standing on
      */
-    AbstractBoardCell *getCurrentCell() { return _moves_done.top(); };
+    Move getLastMoveDone() const;
 };
 
 } // namespace game

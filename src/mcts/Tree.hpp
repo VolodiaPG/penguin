@@ -2,7 +2,7 @@
 #define TREE_HPP_
 
 #include <chrono>
-#include<bits/stdc++.h> 
+#include <bits/stdc++.h>
 #include "Node.hpp"
 #include "../game_logic/AbstractPlayer.hpp"
 #include "../game_logic/AbstractGame.hpp"
@@ -10,7 +10,6 @@
 #include "../log.hpp"
 
 #include "../dbg.h"
-
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
@@ -57,17 +56,17 @@ protected:
 
 public:
     game::AbstractPlayer *playerMe;
-    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game;
+    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game;
     MCTSConstraints constraints;
 
     explicit Tree(
-        game::AbstractGame<game::AbstractPlayer,game::AbstractBoardCell> *game,
+        game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
         game::AbstractPlayer *me,
         const MCTSConstraints &constraints);
     ~Tree();
 
     void begin();
-    game::AbstractBoardCell *bestMove() const;
+    game::Move bestMove() const;
     // NodegetRootNode() const { return rootNode; };
 };
 

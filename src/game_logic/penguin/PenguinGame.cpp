@@ -6,7 +6,7 @@ namespace penguin
 {
 
 PenguinGame::PenguinGame(const size_t dimension, const size_t number_of_penguins_per_team)
-    : AbstractGame(new Board(dimension, number_of_penguins_per_team)) // nullptr during construct, then we define the board
+    : AbstractGame(new Board(dimension, number_of_penguins_per_team))
 {
 }
 
@@ -15,9 +15,9 @@ PenguinGame::~PenguinGame()
     delete board;
 }
 
-bool PenguinGame::play(const int penguin_player_id, BoardCell *move)
+bool PenguinGame::play(PenguinPawn *pawn, BoardCell *move)
 {
-    bool moved = board->performMove(penguin_player_id, move);
+    bool moved = board->performMove(pawn, move);
     if (moved)
     {
         ++numberMoves;
@@ -28,14 +28,14 @@ bool PenguinGame::play(const int penguin_player_id, BoardCell *move)
 void PenguinGame::revertPlay()
 {
     --numberMoves;
-    int player = 0;
+    int player = 2;
 
     if (numberMoves % 2)
     {
         player = 1;
     }
 
-    board->revertMove(player);
+    board->revertMove(board->getPlayerById(player));
 }
 
 bool PenguinGame::isFinished() const
@@ -55,17 +55,25 @@ unsigned int PenguinGame::getPlayerToPlay() const
     return nextPlayer;
 }
 
-std::vector<Move> PenguinGame::getAvailableMoves(const unsigned int human_player_id)
+std::vector<Move> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
 {
+    assert(human_player != nullptr);
     std::vector<Move> ret;
     Board *penguin_board = (Board *)board;
+    std::vector<PenguinPawn *> penguins = human_player->getPenguins();
 
-    HumanPlayer *human_player = penguin_board->getHumanPlayerById(human_player_id);
-    for (unsigned int penguin_id : human_player->getPenguins())
+    for (PenguinPawn *penguin : penguins)
     {
-        std::vector<BoardCell *> availableCells = penguin_board->getAvailableCells(penguin_id);
-        ret.reserve(ret.size() + availableCells.size());
-        std::transform(availableCells.begin(), availableCells.end(), ret.end(), [penguin_id](BoardCell *cell) -> Move { return Move{penguin_id, cell}; });
+        BoardCell *current_cell = (BoardCell *)penguin->getCurrentCell();
+        std::cout << "Penguin #" << penguin->getId() << " @(" << current_cell->getPosition().x << "," << current_cell->getPosition().y << ")" << std::endl;
+        std::vector<BoardCell *> availableCells = penguin_board->getAvailableCells(penguin);
+        for (auto cell : availableCells)
+        {
+            std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
+        }
+        std::transform(availableCells.begin(), availableCells.end(), std::back_inserter(ret), [current_cell, penguin](BoardCell *cell) -> Move {
+            // std::cout << penguin->getId()<<","<<cell->getPosition().x << ","<< cell->getPosition().y << std::endl;
+             return {current_cell, cell, (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)penguin}; });
     }
 
     return ret;
