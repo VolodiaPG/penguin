@@ -16,29 +16,26 @@ export class PenguinGame {
 
   game: any;
 
-  boardWidth: number;
-  boardHeight: number;
-
   nbPenguin: number;
   nbHexagonal: number;
+
+  penguinsAllies: Array<Penguin>;
+  penguinsEnemis: Array<Penguin>;
+
 
   constructor(nbHexagonal: number, nbPenguin: number) {
     this.nbHexagonal = nbHexagonal;
     this.nbPenguin = nbPenguin;
 
-    this.boardWidth = (nbHexagonal + 1) * 90;
-    this.boardHeight = nbHexagonal * 90;
     this.initPixiApp();
     this.initLoader();
   }
 
   /***************************************************************************************************************************
-  ************************************************ INITIALIZATION ************************************************************
+  ************************************************ INIT PIXIJS ************************************************************
   ***************************************************************************************************************************/
   initPixiApp() {
     this.pixiApp = new Application({
-      width: this.boardWidth,   // this.platform.width(),         // window.innerWidth, default: 800
-      height: this.boardHeight, //this.platform.height(),        // window.innerHeight default: 600
       antialias: true,          // default: false
       transparent: true,        // default: false
       resolution: 1,            // default: 1
@@ -83,17 +80,10 @@ export class PenguinGame {
   setupPixiJs(): void {
     console.log("All files loaded -> Setup pixi.js");
 
-    this.board = new Board(this.pixiApp, this.nbHexagonal, this.nbPenguin);
-
-    this.pixiApp.renderer.view.width = this.board.mapWidth * this.board.hexWidth;
-    this.pixiApp.renderer.view.height = this.board.mapHeight * this.board.hexHeight;
-    this.pixiApp.renderer.view.style.width = this.boardWidth.toString() + 'px';
-    this.pixiApp.renderer.view.style.height = this.boardHeight.toString() + 'px';
+    this.board = new Board(this.pixiApp, this.nbHexagonal);
 
     this.board.generatePreviewMap();
-    this.board.generatePreviewPenguin();
-
-    this.pixiApp.resize();
+    this.generatePreviewPenguin();
 
     // this.pixiApp.ticker.add(animate);
   }
@@ -109,41 +99,44 @@ export class PenguinGame {
 
   addHexagonal(): void {
     this.nbHexagonal++;
-    this.updatePixiAppSize();
-
     this.board.addHexagonal();
   }
 
   removeHexagonal(): void {
     this.nbHexagonal--;
-    this.updatePixiAppSize();
-
     this.board.removeHexagonal();
   }
 
-  addPenguin(): void {
-    this.nbPenguin++;
-    this.updatePixiAppSize();
+  generatePreviewPenguin() {
+    this.penguinsAllies = new Array<Penguin>(this.nbPenguin);
+    this.penguinsEnemis = new Array<Penguin>(this.nbPenguin);
 
-    this.board.addPenguin();
+    for (let pg = 0; pg < this.nbPenguin; pg++) {
+        this.penguinsAllies[pg] = new Penguin(this.board.cells[this.nbHexagonal + pg].getCellCenter(), true);
+        this.penguinsEnemis[pg] = new Penguin(this.board.cells[3 * this.nbHexagonal + pg].getCellCenter(), false);
+
+        this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
+        this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
+    }
+}
+
+  addPenguin(): void {
+    this.penguinsAllies.push(new Penguin(this.board.cells[this.nbHexagonal + this.nbPenguin].getCellCenter(), true));
+    this.pixiApp.stage.addChild(this.penguinsAllies[this.nbPenguin].sprite);
+
+    this.penguinsEnemis.push(new Penguin(this.board.cells[3 * this.nbHexagonal + this.nbPenguin].getCellCenter(), false));
+    this.pixiApp.stage.addChild(this.penguinsEnemis[this.nbPenguin].sprite);
+
+    this.nbPenguin++;
   }
 
   removePenguin(): void {
     this.nbPenguin--;
-    this.updatePixiAppSize();
+    this.pixiApp.stage.removeChild(this.penguinsAllies[this.nbPenguin].sprite);
+    this.penguinsAllies.pop();
 
-    this.board.removePenguin();
-  }
-
-  updatePixiAppSize(): void {
-    this.boardWidth = (this.nbHexagonal + 1) * 90;
-    this.boardHeight = this.nbHexagonal * 90;
-    this.pixiApp.renderer.view.width = this.boardWidth;
-    this.pixiApp.renderer.view.height = this.boardHeight;
-    this.pixiApp.renderer.view.style.width = this.boardWidth.toString() + 'px';
-    this.pixiApp.renderer.view.style.height = this.boardHeight.toString() + 'px';
-
-    this.pixiApp.resize();
+    this.pixiApp.stage.removeChild(this.penguinsEnemis[this.nbPenguin].sprite);
+    this.penguinsEnemis.pop();
   }
 }
 
