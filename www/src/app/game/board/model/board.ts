@@ -31,8 +31,6 @@ export class Board {
 
     cells: Array<Cell>;
 
-    pawns: any;
-
     constructor(private app: Application, nbHexagonal: number) {
         this.pixiApp = app;
 
@@ -158,32 +156,7 @@ export class Board {
             }
         }
 
-        this.pawns = gameBoard.getPlayersOnBoard();
-
-        this.setRandomPenguins(gameBoard);
-
-        // set on the board the penguins
-        for (let ii = 0; ii < this.pawns.size(); ii++) {
-            var pawn: any = this.pawns.get(ii);
-            var pawnPos: any = pawn.getStandingOn().getPosition();
-            pawnPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(pawnPos));
-            console.log(pawnPos);
-            // this.pixiApp.stage.addChild(new Penguin(this.cells[this.mapHeight + this.nbPenguin].getCellCenter(), true).sprite);
-        }
         this.loadSceneGraph();
-    }
-
-    setRandomPenguins(gameBoard: any) {
-        console.log("Set Random Penguins Positions");
-        let rndPos: number;
-
-        for (let ii = 0; ii < this.pawns.size(); ii++) {
-            var pawn: any = this.pawns.get(ii);
-            rndPos = Math.floor(0 + Math.random() * (this.nbHexagonal * this.nbHexagonal));
-            gameBoard.performMove(pawn.getId(), this.cells[rndPos].wasmCell);
-
-            this.pixiApp.stage.addChild(new Penguin(this.cells[rndPos].getCellCenter(), true).sprite);
-        }
     }
 
     loadSceneGraph() {

@@ -9,11 +9,14 @@ export class Penguin {
     cellPosition: Cell = null;
     center: Pos;
     sprite: any;
-    playerPenguin: boolean;
 
-    constructor(center: Pos, playerPenguin: boolean) {
+    wasmPenguins: any;
+
+    playerId: number;
+
+    constructor(center: Pos, playerId: number) {
         this.center = center;
-        this.playerPenguin = playerPenguin;
+        this.playerId= playerId;
         // loader.add("/assets/penguin.png")
         this.sprite = new Sprite(loader.resources["/assets/penguin.png"].texture);
         // center the penguins's anchor point
@@ -31,7 +34,7 @@ export class Penguin {
         contrastMatrix.contrast(3, false);
         this.sprite.filters.push(contrastMatrix);
 
-        if (playerPenguin) {
+        if (playerId === 1) {
             let colorMatrix = new filters.ColorMatrixFilter();
             colorMatrix.sepia(false);
             this.sprite.filters.push(colorMatrix);

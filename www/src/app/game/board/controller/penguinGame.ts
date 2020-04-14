@@ -12,15 +12,21 @@ export class PenguinGame {
   pixiApp: Application;
   board: Board;
 
-  idHumanPlayer: number = 1;
+  humanPlayerId: number = 1;
 
-  game: any;
+  // Wasm objects
+  wasmGame: any;
+  wasmBoard: any;
+  wasmPenguins: any;
 
   nbPenguin: number;
   nbHexagonal: number;
 
+  // Array to display the penguin preview
   penguinsAllies: Array<Penguin>;
   penguinsEnemis: Array<Penguin>;
+
+  penguins: Array<Penguin>;
 
 
   constructor(nbHexagonal: number, nbPenguin: number) {
@@ -89,8 +95,43 @@ export class PenguinGame {
   }
 
   startWasmGame(): void {
-    this.game = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
-    this.board.generateMapFrom(this.game.getBoard());
+    this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+    this.wasmBoard = this.wasmGame.getBoard();
+    this.board.generateMapFrom(this.wasmBoard);
+
+    this.removePenguinsPreview();
+    this.setRandomPenguins();
+  }
+
+  setRandomPenguins() {
+    console.log("Set Random Penguins Positions");
+    let rndPos: number, penguin: Penguin;
+
+    this.wasmPenguins = this.wasmBoard.getPlayersOnBoard();
+
+    this.penguins = Array<Penguin>(this.wasmPenguins.size());
+
+    for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
+      let pawn: any = this.wasmPenguins.get(ii);
+      rndPos = Math.floor(0 + Math.random() * (this.nbHexagonal * this.nbHexagonal - 0)); // min + rand() * (max - min + 1)
+      this.wasmBoard.performMove(ii, this.board.cells[rndPos].wasmCell);
+
+      this.pixiApp.stage.addChild(new Penguin(this.board.cells[rndPos].getCellCenter(), pawn.getOwner()).sprite);
+      console.log("Penguin belows to : " + pawn.getOwner());
+    }
+  }
+
+  loadPenguinsFromWasm() {
+    this.wasmPenguins = this.wasmGame.getPlayersOnBoard();
+
+    // set on the board the penguins
+    for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
+        var pawn: any = this.wasmPenguins.get(ii);
+        var pawnPos: any = pawn.getStandingOn().getPosition();
+        pawnPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(pawnPos));
+        console.log(pawnPos);
+        // this.pixiApp.stage.addChild(new Penguin(this.cells[this.mapHeight + this.nbPenguin].getCellCenter(), true).sprite);
+    }
   }
 
   /***************************************************************************************************************************
@@ -112,19 +153,26 @@ export class PenguinGame {
     this.penguinsEnemis = new Array<Penguin>(this.nbPenguin);
 
     for (let pg = 0; pg < this.nbPenguin; pg++) {
-        this.penguinsAllies[pg] = new Penguin(this.board.cells[this.nbHexagonal + pg].getCellCenter(), true);
-        this.penguinsEnemis[pg] = new Penguin(this.board.cells[3 * this.nbHexagonal + pg].getCellCenter(), false);
+      this.penguinsAllies[pg] = new Penguin(this.board.cells[this.nbHexagonal + pg].getCellCenter(), this.humanPlayerId);
+      this.penguinsEnemis[pg] = new Penguin(this.board.cells[3 * this.nbHexagonal + pg].getCellCenter(), this.humanPlayerId + 1);
 
-        this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
-        this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
+      this.pixiApp.stage.addChild(this.penguinsAllies[pg].sprite);
+      this.pixiApp.stage.addChild(this.penguinsEnemis[pg].sprite);
     }
-}
+  }
+
+  removePenguinsPreview() {
+    for (let pg = 0; pg < this.nbPenguin; pg++) {
+      this.pixiApp.stage.removeChild(this.penguinsAllies[pg].sprite);
+      this.pixiApp.stage.removeChild(this.penguinsEnemis[pg].sprite);
+    }
+  }
 
   addPenguin(): void {
-    this.penguinsAllies.push(new Penguin(this.board.cells[this.nbHexagonal + this.nbPenguin].getCellCenter(), true));
+    this.penguinsAllies.push(new Penguin(this.board.cells[this.nbHexagonal + this.nbPenguin].getCellCenter(), this.humanPlayerId));
     this.pixiApp.stage.addChild(this.penguinsAllies[this.nbPenguin].sprite);
 
-    this.penguinsEnemis.push(new Penguin(this.board.cells[3 * this.nbHexagonal + this.nbPenguin].getCellCenter(), false));
+    this.penguinsEnemis.push(new Penguin(this.board.cells[3 * this.nbHexagonal + this.nbPenguin].getCellCenter(), this.humanPlayerId + 1));
     this.pixiApp.stage.addChild(this.penguinsEnemis[this.nbPenguin].sprite);
 
     this.nbPenguin++;
@@ -138,6 +186,8 @@ export class PenguinGame {
     this.pixiApp.stage.removeChild(this.penguinsEnemis[this.nbPenguin].sprite);
     this.penguinsEnemis.pop();
   }
+
+
 }
 
 /***************************************************************************************************************************
