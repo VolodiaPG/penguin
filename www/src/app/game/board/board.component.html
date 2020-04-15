@@ -1,8 +1,8 @@
-<ion-card>
-        <ion-grid>
-            <ion-row *ngFor="let row of board.cells; let x = index">
-                <ion-col *ngFor="let col of row; let y = index">
-                    <ion-img src="/assets/game/tileWater_fish1.png"></ion-img>
+<ion-card class="container">
+        <ion-grid class="grid">
+            <ion-row *ngFor="let row of board.cells; index as x" style="position:relative" [style.top.px]="-50 * x" [style.left.px]="(x % 2 == 0) ? 0 : 45">
+                <ion-col *ngFor="let col of row; index as y">
+                    <app-hex [cell]="board.cells[x][y]"></app-hex>
                 </ion-col>
               </ion-row>
         </ion-grid>

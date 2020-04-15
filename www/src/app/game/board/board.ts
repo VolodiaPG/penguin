@@ -68,9 +68,22 @@ export class Board {
             this.cells[row] = new Array(this.nbHexagonal);
 
             for (let column = 0; column < this.nbHexagonal; column++) {
-                cell = new Cell(row, column, 7);
+                cell = new Cell(row, column, 1);
                 this.cells[row][column] = cell;
             }
         }
     };
+
+    generateMapFrom(gameBoard: any) {
+        console.log("Generate Map");
+
+        // generate cells from the wasm directives
+        var wasmCells = gameBoard.getBoardCells();
+
+        for (let row = 0; row < this.nbHexagonal; row++) {
+            for (let column = 0; column < this.nbHexagonal; column++) {
+                this.cells[row][column].setWasmCell(wasmCells.get(row * this.nbHexagonal + column));
+            }
+        }
+    }
 }

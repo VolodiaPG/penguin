@@ -27,21 +27,24 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-     this.board = new Board(this.nbHexagonal);
-     this.board.generateMap();
-      // this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+    this.board = new Board(this.nbHexagonal);
+    this.board.generateMap();
   }
 
   ngOnDestroy(): void {
     console.log("Game destroyed");
-    // this..wasmGame.delete();
+    this.wasmGame.delete();
   }
 
   /***************************************************************************************************************************
   ************************************************ START GAME ****************************************************************
   ***************************************************************************************************************************/
-  launchGame() {
-
+  startWasmGame() {
+    this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+    this.wasmBoard = this.wasmBoard.getBoard();
+    this.board.generateMapFrom(this.wasmBoard);
+    
+    this.wasmPenguins = this.wasmBoard.getPlayersOnBoard();
   }
 
   /***************************************************************************************************************************

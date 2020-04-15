@@ -10,6 +10,7 @@ export class ControlComponent implements OnInit {
 
   @Output() nbPenguinChanged = new EventEmitter<any>();
   @Output() nbHexagonalChanged = new EventEmitter<any>();
+  @Output() gameReady = new EventEmitter<any>();
 
   gameStarted: boolean;
 
@@ -27,7 +28,7 @@ export class ControlComponent implements OnInit {
 
   startGame():void {
     this.gameStarted = true;
-    // penguinGame.startWasmGame();
+    this.gameReady.emit();
     this.presentToast();
   }
 

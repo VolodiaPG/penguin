@@ -1,5 +1,4 @@
 import { Pos } from './pos';
-import { TerrainType } from './terrainType';
 
 /**
 *
@@ -10,13 +9,13 @@ export class Cell {
         row: number;
         column: number;
         center: Pos = { x: 0, y: 0 };
+        nbFish: number;
 
-        terrainIndex: number;
+        wasmCell: any;
 
         isEmpty: boolean;
         isOver: boolean;
-        alpha: number = 0.8;
-
+        
         hasPenguin: boolean;
 
         // The pixel width of a hex.
@@ -42,48 +41,17 @@ export class Cell {
         // The width in pixels of the hex outline.
         hexLineWidth: number = 2;   // 2
 
-        // Specify the types of terrain available on the map. Map cells reference these terrain
-        // types by index. Add custom properties to extend functionality.
-
-        // Array of textures. Can be referenced by index in terrainType.
-        textures: string[] = [
-                "/assets/game/tileSnow_fish1.png",
-                "/assets/game/tileSnow_fish2.png",
-                "/assets/game/tileSnow_fish3.png",
-                "/assets/game/tileWater_fish1.png",
-                "/assets/game/tileWater_fish2.png",
-                "/assets/game/tileWater_fish3.png",
-                "/assets/game/tileSnow_big.png"
-        ];
-
-
-        constructor(row: number, column: number, terrainIndex: number) {
+        constructor(row: number, column: number, nbFish: number) {
                 this.row = row;
                 this.column = column;
                 this.hasPenguin = false;
-                if (terrainIndex === -1) {
-                        this.isEmpty = true;
-                } else {
-                        this.terrainIndex = terrainIndex ? terrainIndex : 0;
-                }
+                this.nbFish = nbFish;
         }
 
-        setCellTerrainType(terrainIndex: number) {
-                this.terrainIndex = terrainIndex;
+        setWasmCell(wasmCell: any) {
+                this.wasmCell = wasmCell;
+                this.nbFish = wasmCell.getFish();
         }
-
-        setCellSelectedTexture(select: boolean, alpha: number) {
-                if (select && this.terrainIndex <= 3) {
-                        this.terrainIndex += 3;
-                } else if (!select && this.terrainIndex > 3) {
-                        this.terrainIndex -= 3;
-                } else {
-
-                }
-
-                this.alpha = alpha;
-        }
-
 
         // Calculates and returns the width of a hex cell.
         getHexWidth() {
