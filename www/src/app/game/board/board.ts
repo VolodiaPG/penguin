@@ -70,7 +70,7 @@ export class Board {
             this.cells[row] = new Array(this.nbHexagonal);
 
             for (let column = 0; column < this.nbHexagonal; column++) {
-                cell = new Cell(row, column, 1);
+                cell = new Cell(row, column, 0);
                 this.cells[row][column] = cell;
             }
         }

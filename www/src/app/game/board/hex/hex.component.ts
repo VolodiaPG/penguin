@@ -50,10 +50,10 @@ export class HexComponent implements OnInit {
   }
 
   setSelectColor(isSelected: boolean) {
-    if (this.isSelected && !isSelected) {
+    if (this.isSelected && !isSelected && this.cell.nbFish !== 0) {
       this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) - 3;
       this.isSelected = false;
-    } else if (!this.isSelected && isSelected) {
+    } else if (!this.isSelected && isSelected && this.cell.nbFish !== 0) {
       this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) + 3;
       this.isSelected = true;
     }

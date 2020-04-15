@@ -2,8 +2,10 @@
         <ion-grid class="grid">
             <ion-row *ngFor="let row of cells; index as x" style="position:relative" [style.top.px]="-50 * x" [style.left.px]="(x % 2 == 0) ? 0 : 45">
                 <ion-col *ngFor="let col of row; index as y">
-                    <app-hex [cell]="cells[x][y]" [terrainIndex]="cells[x][y].nbFish"></app-hex>
+                    <app-hex class="hex" [cell]="cells[x][y]" [terrainIndex]="cells[x][y].nbFish"></app-hex>
                 </ion-col>
               </ion-row>
         </ion-grid>
+
+        <div class="animate-me" (click)="callAnime()"></div>
 </ion-card>

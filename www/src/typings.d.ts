@@ -12,3 +12,6 @@ interface NodeModule {
 }
 
 declare module 'Module';
+
+declare module 'animejs/lib/anime.es';
+declare module 'number-flip';

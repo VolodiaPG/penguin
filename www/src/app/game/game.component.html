@@ -4,7 +4,12 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title><span translate>Game</span></ion-title>
-        <ion-chip slot="end">
+
+        <ion-buttons slot="end">
+            <div #numberbtn></div>
+        </ion-buttons>
+
+        <ion-chip slot="end" (click)="flip()">
             <ion-avatar>
                 <img
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+" />
@@ -39,7 +44,7 @@
 
     <ion-grid class="ion-no-padding">
         <ion-row justify-content-center style="height: 100%">
-            <ion-col style="height: 100%"  size="auto">
+            <ion-col style="height: 100%" size="auto">
                 <ion-card text-center translucent fixed size="auto">
                     <ion-card-header></ion-card-header>
                     <ion-card-content>
@@ -52,5 +57,6 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <app-control *ngIf="!gameStarted" class="control" (nbHexagonalChanged)="nbHexagonalChanged($event)" (nbPenguinChanged)="nbPenguinChanged($event)" (gameReady)="launchGame()"></app-control>
+    <app-control *ngIf="!gameStarted" class="control" (nbHexagonalChanged)="nbHexagonalChanged($event)"
+        (nbPenguinChanged)="nbPenguinChanged($event)" (gameReady)="launchGame()"></app-control>
 </ion-content>
