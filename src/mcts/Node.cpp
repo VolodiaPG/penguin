@@ -3,7 +3,7 @@
 namespace mcts
 {
 Node::Node(Node *parent,
-           game::Move move,
+           const game::Move& move,
            game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game)
     : parent(parent),
       _move(move),
@@ -44,7 +44,7 @@ Node *Node::selectBestChildAndDoAction()
     {
         int parentVisits = ret->visits;
 
-        double max = std::numeric_limits<double>::min();
+        double max = -std::numeric_limits<double>::max();
         Node *temp = ret;
         // One child must be selected to further develop
         for (Node *node : ret->childNodes)
@@ -62,6 +62,7 @@ Node *Node::selectBestChildAndDoAction()
             }
         }
 
+        assert(ret != temp);
         ret = temp;
 
         // exclude the root node that doesn't have any action associated...
@@ -123,7 +124,7 @@ int Node::randomSimulation() const
     int winner = game->checkStatus();
 
     // revert play the random game the number of times we moved
-    while (ii-- != 0)
+    while (ii-- > 0)
     {
         game->revertPlay();
     }
@@ -134,7 +135,7 @@ int Node::randomSimulation() const
 void Node::backPropagateAndRevertAction(const int winnerId)
 {
     ++visits;
-    const unsigned int player_id = _move.pawn ? _move.pawn->getOwner()->getId() : INT_MAX;
+    const unsigned int player_id = _move.pawn ? _move.pawn->getOwner()->getId() : 0;
     if (winnerId == (int)player_id)
     {
         victories += 10;
@@ -143,10 +144,10 @@ void Node::backPropagateAndRevertAction(const int winnerId)
     {
         victories++;
     }
-    else
-    {
-        // victories+=20;
-    }
+    // else
+    // {
+    //     // victories+=20;
+    // }
 
     if (parent != nullptr)
     {

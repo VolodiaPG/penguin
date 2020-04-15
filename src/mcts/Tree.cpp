@@ -5,9 +5,10 @@ namespace mcts
 
 Tree::Tree(
     game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
-    game::AbstractPlayer *me,
+    // game::AbstractPlayer *me,
     const MCTSConstraints &constraints)
-    : playerMe(me),
+    : 
+    // playerMe(me),
       game(game),
       constraints(constraints)
 {

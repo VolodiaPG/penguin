@@ -55,13 +55,13 @@ protected:
     void expandNode();
 
 public:
-    game::AbstractPlayer *playerMe;
+    // game::AbstractPlayer *playerMe;
     game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game;
     MCTSConstraints constraints;
 
     explicit Tree(
         game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
-        game::AbstractPlayer *me,
+        // game::AbstractPlayer *me,
         const MCTSConstraints &constraints);
     ~Tree();
 

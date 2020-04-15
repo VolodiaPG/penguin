@@ -48,7 +48,7 @@ public:
 
     explicit Node(
         Node *parent,
-        game::Move move,
+        const game::Move& move,
         game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game);
     ~Node();
 
