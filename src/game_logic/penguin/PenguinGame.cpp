@@ -65,12 +65,12 @@ std::vector<Move> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
     for (PenguinPawn *penguin : penguins)
     {
         BoardCell *current_cell = (BoardCell *)penguin->getCurrentCell();
-        std::cout << "Penguin #" << penguin->getId() << " @(" << current_cell->getPosition().x << "," << current_cell->getPosition().y << ")" << std::endl;
+        // std::cout << "Penguin #" << penguin->getId() << " @(" << current_cell->getPosition().x << "," << current_cell->getPosition().y << ")" << std::endl;
         std::vector<BoardCell *> availableCells = penguin_board->getAvailableCells(penguin);
-        for (auto cell : availableCells)
-        {
-            std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
-        }
+        // for (auto cell : availableCells)
+        // {
+        //     std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
+        // }
         std::transform(availableCells.begin(), availableCells.end(), std::back_inserter(ret), [current_cell, penguin](BoardCell *cell) -> Move {
             // std::cout << penguin->getId()<<","<<cell->getPosition().x << ","<< cell->getPosition().y << std::endl;
              return {current_cell, cell, (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)penguin}; });
