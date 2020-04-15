@@ -9,6 +9,7 @@
 
 #include "../../log.hpp"
 #include "../../dbg.h"
+#include "PrintHex.hpp"
 
 #include "Board.hpp"
 
@@ -48,7 +49,7 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
             boardValues.insert_or_assign(pos,
                                          new BoardCell(pos,
-                                                       rand() % 3 + 1 // random number of fish between 1 and 3 (included)
+                                                    1 //    rand() % 3 + 1 // random number of fish between 1 and 3 (included)
                                                        ));
         }
 
@@ -124,8 +125,7 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
     HumanPlayer *human_player = penguin->getOwner();
     BoardCell *cell_standing_on = penguin->getCurrentCell();
     bool isCorrect = true;
-
-    std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
+    // std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
 
     if (cell_standing_on)
     {
@@ -144,6 +144,9 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
         cell->setOwner(penguin);
         human_player->addScore(cell->getFish());
         penguin->makeMove(cell);
+
+        // static PrintHex printer_dbg(this);
+        // printer_dbg.print();
     }
 
     return isCorrect;
@@ -152,7 +155,7 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 void Board::revertMove(HumanPlayer *human_player)
 {
     assert(human_player != nullptr);
-    assert(("no more history is available/stored" && human_player->getNumberMovesDone() != 0));
+    assert("no more history is available/stored" && human_player->getNumberMovesDone() != 0);
 
     Move current_move = human_player->dequeueLastMove();
     BoardCell *cell_previous = (BoardCell *)current_move.from;
