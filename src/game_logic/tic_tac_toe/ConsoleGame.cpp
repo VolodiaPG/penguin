@@ -63,10 +63,10 @@ void ConsoleGame::loop()
     while (!TicTacToe::isFinished())
     {
         mcts::MCTSConstraints constraints;
-        constraints.time = 250;
+        constraints.time = 500;
         // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
         auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)this;
-        mcts::Tree tree(game, board->getPlayerById(1), constraints); // play the second player
+        mcts::Tree tree(game, constraints); // play the second player
         tree.begin();
         Move best_move = tree.bestMove();
         play((Player *)best_move.pawn, (BoardCell *)best_move.target);
