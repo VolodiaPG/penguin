@@ -152,19 +152,22 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 void Board::revertMove(HumanPlayer *human_player)
 {
     assert(human_player != nullptr);
-    assert(human_player->getNumberMovesDone() != 0);
+    assert(("no more history is available/stored" && human_player->getNumberMovesDone() != 0));
 
     Move current_move = human_player->dequeueLastMove();
     BoardCell *cell_previous = (BoardCell *)current_move.from;
     BoardCell *cell_current = (BoardCell *)current_move.target;
-    PenguinPawn* penguin = cell_current->getOwner();
+    PenguinPawn *penguin = cell_current->getOwner();
 
     cell_current->clearOwner();
     cell_current->setGone(false);
     human_player->substractScore(cell_current->getFish());
 
-    cell_previous->setGone(false);
-    cell_previous->setOwner(penguin);
+    if (cell_previous)
+    {
+        cell_previous->setGone(false);
+        cell_previous->setOwner(penguin);
+    }
 }
 
 int Board::checkStatus()
