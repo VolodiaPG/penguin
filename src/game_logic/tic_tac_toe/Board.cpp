@@ -1,8 +1,6 @@
 #include <array>
 #include <assert.h>
 
-#include "../../log.hpp"
-
 #include "../AbstractBoard.hpp"
 #include "BoardCell.hpp"
 #include "Player.hpp"

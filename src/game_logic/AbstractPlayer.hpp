@@ -2,6 +2,7 @@
 #define ABSTRACT_PLAYER_HPP_
 
 #include <stack>
+
 #include "Move.hpp"
 
 namespace game

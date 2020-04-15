@@ -1,11 +1,8 @@
 #ifndef PENGUIN_BOARD_CELL_HPP_
 #define PENGUIN_BOARD_CELL_HPP_
 
-#include <memory>
-
-#include "../Position.hpp"
 #include "../AbstractBoardCell.hpp"
-#include "PenguinPawn.hpp"
+#include "../Position.hpp"
 
 namespace game
 {

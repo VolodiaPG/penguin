@@ -1,3 +1,12 @@
+#include <iostream>
+
+#include "../../mcts/Tree.hpp"
+#include "../AbstractGame.hpp"
+#include "Board.hpp"
+#include "PenguinGame.hpp"
+#include "PenguinPawn.hpp"
+#include "PrintHex.hpp"
+
 #include "ConsoleGame.hpp"
 
 namespace game
@@ -10,6 +19,7 @@ ConsoleGame::ConsoleGame(const bool &no_print)
       _no_print(no_print)
 {
     Board *board = (Board *)_game.board;
+    
     // Placing all the penguins
     // team 1
     board->performMove(board->getPawnById(0), board->getCell(0, 0));
@@ -17,14 +27,6 @@ ConsoleGame::ConsoleGame(const bool &no_print)
     // team 2
     board->performMove(board->getPawnById(2), board->getCell(-3, 6));
     board->performMove(board->getPawnById(3), board->getCell(6, 0));
-
-    // board->performMove(3, board->getCell(-3, 6));
-    // std::vector<BoardCell *> allCells = board->getAvailableCells(3);
-    // for (auto cell : allCells)
-    // {
-    //     std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
-    // }
-    // dbg(allCells);
 }
 
 ConsoleGame::~ConsoleGame()

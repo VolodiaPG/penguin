@@ -1,4 +1,6 @@
+#include <cstring>
 #include <iostream>
+
 #include "game_logic/penguin/ConsoleGame.hpp"
 #include "game_logic/tic_tac_toe/ConsoleGame.hpp"
 

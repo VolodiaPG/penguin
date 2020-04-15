@@ -1,3 +1,9 @@
+#include <algorithm>
+#include <assert.h>
+
+#include "Board.hpp"
+#include "PenguinPawn.hpp"
+#include "HumanPlayer.hpp"
 #include "PenguinGame.hpp"
 
 namespace game
@@ -73,10 +79,17 @@ std::vector<Move> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
         // }
         std::transform(availableCells.begin(), availableCells.end(), std::back_inserter(ret), [current_cell, penguin](BoardCell *cell) -> Move {
             // std::cout << penguin->getId()<<","<<cell->getPosition().x << ","<< cell->getPosition().y << std::endl;
-             return {current_cell, cell, (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)penguin}; });
+             return {(AbstractBoardCell*)current_cell,
+                (AbstractBoardCell*)cell,
+               (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)penguin}; });
     }
 
     return ret;
+}
+
+int PenguinGame::checkStatus() const
+{
+    return board->checkStatus();
 }
 } // namespace penguin
 } // namespace game

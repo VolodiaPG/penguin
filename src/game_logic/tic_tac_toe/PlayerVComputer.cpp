@@ -1,3 +1,7 @@
+#include "Player.hpp"
+#include "../AbstractBoard.hpp"
+#include "../../mcts/Tree.hpp"
+
 #include "PlayerVComputer.hpp"
 
 namespace game

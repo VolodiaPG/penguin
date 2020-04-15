@@ -7,8 +7,6 @@
 #include "PenguinPawn.hpp"
 #include "HumanPlayer.hpp"
 
-#include "../../log.hpp"
-#include "../../dbg.h"
 #include "PrintHex.hpp"
 
 #include "Board.hpp"
@@ -144,9 +142,6 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
         cell->setOwner(penguin);
         human_player->addScore(cell->getFish());
         penguin->makeMove(cell);
-
-        // static PrintHex printer_dbg(this);
-        // printer_dbg.print();
     }
 
     return isCorrect;
@@ -216,14 +211,11 @@ int Board::checkStatus()
 
 std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
 {
-    // dbg(penguin_id);
     assert(penguin != nullptr);
     HumanPlayer *human_player = penguin->getOwner();
     assert(human_player != nullptr);
-    // dbg(penguin->getStandingOn());
     Position penguin_current_pos = penguin->getCurrentCell()->getPosition();
 
-    // dbg(penguin_current_pos.x);dbg(penguin_current_pos.y);
 
     std::vector<BoardCell *> ret;
 

@@ -1,18 +1,17 @@
 #ifndef PENGUIN_PENGUIN_GAME_HPP_
 #define PENGUIN_PENGUIN_GAME_HPP_
 
-#include <iostream>
-#include <algorithm>
-#include <assert.h>
 #include "../AbstractGame.hpp"
-#include "Board.hpp"
-
-// #include <emscripten/bind.h>
 
 namespace game
 {
 namespace penguin
 {
+class PenguinPawn;
+class BoardCell;
+class HumanPlayer;
+class Board;
+
 class PenguinGame : public AbstractGame<BoardCell, HumanPlayer, PenguinPawn>
 {
 protected:
@@ -35,7 +34,7 @@ public:
      * @return unsigned int the id of the human player to play
      */
     unsigned int getPlayerToPlay() const override;
-    int checkStatus() const override { return board->checkStatus(); };
+    int checkStatus() const;
     Board *getBoard() { return (Board *)board; };
     std::vector<Move> getAvailableMoves(HumanPlayer *player) override;
 };

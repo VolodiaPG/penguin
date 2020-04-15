@@ -2,21 +2,17 @@
 #define TREE_HPP_
 
 #include <chrono>
-#include <bits/stdc++.h>
-#include "Node.hpp"
-#include "../game_logic/AbstractPlayer.hpp"
-#include "../game_logic/AbstractGame.hpp"
-#include "../game_logic/AbstractBoardCell.hpp"
-#include "../log.hpp"
-
-#include "../dbg.h"
+#include "../game_logic/Move.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
 namespace game
 {
-class MCTSPlayer;
-}
+template <class, class, class>
+class AbstractGame;
+class AbstractBoardCell;
+class AbstractPlayer;
+} // namespace game
 
 namespace mcts
 {
@@ -55,13 +51,11 @@ protected:
     void expandNode();
 
 public:
-    // game::AbstractPlayer *playerMe;
     game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game;
     MCTSConstraints constraints;
 
     explicit Tree(
         game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
-        // game::AbstractPlayer *me,
         const MCTSConstraints &constraints);
     ~Tree();
 
@@ -72,7 +66,6 @@ public:
      */
     unsigned int begin();
     game::Move bestMove() const;
-    // NodegetRootNode() const { return rootNode; };
 };
 
 } // namespace mcts

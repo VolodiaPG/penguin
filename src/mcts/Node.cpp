@@ -1,9 +1,21 @@
+#include <vector>
+#include <math.h>
+#include <limits>
+#include <assert.h>
+
+#include "../game_logic/AbstractBoard.hpp"
+#include "../game_logic/AbstractBoardCell.hpp"
+#include "../game_logic/AbstractGame.hpp"
+#include "../game_logic/AbstractPlayer.hpp"
+#include "../game_logic/AbstractPawn.hpp"
+#include "Tree.hpp"
+
 #include "Node.hpp"
 
 namespace mcts
 {
 Node::Node(Node *parent,
-           const game::Move& move,
+           const game::Move &move,
            game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game)
     : parent(parent),
       _move(move),
@@ -62,7 +74,8 @@ Node *Node::selectBestChildAndDoAction()
             }
         }
 
-        assert(ret != temp);
+        assert("the Node that should have been returned is still identical to the porevious one, we are looping over the same element " &&
+               ret != temp);
         ret = temp;
 
         // exclude the root node that doesn't have any action associated...
@@ -108,10 +121,6 @@ int Node::randomSimulation() const
     while (!game->isFinished())
     {
         game::Move random_move = getRandomAvailableMove(game, game->getPlayerToPlay());
-
-        // dbg(random_move.pawn->getId());
-        // dbg(((game::penguin::BoardCell *)random_move.cell)->getPosition().x);
-        // dbg(((game::penguin::BoardCell *)random_move.cell)->getPosition().y);
 
         bool res = game->play(
             random_move.pawn,

@@ -1,3 +1,7 @@
+#include "../../mcts/Tree.hpp"
+#include "Board.hpp"
+#include "BoardCell.hpp"
+
 #include "ConsoleGame.hpp"
 
 namespace game

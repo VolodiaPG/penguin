@@ -1,14 +1,12 @@
 #ifndef TIC_TAC_TOE_TIC_TAC_TOE_HPP_
 #define TIC_TAC_TOE_TIC_TAC_TOE_HPP_
 
-#include <iostream>
-#include <algorithm>
 #include "../AbstractGame.hpp"
-#include "Board.hpp"
-
 
 namespace game
 {
+class BoardCell;
+class Player;
 namespace tic_tac_toe
 {
 class TicTacToe : public AbstractGame<BoardCell, Player, Player>
@@ -28,8 +26,8 @@ public:
     bool play(Player *player, BoardCell *cell) override;
     void revertPlay() override;
     unsigned int getPlayerToPlay() const override;
-    int checkStatus() const override { return board->checkStatus(); };
-    std::vector<Move> getAvailableMoves(Player* player) override;
+    int checkStatus() const override;
+    std::vector<Move> getAvailableMoves(Player *player) override;
 };
 } // namespace tic_tac_toe
 } // namespace game

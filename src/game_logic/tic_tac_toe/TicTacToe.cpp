@@ -1,3 +1,6 @@
+#include <algorithm>
+#include "Board.hpp"
+
 #include "TicTacToe.hpp"
 
 namespace game
@@ -56,9 +59,23 @@ std::vector<Move> TicTacToe::getAvailableMoves(Player *player)
     std::vector<BoardCell *> input = board->getAvailableCells(player);
     std::vector<Move> ret(input.size());
     BoardCell *current_cell = player->getCurrentCell();
-    std::transform(input.begin(), input.end(), ret.begin(), [current_cell, player](BoardCell *cell) -> Move { return {current_cell, cell, (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)player}; });
+    std::transform(
+        input.begin(),
+        input.end(),
+        ret.begin(),
+        [current_cell, player](BoardCell *cell) -> Move {
+            return {
+                (AbstractBoardCell *)current_cell,
+                (AbstractBoardCell *)cell,
+                (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)player};
+        });
 
     return ret;
+}
+
+int TicTacToe::checkStatus() const
+{
+    return board->checkStatus();
 }
 } // namespace tic_tac_toe
 } // namespace game

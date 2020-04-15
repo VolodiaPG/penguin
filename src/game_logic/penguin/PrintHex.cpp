@@ -4,6 +4,7 @@
 #include "../utils/conversions.hpp"
 #include "Board.hpp"
 #include "BoardCell.hpp"
+#include "PenguinPawn.hpp"
 
 #include "PrintHex.hpp"
 

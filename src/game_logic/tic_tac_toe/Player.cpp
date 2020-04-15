@@ -1,5 +1,6 @@
-#include "Player.hpp"
+#include "BoardCell.hpp"
 
+#include "Player.hpp"
 namespace game
 {
 namespace tic_tac_toe

@@ -1,11 +1,8 @@
 #ifndef PENGUIN_HUMAN_PLAYER_HPP_
 #define PENGUIN_HUMAN_PLAYER_HPP_
 
-#include <iostream>
 #include <vector>
 #include "../AbstractPlayer.hpp"
-#include "PenguinPawn.hpp"
-#include "Board.hpp"
 
 namespace game
 {

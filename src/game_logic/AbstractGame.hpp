@@ -1,23 +1,16 @@
 #ifndef ABSTRACT_GAME_HPP_
 #define ABSTRACT_GAME_HPP_
 
-#include "AbstractInterface.hpp"
-#include "AbstractBoard.hpp"
+#include <vector>
+
 #include "Move.hpp"
-
-#include "tic_tac_toe/Player.hpp"    // needed for template instanciation in .cpp
-#include "tic_tac_toe/BoardCell.hpp" // needed for template instanciation in .cpp
-
-#include "penguin/HumanPlayer.hpp" // needed for template instanciation in .cpp
-#include "penguin/PenguinPawn.hpp" // needed for template instanciation in .cpp
-#include "penguin/BoardCell.hpp"   // needed for template instanciation in .cpp
 
 namespace game
 {
-template <class CellT, class PlayerT, class PawnT>
+template <class, class, class>
 class AbstractBoard;
 
-template <class CellT = AbstractBoardCell, class PlayerT = AbstractPlayer, class PawnT = AbstractPawn<PlayerT, CellT>>
+template <class CellT, class PlayerT, class PawnT>
 class AbstractGame
 {
 public:

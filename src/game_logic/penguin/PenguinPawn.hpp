@@ -2,13 +2,9 @@
 #define PENGUIN_PENGUIN_PLAYER_HPP_
 
 #include "../AbstractPawn.hpp"
-#include "HumanPlayer.hpp"
-#include "BoardCell.hpp"
 
 namespace game
 {
-template <typename, typename>
-class AbstractPawn;
 namespace penguin
 {
 class BoardCell;

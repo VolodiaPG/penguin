@@ -2,20 +2,8 @@
 #define NODE_HPP_
 
 #include <vector>
-#include <stack>
-#include <iostream>
-#include <math.h>
-#include <limits>
 
-#include "Tree.hpp"
-#include "../game_logic/AbstractBoardCell.hpp"
-#include "../game_logic/AbstractPlayer.hpp"
 #include "../game_logic/Move.hpp"
-
-#include "../dbg.h"
-#include "../game_logic/penguin/BoardCell.hpp"
-
-#include "../log.hpp"
 
 namespace game
 {
@@ -60,10 +48,7 @@ public:
 
     Node *nodeWithMaxVisits() const;
 
-    // void expandNode(std::vector<game::Move> possibleMove, game::AbstractPlayer *nextPlayer);
     void expandNode(std::vector<game::Move> possibleMove);
-
-    // unsigned int getPlayerID() const { return _move_associated.pawn->getOwner()->getId(); };
 
     Node *getParent() const { return parent; };
 

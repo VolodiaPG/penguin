@@ -1,3 +1,6 @@
+#include "PenguinPawn.hpp"
+#include "Board.hpp"
+
 #include "HumanPlayer.hpp"
 
 namespace game
