@@ -1,8 +1,8 @@
 <ion-img 
-    [style.width.px]="cell.hexWidth" 
-    [style.height.px]="cell.hexHeight + 33" 
-    style="position:relative"
-    src="{{imageUrl}}" 
-    (click)="click()"
-    (mouseover)="hover(true)" (mouseout)="hover(false)">
+    [style.width.px]='cell.hexWidth' 
+    [style.height.px]='cell.hexHeight + 33' 
+    style='position:relative'
+    src='{{textures[terrainIndex]}}' 
+    (click)='click()'
+    (mouseover)='hover(true)' (mouseout)='hover(false)'>
 </ion-img>

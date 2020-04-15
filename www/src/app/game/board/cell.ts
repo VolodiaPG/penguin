@@ -15,7 +15,7 @@ export class Cell {
 
         isEmpty: boolean;
         isOver: boolean;
-        
+
         hasPenguin: boolean;
 
         // The pixel width of a hex.
@@ -32,7 +32,7 @@ export class Cell {
         aspectRatio: number = this.hexHeight / this.hexWidth;    // hexHeight / hexWidth
 
         hexAxis: Pos = { x: 0, y: 0 };
-        hexDrawAxis: Pos = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };   
+        hexDrawAxis: Pos = { x: ((1 - (Math.sqrt(3) / 2)) * this.hexWidth) + this.hexWidth, y: this.hexHeight };
 
         // The color to use when drawing hex outlines.
         hexLineColor: number = 0xd0d0d0;   // 0xd0d0d0

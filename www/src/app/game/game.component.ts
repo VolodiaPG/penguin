@@ -17,6 +17,8 @@ export class GameComponent implements OnInit {
   nbHexagonal: number = 8;
   nbPenguin: number = 4;
 
+  gameStarted: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void { }
@@ -26,6 +28,7 @@ export class GameComponent implements OnInit {
   ***************************************************************************************************************************/
   launchGame() {
     this.boardComponent.startWasmGame();
+    this.gameStarted = true;
   }
 
 

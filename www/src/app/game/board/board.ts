@@ -2,11 +2,13 @@
 import { Pos } from './pos';
 import { Cell } from './cell';
 import { Penguin } from './penguin';
+import { ViewChild } from '@angular/core';
+import { HexComponent } from './hex/hex.component';
 
 /**
  * 
  */
-export class Board {
+export class Board {    
     nbHexagonal: number;       // 8
 
     // The pixel width of a hex.

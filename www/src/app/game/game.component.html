@@ -52,5 +52,5 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <app-control class="control" (nbHexagonalChanged)="nbHexagonalChanged($event)" (nbPenguinChanged)="nbPenguinChanged($event)" (gameReady)="launchGame()"></app-control>
+    <app-control *ngIf="!gameStarted" class="control" (nbHexagonalChanged)="nbHexagonalChanged($event)" (nbPenguinChanged)="nbPenguinChanged($event)" (gameReady)="launchGame()"></app-control>
 </ion-content>

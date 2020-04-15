@@ -22,7 +22,6 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     register_vector<BoardCell *>("vector<BoardCell *>");
     register_vector<PenguinPlayer *>("vector<PenguinPlayer *>");
     
-
     class_<HumanPlayer>("HumanPlayer")
         .function("getScore", &HumanPlayer::getScore);
 

@@ -12,11 +12,9 @@ export class HexComponent implements OnInit {
 
   // @Input() color: string = '#00CCCC';
   @Input() cell: Cell;
+  @Input() terrainIndex: number;
 
   center: Pos;
-  imageUrl: string;
-
-  terrainIndex: number;
 
   // Specify the types of terrain available on the map. Map cells reference these terrain
   // types by index. Add custom properties to extend functionality.
@@ -33,25 +31,18 @@ export class HexComponent implements OnInit {
   ];
 
   isSelected: boolean;
-  alpha: number = 0.8;
-
-  width: number;
-  height: number;
-
-  points: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.terrainIndex = this.cell.nbFish;
-    this.imageUrl = this.textures[this.terrainIndex];
+    // this.terrainIndex = this.cell.nbFish;
     this.isSelected = false;
     this.center = this.cell.getCellCenter();
     console.log(this.terrainIndex);
   }
 
   click() {
-    console.log("Cell selected : (" + this.cell.row + "," + this.cell.column + ")");
+    console.log("Cell selected : (" + this.cell.row + "," + this.cell.column + ")" + " -> " + this.cell.nbFish);
   }
 
   hover(hover: boolean) {
@@ -63,10 +54,9 @@ export class HexComponent implements OnInit {
       this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) - 3;
       this.isSelected = false;
     } else if (!this.isSelected && isSelected) {
-      this.terrainIndex =  Number.parseInt(this.terrainIndex.toString()) + 3;
+      this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) + 3;
       this.isSelected = true;
     }
-    this.imageUrl = this.textures[this.terrainIndex];
   }
 
 }
