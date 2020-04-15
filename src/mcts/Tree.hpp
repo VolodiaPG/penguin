@@ -65,7 +65,12 @@ public:
         const MCTSConstraints &constraints);
     ~Tree();
 
-    void begin();
+    /**
+     * @brief Starts the MCTS
+     * 
+     * @return unsigned int the number of visits
+     */
+    unsigned int begin();
     game::Move bestMove() const;
     // NodegetRootNode() const { return rootNode; };
 };

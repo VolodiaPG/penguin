@@ -4,9 +4,10 @@ namespace game
 {
 namespace penguin
 {
-ConsoleGame::ConsoleGame()
+ConsoleGame::ConsoleGame(const bool &no_print)
     : _game(7, 2),
-      _print_hex((Board *)_game.board)
+      _print_hex((Board *)_game.board),
+      _no_print(no_print)
 {
     Board *board = (Board *)_game.board;
     // Placing all the penguins
@@ -32,12 +33,18 @@ ConsoleGame::~ConsoleGame()
 
 void ConsoleGame::draw()
 {
-    _print_hex.print();
+    if (!_no_print)
+    {
+        _print_hex.print();
+    }
 }
 
 void ConsoleGame::loop()
 {
-    std::cout << "Looping, wheeeeeeeeee" << std::endl;
+    if (!_no_print)
+    {
+        std::cout << "Looping, wheeeeeeeeee" << std::endl;
+    }
 
     draw();
 
@@ -46,8 +53,6 @@ void ConsoleGame::loop()
     // draw();
     // board->revertMove(board->getPlayerById(2));
     // draw();
-
-
 
     while (!_game.isFinished())
     {
@@ -69,14 +74,18 @@ void ConsoleGame::loop()
         // _game.play(penguin_id, _game.board->getCell(xx, yy));
 
         mcts::MCTSConstraints constraints;
-        constraints.time = 250;
+        constraints.time = 5000;
         // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
         auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)&_game;
         mcts::Tree tree(game, constraints); // play the second player
-        tree.begin();
+        const unsigned int n_visits = tree.begin();
         Move best_move = tree.bestMove();
         _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
 
+        if (!_no_print)
+        {
+            std::cout << "Evaluated " << n_visits << " different scenarii" << std::endl;
+        }
         draw();
     }
 

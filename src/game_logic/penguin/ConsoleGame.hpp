@@ -19,9 +19,10 @@ class ConsoleGame : public AbstractInterface
 private:
     PenguinGame _game;
     PrintHex _print_hex;
+    bool _no_print;
 
 public:
-    ConsoleGame();
+    ConsoleGame(const bool& no_print);
     ~ConsoleGame();
 
     void draw() override;

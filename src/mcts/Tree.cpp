@@ -7,8 +7,7 @@ Tree::Tree(
     game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
     // game::AbstractPlayer *me,
     const MCTSConstraints &constraints)
-    : 
-    // playerMe(me),
+    : // playerMe(me),
       game(game),
       constraints(constraints)
 {
@@ -24,9 +23,9 @@ Tree::~Tree()
     }
 }
 
-void Tree::begin()
+unsigned int Tree::begin()
 {
-    std::cout << "Beginning MCTS search" << std::endl;
+    // std::cout << "Beginning MCTS search" << std::endl;
     timer t;
     while (t.milliseconds_elapsed() < (unsigned long)constraints.time
            // && !rootNode->getIsFullyDone()
@@ -59,7 +58,8 @@ void Tree::begin()
         }
     }
 
-    DEBUG(rootNode->visits);
+    return rootNode->visits;
+    // DEBUG(rootNode->visits);
 }
 
 game::Move Tree::bestMove() const
