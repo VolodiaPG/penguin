@@ -15,6 +15,7 @@ Move AbstractPlayer::dequeueLastMove()
 {
     Move move = _moves_done.top();
     _moves_done.pop();
+    move.pawn->_current_cell = move.from;
     return move;
 }
 
