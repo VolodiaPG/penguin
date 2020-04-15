@@ -2,12 +2,18 @@
 #ifdef __EMSCRIPTEN__
 
 #include <emscripten/bind.h>
+
+#include "../AbstractBoard.hpp"
+#include "../AbstractPawn.hpp"
+#include "../AbstractPlayer.hpp"
+#include "../AbstractGame.hpp"
+
 #include "Board.hpp"
 #include "PrintHex.hpp"
 #include "BoardCell.hpp"
 #include "Position.hpp"
 #include "HumanPlayer.hpp"
-#include "PenguinPlayer.hpp"
+#include "PenguinPawn.hpp"
 #include "PenguinGame.hpp"
 
 namespace game
@@ -19,13 +25,14 @@ using namespace emscripten;
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
 {
-    class_<HumanPlayer>("HumanPlayer")
+    using AbstractBoard = AbstractBoard<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
+    using AbstractGame = AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
+    using AbstractPawn = AbstractPawn<AbstractPlayer, AbstractBoardCell>;
+    
+    class_<HumanPlayer, base<AbstractPlayer>>("HumanPlayer")
         .function("getScore", &HumanPlayer::getScore);
 
-    class_<PenguinPlayer>("PenguinPlayer")
-        .function("getStandingOn", &PenguinPlayer::getStandingOn, allow_raw_pointers())
-        .function("getPreviousStandingOn", &PenguinPlayer::getPreviousStandingOn, allow_raw_pointers())
-        .function("getOwner", &PenguinPlayer::getOwner, allow_raw_pointers());
+    class_<PenguinPawn, base<AbstractPawn>>("PenguinPawn");
 
     class_<BoardCell>("BoardCell")
         .function("getPosition", &BoardCell::getPosition)
@@ -34,22 +41,14 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("isOwned", &BoardCell::isOwned)
         .function("getFish", &BoardCell::getFish);
 
-    class_<Board>("Board")
-        .function("performMove", &Board::performMove, allow_raw_pointers())
-        .function("revertMove", &Board::revertMove, allow_raw_pointers())
-        .function("checkStatus", &Board::checkStatus)
-        .function("getAvailableCells", &Board::getAvailableCells, allow_raw_pointers())
-        .function("getBoardCells", &Board::getBoardCells, allow_raw_pointers())
-        .function("size", &Board::size)
-        .function("getCell", &Board::getCell, allow_raw_pointers())
-        .function("getPlayersOnBoard", &Board::getPlayersOnBoard, allow_raw_pointers())
-        .function("getPlayerById", &Board::getPlayerById, allow_raw_pointers());
+    class_<Board, base<AbstractBoard>>("Board");
+       
 
     class_<PrintHex>("PrintHexASCII")
         .constructor<Board *>()
         .function("print", &PrintHex::print);
 
-    class_<PenguinGame>("PenguinGame")
+    class_<PenguinGame, base<AbstractGame>>("PenguinGame")
         .constructor<const size_t, const size_t>()
         .function("getBoard", &PenguinGame::getBoard, allow_raw_pointers())
         .function("isFinished", &PenguinGame::isFinished)

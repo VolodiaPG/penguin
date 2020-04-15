@@ -2,7 +2,7 @@
 #define TREE_HPP_
 
 #include <chrono>
-#include "../game_logic/Move.hpp"
+#include "../game_logic/utils/Move.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 

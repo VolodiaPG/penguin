@@ -1,12 +1,11 @@
 #include <assert.h>
 
 #include "../AbstractBoard.hpp"
-#include "../Position3D.hpp"
+#include "../utils/Position3D.hpp"
 #include "../utils/conversions.hpp"
 #include "BoardCell.hpp"
 #include "PenguinPawn.hpp"
 #include "HumanPlayer.hpp"
-
 #include "PrintHex.hpp"
 
 #include "Board.hpp"

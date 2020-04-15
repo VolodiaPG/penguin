@@ -2,7 +2,7 @@
 #define PENGUIN_BOARD_CELL_HPP_
 
 #include "../AbstractBoardCell.hpp"
-#include "../Position.hpp"
+#include "../utils/Position.hpp"
 
 namespace game
 {

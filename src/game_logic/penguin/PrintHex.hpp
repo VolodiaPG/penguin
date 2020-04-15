@@ -3,7 +3,7 @@
 #ifndef PENGUIN_PRINT_HEX_HPP_
 #define PENGUIN_PRINT_HEX_HPP_
 
-#include "../Position.hpp"
+#include "../utils/Position.hpp"
 
 namespace game
 {

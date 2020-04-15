@@ -34,7 +34,7 @@ public:
      * @return unsigned int the id of the human player to play
      */
     unsigned int getPlayerToPlay() const override;
-    int checkStatus() const;
+    int checkStatus()const override;
     Board *getBoard() { return (Board *)board; };
     std::vector<Move> getAvailableMoves(HumanPlayer *player) override;
 };

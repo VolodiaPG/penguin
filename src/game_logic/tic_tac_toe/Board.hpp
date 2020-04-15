@@ -3,7 +3,7 @@
 
 #include <array>
 
-#include "../Position.hpp"
+#include "../utils/Position.hpp"
 #include "../AbstractBoard.hpp"
 #include "Player.hpp"
 

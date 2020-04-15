@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../game_logic/Move.hpp"
+#include "../game_logic/utils/Move.hpp"
 
 namespace game
 {
