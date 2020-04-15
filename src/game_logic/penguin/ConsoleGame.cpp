@@ -41,6 +41,14 @@ void ConsoleGame::loop()
 
     draw();
 
+    // Board *board = (Board *)_game.board;
+    // board->performMove(board->getPawnById(2), board->getCell(3, 0));
+    // draw();
+    // board->revertMove(board->getPlayerById(2));
+    // draw();
+
+
+
     while (!_game.isFinished())
     {
         // bool keep_asking = true;
@@ -64,7 +72,7 @@ void ConsoleGame::loop()
         constraints.time = 250;
         // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
         auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)&_game;
-        mcts::Tree tree(game, nullptr, constraints); // play the second player
+        mcts::Tree tree(game, constraints); // play the second player
         tree.begin();
         Move best_move = tree.bestMove();
         _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
