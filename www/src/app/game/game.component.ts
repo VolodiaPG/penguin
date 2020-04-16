@@ -3,6 +3,8 @@ import { BoardComponent } from './board/board.component';
 
 import { Flip } from 'number-flip';
 
+import { gameMachine, gameService } from './+xstate/gameMachine';
+
 
 declare var Module: any;
 
@@ -15,7 +17,7 @@ declare var Module: any;
 export class GameComponent implements OnInit {
   @ViewChild('numberbtn', { read: ElementRef, static: true }) private btn: ElementRef;
   flipAnim: any = null;
-  
+
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
@@ -26,7 +28,8 @@ export class GameComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   /***************************************************************************************************************************
   ************************************************ START GAME ****************************************************************
@@ -34,6 +37,7 @@ export class GameComponent implements OnInit {
   launchGame() {
     this.boardComponent.startWasmGame();
     this.gameStarted = true;
+    console.log(gameMachine.initialState);
   }
 
   /***************************************************************************************************************************
@@ -42,7 +46,7 @@ export class GameComponent implements OnInit {
 
   flip() {
     console.log("Number-flip in action");
-    if(!this.flipAnim) {
+    if (!this.flipAnim) {
       this.flipAnim = new Flip({
         node: this.btn.nativeElement,
         from: '9999',
