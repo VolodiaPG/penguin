@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import anime from 'animejs/lib/anime.es';
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
 import { Cell } from './cell';
@@ -111,23 +110,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-  ************************************************ ANIMATION******************************************************************
-  ***************************************************************************************************************************/
-  callAnime() {
-    console.log("Animejs in action");
 
-    anime({
-      targets: '.animate-me',
-      translateX: [
-        { value: 100, duration: 1200 },
-        { value: 0, duration: 800 }
-      ],
-      rotate: '1turn',
-      backgroundColor: '#ff00ff',
-      duration: 2000
-    });
-  }
 
   /***************************************************************************************************************************
   ************************************************ PREVIEW *******************************************************************
