@@ -13,7 +13,7 @@ declare var Module: any;
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
   animations: [
-    trigger('hexAnimation', [
+    trigger('initAnimation', [
       state('enter', style({
         opacity: 1,
         transform: 'scale(1)'
