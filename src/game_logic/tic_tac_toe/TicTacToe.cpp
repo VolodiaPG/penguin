@@ -54,20 +54,20 @@ unsigned int TicTacToe::getPlayerToPlay() const
     return nextPlayer;
 }
 
-std::vector<Move> TicTacToe::getAvailableMoves(Player *player)
+std::vector<Move<BoardCell, Player>> TicTacToe::getAvailableMoves(Player *player)
 {
     std::vector<BoardCell *> input = board->getAvailableCells(player);
-    std::vector<Move> ret(input.size());
+    std::vector<Move<BoardCell, Player>> ret(input.size());
     BoardCell *current_cell = player->getCurrentCell();
     std::transform(
         input.begin(),
         input.end(),
         ret.begin(),
-        [current_cell, player](BoardCell *cell) -> Move {
+        [current_cell, player](BoardCell *cell) -> Move<BoardCell, Player> {
             return {
-                (AbstractBoardCell *)current_cell,
-                (AbstractBoardCell *)cell,
-                (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)player};
+                current_cell,
+                cell,
+                player};
         });
 
     return ret;

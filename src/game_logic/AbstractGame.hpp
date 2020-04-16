@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Move.hpp"
+#include "utils/Move.hpp"
 
 namespace game
 {
@@ -59,7 +59,7 @@ public:
    * @param player the player (the human one)
    * @return Move containing all the necessary informations
    */
-   virtual std::vector<Move> getAvailableMoves(PlayerT* player) = 0;
+   virtual std::vector<Move<CellT, PawnT>> getAvailableMoves(PlayerT* player) = 0;
 };
 } // namespace game
 

@@ -9,7 +9,10 @@ namespace game
 {
 namespace tic_tac_toe
 {
-class Player : public AbstractPlayer, public AbstractPawn<Player, BoardCell>
+class BoardCell;
+
+class Player : public AbstractPlayer<BoardCell, Player>,
+               public AbstractPawn<Player, BoardCell>
 {
 public:
     explicit Player(unsigned int id);

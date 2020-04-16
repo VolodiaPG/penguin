@@ -36,7 +36,7 @@ public:
     unsigned int getPlayerToPlay() const override;
     int checkStatus()const override;
     Board *getBoard() { return (Board *)board; };
-    std::vector<Move> getAvailableMoves(HumanPlayer *player) override;
+    std::vector<Move<BoardCell, PenguinPawn>> getAvailableMoves(HumanPlayer *player) override;
 };
 } // namespace penguin
 } // namespace game

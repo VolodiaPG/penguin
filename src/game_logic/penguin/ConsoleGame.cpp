@@ -18,8 +18,8 @@ ConsoleGame::ConsoleGame(const bool &no_print)
       _print_hex((Board *)_game.board),
       _no_print(no_print)
 {
-    Board *board = (Board *)_game.board;
-    
+    Board *board = static_cast<Board *>(_game.board);
+
     // Placing all the penguins
     // team 1
     board->performMove(board->getPawnById(0), board->getCell(0, 0));
@@ -77,11 +77,9 @@ void ConsoleGame::loop()
 
         mcts::MCTSConstraints constraints;
         constraints.time = 5000;
-        // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
-        auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)&_game;
-        mcts::Tree tree(game, constraints); // play the second player
+        mcts::Tree<BoardCell, HumanPlayer, PenguinPawn> tree(&_game, constraints); // play the second player
         const unsigned int n_visits = tree.begin();
-        Move best_move = tree.bestMove();
+        Move<BoardCell, PenguinPawn> best_move = tree.bestMove();
         _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
 
         if (!_no_print)

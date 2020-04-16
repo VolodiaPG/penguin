@@ -11,12 +11,14 @@ namespace game
 template <class, class, class>
 class AbstractGame;
 class AbstractBoardCell;
+template <class, class>
 class AbstractPlayer;
 } // namespace game
 
 namespace mcts
 {
 
+template <class, class, class>
 class Node;
 
 struct timer
@@ -44,18 +46,21 @@ typedef struct
     int time;
 } MCTSConstraints;
 
+template <class CellT, class PlayerT, class PawnT>
 class Tree
 {
 protected:
-    Node *rootNode;
+    Node<CellT, PlayerT, PawnT> *rootNode;
     void expandNode();
-
-public:
-    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game;
+    game::AbstractGame<CellT, PlayerT, PawnT> *game;
     MCTSConstraints constraints;
 
+    template <class, class, class>
+    friend class Node;
+public:
+
     explicit Tree(
-        game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
+        game::AbstractGame<CellT, PlayerT, PawnT> *game,
         const MCTSConstraints &constraints);
     ~Tree();
 
@@ -65,7 +70,7 @@ public:
      * @return unsigned int the number of visits
      */
     unsigned int begin();
-    game::Move bestMove() const;
+    game::Move<CellT, PawnT> bestMove() const;
 };
 
 } // namespace mcts

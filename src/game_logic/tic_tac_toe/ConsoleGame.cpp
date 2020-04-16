@@ -17,19 +17,6 @@ ConsoleGame::~ConsoleGame()
 {
 }
 
-// AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
-// {
-//     Board *bo = (Board *)board;
-//     AbstractPlayer *player = player1;
-
-//     if (bo->getTotalMoves() % 2)
-//     {
-//         player = player2;
-//     }
-
-//     return player->action(board);
-// }
-
 void ConsoleGame::draw()
 {
     // clear the output stdout
@@ -68,12 +55,10 @@ void ConsoleGame::loop()
     {
         mcts::MCTSConstraints constraints;
         constraints.time = 500;
-        // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
-        auto game = (AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>> *)this;
-        mcts::Tree tree(game, constraints); // play the second player
+        mcts::Tree<BoardCell, Player, Player> tree(this, constraints); // play the second player
         tree.begin();
-        Move best_move = tree.bestMove();
-        play((Player *)best_move.pawn, (BoardCell *)best_move.target);
+        Move<BoardCell, Player> best_move = tree.bestMove();
+        play(static_cast<Player *>(best_move.pawn), best_move.target);
         draw();
     }
 

@@ -44,7 +44,7 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     class_<Board, base<AbstractBoard>>("Board");
        
 
-    class_<PrintHex>("PrintHexASCII")
+    class_<PrintHex>("PrintHex")
         .constructor<Board *>()
         .function("print", &PrintHex::print);
 

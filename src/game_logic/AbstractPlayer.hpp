@@ -3,22 +3,23 @@
 
 #include <stack>
 
-#include "Move.hpp"
+#include "utils/Move.hpp"
 
 namespace game
 {
 
-namespace tic_tac_toe
-{
-class Player;
-class BoardCell;
-} // namespace tic_tac_toe
-namespace penguin
-{
-class HumanPlayer;
-class BoardCell;
-} // namespace penguin
+// namespace tic_tac_toe
+// {
+// class Player;
+// class BoardCell;
+// } // namespace tic_tac_toe
+// namespace penguin
+// {
+// class HumanPlayer;
+// class BoardCell;
+// } // namespace penguin
 
+template<class CellT, class PawnT>
 class AbstractPlayer
 {
 private:
@@ -32,9 +33,9 @@ private:
      * @brief Store all the moves done
      * 
      */
-    std::stack<Move> _moves_done;
+    std::stack<Move<CellT, PawnT>> _moves_done;
 
-    template <typename PlayerT, typename CellT>
+    template <class, class>
     friend class AbstractPawn;
 
 public:
@@ -66,15 +67,16 @@ public:
      * 
      * @return Move the last move done
      */
-    Move dequeueLastMove();
+    Move<CellT, PawnT> dequeueLastMove();
 
     /**
      * @brief Get the current cell
      * 
      * @return Move the current cell the player is standing on
      */
-    Move getLastMoveDone() const;
+    Move<CellT, PawnT> getLastMoveDone() const;
 };
+
 
 } // namespace game
 

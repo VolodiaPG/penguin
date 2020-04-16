@@ -151,9 +151,9 @@ void Board::revertMove(HumanPlayer *human_player)
     assert(human_player != nullptr);
     assert("no more history is available/stored" && human_player->getNumberMovesDone() != 0);
 
-    Move current_move = human_player->dequeueLastMove();
-    BoardCell *cell_previous = (BoardCell *)current_move.from;
-    BoardCell *cell_current = (BoardCell *)current_move.target;
+    Move<BoardCell, PenguinPawn> current_move = human_player->dequeueLastMove();
+    BoardCell *cell_previous = current_move.from;
+    BoardCell *cell_current = current_move.target;
     PenguinPawn *penguin = cell_current->getOwner();
 
     cell_current->clearOwner();

@@ -9,17 +9,19 @@
 namespace mcts
 {
 
-Tree::Tree(
-    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
+template <class CellT, class PlayerT, class PawnT>
+Tree<CellT, PlayerT, PawnT>::Tree(
+    game::AbstractGame<CellT, PlayerT, PawnT> *game,
     const MCTSConstraints &constraints)
     :
       game(game),
       constraints(constraints)
 {
-    rootNode = new Node(nullptr, {nullptr, nullptr, nullptr}, game);
+    rootNode = new Node<CellT, PlayerT, PawnT>(nullptr, {nullptr, nullptr, nullptr}, game);
 }
 
-Tree::~Tree()
+template <class CellT, class PlayerT, class PawnT>
+Tree<CellT, PlayerT, PawnT>::~Tree()
 {
     if (rootNode)
     {
@@ -27,7 +29,8 @@ Tree::~Tree()
     }
 }
 
-unsigned int Tree::begin()
+template <class CellT, class PlayerT, class PawnT>
+unsigned int Tree<CellT, PlayerT, PawnT>::begin()
 {
     timer t;
     while (t.milliseconds_elapsed() < (unsigned long)constraints.time
@@ -36,7 +39,7 @@ unsigned int Tree::begin()
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
-            Node *promisingNode = rootNode->selectBestChildAndDoAction();
+            Node<CellT, PlayerT, PawnT> *promisingNode = rootNode->selectBestChildAndDoAction();
 
             if (!game->isFinished())
             {
@@ -44,7 +47,7 @@ unsigned int Tree::begin()
                 promisingNode->expandNode(game->getAvailableMoves(game->board->getPlayerById(id)));
             }
 
-            Node *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
+            Node<CellT, PlayerT, PawnT> *nodeToExplore = promisingNode->randomChooseChildOrDefaultMe();
 
             if (nodeToExplore != promisingNode)
             {
@@ -59,7 +62,8 @@ unsigned int Tree::begin()
     return rootNode->visits;
 }
 
-game::Move Tree::bestMove() const
+template <class CellT, class PlayerT, class PawnT>
+game::Move<CellT, PawnT> Tree<CellT, PlayerT, PawnT>::bestMove() const
 {
     return rootNode->nodeWithMaxVisits()->getMove();
 }

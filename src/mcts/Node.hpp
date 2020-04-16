@@ -9,11 +9,13 @@ namespace game
 {
 template <class CellT, class PlayerT, class PawnT>
 class AbstractGame;
+class AbstractBoardCell;
 }
 
 namespace mcts
 {
 
+template <class CellT, class PlayerT, class PawnT>
 class Node
 {
 protected:
@@ -23,8 +25,8 @@ protected:
      */
     std::vector<Node *> childNodes;
     Node *parent = nullptr;
-    game::Move _move;
-    game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game = nullptr;
+    game::Move<CellT, PawnT> _move;
+    game::AbstractGame<CellT, PlayerT, PawnT> *game = nullptr;
 
     static double formula(int winsSuccessor, int numberVisitsSuccessor, int numberVisitsFather);
 
@@ -36,8 +38,8 @@ public:
 
     explicit Node(
         Node *parent,
-        const game::Move& move,
-        game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game);
+        const game::Move<CellT, PawnT>& move,
+        game::AbstractGame<CellT, PlayerT, PawnT> *game);
     ~Node();
 
     bool doAction();
@@ -48,14 +50,14 @@ public:
 
     Node *nodeWithMaxVisits() const;
 
-    void expandNode(std::vector<game::Move> possibleMove);
+    void expandNode(const std::vector<game::Move<CellT, PawnT>>& possibleMove);
 
     Node *getParent() const { return parent; };
 
     game::AbstractBoardCell *getTargetedCell() const { return _move.target; };
 
-    static game::Move getRandomAvailableMove(
-        game::AbstractGame<game::AbstractBoardCell, game::AbstractPlayer, game::AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell>> *game,
+    static game::Move<CellT, PawnT> getRandomAvailableMove(
+        game::AbstractGame<CellT, PlayerT, PawnT> *game,
         unsigned int player_id);
 
     int randomSimulation() const;
@@ -64,7 +66,7 @@ public:
 
     void backPropagateAndRevertAction(const int winnerId);
 
-    game::Move getMove() const { return _move; };
+    game::Move<CellT, PawnT> getMove() const { return _move; };
 };
 } // namespace mcts
 
