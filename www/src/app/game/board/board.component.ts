@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import anime from 'animejs/lib/anime.es';
+import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
 import { Cell } from './cell';
 import { HexComponent } from './hex/hex.component';
@@ -9,9 +11,30 @@ declare var Module: any;
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
+  animations: [
+    trigger('hexAnimation', [
+      state('enter', style({
+        opacity: 1,
+        transform: 'scale(1)'
+      })),
+      state('leave', style({
+        opacity: 0.5,
+        transform: 'scale(0.8)'
+      })),
+      transition('enter => leave', [
+        animate('1s')
+      ]),
+      transition('leave => enter', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class BoardComponent implements OnInit {
+
+  isLoaded = false;
+
   nbHexagonal: number = 8;       // 8
 
   // The pixel width of a hex.
@@ -34,6 +57,7 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
     this.generateMap();
     console.log("Board ok");
@@ -48,6 +72,7 @@ export class BoardComponent implements OnInit {
   ************************************************ START GAME ****************************************************************
   ***************************************************************************************************************************/
   startWasmGame() {
+    this.isLoaded = true;
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
     this.generateMapFromWasmBoard();
