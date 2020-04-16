@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import anime from 'animejs/lib/anime.es';
 import { Pos } from '../pos';
+import { Cell } from '../cell';
 
 @Component({
   selector: 'app-penguin',
@@ -35,6 +36,10 @@ export class PenguinComponent implements OnInit {
       duration: 2000,
       property: [this.position],
     });
+  }
+
+  moveTo(cell: Cell) {
+    
   }
 
 }
