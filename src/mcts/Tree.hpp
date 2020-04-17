@@ -11,7 +11,6 @@ namespace game
 template <class, class, class>
 class AbstractGame;
 class AbstractBoardCell;
-template <class, class>
 class AbstractPlayer;
 } // namespace game
 

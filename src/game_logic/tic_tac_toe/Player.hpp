@@ -11,13 +11,13 @@ namespace tic_tac_toe
 {
 class BoardCell;
 
-class Player : public AbstractPlayer<BoardCell, Player>,
+class Player : public AbstractPlayer,
                public AbstractPawn<Player, BoardCell>
 {
 public:
     explicit Player(unsigned int id);
 
-    unsigned int getId() { return AbstractPlayer::getId(); };
+    unsigned int getId() const { return AbstractPlayer::getId(); };
 };
 } // namespace tic_tac_toe
 } // namespace game

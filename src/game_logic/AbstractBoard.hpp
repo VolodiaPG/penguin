@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "History.hpp"
+
 namespace game
 {
 
@@ -16,6 +18,9 @@ namespace game
 template <class CellT, class PlayerT, class PawnT>
 class AbstractBoard
 {
+private:
+    History<CellT, PawnT> _history;
+
 public:
     virtual ~AbstractBoard(){};
 
@@ -27,9 +32,9 @@ public:
     * 
     * @return true if the move is allowed, false otherwise
     */
-    virtual bool performMove(PawnT *pawn, CellT *cell) = 0;
+    virtual bool performMove(PawnT *pawn, CellT *cell);
 
-    virtual void revertMove(PlayerT *player) = 0;
+    virtual const Move<CellT, PawnT> revertMove();
 
     /**
      * @brief Status of the game

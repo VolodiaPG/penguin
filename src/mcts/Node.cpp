@@ -10,6 +10,12 @@
 #include "../game_logic/AbstractPawn.hpp"
 #include "Tree.hpp"
 
+#include "../game_logic/tic_tac_toe/BoardCell.hpp"
+#include "../game_logic/tic_tac_toe/Player.hpp"
+#include "../game_logic/penguin/BoardCell.hpp"
+#include "../game_logic/penguin/HumanPlayer.hpp"
+#include "../game_logic/penguin/PenguinPawn.hpp"
+
 #include "Node.hpp"
 
 namespace mcts
@@ -104,7 +110,7 @@ bool Node<CellT, PlayerT, PawnT>::doAction()
 template <class CellT, class PlayerT, class PawnT>
 void Node<CellT, PlayerT, PawnT>::revertAction()
 {
-    return game->revertPlay();
+    game->revertPlay();
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -211,11 +217,14 @@ Node<CellT, PlayerT, PawnT> *Node<CellT, PlayerT, PawnT>::randomChooseChildOrDef
 template <class CellT, class PlayerT, class PawnT>
 void Node<CellT, PlayerT, PawnT>::expandNode(const std::vector<game::Move<CellT, PawnT>>& possibleMove)
 {
-    for (game::Move<CellT, PawnT> &move : possibleMove)
+    for (const game::Move<CellT, PawnT> &move : possibleMove)
     {
         Node *node = new Node(this, move, game);
         childNodes.push_back(node);
     }
 }
+
+template class Node<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;
+template class Node<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn>;
 
 } // namespace mcts

@@ -37,7 +37,7 @@ public:
 
    virtual bool play(PawnT* pawn, CellT *cell) = 0;
 
-   virtual void revertPlay() = 0;
+   virtual const Move<CellT, PawnT> revertPlay() = 0;
 
    /**
      * @brief Get the player who hadn't play yet

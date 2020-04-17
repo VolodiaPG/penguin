@@ -6,8 +6,7 @@
 
 namespace game
 {
-template <class, class>
-class AbstractPlayer;
+
 namespace penguin
 {
 
@@ -16,7 +15,7 @@ class BoardCell;
 class Board;
 class PenguinPawn;
 
-class HumanPlayer : public AbstractPlayer<BoardCell, PenguinPawn>
+class HumanPlayer : public AbstractPlayer
 {
 private:
     /**

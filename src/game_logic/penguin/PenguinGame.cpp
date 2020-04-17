@@ -32,17 +32,11 @@ bool PenguinGame::play(PenguinPawn *pawn, BoardCell *move)
     return moved;
 }
 
-void PenguinGame::revertPlay()
+const Move<BoardCell, PenguinPawn> PenguinGame::revertPlay()
 {
     --numberMoves;
-    int player = 2;
-
-    if (numberMoves % 2)
-    {
-        player = 1;
-    }
-
-    board->revertMove(board->getPlayerById(player));
+    assert("A negative number of moves has been registered !!!" && numberMoves >= 0);
+    return board->revertMove();
 }
 
 bool PenguinGame::isFinished() const

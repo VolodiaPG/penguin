@@ -4,6 +4,13 @@
 #include "../game_logic/AbstractPlayer.hpp"
 #include "Node.hpp"
 
+#include "../game_logic/tic_tac_toe/Player.hpp"
+#include "../game_logic/tic_tac_toe/BoardCell.hpp"
+
+#include "../game_logic/penguin/HumanPlayer.hpp"
+#include "../game_logic/penguin/PenguinPawn.hpp"
+#include "../game_logic/penguin/BoardCell.hpp"
+
 #include "Tree.hpp"
 
 namespace mcts
@@ -67,5 +74,8 @@ game::Move<CellT, PawnT> Tree<CellT, PlayerT, PawnT>::bestMove() const
 {
     return rootNode->nodeWithMaxVisits()->getMove();
 }
+
+template class Tree<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;
+template class Tree<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn>;
 
 } // namespace mcts
