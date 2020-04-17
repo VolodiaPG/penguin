@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -7,7 +7,6 @@ import { AlertController, ToastController } from '@ionic/angular';
   styleUrls: ['./control.component.scss']
 })
 export class ControlComponent implements OnInit {
-
   @Output() nbPenguinChanged = new EventEmitter<any>();
   @Output() nbHexagonalChanged = new EventEmitter<any>();
   @Output() gameReady = new EventEmitter<any>();
@@ -20,23 +19,23 @@ export class ControlComponent implements OnInit {
   nbHexagonal: number;
   valueRangeHexagonal: number = 8;
 
-  constructor(private alertController: AlertController, private toastController: ToastController) { }
+  constructor(private alertController: AlertController, private toastController: ToastController) {}
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.gameStarted = false;
   }
 
-  startGame():void {
+  startGame(): void {
     this.gameStarted = true;
     this.gameReady.emit();
     this.presentToast();
   }
 
-  newNumberPenguin(event:any) {
+  newNumberPenguin(event: any) {
     this.nbPenguinChanged.emit(event);
   }
 
-  newNumberHexagonal(event:any) {
+  newNumberHexagonal(event: any) {
     this.nbHexagonalChanged.emit(event);
   }
 
@@ -68,7 +67,7 @@ export class ControlComponent implements OnInit {
     const toast = await this.toastController.create({
       message: "Let's go !!! ",
       position: 'bottom',
-      duration: 3000,
+      duration: 3000
     });
     toast.present();
   }

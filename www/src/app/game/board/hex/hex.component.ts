@@ -3,7 +3,6 @@ import { Pos } from '../pos';
 import { Cell } from '../cell';
 import { gameService } from '@app/game/+xstate/gameMachine';
 
-
 @Component({
   selector: 'app-hex',
   templateUrl: './hex.component.html',
@@ -22,18 +21,18 @@ export class HexComponent implements OnInit {
 
   // Array of textures. Can be referenced by index in terrainType.
   textures: string[] = [
-    "/assets/game/tileSnow_big.png",
-    "/assets/game/tileSnow_fish1.png",
-    "/assets/game/tileSnow_fish2.png",
-    "/assets/game/tileSnow_fish3.png",
-    "/assets/game/tileWater_fish1.png",
-    "/assets/game/tileWater_fish2.png",
-    "/assets/game/tileWater_fish3.png"
+    '/assets/game/tileSnow_big.png',
+    '/assets/game/tileSnow_fish1.png',
+    '/assets/game/tileSnow_fish2.png',
+    '/assets/game/tileSnow_fish3.png',
+    '/assets/game/tileWater_fish1.png',
+    '/assets/game/tileWater_fish2.png',
+    '/assets/game/tileWater_fish3.png'
   ];
 
   isSelected: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.isSelected = false;
@@ -41,8 +40,8 @@ export class HexComponent implements OnInit {
   }
 
   onCellClick() {
-    console.log("Cell selected : (" + this.cell.row + "," + this.cell.column + ")" + " -> " + this.cell.nbFish);
-    if (gameService.state.value === "penguinSelected") {
+    console.log('Cell selected : (' + this.cell.row + ',' + this.cell.column + ')' + ' -> ' + this.cell.nbFish);
+    if (gameService.state.value === 'penguinSelected') {
       this.cellClicked.emit(this.cell);
     }
   }
@@ -60,5 +59,4 @@ export class HexComponent implements OnInit {
       this.isSelected = true;
     }
   }
-
 }

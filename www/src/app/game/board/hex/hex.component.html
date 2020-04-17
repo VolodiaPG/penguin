@@ -1,11 +1,13 @@
 <ion-img
-    class="hex"
-    [style.width.px]='cell.hexWidth' 
-    [style.height.px]='cell.hexHeight + 33' 
-    style='position:relative'
-    src='{{textures[terrainIndex]}}' 
-    (click)='onCellClick()'
-    (mouseover)='onCellHover(true)' (mouseout)='onCellHover(false)'>
+  class="hex"
+  [style.width.px]="cell.hexWidth"
+  [style.height.px]="cell.hexHeight + 33"
+  style="position:relative"
+  src="{{ textures[terrainIndex] }}"
+  (click)="onCellClick()"
+  (mouseover)="onCellHover(true)"
+  (mouseout)="onCellHover(false)"
+>
 </ion-img>
 
 <!-- class="animated wobble infinite slower" wobble jello -->

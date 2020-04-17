@@ -14,7 +14,7 @@ export let darkTheme = true;
 // Called when the app loads
 export function toggleDarkTheme(shouldAdd: boolean): void {
   darkTheme = shouldAdd;
-  console.log("Dark Theme switch")
+  console.log('Dark Theme switch');
   document.body.classList.toggle('dark', shouldAdd);
 }
 
@@ -27,20 +27,19 @@ export function changeTheme(): void {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
 export class AppComponent implements OnInit, OnDestroy {
-
-  public darkTheme: boolean
+  public darkTheme: boolean;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private translateService: TranslateService,
-    private i18nService: I18nService,
+    private i18nService: I18nService
   ) {
-
-    if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') { console.log('🎉 Dark mode is supported'); }
+    if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
+      console.log('🎉 Dark mode is supported');
+    }
 
     // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -48,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
     toggleDarkTheme(prefersDark.matches);
 
     // Listen for changes to the prefers-color-scheme media query
-    prefersDark.addListener((mediaQuery) => toggleDarkTheme(mediaQuery.matches));
+    prefersDark.addListener(mediaQuery => toggleDarkTheme(mediaQuery.matches));
   }
 
   ngOnInit() {

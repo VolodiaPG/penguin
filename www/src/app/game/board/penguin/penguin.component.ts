@@ -13,21 +13,23 @@ import { Penguin } from '../penguin';
   styleUrls: ['./penguin.component.scss'],
   animations: [
     trigger('initPenguin', [
-      state('appear', style({
-        opacity: 1,
-        transform: 'scale(1)'
-      })),
-      state('disappear', style({
-        opacity: 0,
-        transform: 'scale(0.3) translateX(-1000%) rotate(360deg)'
-      })),
-      transition('appear => disappear', [
-        animate('1s ease-in-out')
-      ]),
-      transition('disappear => appear', [
-        animate('2s ease-in-out')
-      ]),
-    ]),
+      state(
+        'appear',
+        style({
+          opacity: 1,
+          transform: 'scale(1)'
+        })
+      ),
+      state(
+        'disappear',
+        style({
+          opacity: 0,
+          transform: 'scale(0.3) translateX(-1000%) rotate(360deg)'
+        })
+      ),
+      transition('appear => disappear', [animate('1s ease-in-out')]),
+      transition('disappear => appear', [animate('2s ease-in-out')])
+    ])
   ]
 })
 export class PenguinComponent implements OnInit {
@@ -38,16 +40,26 @@ export class PenguinComponent implements OnInit {
 
   moveToAnimation: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /***************************************************************************************************************************
-  ************************************************ ANIMATION******************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ ANIMATION******************************************************************
+   ***************************************************************************************************************************/
   onPenguinClick() {
-    console.log("Penguin [" + this.penguin.cellPosition.row + "][" + this.penguin.cellPosition.column + "]" + " (" + this.penguin.center.x + "," + this.penguin.center.y + ")");
+    console.log(
+      'Penguin [' +
+        this.penguin.cellPosition.row +
+        '][' +
+        this.penguin.cellPosition.column +
+        ']' +
+        ' (' +
+        this.penguin.center.x +
+        ',' +
+        this.penguin.center.y +
+        ')'
+    );
     this.penguinClicked.emit(this.penguin);
   }
 
@@ -63,5 +75,4 @@ export class PenguinComponent implements OnInit {
   //     property: [this.position],
   //   });
   // }
-
 }

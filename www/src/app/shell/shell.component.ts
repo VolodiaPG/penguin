@@ -25,15 +25,15 @@ export class ShellComponent implements OnInit {
     private alertController: AlertController,
     private actionSheetController: ActionSheetController,
     private i18nService: I18nService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.isToggled = darkTheme;
-    console.log("OnInit Dark theme : " + this.isToggled);
+    console.log('OnInit Dark theme : ' + this.isToggled);
   }
 
   toggleTheme(): void {
-    console.log("Dark theme : " + this.isToggled);
+    console.log('Dark theme : ' + this.isToggled);
     this.isToggled = !this.isToggled;
     changeTheme();
   }

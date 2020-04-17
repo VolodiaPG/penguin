@@ -5,7 +5,6 @@ import { Flip } from 'number-flip';
 
 import { gameMachine, gameService } from './+xstate/gameMachine';
 
-
 declare var Module: any;
 
 @Component({
@@ -13,7 +12,6 @@ declare var Module: any;
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-
 export class GameComponent implements OnInit {
   @ViewChild('numberbtn', { read: ElementRef, static: true }) private btn: ElementRef;
   flipAnim: any = null;
@@ -28,60 +26,58 @@ export class GameComponent implements OnInit {
 
   gameStarted: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.currentGameState = gameMachine.initialState;
   }
 
   /***************************************************************************************************************************
-  ************************************************ START GAME ****************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ START GAME ****************************************************************
+   ***************************************************************************************************************************/
   launchGame() {
     this.boardComponent.startWasmGame();
     this.gameStarted = true;
   }
 
   /***************************************************************************************************************************
-  ************************************************ ANIMATION *****************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ ANIMATION *****************************************************************
+   ***************************************************************************************************************************/
 
   flip() {
-    console.log("Number-flip in action");
+    console.log('Number-flip in action');
     if (!this.flipAnim) {
       this.flipAnim = new Flip({
         node: this.btn.nativeElement,
-        from: '9999',
+        from: '9999'
       });
     }
     this.flipAnim.flipTo({
-      to: Math.floor((Math.random() * 1000) + 1)
+      to: Math.floor(Math.random() * 1000 + 1)
     });
   }
 
-
   /***************************************************************************************************************************
-  ************************************************ PREVIEW *******************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ PREVIEW *******************************************************************
+   ***************************************************************************************************************************/
 
   nbHexagonalChanged(event: any) {
-    if ((this.nbHexagonal - event.detail.value) < 0) {
+    if (this.nbHexagonal - event.detail.value < 0) {
       this.boardComponent.addHexagonal();
     } else {
       this.boardComponent.removeHexagonal();
     }
     this.nbHexagonal = event.detail.value;
-    console.log("New nb of hexagonals : " + this.nbHexagonal);
+    console.log('New nb of hexagonals : ' + this.nbHexagonal);
   }
 
   nbPenguinChanged(event: any) {
-    if ((this.nbPenguin - event.detail.value) < 0) {
+    if (this.nbPenguin - event.detail.value < 0) {
       this.boardComponent.addPenguin();
     } else {
       this.boardComponent.removePenguin();
     }
     this.nbPenguin = event.detail.value;
-    console.log("New nb of penguins : " + this.nbPenguin);
+    console.log('New nb of penguins : ' + this.nbPenguin);
   }
-
 }

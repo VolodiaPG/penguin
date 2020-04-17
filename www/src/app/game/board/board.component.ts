@@ -15,21 +15,23 @@ declare var Module: any;
   styleUrls: ['./board.component.scss'],
   animations: [
     trigger('initAnimation', [
-      state('enter', style({
-        opacity: 1,
-        transform: 'scale(1)'
-      })),
-      state('leave', style({
-        opacity: 0.5,
-        transform: 'scale(0.8)'
-      })),
-      transition('enter => leave', [
-        animate('1s')
-      ]),
-      transition('leave => enter', [
-        animate('0.5s')
-      ]),
-    ]),
+      state(
+        'enter',
+        style({
+          opacity: 1,
+          transform: 'scale(1)'
+        })
+      ),
+      state(
+        'leave',
+        style({
+          opacity: 0.5,
+          transform: 'scale(0.8)'
+        })
+      ),
+      transition('enter => leave', [animate('1s')]),
+      transition('leave => enter', [animate('0.5s')])
+    ])
   ]
 })
 export class BoardComponent implements OnInit {
@@ -37,15 +39,14 @@ export class BoardComponent implements OnInit {
 
   isLoaded = false;
 
-  nbHexagonal: number = 8;       // 8
+  nbHexagonal: number = 8; // 8
 
   // The pixel width of a hex.
-  hexWidth: number = 90;       // 90
+  hexWidth: number = 90; // 90
   // The pixel height of a hex.
-  hexHeight: number = 90;      // 90
+  hexHeight: number = 90; // 90
 
   cells: Array<Array<Cell>>;
-
 
   nbPenguin: number = 4;
   penguins: Array<Penguin>;
@@ -58,7 +59,7 @@ export class BoardComponent implements OnInit {
   wasmBoard: any;
   wasmPenguins: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.isLoaded = false;
@@ -66,19 +67,19 @@ export class BoardComponent implements OnInit {
     this.penguins = new Array(this.nbPenguin);
     this.generateMap();
     this.generatePenguin();
-    console.log("Board ok");
+    console.log('Board ok');
 
     console.log(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
   }
 
   ngOnDestroy(): void {
-    console.log("Game destroyed");
+    console.log('Game destroyed');
     this.wasmGame.delete();
   }
 
   /***************************************************************************************************************************
-  ************************************************ START GAME ****************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ START GAME ****************************************************************
+   ***************************************************************************************************************************/
   startWasmGame() {
     this.isLoaded = true;
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
@@ -90,13 +91,12 @@ export class BoardComponent implements OnInit {
   }
 
   /***************************************************************************************************************************
-  ************************************* MAP/TEXTURES *************************************************************************
-  ***************************************************************************************************************************/
+   ************************************* MAP/TEXTURES *************************************************************************
+   ***************************************************************************************************************************/
   generateMap() {
-    console.log("Generate Map");
+    console.log('Generate Map');
     let cell: Cell;
     for (let row = 0; row < this.nbHexagonal; row++) {
-
       this.cells[row] = new Array(this.nbHexagonal);
 
       for (let column = 0; column < this.nbHexagonal; column++) {
@@ -104,10 +104,10 @@ export class BoardComponent implements OnInit {
         this.cells[row][column] = cell;
       }
     }
-  };
+  }
 
   generateMapFromWasmBoard() {
-    console.log("Generate Map from WasmBoard");
+    console.log('Generate Map from WasmBoard');
 
     // generate cells from the wasm directives
     var wasmCells = this.wasmBoard.getBoardCells();
@@ -120,7 +120,7 @@ export class BoardComponent implements OnInit {
   }
 
   generatePenguin() {
-    console.log("Generate Penguins");
+    console.log('Generate Penguins');
     let penguin: Penguin;
     let rndRow: number, rndColumn: number;
     for (let ii = 0; ii < this.nbPenguin; ii++) {
@@ -130,19 +130,16 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  generatePenguinFromWasmBoard() {
-
-  }
+  generatePenguinFromWasmBoard() {}
 
   /***************************************************************************************************************************
-  ************************************************ ANIMATION******************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ ANIMATION******************************************************************
+   ***************************************************************************************************************************/
   onPenguinClick(newPenguinClicked: Penguin) {
     newPenguinClicked.switchPenguinColor();
 
     // Not the first time a penguin is clicked in this turn
     if (this.penguinSelected !== undefined) {
-
       // The user clicked on another penguin
       if (this.penguinSelected === newPenguinClicked) {
         gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
@@ -150,20 +147,17 @@ export class BoardComponent implements OnInit {
         // Keep the same state : PenguinSelected
         this.penguinSelected.switchPenguinColor();
       }
-
     } else {
       gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
     }
     this.penguinSelected = newPenguinClicked;
   }
-  
-  onCellClick(cellClicked:Cell) {
-    
-  }
+
+  onCellClick(cellClicked: Cell) {}
 
   /***************************************************************************************************************************
-  ************************************************ PREVIEW *******************************************************************
-  ***************************************************************************************************************************/
+   ************************************************ PREVIEW *******************************************************************
+   ***************************************************************************************************************************/
   addHexagonal(): void {
     this.nbHexagonal++;
 
@@ -178,12 +172,10 @@ export class BoardComponent implements OnInit {
     //Add a row
     this.cells.push(new Array(this.nbHexagonal));
 
-
     for (let column = 0; column < this.cells[this.nbHexagonal - 1].length; column++) {
       cell = new Cell(this.nbHexagonal - 1, column, 0);
       this.cells[this.nbHexagonal - 1][column] = cell;
     }
-
   }
 
   removeHexagonal(): void {
@@ -196,12 +188,7 @@ export class BoardComponent implements OnInit {
     this.cells.pop();
   }
 
+  addPenguin(): void {}
 
-  addPenguin(): void {
-
-  }
-
-  removePenguin(): void {
-
-  }
+  removePenguin(): void {}
 }

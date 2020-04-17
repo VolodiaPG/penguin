@@ -171,14 +171,13 @@ body.dark {
   // --ion-color-light-shade: #1e2023;
   // --ion-color-light-tint: #383a3e;
 
-    /** light **/
-    --ion-color-light: #f4f5f8;
-    --ion-color-light-rgb: 244, 244, 244;
-    --ion-color-light-contrast: #000;
-    --ion-color-light-contrast-rgb: 0, 0, 0;
-    --ion-color-light-shade: #d7d8da;
-    --ion-color-light-tint: #f5f6f9;
-
+  /** light **/
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 244, 244;
+  --ion-color-light-contrast: #000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
 
   --color-toolbar-background: black;
   --color-toolbar-text: white;
@@ -263,10 +262,9 @@ body.dark {
   --color-toolbar-text: white;
 }
 
-
 // Here's the export you add.
-:export  {
-  lightColor:  var(--ion-color-light);
+:export {
+  lightColor: var(--ion-color-light);
   primaryColor: var(--ion-color-primary);
   secondaryColor: var(--ion-color-secondary);
 }

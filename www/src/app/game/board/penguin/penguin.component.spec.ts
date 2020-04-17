@@ -8,9 +8,8 @@ describe('PenguinComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PenguinComponent ]
-    })
-    .compileComponents();
+      declarations: [PenguinComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,14 +1,28 @@
 <ion-card class="container">
-        <ion-grid class="grid">
-            <ion-row *ngFor="let row of cells; index as x" style="position:relative" [style.top.px]="-50 * x" [style.left.px]="(x % 2 == 0) ? 0 : 45">
-                <ion-col *ngFor="let col of row; index as y" [@initAnimation]="isLoaded ? 'enter' : 'leave'">
-                    <app-hex class="hex" [cell]="cells[x][y]" [terrainIndex]="cells[x][y].nbFish" (cellClicked)="onCellClick($event)"></app-hex>
-                </ion-col>
-              </ion-row>
-        </ion-grid>
+  <ion-grid class="grid">
+    <ion-row
+      *ngFor="let row of cells; index as x"
+      style="position:relative"
+      [style.top.px]="-50 * x"
+      [style.left.px]="x % 2 == 0 ? 0 : 45"
+    >
+      <ion-col *ngFor="let col of row; index as y" [@initAnimation]="isLoaded ? 'enter' : 'leave'">
+        <app-hex
+          class="hex"
+          [cell]="cells[x][y]"
+          [terrainIndex]="cells[x][y].nbFish"
+          (cellClicked)="onCellClick($event)"
+        ></app-hex>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <app-penguin
+    *ngFor="let penguin of penguins"
+    [isLoaded]="isLoaded"
+    [penguin]="penguin"
+    (penguinClicked)="onPenguinClick($event)"
+  ></app-penguin>
 
-        <app-penguin *ngFor="let penguin of penguins" [isLoaded]="isLoaded" [penguin]="penguin" (penguinClicked)="onPenguinClick($event)"></app-penguin>
-
-        <div class="animate-me" (click)="callAnime()"></div>
+  <div class="animate-me" (click)="callAnime()"></div>
 </ion-card>

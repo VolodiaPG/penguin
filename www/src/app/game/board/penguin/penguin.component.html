@@ -1,11 +1,12 @@
 <ion-img
-    class="penguin"
-    style='position: absolute;'
-    [style.width.px]='90' 
-    [style.height.px]='90'
-    [style.left.px]='penguin.center.x'
-    [style.top.px]='penguin.center.y'
-    src='{{penguin.imageUrl}}'
-    (click)="onPenguinClick()"
-    [@initPenguin]="isLoaded ? 'appear' : 'disappear'">
+  class="penguin"
+  style="position: absolute;"
+  [style.width.px]="90"
+  [style.height.px]="90"
+  [style.left.px]="penguin.center.x"
+  [style.top.px]="penguin.center.y"
+  src="{{ penguin.imageUrl }}"
+  (click)="onPenguinClick()"
+  [@initPenguin]="isLoaded ? 'appear' : 'disappear'"
+>
 </ion-img>

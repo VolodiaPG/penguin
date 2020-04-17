@@ -13,8 +13,7 @@ import { HexComponent } from './board/hex/hex.component';
 import { PenguinComponent } from './board/penguin/penguin.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, IonicModule, GameRoutingModule,
-    FormsModule],
+  imports: [CommonModule, TranslateModule, IonicModule, GameRoutingModule, FormsModule],
   entryComponents: [GameComponent],
   declarations: [GameComponent, BoardComponent, ControlComponent, ConsoleComponent, HexComponent, PenguinComponent]
 })
