@@ -69,29 +69,9 @@ class Tree
 protected:
     friend class TreeVisualizer;
     Node rootNode;
-
-    // Node *rootNode;
-    void expandNode();
-
-    Node *selectBestChildAndDoAction(Node *node);
-
-    Node *randomChooseChildOrFallbackOnNode(Node *node) const;
-
-    int randomSimulation() const;
-
-    void expandNode(Node *nodeToExpand);
+    
 
     Node *nodeWithMaxVisits(const Node *nodeFrom) const;
-
-    void backPropagateAndRevertAction(int winnerId, Node *terminalNode);
-
-    game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
-
-    double formula(
-        const Node &node,
-        const Node &nodeSuccessor) const;
-
-    void doActionOnBoard(const Node &nodeToGetTheActionFrom);
 
 public:
     game::AbstractPlayer *playerMe;
