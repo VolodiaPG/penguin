@@ -25,10 +25,10 @@ using namespace emscripten;
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
 {
-    using AbstractBoard = AbstractBoard<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
-    using AbstractGame = AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
-    using AbstractPawn = AbstractPawn<AbstractPlayer, AbstractBoardCell>;
-    
+    using AbstractBoard = AbstractBoard<penguin::BoardCell, penguin::HumanPlayer, penguin::PenguinPawn>;
+    using AbstractGame = AbstractGame<penguin::BoardCell, penguin::HumanPlayer, penguin::PenguinPawn>;
+    using AbstractPawn = AbstractPawn<penguin::HumanPlayer, penguin::BoardCell>;
+
     class_<HumanPlayer, base<AbstractPlayer>>("HumanPlayer")
         .function("getScore", &HumanPlayer::getScore);
 
@@ -42,7 +42,6 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("getFish", &BoardCell::getFish);
 
     class_<Board, base<AbstractBoard>>("Board");
-       
 
     class_<PrintHex>("PrintHex")
         .constructor<Board *>()
