@@ -11,24 +11,30 @@ import { gameService } from '../../+xstate/gameMachine';
   styleUrls: ['./penguin.component.scss']
 })
 export class PenguinComponent implements OnInit {
-  @Input() currentGameState: any;
+  @Input() cell: Cell;
 
   position: Pos;
+  imageUrl: string;
+  isSelected: boolean;
 
   moveToAnimation: any;
 
   constructor() { }
 
   ngOnInit() {
-    this.position = new Pos(0, 0);
+    this.isSelected = false;
+    this.position = this.cell.getCellCenter();
+    this.switchPenguinColor();
   }
 
   /***************************************************************************************************************************
   ************************************************ ANIMATION******************************************************************
   ***************************************************************************************************************************/
   onPenguinClick() {
-    console.log("Penguin clicked");
     gameService.send('PENGUINSELECTED');
+    console.log("Penguin [" + this.cell.row + "][" + this.cell.column + "]" + " (" + this.position.x + "," + this.position.y + ")");
+    this.isSelected = !this.isSelected;
+    this.switchPenguinColor();
   }
 
   moveTo(cell: Cell) {
@@ -42,6 +48,14 @@ export class PenguinComponent implements OnInit {
       duration: 2000,
       property: [this.position],
     });
+  }
+
+  switchPenguinColor() {
+    if (this.isSelected) {
+      this.imageUrl = "/assets/penguin_selected.png";
+    } else {
+      this.imageUrl = "/assets/penguin.png";
+    }
   }
 
 }

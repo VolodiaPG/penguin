@@ -11,7 +11,8 @@ export const gameMachine = Machine(
             waiting: {
                 on: {
                     PENGUINSELECTED: {
-                        target: 'penguinSelected'
+                        target: 'penguinSelected',
+                        actions: ['notifyPenguinSelected']
                     },
                     CELLSELECTED: 'waiting'
                 }
@@ -35,6 +36,13 @@ export const gameMachine = Machine(
                 on: {
                     WAITING: 'waiting'
                 }
+            }
+        }
+    },
+    {
+        actions: {
+            notifyPenguinSelected: (context, event) => {
+                console.log('Select a cell to move this penguin');
             }
         }
     });

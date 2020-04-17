@@ -7,7 +7,7 @@
               </ion-row>
         </ion-grid>
 
-        <app-penguin [currentGameState]="currentGameState" style='position: absolute;' [style.top.px]="0" [style.left.px]="0"></app-penguin>
+        <app-penguin [cell]="cells[0][0]"></app-penguin>
 
         <div class="animate-me" (click)="callAnime()"></div>
 </ion-card>

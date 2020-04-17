@@ -1,7 +1,10 @@
 <ion-img
     class="penguin"
+    style='position: absolute;'
     [style.width.px]='90' 
     [style.height.px]='90'
-    src='{{"/assets/penguin.png"}}'
+    [style.left.px]='position.x'
+    [style.top.px]='position.y'
+    src='{{imageUrl}}'
     (click)="onPenguinClick()">
 </ion-img>

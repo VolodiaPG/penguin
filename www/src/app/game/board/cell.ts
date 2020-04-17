@@ -72,20 +72,19 @@ export class Cell {
 
         // Calculate the center of a cell based on column, row and coordinate system.
         getCellCenter() {
-                let incX: number = this.hexWidth,
-                        incY: number = this.hexHeight,
-                        center: Pos = { x: 0, y: 0 };
-                // incX = 0.75 * this.hexWidth;
-                incY = 0.75 * this.hexHeight;
+                // console.log("getCellCenter(" + this.row + "," + this.column + ")");
+                let center: Pos = { x: 0, y: 0 };
 
-                center.y = (this.row * incY) + (this.hexHeight / 2);
+                center.y = this.row * (this.hexHeight - 17);
 
-                if (this.row % 2) {
+                console.log(this.row % 2);
+
+                if (this.row % 2 === 0) {
                         // even
-                        center.x = (this.column * incX) + (this.hexWidth / 2);
+                        center.x = this.column * this.hexWidth;
                 } else {
                         // odd
-                        center.x = (this.column * incX) + this.hexWidth;
+                        center.x = (this.column * this.hexWidth) + (this.hexWidth / 2);
                 }
 
                 return center;
