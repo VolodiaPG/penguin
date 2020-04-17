@@ -10,7 +10,7 @@ ifeq ($(ENV),native)
 TARGET_EXEC ?= main
 CXX := g++
 else
-TARGET_EXEC ?= main.js
+TARGET_EXEC ?= main.html
 CXX := $(EMSCRIPTEN_PATH)/em++
 endif
 
@@ -35,9 +35,8 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align
 
 ifeq ($(ENV),emscripten)
-	# -s MODULARIZE=1 to wrap the code in a module, easier to consume in our angular app
 	CPPFLAGS += --bind -s WASM=1
-	EXECPPFLAGS :=
+	EXECPPFLAGS := 
 endif
 
 ifeq ($(MODE),debug)
@@ -46,7 +45,7 @@ ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s STACK_OVERFLOW_CHECK=2 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 -s SAFE_HEAP=1 -s WARN_UNALIGNED=1
 endif
 else
-	CPPFLAGS += -O3
+	CPPFLAGS += -O3 -DNDEBUG
 endif
 
 all: build
@@ -55,10 +54,6 @@ $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
 
 # c++ source
-$(BUILD_DIR)/%.cpp.o: %.cpp %.hpp
-	$(MKDIR_P) $(dir $@)
-	$(CXX) -c $< $(CPPFLAGS) -o $@
-
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
 	$(CXX) -c $< $(CPPFLAGS) -o $@

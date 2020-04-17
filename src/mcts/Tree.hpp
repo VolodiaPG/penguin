@@ -2,22 +2,22 @@
 #define TREE_HPP_
 
 #include <chrono>
-#include "Node.hpp"
-#include "../game_logic/AbstractPlayer.hpp"
-#include "../game_logic/AbstractGame.hpp"
-#include "../game_logic/AbstractBoardCell.hpp"
-#include "../log.hpp"
+#include "../game_logic/utils/Move.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 
 namespace game
 {
-class MCTSPlayer;
-}
+template <class, class, class>
+class AbstractGame;
+class AbstractBoardCell;
+class AbstractPlayer;
+} // namespace game
 
 namespace mcts
 {
 
+template <class, class, class>
 class Node;
 
 struct timer
@@ -45,26 +45,31 @@ typedef struct
     int time;
 } MCTSConstraints;
 
+template <class CellT, class PlayerT, class PawnT>
 class Tree
 {
 protected:
-    Node *rootNode;
+    Node<CellT, PlayerT, PawnT> *rootNode;
     void expandNode();
-
-public:
-    game::AbstractPlayer *playerMe;
-    game::AbstractGame<game::AbstractPlayer, game::AbstractBoardCell> *game;
+    game::AbstractGame<CellT, PlayerT, PawnT> *game;
     MCTSConstraints constraints;
 
+    template <class, class, class>
+    friend class Node;
+public:
+
     explicit Tree(
-        game::AbstractGame<game::AbstractPlayer,game::AbstractBoardCell> *game,
-        game::AbstractPlayer *me,
+        game::AbstractGame<CellT, PlayerT, PawnT> *game,
         const MCTSConstraints &constraints);
     ~Tree();
 
-    void begin();
-    game::AbstractBoardCell *bestMove() const;
-    // NodegetRootNode() const { return rootNode; };
+    /**
+     * @brief Starts the MCTS
+     * 
+     * @return unsigned int the number of visits
+     */
+    unsigned int begin();
+    game::Move<CellT, PawnT> bestMove() const;
 };
 
 } // namespace mcts

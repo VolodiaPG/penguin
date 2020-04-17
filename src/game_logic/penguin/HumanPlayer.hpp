@@ -1,13 +1,20 @@
 #ifndef PENGUIN_HUMAN_PLAYER_HPP_
 #define PENGUIN_HUMAN_PLAYER_HPP_
 
-#include <iostream>
+#include <vector>
 #include "../AbstractPlayer.hpp"
 
 namespace game
 {
+
 namespace penguin
 {
+
+// dummy declaration
+class BoardCell;
+class Board;
+class PenguinPawn;
+
 class HumanPlayer : public AbstractPlayer
 {
 private:
@@ -16,6 +23,19 @@ private:
      * 
      */
     int _score;
+
+    /**
+     * @brief vector of all the penguins this player possesses in game
+     * 
+     */
+    std::vector<PenguinPawn *> _penguins;
+
+    /**
+     * @brief Allow the Board Object to access private properties and methods, especially useful for addPenguin
+     * 
+     */
+    friend class Board;
+    void addPenguin(PenguinPawn *penguin) { _penguins.push_back(penguin); };
 
 public:
     explicit HumanPlayer(unsigned int id);
@@ -39,7 +59,14 @@ public:
      * 
      * @return int the score
      */
-    int getScore(){ return _score; };
+    int getScore() { return _score; };
+
+    /**
+     * @brief Get the penguins possessed by the player
+     * 
+     * @return std::vector<const unsigned int> the list of all the penguins
+     */
+    std::vector<PenguinPawn *> getPenguins() const { return _penguins; };
 };
 } // namespace penguin
 } // namespace game

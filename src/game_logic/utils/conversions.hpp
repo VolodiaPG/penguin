@@ -1,8 +1,8 @@
 #ifndef CONVERSIONS_HPP
 #define CONVERSIONS_HPP
 
-#include "../Position.hpp"
-#include "../Position3D.hpp"
+#include "../utils/Position.hpp"
+#include "../utils/Position3D.hpp"
 
 namespace game
 {

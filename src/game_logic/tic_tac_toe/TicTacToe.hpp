@@ -1,17 +1,16 @@
 #ifndef TIC_TAC_TOE_TIC_TAC_TOE_HPP_
 #define TIC_TAC_TOE_TIC_TAC_TOE_HPP_
 
-#include <iostream>
+#include "../utils/Move.hpp"
 #include "../AbstractGame.hpp"
-#include "Board.hpp"
-
-// #include <emscripten/bind.h>
 
 namespace game
 {
+class BoardCell;
+class Player;
 namespace tic_tac_toe
 {
-class TicTacToe : public AbstractGame<Player, BoardCell>
+class TicTacToe : public AbstractGame<BoardCell, Player, Player>
 {
 protected:
     /**
@@ -25,20 +24,13 @@ public:
     ~TicTacToe();
 
     bool isFinished() const override;
-    bool play(const int player_id, BoardCell *cell) override;
-    void revertPlay(BoardCell *move) override;
-    int getPlayerToPlay() const override;
-    int checkStatus() const override { return board->checkStatus(); };
+    bool play(Player *player, BoardCell *cell) override;
+    const Move<BoardCell, Player> revertPlay() override;
+    unsigned int getPlayerToPlay() const override;
+    int checkStatus() const override;
+    std::vector<Move<BoardCell, Player>> getAvailableMoves(Player *player) override;
 };
 } // namespace tic_tac_toe
 } // namespace game
-
-// EMSCRIPTEN_BINDINGS(module_playervcomputer)
-// {
-//     emscripten::class_<game::PlayerVComputer>("PlayerVComputer")
-//         .constructor<game::JSPlayer::action_callback>()
-//         .function("playGame", &game::PlayerVComputer::playGame)
-//         .function("isFinished", &game::PlayerVComputer::isFinished);
-// }
 
 #endif

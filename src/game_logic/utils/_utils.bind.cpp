@@ -2,9 +2,9 @@
 #ifdef __EMSCRIPTEN__
 
 #include <emscripten/bind.h>
-#include "conversions.hpp"
 #include "Position.hpp"
 #include "Position3D.hpp"
+#include "conversions.hpp"
 
 namespace game
 {
@@ -15,8 +15,6 @@ using namespace emscripten;
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_utils_bind)
 {
-    // TODO add Position, PenguinPlayer
-
     value_object<Position>("Position")
         .field("x", &Position::x)
         .field("y", &Position::y);

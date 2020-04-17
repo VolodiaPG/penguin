@@ -1,3 +1,7 @@
+#include "../../mcts/Tree.hpp"
+#include "Board.hpp"
+#include "BoardCell.hpp"
+
 #include "ConsoleGame.hpp"
 
 namespace game
@@ -12,19 +16,6 @@ ConsoleGame::ConsoleGame()
 ConsoleGame::~ConsoleGame()
 {
 }
-
-// AbstractBoardCell *ConsoleGame::play(AbstractPlayer *player1, AbstractPlayer *player2)
-// {
-//     Board *bo = (Board *)board;
-//     AbstractPlayer *player = player1;
-
-//     if (bo->getTotalMoves() % 2)
-//     {
-//         player = player2;
-//     }
-
-//     return player->action(board);
-// }
 
 void ConsoleGame::draw()
 {
@@ -63,14 +54,11 @@ void ConsoleGame::loop()
     while (!TicTacToe::isFinished())
     {
         mcts::MCTSConstraints constraints;
-        constraints.time = 250;
-        // auto game = dynamic_cast<AbstractGame<AbstractPlayer, AbstractBoardCell>*>(this);
-        auto game = (AbstractGame<AbstractPlayer, AbstractBoardCell>*)this;
-        mcts::Tree tree(game, board->getPlayerById(1), constraints); // play the second player
+        constraints.time = 500;
+        mcts::Tree<BoardCell, Player, Player> tree(this, constraints); // play the second player
         tree.begin();
-        AbstractBoardCell *abs_bestMove = tree.bestMove();
-        BoardCell *bestMove = static_cast<BoardCell *>(abs_bestMove);
-        play(getPlayerToPlay(), bestMove);
+        Move<BoardCell, Player> best_move = tree.bestMove();
+        play(static_cast<Player *>(best_move.pawn), best_move.target);
         draw();
     }
 

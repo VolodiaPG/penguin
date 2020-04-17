@@ -1,13 +1,10 @@
 #ifndef TIC_TAC_TOE_BOARD_HPP_
 #define TIC_TAC_TOE_BOARD_HPP_
 
-#include <iterator>
 #include <array>
 
-#include "../../log.hpp"
-
+#include "../utils/Position.hpp"
 #include "../AbstractBoard.hpp"
-#include "BoardCell.hpp"
 #include "Player.hpp"
 
 namespace game
@@ -15,6 +12,8 @@ namespace game
 
 namespace tic_tac_toe
 {
+
+class BoardCell;
 
 #define BOARD_SIZE 3
 
@@ -49,12 +48,12 @@ typedef enum
 using board_line_t = std::array<BoardCell *, BOARD_SIZE>;
 using board_matrix_t = std::array<board_line_t, BOARD_SIZE>;
 
-class Board : public AbstractBoard<Player, BoardCell>
+class Board : public AbstractBoard<BoardCell, Player, Player>
 {
 private:
     Player player1;
     Player player2;
-    
+
 protected:
     /**
      * @brief Array of the cell const pointers to  variable element indexed in boardValues
@@ -99,9 +98,9 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(const int player_id, BoardCell *cell) override;
+    bool performMove(Player *player, BoardCell *cell) override;
 
-    void revertMove(const int player_id, BoardCell *cell) override;
+    const Move<BoardCell, Player> revertMove() override;
 
     /**
      * @brief Chek wether or not the game is finished.
@@ -115,7 +114,7 @@ public:
      * 
      * @return the list of empty cells
      */
-    std::vector<BoardCell *> getAvailableCells(const int player_id) override;
+    std::vector<BoardCell *> getAvailableCells(Player *player) override;
 
     /**
      * @brief Get a list of all cells
@@ -128,9 +127,11 @@ public:
 
     BoardCell *getCell(int line, int col) override;
 
-    std::vector<Player *> getPlayersOnBoard() override;
+    std::vector<Player *> getPawnsOnBoard() override;
 
-    Player *getPlayerById(const int id) override;
+    Player *getPawnById(const unsigned int id) override;
+
+    Player *getPlayerById(const unsigned int id) override { return getPawnById(id); };
 
     // Position begin();
 };

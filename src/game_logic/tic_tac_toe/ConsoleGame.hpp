@@ -1,12 +1,9 @@
 #ifndef TIC_TAC_TOE_CONSOLE_GAME_HPP_
 #define TIC_TAC_TOE_CONSOLE_GAME_HPP_
 
-#include <iostream>
+#include "../AbstractInterface.hpp"
 #include "TicTacToe.hpp"
-#include "Board.hpp"
-#include "BoardCell.hpp"
 #include "Player.hpp"
-#include "../../mcts/Tree.hpp"
 
 namespace game
 {

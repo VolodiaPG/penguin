@@ -1,3 +1,5 @@
+#include "../AbstractBoardCell.hpp"
+
 #include "BoardCell.hpp"
 
 namespace game

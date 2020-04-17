@@ -1,9 +1,7 @@
 #ifndef TIC_TAC_TOE_BOARD_CELL_HPP_
 #define TIC_TAC_TOE_BOARD_CELL_HPP_
 
-#include <memory>
-
-#include "../Position.hpp"
+#include "../utils/Position.hpp"
 #include "../AbstractBoardCell.hpp"
 
 namespace game

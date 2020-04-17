@@ -5,8 +5,7 @@
     <title>Test Binding</title>
     <script async src="bin/main.js"></script>
     <script>
-        Module =
-        {
+        Module = {
             preRun: [],
             postRun: [post_run],
             print: (function () {
@@ -32,7 +31,6 @@
         };
 
         function post_run() {
-            console.log("post_run");
             var game = new Module.PenguinGame(7, 4);
             var printer = new Module.PrintHexASCII(game.getBoard());
 
@@ -45,18 +43,18 @@
             board.performMove(1, board.getCell(3, 6));
             board.performMove(2, board.getCell(-3, 6));
             board.performMove(3, board.getCell(6, 0));
-            
-            printer.print();
-            // while (!game.isFinished()) {
-            //     let keep_asking = true;
-            //     let xx, yy, penguin_id;
 
+            while (!game.isFinished()) {
+                let keep_asking = true;
+                let xx, yy, penguin_id;
 
-            //     while (keep_asking) {
-            //         console.log(`Player #${game.getPlayerToPlay()} please make your move \n <PenguinId> <Position x> <Position y>`);
-            //         console.re
-            //     }
-            // }
+                printer.print();
+
+                while (keep_asking) {
+                    console.log(`Player #${game.getPlayerToPlay()} please make your move \n <PenguinId> <Position x> <Position y>`);
+                    console.re
+                }
+            }
 
             printer.delete();
             game.delete();

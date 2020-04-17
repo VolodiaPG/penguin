@@ -1,3 +1,6 @@
+#include <algorithm>
+#include "Board.hpp"
+
 #include "TicTacToe.hpp"
 
 namespace game
@@ -15,23 +18,16 @@ TicTacToe::~TicTacToe()
     delete board;
 }
 
-bool TicTacToe::play(const int player_id, BoardCell *move)
+bool TicTacToe::play(Player *player, BoardCell *move)
 {
     ++numberMoves;
-    return board->performMove(player_id, move);
+    return board->performMove(player, move);
 }
 
-void TicTacToe::revertPlay(BoardCell *cell)
+const Move<BoardCell, Player> TicTacToe::revertPlay()
 {
     --numberMoves;
-    int player = 0;
-
-    if (numberMoves % 2)
-    {
-        player = 1;
-    }
-    
-    board->revertMove(player, cell);
+    return board->revertMove();
 }
 
 bool TicTacToe::isFinished() const
@@ -39,7 +35,7 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-int TicTacToe::getPlayerToPlay() const
+unsigned int TicTacToe::getPlayerToPlay() const
 {
     int nextPlayer = 2;
 
@@ -49,6 +45,30 @@ int TicTacToe::getPlayerToPlay() const
     }
 
     return nextPlayer;
+}
+
+std::vector<Move<BoardCell, Player>> TicTacToe::getAvailableMoves(Player *player)
+{
+    std::vector<BoardCell *> input = board->getAvailableCells(player);
+    std::vector<Move<BoardCell, Player>> ret(input.size());
+    BoardCell *current_cell = player->getCurrentCell();
+    std::transform(
+        input.begin(),
+        input.end(),
+        ret.begin(),
+        [current_cell, player](BoardCell *cell) -> Move<BoardCell, Player> {
+            return {
+                current_cell,
+                cell,
+                player};
+        });
+
+    return ret;
+}
+
+int TicTacToe::checkStatus() const
+{
+    return board->checkStatus();
 }
 } // namespace tic_tac_toe
 } // namespace game
