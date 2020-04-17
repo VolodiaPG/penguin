@@ -46,6 +46,7 @@ private:
     mcts::Tree* tree_test;
     game::AbstractGame *game;
     mcts::MCTSConstraints constraints;
+    int num_threads = 1;
 
 };
 

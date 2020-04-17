@@ -8,9 +8,8 @@ MCTSPlayer::MCTSPlayer(game::AbstractGame *g,
     const mcts::MCTSConstraints &c)
     : AbstractPlayer(id)
 {
-    int nb = 1;
-    
-    for(int i = 0; i < nb; i++)
+    num_threads = 2;   
+    for(int i = 0; i < num_threads; i++)
         trees.push_back(new mcts::Tree(this));
     game = g;
     constraints = c;
@@ -27,13 +26,6 @@ MCTSPlayer::~MCTSPlayer()
 
 AbstractBoardCell * MCTSPlayer::bestMove()
 {
-    /*
-    std::thread th1(&mcts::Tree::begin, tree);
-    std::thread th2(&mcts::Tree::begin, tree);
-    //tree->begin();
-    th1.join();
-    th2.join();
-    */
     unleash_mcts();
 
     AbstractBoardCell* bestMove = getCorrespondingMove(trees.at(0)->bestMove());
@@ -49,9 +41,25 @@ void MCTSPlayer::updateTree(AbstractBoardCell* cell)
 
 void MCTSPlayer::unleash_mcts()
 {
-    mcts::MCTS ai(game->clone(), trees.at(0), constraints);
+    std::vector<std::thread> threads;
+
+    if(num_threads > 1)
+    {
+        for(int i = 0; i < num_threads; i++)
+        {
+            mcts::MCTS ai(game->clone(), trees.at(i), constraints);
+            threads.push_back(std::thread(&mcts::MCTS::begin, ai));
+        }
+        for(int i = 0; i < num_threads; i++)
+        {
+            threads.at(i).join();
+        }
+    }else
+    {
+        mcts::MCTS ai(game->clone(), trees.at(0), constraints);
+        ai.begin();
+    }
     
-    ai.begin();
 }
 
 AbstractBoardCell* MCTSPlayer::getCorrespondingMove(AbstractBoardCell* cell)
