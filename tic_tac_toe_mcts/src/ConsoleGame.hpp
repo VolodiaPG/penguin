@@ -24,6 +24,8 @@ public:
      * 
      */
     void loop();
+
+    AbstractGame* clone() const override;
 };
 } // namespace game
 

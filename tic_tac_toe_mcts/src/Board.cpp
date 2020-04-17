@@ -167,4 +167,18 @@ AbstractBoardCell *Board::getCell(int line, int col) const
     return boardValues[line][col];
 }
 
+AbstractBoard* Board::clone() const
+{
+    Board* nb = new Board(*this);
+    for (size_t ii = 0; ii < boardValues.size(); ++ii)
+    {
+        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
+        {
+            BoardCell *cell = boardValues[ii][jj];
+            nb->boardValues[ii][jj] = new BoardCell(*cell);
+        }
+    }
+    return nb;
+}
+
 } // namespace game

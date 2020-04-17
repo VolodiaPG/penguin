@@ -39,6 +39,8 @@ public:
     void revertPlay(AbstractBoardCell *move) override;
     AbstractPlayer *getPlayerToPlay() const override;
     int checkStatus() const override { return board->checkStatus(); };
+
+    AbstractGame* clone() const override;
 };
 } // namespace game
 

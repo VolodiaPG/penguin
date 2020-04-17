@@ -120,6 +120,8 @@ public:
 
     AbstractBoardCell *getCell(int line, int col) const override;
 
+    AbstractBoard* clone() const override;
+
     // Position begin();
 };
 

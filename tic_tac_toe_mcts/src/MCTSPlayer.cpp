@@ -34,7 +34,7 @@ AbstractBoardCell * MCTSPlayer::bestMove()
     th1.join();
     th2.join();
     */
-    mcts::MCTS ai(game, trees.at(0), constraints);
+    mcts::MCTS ai(game->clone(), trees.at(0), constraints);
     
     ai.begin();
     

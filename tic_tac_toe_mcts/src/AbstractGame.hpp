@@ -50,6 +50,13 @@ public:
      * @return int when won : the id of the winner, -1 if draw, 0 otherwise
      */
     virtual int checkStatus() const = 0;
+
+    /**
+     * @brief Clone function for clonning games
+     * 
+     * @return AbstractGame* 
+     */
+    virtual AbstractGame* clone() const = 0;
 };
 } // namespace game
 

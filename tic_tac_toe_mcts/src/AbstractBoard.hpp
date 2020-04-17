@@ -63,6 +63,8 @@ public:
     virtual AbstractBoardCell *getCell(int line, int col) const = 0;
 
     virtual size_t size() const = 0;
+
+    virtual AbstractBoard* clone() const = 0;
 };
 
 } // namespace game

@@ -46,4 +46,13 @@ AbstractPlayer *TicTacToe::getPlayerToPlay() const
     return nextPlayer;
 }
 
+AbstractGame* TicTacToe::clone() const
+{
+    TicTacToe* ttt = new TicTacToe(*this);
+    ttt->player1 = new AbstractPlayer(*player1);
+    ttt->player2 = new AbstractPlayer(*player2);
+    ttt->board = board->clone();
+    return ttt;
+}
+
 } // namespace game

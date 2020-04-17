@@ -151,4 +151,13 @@ void ConsoleGame::loop()
     }
 }
 
+AbstractGame* ConsoleGame::clone() const
+{
+    ConsoleGame* cg = new ConsoleGame(*this);
+    cg->player1 = new AbstractPlayer(*player1);
+    cg->player2 = new AbstractPlayer(*player2);
+    cg->board = board->clone();
+    return cg;
+}
+
 } // namespace game
