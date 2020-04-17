@@ -143,14 +143,16 @@ export class BoardComponent implements OnInit {
       // The user clicked on another penguin
       if (this.penguinSelected === newPenguinClicked) {
         gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+        this.penguinSelected = undefined;
       } else {
         // Keep the same state : PenguinSelected
         this.penguinSelected.switchPenguinColor();
+        this.penguinSelected = newPenguinClicked;
       }
     } else {
+      this.penguinSelected = newPenguinClicked;
       gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
     }
-    this.penguinSelected = newPenguinClicked;
   }
 
   onCellClick(cellClicked: Cell) {}
