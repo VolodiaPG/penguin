@@ -19,7 +19,7 @@ public:
 
     using TicTacToe::play;
     bool play(int row, int col);
-    Move mctsResult();
+    Move<BoardCell, Player> mctsResult();
 };
 } // namespace tic_tac_toe
 } // namespace game

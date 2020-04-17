@@ -7,7 +7,6 @@
 #include "../utils/Position.hpp"
 #include "../AbstractBoard.hpp"
 
-
 // TODO Command pattern pour le reverse
 
 namespace game
@@ -122,14 +121,14 @@ public:
      * @param player the player who moves
      * @param pos the destination position
      */
-    bool performMove(PenguinPawn* pawn, BoardCell *cell) override;
+    bool performMove(PenguinPawn *pawn, BoardCell *cell) override;
 
     /**
      * @brief Revert the last move made on the behalf of the human player
      * 
      * @param human_player_id the human player id
      */
-    void revertMove(HumanPlayer* human_player) override;
+    const Move<BoardCell, PenguinPawn> revertMove() override;
 
     /**
      * @brief Chek wether or not the game is finished.
@@ -143,7 +142,7 @@ public:
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<BoardCell *> getAvailableCells(PenguinPawn* penguin) override;
+    std::vector<BoardCell *> getAvailableCells(PenguinPawn *penguin) override;
 
     /**
      * @brief Get a list of all cells

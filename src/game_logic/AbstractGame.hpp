@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Move.hpp"
+#include "utils/Move.hpp"
 
 namespace game
 {
@@ -37,7 +37,7 @@ public:
 
    virtual bool play(PawnT* pawn, CellT *cell) = 0;
 
-   virtual void revertPlay() = 0;
+   virtual const Move<CellT, PawnT> revertPlay() = 0;
 
    /**
      * @brief Get the player who hadn't play yet
@@ -59,7 +59,7 @@ public:
    * @param player the player (the human one)
    * @return Move containing all the necessary informations
    */
-   virtual std::vector<Move> getAvailableMoves(PlayerT* player) = 0;
+   virtual std::vector<Move<CellT, PawnT>> getAvailableMoves(PlayerT* player) = 0;
 };
 } // namespace game
 

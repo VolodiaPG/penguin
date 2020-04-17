@@ -46,7 +46,7 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
             boardValues.insert_or_assign(pos,
                                          new BoardCell(pos,
-                                                    1 //    rand() % 3 + 1 // random number of fish between 1 and 3 (included)
+                                                       1 //    rand() % 3 + 1 // random number of fish between 1 and 3 (included)
                                                        ));
         }
 
@@ -119,6 +119,7 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 {
     assert(penguin != nullptr);
     assert(cell != nullptr);
+
     HumanPlayer *human_player = penguin->getOwner();
     BoardCell *cell_standing_on = penguin->getCurrentCell();
     bool isCorrect = true;
@@ -140,31 +141,36 @@ bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 
         cell->setOwner(penguin);
         human_player->addScore(cell->getFish());
-        penguin->makeMove(cell);
+
+        AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::performMove(penguin, cell);
     }
 
     return isCorrect;
 }
 
-void Board::revertMove(HumanPlayer *human_player)
+const Move<BoardCell, PenguinPawn> Board::revertMove()
 {
-    assert(human_player != nullptr);
-    assert("no more history is available/stored" && human_player->getNumberMovesDone() != 0);
+    auto &last_top_move = AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::revertMove();
 
-    Move current_move = human_player->dequeueLastMove();
-    BoardCell *cell_previous = (BoardCell *)current_move.from;
-    BoardCell *cell_current = (BoardCell *)current_move.target;
+    BoardCell *cell_previous = last_top_move.from;
+    BoardCell *cell_current = last_top_move.target;
     PenguinPawn *penguin = cell_current->getOwner();
 
     cell_current->clearOwner();
     cell_current->setGone(false);
-    human_player->substractScore(cell_current->getFish());
+    if (penguin)
+    {
+        HumanPlayer *human_player = penguin->getOwner();
+        human_player->substractScore(cell_current->getFish());
+    }
 
     if (cell_previous)
     {
         cell_previous->setGone(false);
         cell_previous->setOwner(penguin);
     }
+
+    return last_top_move;
 }
 
 int Board::checkStatus()
@@ -213,8 +219,9 @@ std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
     assert(penguin != nullptr);
     HumanPlayer *human_player = penguin->getOwner();
     assert(human_player != nullptr);
-    Position penguin_current_pos = penguin->getCurrentCell()->getPosition();
-
+    BoardCell *current_cell = penguin->getCurrentCell();
+    assert("The current cell isn't set (yet?)" && current_cell != nullptr);
+    const Position &penguin_current_pos = current_cell->getPosition();
 
     std::vector<BoardCell *> ret;
 

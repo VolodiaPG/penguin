@@ -13,11 +13,8 @@ private:
     CellT *_current_cell = nullptr;
     PlayerT *_owner;
 
-    friend class AbstractPlayer;
-
 public:
-    explicit AbstractPawn(unsigned int id, PlayerT *owner);
-
+    explicit AbstractPawn(unsigned int id, PlayerT& owner);
 
     PlayerT *getOwner() const { return _owner; };
 
@@ -33,8 +30,8 @@ public:
      * 
      * @param move the move to stack
      */
-    void makeMove(CellT *cell);
-    
+    void setCurrentCell(CellT *cell);
+
     CellT *getCurrentCell() const;
 };
 

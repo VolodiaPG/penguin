@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <assert.h>
 
+#include "../utils/Move.hpp"
 #include "Board.hpp"
 #include "PenguinPawn.hpp"
 #include "HumanPlayer.hpp"
@@ -31,17 +32,11 @@ bool PenguinGame::play(PenguinPawn *pawn, BoardCell *move)
     return moved;
 }
 
-void PenguinGame::revertPlay()
+const Move<BoardCell, PenguinPawn> PenguinGame::revertPlay()
 {
     --numberMoves;
-    int player = 2;
-
-    if (numberMoves % 2)
-    {
-        player = 1;
-    }
-
-    board->revertMove(board->getPlayerById(player));
+    assert("A negative number of moves has been registered !!!" && numberMoves >= 0);
+    return board->revertMove();
 }
 
 bool PenguinGame::isFinished() const
@@ -61,27 +56,26 @@ unsigned int PenguinGame::getPlayerToPlay() const
     return nextPlayer;
 }
 
-std::vector<Move> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
+std::vector<Move<BoardCell, PenguinPawn>> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
 {
     assert(human_player != nullptr);
-    std::vector<Move> ret;
-    Board *penguin_board = (Board *)board;
+    std::vector<Move<BoardCell, PenguinPawn>> ret;
+    Board *penguin_board = static_cast<Board *>(board);
     std::vector<PenguinPawn *> penguins = human_player->getPenguins();
 
     for (PenguinPawn *penguin : penguins)
     {
-        BoardCell *current_cell = (BoardCell *)penguin->getCurrentCell();
-        // std::cout << "Penguin #" << penguin->getId() << " @(" << current_cell->getPosition().x << "," << current_cell->getPosition().y << ")" << std::endl;
+        BoardCell *current_cell = penguin->getCurrentCell();
         std::vector<BoardCell *> availableCells = penguin_board->getAvailableCells(penguin);
-        // for (auto cell : availableCells)
-        // {
-        //     std::cout << cell->getPosition().x << "," << cell->getPosition().y << std::endl;
-        // }
-        std::transform(availableCells.begin(), availableCells.end(), std::back_inserter(ret), [current_cell, penguin](BoardCell *cell) -> Move {
-            // std::cout << penguin->getId()<<","<<cell->getPosition().x << ","<< cell->getPosition().y << std::endl;
-             return {(AbstractBoardCell*)current_cell,
-                (AbstractBoardCell*)cell,
-               (AbstractPawn<game::AbstractPlayer, game::AbstractBoardCell> *)penguin}; });
+        std::transform(
+            availableCells.begin(),
+            availableCells.end(),
+            std::back_inserter(ret),
+            [current_cell, penguin](BoardCell *target_cell) -> Move<BoardCell, PenguinPawn> {
+                return {current_cell,
+                        target_cell,
+                        penguin};
+            });
     }
 
     return ret;

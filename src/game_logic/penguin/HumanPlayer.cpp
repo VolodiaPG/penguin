@@ -1,3 +1,4 @@
+#include "../AbstractPlayer.hpp"
 #include "PenguinPawn.hpp"
 #include "Board.hpp"
 

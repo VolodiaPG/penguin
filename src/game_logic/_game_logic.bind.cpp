@@ -18,7 +18,7 @@ using namespace emscripten;
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_bind)
 {
-    using AbstractBoard = AbstractBoard<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
+    using AbstractBoard = AbstractBoard<class, class, AbstractPawn<class, class>>;
     using AbstractGame = AbstractGame<AbstractBoardCell, AbstractPlayer, AbstractPawn<AbstractPlayer, AbstractBoardCell>>;
     using AbstractPawn = AbstractPawn<AbstractPlayer, AbstractBoardCell>;
     

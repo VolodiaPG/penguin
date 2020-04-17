@@ -100,7 +100,7 @@ public:
      */
     bool performMove(Player *player, BoardCell *cell) override;
 
-    void revertMove(Player *player) override;
+    const Move<BoardCell, Player> revertMove() override;
 
     /**
      * @brief Chek wether or not the game is finished.

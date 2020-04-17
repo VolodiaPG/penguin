@@ -6,11 +6,12 @@
 
 namespace game
 {
-class AbstractPlayer;
+
 namespace penguin
 {
 
 // dummy declaration
+class BoardCell;
 class Board;
 class PenguinPawn;
 

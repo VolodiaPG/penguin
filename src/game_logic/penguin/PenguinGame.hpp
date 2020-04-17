@@ -27,16 +27,16 @@ public:
 
     bool isFinished() const override;
     bool play(PenguinPawn *pawn, BoardCell *cell) override;
-    void revertPlay() override;
+    const Move<BoardCell, PenguinPawn> revertPlay() override;
     /**
      * @brief Get the Human player to play, not the penguin one
      * 
      * @return unsigned int the id of the human player to play
      */
     unsigned int getPlayerToPlay() const override;
-    int checkStatus()const override;
+    int checkStatus() const override;
     Board *getBoard() { return (Board *)board; };
-    std::vector<Move> getAvailableMoves(HumanPlayer *player) override;
+    std::vector<Move<BoardCell, PenguinPawn>> getAvailableMoves(HumanPlayer *player) override;
 };
 } // namespace penguin
 } // namespace game
