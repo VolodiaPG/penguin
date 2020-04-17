@@ -99,6 +99,8 @@ public:
     void moveRootToCell(game::AbstractBoardCell* cell);
 
     Node* getRootNode();
+
+    void merge(Tree* tree);
 };
 
 } // namespace mcts

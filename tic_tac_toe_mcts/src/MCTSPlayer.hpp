@@ -40,6 +40,7 @@ public:
 protected:
     void unleash_mcts();
     AbstractBoardCell* getCorrespondingMove(AbstractBoardCell* cell);
+    mcts::Tree joinTrees();
 
 private:
     std::vector<mcts::Tree*> trees;

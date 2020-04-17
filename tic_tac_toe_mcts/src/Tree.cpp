@@ -88,4 +88,35 @@ void Tree::moveRootToCell(game::AbstractBoardCell* cell)
 
 Node* Tree::getRootNode() { return &rootNode; }
 
+void Tree::merge(Tree* tree)
+{
+    rootNode.visits += tree->rootNode.visits;
+    rootNode.score += tree->rootNode.score;
+    if(rootNode.childNodes.size() == 0)
+    {
+        for(auto child : tree->rootNode.childNodes)
+        {
+            Node* n = new Node();
+            n->score = child->score;
+            n->visits = child->visits;
+            n->targetedCell = child->targetedCell;
+            rootNode.childNodes.push_back(n);
+        }
+    }else
+    {
+        for(auto child : rootNode.childNodes)
+        {
+            for(auto check_child : tree->rootNode.childNodes)
+            {
+                if(child->targetedCell->equals(check_child->targetedCell))
+                {
+                    child->score += check_child->score;
+                    child->visits += check_child->visits;
+                }
+            }
+        }
+    }
+    
+}
+
 } // namespace mcts

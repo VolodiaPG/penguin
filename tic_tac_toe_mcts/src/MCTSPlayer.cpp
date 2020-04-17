@@ -28,7 +28,9 @@ AbstractBoardCell * MCTSPlayer::bestMove()
 {
     unleash_mcts();
 
-    AbstractBoardCell* bestMove = getCorrespondingMove(trees.at(0)->bestMove());
+    mcts::Tree tree = joinTrees();
+
+    AbstractBoardCell* bestMove = getCorrespondingMove(tree.bestMove());
     return bestMove;
 }
 
@@ -73,6 +75,16 @@ AbstractBoardCell* MCTSPlayer::getCorrespondingMove(AbstractBoardCell* cell)
         }
     }
     return nullptr;
+}
+
+mcts::Tree MCTSPlayer::joinTrees()
+{
+    mcts::Tree tree(this);
+    for(int i = 0; i < num_threads; i++)
+    {
+        tree.merge(trees.at(i));
+    }
+    return tree;
 }
 
 } // namespace game
