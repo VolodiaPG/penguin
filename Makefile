@@ -54,10 +54,6 @@ $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
 
 # c++ source
-$(BUILD_DIR)/%.cpp.o: %.cpp %.hpp
-	$(MKDIR_P) $(dir $@)
-	$(CXX) -c $< $(CPPFLAGS) -o $@
-
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
 	$(CXX) -c $< $(CPPFLAGS) -o $@
