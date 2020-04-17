@@ -2,16 +2,15 @@
 #define MOVE_HPP_
 namespace game
 {
-class AbstractBoardCell;
-class AbstractPlayer;
 template <class, class>
 class AbstractPawn;
 
+template <class CellT, class PawnT>
 struct Move
 {
-    AbstractBoardCell *from;
-    AbstractBoardCell *target;
-    AbstractPawn<AbstractPlayer, AbstractBoardCell> *pawn;
+    CellT *from;
+    CellT *target;
+    PawnT *pawn;
 };
 
 } // namespace game
