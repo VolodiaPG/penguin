@@ -52,6 +52,7 @@ struct Node
     {
         for (Node *child : childNodes)
             delete child;
+        childNodes.clear();
     }
 
     std::vector<Node *> childNodes;
@@ -78,10 +79,12 @@ public:
     game::AbstractGame *game;
     MCTSConstraints constraints;
 
+    explicit Tree(game::AbstractPlayer *me);
     explicit Tree(
         game::AbstractGame *game,
         game::AbstractPlayer *me,
         const MCTSConstraints &constraints);
+
     ~Tree();
 
     void begin();

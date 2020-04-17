@@ -3,6 +3,15 @@
 namespace mcts
 {
 
+Tree::Tree(game::AbstractPlayer *me)
+    : playerMe(me)
+{
+    game = nullptr;
+    rootNode.player = playerMe;
+    rootNode.isRoot = true;
+    constraints.time = 250;
+}
+
 Tree::Tree(
     game::AbstractGame *game,
     game::AbstractPlayer *me,
@@ -14,6 +23,7 @@ Tree::Tree(
     rootNode.player = playerMe;
     rootNode.isRoot = true;
 }
+
 
 Tree::~Tree()
 {
@@ -33,7 +43,7 @@ Node *Tree::nodeWithMaxVisits(const Node *nodeFrom) const
 {
     Node *chosen = nullptr;
     int max = -1;
-
+    
     for (Node *node : nodeFrom->childNodes)
     {
         if (node->visits > max)

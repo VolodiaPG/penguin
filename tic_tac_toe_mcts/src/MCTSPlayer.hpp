@@ -38,8 +38,10 @@ public:
     void updateTree(AbstractBoardCell* cell);
 
 private:
-    mcts::Tree * tree;
+    std::vector<mcts::Tree*> trees;
+    mcts::Tree* tree_test;
     game::AbstractGame *game;
+    mcts::MCTSConstraints constraints;
 };
 
 }//namespace game

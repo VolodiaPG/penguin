@@ -23,31 +23,34 @@ void MCTS::begin()
     std::cout << "Beginning MCTS search" << std::endl;
     timer t;
     root = tree->getRootNode();
-
+    
     while (t.milliseconds_elapsed() < (unsigned long)constraints.time)
     {
         for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
         {
-
+            //std::cout << "Selection" << std::endl;
             Node *promisingNode = selectBestChildAndDoAction(root);
 
+            //std::cout << "Expand" << std::endl;
             if (!game->isFinished())
             {
 
                 expandNode(promisingNode);
             }
 
-
+            //std::cout << "Random" << std::endl;
             Node *nodeToExplore = randomChooseChildOrFallbackOnNode(promisingNode);
 
-
+            //std::cout << "Do Action" << std::endl;
             if (nodeToExplore != promisingNode)
             {
                 doActionOnBoard(*nodeToExplore);
             }
 
+            //std::cout << "Simulation" << std::endl;
             int winnerId = randomSimulation();
 
+            //std::cout << "Backprop" << std::endl;
             backPropagateAndRevertAction(winnerId, nodeToExplore);
         }
     }
@@ -173,12 +176,12 @@ int MCTS::randomSimulation() const
 Node *MCTS::selectBestChildAndDoAction(Node *input)
 {
     Node *ret = input;
-
+    
     if(!ret->isRoot)
     {
         doActionOnBoard(*ret);
     }
-
+    
     while (ret->childNodes.size() != 0)
     {
         Node *interestingToReturn = nullptr;
@@ -190,7 +193,7 @@ Node *MCTS::selectBestChildAndDoAction(Node *input)
             double res = formula(
                 *ret,
                 *node);
-
+            
             if (res > interestingValue)
             {
                 // update ret
@@ -198,7 +201,7 @@ Node *MCTS::selectBestChildAndDoAction(Node *input)
                 interestingToReturn = node;
             }
         }
-
+        
         // exclude the root node that doesn't have any action associated...
         if(!interestingToReturn->isRoot)
         {
@@ -206,7 +209,7 @@ Node *MCTS::selectBestChildAndDoAction(Node *input)
         }
         ret = interestingToReturn;
     }
-
+    
     return ret;
 }
 
