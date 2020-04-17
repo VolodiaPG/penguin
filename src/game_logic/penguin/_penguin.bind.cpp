@@ -1,4 +1,3 @@
-#endif
 #ifndef PENGUIN_BIND_CPP_
 #ifdef __EMSCRIPTEN__
 
@@ -31,7 +30,7 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
     using AbstractPawn = AbstractPawn<penguin::HumanPlayer, penguin::BoardCell>;
 
     register_vector<BoardCell *>("vector<BoardCell *>");
-    register_vector<PenguinPlayer *>("vector<PenguinPlayer *>");
+    register_vector<PenguinPawn *>("vector<PenguinPawn *>");
 
     class_<HumanPlayer, base<AbstractPlayer>>("HumanPlayer")
         .function("getScore", &HumanPlayer::getScore);

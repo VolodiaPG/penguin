@@ -137,10 +137,9 @@ int Node<CellT, PlayerT, PawnT>::randomSimulation() const
     {
         game::Move<CellT, PawnT> random_move = getRandomAvailableMove(game, game->getPlayerToPlay());
 
-        bool res = game->play(
+       game->play(
             random_move.pawn,
             random_move.target);
-        assert(res == true);
         ++ii;
     }
 
