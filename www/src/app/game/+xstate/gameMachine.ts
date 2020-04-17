@@ -18,7 +18,7 @@ export const gameMachine = Machine(
                 }
             },
             penguinSelected: {
-                on: {
+                    on: {
                     PENGUINSELECTED: 'waiting',
                     CELLSELECTED: 'movePerformed'
                 }

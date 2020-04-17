@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pos } from '../pos';
 import { Cell } from '../cell';
+import { gameService } from '@app/game/+xstate/gameMachine';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { Cell } from '../cell';
 export class HexComponent implements OnInit {
   @Input() cell: Cell;
   @Input() terrainIndex: number;
+
+  @Output() cellClicked = new EventEmitter<Cell>();
 
   center: Pos;
 
@@ -39,6 +42,9 @@ export class HexComponent implements OnInit {
 
   onCellClick() {
     console.log("Cell selected : (" + this.cell.row + "," + this.cell.column + ")" + " -> " + this.cell.nbFish);
+    if (gameService.state.value === "penguinSelected") {
+      this.cellClicked.emit(this.cell);
+    }
   }
 
   onCellHover(hover: boolean) {

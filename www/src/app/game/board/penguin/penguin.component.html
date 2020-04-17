@@ -3,9 +3,9 @@
     style='position: absolute;'
     [style.width.px]='90' 
     [style.height.px]='90'
-    [style.left.px]='position.x'
-    [style.top.px]='position.y'
-    src='{{imageUrl}}'
+    [style.left.px]='penguin.center.x'
+    [style.top.px]='penguin.center.y'
+    src='{{penguin.imageUrl}}'
     (click)="onPenguinClick()"
     [@initPenguin]="isLoaded ? 'appear' : 'disappear'">
 </ion-img>

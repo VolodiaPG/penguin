@@ -38,7 +38,6 @@ export class GameComponent implements OnInit {
   ************************************************ START GAME ****************************************************************
   ***************************************************************************************************************************/
   launchGame() {
-    console.log(gameService.state.value);
     this.boardComponent.startWasmGame();
     this.gameStarted = true;
   }

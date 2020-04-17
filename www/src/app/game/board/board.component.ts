@@ -4,6 +4,8 @@ import { trigger, transition, animate, style, query, stagger, state } from '@ang
 
 import { Cell } from './cell';
 import { HexComponent } from './hex/hex.component';
+import { Penguin } from './penguin';
+import { gameService } from '../+xstate/gameMachine';
 
 declare var Module: any;
 
@@ -44,8 +46,10 @@ export class BoardComponent implements OnInit {
 
   cells: Array<Array<Cell>>;
 
+
   nbPenguin: number = 4;
-  penguinPlayers: any;
+  penguins: Array<Penguin>;
+  penguinSelected: Penguin;
 
   humanPlayerId: number = 1;
 
@@ -59,8 +63,12 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
+    this.penguins = new Array(this.nbPenguin);
     this.generateMap();
+    this.generatePenguin();
     console.log("Board ok");
+
+    console.log(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
   }
 
   ngOnDestroy(): void {
@@ -111,9 +119,47 @@ export class BoardComponent implements OnInit {
     }
   }
 
- /***************************************************************************************************************************
-  ************************************* EVENT / ANIMATIONS ******************************************************************
+  generatePenguin() {
+    console.log("Generate Penguins");
+    let penguin: Penguin;
+    let rndRow: number, rndColumn: number;
+    for (let ii = 0; ii < this.nbPenguin; ii++) {
+      rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+      rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+      this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn], true);
+    }
+  }
+
+  generatePenguinFromWasmBoard() {
+
+  }
+
+  /***************************************************************************************************************************
+  ************************************************ ANIMATION******************************************************************
   ***************************************************************************************************************************/
+  onPenguinClick(newPenguinClicked: Penguin) {
+    newPenguinClicked.switchPenguinColor();
+
+    // Not the first time a penguin is clicked in this turn
+    if (this.penguinSelected !== undefined) {
+
+      // The user clicked on another penguin
+      if (this.penguinSelected === newPenguinClicked) {
+        gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+      } else {
+        // Keep the same state : PenguinSelected
+        this.penguinSelected.switchPenguinColor();
+      }
+
+    } else {
+      gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+    }
+    this.penguinSelected = newPenguinClicked;
+  }
+  
+  onCellClick(cellClicked:Cell) {
+    
+  }
 
   /***************************************************************************************************************************
   ************************************************ PREVIEW *******************************************************************
