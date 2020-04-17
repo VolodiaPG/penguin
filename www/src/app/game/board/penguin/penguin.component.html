@@ -6,5 +6,6 @@
     [style.left.px]='position.x'
     [style.top.px]='position.y'
     src='{{imageUrl}}'
-    (click)="onPenguinClick()">
+    (click)="onPenguinClick()"
+    [@initPenguin]="isLoaded ? 'appear' : 'disappear'">
 </ion-img>

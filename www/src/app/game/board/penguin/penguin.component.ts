@@ -4,17 +4,38 @@ import { Pos } from '../pos';
 import { Cell } from '../cell';
 
 import { gameService } from '../../+xstate/gameMachine';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-penguin',
   templateUrl: './penguin.component.html',
-  styleUrls: ['./penguin.component.scss']
+  styleUrls: ['./penguin.component.scss'],
+  animations: [
+    trigger('initPenguin', [
+      state('appear', style({
+        opacity: 1,
+        transform: 'scale(1)'
+      })),
+      state('disappear', style({
+        opacity: 0,
+        transform: 'scale(0.3) translateX(-1000%) rotate(360deg)'
+      })),
+      transition('appear => disappear', [
+        animate('1s ease-in-out')
+      ]),
+      transition('disappear => appear', [
+        animate('2s ease-in-out')
+      ]),
+    ]),
+  ]
 })
 export class PenguinComponent implements OnInit {
   @Input() cell: Cell;
+  @Input() isLoaded: boolean;
 
   position: Pos;
   imageUrl: string;
+
   isSelected: boolean;
 
   moveToAnimation: any;

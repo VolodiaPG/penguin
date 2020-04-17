@@ -4,8 +4,8 @@
     [style.height.px]='cell.hexHeight + 33' 
     style='position:relative'
     src='{{textures[terrainIndex]}}' 
-    (click)='click()'
-    (mouseover)='hover(true)' (mouseout)='hover(false)'>
+    (click)='onCellClick()'
+    (mouseover)='onCellHover(true)' (mouseout)='onCellHover(false)'>
 </ion-img>
 
 <!-- class="animated wobble infinite slower" wobble jello -->

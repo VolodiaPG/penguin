@@ -77,8 +77,6 @@ export class Cell {
 
                 center.y = this.row * (this.hexHeight - 17);
 
-                console.log(this.row % 2);
-
                 if (this.row % 2 === 0) {
                         // even
                         center.x = this.column * this.hexWidth;

@@ -9,8 +9,6 @@ import { Cell } from '../cell';
   styleUrls: ['./hex.component.scss']
 })
 export class HexComponent implements OnInit {
-
-  // @Input() color: string = '#00CCCC';
   @Input() cell: Cell;
   @Input() terrainIndex: number;
 
@@ -35,17 +33,15 @@ export class HexComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // this.terrainIndex = this.cell.nbFish;
     this.isSelected = false;
     this.center = this.cell.getCellCenter();
-    console.log(this.terrainIndex);
   }
 
-  click() {
+  onCellClick() {
     console.log("Cell selected : (" + this.cell.row + "," + this.cell.column + ")" + " -> " + this.cell.nbFish);
   }
 
-  hover(hover: boolean) {
+  onCellHover(hover: boolean) {
     this.setSelectColor(hover);
   }
 
