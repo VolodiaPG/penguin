@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
@@ -31,6 +31,7 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+  @Input() currentGameState: any;
 
   isLoaded = false;
 
@@ -77,6 +78,7 @@ export class BoardComponent implements OnInit {
     this.generateMapFromWasmBoard();
 
     this.wasmPenguins = this.wasmBoard.getPlayersOnBoard();
+    // console.log("WasmGame loaded : " + this.currentGameState.value);
   }
 
   /***************************************************************************************************************************

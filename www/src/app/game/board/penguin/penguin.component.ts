@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import anime from 'animejs/lib/anime.es';
 import { Pos } from '../pos';
 import { Cell } from '../cell';
+
+import { gameService } from '../../+xstate/gameMachine';
 
 @Component({
   selector: 'app-penguin',
@@ -9,15 +11,16 @@ import { Cell } from '../cell';
   styleUrls: ['./penguin.component.scss']
 })
 export class PenguinComponent implements OnInit {
+  @Input() currentGameState: any;
 
   position: Pos;
 
-  moveToAnimation:any;
+  moveToAnimation: any;
 
   constructor() { }
 
   ngOnInit() {
-    this.position = new Pos(0,0);
+    this.position = new Pos(0, 0);
   }
 
   /***************************************************************************************************************************
@@ -25,7 +28,10 @@ export class PenguinComponent implements OnInit {
   ***************************************************************************************************************************/
   onPenguinClick() {
     console.log("Penguin clicked");
+    gameService.send('PENGUINSELECTED');
+  }
 
+  moveTo(cell: Cell) {
     this.position.x = this.position.x + 180;
     this.position.y = this.position.y + 450;
 
@@ -36,10 +42,6 @@ export class PenguinComponent implements OnInit {
       duration: 2000,
       property: [this.position],
     });
-  }
-
-  moveTo(cell: Cell) {
-    
   }
 
 }

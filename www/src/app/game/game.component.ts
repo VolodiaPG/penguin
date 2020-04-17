@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { BoardComponent } from './board/board.component';
 
 import { Flip } from 'number-flip';
@@ -21,6 +21,8 @@ export class GameComponent implements OnInit {
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
+  currentGameState: any;
+
   nbHexagonal: number = 8;
   nbPenguin: number = 4;
 
@@ -29,15 +31,16 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.currentGameState = gameMachine.initialState;
   }
 
   /***************************************************************************************************************************
   ************************************************ START GAME ****************************************************************
   ***************************************************************************************************************************/
   launchGame() {
+    console.log(gameService.state.value);
     this.boardComponent.startWasmGame();
     this.gameStarted = true;
-    console.log(gameMachine.initialState);
   }
 
   /***************************************************************************************************************************
