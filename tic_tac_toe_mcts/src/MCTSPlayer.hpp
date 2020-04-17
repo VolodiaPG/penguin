@@ -37,11 +37,16 @@ public:
      */
     void updateTree(AbstractBoardCell* cell);
 
+protected:
+    void unleash_mcts();
+    AbstractBoardCell* getCorrespondingMove(AbstractBoardCell* cell);
+
 private:
     std::vector<mcts::Tree*> trees;
     mcts::Tree* tree_test;
     game::AbstractGame *game;
     mcts::MCTSConstraints constraints;
+
 };
 
 }//namespace game

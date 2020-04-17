@@ -34,11 +34,10 @@ AbstractBoardCell * MCTSPlayer::bestMove()
     th1.join();
     th2.join();
     */
-    mcts::MCTS ai(game->clone(), trees.at(0), constraints);
-    
-    ai.begin();
-    
-    return trees.at(0)->bestMove();
+    unleash_mcts();
+
+    AbstractBoardCell* bestMove = getCorrespondingMove(trees.at(0)->bestMove());
+    return bestMove;
 }
 
 void MCTSPlayer::updateTree(AbstractBoardCell* cell)
@@ -46,6 +45,26 @@ void MCTSPlayer::updateTree(AbstractBoardCell* cell)
     tree_test->moveRootToCell(cell);
     for(unsigned long i = 0; i < trees.size(); i++)
         trees.at(i)->moveRootToCell(cell);
+}
+
+void MCTSPlayer::unleash_mcts()
+{
+    mcts::MCTS ai(game->clone(), trees.at(0), constraints);
+    
+    ai.begin();
+}
+
+AbstractBoardCell* MCTSPlayer::getCorrespondingMove(AbstractBoardCell* cell)
+{
+    for(unsigned long i = 0; i < game->board->getBoardCells().size(); i++)
+    {
+        AbstractBoardCell* cellToTest = game->board->getBoardCells().at(i);
+        if(cell->equals(cellToTest))
+        {
+            return cellToTest;
+        }
+    }
+    return nullptr;
 }
 
 } // namespace game

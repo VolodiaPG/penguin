@@ -69,6 +69,8 @@ public:
     bool isClaimed() const;
 
     std::string to_string() const override;
+
+    bool equals(AbstractBoardCell* cell) const override;
 };
 
 } // namespace game

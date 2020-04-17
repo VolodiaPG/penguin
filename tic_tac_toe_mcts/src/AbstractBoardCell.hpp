@@ -11,6 +11,7 @@ class AbstractBoardCell
 public:
     virtual std::string to_string() const;
     virtual ~AbstractBoardCell(){};
+    virtual bool equals(AbstractBoardCell* cell) const = 0;
 };
 
 } // namespace game
