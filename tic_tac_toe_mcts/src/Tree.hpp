@@ -98,8 +98,19 @@ public:
      */
     void moveRootToCell(game::AbstractBoardCell* cell);
 
+    /**
+     * @brief Get the Root Node object
+     * 
+     * @return Node* 
+     */
     Node* getRootNode();
 
+    /**
+     * @brief Merges tree into the current tree
+     * @brief Does it only for 2 layers
+     * 
+     * @param tree 
+     */
     void merge(Tree* tree);
 };
 
