@@ -1,4 +1,4 @@
-#include "../../mcts/Tree.hpp"
+#include "../../mcts/MCTSPlayer.hpp"
 #include "Board.hpp"
 #include "BoardCell.hpp"
 
@@ -43,7 +43,8 @@ void ConsoleGame::draw()
             std::cout << std::endl;
         }
     }
-    std::cout << std::endl;
+    std::cout << std::endl
+              << std::endl;
 }
 
 void ConsoleGame::loop()
@@ -53,31 +54,27 @@ void ConsoleGame::loop()
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
 
-    mcts::Tree<BoardCell, Player, Player> tree_1(this, constraints);
-    Move<BoardCell, Player> move_1 = {nullptr, nullptr, nullptr};
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, board->getPlayerById(1), constraints);
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(1), constraints);
 
-    mcts::Tree<BoardCell, Player, Player> tree_2(this, constraints);
-    Move<BoardCell, Player> move_2 = {nullptr, nullptr, nullptr};
+    Move<BoardCell, Player> move;
 
     draw();
     while (!TicTacToe::isFinished())
     {
-        const Move<BoardCell, Player>* move;
+        mcts_player_1.updateTree(move);
+        mcts_player_2.updateTree(move);
+
         if (getPlayerToPlay() == 1)
         {
-            tree_1.moveRootToMove(move_1);
-            tree_1.begin();
-            move_1 = tree_1.bestMove();
-            move = &move_1;
+            move = mcts_player_1.bestMove();
         }
         else
         {
-            tree_2.moveRootToMove(move_1);
-            tree_2.begin();
-            move_2 = tree_2.bestMove();
-            move = &move_2;
+            move = mcts_player_2.bestMove();
         }
-        play(move->pawn, move->target);
+
+        play(move.pawn, move.target);
         draw();
     }
 

@@ -66,9 +66,9 @@ template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::expandNode(Node<CellT, PawnT> *nodeToExpand)
 {
     // the turn has already been played, now it's the next player's turn
-    PlayerT *nextPlayer = game->board->getPlayerById(game->getPlayerToPlay());
+    PlayerT* player = game->board->getPlayerById(game->getPlayerToPlay());
 
-    for (const game::Move<CellT, PawnT>& move : game->getAvailableMoves(nextPlayer))
+    for (const game::Move<CellT, PawnT> &move : game->getAvailableMoves(player))
     {
         Node<CellT, PawnT> *node = new Node<CellT, PawnT>();
         node->parent = nodeToExpand;
@@ -142,21 +142,24 @@ void Tree<CellT, PlayerT, PawnT>::backPropagateAndRevertAction(int winnerId, Nod
     // iterate until the root node, not excluded tho!
     do
     {
-        double increment = INCREMENT_DEFEAT;
-        if (static_cast<int>(node->move.pawn->getOwner()->getId()) == winnerId)
-        { // victory
-            increment = INCREMENT_VICTORY;
-        }
-        else if (winnerId == -1)
-        { // draw
-            increment = INCREMENT_DRAW;
-        }
         node->visits++;
+        if (!node->isRoot)
+        {
+            double increment = INCREMENT_DEFEAT;
+            if (static_cast<int>(node->move.pawn->getOwner()->getId()) == winnerId)
+            { // victory
+                increment = INCREMENT_VICTORY;
+            }
+            else if (winnerId == -1)
+            { // draw
+                increment = INCREMENT_DRAW;
+            }
+            node->score += increment;
 
-        node->score += increment;
-        if (node->parent)
-        { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
-            game->revertPlay();
+            if (node->parent)
+            { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
+                game->revertPlay();
+            }
         }
 
     } while ((node = node->parent) != nullptr);
