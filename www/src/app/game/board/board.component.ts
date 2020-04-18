@@ -6,6 +6,7 @@ import { Cell } from './cell';
 import { HexComponent } from './hex/hex.component';
 import { Penguin } from './penguin';
 import { gameService } from '../+xstate/gameMachine';
+import { ToastController } from '@ionic/angular';
 
 declare var Module: any;
 
@@ -61,7 +62,7 @@ export class BoardComponent implements OnInit {
   wasmBoard: any;
   wasmPenguins: any;
 
-  constructor() {}
+  constructor(private toastController: ToastController) {}
 
   ngOnInit(): void {
     this.isLoaded = false;
@@ -172,7 +173,7 @@ export class BoardComponent implements OnInit {
         gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
       }
     } else {
-      console.log('It is not your penguin !!');
+      this.presentErrorToast('It is not your penguin !!');
     }
   }
 
@@ -220,4 +221,17 @@ export class BoardComponent implements OnInit {
   addPenguin(): void {}
 
   removePenguin(): void {}
+
+  /***************************************************************************************************************************
+   ************************************************ TOAST ********************************************************************
+   ***************************************************************************************************************************/
+  async presentErrorToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      position: 'top',
+      color: 'danger',
+      duration: 3000
+    });
+    toast.present();
+  }
 }

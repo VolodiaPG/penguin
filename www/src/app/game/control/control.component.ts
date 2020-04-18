@@ -39,6 +39,10 @@ export class ControlComponent implements OnInit {
     this.nbHexagonalChanged.emit(event);
   }
 
+  /***************************************************************************************************************************
+   ******************************************** CONFIRM / TOAST **************************************************************
+   ***************************************************************************************************************************/
+
   async presentConfirm() {
     let alert = await this.alertController.create({
       // title: 'Confirm purchase',
@@ -66,7 +70,8 @@ export class ControlComponent implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: "Let's go !!! ",
-      position: 'bottom',
+      color: 'success',
+      position: 'top',
       duration: 3000
     });
     toast.present();
