@@ -68,8 +68,6 @@ export class BoardComponent implements OnInit {
     this.generateMap();
     this.generatePenguin();
     console.log('Board ok');
-
-    console.log(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
   }
 
   ngOnDestroy(): void {
@@ -136,26 +134,33 @@ export class BoardComponent implements OnInit {
    ************************************************ ANIMATION******************************************************************
    ***************************************************************************************************************************/
   onPenguinClick(newPenguinClicked: Penguin) {
-    newPenguinClicked.switchPenguinColor();
-
     // Not the first time a penguin is clicked in this turn
     if (this.penguinSelected !== undefined) {
       // The user clicked on another penguin
       if (this.penguinSelected === newPenguinClicked) {
-        gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+        this.penguinSelected.switchPenguinColor();
         this.penguinSelected = undefined;
+        gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
       } else {
         // Keep the same state : PenguinSelected
         this.penguinSelected.switchPenguinColor();
         this.penguinSelected = newPenguinClicked;
+        this.penguinSelected.switchPenguinColor();
       }
     } else {
       this.penguinSelected = newPenguinClicked;
-      gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+      this.penguinSelected.switchPenguinColor();
+      gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
     }
   }
 
-  onCellClick(cellClicked: Cell) {}
+  onCellClick(cellClicked: Cell) {
+    if (gameService.state.value === 'penguinSelected') {
+      this.penguinSelected.moveTo(cellClicked);
+      this.penguinSelected = undefined;
+      gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+    }
+  }
 
   /***************************************************************************************************************************
    ************************************************ PREVIEW *******************************************************************

@@ -44,6 +44,7 @@ export class Cell {
   constructor(row: number, column: number, nbFish: number) {
     this.row = row;
     this.column = column;
+    this.center = this.getCellCenter();
     this.hasPenguin = false;
     this.nbFish = nbFish;
   }
@@ -86,5 +87,9 @@ export class Cell {
     }
 
     return center;
+  }
+
+  toString() {
+    return '(' + this.row + ',' + this.column + ')' + ' -> ' + this.nbFish;
   }
 }

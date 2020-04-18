@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import anime from 'animejs/lib/anime.es';
+
 import { Pos } from '../pos';
 import { Cell } from '../cell';
 
@@ -38,8 +38,6 @@ export class PenguinComponent implements OnInit {
 
   @Output() penguinClicked = new EventEmitter<Penguin>();
 
-  moveToAnimation: any;
-
   constructor() {}
 
   ngOnInit() {}
@@ -48,31 +46,7 @@ export class PenguinComponent implements OnInit {
    ************************************************ ANIMATION******************************************************************
    ***************************************************************************************************************************/
   onPenguinClick() {
-    console.log(
-      'Penguin [' +
-        this.penguin.cellPosition.row +
-        '][' +
-        this.penguin.cellPosition.column +
-        ']' +
-        ' (' +
-        this.penguin.center.x +
-        ',' +
-        this.penguin.center.y +
-        ')'
-    );
+    console.log(this.penguin.toString());
     this.penguinClicked.emit(this.penguin);
   }
-
-  // moveTo(cell: Cell) {
-  //   this.position.x = this.position.x + 180;
-  //   this.position.y = this.position.y + 450;
-
-  //   this.moveToAnimation = anime({
-  //     targets: '.penguin',
-  //     translateX: this.position.x,
-  //     translateY: this.position.y,
-  //     duration: 2000,
-  //     property: [this.position],
-  //   });
-  // }
 }

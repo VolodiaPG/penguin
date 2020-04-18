@@ -40,10 +40,8 @@ export class HexComponent implements OnInit {
   }
 
   onCellClick() {
-    console.log('Cell selected : (' + this.cell.row + ',' + this.cell.column + ')' + ' -> ' + this.cell.nbFish);
-    if (gameService.state.value === 'penguinSelected') {
-      this.cellClicked.emit(this.cell);
-    }
+    console.log(this.cell.toString());
+    this.cellClicked.emit(this.cell);
   }
 
   onCellHover(hover: boolean) {

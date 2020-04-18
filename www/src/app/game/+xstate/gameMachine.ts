@@ -50,7 +50,7 @@ export const gameMachine = Machine(
 
 export const gameService = interpret(gameMachine)
   .onTransition(state => {
-    console.log(state.value);
+    console.log(state.toStrings());
   })
   .onDone(() => console.log('done'))
   .start(); // returns started service
