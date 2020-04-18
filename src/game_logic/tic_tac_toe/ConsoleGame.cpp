@@ -55,7 +55,7 @@ void ConsoleGame::loop()
     constraints.time = 250;
 
     mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, board->getPlayerById(1), constraints);
-    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(1), constraints);
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(2), constraints);
 
     Move<BoardCell, Player> move;
 
