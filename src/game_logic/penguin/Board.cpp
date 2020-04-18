@@ -217,8 +217,6 @@ int Board::checkStatus()
 std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
 {
     assert(penguin != nullptr);
-    HumanPlayer *human_player = penguin->getOwner();
-    assert(human_player != nullptr);
     BoardCell *current_cell = penguin->getCurrentCell();
     assert("The current cell isn't set (yet?)" && current_cell != nullptr);
     const Position &penguin_current_pos = current_cell->getPosition();
@@ -260,11 +258,6 @@ std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
         }
 
         inc_val += 2; // -1; 1; out of scope, while is over
-    }
-
-    for (auto cell : ret)
-    {
-        assert(checkForCorrectness(penguin_current_pos, cell->getPosition()) == true);
     }
 
     // return a copy
