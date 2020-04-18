@@ -48,6 +48,7 @@ EMSCRIPTEN_BINDINGS(game_logic_bind)
         .function("getId", &AbstractPlayer::getId);                                             \
                                                                                                 \
     class_<AbstractPawn>("AbstractPawn")                                                        \
+        .function("getCurrentCell", &AbstractPawn::getCurrentCell, allow_raw_pointers())        \
         .function("getOwner", &AbstractPawn::getOwner, allow_raw_pointers())                    \
         .function("getId", &AbstractPawn::getId);
 

@@ -7,6 +7,7 @@ import { HexComponent } from './hex/hex.component';
 import { Penguin } from './penguin';
 import { gameService } from '../+xstate/gameMachine';
 import { ToastController } from '@ionic/angular';
+import { Pos } from './pos';
 
 declare var Module: any;
 
@@ -91,7 +92,6 @@ export class BoardComponent implements OnInit {
     this.generatePenguinFromWasmBoard();
 
     console.log(this.wasmPenguins.size());
-
     // console.log("WasmGame loaded : " + this.currentGameState.value);
   }
 
@@ -117,10 +117,13 @@ export class BoardComponent implements OnInit {
     // generate cells from the wasm directives
     var wasmCells = this.wasmBoard.getBoardCells();
 
-    for (let row = 0; row < this.nbHexagonal; row++) {
-      for (let column = 0; column < this.nbHexagonal; column++) {
-        this.cells[row][column].setWasmCell(wasmCells.get(row * this.nbHexagonal + column));
-      }
+    for (let ii = 0; ii < wasmCells.size(); ii++) {
+      let wasmCell: any = wasmCells.get(ii);
+      let wasmCellPos = wasmCell.getPosition();
+      // console.log(wasmCellPos, " : ", Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos)));
+      wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
+      console.log(wasmCellPos);
+      this.cells[wasmCellPos.y][wasmCellPos.x].setWasmCell(wasmCell);
     }
   }
 
@@ -146,6 +149,15 @@ export class BoardComponent implements OnInit {
       let ownerId: any = this.penguins[ii].wasmPenguin.getOwner().getId();
       this.penguins[ii].textureIndex = ownerId;
       this.penguins[ii].playerPenguin = ownerId == this.humanPlayerId;
+      this.wasmBoard.performMove(this.wasmPenguins.get(ii), this.penguins[ii].cellPosition.wasmCell);
+
+      console.log(
+        this.penguins[ii].cellPosition.toString(),
+        ' : ',
+        Module.hex_cube_to_offset(
+          Module.hex_axial_to_cube(this.penguins[ii].wasmPenguin.getCurrentCell().getPosition())
+        )
+      );
     }
   }
 
@@ -175,6 +187,7 @@ export class BoardComponent implements OnInit {
     } else {
       this.presentErrorToast('It is not your penguin !!');
     }
+    this.setAvailableCellColor();
   }
 
   onCellClick(cellClicked: Cell) {
@@ -182,6 +195,17 @@ export class BoardComponent implements OnInit {
       this.penguinSelected.moveTo(cellClicked);
       this.penguinSelected = undefined;
       gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+    }
+  }
+
+  setAvailableCellColor() {
+    if (this.penguinSelected !== undefined) {
+      var availableCells: any = this.wasmBoard.getAvailableCells(this.penguinSelected.wasmPenguin);
+      for (let ii = 0; ii < availableCells.size(); ii++) {
+        let wasmCellPos = availableCells.get(ii).getPosition();
+        wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
+        this.cells[wasmCellPos.y][wasmCellPos.x].setAvailableColor(true);
+      }
     }
   }
 

@@ -1,5 +1,9 @@
 import { Pos } from './pos';
 
+const NORMALINDEX = 0,
+  SELECTEDINDEX = 3,
+  AVAILABLEINDEX = 6;
+
 /**
  *
  * The cell object represents one map hex cell.
@@ -9,7 +13,9 @@ export class Cell {
   row: number;
   column: number;
   center: Pos = { x: 0, y: 0 };
+
   nbFish: number;
+  terrainIndex: number;
 
   wasmCell: any;
 
@@ -47,11 +53,13 @@ export class Cell {
     this.center = this.getCellCenter();
     this.hasPenguin = false;
     this.nbFish = nbFish;
+    this.terrainIndex = this.nbFish;
   }
 
   setWasmCell(wasmCell: any) {
     this.wasmCell = wasmCell;
     this.nbFish = wasmCell.getFish();
+    this.terrainIndex = this.nbFish;
   }
 
   // Calculates and returns the width of a hex cell.
@@ -87,6 +95,22 @@ export class Cell {
     }
 
     return center;
+  }
+
+  setSelectedColor(set: boolean) {
+    if (set) {
+      this.terrainIndex = SELECTEDINDEX + this.nbFish;
+    } else {
+      this.terrainIndex = NORMALINDEX + this.nbFish;
+    }
+  }
+
+  setAvailableColor(set: boolean) {
+    if (set) {
+      this.terrainIndex = SELECTEDINDEX + this.nbFish;
+    } else {
+      this.terrainIndex = NORMALINDEX + this.nbFish;
+    }
   }
 
   toString() {

@@ -10,8 +10,6 @@ import { gameService } from '@app/game/+xstate/gameMachine';
 })
 export class HexComponent implements OnInit {
   @Input() cell: Cell;
-  @Input() terrainIndex: number;
-
   @Output() cellClicked = new EventEmitter<Cell>();
 
   center: Pos;
@@ -22,12 +20,12 @@ export class HexComponent implements OnInit {
   // Array of textures. Can be referenced by index in terrainType.
   textures: string[] = [
     '/assets/game/tileSnow_big.png',
-    '/assets/game/tileSnow_fish1.png',
-    '/assets/game/tileSnow_fish2.png',
-    '/assets/game/tileSnow_fish3.png',
-    '/assets/game/tileWater_fish1.png',
-    '/assets/game/tileWater_fish2.png',
-    '/assets/game/tileWater_fish3.png'
+    '/assets/game/normal_fish1.png',
+    '/assets/game/normal_fish2.png',
+    '/assets/game/normal_fish3.png',
+    '/assets/game/selected_fish1.png',
+    '/assets/game/selected_fish2.png',
+    '/assets/game/selected_fish3.png'
   ];
 
   isSelected: boolean;
@@ -45,15 +43,15 @@ export class HexComponent implements OnInit {
   }
 
   onCellHover(hover: boolean) {
-    this.setSelectColor(hover);
+    this.setSelectedColor(hover);
   }
 
-  setSelectColor(isSelected: boolean) {
-    if (this.isSelected && !isSelected && this.cell.nbFish !== 0) {
-      this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) - 3;
+  setSelectedColor(isSelected: boolean) {
+    if (this.isSelected && !isSelected && this.cell.terrainIndex !== 0) {
+      this.cell.setSelectedColor(false);
       this.isSelected = false;
-    } else if (!this.isSelected && isSelected && this.cell.nbFish !== 0) {
-      this.terrainIndex = Number.parseInt(this.terrainIndex.toString()) + 3;
+    } else if (!this.isSelected && isSelected && this.cell.terrainIndex !== 0) {
+      this.cell.setSelectedColor(true);
       this.isSelected = true;
     }
   }

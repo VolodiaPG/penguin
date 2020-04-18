@@ -46,17 +46,6 @@ export class Penguin {
   // }
 
   toString() {
-    return (
-      'Penguin [' +
-      this.cellPosition.row +
-      '][' +
-      this.cellPosition.column +
-      ']' +
-      ' (' +
-      this.cellPosition.center.x +
-      ',' +
-      this.cellPosition.center.y +
-      ')'
-    );
+    return 'Penguin [' + this.cellPosition.row + '][' + this.cellPosition.column + ']';
   }
 }

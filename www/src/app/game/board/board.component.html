@@ -7,12 +7,7 @@
       [style.left.px]="x % 2 == 0 ? 0 : 45"
     >
       <ion-col *ngFor="let col of row; index as y" [@initAnimation]="isLoaded ? 'enter' : 'leave'">
-        <app-hex
-          class="hex"
-          [cell]="cells[x][y]"
-          [terrainIndex]="cells[x][y].nbFish"
-          (cellClicked)="onCellClick($event)"
-        ></app-hex>
+        <app-hex class="hex" [cell]="cells[x][y]" (cellClicked)="onCellClick($event)"></app-hex>
       </ion-col>
     </ion-row>
   </ion-grid>
