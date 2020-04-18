@@ -15,7 +15,7 @@ namespace penguin
 {
 ConsoleGame::ConsoleGame(const bool &no_print)
     : _game(7, 2),
-      _print_hex((Board *)_game.board),
+      _print_hex(static_cast<Board *>(_game.board)),
       _no_print(no_print)
 {
     Board *board = static_cast<Board *>(_game.board);
@@ -80,7 +80,7 @@ void ConsoleGame::loop()
         mcts::Tree<BoardCell, HumanPlayer, PenguinPawn> tree(&_game, constraints); // play the second player
         const unsigned int n_visits = tree.begin();
         Move<BoardCell, PenguinPawn> best_move = tree.bestMove();
-        _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
+        _game.play(best_move.pawn, best_move.target);
 
         if (!_no_print)
         {

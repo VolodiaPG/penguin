@@ -68,6 +68,8 @@ public:
      * @return false the cell isn't
      */
     bool isClaimed() const;
+
+    bool operator==(const BoardCell &cell) const;
 };
 
 } // namespace tic_tac_toe

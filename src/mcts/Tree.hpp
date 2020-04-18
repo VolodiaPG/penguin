@@ -81,7 +81,7 @@ protected:
 
     void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
 
-    game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
+    const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int& player_id) const;
 
     double formula(
         const Node<CellT, PawnT> &node,
@@ -98,16 +98,16 @@ public:
         const MCTSConstraints &constraints);
     ~Tree();
 
-    void begin();
+    size_t begin();
 
-    game::AbstractBoardCell *bestMove() const;
+    game::Move<CellT, PawnT> bestMove() const;
 
     /**
      * @brief Moves the root to a given cell
      * 
      * @param cell 
      */
-    void moveRootToCell(game::AbstractBoardCell *cell);
+    void moveRootToMove(const game::Move<CellT, PawnT>& move);
 };
 
 } // namespace mcts

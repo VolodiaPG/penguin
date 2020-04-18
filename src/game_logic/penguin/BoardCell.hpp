@@ -102,6 +102,8 @@ public:
      * @return int the number of fish
      */
     unsigned int getFish() const { return _number_fish; }
+
+    bool operator==(const BoardCell &cell) const;
 };
 } // namespace penguin
 } // namespace game

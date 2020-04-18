@@ -21,7 +21,7 @@ public:
      * 
      * @return AbstractBoardCell* 
      */
-    AbstractBoardCell *bestMove();
+    game::Move<CellT, PawnT> bestMove();
 
     /**
      * @brief Moves the root node to node with targeted cell

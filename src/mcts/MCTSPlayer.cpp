@@ -1,3 +1,5 @@
+#include "Tree.hpp"
+
 #include "MCTSPlayer.hpp"
 
 namespace game
@@ -8,11 +10,11 @@ MCTSPlayer<CellT, PlayerT, PawnT>::MCTSPlayer(game::AbstractGame<CellT, PlayerT,
     unsigned int id,
     const mcts::MCTSConstraints &constraints)
 {
-    tree = new mcts::Tree<CellT, PlayerT, PawnT>(game, this, constraints);
+    tree = new mcts::Tree<CellT, PlayerT, PawnT>(game, constraints);
 }
 
 template <class CellT, class PlayerT, class PawnT>
-AbstractBoardCell * MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
+game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
 {
     tree->begin();
     return tree->bestMove();

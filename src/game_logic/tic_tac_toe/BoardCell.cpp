@@ -30,5 +30,10 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
+bool BoardCell::operator==(const BoardCell &cell) const
+{
+    return cell.position == position;
+}
+
 } // namespace tic_tac_toe
 } // namespace game

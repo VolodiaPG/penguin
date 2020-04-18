@@ -18,8 +18,8 @@ PrintHex::PrintHex(Board *board)
     _dimension = _board->size();
     _size_line = _dimension * (WIDTH - BORDERS_LENGTH) + WIDTH + 1;
     _size_char_map = _size_line * (_dimension - 2) * HEIGHT + 1;
-    _char_map = (char *)malloc(_size_char_map * sizeof(char)); // create the map containing all the characters
-    _buffer_template = (char *)malloc(sizeof(char) * (strlen(TEMPLATE) + 1));
+    _char_map = static_cast<char *>(malloc(_size_char_map * sizeof(char))); // create the map containing all the characters
+    _buffer_template = static_cast<char *>(malloc(sizeof(char) * (strlen(TEMPLATE) + 1)));
 }
 
 PrintHex::~PrintHex()
@@ -45,9 +45,9 @@ void PrintHex::print()
     clear_map();
 
     int offset = 0;
-    for (int yy = 0; yy < (int)_dimension; ++yy) // ii for the rows
+    for (int yy = 0; yy < static_cast<int>(_dimension); ++yy) // ii for the rows
     {
-        for (int xx = offset; xx < (int)_dimension + offset; ++xx) // jj for the cols
+        for (int xx = offset; xx < static_cast<int>(_dimension) + offset; ++xx) // jj for the cols
         {
             BoardCell *cell = _board->getCell(xx, yy);
 
@@ -57,7 +57,7 @@ void PrintHex::print()
                 char line1[MAX_TEXT_LENGTH + 1], line2[MAX_TEXT_LENGTH + 1];
                 PenguinPawn *owner = cell->getOwner();
                 if (owner)
-                    sprintf(line1, "p:%d", (int)owner->getId());
+                    sprintf(line1, "p:%d", static_cast<int>(owner->getId()));
                 else
                     sprintf(line1, " ");
 

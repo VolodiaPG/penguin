@@ -35,9 +35,9 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
     //TODO découpler la génération et le parcours de la structure elle même (pattern visiteur)
     int offset = 0;
-    for (int yy = 0; yy < (int)_dimension; ++yy) // ii for the rows
+    for (int yy = 0; yy < static_cast<int>(_dimension); ++yy) // ii for the rows
     {
-        for (int xx = offset; xx < (int)_dimension + offset; ++xx) // jj for the cols
+        for (int xx = offset; xx < static_cast<int>(_dimension) + offset; ++xx) // jj for the cols
         {
             // rows in x and cols in y
             Position pos;
@@ -304,5 +304,6 @@ HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 {
     return _players[human_player_id - 1];
 }
+
 } // namespace penguin
 } // namespace game

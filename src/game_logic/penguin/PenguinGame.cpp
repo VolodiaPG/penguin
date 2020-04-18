@@ -85,5 +85,10 @@ int PenguinGame::checkStatus() const
 {
     return board->checkStatus();
 }
+
+Board *PenguinGame::getBoard() const
+{
+    return static_cast<Board *>(board);
+}
 } // namespace penguin
 } // namespace game

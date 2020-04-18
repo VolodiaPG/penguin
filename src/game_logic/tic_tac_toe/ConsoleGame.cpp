@@ -29,16 +29,16 @@ void ConsoleGame::draw()
     {
         const Position &pos = cell->getPosition();
 
-        std::cout << cell->getValue() << (pos.y < (int)board->size() - 1 ? " │ " : "");
+        std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
 
         // ignore last line
-        if (pos.y == (int)board->size() - 1 && pos.x < (int)board->size() - 1)
+        if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
         {
             std::cout << std::endl;
             // ignore last column
-            for (unsigned int ii = 0; ii < board->size() - 1; ++ii)
+            for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
             {
-                std::cout << "──┼─" << (ii == (unsigned int)board->size() - 2 ? "─" : "");
+                std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
             }
             std::cout << std::endl;
         }
@@ -48,17 +48,36 @@ void ConsoleGame::draw()
 
 void ConsoleGame::loop()
 {
-    std::cout << "test" << std::endl;
+    std::cout << "Looping, wheeeeeeeeeeeeeee!" << std::endl;
+
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+
+    mcts::Tree<BoardCell, Player, Player> tree_1(this, constraints);
+    Move<BoardCell, Player> move_1 = {nullptr, nullptr, nullptr};
+
+    mcts::Tree<BoardCell, Player, Player> tree_2(this, constraints);
+    Move<BoardCell, Player> move_2 = {nullptr, nullptr, nullptr};
 
     draw();
     while (!TicTacToe::isFinished())
     {
-        mcts::MCTSConstraints constraints;
-        constraints.time = 500;
-        mcts::Tree<BoardCell, Player, Player> tree(this, constraints); // play the second player
-        tree.begin();
-        Move<BoardCell, Player> best_move = tree.bestMove();
-        play(static_cast<Player *>(best_move.pawn), best_move.target);
+        const Move<BoardCell, Player>* move;
+        if (getPlayerToPlay() == 1)
+        {
+            tree_1.moveRootToMove(move_1);
+            tree_1.begin();
+            move_1 = tree_1.bestMove();
+            move = &move_1;
+        }
+        else
+        {
+            tree_2.moveRootToMove(move_1);
+            tree_2.begin();
+            move_2 = tree_2.bestMove();
+            move = &move_2;
+        }
+        play(move->pawn, move->target);
         draw();
     }
 
