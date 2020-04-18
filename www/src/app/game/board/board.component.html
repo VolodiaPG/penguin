@@ -19,8 +19,8 @@
 
   <app-penguin
     *ngFor="let penguin of penguins"
-    [isLoaded]="isLoaded"
     [penguin]="penguin"
+    [isLoaded]="isLoaded"
     (penguinClicked)="onPenguinClick($event)"
   ></app-penguin>
 

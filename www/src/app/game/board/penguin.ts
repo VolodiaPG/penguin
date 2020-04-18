@@ -3,6 +3,9 @@ import { Cell } from './cell';
 
 export class Penguin {
   cellPosition: Cell = null;
+  textureIndex: number = 1;
+
+  wasmPenguin: any;
 
   playerPenguin: boolean;
 

@@ -48,9 +48,11 @@ export class BoardComponent implements OnInit {
 
   cells: Array<Array<Cell>>;
 
-  nbPenguin: number = 4;
+  nbPenguin: number = 2;
   penguins: Array<Penguin>;
   penguinSelected: Penguin;
+
+  currentPlayerId: number = 1;
 
   humanPlayerId: number = 1;
 
@@ -64,7 +66,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
-    this.penguins = new Array(this.nbPenguin);
+    this.penguins = new Array(this.nbPenguin * 2);
     this.generateMap();
     this.generatePenguin();
     console.log('Board ok');
@@ -84,7 +86,11 @@ export class BoardComponent implements OnInit {
     this.wasmBoard = this.wasmGame.getBoard();
     this.generateMapFromWasmBoard();
 
-    this.wasmPenguins = this.wasmBoard.getPlayersOnBoard();
+    this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
+    this.generatePenguinFromWasmBoard();
+
+    console.log(this.wasmPenguins.size());
+
     // console.log("WasmGame loaded : " + this.currentGameState.value);
   }
 
@@ -121,36 +127,52 @@ export class BoardComponent implements OnInit {
     console.log('Generate Penguins');
     let penguin: Penguin;
     let rndRow: number, rndColumn: number;
-    for (let ii = 0; ii < this.nbPenguin; ii++) {
-      rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
-      rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
-      this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn], true);
+    for (let ii = 0; ii < this.penguins.length; ii++) {
+      while (this.penguins[ii] === undefined) {
+        rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+        rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+        if (!this.cells[rndRow][rndColumn].hasPenguin) {
+          this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn], true);
+          this.cells[rndRow][rndColumn].hasPenguin = true;
+        }
+      }
     }
   }
 
-  generatePenguinFromWasmBoard() {}
+  generatePenguinFromWasmBoard() {
+    for (let ii = 0; ii < this.penguins.length; ii++) {
+      this.penguins[ii].wasmPenguin = this.wasmPenguins.get(ii);
+      let ownerId: any = this.penguins[ii].wasmPenguin.getOwner().getId();
+      this.penguins[ii].textureIndex = ownerId;
+      this.penguins[ii].playerPenguin = ownerId == this.humanPlayerId;
+    }
+  }
 
   /***************************************************************************************************************************
    ************************************************ ANIMATION******************************************************************
    ***************************************************************************************************************************/
   onPenguinClick(newPenguinClicked: Penguin) {
     // Not the first time a penguin is clicked in this turn
-    if (this.penguinSelected !== undefined) {
-      // The user clicked on another penguin
-      if (this.penguinSelected === newPenguinClicked) {
-        this.penguinSelected.switchPenguinColor();
-        this.penguinSelected = undefined;
-        gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+    if (newPenguinClicked.playerPenguin) {
+      if (this.penguinSelected !== undefined) {
+        // The user clicked on another penguin
+        if (this.penguinSelected === newPenguinClicked) {
+          this.penguinSelected.switchPenguinColor();
+          this.penguinSelected = undefined;
+          gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+        } else {
+          // Keep the same state : PenguinSelected
+          this.penguinSelected.switchPenguinColor();
+          this.penguinSelected = newPenguinClicked;
+          this.penguinSelected.switchPenguinColor();
+        }
       } else {
-        // Keep the same state : PenguinSelected
-        this.penguinSelected.switchPenguinColor();
         this.penguinSelected = newPenguinClicked;
         this.penguinSelected.switchPenguinColor();
+        gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
       }
     } else {
-      this.penguinSelected = newPenguinClicked;
-      this.penguinSelected.switchPenguinColor();
-      gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
+      console.log('It is not your penguin !!');
     }
   }
 

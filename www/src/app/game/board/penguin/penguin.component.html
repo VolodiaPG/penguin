@@ -5,7 +5,7 @@
   [style.height.px]="90"
   [style.left.px]="penguin.cellPosition.center.x"
   [style.top.px]="penguin.cellPosition.center.y"
-  src="{{ penguin.imageUrl }}"
+  src="{{ penguin.isSelected ? textures[0] : textures[penguin.textureIndex] }}"
   (click)="onPenguinClick()"
   [@initPenguin]="isLoaded ? 'appear' : 'disappear'"
 >

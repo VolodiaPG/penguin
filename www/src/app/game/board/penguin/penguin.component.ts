@@ -38,12 +38,15 @@ export class PenguinComponent implements OnInit {
 
   @Output() penguinClicked = new EventEmitter<Penguin>();
 
+  // Array of textures. Can be referenced by index of the penguin's owner
+  textures: string[] = ['/assets/penguin_selected.png', '/assets/penguin.png', '/assets/penguin_enemie.png'];
+
   constructor() {}
 
   ngOnInit() {}
 
   /***************************************************************************************************************************
-   ************************************************ ANIMATION******************************************************************
+   ************************************************ ANIMATION ****************************************************************
    ***************************************************************************************************************************/
   onPenguinClick() {
     console.log(this.penguin.toString());

@@ -46,7 +46,7 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
             boardValues.insert_or_assign(pos,
                                          new BoardCell(pos,
-                                                       1 //    rand() % 3 + 1 // random number of fish between 1 and 3 (included)
+                                                       rand() % 3 + 1 // random number of fish between 1 and 3 (included)
                                                        ));
         }
 
