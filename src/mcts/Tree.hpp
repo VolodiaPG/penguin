@@ -64,7 +64,7 @@ template <class CellT, class PlayerT, class PawnT>
 class Tree
 {
 protected:
-    Node<CellT, PawnT> rootNode;
+    Node<CellT, PawnT> *rootNode;
     // Node *rootNode;
     void expandNode();
 
@@ -91,7 +91,7 @@ protected:
 public:
     game::AbstractGame<CellT, PlayerT, PawnT> *game;
     MCTSConstraints constraints;
-    
+
     explicit Tree(
         game::AbstractGame<CellT, PlayerT, PawnT> *game,
         const MCTSConstraints &constraints);

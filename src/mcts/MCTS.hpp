@@ -10,7 +10,7 @@ template <class CellT, class PlayerT, class PawnT>
 class MCTS
 {
 public:
-    explicit MCTS(game::AbstractGame<CellT, PlayerT, PawnT> *game,
+    explicit MCTS(
          Tree<CellT, PlayerT, PawnT>* tree,
          const MCTSConstraints &constraints);
     ~MCTS();
@@ -40,9 +40,7 @@ protected:
 
 private:
     MCTSConstraints constraints;
-    game::AbstractGame<CellT, PlayerT, PawnT>* game;
     Tree<CellT, PlayerT, PawnT>* tree;
-    Node<CellT, PawnT>* root;
 };
 
 }

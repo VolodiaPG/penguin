@@ -14,13 +14,15 @@ struct Move
 
     bool operator==(const Move &move) const
     {
+        bool ret = true;
+        if (move.from != from)
+            ret = from != nullptr && move.from != nullptr && *move.from == *from;
 
-        bool ret = from == move.from ||
-                   (from != nullptr && move.from != nullptr && *move.from == *from);
-        ret = ret &&
-              (target == move.target || (target != nullptr && move.target != nullptr && *move.target == *target));
-        ret = ret &&
-              (pawn == move.pawn || (pawn != nullptr && move.pawn != nullptr && *move.target == *target));
+        if (ret && move.target != target)
+            ret = target != nullptr && move.target != nullptr && *move.target == *target;
+
+        if (ret && move.pawn != pawn)
+            ret = pawn != nullptr && move.pawn != nullptr && *move.target == *target;
 
         return ret;
     }

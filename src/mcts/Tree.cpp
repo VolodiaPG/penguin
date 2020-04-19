@@ -1,5 +1,6 @@
 #pragma message("iostream shouldn't be included here!")
 #include <iostream>
+#include <assert.h>
 
 #include "../game_logic/AbstractGame.hpp"
 #include "../game_logic/AbstractBoard.hpp"
@@ -13,6 +14,8 @@
 
 #include "Tree.hpp"
 
+#include "../dbg.h"
+
 namespace mcts
 {
 
@@ -23,16 +26,19 @@ Tree<CellT, PlayerT, PawnT>::Tree(
     : game(game),
       constraints(constraints)
 {
-    
+    rootNode = new Node<CellT, PawnT>();
+    rootNode->isRoot = true;
 }
 
 template <class CellT, class PlayerT, class PawnT>
 Tree<CellT, PlayerT, PawnT>::~Tree()
 {
+    if (rootNode)
+        delete rootNode;
 }
 
 // template <class CellT, class PlayerT, class PawnT>
-// size_t Tree<CellT, PlayerT, PawnT>::begin()
+// size_t Tree<CellT, PlayerT, PawnT>::begin( )
 // {
 //     timer t;
 //     while (t.milliseconds_elapsed() < static_cast<unsigned long>(constraints.time))
@@ -59,7 +65,7 @@ Tree<CellT, PlayerT, PawnT>::~Tree()
 //         }
 //     }
 
-//     return rootNode.visits;
+//     return rootNode->visits;
 // }
 
 // template <class CellT, class PlayerT, class PawnT>
@@ -81,7 +87,7 @@ Tree<CellT, PlayerT, PawnT>::~Tree()
 template <class CellT, class PlayerT, class PawnT>
 game::Move<CellT, PawnT> Tree<CellT, PlayerT, PawnT>::bestMove() const
 {
-    return nodeWithMaxVisits(&rootNode)->move;
+    return nodeWithMaxVisits(rootNode)->move;
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -250,34 +256,50 @@ Node<CellT, PawnT> *Tree<CellT, PlayerT, PawnT>::nodeWithMaxVisits(const Node<Ce
 template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> &move)
 {
-    Node<CellT, PawnT> *nextRoot = nullptr;
+    std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
+    const auto &it = std::find_if(
+        std::begin(moves),
+        std::end(moves),
+        [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
 
-    while (rootNode.childNodes.size() != 0)
-    //for(unsigned long i = 0; i < rootNode.childNodes.size(); i++)
+    assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
+    if (it != std::end(moves))
     {
-        Node<CellT, PawnT> *n = rootNode.childNodes.back();
-        //Node* n = rootNode.childNodes.at(i);
-        rootNode.childNodes.pop_back();
-        if (n->move == move)
-        {
-            nextRoot = n;
-        }
-        else
-        {
-            delete n;
-        }
+        game->play(it->pawn, it->target);
     }
 
-    if (nextRoot != nullptr)
+    if (rootNode->childNodes.size() != 0)
     {
-        rootNode = *nextRoot;
-        rootNode.parent = nullptr;
-        rootNode.move = {nullptr, nullptr, nullptr};
-        rootNode.isRoot = true;
-        for (unsigned long i = 0; i < rootNode.childNodes.size(); i++)
+        Node<CellT, PawnT> *nextRoot = nullptr;
+
+        while (rootNode->childNodes.size() != 0)
+        //for(unsigned long i = 0; i < rootNode->childNodes.size(); i++)
         {
-            rootNode.childNodes.at(i)->parent = &rootNode;
+            Node<CellT, PawnT> *n = rootNode->childNodes.back();
+            //Node* n = rootNode->childNodes.at(i);
+            rootNode->childNodes.pop_back();
+
+            if (n->move == move)
+            {
+                assert(*n->move.target == *move.target);
+                nextRoot = n;
+            }
+            else
+            {
+                assert(!(*n->move.target == *move.target));
+                delete n;
+            }
         }
+
+        assert("nextRoot shouldn't be null as it must have children !" && nextRoot != nullptr);
+
+        if (rootNode)
+            delete rootNode;
+
+        rootNode = nextRoot;
+        rootNode->parent = nullptr;
+        rootNode->move = {nullptr, nullptr, nullptr};
+        rootNode->isRoot = true;
     }
 }
 
@@ -285,30 +307,30 @@ template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
 {
     //First, merge the rootNodes
-    rootNode.visits += tree->rootNode.visits;
-    rootNode.score += tree->rootNode.score;
+    rootNode->visits += tree->rootNode->visits;
+    rootNode->score += tree->rootNode->score;
     //If the current rootNode doesn't have any children, then make a clone of all children of tree
-    //and add them to rootNode.childNodes
-    if (rootNode.childNodes.size() == 0)
+    //and add them to rootNode->childNodes
+    if (rootNode->childNodes.size() == 0)
     {
-        for (auto &child : tree->rootNode.childNodes)
+        for (Node<CellT, PawnT> *node : tree->rootNode->childNodes)
         {
-            Node<CellT, PawnT> *n = new Node<CellT, PawnT>();
-            n->score = child->score;
-            n->visits = child->visits;
-            n->move = child->move;
-            rootNode.childNodes.push_back(n);
+            Node<CellT, PawnT> *new_node = new Node<CellT, PawnT>();
+            new_node->score = node->score;
+            new_node->visits = node->visits;
+            new_node->move = node->move;
+            rootNode->childNodes.push_back(new_node);
         }
     }
     else
     //find the corresponding cell and add all visits and scores
     {
-        for (auto child : rootNode.childNodes)
+        for (auto child : rootNode->childNodes)
         {
-            for (auto check_child : tree->rootNode.childNodes)
+            for (auto check_child : tree->rootNode->childNodes)
             {
                 // if (child->targetedCell->equals(check_child->targetedCell))
-                if (child->move == check_child->move)
+                if (*child->move.target == *check_child->move.target)
                 {
                     child->score += check_child->score;
                     child->visits += check_child->visits;
@@ -321,7 +343,7 @@ void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
 template <class CellT, class PlayerT, class PawnT>
 Node<CellT, PawnT> &Tree<CellT, PlayerT, PawnT>::getRootNode()
 {
-    return rootNode;
+    return *rootNode;
 }
 
 template class Tree<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;

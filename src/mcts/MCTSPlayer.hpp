@@ -7,6 +7,8 @@
 
 #include "Tree.hpp"
 
+#define THREAD_NUMBER 4
+
 namespace mcts
 {
 
@@ -21,6 +23,8 @@ public:
         game::AbstractGame<CellT, PlayerT, PawnT> *game,
         game::AbstractPlayer *player,
         const mcts::MCTSConstraints &constraints);
+
+    ~MCTSPlayer();
 
     /**
      * @brief Returns the best move after running the ai
@@ -46,11 +50,11 @@ protected:
 
     // /**
     //  * @brief Get the Corresponding Move object
-    //  * 
-    //  * @param cell 
-    //  * @return AbstractBoardCell* 
+    //  *
+    //  * @param cell
+    //  * @return AbstractBoardCell*
     //  */
-    // game::AbstractBoardCell *getCorrespondingMove(game::AbstractBoardCell *cell);
+    const game::Move<CellT, PawnT> getCorrespondingMove(const game::Move<CellT, PawnT>& cell);
 
     /**
      * @brief Join the multiple trees into 1 so that we can get the best move
@@ -69,7 +73,7 @@ protected:
      * @brief Test tree, may be useful for debugging
      * 
      */
-    mcts::Tree<CellT, PlayerT, PawnT> *tree_test;
+    // mcts::Tree<CellT, PlayerT, PawnT> *tree_test;
 
     /**
      * @brief Current game
@@ -88,9 +92,6 @@ protected:
      * 
      */
     int num_threads = 1;
-
-private:
-    mcts::Tree<CellT, PlayerT, PawnT> *tree;
 };
 
 } // namespace mcts

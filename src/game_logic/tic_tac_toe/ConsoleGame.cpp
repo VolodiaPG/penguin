@@ -54,17 +54,13 @@ void ConsoleGame::loop()
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
 
-    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, board->getPlayerById(1), constraints);
-    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(2), constraints);
-
     Move<BoardCell, Player> move;
 
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(2), constraints);
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, board->getPlayerById(1), constraints);
     draw();
     while (!TicTacToe::isFinished())
     {
-        mcts_player_1.updateTree(move);
-        mcts_player_2.updateTree(move);
-
         if (getPlayerToPlay() == 1)
         {
             move = mcts_player_1.bestMove();
@@ -75,6 +71,10 @@ void ConsoleGame::loop()
         }
 
         play(move.pawn, move.target);
+
+        mcts_player_1.updateTree(move);
+        mcts_player_2.updateTree(move);
+
         draw();
     }
 
