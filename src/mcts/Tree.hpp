@@ -64,30 +64,29 @@ template <class CellT, class PlayerT, class PawnT>
 class Tree
 {
 protected:
-    friend class TreeVisualizer;
     Node<CellT, PawnT> rootNode;
     // Node *rootNode;
     void expandNode();
 
-    Node<CellT, PawnT> *selectBestChildAndDoAction(Node<CellT, PawnT> *node);
+    // Node<CellT, PawnT> *selectBestChildAndDoAction(Node<CellT, PawnT> *node);
 
-    Node<CellT, PawnT> *randomChooseChildOrFallbackOnNode(Node<CellT, PawnT> *node) const;
+    // Node<CellT, PawnT> *randomChooseChildOrFallbackOnNode(Node<CellT, PawnT> *node) const;
 
-    int randomSimulation() const;
+    // int randomSimulation() const;
 
-    void expandNode(Node<CellT, PawnT> *nodeToExpand);
+    // void expandNode(Node<CellT, PawnT> *nodeToExpand);
 
     Node<CellT, PawnT> *nodeWithMaxVisits(const Node<CellT, PawnT> *nodeFrom) const;
 
-    void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
+    // void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
 
-    const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int& player_id) const;
+    // const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int& player_id) const;
 
-    double formula(
-        const Node<CellT, PawnT> &node,
-        const Node<CellT, PawnT> &nodeSuccessor) const;
+    // double formula(
+    //     const Node<CellT, PawnT> &node,
+    //     const Node<CellT, PawnT> &nodeSuccessor) const;
 
-    void doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom);
+    // void doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom);
 
 public:
     game::AbstractGame<CellT, PlayerT, PawnT> *game;
@@ -98,7 +97,7 @@ public:
         const MCTSConstraints &constraints);
     ~Tree();
 
-    size_t begin();
+    // size_t begin();
 
     game::Move<CellT, PawnT> bestMove() const;
 
@@ -108,6 +107,14 @@ public:
      * @param cell 
      */
     void moveRootToMove(const game::Move<CellT, PawnT>& move);
+
+    /**
+     * @brief Merges tree into the current tree
+     * @brief Does it only for 2 layers
+     * 
+     * @param tree 
+     */
+    void merge(Tree* tree);
 };
 
 } // namespace mcts
