@@ -37,8 +37,6 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
-  @Input() currentGameState: any;
-
   isLoaded = false;
 
   nbHexagonal: number = 8; // 8
@@ -102,7 +100,7 @@ export class BoardComponent implements OnInit {
       this.cells[row] = new Array(this.nbHexagonal);
 
       for (let column = 0; column < this.nbHexagonal; column++) {
-        cell = new Cell(row, column, 0);
+        cell = new Cell(row, column);
         this.cells[row][column] = cell;
       }
     }
@@ -182,7 +180,12 @@ export class BoardComponent implements OnInit {
 
   onCellClick(cellClicked: Cell) {
     if (gameService.state.value === 'penguinSelected') {
+      this.setAvailableCellColor(false);
+      this.setSelectedPenguinColor(false);
+
+      this.wasmBoard.performMove(this.penguinSelected.wasmPenguin, cellClicked.wasmCell);
       this.penguinSelected.moveTo(cellClicked);
+
       this.penguinSelected = undefined;
       gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
     }
@@ -214,7 +217,7 @@ export class BoardComponent implements OnInit {
 
     //Add a cell on all the row
     for (let row = 0; row < this.cells.length; row++) {
-      cell = new Cell(row, this.cells[row].length, 0);
+      cell = new Cell(row, this.cells[row].length);
       this.cells[row].push(cell);
     }
 
@@ -222,7 +225,7 @@ export class BoardComponent implements OnInit {
     this.cells.push(new Array(this.nbHexagonal));
 
     for (let column = 0; column < this.cells[this.nbHexagonal - 1].length; column++) {
-      cell = new Cell(this.nbHexagonal - 1, column, 0);
+      cell = new Cell(this.nbHexagonal - 1, column);
       this.cells[this.nbHexagonal - 1][column] = cell;
     }
   }

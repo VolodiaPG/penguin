@@ -1,6 +1,8 @@
 import { Pos } from './pos';
 import { Cell } from './cell';
 
+declare var Module: any;
+
 export class Penguin {
   cellPosition: Cell = null;
   textureIndex: number = 1;
@@ -46,6 +48,15 @@ export class Penguin {
   // }
 
   toString() {
-    return 'Penguin [' + this.cellPosition.row + '][' + this.cellPosition.column + ']';
+    let wasmPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmPenguin.getCurrentCell().getPosition()));
+    return (
+      'Penguin : ' +
+      //  + '[' + this.cellPosition.row + '][' + this.cellPosition.column + ']'
+      '(' +
+      wasmPos.row +
+      ',' +
+      wasmPos.column +
+      ')'
+    );
   }
 }

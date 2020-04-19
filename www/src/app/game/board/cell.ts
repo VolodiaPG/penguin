@@ -1,8 +1,11 @@
 import { Pos } from './pos';
 
-const NORMALINDEX = 0,
-  SELECTEDINDEX = 3,
-  AVAILABLEINDEX = 6;
+const EMPTYINDEX = 0,
+  NORMALINDEX = 1,
+  SELECTEDINDEX = 4,
+  AVAILABLEINDEX = 7;
+
+declare var Module: any;
 
 /**
  *
@@ -35,19 +38,19 @@ export class Cell {
   // The radius of the hex. Ignored if hexWidth and hexHeight are set to non-null.
   hexSize: number = this.hexWidth / 2; // hexWidth / 2
 
-  constructor(row: number, column: number, nbFish: number) {
+  constructor(row: number, column: number) {
     this.row = row;
     this.column = column;
     this.center = this.getCellCenter();
     this.hasPenguin = false;
-    this.nbFish = nbFish;
-    this.terrainIndex = this.nbFish;
+    this.nbFish = 0;
+    this.terrainIndex = NORMALINDEX;
   }
 
   setWasmCell(wasmCell: any) {
     this.wasmCell = wasmCell;
     this.nbFish = wasmCell.getFish();
-    this.terrainIndex = this.nbFish;
+    this.terrainIndex = NORMALINDEX + this.nbFish;
   }
 
   // Calculates and returns the width of a hex cell.
@@ -107,6 +110,7 @@ export class Cell {
   }
 
   toString() {
-    return '(' + this.row + ',' + this.column + ')' + ' -> ' + this.nbFish;
+    let wasmPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmCell.getPosition()));
+    return '(' + wasmPos.row + ',' + wasmPos.column + ')' + ' -> ' + this.wasmCell.getFish();
   }
 }

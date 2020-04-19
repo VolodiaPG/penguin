@@ -19,8 +19,6 @@ export class GameComponent implements OnInit {
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
-  currentGameState: any;
-
   nbHexagonal: number = 8;
   nbPenguin: number = 4;
 
@@ -28,9 +26,7 @@ export class GameComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.currentGameState = gameMachine.initialState;
-  }
+  ngOnInit(): void {}
 
   /***************************************************************************************************************************
    ************************************************ START GAME ****************************************************************

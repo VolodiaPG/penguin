@@ -10,6 +10,8 @@ import { gameService } from '@app/game/+xstate/gameMachine';
 })
 export class HexComponent implements OnInit {
   @Input() cell: Cell;
+  @Input() isLoaded: boolean;
+
   @Output() cellClicked = new EventEmitter<Cell>();
 
   center: Pos;
@@ -19,6 +21,7 @@ export class HexComponent implements OnInit {
 
   // Array of textures. Can be referenced by index in terrainType.
   textures: string[] = [
+    '/assets/game/empty.png',
     '/assets/game/tileSnow_big.png',
     '/assets/game/normal_fish1.png',
     '/assets/game/normal_fish2.png',
@@ -42,7 +45,9 @@ export class HexComponent implements OnInit {
 
   onCellClick() {
     console.log(this.cell.toString());
-    this.cellClicked.emit(this.cell);
+    if (this.isSelectable()) {
+      this.cellClicked.emit(this.cell);
+    }
   }
 
   onCellHover(hover: boolean) {
@@ -63,6 +68,7 @@ export class HexComponent implements OnInit {
 
   isSelectable(): boolean {
     return (
+      this.isLoaded === true &&
       this.cell.terrainIndex !== 0 &&
       (gameService.state.value === 'waiting' ||
         (gameService.state.value === 'penguinSelected' && this.cell.isAvailable))
