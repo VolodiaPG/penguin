@@ -90,6 +90,8 @@ public:
     virtual PlayerT *getPlayerById(const unsigned int id) = 0;
 
     virtual size_t size() const = 0;
+
+    virtual AbstractBoard<CellT, PlayerT, PawnT> *clone() const = 0;
 };
 
 } // namespace game

@@ -56,7 +56,7 @@ bool Board::performMove(Player *player, BoardCell *cell)
 
 const Move<BoardCell, Player> Board::revertMove()
 {
-    auto& move = AbstractBoard<BoardCell, Player, Player>::revertMove();
+    auto &move = AbstractBoard<BoardCell, Player, Player>::revertMove();
     move.target->setValue(0);
     return move;
 }
@@ -193,6 +193,20 @@ Player *Board::getPawnById(const unsigned int id)
     default:
         return nullptr;
     }
+}
+
+AbstractBoard<BoardCell, Player, Player> *Board::clone() const
+{
+    Board *nb = new Board(*this);
+    for (size_t ii = 0; ii < boardValues.size(); ++ii)
+    {
+        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
+        {
+            BoardCell *cell = boardValues[ii][jj];
+            nb->boardValues[ii][jj] = new BoardCell(*cell);
+        }
+    }
+    return nb;
 }
 
 } // namespace tic_tac_toe

@@ -133,7 +133,7 @@ public:
 
     Player *getPlayerById(const unsigned int id) override { return getPawnById(id); };
 
-    // Position begin();
+    AbstractBoard<BoardCell, Player, Player> *clone() const override;
 };
 
 } // namespace tic_tac_toe

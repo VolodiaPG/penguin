@@ -160,6 +160,8 @@ public:
     PenguinPawn *getPawnById(const unsigned int penguin_id) override;
 
     HumanPlayer *getPlayerById(const unsigned int human_player_id) override;
+
+    AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *clone() const override;
 };
 
 } // namespace penguin

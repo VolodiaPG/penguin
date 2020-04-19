@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <algorithm>
 
 #include "../AbstractBoard.hpp"
 #include "../utils/Position3D.hpp"
@@ -303,6 +304,17 @@ PenguinPawn *Board::getPawnById(const unsigned int penguin_id)
 HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 {
     return _players[human_player_id - 1];
+}
+
+AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
+{
+    Board *nb = new Board(*this);
+    std::transform(
+        std::begin(boardValues),
+        std::end(boardValues),
+        std::inserter(nb->boardValues, std::end(nb->boardValues)),
+        [](const BoardCell *cell) -> BoardCell * { return new BoardCell(*cell); });
+    return nb;
 }
 
 } // namespace penguin
