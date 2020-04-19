@@ -25,7 +25,10 @@ export class HexComponent implements OnInit {
     '/assets/game/normal_fish3.png',
     '/assets/game/selected_fish1.png',
     '/assets/game/selected_fish2.png',
-    '/assets/game/selected_fish3.png'
+    '/assets/game/selected_fish3.png',
+    '/assets/game/available_fish1.png',
+    '/assets/game/available_fish2.png',
+    '/assets/game/available_fish3.png'
   ];
 
   isSelected: boolean;

@@ -89,13 +89,18 @@ export class Cell {
     if (set) {
       this.terrainIndex = SELECTEDINDEX + this.nbFish;
     } else {
-      this.terrainIndex = NORMALINDEX + this.nbFish;
+      if (this.isAvailable) {
+        this.terrainIndex = AVAILABLEINDEX + this.nbFish;
+      } else {
+        this.terrainIndex = NORMALINDEX + this.nbFish;
+      }
     }
   }
 
   setAvailableColor(set: boolean) {
+    this.isAvailable = set;
     if (set) {
-      this.terrainIndex = SELECTEDINDEX + this.nbFish;
+      this.terrainIndex = AVAILABLEINDEX + this.nbFish;
     } else {
       this.terrainIndex = NORMALINDEX + this.nbFish;
     }
