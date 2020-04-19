@@ -90,9 +90,6 @@ export class BoardComponent implements OnInit {
 
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
     this.generatePenguinFromWasmBoard();
-
-    console.log(this.wasmPenguins.size());
-    // console.log("WasmGame loaded : " + this.currentGameState.value);
   }
 
   /***************************************************************************************************************************
@@ -120,9 +117,7 @@ export class BoardComponent implements OnInit {
     for (let ii = 0; ii < wasmCells.size(); ii++) {
       let wasmCell: any = wasmCells.get(ii);
       let wasmCellPos = wasmCell.getPosition();
-      // console.log(wasmCellPos, " : ", Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos)));
       wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
-      console.log(wasmCellPos);
       this.cells[wasmCellPos.row][wasmCellPos.column].setWasmCell(wasmCell);
     }
   }
@@ -146,18 +141,12 @@ export class BoardComponent implements OnInit {
   generatePenguinFromWasmBoard() {
     for (let ii = 0; ii < this.penguins.length; ii++) {
       this.penguins[ii].wasmPenguin = this.wasmPenguins.get(ii);
+
       let ownerId: any = this.penguins[ii].wasmPenguin.getOwner().getId();
       this.penguins[ii].textureIndex = ownerId;
       this.penguins[ii].playerPenguin = ownerId == this.humanPlayerId;
-      this.wasmBoard.performMove(this.wasmPenguins.get(ii), this.penguins[ii].cellPosition.wasmCell);
 
-      console.log(
-        this.penguins[ii].cellPosition.toString(),
-        ' : ',
-        Module.hex_cube_to_offset(
-          Module.hex_axial_to_cube(this.penguins[ii].wasmPenguin.getCurrentCell().getPosition())
-        )
-      );
+      this.wasmBoard.performMove(this.wasmPenguins.get(ii), this.penguins[ii].cellPosition.wasmCell);
     }
   }
 
@@ -168,26 +157,27 @@ export class BoardComponent implements OnInit {
     // Not the first time a penguin is clicked in this turn
     if (newPenguinClicked.playerPenguin) {
       if (this.penguinSelected !== undefined) {
-        // The user clicked on another penguin
+        // The user clicked :
+        // - on the same penguin
         if (this.penguinSelected === newPenguinClicked) {
-          this.penguinSelected.switchPenguinColor();
+          this.setSelectedPenguinColor(false);
           this.penguinSelected = undefined;
           gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
         } else {
+          // - on an another penguin
           // Keep the same state : PenguinSelected
-          this.penguinSelected.switchPenguinColor();
+          this.setSelectedPenguinColor(false);
           this.penguinSelected = newPenguinClicked;
-          this.penguinSelected.switchPenguinColor();
+          this.setSelectedPenguinColor(true);
         }
       } else {
         this.penguinSelected = newPenguinClicked;
-        this.penguinSelected.switchPenguinColor();
+        this.setSelectedPenguinColor(true);
         gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
       }
     } else {
       this.presentErrorToast('It is not your penguin !!');
     }
-    this.setAvailableCellColor();
   }
 
   onCellClick(cellClicked: Cell) {
@@ -198,13 +188,18 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  setAvailableCellColor() {
+  setSelectedPenguinColor(set: boolean) {
+    this.penguinSelected.switchPenguinColor();
+    this.setAvailableCellColor(set);
+  }
+
+  setAvailableCellColor(set: boolean) {
     if (this.penguinSelected !== undefined) {
       var availableCells: any = this.wasmBoard.getAvailableCells(this.penguinSelected.wasmPenguin);
       for (let ii = 0; ii < availableCells.size(); ii++) {
         let wasmCellPos = availableCells.get(ii).getPosition();
         wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
-        this.cells[wasmCellPos.row][wasmCellPos.column].setAvailableColor(true);
+        this.cells[wasmCellPos.row][wasmCellPos.column].setAvailableColor(set);
       }
     }
   }

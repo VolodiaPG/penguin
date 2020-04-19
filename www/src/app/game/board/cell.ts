@@ -19,8 +19,8 @@ export class Cell {
 
   wasmCell: any;
 
-  isEmpty: boolean;
-  isOver: boolean;
+  isAvailable: boolean = false;
+  isGone: boolean = false;
 
   hasPenguin: boolean;
 
@@ -34,18 +34,6 @@ export class Cell {
 
   // The radius of the hex. Ignored if hexWidth and hexHeight are set to non-null.
   hexSize: number = this.hexWidth / 2; // hexWidth / 2
-  drawHexSize: number = 40; // 40
-  aspectRatio: number = this.hexHeight / this.hexWidth; // hexHeight / hexWidth
-
-  hexAxis: Pos = { x: 0, y: 0 };
-  hexDrawAxis: Pos = { x: (1 - Math.sqrt(3) / 2) * this.hexWidth + this.hexWidth, y: this.hexHeight };
-
-  // The color to use when drawing hex outlines.
-  hexLineColor: number = 0xd0d0d0; // 0xd0d0d0
-  hexLineColorSelected: number = 0xff5521; // 0xff5521
-
-  // The width in pixels of the hex outline.
-  hexLineWidth: number = 2; // 2
 
   constructor(row: number, column: number, nbFish: number) {
     this.row = row;

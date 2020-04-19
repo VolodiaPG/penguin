@@ -46,13 +46,23 @@ export class HexComponent implements OnInit {
     this.setSelectedColor(hover);
   }
 
-  setSelectedColor(isSelected: boolean) {
-    if (this.isSelected && !isSelected && this.cell.terrainIndex !== 0) {
-      this.cell.setSelectedColor(false);
-      this.isSelected = false;
-    } else if (!this.isSelected && isSelected && this.cell.terrainIndex !== 0) {
-      this.cell.setSelectedColor(true);
-      this.isSelected = true;
+  setSelectedColor(newStatus: boolean) {
+    if (this.isSelectable()) {
+      if (this.isSelected && !newStatus) {
+        this.cell.setSelectedColor(false);
+        this.isSelected = false;
+      } else if (!this.isSelected && newStatus) {
+        this.cell.setSelectedColor(true);
+        this.isSelected = true;
+      }
     }
+  }
+
+  isSelectable(): boolean {
+    return (
+      this.cell.terrainIndex !== 0 &&
+      (gameService.state.value === 'waiting' ||
+        (gameService.state.value === 'penguinSelected' && this.cell.isAvailable))
+    );
   }
 }
