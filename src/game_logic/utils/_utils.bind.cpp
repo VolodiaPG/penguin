@@ -16,8 +16,8 @@ using namespace emscripten;
 EMSCRIPTEN_BINDINGS(game_logic_utils_bind)
 {
     value_object<Position>("Position")
-        .field("x", &Position::x)
-        .field("y", &Position::y);
+        .field("column", &Position::x) //To make the link with the frontend implementation
+        .field("row", &Position::y);
 
     value_object<Position3D>("Position3D")
         .field("x", &Position3D::x)

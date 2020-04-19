@@ -123,7 +123,7 @@ export class BoardComponent implements OnInit {
       // console.log(wasmCellPos, " : ", Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos)));
       wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
       console.log(wasmCellPos);
-      this.cells[wasmCellPos.y][wasmCellPos.x].setWasmCell(wasmCell);
+      this.cells[wasmCellPos.row][wasmCellPos.column].setWasmCell(wasmCell);
     }
   }
 
@@ -204,7 +204,7 @@ export class BoardComponent implements OnInit {
       for (let ii = 0; ii < availableCells.size(); ii++) {
         let wasmCellPos = availableCells.get(ii).getPosition();
         wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(wasmCellPos));
-        this.cells[wasmCellPos.y][wasmCellPos.x].setAvailableColor(true);
+        this.cells[wasmCellPos.row][wasmCellPos.column].setAvailableColor(true);
       }
     }
   }
