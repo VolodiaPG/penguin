@@ -31,7 +31,7 @@ template <class CellT, class PlayerT, class PawnT>
 void MCTSPlayer<CellT, PlayerT, PawnT>::updateTree(const game::Move<CellT, PawnT> &last_move_played)
 {
     tree->moveRootToMove(last_move_played);
-}
+} 
 
 template <class CellT, class PlayerT, class PawnT>
 void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
@@ -62,21 +62,21 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
     
 }
 
-template <class CellT, class PlayerT, class PawnT>
-game::AbstractBoardCell* MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(game::AbstractBoardCell* cell)
-{
-    //For every cell in the current game, test if it is equal to cell
-    //If it is then return that cell
-    for(unsigned long i = 0; i < game->board->getBoardCells().size(); i++)
-    {
-        game::AbstractBoardCell* cellToTest = game->board->getBoardCells().at(i);
-        if(cell->equals(cellToTest))
-        {
-            return cellToTest;
-        }
-    }
-    return nullptr;
-}
+// template <class CellT, class PlayerT, class PawnT>
+// game::AbstractBoardCell* MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(game::AbstractBoardCell* cell)
+// {
+//     //For every cell in the current game, test if it is equal to cell
+//     //If it is then return that cell
+//     for(unsigned long i = 0; i < game->board->getBoardCells().size(); i++)
+//     {
+//         game::AbstractBoardCell* cellToTest = game->board->getBoardCells().at(i);
+//         if(cell->equals(cellToTest))
+//         {
+//             return cellToTest;
+//         }
+//     }
+//     return nullptr;
+// }
 
 template <class CellT, class PlayerT, class PawnT>
 mcts::Tree<CellT, PlayerT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::joinTrees()
