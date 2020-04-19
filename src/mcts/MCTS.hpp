@@ -14,13 +14,13 @@ public:
          Tree<CellT, PlayerT, PawnT>* tree,
          const MCTSConstraints &constraints);
     ~MCTS();
-    void begin();
+    size_t begin();
 
 protected:
 
     void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
 
-    game::AbstractBoardCell *getRandomAvailableCellFromBoard() const;
+    const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int &player_id) const;
 
     double formula(
         const Node<CellT, PawnT> &node,

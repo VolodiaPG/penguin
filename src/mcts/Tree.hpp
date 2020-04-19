@@ -115,6 +115,8 @@ public:
      * @param tree 
      */
     void merge(Tree* tree);
+
+    Node<CellT, PawnT>& getRootNode();
 };
 
 } // namespace mcts

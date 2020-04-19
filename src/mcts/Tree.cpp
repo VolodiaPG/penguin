@@ -291,7 +291,7 @@ void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
     //and add them to rootNode.childNodes
     if (rootNode.childNodes.size() == 0)
     {
-        for (auto& child : tree->rootNode.childNodes)
+        for (auto &child : tree->rootNode.childNodes)
         {
             Node<CellT, PawnT> *n = new Node<CellT, PawnT>();
             n->score = child->score;
@@ -316,6 +316,12 @@ void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
             }
         }
     }
+}
+
+template <class CellT, class PlayerT, class PawnT>
+Node<CellT, PawnT>& Tree<CellT, PlayerT, PawnT>::getRootNode()
+{
+    return rootNode;
 }
 
 template class Tree<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;
