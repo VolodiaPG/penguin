@@ -23,7 +23,7 @@ Tree<CellT, PlayerT, PawnT>::Tree(
     : game(game),
       constraints(constraints)
 {
-    rootNode.isRoot = true;
+    
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -319,7 +319,7 @@ void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
 }
 
 template <class CellT, class PlayerT, class PawnT>
-Node<CellT, PawnT>& Tree<CellT, PlayerT, PawnT>::getRootNode()
+Node<CellT, PawnT> &Tree<CellT, PlayerT, PawnT>::getRootNode()
 {
     return rootNode;
 }

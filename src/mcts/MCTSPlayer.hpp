@@ -5,13 +5,6 @@
 #include "../game_logic/AbstractGame.hpp"
 #include "../game_logic/AbstractPlayer.hpp"
 
-#include "../game_logic/tic_tac_toe/BoardCell.hpp"
-#include "../game_logic/tic_tac_toe/Player.hpp"
-
-#include "../game_logic/penguin/BoardCell.hpp"
-#include "../game_logic/penguin/HumanPlayer.hpp"
-#include "../game_logic/penguin/PenguinPawn.hpp"
-
 #include "Tree.hpp"
 
 namespace mcts
@@ -99,9 +92,6 @@ protected:
 private:
     mcts::Tree<CellT, PlayerT, PawnT> *tree;
 };
-
-template class MCTSPlayer<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;
-template class MCTSPlayer<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn>;
 
 } // namespace mcts
 #endif

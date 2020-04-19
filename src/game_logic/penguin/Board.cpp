@@ -313,7 +313,9 @@ AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
         std::begin(boardValues),
         std::end(boardValues),
         std::inserter(nb->boardValues, std::end(nb->boardValues)),
-        [](const BoardCell *cell) -> BoardCell * { return new BoardCell(*cell); });
+        [](std::pair<const Position, BoardCell *> pair) -> std::pair<const Position, BoardCell *> {
+            return std::pair<const Position, BoardCell *>(pair.first, new BoardCell(*pair.second));
+        });
     return nb;
 }
 

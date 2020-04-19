@@ -91,7 +91,7 @@ protected:
 public:
     game::AbstractGame<CellT, PlayerT, PawnT> *game;
     MCTSConstraints constraints;
-
+    
     explicit Tree(
         game::AbstractGame<CellT, PlayerT, PawnT> *game,
         const MCTSConstraints &constraints);
@@ -106,7 +106,7 @@ public:
      * 
      * @param cell 
      */
-    void moveRootToMove(const game::Move<CellT, PawnT>& move);
+    void moveRootToMove(const game::Move<CellT, PawnT> &move);
 
     /**
      * @brief Merges tree into the current tree
@@ -114,9 +114,9 @@ public:
      * 
      * @param tree 
      */
-    void merge(Tree* tree);
+    void merge(Tree *tree);
 
-    Node<CellT, PawnT>& getRootNode();
+    Node<CellT, PawnT> &getRootNode();
 };
 
 } // namespace mcts

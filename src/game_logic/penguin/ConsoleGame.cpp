@@ -4,6 +4,7 @@
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 #include "PenguinGame.hpp"
+#include "HumanPlayer.hpp"
 #include "PenguinPawn.hpp"
 #include "PrintHex.hpp"
 
@@ -51,7 +52,7 @@ void ConsoleGame::loop()
     mcts::MCTSConstraints constraints;
     constraints.time = 250;
 
-    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(&_game, _game.board->getPlayerById(1), constraints);
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(static_cast<AbstractGame<BoardCell, HumanPlayer, PenguinPawn> *>(&_game), _game.board->getPlayerById(1), constraints);
     mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, _game.board->getPlayerById(2), constraints);
     Move<BoardCell, PenguinPawn> move;
 
