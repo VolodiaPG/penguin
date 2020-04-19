@@ -90,5 +90,12 @@ Board *PenguinGame::getBoard() const
 {
     return static_cast<Board *>(board);
 }
+
+AbstractGame<BoardCell, HumanPlayer, PenguinPawn> *PenguinGame::clone() const
+{
+    PenguinGame* game = new PenguinGame(*this);
+    game->board = board->clone();
+    return game;
+}
 } // namespace penguin
 } // namespace game

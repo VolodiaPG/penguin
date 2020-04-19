@@ -37,6 +37,7 @@ public:
     int checkStatus() const override;
     Board *getBoard() const;
     std::vector<Move<BoardCell, PenguinPawn>> getAvailableMoves(HumanPlayer *player) override;
+    AbstractGame<BoardCell, HumanPlayer, PenguinPawn>* clone() const override;
 };
 } // namespace penguin
 } // namespace game

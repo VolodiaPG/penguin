@@ -57,6 +57,7 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
     {
         //Create only 1 ai and run it
         mcts::MCTS<CellT, PlayerT, PawnT> ai(game->clone(), trees.at(0), constraints);
+        // TODO check for the life time of the object, where is it destroyed ?
         ai.begin();
     }
     

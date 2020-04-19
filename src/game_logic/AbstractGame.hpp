@@ -60,6 +60,13 @@ public:
    * @return Move containing all the necessary informations
    */
    virtual std::vector<Move<CellT, PawnT>> getAvailableMoves(PlayerT* player) = 0;
+
+   /**
+     * @brief Clone function for clonning games
+     * 
+     * @return AbstractGame* 
+     */
+    virtual AbstractGame<CellT, PlayerT, PawnT>* clone() const = 0;
 };
 } // namespace game
 

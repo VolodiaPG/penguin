@@ -70,5 +70,12 @@ int TicTacToe::checkStatus() const
 {
     return board->checkStatus();
 }
+
+AbstractGame<BoardCell, Player, Player> *TicTacToe::clone() const
+{
+    TicTacToe *ttt = new TicTacToe(*this);
+    ttt->board = board->clone();
+    return ttt;
+}
 } // namespace tic_tac_toe
 } // namespace game
