@@ -72,7 +72,7 @@ export class ControlComponent implements OnInit {
       message: "Let's go !!! ",
       color: 'success',
       position: 'top',
-      duration: 3000
+      duration: 1000
     });
     toast.present();
   }

@@ -3,11 +3,19 @@ import { Machine, interpret } from 'xstate';
 export const gameMachine = Machine(
   {
     id: 'gameLogic',
-    initial: 'waiting',
+    initial: 'moveBlocked',
     context: {
       count: 0
     },
     states: {
+      moveBlocked: {
+        on: {
+          HUMANTURN: {
+            target: 'waiting',
+            actions: ['notifyHumanTurn']
+          }
+        }
+      },
       waiting: {
         on: {
           PENGUINSELECTED: {
@@ -26,7 +34,7 @@ export const gameMachine = Machine(
       movePerformed: {
         on: {
           FINISHED: 'gameFinished',
-          PLAYERSWITCHED: 'playerSwitched'
+          SWITCHPLAYER: 'playerSwitched'
         }
       },
       gameFinished: {
@@ -34,15 +42,18 @@ export const gameMachine = Machine(
       },
       playerSwitched: {
         on: {
-          WAITING: 'waiting'
+          PLAYERSWITCHED: 'moveBlocked'
         }
       }
     }
   },
   {
     actions: {
+      notifyHumanTurn: (context, event) => {
+        console.log('It is your turn !');
+      },
       notifyPenguinSelected: (context, event) => {
-        console.log('Select a cell to move this penguin');
+        console.log('Select a cell to move this penguin !');
       }
     }
   }

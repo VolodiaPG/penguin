@@ -9,27 +9,28 @@ export class Penguin {
 
   wasmPenguin: any;
 
-  playerPenguin: boolean;
+  // playerPenguin: boolean;
 
   private moveToAnimation: any;
 
   isSelected: boolean;
 
-  imageUrl: string;
-
-  constructor(cell: Cell, playerPenguin: boolean) {
+  constructor(cell: Cell) {
     this.cellPosition = cell;
-    this.playerPenguin = playerPenguin;
     this.isSelected = false;
-    this.imageUrl = '/assets/penguin.png';
+  }
+
+  setWasmPenguin(wasmPenguin: any) {
+    this.wasmPenguin = wasmPenguin;
+    this.textureIndex = this.wasmPenguin.getOwner().getId();
   }
 
   switchPenguinColor() {
     this.isSelected = !this.isSelected;
     if (this.isSelected) {
-      this.imageUrl = '/assets/penguin_selected.png';
+      this.textureIndex = 0;
     } else {
-      this.imageUrl = '/assets/penguin.png';
+      this.textureIndex = this.wasmPenguin.getOwner().getId();
     }
   }
 
@@ -57,7 +58,8 @@ export class Penguin {
       wasmPos.row +
       ',' +
       wasmPos.column +
-      ')'
+      ')' +
+      this.wasmPenguin.getOwner().getId()
     );
   }
 }

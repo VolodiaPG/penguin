@@ -52,9 +52,9 @@ export class BoardComponent implements OnInit {
   penguins: Array<Penguin>;
   penguinSelected: Penguin;
 
-  currentPlayerId: number = 1;
+  currentPlayerId: number;
 
-  humanPlayerId: number = 1;
+  humanPlayerId: number;
 
   // Wasm objects
   wasmGame: any;
@@ -88,6 +88,12 @@ export class BoardComponent implements OnInit {
 
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
     this.generatePenguinFromWasmBoard();
+
+    this.currentPlayerId = this.wasmGame.getPlayerToPlay();
+    console.log(this.currentPlayerId);
+    this.humanPlayerId = this.currentPlayerId;
+
+    this.playTurn();
   }
 
   /***************************************************************************************************************************
@@ -129,7 +135,7 @@ export class BoardComponent implements OnInit {
         rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         if (!this.cells[rndRow][rndColumn].hasPenguin) {
-          this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn], true);
+          this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn]);
           this.cells[rndRow][rndColumn].hasPenguin = true;
         }
       }
@@ -138,40 +144,66 @@ export class BoardComponent implements OnInit {
 
   generatePenguinFromWasmBoard() {
     for (let ii = 0; ii < this.penguins.length; ii++) {
-      this.penguins[ii].wasmPenguin = this.wasmPenguins.get(ii);
+      this.penguins[ii].setWasmPenguin(this.wasmPenguins.get(ii));
 
-      let ownerId: any = this.penguins[ii].wasmPenguin.getOwner().getId();
-      this.penguins[ii].textureIndex = ownerId;
-      this.penguins[ii].playerPenguin = ownerId == this.humanPlayerId;
-
-      this.wasmBoard.performMove(this.wasmPenguins.get(ii), this.penguins[ii].cellPosition.wasmCell);
+      this.wasmBoard.performMove(this.penguins[ii].wasmPenguin, this.penguins[ii].cellPosition.wasmCell);
     }
   }
 
   /***************************************************************************************************************************
-   ************************************************ ANIMATION*****************************************************************
+   ************************************************ GAME LOGIC ***************************************************************
+   ***************************************************************************************************************************/
+  playTurn() {
+    if (this.currentPlayerId === this.humanPlayerId) {
+      this.presentSuccessToast('It is your turn !');
+      gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
+    } else {
+      this.presentErrorToast('Wasm is playing !');
+    }
+  }
+
+  switchCurrentPlayer() {
+    this.currentPlayerId = (this.currentPlayerId % 2) + 1;
+    gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
+  }
+
+  movePerformed() {
+    let currentStatus = this.wasmBoard.checkStatus();
+    if (currentStatus === 0) {
+      // The game isn't finished
+      gameService.send(gameService.machine.states.movePerformed.on.SWITCHPLAYER[0].eventType);
+      this.switchCurrentPlayer();
+      this.playTurn();
+    } else {
+      gameService.send(gameService.machine.states.movePerformed.on.FINISHED[0].eventType);
+      if (currentStatus === -1) {
+        // draw
+      } else {
+        console.log(currentStatus + ' has won !');
+      }
+    }
+  }
+
+  /***************************************************************************************************************************
+   ************************************************ ANIMATION ****************************************************************
    ***************************************************************************************************************************/
   onPenguinClick(newPenguinClicked: Penguin) {
-    // Not the first time a penguin is clicked in this turn
-    if (newPenguinClicked.playerPenguin) {
-      if (this.penguinSelected !== undefined) {
-        // The user clicked :
-        // - on the same penguin
-        if (this.penguinSelected === newPenguinClicked) {
-          this.setSelectedPenguinColor(false);
-          this.penguinSelected = undefined;
-          gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
-        } else {
-          // - on an another penguin
-          // Keep the same state : PenguinSelected
-          this.setSelectedPenguinColor(false);
-          this.penguinSelected = newPenguinClicked;
-          this.setSelectedPenguinColor(true);
-        }
-      } else {
+    if (newPenguinClicked.textureIndex === 0) {
+      // The user clicked on the same penguin
+      this.setSelectedPenguinColor(false);
+      this.penguinSelected = undefined;
+      gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
+    } else if (newPenguinClicked.textureIndex === this.humanPlayerId) {
+      if (gameService.state.value === 'waiting') {
         this.penguinSelected = newPenguinClicked;
         this.setSelectedPenguinColor(true);
         gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
+      } else if (gameService.state.value === 'penguinSelected') {
+        // The user clicked on an another penguin
+        // Keep the same state : PenguinSelected
+        this.setSelectedPenguinColor(false);
+        this.penguinSelected = newPenguinClicked;
+        this.setSelectedPenguinColor(true);
       }
     } else {
       this.presentErrorToast('It is not your penguin !!');
@@ -183,10 +215,11 @@ export class BoardComponent implements OnInit {
       this.setAvailableCellColor(false);
       this.setSelectedPenguinColor(false);
 
-      if (this.wasmBoard.performMove(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
+      if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
         this.penguinSelected.moveTo(cellClicked);
         this.penguinSelected = undefined;
         gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+        this.movePerformed();
       } else {
         console.log('Wasm blocked the move');
         this.setAvailableCellColor(true);
@@ -251,6 +284,16 @@ export class BoardComponent implements OnInit {
   /***************************************************************************************************************************
    ************************************************ TOAST ********************************************************************
    ***************************************************************************************************************************/
+  async presentSuccessToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      color: 'success',
+      position: 'top',
+      duration: 3000
+    });
+    toast.present();
+  }
+
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
