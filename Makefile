@@ -1,5 +1,9 @@
 EMSCRIPTEN_PATH ?= /emsdk/upstream/emscripten
 
+GREEN   = \033[1;32m
+
+WHITE   = \033[0;m
+
 # default environement
 
 # native env needs to be specified,
@@ -53,12 +57,16 @@ endif
 all: build
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
+	@$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
+	@printf "\n[$(GREEN)OK$(WHITE)] Binary : $(TARGET_EXEC)\n"
+	@echo "-------------------\n"
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
-	$(MKDIR_P) $(dir $@)
-	$(CXX) -c $< $(CPPFLAGS) -o $@
+	@$(MKDIR_P) $(dir $@)
+	@$(CXX) $(CPPFLAGS) -c -o $@ $<
+	@printf "[$(GREEN)OK$(WHITE)] $<\n"
+# $(CXX) -c $< $(CPPFLAGS) -o $@ $<
 
 #specific rules
 build: $(BUILD_DIR)/$(TARGET_EXEC)

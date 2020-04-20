@@ -308,7 +308,7 @@ HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 
 AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
 {
-    Board *nb = new Board(*this);
+    Board *nb = new Board(_dimension, _penguins_on_board.size());
     std::transform(
         std::begin(boardValues),
         std::end(boardValues),
@@ -316,6 +316,14 @@ AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
         [](std::pair<const Position, BoardCell *> pair) -> std::pair<const Position, BoardCell *> {
             return std::pair<const Position, BoardCell *>(pair.first, new BoardCell(*pair.second));
         });
+
+    for (auto &penguin : _penguins_on_board)
+    {
+        const auto &penguin_original = _penguins_on_board[penguin->getId()];
+        const Position& pos = penguin_original->getCurrentCell()->getPosition();
+        const auto &current_cell = nb->getCell(pos.x, pos.y);
+        penguin->setCurrentCell(current_cell);
+    }
     return nb;
 }
 

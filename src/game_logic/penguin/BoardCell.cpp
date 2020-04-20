@@ -12,7 +12,7 @@ BoardCell::BoardCell(const Position &position, unsigned int number_fish)
 {
 }
 
-bool BoardCell::operator==(const BoardCell &cell) const
+bool BoardCell::equals_to(const BoardCell &cell) const
 {
     return cell.position == position;
 }

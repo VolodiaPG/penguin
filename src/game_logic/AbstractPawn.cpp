@@ -1,12 +1,9 @@
 #include <assert.h>
 
-#include "utils/Move.hpp"
-#include "AbstractBoardCell.hpp"
-#include "AbstractPlayer.hpp"
-
 #include "tic_tac_toe/Player.hpp"
 #include "tic_tac_toe/BoardCell.hpp"
 #include "penguin/HumanPlayer.hpp"
+#include "penguin/PenguinPawn.hpp"
 #include "penguin/BoardCell.hpp"
 
 #include "AbstractPawn.hpp"
@@ -34,11 +31,17 @@ CellT *AbstractPawn<PlayerT, CellT>::getCurrentCell() const
 }
 
 template <class PlayerT, class CellT>
-bool AbstractPawn<PlayerT, CellT>::operator==(const AbstractPawn &pawn) const
+bool AbstractPawn<PlayerT, CellT>::equals_to(const AbstractPawn<PlayerT, CellT> &pawn) const
 {
-    return _id == pawn._id &&
-           *_owner == *pawn._owner &&
-           *_current_cell == *pawn._current_cell;
+    bool ret = _id == pawn._id;
+
+    if (_owner != pawn._owner)
+        ret = _owner != nullptr && pawn._owner != nullptr && _owner->getId() == pawn._owner->getId();
+
+    if (ret && _current_cell != pawn._current_cell)
+        ret = _current_cell != nullptr && pawn._current_cell != nullptr && *_current_cell == *pawn._current_cell;
+
+    return ret;
 }
 
 template class AbstractPawn<tic_tac_toe::Player, tic_tac_toe::BoardCell>;

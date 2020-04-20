@@ -197,7 +197,7 @@ Player *Board::getPawnById(const unsigned int id)
 
 AbstractBoard<BoardCell, Player, Player> *Board::clone() const
 {
-    Board *nb = new Board(*this);
+    Board *nb = new Board();
     for (size_t ii = 0; ii < boardValues.size(); ++ii)
     {
         for (size_t jj = 0; jj < boardValues[0].size(); ++jj)

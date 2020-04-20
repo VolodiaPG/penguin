@@ -5,9 +5,6 @@ namespace game
 namespace tic_tac_toe
 {
 
-// BoardCell::BoardCell()
-// {
-// }
 
 BoardCell::BoardCell(const Position &position)
     : position(position)
@@ -30,7 +27,7 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
-bool BoardCell::operator==(const BoardCell &cell) const
+bool BoardCell::equals_to(const BoardCell &cell) const
 {
     return cell.position == position;
 }

@@ -60,8 +60,6 @@ void ConsoleGame::loop()
 
     while (!_game.isFinished())
     {
-        mcts_player_1.updateTree(move);
-        mcts_player_2.updateTree(move);
 
         if (_game.getPlayerToPlay() == 1)
         {
@@ -71,8 +69,11 @@ void ConsoleGame::loop()
         {
             move = mcts_player_2.bestMove();
         }
-
+        
         _game.play(move.pawn, move.target);
+
+        mcts_player_1.updateTree(move);
+        mcts_player_2.updateTree(move);
         draw();
     }
 

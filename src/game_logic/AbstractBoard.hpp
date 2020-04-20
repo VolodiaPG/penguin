@@ -22,6 +22,10 @@ private:
     History<CellT, PawnT> _history;
 
 public:
+    explicit AbstractBoard() = default;
+
+    explicit AbstractBoard(const AbstractBoard<CellT, PlayerT, PawnT>&) = delete;
+
     virtual ~AbstractBoard(){};
 
     /**

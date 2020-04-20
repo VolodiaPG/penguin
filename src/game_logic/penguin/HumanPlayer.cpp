@@ -23,5 +23,21 @@ void HumanPlayer::substractScore(int score)
 {
     _score -= score;
 }
+
+bool HumanPlayer::equals_to(const HumanPlayer &player) const
+{
+    return _score == player._score &&
+           _penguins == player._penguins;
+}
+
+void HumanPlayer::addPenguin(PenguinPawn *penguin)
+{
+    _penguins.push_back(penguin);
+}
+
+std::vector<PenguinPawn *> HumanPlayer::getPenguins() const
+{
+    return _penguins;
+}
 } // namespace penguin
 } // namespace game

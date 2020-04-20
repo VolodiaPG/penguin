@@ -3,6 +3,7 @@
 
 #include "../AbstractBoardCell.hpp"
 #include "../utils/Position.hpp"
+#include "../utils/Iequals.hpp"
 
 namespace game
 {
@@ -10,7 +11,8 @@ namespace penguin
 {
 class PenguinPawn;
 
-class BoardCell : public AbstractBoardCell
+class BoardCell : public AbstractBoardCell,
+                  public IEquals_Derived<BoardCell, AbstractBoardCell>
 {
 private:
     /**
@@ -73,7 +75,7 @@ public:
      * 
      * @param penguin The penguin that stands on top of the cell
      */
-    void setOwner(PenguinPawn* penguin) { _owner = penguin; };
+    void setOwner(PenguinPawn *penguin) { _owner = penguin; };
 
     /**
      * @brief Nobody owns the cell now
@@ -103,7 +105,7 @@ public:
      */
     unsigned int getFish() const { return _number_fish; }
 
-    bool operator==(const BoardCell &cell) const;
+    bool equals_to(const BoardCell &cell) const override;
 };
 } // namespace penguin
 } // namespace game

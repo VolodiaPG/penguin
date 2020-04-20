@@ -17,6 +17,9 @@
 #include "MCTSPlayer.hpp"
 
 #include "../dbg.h"
+#pragma message("PrintHex here")
+#include "../game_logic/penguin/PrintHex.hpp"
+#include "../game_logic/penguin/PenguinGame.hpp"
 
 namespace mcts
 {
@@ -63,8 +66,14 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::updateTree(const game::Move<CellT, PawnT
     // tree->moveRootToMove(last_move_played);
 
     //Moves all rootNodes to the corresponding cell
+    // game::penguin::PrintHex printer(reinterpret_cast<game::penguin::PenguinGame *>(game)->getBoard());
+    // printer.print();
     for (unsigned long i = 0; i < trees.size(); i++)
+    {
+        // game::penguin::PrintHex printer2(reinterpret_cast<game::penguin::PenguinGame *>(game)->getBoard());
+        // printer2.print();
         trees.at(i)->moveRootToMove(last_move_played);
+    }
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -103,7 +112,7 @@ const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondi
     //For every cell in the current game, test if it is equal to cell
     //If it is then return that cell
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
-    const auto &it = std::find_if(
+    const auto it = std::find_if(
         std::begin(moves),
         std::end(moves),
         [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });

@@ -256,11 +256,23 @@ Node<CellT, PawnT> *Tree<CellT, PlayerT, PawnT>::nodeWithMaxVisits(const Node<Ce
 template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> &move)
 {
+    // if (*game->board->getPawnById(move.pawn->getId())->getCurrentCell() != *move.target)
+    // {
+
+    // auto target = reinterpret_cast<const game::penguin::BoardCell *>(move.target);
+    // dbg(target->getPosition().x);
+    // dbg(target->getPosition().y);
+
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
     const auto &it = std::find_if(
         std::begin(moves),
         std::end(moves),
-        [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
+        [move](const game::Move<CellT, PawnT> &move_testing) -> bool {
+            // auto cell = reinterpret_cast<const game::penguin::BoardCell *>(move_testing.target);
+            // dbg(cell->getPosition().x);
+            // dbg(cell->getPosition().y);
+            return move == move_testing;
+        });
 
     assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
     if (it != std::end(moves))
@@ -286,7 +298,7 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
             }
             else
             {
-                assert(!(*n->move.target == *move.target));
+                // assert(!(*n->move.target == *move.target));
                 delete n;
             }
         }
@@ -301,6 +313,7 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
         rootNode->move = {nullptr, nullptr, nullptr};
         rootNode->isRoot = true;
     }
+    // }
 }
 
 template <class CellT, class PlayerT, class PawnT>

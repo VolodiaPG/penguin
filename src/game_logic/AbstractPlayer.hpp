@@ -1,9 +1,11 @@
 #ifndef ABSTRACT_PLAYER_HPP_
 #define ABSTRACT_PLAYER_HPP_
 
+#include "utils/Iequals.hpp"
+
 namespace game
 {
-class AbstractPlayer
+class AbstractPlayer : public IEquals_Base<AbstractPlayer>
 {
 private:
     /**
@@ -11,6 +13,9 @@ private:
      * 
      */
     unsigned int id;
+
+protected:
+    bool equals_to(const AbstractPlayer &player) const override;
 
 public:
     /**
@@ -20,6 +25,8 @@ public:
      */
     explicit AbstractPlayer(unsigned int id);
 
+    explicit AbstractPlayer(const AbstractPlayer &) = default;
+    
     virtual ~AbstractPlayer(){};
 
     /**
@@ -28,8 +35,6 @@ public:
      * @return constexpr unsigned int the id
      */
     unsigned int getId() const { return id; };
-
-    bool operator==(const AbstractPlayer& player) const;
 };
 
 } // namespace game

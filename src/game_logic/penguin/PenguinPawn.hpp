@@ -10,8 +10,12 @@ namespace penguin
 class BoardCell;
 class HumanPlayer;
 
-class PenguinPawn : public AbstractPawn<HumanPlayer, BoardCell>
+class PenguinPawn : public AbstractPawn<HumanPlayer, BoardCell>,
+                    public IEquals_Derived<PenguinPawn, AbstractPawn<HumanPlayer, BoardCell>>
 {
+protected:
+    bool equals_to(const PenguinPawn& penguin) const override;
+
 public:
     /**
      * @brief Construct a new Penguin Player object

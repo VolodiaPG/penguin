@@ -15,7 +15,8 @@ class BoardCell;
 class Board;
 class PenguinPawn;
 
-class HumanPlayer : public AbstractPlayer
+class HumanPlayer : public AbstractPlayer,
+                    public IEquals_Derived<HumanPlayer, AbstractPlayer>
 {
 private:
     /**
@@ -35,7 +36,10 @@ private:
      * 
      */
     friend class Board;
-    void addPenguin(PenguinPawn *penguin) { _penguins.push_back(penguin); };
+    void addPenguin(PenguinPawn *penguin);
+
+protected:
+    bool equals_to(const HumanPlayer &pawn) const override;
 
 public:
     explicit HumanPlayer(unsigned int id);
@@ -66,7 +70,7 @@ public:
      * 
      * @return std::vector<const unsigned int> the list of all the penguins
      */
-    std::vector<PenguinPawn *> getPenguins() const { return _penguins; };
+    std::vector<PenguinPawn *> getPenguins() const;
 };
 } // namespace penguin
 } // namespace game

@@ -11,5 +11,10 @@ Player::Player(unsigned int id)
       AbstractPawn(id, *this)
 {
 }
+
+bool Player::equals_to(const Player &) const
+{
+  return true;
+}
 } // namespace tic_tac_toe
 } // namespace game

@@ -7,7 +7,7 @@
 
 #include "Tree.hpp"
 
-#define THREAD_NUMBER 4
+#define THREAD_NUMBER 1
 
 namespace mcts
 {

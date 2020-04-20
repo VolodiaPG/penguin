@@ -3,6 +3,7 @@
 
 #include "../utils/Position.hpp"
 #include "../AbstractBoardCell.hpp"
+#include "../utils/Iequals.hpp"
 
 namespace game
 {
@@ -10,7 +11,8 @@ namespace game
 namespace tic_tac_toe
 {
 
-class BoardCell : public AbstractBoardCell
+class BoardCell : public AbstractBoardCell,
+                  public IEquals_Derived<BoardCell, AbstractBoardCell>
 {
 private:
     /**
@@ -24,6 +26,9 @@ private:
     * 
     */
     const Position position;
+
+protected:
+    bool equals_to(const BoardCell &cell) const override;
 
 public:
     // /**
@@ -68,8 +73,6 @@ public:
      * @return false the cell isn't
      */
     bool isClaimed() const;
-
-    bool operator==(const BoardCell &cell) const;
 };
 
 } // namespace tic_tac_toe
