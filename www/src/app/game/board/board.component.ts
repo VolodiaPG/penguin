@@ -78,7 +78,7 @@ export class BoardComponent implements OnInit {
   }
 
   /***************************************************************************************************************************
-   ************************************************ START GAME ****************************************************************
+   ************************************************ START GAME ***************************************************************
    ***************************************************************************************************************************/
   startWasmGame() {
     this.isLoaded = true;
@@ -91,7 +91,7 @@ export class BoardComponent implements OnInit {
   }
 
   /***************************************************************************************************************************
-   ************************************* MAP/TEXTURES *************************************************************************
+   ************************************* MAP/TEXTURES ************************************************************************
    ***************************************************************************************************************************/
   generateMap() {
     console.log('Generate Map');
@@ -149,7 +149,7 @@ export class BoardComponent implements OnInit {
   }
 
   /***************************************************************************************************************************
-   ************************************************ ANIMATION******************************************************************
+   ************************************************ ANIMATION*****************************************************************
    ***************************************************************************************************************************/
   onPenguinClick(newPenguinClicked: Penguin) {
     // Not the first time a penguin is clicked in this turn
@@ -183,11 +183,15 @@ export class BoardComponent implements OnInit {
       this.setAvailableCellColor(false);
       this.setSelectedPenguinColor(false);
 
-      this.wasmBoard.performMove(this.penguinSelected.wasmPenguin, cellClicked.wasmCell);
-      this.penguinSelected.moveTo(cellClicked);
-
-      this.penguinSelected = undefined;
-      gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+      if (this.wasmBoard.performMove(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
+        this.penguinSelected.moveTo(cellClicked);
+        this.penguinSelected = undefined;
+        gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+      } else {
+        console.log('Wasm blocked the move');
+        this.setAvailableCellColor(true);
+        this.setSelectedPenguinColor(true);
+      }
     }
   }
 
@@ -208,7 +212,7 @@ export class BoardComponent implements OnInit {
   }
 
   /***************************************************************************************************************************
-   ************************************************ PREVIEW *******************************************************************
+   ************************************************ PREVIEW ******************************************************************
    ***************************************************************************************************************************/
   addHexagonal(): void {
     this.nbHexagonal++;

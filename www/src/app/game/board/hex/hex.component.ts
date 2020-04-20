@@ -44,9 +44,11 @@ export class HexComponent implements OnInit {
   }
 
   onCellClick() {
-    console.log(this.cell.toString());
-    if (this.isSelectable()) {
-      this.cellClicked.emit(this.cell);
+    if (this.isLoaded) {
+      console.log(this.cell.toString());
+      if (this.isSelectable()) {
+        this.cellClicked.emit(this.cell);
+      }
     }
   }
 

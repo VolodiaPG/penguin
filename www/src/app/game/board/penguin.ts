@@ -35,6 +35,7 @@ export class Penguin {
 
   moveTo(newCell: Cell) {
     console.log(this.toString() + ' move from ' + this.cellPosition.toString() + ' to ' + newCell.toString());
+    this.cellPosition.isGone();
     this.cellPosition = newCell;
   }
 

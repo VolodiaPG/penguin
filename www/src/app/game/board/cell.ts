@@ -23,7 +23,6 @@ export class Cell {
   wasmCell: any;
 
   isAvailable: boolean = false;
-  isGone: boolean = false;
 
   hasPenguin: boolean;
 
@@ -109,8 +108,12 @@ export class Cell {
     }
   }
 
+  isGone() {
+    this.terrainIndex = EMPTYINDEX;
+  }
+
   toString() {
     let wasmPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmCell.getPosition()));
-    return '(' + wasmPos.row + ',' + wasmPos.column + ')' + ' -> ' + this.wasmCell.getFish();
+    return '(' + wasmPos.row + ',' + wasmPos.column + ')' + this.wasmCell.isGone() + ' -> ' + this.wasmCell.getFish();
   }
 }
