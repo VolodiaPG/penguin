@@ -256,63 +256,69 @@ Node<CellT, PawnT> *Tree<CellT, PlayerT, PawnT>::nodeWithMaxVisits(const Node<Ce
 template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> &move)
 {
-    // if (*game->board->getPawnById(move.pawn->getId())->getCurrentCell() != *move.target)
-    // {
-
-    // auto target = reinterpret_cast<const game::penguin::BoardCell *>(move.target);
-    // dbg(target->getPosition().x);
-    // dbg(target->getPosition().y);
-
-    std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
-    const auto &it = std::find_if(
-        std::begin(moves),
-        std::end(moves),
-        [move](const game::Move<CellT, PawnT> &move_testing) -> bool {
-            // auto cell = reinterpret_cast<const game::penguin::BoardCell *>(move_testing.target);
-            // dbg(cell->getPosition().x);
-            // dbg(cell->getPosition().y);
-            return move == move_testing;
-        });
-
-    assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
-    if (it != std::end(moves))
     {
-        game->play(it->pawn, it->target);
-    }
+        std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
+        const auto &it = std::find_if(
+            std::begin(moves),
+            std::end(moves),
+            [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
 
-    if (rootNode->childNodes.size() != 0)
-    {
-        Node<CellT, PawnT> *nextRoot = nullptr;
-
-        while (rootNode->childNodes.size() != 0)
-        //for(unsigned long i = 0; i < rootNode->childNodes.size(); i++)
+        assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
+        if (it != std::end(moves))
         {
-            Node<CellT, PawnT> *n = rootNode->childNodes.back();
-            //Node* n = rootNode->childNodes.at(i);
-            rootNode->childNodes.pop_back();
-
-            if (n->move == move)
-            {
-                assert(*n->move.target == *move.target);
-                nextRoot = n;
-            }
-            else
-            {
-                // assert(!(*n->move.target == *move.target));
-                delete n;
-            }
+            game->play(it->pawn, it->target);
         }
-
-        assert("nextRoot shouldn't be null as it must have children !" && nextRoot != nullptr);
-
-        if (rootNode)
-            delete rootNode;
-
-        rootNode = nextRoot;
-        rootNode->parent = nullptr;
-        rootNode->move = {nullptr, nullptr, nullptr};
-        rootNode->isRoot = true;
     }
+    {
+        const auto &nextRoot = std::find_if(
+            std::begin(rootNode->childNodes),
+            std::end(rootNode->childNodes),
+            [move](Node<CellT, PawnT> *&node) -> bool { return node->move == move; });
+
+        if (nextRoot != std::end(rootNode->childNodes))
+        {
+            rootNode->childNodes.erase(std::remove_if(
+                std::begin(rootNode->childNodes),
+                std::end(rootNode->childNodes),
+                [move](Node<CellT, PawnT> *&node) -> bool { return node->move == move; }));
+
+            if (rootNode)
+                delete rootNode;
+
+            rootNode = *nextRoot;
+            rootNode->parent = nullptr;
+            rootNode->move = {nullptr, nullptr, nullptr};
+            rootNode->isRoot = true;
+        }
+    }
+
+    //     for (const auto &node : rootNode->childNodes)
+    //     // while (rootNode->childNodes.size() != 0)
+    //     //for(unsigned long i = 0; i < rootNode->childNodes.size(); i++)
+    //     {
+    //         // Node<CellT, PawnT> *n = rootNode->childNodes.back();
+    //         //Node* n = rootNode->childNodes.at(i);
+    //         // rootNode->childNodes.pop_back();
+
+    //         if (node->move == move)
+    //         {
+    //             assert(*node->move.target == *move.target);
+    //             nextRoot = node;
+    //         }
+    //     }
+
+    //     if (nextRoot)
+    //     {
+    //         rootNode->childNodes.clear();
+    //         if (rootNode)
+    //             delete rootNode;
+
+    //         rootNode = nextRoot;
+    //         rootNode->parent = nullptr;
+    //         rootNode->move = {nullptr, nullptr, nullptr};
+    //         rootNode->isRoot = true;
+    //     }
+    // }
     // }
 }
 

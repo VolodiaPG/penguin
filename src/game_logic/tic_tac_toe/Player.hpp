@@ -12,18 +12,15 @@ namespace tic_tac_toe
 class BoardCell;
 
 class Player : public AbstractPlayer,
-               public AbstractPawn<Player, BoardCell>,
-               public IEquals_Derived<Player, AbstractPlayer>,
-               public IEquals_Derived<Player, AbstractPawn<Player, BoardCell>>
+               public AbstractPawn<Player, BoardCell>
 {
-protected:
-    bool equals_to(const Player &player) const override;
-
 public:
     explicit Player(unsigned int id);
 
     using AbstractPlayer::getId;
-    using AbstractPawn::operator==;
+
+    using AbstractPawn<Player, BoardCell>::operator==;
+    using AbstractPawn<Player, BoardCell>::operator!=;
 };
 } // namespace tic_tac_toe
 } // namespace game

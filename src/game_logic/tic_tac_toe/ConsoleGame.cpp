@@ -70,10 +70,13 @@ void ConsoleGame::loop()
             move = mcts_player_2.bestMove();
         }
 
-        play(move.pawn, move.target);
-
+        draw();
+        
         mcts_player_1.updateTree(move);
         mcts_player_2.updateTree(move);
+        
+        play(move.pawn, move.target);
+
 
         draw();
     }

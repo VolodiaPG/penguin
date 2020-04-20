@@ -1,13 +1,10 @@
 #ifndef ABSTRACT_PAWN_HPP_
 #define ABSTRACT_PAWN_HPP_
-
-#include "utils/Iequals.hpp"
-
 namespace game
 {
 
 template <class PlayerT, class CellT>
-class AbstractPawn : public IEquals_Base<AbstractPawn<PlayerT, CellT>>
+class AbstractPawn
 {
 
 private:
@@ -16,12 +13,12 @@ private:
     PlayerT *_owner;
 
 protected:
-    bool equals_to(const AbstractPawn<PlayerT, CellT> &pawn) const override;
+    virtual bool equals_to(const AbstractPawn<PlayerT, CellT> &pawn) const;
 
 public:
     explicit AbstractPawn(unsigned int id, PlayerT &owner);
 
-    explicit AbstractPawn(const AbstractPawn<PlayerT, CellT>&) = delete;
+    explicit AbstractPawn(const AbstractPawn<PlayerT, CellT> &) = delete;
 
     virtual ~AbstractPawn(){};
 
@@ -42,6 +39,9 @@ public:
     void setCurrentCell(CellT *cell);
 
     CellT *getCurrentCell() const;
+
+    bool operator==(const AbstractPawn<PlayerT, CellT> &pawn) const { return equals_to(pawn); };
+    bool operator!=(const AbstractPawn<PlayerT, CellT> &pawn) const { return !equals_to(pawn); };
 };
 
 } // namespace game

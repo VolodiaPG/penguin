@@ -15,8 +15,7 @@ class BoardCell;
 class Board;
 class PenguinPawn;
 
-class HumanPlayer : public AbstractPlayer,
-                    public IEquals_Derived<HumanPlayer, AbstractPlayer>
+class HumanPlayer : public AbstractPlayer
 {
 private:
     /**
@@ -39,7 +38,7 @@ private:
     void addPenguin(PenguinPawn *penguin);
 
 protected:
-    bool equals_to(const HumanPlayer &pawn) const override;
+    bool equals_to(const AbstractPlayer &pawn) const override;
 
 public:
     explicit HumanPlayer(unsigned int id);

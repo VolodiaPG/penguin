@@ -35,7 +35,7 @@ bool AbstractPawn<PlayerT, CellT>::equals_to(const AbstractPawn<PlayerT, CellT> 
 {
     bool ret = _id == pawn._id;
 
-    if (_owner != pawn._owner)
+    if (ret && _owner != pawn._owner)
         ret = _owner != nullptr && pawn._owner != nullptr && _owner->getId() == pawn._owner->getId();
 
     if (ret && _current_cell != pawn._current_cell)

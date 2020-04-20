@@ -12,9 +12,17 @@ BoardCell::BoardCell(const Position &position, unsigned int number_fish)
 {
 }
 
-bool BoardCell::equals_to(const BoardCell &cell) const
+bool BoardCell::equals_to(const AbstractBoardCell &cell) const
 {
-    return cell.position == position;
+    const BoardCell *ce = dynamic_cast<const BoardCell *>(&cell);
+    bool ret = ce != nullptr;
+
+    if (ret)
+    {
+        ret = ce->position == position;
+    }
+
+    return ret;
 }
 
 } // namespace penguin

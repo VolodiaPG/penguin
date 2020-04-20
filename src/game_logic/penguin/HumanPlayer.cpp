@@ -24,10 +24,19 @@ void HumanPlayer::substractScore(int score)
     _score -= score;
 }
 
-bool HumanPlayer::equals_to(const HumanPlayer &player) const
+bool HumanPlayer::equals_to(const AbstractPlayer &player_raw) const
 {
-    return _score == player._score &&
-           _penguins == player._penguins;
+    bool ret = AbstractPlayer::equals_to(player_raw);
+    const auto player = dynamic_cast<const HumanPlayer *>(&player_raw);
+    ret = ret && player != nullptr;
+
+    if (ret)
+    {
+        ret = _score == player->_score &&
+              _penguins == player->_penguins;
+    }
+
+    return ret;
 }
 
 void HumanPlayer::addPenguin(PenguinPawn *penguin)

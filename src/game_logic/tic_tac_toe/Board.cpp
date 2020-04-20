@@ -206,6 +206,18 @@ AbstractBoard<BoardCell, Player, Player> *Board::clone() const
             nb->boardValues[ii][jj] = new BoardCell(*cell);
         }
     }
+
+    const BoardCell *cell;
+    if ((cell = player1.getCurrentCell()) != nullptr)
+    {
+        const Position &pos = cell->getPosition();
+        nb->player1.setCurrentCell(nb->getCell(pos.x, pos.y));
+    }
+    if ((cell = player2.getCurrentCell()) != nullptr)
+    {
+        const Position &pos = cell->getPosition();
+        nb->player2.setCurrentCell(nb->getCell(pos.x, pos.y));
+    }
     return nb;
 }
 

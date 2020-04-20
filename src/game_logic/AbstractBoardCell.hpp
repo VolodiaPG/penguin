@@ -1,20 +1,22 @@
 #ifndef ABSTRACT_BOARD_CELL_HPP_
 #define ABSTRACT_BOARD_CELL_HPP_
 
-#include "utils/Iequals.hpp"
-
 namespace game
 {
-class AbstractBoardCell : public IEquals_Base<AbstractBoardCell>
+class AbstractBoardCell
 {
+protected:
+    virtual bool equals_to(const AbstractBoardCell &cell) const = 0;
+
 public:
     explicit AbstractBoardCell() = default;
 
-    explicit AbstractBoardCell(const AbstractBoardCell&) = default;
+    explicit AbstractBoardCell(const AbstractBoardCell &) = default;
 
     virtual ~AbstractBoardCell(){};
 
-    bool equals_to(const AbstractBoardCell& cell) const override;
+    bool operator==(const AbstractBoardCell &cell) { return equals_to(cell); };
+    bool operator!=(const AbstractBoardCell &cell) { return !equals_to(cell); };
 };
 } // namespace game
 

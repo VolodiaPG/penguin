@@ -1,20 +1,21 @@
 #ifndef MOVE_HPP_
 #define MOVE_HPP_
 
-#include "Iequals.hpp"
-
 namespace game
 {
 
 template <class CellT, class PawnT>
-struct Move : IEquals_Base<Move<CellT, PawnT>>
+struct Move
 {
     CellT *from = nullptr;
     CellT *target = nullptr;
     PawnT *pawn = nullptr;
 
+    bool operator==(const Move &move) const { return equals_to(move); };
+    bool operator!=(const Move &move) const { return !equals_to(move);};
+
 protected:
-    bool equals_to(const Move &move) const override
+    bool equals_to(const Move &move) const
     {
         bool ret = true;
         if (move.from != from)

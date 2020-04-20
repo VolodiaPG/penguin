@@ -5,7 +5,6 @@ namespace game
 namespace tic_tac_toe
 {
 
-
 BoardCell::BoardCell(const Position &position)
     : position(position)
 {
@@ -27,9 +26,17 @@ bool BoardCell::isClaimed() const
     return value;
 }
 
-bool BoardCell::equals_to(const BoardCell &cell) const
+bool BoardCell::equals_to(const AbstractBoardCell &cell) const
 {
-    return cell.position == position;
+    const BoardCell *ce = dynamic_cast<const BoardCell *>(&cell);
+    bool ret = ce != nullptr;
+
+    if (ret)
+    {
+        ret = ce->position == position;
+    }
+
+    return ret;
 }
 
 } // namespace tic_tac_toe

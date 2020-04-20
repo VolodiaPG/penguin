@@ -21,6 +21,8 @@
 #include "../game_logic/penguin/PrintHex.hpp"
 #include "../game_logic/penguin/PenguinGame.hpp"
 
+#include "../game_logic/tic_tac_toe/ConsoleGame.hpp"
+
 namespace mcts
 {
 
@@ -111,6 +113,7 @@ const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondi
 {
     //For every cell in the current game, test if it is equal to cell
     //If it is then return that cell
+    reinterpret_cast<game::tic_tac_toe::ConsoleGame*>(game)->draw();
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
     const auto it = std::find_if(
         std::begin(moves),
