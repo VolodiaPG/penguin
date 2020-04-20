@@ -33,6 +33,8 @@ public:
     void setCurrentCell(CellT *cell);
 
     CellT *getCurrentCell() const;
+
+    bool operator==(const AbstractPawn& pawn) const;
 };
 
 } // namespace game

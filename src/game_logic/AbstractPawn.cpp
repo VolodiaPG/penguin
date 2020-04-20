@@ -15,7 +15,7 @@ namespace game
 {
 
 template <class PlayerT, class CellT>
-AbstractPawn<PlayerT, CellT>::AbstractPawn(unsigned int id, PlayerT& owner)
+AbstractPawn<PlayerT, CellT>::AbstractPawn(unsigned int id, PlayerT &owner)
     : _id(id),
       _owner(&owner)
 {
@@ -31,6 +31,14 @@ template <class PlayerT, class CellT>
 CellT *AbstractPawn<PlayerT, CellT>::getCurrentCell() const
 {
     return _current_cell;
+}
+
+template <class PlayerT, class CellT>
+bool AbstractPawn<PlayerT, CellT>::operator==(const AbstractPawn &pawn) const
+{
+    return _id == pawn._id &&
+           *_owner == *pawn._owner &&
+           *_current_cell == *pawn._current_cell;
 }
 
 template class AbstractPawn<tic_tac_toe::Player, tic_tac_toe::BoardCell>;

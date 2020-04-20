@@ -28,6 +28,8 @@ public:
      * @return constexpr unsigned int the id
      */
     unsigned int getId() const { return id; };
+
+    bool operator==(const AbstractPlayer& player) const;
 };
 
 } // namespace game
