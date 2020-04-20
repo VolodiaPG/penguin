@@ -13,10 +13,8 @@ export class ControlComponent implements OnInit {
 
   gameStarted: boolean;
 
-  nbPenguin: number;
-  valueRangePenguin: number = 4;
+  valueRangePenguin: number = 2;
 
-  nbHexagonal: number;
   valueRangeHexagonal: number = 8;
 
   constructor(private alertController: AlertController, private toastController: ToastController) {}

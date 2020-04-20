@@ -20,7 +20,7 @@ export class GameComponent implements OnInit {
   private boardComponent: BoardComponent;
 
   nbHexagonal: number = 8;
-  nbPenguin: number = 4;
+  nbPenguin: number = 2;
 
   gameStarted: boolean = false;
 
@@ -64,7 +64,6 @@ export class GameComponent implements OnInit {
       this.boardComponent.removeHexagonal();
     }
     this.nbHexagonal = event.detail.value;
-    console.log('New nb of hexagonals : ' + this.nbHexagonal);
   }
 
   nbPenguinChanged(event: any) {
@@ -74,6 +73,5 @@ export class GameComponent implements OnInit {
       this.boardComponent.removePenguin();
     }
     this.nbPenguin = event.detail.value;
-    console.log('New nb of penguins : ' + this.nbPenguin);
   }
 }

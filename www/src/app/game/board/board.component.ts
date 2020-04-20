@@ -81,18 +81,18 @@ export class BoardComponent implements OnInit {
    ************************************************ START GAME ***************************************************************
    ***************************************************************************************************************************/
   startWasmGame() {
-    this.isLoaded = true;
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
     this.generateMapFromWasmBoard();
 
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
+    this.generatePenguin();
     this.generatePenguinFromWasmBoard();
 
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
-    console.log(this.currentPlayerId);
     this.humanPlayerId = this.currentPlayerId;
 
+    this.isLoaded = true;
     this.playTurn();
   }
 
@@ -143,6 +143,7 @@ export class BoardComponent implements OnInit {
   }
 
   generatePenguinFromWasmBoard() {
+    console.log(this.penguins.length, this.wasmPenguins.size());
     for (let ii = 0; ii < this.penguins.length; ii++) {
       this.penguins[ii].setWasmPenguin(this.wasmPenguins.get(ii));
 
@@ -265,6 +266,8 @@ export class BoardComponent implements OnInit {
       cell = new Cell(this.nbHexagonal - 1, column);
       this.cells[this.nbHexagonal - 1][column] = cell;
     }
+
+    console.log('New nb of hexagonals : ', this.nbHexagonal);
   }
 
   removeHexagonal(): void {
@@ -275,11 +278,37 @@ export class BoardComponent implements OnInit {
     }
     //Remove a row
     this.cells.pop();
+
+    console.log('New nb of hexagonals : ', this.nbHexagonal);
   }
 
-  addPenguin(): void {}
+  addPenguin(): void {
+    let penguin: Penguin = undefined;
+    let rndRow: number, rndColumn: number;
 
-  removePenguin(): void {}
+    for (let ii = 0; ii < 2; ii++) {
+      while (penguin === undefined) {
+        rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+        rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+
+        if (!this.cells[rndRow][rndColumn].hasPenguin) {
+          penguin = new Penguin(this.cells[rndRow][rndColumn]);
+          this.cells[rndRow][rndColumn].hasPenguin = true;
+        }
+      }
+      this.penguins.push(penguin);
+      penguin = undefined;
+    }
+
+    this.nbPenguin = this.nbPenguin + 1;
+    console.log('New nb of penguins : ', this.nbPenguin, 'New lg of penguins : ', this.penguins.length);
+  }
+
+  removePenguin(): void {
+    this.nbPenguin = this.nbPenguin - 1;
+    this.penguins.pop();
+    this.penguins.pop();
+  }
 
   /***************************************************************************************************************************
    ************************************************ TOAST ********************************************************************
