@@ -29,7 +29,7 @@ public:
     virtual ~AbstractBoard(){};
 
     /**
-    * @brief perform a movement on the board
+    * @brief perform a movement on the board, sets the current cell on the pawn
     * 
     * @param player the player that realizes the movement
     * @param cell the cell targeted
@@ -38,6 +38,11 @@ public:
     */
     virtual bool performMove(PawnT *pawn, CellT *cell);
 
+    /**
+     * @brief revertMove & sets the current cell on the pawn
+     * 
+     * @return const Move<CellT, PawnT> 
+     */
     virtual const Move<CellT, PawnT> revertMove();
 
     /**

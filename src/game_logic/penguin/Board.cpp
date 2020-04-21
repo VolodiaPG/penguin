@@ -301,6 +301,11 @@ PenguinPawn *Board::getPawnById(const unsigned int penguin_id)
     return _penguins_on_board[penguin_id];
 }
 
+PenguinPawn *Board::getPawnById(const unsigned int& penguin_id) const
+{
+    return _penguins_on_board[penguin_id];
+}
+
 HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 {
     return _players[human_player_id - 1];
@@ -308,19 +313,25 @@ HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 
 AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
 {
-    Board *nb = new Board(_dimension, _penguins_on_board.size());
-    std::transform(
-        std::begin(boardValues),
-        std::end(boardValues),
-        std::inserter(nb->boardValues, std::end(nb->boardValues)),
-        [](std::pair<const Position, BoardCell *> pair) -> std::pair<const Position, BoardCell *> {
-            return std::pair<const Position, BoardCell *>(pair.first, new BoardCell(*pair.second));
-        });
+    Board *nb = new Board(_dimension, _penguins_on_board.size() / 2);
 
-    for (auto &penguin : _penguins_on_board)
+    for (auto &pair : nb->boardValues)
     {
-        const auto &penguin_original = _penguins_on_board[penguin->getId()];
-        const Position& pos = penguin_original->getCurrentCell()->getPosition();
+        if (pair.second)
+            delete pair.second;
+    }
+    nb->boardValues.clear();
+
+    for (const auto &pair : boardValues)
+    {
+        if (pair.second)
+            nb->boardValues[pair.first] = pair.second->clone(nb);
+    }
+
+    for (auto &penguin : nb->_penguins_on_board)
+    {
+        const auto &penguin_original = getPawnById(penguin->getId());
+        const Position &pos = penguin_original->getCurrentCell()->getPosition();
         const auto &current_cell = nb->getCell(pos.x, pos.y);
         penguin->setCurrentCell(current_cell);
     }

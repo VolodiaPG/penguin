@@ -159,6 +159,8 @@ public:
 
     PenguinPawn *getPawnById(const unsigned int penguin_id) override;
 
+    PenguinPawn *getPawnById(const unsigned int &penguin_id) const;
+
     HumanPlayer *getPlayerById(const unsigned int human_player_id) override;
 
     AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *clone() const override;

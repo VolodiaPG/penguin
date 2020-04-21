@@ -48,16 +48,20 @@ bool Board::checkForCorrectness(const Position &pos) const
 
 bool Board::performMove(Player *player, BoardCell *cell)
 {
-    AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
+    bool ret = AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
     cell->setValue(player->getId());
 
-    return true;
+    return ret;
 }
 
 const Move<BoardCell, Player> Board::revertMove()
 {
     auto &move = AbstractBoard<BoardCell, Player, Player>::revertMove();
     move.target->setValue(0);
+    // if (move.from)
+    // {
+    //     move.from->setValue(move.pawn->getId());
+    // }
     return move;
 }
 

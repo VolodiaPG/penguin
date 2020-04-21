@@ -61,40 +61,6 @@ size_t MCTS<CellT, PlayerT, PawnT>::begin()
 
     dbg(rootNode.visits);
     return rootNode.visits;
-
-    // timer t;
-    // root = tree->getRootNode();
-
-    // while (t.milliseconds_elapsed() < (unsigned long)constraints.time)
-    // {
-    //     for (int ii = 0; ii < NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO; ++ii)
-    //     {
-    //         //std::cout << "Selection" << std::endl;
-    //         Node<CellT, PawnT> *promisingNode = selectBestChildAndDoAction(root);
-
-    //         //std::cout << "Expand" << std::endl;
-    //         if (!game->isFinished())
-    //         {
-
-    //             expandNode(promisingNode);
-    //         }
-
-    //         //std::cout << "Random" << std::endl;
-    //         Node<CellT, PawnT> *nodeToExplore = randomChooseChildOrFallbackOnNode(promisingNode);
-
-    //         //std::cout << "Do Action" << std::endl;
-    //         if (nodeToExplore != promisingNode)
-    //         {
-    //             doActionOnBoard(*nodeToExplore);
-    //         }
-
-    //         //std::cout << "Simulation" << std::endl;
-    //         int winnerId = randomSimulation();
-
-    //         //std::cout << "Backprop" << std::endl;
-    //         backPropagateAndRevertAction(winnerId, nodeToExplore);
-    //     }
-    // }
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -105,24 +71,13 @@ void MCTS<CellT, PlayerT, PawnT>::expandNode(Node<CellT, PawnT> *nodeToExpand)
 
     for (const game::Move<CellT, PawnT> &move : tree->game->getAvailableMoves(player))
     {
+        assert("The player that should be playing is not the one that owns the pawns" && player->getId() == move.pawn->getOwner()->getId());
         Node<CellT, PawnT> *node = new Node<CellT, PawnT>();
         node->parent = nodeToExpand;
         node->move = move;
 
         nodeToExpand->childNodes.push_back(node);
     }
-    // // the turn has already been played, now it's the next player's turn
-    // game::AbstractPlayer *nextPlayer = tree->game->getPlayerToPlay();
-
-    // for (game::AbstractBoardCell *move : tree->game->board->getAvailableCells())
-    // {
-    //     Node<CellT, PawnT> *node = new Node<CellT, PawnT>();
-    //     node->parent = nodeToExpand;
-    //     node->player = nextPlayer;
-    //     node->targetedCell = move;
-
-    //     nodeToExpand->childNodes.push_back(node);
-    // }
 }
 
 template <class CellT, class PlayerT, class PawnT>

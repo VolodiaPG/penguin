@@ -38,8 +38,8 @@ MCTSPlayer<CellT, PlayerT, PawnT>::MCTSPlayer(
 {
     //Initialize all trees
     //TODO optimiser, pas besoin de cloner a chaque fois pour le 0, prendre directe le game qu'on passe !
-    for (int i = 0; i < num_threads; i++)
-        trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
+    // for (int i = 0; i < num_threads; i++)
+    //     trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -82,6 +82,11 @@ template <class CellT, class PlayerT, class PawnT>
 void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
 {
     std::vector<std::thread> threads;
+    if (trees.size() == 0)
+    {
+        for (int i = 0; i < num_threads; i++)
+            trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
+    }
     //We test here if there are more than 1 thread
     //We don't really need to launch a new thread if we only have 1 tree
     if (num_threads > 1)
@@ -113,14 +118,24 @@ const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondi
 {
     //For every cell in the current game, test if it is equal to cell
     //If it is then return that cell
-    reinterpret_cast<game::tic_tac_toe::ConsoleGame*>(game)->draw();
+    // reinterpret_cast<game::tic_tac_toe::ConsoleGame *>(game)->draw();
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
+
+    assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
+
     const auto it = std::find_if(
         std::begin(moves),
         std::end(moves),
-        [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
+        [move](const game::Move<CellT, PawnT> &move_testing) -> bool {
+            if (*move.target == *move_testing.target)
+                dbg(move_testing.target);
+            return move == move_testing;
+        });
 
-    assert("Should never return null !!!!! Meaning the move doesn't translate to the current game playing" && it != std::end(moves));
+    std::vector<game::Move<CellT, PawnT>> moves_temp = trees[0]->game->getAvailableMoves(trees[0]->game->board->getPlayerById(move.pawn->getOwner()->getId()));
+    assert(moves_temp.size() > 0);
+
+    assert("The move doesn't translate to the game outside the tree(s)/MCTS context" && it != std::end(moves));
 
     if (it != std::end(moves))
     {
