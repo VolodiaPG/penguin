@@ -18,7 +18,7 @@ namespace mcts
 
 template <class CellT, class PlayerT, class PawnT>
 MCTS<CellT, PlayerT, PawnT>::MCTS(
-    mcts::Tree<CellT, PlayerT, PawnT> *tree,
+    mcts::Tree<CellT, PlayerT, PawnT> *&tree,
     const MCTSConstraints &constraints)
     : constraints(constraints),
       tree(tree)

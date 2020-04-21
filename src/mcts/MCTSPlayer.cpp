@@ -21,7 +21,7 @@
 #include "../game_logic/penguin/PrintHex.hpp"
 #include "../game_logic/penguin/PenguinGame.hpp"
 
-#include "../game_logic/tic_tac_toe/ConsoleGame.hpp"
+#include "../game_logic/tic_tac_toe/Board.hpp"
 
 namespace mcts
 {
@@ -53,8 +53,63 @@ MCTSPlayer<CellT, PlayerT, PawnT>::~MCTSPlayer()
 template <class CellT, class PlayerT, class PawnT>
 game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
 {
+    if (trees.size() > 0)
+    {
+        game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(trees[0]->game->board);
+        const std::vector<game::tic_tac_toe::BoardCell *>
+            cells = board->getBoardCells();
+
+        for (const game::tic_tac_toe::BoardCell *cell : cells)
+        {
+            const game::Position &pos = cell->getPosition();
+
+            std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
+
+            // ignore last line
+            if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+            {
+                std::cout << std::endl;
+                // ignore last column
+                for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
+                {
+                    std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
+                }
+                std::cout << std::endl;
+            }
+        }
+        std::cout << std::endl
+                  << "before unleash"
+                  << std::endl;
+    }
     //begins the mcts search
     unleash_mcts();
+
+    game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(trees[0]->game->board);
+        const std::vector<game::tic_tac_toe::BoardCell *>
+            cells = board->getBoardCells();
+
+        for (const game::tic_tac_toe::BoardCell *cell : cells)
+        {
+            const game::Position &pos = cell->getPosition();
+
+            std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
+
+            // ignore last line
+            if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+            {
+                std::cout << std::endl;
+                // ignore last column
+                for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
+                {
+                    std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
+                }
+                std::cout << std::endl;
+            }
+        }
+        std::cout << std::endl
+                  << "after unleash"
+                  << std::endl;
+    
 
     //merge every result into 1 tree
     mcts::Tree<CellT, PlayerT, PawnT> tree = joinTrees();
@@ -84,6 +139,7 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
     std::vector<std::thread> threads;
     if (trees.size() == 0)
     {
+        dbg("generating new trees");
         for (int i = 0; i < num_threads; i++)
             trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
     }
@@ -118,7 +174,32 @@ const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondi
 {
     //For every cell in the current game, test if it is equal to cell
     //If it is then return that cell
-    // reinterpret_cast<game::tic_tac_toe::ConsoleGame *>(game)->draw();
+    game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(trees[0]->game->board);
+    const std::vector<game::tic_tac_toe::BoardCell *>
+        cells = board->getBoardCells();
+
+    for (const game::tic_tac_toe::BoardCell *cell : cells)
+    {
+        const game::Position &pos = cell->getPosition();
+
+        std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
+
+        // ignore last line
+        if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+        {
+            std::cout << std::endl;
+            // ignore last column
+            for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
+            {
+                std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
+            }
+            std::cout << std::endl;
+        }
+    }
+    std::cout << std::endl
+              << "MCTSPlayer.cpp"
+              << std::endl;
+
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
 
     assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());

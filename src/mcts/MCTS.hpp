@@ -11,7 +11,7 @@ class MCTS
 {
 public:
     explicit MCTS(
-         Tree<CellT, PlayerT, PawnT>* tree,
+         Tree<CellT, PlayerT, PawnT>*& tree,
          const MCTSConstraints &constraints);
     ~MCTS();
     size_t begin();

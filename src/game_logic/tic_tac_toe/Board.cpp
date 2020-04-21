@@ -7,6 +7,8 @@
 
 #include "Board.hpp"
 
+#include "dbg.h"
+
 namespace game
 {
 namespace tic_tac_toe
@@ -60,7 +62,7 @@ const Move<BoardCell, Player> Board::revertMove()
     move.target->setValue(0);
     // if (move.from)
     // {
-    //     move.from->setValue(move.pawn->getId());
+    //     move.from->setValue(42);
     // }
     return move;
 }
@@ -208,6 +210,8 @@ AbstractBoard<BoardCell, Player, Player> *Board::clone() const
         {
             BoardCell *cell = boardValues[ii][jj];
             nb->boardValues[ii][jj] = new BoardCell(*cell);
+            dbg(cell->getValue());
+            dbg(nb->boardValues[ii][jj]->getValue());
         }
     }
 

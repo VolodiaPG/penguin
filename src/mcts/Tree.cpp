@@ -15,7 +15,7 @@
 #include "Tree.hpp"
 
 #include "../dbg.h"
-#include "../game_logic/tic_tac_toe/TicTacToe.hpp"
+#include "../game_logic/tic_tac_toe/Board.hpp"
 
 namespace mcts
 {
@@ -67,6 +67,8 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
 {
     if (rootNode->childNodes.size() > 0)
     {
+        static int count;
+        dbg(++count);
         const auto &nextRoot = std::find_if(
             std::begin(rootNode->childNodes),
             std::end(rootNode->childNodes),
@@ -101,8 +103,34 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
     assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
     if (it != std::end(moves))
     {
-        game->play(it->pawn, it->target);
+        bool ret = game->play(it->pawn, it->target);
+        assert(ret == true);
     }
+
+    game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(game->board);
+    const std::vector<game::tic_tac_toe::BoardCell *>
+        cells = board->getBoardCells();
+
+    for (const game::tic_tac_toe::BoardCell *cell : cells)
+    {
+        const game::Position &pos = cell->getPosition();
+
+        std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
+
+        // ignore last line
+        if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+        {
+            std::cout << std::endl;
+            // ignore last column
+            for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
+            {
+                std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
+            }
+            std::cout << std::endl;
+        }
+    }
+    std::cout << std::endl << "Tree.cpp"
+              << std::endl;
 }
 
 template <class CellT, class PlayerT, class PawnT>

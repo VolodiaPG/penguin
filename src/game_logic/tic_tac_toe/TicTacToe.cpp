@@ -51,14 +51,14 @@ std::vector<Move<BoardCell, Player>> TicTacToe::getAvailableMoves(Player *player
 {
     std::vector<BoardCell *> input = board->getAvailableCells(player);
     std::vector<Move<BoardCell, Player>> ret(input.size());
-    BoardCell *current_cell = player->getCurrentCell();
+    // BoardCell *current_cell = player->getCurrentCell();
     std::transform(
         input.begin(),
         input.end(),
         ret.begin(),
-        [current_cell, player](BoardCell *cell) -> Move<BoardCell, Player> {
+        [player](BoardCell *cell) -> Move<BoardCell, Player> {
             return {
-                current_cell,
+                nullptr,
                 cell,
                 player};
         });
