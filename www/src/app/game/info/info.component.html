@@ -1,1 +1,24 @@
-<p>info works!</p>
+<ion-card class="info">
+  <ion-card-header>
+    <ion-title>
+      <h2>Informations</h2>
+    </ion-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label>
+      <h2>Penguins</h2>
+    </ion-label>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-grid class="grid">
+          <ion-row>
+            <ion-col *ngFor="let peng of penguinsNotPosed; index as x">
+              <ion-img src="/assets/penguin.png" style="position:relative" [style.width.px]="30" [style.height.px]="30">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

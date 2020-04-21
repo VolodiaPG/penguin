@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
@@ -38,7 +38,10 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+  @Output() penguinPosed = new EventEmitter<any>();
+
   stateControler: any = appService;
+
   isLoaded = false;
 
   nbHexagonal: number = 8; // 8
@@ -215,7 +218,10 @@ export class BoardComponent implements OnInit {
   }
 
   onCellClick(cellClicked: Cell) {
-    if (gameService.state.value === 'penguinSelected') {
+    if (appService.state.value === 'initPosPenguin') {
+      console.log('Pose a penguin here');
+      this.penguinPosed.emit();
+    } else if (gameService.state.value === 'penguinSelected') {
       this.setAvailableCellColor(false);
       this.setSelectedPenguinColor(false);
 

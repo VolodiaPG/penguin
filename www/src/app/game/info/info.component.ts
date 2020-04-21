@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Penguin } from '../board/penguin';
 
 @Component({
   selector: 'app-info',
@@ -6,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
+  @Input() nbPenguin: number;
+
+  nbPenguinNotPosed: number;
+  penguinsNotPosed: Array<boolean>;
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.penguinsNotPosed = new Array(this.nbPenguin);
+  }
+
+  penguinPosed() {
+    console.log('done');
+    this.penguinsNotPosed.pop();
+  }
 }

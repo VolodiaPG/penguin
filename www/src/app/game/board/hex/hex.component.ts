@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { Pos } from '../pos';
 import { Cell } from '../cell';
+
 import { gameService } from '@app/game/+xstate/gameMachine';
+import { appService } from '@app/game/+xstate/appMachine';
 
 @Component({
   selector: 'app-hex',
@@ -45,7 +48,7 @@ export class HexComponent implements OnInit {
 
   onCellClick() {
     if (this.isLoaded) {
-      console.log(this.cell.toString());
+      // console.log(this.cell.toString());
       if (this.isSelectable()) {
         this.cellClicked.emit(this.cell);
       }
@@ -72,7 +75,8 @@ export class HexComponent implements OnInit {
     return (
       this.isLoaded === true &&
       this.cell.terrainIndex !== 0 &&
-      (gameService.state.value === 'waiting' ||
+      (appService.state.value === 'initPosPenguin' ||
+        gameService.state.value === 'waiting' ||
         (gameService.state.value === 'penguinSelected' && this.cell.isAvailable))
     );
   }

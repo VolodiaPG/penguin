@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { BoardComponent } from './board/board.component';
+import { InfoComponent } from './info/info.component';
 
 import { Flip } from 'number-flip';
 
@@ -16,6 +17,9 @@ declare var Module: any;
 export class GameComponent implements OnInit {
   @ViewChild('numberbtn', { read: ElementRef, static: true }) private btn: ElementRef;
   flipAnim: any = null;
+
+  @ViewChild(InfoComponent, { static: false })
+  private infoComponent: InfoComponent;
 
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
@@ -35,6 +39,11 @@ export class GameComponent implements OnInit {
   initGameBoard() {
     console.log('Init Game Board');
     this.boardComponent.initWasmBoard();
+  }
+
+  penguinPosed() {
+    console.log('Order received');
+    this.infoComponent.penguinPosed();
   }
 
   launchGame() {

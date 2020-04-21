@@ -19,11 +19,11 @@ import { InfoComponent } from './info/info.component';
   declarations: [
     GameComponent,
     BoardComponent,
+    InfoComponent,
     ControlComponent,
     ConsoleComponent,
     HexComponent,
-    PenguinComponent,
-    InfoComponent
+    PenguinComponent
   ]
 })
 export class GameModule {}
