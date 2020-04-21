@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
+import { appService } from '../+xstate/appMachine';
+
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -44,7 +46,7 @@ export class ControlComponent implements OnInit {
   async presentConfirm() {
     let alert = await this.alertController.create({
       // title: 'Confirm purchase',
-      message: 'Do you want to start this game ?',
+      message: 'Do you want to continue with these settings ?',
       buttons: [
         {
           text: 'Cancel',
@@ -57,6 +59,7 @@ export class ControlComponent implements OnInit {
           text: 'Confirm',
           handler: () => {
             console.log('Confirm clicked');
+            appService.send(appService.machine.states.settings.on.NEXTSTEP[0].eventType);
             this.startGame();
           }
         }

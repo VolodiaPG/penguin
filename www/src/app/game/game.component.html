@@ -58,7 +58,7 @@
     </ion-row>
   </ion-grid>
   <app-control
-    *ngIf="!gameStarted"
+    *ngIf="stateControler.state.value === 'settings'"
     class="control"
     (nbHexagonalChanged)="nbHexagonalChanged($event)"
     (nbPenguinChanged)="nbPenguinChanged($event)"

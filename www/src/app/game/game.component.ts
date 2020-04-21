@@ -3,7 +3,8 @@ import { BoardComponent } from './board/board.component';
 
 import { Flip } from 'number-flip';
 
-import { gameMachine, gameService } from './+xstate/gameMachine';
+import { gameService } from './+xstate/gameMachine';
+import { appService } from './+xstate/appMachine';
 
 declare var Module: any;
 
@@ -18,6 +19,8 @@ export class GameComponent implements OnInit {
 
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
+
+  stateControler: any = appService;
 
   nbHexagonal: number = 8;
   nbPenguin: number = 2;
