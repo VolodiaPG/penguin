@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ToastController } from '@ionic/angular';
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
 import { Cell } from './cell';
-import { HexComponent } from './hex/hex.component';
 import { Penguin } from './penguin';
+
 import { gameService } from '../+xstate/gameMachine';
-import { ToastController } from '@ionic/angular';
+import { appService } from '../+xstate/appMachine';
+
 import { Pos } from './pos';
 
 declare var Module: any;
@@ -37,6 +38,7 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+  stateControler: any = appService;
   isLoaded = false;
 
   nbHexagonal: number = 8; // 8
@@ -80,11 +82,13 @@ export class BoardComponent implements OnInit {
   /***************************************************************************************************************************
    ************************************************ START GAME ***************************************************************
    ***************************************************************************************************************************/
-  startWasmGame() {
+  initWasmBoard() {
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
     this.generateMapFromWasmBoard();
+  }
 
+  startWasmGame() {
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
     this.generatePenguin();
     this.generatePenguinFromWasmBoard();
@@ -92,7 +96,6 @@ export class BoardComponent implements OnInit {
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
     this.humanPlayerId = this.currentPlayerId;
 
-    this.isLoaded = true;
     this.playTurn();
   }
 

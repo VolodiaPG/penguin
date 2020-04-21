@@ -11,6 +11,7 @@ import { appService } from '../+xstate/appMachine';
 export class ControlComponent implements OnInit {
   @Output() nbPenguinChanged = new EventEmitter<any>();
   @Output() nbHexagonalChanged = new EventEmitter<any>();
+  @Output() nextStep = new EventEmitter<any>();
 
   stateControler: any = appService;
 
@@ -51,6 +52,7 @@ export class ControlComponent implements OnInit {
             console.log('Confirm clicked');
             appService.send(appService.machine.states.settings.on.NEXTSTEP[0].eventType);
             this.presentToast();
+            this.nextStep.emit();
           }
         }
       ]
