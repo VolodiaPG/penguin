@@ -11,25 +11,15 @@ import { appService } from '../+xstate/appMachine';
 export class ControlComponent implements OnInit {
   @Output() nbPenguinChanged = new EventEmitter<any>();
   @Output() nbHexagonalChanged = new EventEmitter<any>();
-  @Output() gameReady = new EventEmitter<any>();
 
-  gameStarted: boolean;
+  stateControler: any = appService;
 
   valueRangePenguin: number = 2;
-
   valueRangeHexagonal: number = 8;
 
   constructor(private alertController: AlertController, private toastController: ToastController) {}
 
-  ngOnInit(): void {
-    this.gameStarted = false;
-  }
-
-  startGame(): void {
-    this.gameStarted = true;
-    this.gameReady.emit();
-    this.presentToast();
-  }
+  ngOnInit(): void {}
 
   newNumberPenguin(event: any) {
     this.nbPenguinChanged.emit(event);
@@ -60,7 +50,7 @@ export class ControlComponent implements OnInit {
           handler: () => {
             console.log('Confirm clicked');
             appService.send(appService.machine.states.settings.on.NEXTSTEP[0].eventType);
-            this.startGame();
+            this.presentToast();
           }
         }
       ]

@@ -10,12 +10,12 @@
         <ion-label>
           <h2>Education</h2>
         </ion-label>
-        <ion-toggle slot="end" color="primary" disabled="{{ gameStarted }}"></ion-toggle>
+        <ion-toggle slot="end" color="primary"></ion-toggle>
       </ion-item>
 
       <ion-item lines="full">
         <!-- Icon top -->
-        <ion-segment value="normal" disabled="{{ gameStarted }}">
+        <ion-segment value="normal">
           <ion-segment-button value="normal">
             <ion-label>Normal</ion-label>
             <ion-icon name="heart"></ion-icon>
@@ -29,6 +29,7 @@
       <ion-item>
         <ion-label>Number of Hexagonals : </ion-label>
         <ion-range
+          *ngIf="stateControler.state.value === 'settings'"
           min="6"
           max="12"
           step="1"
@@ -36,7 +37,6 @@
           color="primary"
           value="{{ valueRangeHexagonal }}"
           (ionChange)="newNumberHexagonal($event)"
-          disabled="{{ gameStarted }}"
         >
           <ion-label slot="start">6</ion-label>
           <ion-label slot="end">12</ion-label>
@@ -46,6 +46,7 @@
         <ion-label>Number of Penguins : </ion-label>
         <!-- [(ngModel)]="valueRangePenguin" //  value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"-->
         <ion-range
+          *ngIf="stateControler.state.value === 'settings'"
           min="1"
           max="6"
           step="1"
@@ -53,7 +54,6 @@
           color="primary"
           value="{{ valueRangePenguin }}"
           (ionChange)="newNumberPenguin($event)"
-          disabled="{{ gameStarted }}"
         >
           <ion-label slot="start">1</ion-label>
           <ion-label slot="end">6</ion-label>
