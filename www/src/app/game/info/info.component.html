@@ -21,9 +21,14 @@
       </ion-item>
     </ion-list>
 
-    <ion-button slot="end" color="danger">Cancel</ion-button>
+    <ion-button slot="end" color="danger" (click)="(cancelPositionning)">Cancel</ion-button>
 
-    <ion-button class="animated infinite rubberBand slower" slot="end" (click)="startConfirm()" translate
+    <ion-button
+      *ngIf="penguinsNotPosed.length === 0"
+      class="animated infinite rubberBand slower"
+      slot="end"
+      (click)="startConfirm()"
+      translate
       >Start</ion-button
     >
   </ion-card-content>
