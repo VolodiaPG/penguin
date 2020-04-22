@@ -5,7 +5,7 @@ declare var Module: any;
 
 export class Penguin {
   cellPosition: Cell = null;
-  textureIndex: number = 1;
+  textureIndex: number = 2;
 
   wasmPenguin: any;
 
@@ -13,10 +13,12 @@ export class Penguin {
 
   private moveToAnimation: any;
 
+  isVisible: boolean;
   isSelected: boolean;
 
   constructor(cell: Cell) {
     this.cellPosition = cell;
+    this.isVisible = false;
     this.isSelected = false;
   }
 

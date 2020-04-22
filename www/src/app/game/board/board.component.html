@@ -23,7 +23,6 @@
   <app-penguin
     *ngFor="let penguin of penguins"
     [penguin]="penguin"
-    [isLoaded]="stateControler.state.value !== 'settings' && stateControler.state.value !== 'initPosPenguin'"
     (penguinClicked)="onPenguinClick($event)"
   ></app-penguin>
 </ion-card>

@@ -68,5 +68,6 @@
   <app-info
     *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'informations'"
     [nbPenguin]="nbPenguin"
+    (launchGame)="launchGame()"
   ></app-info>
 </ion-content>

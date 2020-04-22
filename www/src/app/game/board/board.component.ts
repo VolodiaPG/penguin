@@ -71,9 +71,8 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
-    this.penguins = new Array(this.nbPenguin * 2);
+    this.penguins = new Array();
     this.generateMap();
-    this.generatePenguin();
     console.log('Board ok');
   }
 
@@ -88,13 +87,31 @@ export class BoardComponent implements OnInit {
   initWasmBoard() {
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
+    this.humanPlayerId = this.wasmGame.getPlayerToPlay();
     this.generateMapFromWasmBoard();
+  }
+
+  posePenguinOn(cellPos: Cell) {
+    if (this.penguins.length < this.nbPenguin) {
+      let penguin: Penguin;
+      if (!cellPos.hasPenguin) {
+        penguin = new Penguin(cellPos);
+        cellPos.hasPenguin = true;
+        penguin.textureIndex = this.humanPlayerId;
+        penguin.isVisible = true;
+
+        this.penguins.push(penguin);
+        this.penguinPosed.emit();
+      }
+    } else {
+      this.presentErrorToast('No more Penguins in stock');
+    }
   }
 
   startWasmGame() {
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
-    this.generatePenguin();
-    this.generatePenguinFromWasmBoard();
+    this.generateWasmPenguin();
+    this.putPenguinOnWasmBoard();
 
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
     this.humanPlayerId = this.currentPlayerId;
@@ -132,24 +149,25 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  generatePenguin() {
+  generateWasmPenguin() {
     console.log('Generate Penguins');
-    let penguin: Penguin;
     let rndRow: number, rndColumn: number;
-    for (let ii = 0; ii < this.penguins.length; ii++) {
-      while (this.penguins[ii] === undefined) {
+    for (let ii = 0; ii < this.nbPenguin; ii++) {
+      this.penguins.push(undefined);
+      while (this.penguins[this.nbPenguin + ii] === undefined) {
         rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         if (!this.cells[rndRow][rndColumn].hasPenguin) {
-          this.penguins[ii] = new Penguin(this.cells[rndRow][rndColumn]);
+          this.penguins[this.nbPenguin + ii] = new Penguin(this.cells[rndRow][rndColumn]);
           this.cells[rndRow][rndColumn].hasPenguin = true;
         }
       }
     }
   }
 
-  generatePenguinFromWasmBoard() {
+  putPenguinOnWasmBoard() {
     console.log(this.penguins.length, this.wasmPenguins.size());
+
     for (let ii = 0; ii < this.penguins.length; ii++) {
       this.penguins[ii].setWasmPenguin(this.wasmPenguins.get(ii));
 
@@ -220,7 +238,7 @@ export class BoardComponent implements OnInit {
   onCellClick(cellClicked: Cell) {
     if (appService.state.value === 'initPosPenguin') {
       // console.log('Pose a penguin here');
-      this.penguinPosed.emit();
+      this.posePenguinOn(cellClicked);
     } else if (gameService.state.value === 'penguinSelected') {
       this.setAvailableCellColor(false);
       this.setSelectedPenguinColor(false);

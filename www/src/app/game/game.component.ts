@@ -26,6 +26,8 @@ export class GameComponent implements OnInit {
 
   stateControler: any = appService;
 
+  gameStarted: boolean = false;
+
   nbHexagonal: number = 8;
   nbPenguin: number = 2;
 
@@ -47,6 +49,7 @@ export class GameComponent implements OnInit {
 
   launchGame() {
     // this.boardComponent.startWasmGame();
+    this.gameStarted = true;
   }
 
   /***************************************************************************************************************************

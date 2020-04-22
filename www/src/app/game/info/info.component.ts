@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Penguin } from '../board/penguin';
 
 import { appService } from '@app/game/+xstate/appMachine';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-info',
@@ -11,10 +12,11 @@ import { appService } from '@app/game/+xstate/appMachine';
 export class InfoComponent implements OnInit {
   @Input() nbPenguin: number;
 
-  nbPenguinNotPosed: number;
+  @Output() launchGame = new EventEmitter<any>();
+
   penguinsNotPosed: Array<boolean>;
 
-  constructor() {}
+  constructor(private alertController: AlertController, private toastController: ToastController) {}
 
   ngOnInit() {
     this.penguinsNotPosed = new Array(this.nbPenguin);
@@ -22,8 +24,45 @@ export class InfoComponent implements OnInit {
 
   penguinPosed() {
     this.penguinsNotPosed.pop();
-    if (this.penguinsNotPosed.length === 0) {
-      appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
-    }
+  }
+
+  /***************************************************************************************************************************
+   ******************************************** CONFIRM / TOAST **************************************************************
+   ***************************************************************************************************************************/
+  async startConfirm() {
+    let alert = await this.alertController.create({
+      // title: 'Confirm purchase',
+      message: 'Do you want to start the game ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Confirm clicked');
+            // appService.send(appService.machine.states.settings.on.NEXTSTEP[0].eventType);
+            appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+            this.launchGame.emit();
+            this.presentToast();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "Let's go !!! ",
+      color: 'success',
+      position: 'top',
+      duration: 1000
+    });
+    toast.present();
   }
 }
