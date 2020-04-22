@@ -42,7 +42,6 @@ export class GameComponent implements OnInit {
   }
 
   penguinPosed() {
-    console.log('Order received');
     this.infoComponent.penguinPosed();
   }
 

@@ -219,7 +219,7 @@ export class BoardComponent implements OnInit {
 
   onCellClick(cellClicked: Cell) {
     if (appService.state.value === 'initPosPenguin') {
-      console.log('Pose a penguin here');
+      // console.log('Pose a penguin here');
       this.penguinPosed.emit();
     } else if (gameService.state.value === 'penguinSelected') {
       this.setAvailableCellColor(false);

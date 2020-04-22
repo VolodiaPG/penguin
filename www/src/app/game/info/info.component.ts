@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Penguin } from '../board/penguin';
 
+import { appService } from '@app/game/+xstate/appMachine';
+
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -19,7 +21,9 @@ export class InfoComponent implements OnInit {
   }
 
   penguinPosed() {
-    console.log('done');
     this.penguinsNotPosed.pop();
+    if (this.penguinsNotPosed.length === 0) {
+      appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+    }
   }
 }

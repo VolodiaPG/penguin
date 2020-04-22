@@ -19,12 +19,13 @@ export const appMachine = Machine(
       },
       initPosPenguin: {
         on: {
-          // PENGUINSPOSED: {
-          //   target: 'penguinSelected',
-          //   actions: ['notifyPenguinPosed']
-          // },
+          PENGUINSPOSED: {
+            target: 'initPosWasmPenguin',
+            actions: ['notifyPenguinPosed']
+          }
         }
-      }
+      },
+      initPosWasmPenguin: {}
     }
   },
   {
