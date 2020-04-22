@@ -48,8 +48,9 @@ export class GameComponent implements OnInit {
   }
 
   launchGame() {
-    // this.boardComponent.startWasmGame();
+    appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
     this.gameStarted = true;
+    this.boardComponent.startWasmGame();
   }
 
   /***************************************************************************************************************************

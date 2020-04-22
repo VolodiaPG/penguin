@@ -44,9 +44,7 @@ export class InfoComponent implements OnInit {
         {
           text: 'Confirm',
           handler: () => {
-            console.log('Confirm clicked');
-            // appService.send(appService.machine.states.settings.on.NEXTSTEP[0].eventType);
-            appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+            console.log('Confirm clicked, game launched !');
             this.launchGame.emit();
             this.presentToast();
           }

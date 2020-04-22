@@ -160,6 +160,7 @@ export class BoardComponent implements OnInit {
         if (!this.cells[rndRow][rndColumn].hasPenguin) {
           this.penguins[this.nbPenguin + ii] = new Penguin(this.cells[rndRow][rndColumn]);
           this.cells[rndRow][rndColumn].hasPenguin = true;
+          this.penguins[this.nbPenguin + ii].textureIndex = (this.humanPlayerId % 2) + 1;
         }
       }
     }
@@ -168,10 +169,22 @@ export class BoardComponent implements OnInit {
   putPenguinOnWasmBoard() {
     console.log(this.penguins.length, this.wasmPenguins.size());
 
-    for (let ii = 0; ii < this.penguins.length; ii++) {
-      this.penguins[ii].setWasmPenguin(this.wasmPenguins.get(ii));
+    for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
+      let penguinPosed = false;
+      let wasmPenguin = this.wasmPenguins.get(ii);
+      for (let jj = 0; jj < this.penguins.length && !penguinPosed; jj++) {
+        if (
+          this.penguins[jj].wasmPenguin === undefined &&
+          wasmPenguin.getOwner().getId() === this.penguins[jj].textureIndex
+        ) {
+          this.penguins[jj].setWasmPenguin(wasmPenguin);
 
-      this.wasmBoard.performMove(this.penguins[ii].wasmPenguin, this.penguins[ii].cellPosition.wasmCell);
+          this.wasmBoard.performMove(this.penguins[jj].wasmPenguin, this.penguins[jj].cellPosition.wasmCell);
+
+          this.penguins[jj].isVisible = true;
+          penguinPosed = true;
+        }
+      }
     }
   }
 
