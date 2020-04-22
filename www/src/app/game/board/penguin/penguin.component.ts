@@ -6,6 +6,7 @@ import { Cell } from '../cell';
 import { gameService } from '../../+xstate/gameMachine';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Penguin } from '../penguin';
+import { appService } from '@app/game/+xstate/appMachine';
 
 @Component({
   selector: 'app-penguin',

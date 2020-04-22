@@ -90,5 +90,6 @@ export class GameComponent implements OnInit {
       this.boardComponent.removePenguin();
     }
     this.nbPenguin = event.detail.value;
+    console.log(this.nbPenguin);
   }
 }

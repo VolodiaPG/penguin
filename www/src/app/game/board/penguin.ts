@@ -1,10 +1,11 @@
 import { Pos } from './pos';
 import { Cell } from './cell';
+import { appService } from '../+xstate/appMachine';
 
 declare var Module: any;
 
 export class Penguin {
-  cellPosition: Cell = null;
+  cellPosition: Cell;
   textureIndex: number = 2;
 
   wasmPenguin: any;
@@ -16,8 +17,7 @@ export class Penguin {
   isVisible: boolean;
   isSelected: boolean;
 
-  constructor(cell: Cell) {
-    this.cellPosition = cell;
+  constructor() {
     this.isVisible = false;
     this.isSelected = false;
   }
@@ -52,16 +52,31 @@ export class Penguin {
   // }
 
   toString() {
-    let wasmPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmPenguin.getCurrentCell().getPosition()));
-    return (
-      'Penguin : ' +
-      //  + '[' + this.cellPosition.row + '][' + this.cellPosition.column + ']'
-      '(' +
-      wasmPos.row +
-      ',' +
-      wasmPos.column +
-      ')' +
-      this.wasmPenguin.getOwner().getId()
-    );
+    if (appService.state.value === 'gameStarted') {
+      let wasmPos = Module.hex_cube_to_offset(
+        Module.hex_axial_to_cube(this.wasmPenguin.getCurrentCell().getPosition())
+      );
+      return (
+        'Penguin : ' +
+        //  + '[' + this.cellPosition.row + '][' + this.cellPosition.column + ']'
+        '(' +
+        wasmPos.row +
+        ',' +
+        wasmPos.column +
+        ')' +
+        this.wasmPenguin.getOwner().getId()
+      );
+    } else {
+      return (
+        'Penguin : ' +
+        //  + '[' + this.cellPosition.row + '][' + this.cellPosition.column + ']'
+        '(' +
+        this.cellPosition.row +
+        ',' +
+        this.cellPosition.column +
+        ')' +
+        this.textureIndex
+      );
+    }
   }
 }

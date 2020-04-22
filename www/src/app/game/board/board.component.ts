@@ -59,7 +59,7 @@ export class BoardComponent implements OnInit {
 
   currentPlayerId: number;
 
-  humanPlayerId: number;
+  humanPlayerId: number = 2;
 
   // Wasm objects
   wasmGame: any;
@@ -85,27 +85,11 @@ export class BoardComponent implements OnInit {
    ************************************************ START GAME ***************************************************************
    ***************************************************************************************************************************/
   initWasmBoard() {
+    console.log('Init WasmGame', this.nbHexagonal, this.nbPenguin);
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
     this.humanPlayerId = this.wasmGame.getPlayerToPlay();
     this.generateMapFromWasmBoard();
-  }
-
-  posePenguinOn(cellPos: Cell) {
-    if (this.penguins.length < this.nbPenguin) {
-      let penguin: Penguin;
-      if (!cellPos.hasPenguin) {
-        penguin = new Penguin(cellPos);
-        cellPos.hasPenguin = true;
-        penguin.textureIndex = this.humanPlayerId;
-        penguin.isVisible = true;
-
-        this.penguins.push(penguin);
-        this.penguinPosed.emit();
-      }
-    } else {
-      this.presentErrorToast('No more Penguins in stock');
-    }
   }
 
   startWasmGame() {
@@ -123,7 +107,7 @@ export class BoardComponent implements OnInit {
    ************************************* MAP/TEXTURES ************************************************************************
    ***************************************************************************************************************************/
   generateMap() {
-    console.log('Generate Map');
+    console.log('Generate Map', this.nbHexagonal, this.nbPenguin);
     let cell: Cell;
     for (let row = 0; row < this.nbHexagonal; row++) {
       this.cells[row] = new Array(this.nbHexagonal);
@@ -132,6 +116,25 @@ export class BoardComponent implements OnInit {
         cell = new Cell(row, column);
         this.cells[row][column] = cell;
       }
+    }
+  }
+
+  posePenguinOn(cellPos: Cell) {
+    if (this.penguins.length < this.nbPenguin) {
+      let penguin = new Penguin();
+      if (!cellPos.hasPenguin) {
+        cellPos.hasPenguin = true;
+        penguin.cellPosition = cellPos;
+        penguin.textureIndex = this.humanPlayerId;
+        penguin.isVisible = true;
+
+        this.penguins.push(penguin);
+        this.penguinPosed.emit();
+      } else {
+        this.presentErrorToast("This case isn't empty !");
+      }
+    } else {
+      this.presentErrorToast('No more Penguins in stock !');
     }
   }
 
@@ -158,7 +161,8 @@ export class BoardComponent implements OnInit {
         rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
         if (!this.cells[rndRow][rndColumn].hasPenguin) {
-          this.penguins[this.nbPenguin + ii] = new Penguin(this.cells[rndRow][rndColumn]);
+          this.penguins[this.nbPenguin + ii] = new Penguin();
+          this.penguins[this.nbPenguin + ii].cellPosition = this.cells[rndRow][rndColumn];
           this.cells[rndRow][rndColumn].hasPenguin = true;
           this.penguins[this.nbPenguin + ii].textureIndex = (this.humanPlayerId % 2) + 1;
         }
@@ -323,31 +327,11 @@ export class BoardComponent implements OnInit {
   }
 
   addPenguin(): void {
-    let penguin: Penguin = undefined;
-    let rndRow: number, rndColumn: number;
-
-    for (let ii = 0; ii < 2; ii++) {
-      while (penguin === undefined) {
-        rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
-        rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
-
-        if (!this.cells[rndRow][rndColumn].hasPenguin) {
-          penguin = new Penguin(this.cells[rndRow][rndColumn]);
-          this.cells[rndRow][rndColumn].hasPenguin = true;
-        }
-      }
-      this.penguins.push(penguin);
-      penguin = undefined;
-    }
-
-    this.nbPenguin = this.nbPenguin + 1;
-    console.log('New nb of penguins : ', this.nbPenguin, 'New lg of penguins : ', this.penguins.length);
+    this.nbPenguin++;
   }
 
   removePenguin(): void {
-    this.nbPenguin = this.nbPenguin - 1;
-    this.penguins.pop();
-    this.penguins.pop();
+    this.nbPenguin--;
   }
 
   /***************************************************************************************************************************

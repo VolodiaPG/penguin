@@ -31,7 +31,7 @@ export const appMachine = Machine(
   {
     actions: {
       notifySettings: (context, event) => {
-        console.log('You choice to play with', context.nbHexa, context.nbPeng);
+        // console.log('You choice to play with', context.nbHexa, context.nbPeng);
       },
       notifyPenguinPosed: (context, event) => {
         console.log('Now we could begin !');
