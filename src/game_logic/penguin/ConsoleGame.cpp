@@ -10,6 +10,8 @@
 
 #include "ConsoleGame.hpp"
 
+#include "../../dbg.h"
+
 namespace game
 {
 namespace penguin
@@ -55,25 +57,25 @@ void ConsoleGame::loop()
     Move<BoardCell, PenguinPawn> move;
 
     draw();
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, _game.board->getPlayerById(2), constraints);
 
     while (!_game.isFinished())
     {
 
         if (_game.getPlayerToPlay() == 1)
         {
-            mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(static_cast<AbstractGame<BoardCell, HumanPlayer, PenguinPawn> *>(&_game), _game.board->getPlayerById(1), constraints);
+            mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(&_game, _game.board->getPlayerById(1), constraints);
             move = mcts_player_1.bestMove();
         }
         else
         {
-            mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, _game.board->getPlayerById(2), constraints);
             move = mcts_player_2.bestMove();
         }
 
-        _game.play(move.pawn, move.target);
-
         // mcts_player_1.updateTree(move);
-        // mcts_player_2.updateTree(move);
+        mcts_player_2.updateTree(move);
+
+        dbg(_game.play(move.pawn, move.target));
         draw();
     }
 

@@ -100,5 +100,10 @@
         "typeindex": "cpp",
         "valarray": "cpp",
         "__tree": "cpp"
-    }
+    },
+    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true
 }

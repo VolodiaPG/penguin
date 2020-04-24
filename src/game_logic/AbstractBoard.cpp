@@ -28,6 +28,7 @@ bool AbstractBoard<CellT, PlayerT, PawnT>::performMove(PawnT *pawn, CellT *cell)
 template <class CellT, class PlayerT, class PawnT>
 const Move<CellT, PawnT> AbstractBoard<CellT, PlayerT, PawnT>::revertMove()
 {
+    assert("Cannot dequeue, empty stack" && _history.size() > 0);
     const Move<CellT, PawnT>& move = _history.dequeue();
     move.pawn->setCurrentCell(move.from);
     return move;

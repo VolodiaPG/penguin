@@ -47,8 +47,11 @@ struct Node
 {
     ~Node()
     {
-        for (Node *child : childNodes)
+        for (Node *&child : childNodes)
+        {
             delete child;
+            child = nullptr;
+        }
     }
 
     std::vector<Node *> childNodes;
@@ -114,7 +117,7 @@ public:
      * 
      * @param tree 
      */
-    void merge(Tree *tree);
+    void merge(const Tree *const& tree);
 
     Node<CellT, PawnT> &getRootNode();
 };

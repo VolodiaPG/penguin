@@ -17,6 +17,8 @@
 #include "../dbg.h"
 #include "../game_logic/tic_tac_toe/Board.hpp"
 
+#define THREAD_NUMBER 4
+
 namespace mcts
 {
 
@@ -65,14 +67,15 @@ Node<CellT, PawnT> *Tree<CellT, PlayerT, PawnT>::nodeWithMaxVisits(const Node<Ce
 template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> &move)
 {
-    if (rootNode->childNodes.size() > 0)
+    static int count_move_root_to_node;
+    dbg(++count_move_root_to_node);
+    if (rootNode->childNodes.size() > 0) // make sure the tree has been initiated
     {
-        static int count;
-        dbg(++count);
+        dbg("moving root node");
         const auto &nextRoot = std::find_if(
             std::begin(rootNode->childNodes),
             std::end(rootNode->childNodes),
-            [move](Node<CellT, PawnT> *&node) -> bool { return node->move != move; });
+            [move](Node<CellT, PawnT> *&node) -> bool { return node->move == move; });
         // TODO current cell is not the right one !!!
         assert("There must be a branch/leaf selected because it has been developed already!" && nextRoot != std::end(rootNode->childNodes));
 
@@ -91,50 +94,52 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
             rootNode->parent = nullptr;
             rootNode->move = {nullptr, nullptr, nullptr};
             rootNode->isRoot = true;
-        }
-    }
+        } 
+        std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
+        const auto &it = std::find_if(
+            std::begin(moves),
+            std::end(moves),
+            [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
 
-    std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
-    const auto &it = std::find_if(
-        std::begin(moves),
-        std::end(moves),
-        [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
-
-    assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
-    if (it != std::end(moves))
-    {
-        bool ret = game->play(it->pawn, it->target);
-        assert(ret == true);
-    }
-
-    game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(game->board);
-    const std::vector<game::tic_tac_toe::BoardCell *>
-        cells = board->getBoardCells();
-
-    for (const game::tic_tac_toe::BoardCell *cell : cells)
-    {
-        const game::Position &pos = cell->getPosition();
-
-        std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
-
-        // ignore last line
-        if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+        //assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
+        if (it != std::end(moves))
         {
-            std::cout << std::endl;
-            // ignore last column
-            for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
-            {
-                std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
-            }
-            std::cout << std::endl;
+            #ifndef NDEBUG
+            bool ret = game->play(it->pawn, it->target);
+            assert(ret == true);
+            #else
+            game->play(it->pawn, it->target);
+            #endif
         }
     }
-    std::cout << std::endl << "Tree.cpp"
-              << std::endl;
+    // game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(game->board);
+    // const std::vector<game::tic_tac_toe::BoardCell *>
+    //     cells = board->getBoardCells();
+
+    // for (const game::tic_tac_toe::BoardCell *cell : cells)
+    // {
+    //     const game::Position &pos = cell->getPosition();
+
+    //     std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
+
+    //     // ignore last line
+    //     if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
+    //     {
+    //         std::cout << std::endl;
+    //         // ignore last column
+    //         for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
+    //         {
+    //             std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
+    //         }
+    //         std::cout << std::endl;
+    //     }
+    // }
+    // std::cout << std::endl << "Tree.cpp"
+    //           << std::endl;
 }
 
 template <class CellT, class PlayerT, class PawnT>
-void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
+void Tree<CellT, PlayerT, PawnT>::merge(const Tree *const& tree)
 {
     //First, merge the rootNodes
     rootNode->visits += tree->rootNode->visits;
@@ -148,7 +153,21 @@ void Tree<CellT, PlayerT, PawnT>::merge(Tree *tree)
             Node<CellT, PawnT> *new_node = new Node<CellT, PawnT>();
             new_node->score = node->score;
             new_node->visits = node->visits;
-            new_node->move = node->move;
+            // new_node->move = node->move;
+
+            game::Move<CellT, PawnT> &move = node->move;
+            std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(node->move.pawn->getOwner()->getId()));
+            const auto &it = std::find_if(
+                std::begin(moves),
+                std::end(moves),
+                [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
+            
+            assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
+            if (it != std::end(moves))
+            {
+                new_node->move = *it;
+            }
+
             rootNode->childNodes.push_back(new_node);
         }
     }

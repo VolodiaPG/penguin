@@ -101,8 +101,14 @@ double MCTS<CellT, PlayerT, PawnT>::formula(
 template <class CellT, class PlayerT, class PawnT>
 void MCTS<CellT, PlayerT, PawnT>::doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom)
 {
+    #ifndef NDEBUG
+    bool ret = tree->game->play(nodeToGetTheActionFrom.move.pawn,
+                     nodeToGetTheActionFrom.move.target);
+    assert("the MCTS cannot do this action on the board" && ret == true);
+    #else
     tree->game->play(nodeToGetTheActionFrom.move.pawn,
                      nodeToGetTheActionFrom.move.target);
+    #endif
     // tree->game->play(nodeToGetTheActionFrom.player,
     //            nodeToGetTheActionFrom.targetedCell);
 }
@@ -130,9 +136,10 @@ void MCTS<CellT, PlayerT, PawnT>::backPropagateAndRevertAction(int winnerId, Nod
 {
     Node<CellT, PawnT> *node = terminalNode;
     double increment = 0;
-
+    // dbg(&tree->getRootNode());
     while (!node->isRoot)
     {
+        // dbg(node);
         increment = INCREMENT_DEFEAT;
         if (static_cast<int>(node->move.pawn->getOwner()->getId()) == winnerId)
         { // victory
@@ -220,6 +227,10 @@ Node<CellT, PawnT> *MCTS<CellT, PlayerT, PawnT>::randomChooseChildOrFallbackOnNo
 template <class CellT, class PlayerT, class PawnT>
 int MCTS<CellT, PlayerT, PawnT>::randomSimulation() const
 {
+    // #ifndef NDEBG
+    // static unsigned int  
+    // #endif
+
     size_t number_games_played = 0;
     while (!tree->game->isFinished())
     {
@@ -234,9 +245,10 @@ int MCTS<CellT, PlayerT, PawnT>::randomSimulation() const
     int winner = tree->game->checkStatus();
 
     // revert the random game
-    while (number_games_played-- > 0)
+    while (number_games_played > 0)
     {
         tree->game->revertPlay();
+        number_games_played--;
     }
 
     return winner;

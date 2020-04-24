@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <assert.h>
+
 #include "Board.hpp"
 
 #include "TicTacToe.hpp"
@@ -20,8 +22,11 @@ TicTacToe::~TicTacToe()
 
 bool TicTacToe::play(Player *player, BoardCell *move)
 {
-    ++numberMoves;
-    return board->performMove(player, move);
+    bool ret = board->performMove(player, move);
+    if (ret){
+        ++numberMoves;
+    }
+    return ret;
 }
 
 const Move<BoardCell, Player> TicTacToe::revertPlay()
@@ -75,6 +80,7 @@ AbstractGame<BoardCell, Player, Player> *TicTacToe::clone() const
 {
     TicTacToe *ttt = new TicTacToe(*this);
     ttt->board = board->clone();
+    assert(ttt->numberMoves == numberMoves);
     return ttt;
 }
 } // namespace tic_tac_toe

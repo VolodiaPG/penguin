@@ -10,8 +10,12 @@ namespace penguin
 class BoardCell;
 class HumanPlayer;
 
+#pragma message("added penguin id from counter as debug")
+
 class PenguinPawn : public AbstractPawn<HumanPlayer, BoardCell>
 {
+private :
+    unsigned int _penguin_id_from_counter;
 public:
     /**
      * @brief Construct a new Penguin Player object

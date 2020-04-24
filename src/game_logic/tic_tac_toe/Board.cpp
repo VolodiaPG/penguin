@@ -50,8 +50,12 @@ bool Board::checkForCorrectness(const Position &pos) const
 
 bool Board::performMove(Player *player, BoardCell *cell)
 {
-    bool ret = AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
-    cell->setValue(player->getId());
+    bool ret = checkForCorrectness(cell->getPosition());
+    if (ret)
+    {
+        ret = AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
+        cell->setValue(player->getId());
+    }
 
     return ret;
 }
