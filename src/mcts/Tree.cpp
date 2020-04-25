@@ -1,5 +1,4 @@
-#pragma message("iostream shouldn't be included here!")
-#include <iostream>
+#include <algorithm>
 #include <assert.h>
 
 #include "../game_logic/AbstractGame.hpp"
@@ -13,9 +12,6 @@
 #include "../game_logic/penguin/PenguinPawn.hpp"
 
 #include "Tree.hpp"
-
-#include "../dbg.h"
-#include "../game_logic/tic_tac_toe/Board.hpp"
 
 #define THREAD_NUMBER 4
 
@@ -67,11 +63,8 @@ Node<CellT, PawnT> *Tree<CellT, PlayerT, PawnT>::nodeWithMaxVisits(const Node<Ce
 template <class CellT, class PlayerT, class PawnT>
 void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> &move)
 {
-    static int count_move_root_to_node;
-    dbg(++count_move_root_to_node);
     if (rootNode->childNodes.size() > 0) // make sure the tree has been initiated
     {
-        dbg("moving root node");
         const auto &nextRoot = std::find_if(
             std::begin(rootNode->childNodes),
             std::end(rootNode->childNodes),
@@ -112,30 +105,6 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
             #endif
         }
     }
-    // game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(game->board);
-    // const std::vector<game::tic_tac_toe::BoardCell *>
-    //     cells = board->getBoardCells();
-
-    // for (const game::tic_tac_toe::BoardCell *cell : cells)
-    // {
-    //     const game::Position &pos = cell->getPosition();
-
-    //     std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
-
-    //     // ignore last line
-    //     if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
-    //     {
-    //         std::cout << std::endl;
-    //         // ignore last column
-    //         for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
-    //         {
-    //             std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // }
-    // std::cout << std::endl << "Tree.cpp"
-    //           << std::endl;
 }
 
 template <class CellT, class PlayerT, class PawnT>

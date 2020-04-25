@@ -7,8 +7,6 @@
 
 #include "Board.hpp"
 
-#include "dbg.h"
-
 namespace game
 {
 namespace tic_tac_toe
@@ -214,8 +212,6 @@ AbstractBoard<BoardCell, Player, Player> *Board::clone() const
         {
             BoardCell *cell = boardValues[ii][jj];
             nb->boardValues[ii][jj] = new BoardCell(*cell);
-            dbg(cell->getValue());
-            dbg(nb->boardValues[ii][jj]->getValue());
         }
     }
 

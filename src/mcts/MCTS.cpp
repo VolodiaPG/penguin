@@ -11,8 +11,6 @@
 
 #include "MCTS.hpp"
 
-#include "../dbg.h"
-
 namespace mcts
 {
 
@@ -59,7 +57,6 @@ size_t MCTS<CellT, PlayerT, PawnT>::begin()
         }
     }
 
-    dbg(rootNode.visits);
     return rootNode.visits;
 }
 
@@ -85,9 +82,6 @@ double MCTS<CellT, PlayerT, PawnT>::formula(
     const Node<CellT, PawnT> &node,
     const Node<CellT, PawnT> &nodeSuccessor) const
 {
-    // dbg(nodeSuccessor.score);
-    // dbg(nodeSuccessor.visits);
-    // dbg(node.visits);
     double ret = std::numeric_limits<double>::max();
     if (nodeSuccessor.visits != 0)
     {
@@ -109,8 +103,6 @@ void MCTS<CellT, PlayerT, PawnT>::doActionOnBoard(const Node<CellT, PawnT> &node
     tree->game->play(nodeToGetTheActionFrom.move.pawn,
                      nodeToGetTheActionFrom.move.target);
     #endif
-    // tree->game->play(nodeToGetTheActionFrom.player,
-    //            nodeToGetTheActionFrom.targetedCell);
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -121,14 +113,6 @@ const game::Move<CellT, PawnT> MCTS<CellT, PlayerT, PawnT>::getRandomAvailableMo
     unsigned int index = rand() % cells.size();
 
     return cells[index];
-
-    // std::vector<game::AbstractBoardCell *> cells = tree->game->board->getAvailableCells();
-    // // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
-    // if (cells.size() == 0)
-    //     throw - 1;
-    // unsigned int index = rand() % cells.size();
-
-    // return cells[index];
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -136,10 +120,9 @@ void MCTS<CellT, PlayerT, PawnT>::backPropagateAndRevertAction(int winnerId, Nod
 {
     Node<CellT, PawnT> *node = terminalNode;
     double increment = 0;
-    // dbg(&tree->getRootNode());
+
     while (!node->isRoot)
     {
-        // dbg(node);
         increment = INCREMENT_DEFEAT;
         if (static_cast<int>(node->move.pawn->getOwner()->getId()) == winnerId)
         { // victory
@@ -160,55 +143,6 @@ void MCTS<CellT, PlayerT, PawnT>::backPropagateAndRevertAction(int winnerId, Nod
 
     ++node->visits;
     node->score += increment; // node score is incremented the same as its children (playing for him)
-
-    // iterate until the root node, not excluded tho!
-    // do
-    // {
-    //     node->visits++;
-    //     // if (!node->isRoot)
-    //     // {
-    //     double increment = INCREMENT_DEFEAT;
-    //     if (static_cast<int>(node->move.pawn->getOwner()->getId()) == winnerId)
-    //     { // victory
-    //         increment = INCREMENT_VICTORY;
-    //     }
-    //     else if (winnerId == -1)
-    //     { // draw
-    //         increment = INCREMENT_DRAW;
-    //     }
-    //     node->score += increment;
-
-    //     if (node->parent)
-    //     { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
-    //         tree->game->revertPlay();
-    //     }
-    //     // }
-
-    // } while ((node = node->parent) != nullptr);
-
-    // Node<CellT, PawnT> *node = terminalNode;
-
-    // // iterate until the root node, not excluded tho!
-    // do
-    // {
-    //     double increment = INCREMENT_DEFEAT;
-    //     if ((int)node->player->getId() == winnerId)
-    //     { // victory
-    //         increment = INCREMENT_VICTORY;
-    //     }
-    //     else if (winnerId == -1)
-    //     { // draw
-    //         increment = INCREMENT_DRAW;
-    //     }
-    //     node->visits++;
-
-    //     node->score += increment;
-    //     if (node->parent)
-    //     { // make sure we don't play the rootnode, otherwise things will get messy very quickly!
-    //         tree->game->revertPlay(node->targetedCell);
-    //     }
-
-    // } while ((node = node->parent) != nullptr);
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -227,10 +161,6 @@ Node<CellT, PawnT> *MCTS<CellT, PlayerT, PawnT>::randomChooseChildOrFallbackOnNo
 template <class CellT, class PlayerT, class PawnT>
 int MCTS<CellT, PlayerT, PawnT>::randomSimulation() const
 {
-    // #ifndef NDEBG
-    // static unsigned int  
-    // #endif
-
     size_t number_games_played = 0;
     while (!tree->game->isFinished())
     {
@@ -252,37 +182,6 @@ int MCTS<CellT, PlayerT, PawnT>::randomSimulation() const
     }
 
     return winner;
-
-    // // save the actions done so we can revert them;
-    // std::queue<game::AbstractBoardCell *> playedCells;
-
-    // while (!tree->game->isFinished())
-    // {
-    //     try
-    //     {
-    //         game::AbstractBoardCell *cell = getRandomAvailableCellFromBoard();
-    //         tree->game->play(
-    //             tree->game->getPlayerToPlay(),
-    //             cell);
-    //         playedCells.push(cell);
-    //     }
-    //     catch (int code)
-    //     {
-    //     }
-    // }
-
-    // // check the victory
-    // int winner = tree->game->checkStatus();
-
-    // // revert the random game
-    // while (!playedCells.empty())
-    // {
-    //     tree->game->revertPlay(playedCells.front());
-    //     // remove the element
-    //     playedCells.pop();
-    // }
-
-    // return winner;
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -307,8 +206,6 @@ Node<CellT, PawnT> *MCTS<CellT, PlayerT, PawnT>::selectBestChildAndDoAction(Node
             res = formula(
                 *ret,
                 *node);
-
-            // dbg(res);
 
             if (res > interestingValue)
             {

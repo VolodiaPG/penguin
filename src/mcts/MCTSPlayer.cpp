@@ -16,13 +16,6 @@
 
 #include "MCTSPlayer.hpp"
 
-#include "../dbg.h"
-#pragma message("PrintHex here")
-#include "../game_logic/penguin/PrintHex.hpp"
-#include "../game_logic/penguin/PenguinGame.hpp"
-
-#include "../game_logic/tic_tac_toe/Board.hpp"
-
 #define THREAD_NUMBER 4
 
 namespace mcts
@@ -38,10 +31,6 @@ MCTSPlayer<CellT, PlayerT, PawnT>::MCTSPlayer(
       constraints(constraints),
       num_threads(THREAD_NUMBER)
 {
-    //Initialize all trees
-    //TODO optimiser, pas besoin de cloner a chaque fois pour le 0, prendre directe le game qu'on passe !
-    // for (int i = 0; i < num_threads; i++)
-    //     trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -55,63 +44,8 @@ MCTSPlayer<CellT, PlayerT, PawnT>::~MCTSPlayer()
 template <class CellT, class PlayerT, class PawnT>
 game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
 {
-    // if (trees.size() > 0)
-    // {
-    //     game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(trees[0]->game->board);
-    //     const std::vector<game::tic_tac_toe::BoardCell *>
-    //         cells = board->getBoardCells();
-
-    //     for (const game::tic_tac_toe::BoardCell *cell : cells)
-    //     {
-    //         const game::Position &pos = cell->getPosition();
-
-    //         std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
-
-    //         // ignore last line
-    //         if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
-    //         {
-    //             std::cout << std::endl;
-    //             // ignore last column
-    //             for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
-    //             {
-    //                 std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
-    //             }
-    //             std::cout << std::endl;
-    //         }
-    //     }
-    //     std::cout << std::endl
-    //               << "before unleash"
-    //               << std::endl;
-    // }
     //begins the mcts search
     unleash_mcts();
-
-    // game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(trees[0]->game->board);
-    //     const std::vector<game::tic_tac_toe::BoardCell *>
-    //         cells = board->getBoardCells();
-
-    //     for (const game::tic_tac_toe::BoardCell *cell : cells)
-    //     {
-    //         const game::Position &pos = cell->getPosition();
-
-    //         std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
-
-    //         // ignore last line
-    //         if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
-    //         {
-    //             std::cout << std::endl;
-    //             // ignore last column
-    //             for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
-    //             {
-    //                 std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
-    //             }
-    //             std::cout << std::endl;
-    //         }
-    //     }
-    //     std::cout << std::endl
-    //               << "after unleash"
-    //               << std::endl;
-    
 
     //merge every result into 1 tree
     mcts::Tree<CellT, PlayerT, PawnT> tree = joinTrees();
@@ -122,15 +56,9 @@ game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
 template <class CellT, class PlayerT, class PawnT>
 void MCTSPlayer<CellT, PlayerT, PawnT>::updateTree(const game::Move<CellT, PawnT> &last_move_played)
 {
-    // tree->moveRootToMove(last_move_played);
-
     //Moves all rootNodes to the corresponding cell
-    // game::penguin::PrintHex printer(reinterpret_cast<game::penguin::PenguinGame *>(game)->getBoard());
-    // printer.print();
     for (unsigned long i = 0; i < trees.size(); i++)
     {
-        // game::penguin::PrintHex printer2(reinterpret_cast<game::penguin::PenguinGame *>(game)->getBoard());
-        // printer2.print();
         trees.at(i)->moveRootToMove(last_move_played);
     }
 }
@@ -141,10 +69,8 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
     std::vector<std::thread> threads;
     if (trees.size() == 0)
     {
-        dbg("generating new trees");
         for (int i = 0; i < num_threads; i++)
             trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
-        // trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game, constraints));
     }
     //We test here if there are more than 1 thread
     //We don't really need to launch a new thread if we only have 1 tree
@@ -175,52 +101,14 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
 template <class CellT, class PlayerT, class PawnT>
 const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(const game::Move<CellT, PawnT> &move)
 {
-    //For every cell in the current game, test if it is equal to cell
-    //If it is then return that cell
-    
-    // game::tic_tac_toe::Board *const &board = reinterpret_cast<game::tic_tac_toe::Board *>(game->board);
-    // const std::vector<game::tic_tac_toe::BoardCell *>
-    //     cells = board->getBoardCells();
-
-    // for (const game::tic_tac_toe::BoardCell *cell : cells)
-    // {
-    //     const game::Position &pos = cell->getPosition();
-
-    //     std::cout << cell->getValue() << (pos.y < static_cast<int>(board->size()) - 1 ? " │ " : "");
-
-    //     // ignore last line
-    //     if (pos.y == static_cast<int>(board->size()) - 1 && pos.x < static_cast<int>(board->size()) - 1)
-    //     {
-    //         std::cout << std::endl;
-    //         // ignore last column
-    //         for (unsigned int ii = 0; ii < static_cast<unsigned int>(board->size()) - 1; ++ii)
-    //         {
-    //             std::cout << "──┼─" << (ii == static_cast<unsigned int>(board->size()) - 2 ? "─" : "");
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // }
-    // std::cout << std::endl
-    //           << "MCTSPlayer.cpp"
-    //           << std::endl;
-    
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
-
-    dbg(game->getPlayerToPlay());
 
     assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
 
     const auto it = std::find_if(
         std::begin(moves),
         std::end(moves),
-        [move](const game::Move<CellT, PawnT> &move_testing) -> bool {
-            if (*move.target == *move_testing.target)
-                dbg(move_testing.target);
-            return move == move_testing;
-        });
-
-    // std::vector<game::Move<CellT, PawnT>> moves_temp = trees[0]->game->getAvailableMoves(trees[0]->game->board->getPlayerById(move.pawn->getOwner()->getId()));
-    // assert(moves_temp.size() > 0);
+        [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
 
     assert("The move doesn't translate to the game outside the tree(s)/MCTS context" && it != std::end(moves));
 

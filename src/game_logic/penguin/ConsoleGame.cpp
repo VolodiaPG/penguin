@@ -10,8 +10,6 @@
 
 #include "ConsoleGame.hpp"
 
-#include "../../dbg.h"
-
 namespace game
 {
 namespace penguin
@@ -75,7 +73,6 @@ void ConsoleGame::loop()
         // mcts_player_1.updateTree(move);
         mcts_player_2.updateTree(move);
 
-        dbg(_game.play(move.pawn, move.target));
         draw();
     }
 
