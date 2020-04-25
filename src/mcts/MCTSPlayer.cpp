@@ -103,7 +103,7 @@ const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondi
 {
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
 
-    // assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
+    assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
 
     const auto it = std::find_if(
         std::begin(moves),
