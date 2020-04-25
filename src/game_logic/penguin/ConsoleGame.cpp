@@ -55,14 +55,15 @@ void ConsoleGame::loop()
     Move<BoardCell, PenguinPawn> move;
 
     draw();
-    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, _game.board->getPlayerById(2), constraints);
 
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(&_game, _game.board->getPlayerById(1), constraints);
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, _game.board->getPlayerById(2), constraints);
+    
     while (!_game.isFinished())
     {
 
         if (_game.getPlayerToPlay() == 1)
         {
-            mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(&_game, _game.board->getPlayerById(1), constraints);
             move = mcts_player_1.bestMove();
         }
         else
@@ -70,7 +71,7 @@ void ConsoleGame::loop()
             move = mcts_player_2.bestMove();
         }
 
-        // mcts_player_1.updateTree(move);
+        mcts_player_1.updateTree(move);
         mcts_player_2.updateTree(move);
 
         draw();
