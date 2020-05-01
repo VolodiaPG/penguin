@@ -1,0 +1,1 @@
+pandoc pdflatex pandoc-citeproc

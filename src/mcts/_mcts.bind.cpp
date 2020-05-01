@@ -8,6 +8,7 @@
 #include "../game_logic/penguin/HumanPlayer.hpp"
 #include "../game_logic/penguin/PenguinPawn.hpp"
 
+#include "Tree.hpp"
 #include "MCTSPlayer.hpp"
 
 namespace mcts
@@ -18,6 +19,9 @@ using namespace emscripten;
 EMSCRIPTEN_BINDINGS(mcts_bind)
 
 {
+    value_object<MCTSConstraints>("MCTSConstraints")
+        .field("time", &MCTSConstraints::time);
+
 #define __MCTS_BIND__(name_prefix, MCTSPlayer, AbstractGame)                               \
                                                                                            \
     class_<MCTSPlayer>(name_prefix "_MCTSPlayer")                                          \
