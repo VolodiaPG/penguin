@@ -20,7 +20,7 @@ namespace mcts
 
 template <class CellT, class PlayerT, class PawnT>
 Tree<CellT, PlayerT, PawnT>::Tree(
-    game::AbstractGame<CellT, PlayerT, PawnT> *game,
+    game::AbstractGame<CellT, PlayerT, PawnT> *const &game,
     const MCTSConstraints &constraints)
     : game(game),
       constraints(constraints)
@@ -87,7 +87,7 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
             rootNode->parent = nullptr;
             rootNode->move = {nullptr, nullptr, nullptr};
             rootNode->isRoot = true;
-        } 
+        }
         std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
         const auto &it = std::find_if(
             std::begin(moves),
@@ -97,18 +97,18 @@ void Tree<CellT, PlayerT, PawnT>::moveRootToMove(const game::Move<CellT, PawnT> 
         //assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
         if (it != std::end(moves))
         {
-            #ifndef NDEBUG
+#ifndef NDEBUG
             bool ret = game->play(it->pawn, it->target);
             assert(ret == true);
-            #else
+#else
             game->play(it->pawn, it->target);
-            #endif
+#endif
         }
     }
 }
 
 template <class CellT, class PlayerT, class PawnT>
-void Tree<CellT, PlayerT, PawnT>::merge(const Tree *const& tree)
+void Tree<CellT, PlayerT, PawnT>::merge(const Tree *const &tree)
 {
     //First, merge the rootNodes
     rootNode->visits += tree->rootNode->visits;
@@ -130,7 +130,7 @@ void Tree<CellT, PlayerT, PawnT>::merge(const Tree *const& tree)
                 std::begin(moves),
                 std::end(moves),
                 [move](const game::Move<CellT, PawnT> &move_testing) -> bool { return move == move_testing; });
-            
+
             assert("The cell we are trying to play on is inexistant in the tree's game version" && it != std::end(moves));
             if (it != std::end(moves))
             {

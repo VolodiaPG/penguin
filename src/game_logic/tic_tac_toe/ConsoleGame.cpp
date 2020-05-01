@@ -56,8 +56,8 @@ void ConsoleGame::loop()
 
     Move<BoardCell, Player> move;
 
-    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, board->getPlayerById(2), constraints);
-    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, board->getPlayerById(1), constraints);
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_2(this, constraints);
+    mcts::MCTSPlayer<BoardCell, Player, Player> mcts_player_1(this, constraints);
     draw();
     while (!TicTacToe::isFinished())
     {

@@ -96,8 +96,9 @@ public:
     MCTSConstraints constraints;
 
     explicit Tree(
-        game::AbstractGame<CellT, PlayerT, PawnT> *game,
+        game::AbstractGame<CellT, PlayerT, PawnT> *const &game,
         const MCTSConstraints &constraints);
+
     ~Tree();
 
     // size_t begin();

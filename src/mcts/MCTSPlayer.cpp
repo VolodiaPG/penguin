@@ -16,8 +16,6 @@
 
 #include "MCTSPlayer.hpp"
 
-#include "../../dbg.h"
-
 #define THREAD_NUMBER 4
 
 namespace mcts
@@ -25,11 +23,9 @@ namespace mcts
 
 template <class CellT, class PlayerT, class PawnT>
 MCTSPlayer<CellT, PlayerT, PawnT>::MCTSPlayer(
-    game::AbstractGame<CellT, PlayerT, PawnT> *game,
-    game::AbstractPlayer *player,
+    game::AbstractGame<CellT, PlayerT, PawnT> *const& game,
     const mcts::MCTSConstraints &constraints)
-    : _binded_player(player),
-      game(game),
+    : game(game),
       constraints(constraints),
       num_threads(THREAD_NUMBER)
 {
@@ -103,11 +99,9 @@ void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
 }
 
 template <class CellT, class PlayerT, class PawnT>
-const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(const game::Move<CellT, PawnT> &move)
+const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(const game::Move<CellT, PawnT> &move) const
 {
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
-
-    dbg(game->getPlayerToPlay());
 
     assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
 

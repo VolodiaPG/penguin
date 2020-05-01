@@ -13,14 +13,10 @@ namespace mcts
 template <class CellT, class PlayerT, class PawnT>
 class MCTSPlayer
 {
-private:
-    game::AbstractPlayer *_binded_player;
-
 public:
     explicit MCTSPlayer(
-        game::AbstractGame<CellT, PlayerT, PawnT> *game,
-        game::AbstractPlayer *player,
-        const mcts::MCTSConstraints &constraints);
+        game::AbstractGame<CellT, PlayerT, PawnT> *const &game,
+        const MCTSConstraints &constraints);
 
     ~MCTSPlayer();
 
@@ -52,7 +48,7 @@ protected:
     //  * @param cell
     //  * @return AbstractBoardCell*
     //  */
-    const game::Move<CellT, PawnT> getCorrespondingMove(const game::Move<CellT, PawnT>& cell);
+    const game::Move<CellT, PawnT> getCorrespondingMove(const game::Move<CellT, PawnT> &cell) const;
 
     /**
      * @brief Join the multiple trees into 1 so that we can get the best move
@@ -77,7 +73,7 @@ protected:
      * @brief Current game
      * 
      */
-    game::AbstractGame<CellT, PlayerT, PawnT> *game;
+    game::AbstractGame<CellT, PlayerT, PawnT> *const game;
 
     /**
      * @brief Constraints for the mcts
