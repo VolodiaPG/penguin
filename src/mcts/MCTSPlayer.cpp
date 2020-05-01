@@ -16,6 +16,8 @@
 
 #include "MCTSPlayer.hpp"
 
+#include "../../dbg.h"
+
 #define THREAD_NUMBER 4
 
 namespace mcts
@@ -50,7 +52,9 @@ game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::bestMove()
     //merge every result into 1 tree
     mcts::Tree<CellT, PlayerT, PawnT> tree = joinTrees();
 
-    return getCorrespondingMove(tree.bestMove());
+    const game::Move<CellT, PawnT> move = tree.bestMove();
+
+    return getCorrespondingMove(move);
 }
 
 template <class CellT, class PlayerT, class PawnT>
@@ -102,6 +106,8 @@ template <class CellT, class PlayerT, class PawnT>
 const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getCorrespondingMove(const game::Move<CellT, PawnT> &move)
 {
     std::vector<game::Move<CellT, PawnT>> moves = game->getAvailableMoves(game->board->getPlayerById(move.pawn->getOwner()->getId()));
+
+    dbg(game->getPlayerToPlay());
 
     assert("The next player that is set to play is not the one that does the move" && game->getPlayerToPlay() == move.pawn->getOwner()->getId());
 

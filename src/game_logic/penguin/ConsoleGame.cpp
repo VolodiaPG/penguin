@@ -74,6 +74,8 @@ void ConsoleGame::loop()
         mcts_player_1.updateTree(move);
         mcts_player_2.updateTree(move);
 
+        _game.play(move.pawn, move.target);
+
         draw();
     }
 
