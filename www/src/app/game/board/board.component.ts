@@ -236,16 +236,23 @@ export class BoardComponent implements OnInit {
       this.penguinSelected = undefined;
       gameService.send(gameService.machine.states.penguinSelected.on.PENGUINSELECTED[0].eventType);
     } else if (newPenguinClicked.textureIndex === this.humanPlayerId) {
-      if (gameService.state.value === 'waiting') {
-        this.penguinSelected = newPenguinClicked;
-        this.setSelectedPenguinColor(true);
-        gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
-      } else if (gameService.state.value === 'penguinSelected') {
-        // The user clicked on an another penguin
-        // Keep the same state : PenguinSelected
-        this.setSelectedPenguinColor(false);
-        this.penguinSelected = newPenguinClicked;
-        this.setSelectedPenguinColor(true);
+      switch (gameService.state.value) {
+        case 'waiting':
+          this.penguinSelected = newPenguinClicked;
+          this.setSelectedPenguinColor(true);
+          gameService.send(gameService.machine.states.waiting.on.PENGUINSELECTED[0].eventType);
+          break;
+
+        case 'penguinSelected':
+          // The user clicked on an another penguin
+          // Keep the same state : PenguinSelected
+          this.setSelectedPenguinColor(false);
+          this.penguinSelected = newPenguinClicked;
+          this.setSelectedPenguinColor(true);
+          break;
+
+        default:
+          console.log('Sorry, state not ok : ', gameService.state.value);
       }
     } else {
       this.presentErrorToast('It is not your penguin !!');
@@ -253,24 +260,49 @@ export class BoardComponent implements OnInit {
   }
 
   onCellClick(cellClicked: Cell) {
-    if (appService.state.value === 'initPosPenguin') {
-      // console.log('Pose a penguin here');
-      this.posePenguinOn(cellClicked);
-    } else if (gameService.state.value === 'penguinSelected') {
-      this.setAvailableCellColor(false);
-      this.setSelectedPenguinColor(false);
-
-      if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
-        this.penguinSelected.moveTo(cellClicked);
-        this.penguinSelected = undefined;
-        gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
-        this.movePerformed();
-      } else {
-        console.log('Wasm blocked the move');
-        this.setAvailableCellColor(true);
-        this.setSelectedPenguinColor(true);
-      }
+    switch (appService.state.value) {
+      case 'initPosPenguin':
+        // console.log('Pose a penguin here');
+        this.posePenguinOn(cellClicked);
+        break;
     }
+
+    switch (gameService.state.value) {
+      case 'penguinSelected':
+        this.setAvailableCellColor(false);
+        this.setSelectedPenguinColor(false);
+
+        if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
+          this.penguinSelected.moveTo(cellClicked);
+          this.penguinSelected = undefined;
+          gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+          this.movePerformed();
+        } else {
+          console.log('Wasm blocked the move');
+          this.setAvailableCellColor(true);
+          this.setSelectedPenguinColor(true);
+        }
+        break;
+    }
+
+    // if (appService.state.value === 'initPosPenguin') {
+    //   // console.log('Pose a penguin here');
+    //   this.posePenguinOn(cellClicked);
+    // } else if (gameService.state.value === 'penguinSelected') {
+    //   this.setAvailableCellColor(false);
+    //   this.setSelectedPenguinColor(false);
+
+    //   if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
+    //     this.penguinSelected.moveTo(cellClicked);
+    //     this.penguinSelected = undefined;
+    //     gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+    //     this.movePerformed();
+    //   } else {
+    //     console.log('Wasm blocked the move');
+    //     this.setAvailableCellColor(true);
+    //     this.setSelectedPenguinColor(true);
+    //   }
+    // }
   }
 
   setSelectedPenguinColor(set: boolean) {
