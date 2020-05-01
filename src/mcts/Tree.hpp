@@ -33,14 +33,14 @@ private:
     clock::time_point start = clock::now();
 };
 
-typedef struct
+struct MCTSConstraints
 {
     /**
      * @brief Time constraint in ms
      * 
      */
     int time;
-} MCTSConstraints;
+};
 
 template <class CellT, class PawnT>
 struct Node
