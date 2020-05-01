@@ -16,7 +16,9 @@
 
 #include "MCTSPlayer.hpp"
 
-#define THREAD_NUMBER 4
+#ifndef NUMBER_THREADS
+#define NUMBER_THREADS 1
+#endif
 
 namespace mcts
 {
@@ -27,7 +29,7 @@ MCTSPlayer<CellT, PlayerT, PawnT>::MCTSPlayer(
     const mcts::MCTSConstraints &constraints)
     : game(game),
       constraints(constraints),
-      num_threads(THREAD_NUMBER)
+      num_threads(NUMBER_THREADS)
 {
 }
 

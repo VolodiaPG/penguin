@@ -1,14 +1,17 @@
 EMSCRIPTEN_PATH ?= /emsdk/upstream/emscripten
 
-GREEN   = \033[1;32m
+GREEN   := \033[1;32m
 
-WHITE   = \033[0;m
+WHITE   := \033[0;m
+
+NUMBER_PTHREADS_WORKERS := 4
 
 # default environement
 
 # native env needs to be specified,
 # otherwise it is the emscripten one that is used
 ENV ?= emscripten
+MULTITHREADED ?= true
 
 ifeq ($(ENV),native)
 TARGET_EXEC ?= main
@@ -41,8 +44,15 @@ LDFLAGS := -lpthread
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
+ifeq ($(MULTITHREADED),true)
+	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS)
+endif
 	CPPFLAGS += --bind -s WASM=1
 	EXECPPFLAGS := 
+else
+ifeq ($(MULTITHREADED),true)
+	CPPFLAGS += -DNUMBER_THREADS=$(NUMBER_PTHREADS_WORKERS)
+endif
 endif
 
 ifeq ($(MODE),debug)
