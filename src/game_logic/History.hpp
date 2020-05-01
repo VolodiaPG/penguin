@@ -20,6 +20,8 @@ public:
      */
     History();
 
+    History(const History<CellT, PawnT>&) = delete;
+
     void enqueue(const Move<CellT, PawnT>& move);
 
     const Move<CellT, PawnT> dequeue();

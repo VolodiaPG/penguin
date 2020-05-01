@@ -23,9 +23,9 @@ using namespace emscripten;
 // Binding code
 EMSCRIPTEN_BINDINGS(game_logic_bind)
 {
-#define __GAME_LOGIC_BIND__(AbstractBoard, AbstractGame, AbstractPawn)                          \
+#define __GAME_LOGIC_BIND__(name_prefix, AbstractBoard, AbstractGame, AbstractPawn)             \
                                                                                                 \
-    class_<AbstractBoard>("AbstractBoard")                                                      \
+    class_<AbstractBoard>(name_prefix "_AbstractBoard")                                         \
         .function("performMove", &AbstractBoard::performMove, allow_raw_pointers())             \
         .function("revertMove", &AbstractBoard::revertMove)                                     \
         .function("checkStatus", &AbstractBoard::checkStatus)                                   \
@@ -37,25 +37,23 @@ EMSCRIPTEN_BINDINGS(game_logic_bind)
         .function("getPawnById", &AbstractBoard::getPawnById, allow_raw_pointers())             \
         .function("getPlayerById", &AbstractBoard::getPlayerById, allow_raw_pointers());        \
                                                                                                 \
-    class_<AbstractGame>("AbstractGame")                                                        \
+    class_<AbstractGame>(name_prefix "_AbstractGame")                                           \
         .function("isFinished", &AbstractGame::isFinished)                                      \
         .function("play", &AbstractGame::play, allow_raw_pointers())                            \
         .function("revertPlay", &AbstractGame::revertPlay)                                      \
         .function("getPlayerToPlay", &AbstractGame::getPlayerToPlay)                            \
         .function("checkStatus", &AbstractGame::checkStatus);                                   \
                                                                                                 \
-    class_<AbstractPlayer>("AbstractPlayer")                                                    \
+    class_<AbstractPlayer>(name_prefix "_AbstractPlayer")                                       \
         .function("getId", &AbstractPlayer::getId);                                             \
                                                                                                 \
-    class_<AbstractPawn>("AbstractPawn")                                                        \
-        .function("getCurrentCell", &AbstractPawn::getCurrentCell, allow_raw_pointers())        \
-        .function("getOwner", &AbstractPawn::getOwner, allow_raw_pointers())                    \
+    class_<AbstractPawn>(name_prefix "_AbstractPawn")                                           \
         .function("getId", &AbstractPawn::getId);
 
     typedef AbstractBoard<penguin::BoardCell, penguin::HumanPlayer, penguin::PenguinPawn> penguin_board_t;
     typedef AbstractGame<penguin::BoardCell, penguin::HumanPlayer, penguin::PenguinPawn> penguin_game_t;
     typedef AbstractPawn<penguin::HumanPlayer, penguin::BoardCell> penguin_pawn_t;
-    __GAME_LOGIC_BIND__(penguin_board_t, penguin_game_t, penguin_pawn_t)
+    __GAME_LOGIC_BIND__("penguin", penguin_board_t, penguin_game_t, penguin_pawn_t)
 }
 } // namespace penguin
 } // namespace game

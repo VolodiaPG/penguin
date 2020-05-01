@@ -7,5 +7,10 @@ AbstractPlayer::AbstractPlayer(unsigned int id)
 {
 }
 
+bool AbstractPlayer::equals_to(const AbstractPlayer &player) const
+{
+    return id == player.id;
+}
+
 
 } // namespace game

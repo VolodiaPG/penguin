@@ -12,6 +12,9 @@ private:
      */
     unsigned int id;
 
+protected:
+    virtual bool equals_to(const AbstractPlayer &player) const;
+
 public:
     /**
      * @brief Construct a new Abstract Player object
@@ -19,6 +22,8 @@ public:
      * @param id the id of the player
      */
     explicit AbstractPlayer(unsigned int id);
+
+    explicit AbstractPlayer(const AbstractPlayer &) = default;
 
     virtual ~AbstractPlayer(){};
 
@@ -28,6 +33,9 @@ public:
      * @return constexpr unsigned int the id
      */
     unsigned int getId() const { return id; };
+
+    bool operator==(const AbstractPlayer &player) const { return equals_to(player); };
+    bool operator!=(const AbstractPlayer &player) const { return !equals_to(player); };
 };
 
 } // namespace game

@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <assert.h>
+
 #include "Board.hpp"
 
 #include "TicTacToe.hpp"
@@ -20,8 +22,11 @@ TicTacToe::~TicTacToe()
 
 bool TicTacToe::play(Player *player, BoardCell *move)
 {
-    ++numberMoves;
-    return board->performMove(player, move);
+    bool ret = board->performMove(player, move);
+    if (ret){
+        ++numberMoves;
+    }
+    return ret;
 }
 
 const Move<BoardCell, Player> TicTacToe::revertPlay()
@@ -51,14 +56,14 @@ std::vector<Move<BoardCell, Player>> TicTacToe::getAvailableMoves(Player *player
 {
     std::vector<BoardCell *> input = board->getAvailableCells(player);
     std::vector<Move<BoardCell, Player>> ret(input.size());
-    BoardCell *current_cell = player->getCurrentCell();
+    // BoardCell *current_cell = player->getCurrentCell();
     std::transform(
         input.begin(),
         input.end(),
         ret.begin(),
-        [current_cell, player](BoardCell *cell) -> Move<BoardCell, Player> {
+        [player](BoardCell *cell) -> Move<BoardCell, Player> {
             return {
-                current_cell,
+                nullptr,
                 cell,
                 player};
         });
@@ -69,6 +74,14 @@ std::vector<Move<BoardCell, Player>> TicTacToe::getAvailableMoves(Player *player
 int TicTacToe::checkStatus() const
 {
     return board->checkStatus();
+}
+
+AbstractGame<BoardCell, Player, Player> *TicTacToe::clone() const
+{
+    TicTacToe *ttt = new TicTacToe(*this);
+    ttt->board = board->clone();
+    assert(ttt->numberMoves == numberMoves);
+    return ttt;
 }
 } // namespace tic_tac_toe
 } // namespace game

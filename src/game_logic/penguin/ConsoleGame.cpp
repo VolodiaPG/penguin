@@ -1,9 +1,10 @@
 #include <iostream>
 
-#include "../../mcts/Tree.hpp"
+#include "../../mcts/MCTSPlayer.hpp"
 #include "../AbstractGame.hpp"
 #include "Board.hpp"
 #include "PenguinGame.hpp"
+#include "HumanPlayer.hpp"
 #include "PenguinPawn.hpp"
 #include "PrintHex.hpp"
 
@@ -15,7 +16,7 @@ namespace penguin
 {
 ConsoleGame::ConsoleGame(const bool &no_print)
     : _game(7, 2),
-      _print_hex((Board *)_game.board),
+      _print_hex(static_cast<Board *>(_game.board)),
       _no_print(no_print)
 {
     Board *board = static_cast<Board *>(_game.board);
@@ -48,44 +49,33 @@ void ConsoleGame::loop()
         std::cout << "Looping, wheeeeeeeeee" << std::endl;
     }
 
+    mcts::MCTSConstraints constraints;
+    constraints.time = 250;
+
+    Move<BoardCell, PenguinPawn> move;
+
     draw();
 
-    // Board *board = (Board *)_game.board;
-    // board->performMove(board->getPawnById(2), board->getCell(3, 0));
-    // draw();
-    // board->revertMove(board->getPlayerById(2));
-    // draw();
-
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_1(&_game, constraints);
+    mcts::MCTSPlayer<BoardCell, HumanPlayer, PenguinPawn> mcts_player_2(&_game, constraints);
+    
     while (!_game.isFinished())
     {
-        // bool keep_asking = true;
-        // unsigned int penguin_id, xx, yy;
-        // const unsigned int player_to_play = _game.getPlayerToPlay();
 
-        // while (keep_asking)
-        // {
-        //     std::cout << "Player #" << player_to_play << " please make your move: " << std::endl
-        //               << "<PenguinId> <Position x> <Position y>" << std::endl;
-        //     std::cin >> penguin_id >> xx >> yy;
-        //     std::cout << std::endl;
-
-        //     keep_asking = !(
-        //         penguin_id < (player_to_play + 1) * 2 &&
-        //         penguin_id >=  (player_to_play - 1) * 2);
-        // }
-        // _game.play(penguin_id, _game.board->getCell(xx, yy));
-
-        mcts::MCTSConstraints constraints;
-        constraints.time = 5000;
-        mcts::Tree<BoardCell, HumanPlayer, PenguinPawn> tree(&_game, constraints); // play the second player
-        const unsigned int n_visits = tree.begin();
-        Move<BoardCell, PenguinPawn> best_move = tree.bestMove();
-        _game.play((PenguinPawn *)best_move.pawn, (BoardCell *)best_move.target);
-
-        if (!_no_print)
+        if (_game.getPlayerToPlay() == 1)
         {
-            std::cout << "Evaluated " << n_visits << " different scenarii" << std::endl;
+            move = mcts_player_1.bestMove();
         }
+        else
+        {
+            move = mcts_player_2.bestMove();
+        }
+
+        mcts_player_1.updateTree(move);
+        mcts_player_2.updateTree(move);
+
+        _game.play(move.pawn, move.target);
+
         draw();
     }
 

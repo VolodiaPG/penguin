@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <algorithm>
 
 #include "../AbstractBoard.hpp"
 #include "../utils/Position3D.hpp"
@@ -35,9 +36,9 @@ Board::Board(const size_t dimension, const size_t number_of_penguins)
 
     //TODO découpler la génération et le parcours de la structure elle même (pattern visiteur)
     int offset = 0;
-    for (int yy = 0; yy < (int)_dimension; ++yy) // ii for the rows
+    for (int yy = 0; yy < static_cast<int>(_dimension); ++yy) // ii for the rows
     {
-        for (int xx = offset; xx < (int)_dimension + offset; ++xx) // jj for the cols
+        for (int xx = offset; xx < static_cast<int>(_dimension) + offset; ++xx) // jj for the cols
         {
             // rows in x and cols in y
             Position pos;
@@ -300,9 +301,42 @@ PenguinPawn *Board::getPawnById(const unsigned int penguin_id)
     return _penguins_on_board[penguin_id];
 }
 
+PenguinPawn *Board::getPawnById(const unsigned int& penguin_id) const
+{
+    return _penguins_on_board[penguin_id];
+}
+
 HumanPlayer *Board::getPlayerById(const unsigned int human_player_id)
 {
     return _players[human_player_id - 1];
 }
+
+AbstractBoard<BoardCell, HumanPlayer, PenguinPawn> *Board::clone() const
+{
+    Board *nb = new Board(_dimension, _penguins_on_board.size() / 2);
+
+    for (auto &pair : nb->boardValues)
+    {
+        if (pair.second)
+            delete pair.second;
+    }
+    nb->boardValues.clear();
+
+    for (const auto &pair : boardValues)
+    {
+        if (pair.second)
+            nb->boardValues[pair.first] = pair.second->clone(nb);
+    }
+
+    for (auto &penguin : nb->_penguins_on_board)
+    {
+        const auto &penguin_original = getPawnById(penguin->getId());
+        const Position &pos = penguin_original->getCurrentCell()->getPosition();
+        const auto &current_cell = nb->getCell(pos.x, pos.y);
+        penguin->setCurrentCell(current_cell);
+    }
+    return nb;
+}
+
 } // namespace penguin
 } // namespace game

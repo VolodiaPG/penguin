@@ -1,10 +1,19 @@
 EMSCRIPTEN_PATH ?= /emsdk/upstream/emscripten
+DOXYGEN := doxygen
+DOXYGEN_FLAGS := 
+
+GREEN   := \033[1;32m
+
+WHITE   := \033[0;m
+
+NUMBER_PTHREADS_WORKERS := 4
 
 # default environement
 
 # native env needs to be specified,
 # otherwise it is the emscripten one that is used
 ENV ?= emscripten
+MULTITHREADED ?= true
 
 ifeq ($(ENV),native)
 TARGET_EXEC ?= main
@@ -30,13 +39,22 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
+LDFLAGS := -lpthread
+
 # CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
 #-Wcast-align -Wover-aligned
-CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align
+CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
+ifeq ($(MULTITHREADED),true)
+	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS)
+endif
 	CPPFLAGS += --bind -s WASM=1
 	EXECPPFLAGS := 
+else
+ifeq ($(MULTITHREADED),true)
+	CPPFLAGS += -DNUMBER_THREADS=$(NUMBER_PTHREADS_WORKERS)
+endif
 endif
 
 ifeq ($(MODE),debug)
@@ -51,23 +69,29 @@ endif
 all: build
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
+	@$(CXX) $(OBJS) $(CPPFLAGS) $(EXECPPFLAGS) -o $@ $(LDFLAGS)
+	@printf "\n[$(GREEN)OK$(WHITE)] Binary : $(TARGET_EXEC)\n"
+	@echo "-------------------\n"
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
-	$(MKDIR_P) $(dir $@)
-	$(CXX) -c $< $(CPPFLAGS) -o $@
+	@$(MKDIR_P) $(dir $@)
+	@$(CXX) $(CPPFLAGS) -c -o $@ $<
+	@printf "[$(GREEN)OK$(WHITE)] $<\n"
+# $(CXX) -c $< $(CPPFLAGS) -o $@ $<
 
 #specific rules
 build: $(BUILD_DIR)/$(TARGET_EXEC)
 
-.PHONY: clean serve
+.PHONY: clean serve doc
+
+doc:
+	$(MKDIR_P) ./$(DOC_DIRS)/$(DOXYGEN) 
+	$(RM) -r ./$(DOC_DIRS)/$(DOXYGEN)/*
+	cd $(DOC_DIRS)/ && $(DOXYGEN) $(DOXYGEN_FLAGS)
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-
-serve:
-	$(DOC_DIRS)/serve_nginx.sh
 
 -include $(DEPS)
 

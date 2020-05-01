@@ -25,6 +25,9 @@ private:
     */
     const Position position;
 
+protected:
+    bool equals_to(const AbstractBoardCell &cell) const override;
+
 public:
     // /**
     //  * @brief Construct a new Board Cell object

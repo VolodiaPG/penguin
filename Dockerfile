@@ -12,7 +12,7 @@ RUN apt-get update
 
 RUN apt-get install -y apt-utils build-essential manpages-dev
 RUN apt-get install -y cmake cppcheck clang gdb valgrind git && \
-    apt-get install -y python2.7 default-jre
+    apt-get install -y python default-jre doxygen doxygen-doc graphviz
 
 # Angular
 RUN npm install -g @angular/cli

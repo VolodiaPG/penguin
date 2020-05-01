@@ -14,27 +14,34 @@ int main(int argn, char **argv)
 	bool no_print = false;
 	if (argn == 2)
 	{
-		no_print = strcmp("-n", argv[1]) == 0;
+			no_print = strcmp("-n", argv[1]) == 0;
 	}
 	else
-	{
-		std::cout << "Usage: " << argv[0] << " <-n:noprint>" << std::endl;
-	}
+ 	{
+ 		std::cout << "Usage: " << argv[0] << " <-n:noprint>" << std::endl;
+ 	}
 
-	for (int ii = 0; ii < 1; ++ii)
-	{
-		game::penguin::ConsoleGame consoleGame(no_print);
+ 	for (int ii = 0; ii < 1; ++ii)
+ 	{
+ 		game::penguin::ConsoleGame consoleGame(no_print);
 
-		consoleGame.loop();
-	}
+ 		consoleGame.loop();
+ 	}
 
-	// for (int ii = 0; ii < 1; ++ii)
-	// {
-	// 	game::tic_tac_toe::ConsoleGame consoleGame;
-
-	// 	consoleGame.loop();
-	// }
-
-	return EXIT_SUCCESS;
+ 	return EXIT_SUCCESS;
 }
+ 
+
+// int main(int, char **)
+// {
+// 	for (int ii = 0; ii < 1; ++ii)
+// 	{
+// 		game::tic_tac_toe::ConsoleGame consoleGame;
+
+// 		consoleGame.loop();
+// 	}
+
+// 	return EXIT_SUCCESS;
+// }
+
 #endif

@@ -2,23 +2,20 @@
 #define TREE_HPP_
 
 #include <chrono>
+#include <math.h>
+#include <queue>
+#include "../game_logic/AbstractPlayer.hpp"
+#include "../game_logic/AbstractGame.hpp"
+#include "../game_logic/AbstractBoardCell.hpp"
 #include "../game_logic/utils/Move.hpp"
 
 #define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
-
-namespace game
-{
-template <class, class, class>
-class AbstractGame;
-class AbstractBoardCell;
-class AbstractPlayer;
-} // namespace game
+#define INCREMENT_VICTORY 1.0
+#define INCREMENT_DRAW 0.5
+#define INCREMENT_DEFEAT -1.0
 
 namespace mcts
 {
-
-template <class, class, class>
-class Node;
 
 struct timer
 {
@@ -45,31 +42,85 @@ typedef struct
     int time;
 } MCTSConstraints;
 
+template <class CellT, class PawnT>
+struct Node
+{
+    ~Node()
+    {
+        for (Node *&child : childNodes)
+        {
+            delete child;
+            child = nullptr;
+        }
+    }
+
+    std::vector<Node *> childNodes;
+    Node *parent = nullptr;
+    game::Move<CellT, PawnT> move;
+
+    double score = 0.0;
+    int visits = 0;
+    bool isRoot = false;
+};
+
 template <class CellT, class PlayerT, class PawnT>
 class Tree
 {
 protected:
-    Node<CellT, PlayerT, PawnT> *rootNode;
+    Node<CellT, PawnT> *rootNode;
+    // Node *rootNode;
     void expandNode();
+
+    // Node<CellT, PawnT> *selectBestChildAndDoAction(Node<CellT, PawnT> *node);
+
+    // Node<CellT, PawnT> *randomChooseChildOrFallbackOnNode(Node<CellT, PawnT> *node) const;
+
+    // int randomSimulation() const;
+
+    // void expandNode(Node<CellT, PawnT> *nodeToExpand);
+
+    Node<CellT, PawnT> *nodeWithMaxVisits(const Node<CellT, PawnT> *nodeFrom) const;
+
+    // void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
+
+    // const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int& player_id) const;
+
+    // double formula(
+    //     const Node<CellT, PawnT> &node,
+    //     const Node<CellT, PawnT> &nodeSuccessor) const;
+
+    // void doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom);
+
+public:
     game::AbstractGame<CellT, PlayerT, PawnT> *game;
     MCTSConstraints constraints;
 
-    template <class, class, class>
-    friend class Node;
-public:
-
     explicit Tree(
-        game::AbstractGame<CellT, PlayerT, PawnT> *game,
+        game::AbstractGame<CellT, PlayerT, PawnT> *const &game,
         const MCTSConstraints &constraints);
+
     ~Tree();
 
-    /**
-     * @brief Starts the MCTS
-     * 
-     * @return unsigned int the number of visits
-     */
-    unsigned int begin();
+    // size_t begin();
+
     game::Move<CellT, PawnT> bestMove() const;
+
+    /**
+     * @brief Moves the root to a given cell
+     * 
+     * @param cell 
+     */
+    void moveRootToMove(const game::Move<CellT, PawnT> &move);
+
+    /**
+     * @brief Merges tree into the current tree
+     * @brief Does it only for 2 layers
+     * 
+     * @param tree 
+     */
+    void merge(const Tree *const& tree);
+
+    Node<CellT, PawnT> &getRootNode();
 };
 
 } // namespace mcts

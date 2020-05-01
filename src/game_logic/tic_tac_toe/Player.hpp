@@ -17,7 +17,10 @@ class Player : public AbstractPlayer,
 public:
     explicit Player(unsigned int id);
 
-    unsigned int getId() const { return AbstractPlayer::getId(); };
+    using AbstractPlayer::getId;
+
+    using AbstractPawn<Player, BoardCell>::operator==;
+    using AbstractPawn<Player, BoardCell>::operator!=;
 };
 } // namespace tic_tac_toe
 } // namespace game

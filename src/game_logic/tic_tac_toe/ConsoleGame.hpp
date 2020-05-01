@@ -5,6 +5,8 @@
 #include "TicTacToe.hpp"
 #include "Player.hpp"
 
+#include "../../mcts/MCTSPlayer.hpp"
+
 namespace game
 {
 namespace tic_tac_toe
@@ -14,6 +16,8 @@ class ConsoleGame : public TicTacToe, public AbstractInterface
 public:
     ConsoleGame();
     ~ConsoleGame();
+
+    friend mcts::MCTSPlayer<BoardCell, Player, Player>;
 
     void draw() override;
 

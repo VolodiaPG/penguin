@@ -48,16 +48,24 @@ bool Board::checkForCorrectness(const Position &pos) const
 
 bool Board::performMove(Player *player, BoardCell *cell)
 {
-    AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
-    cell->setValue(player->getId());
+    bool ret = checkForCorrectness(cell->getPosition());
+    if (ret)
+    {
+        ret = AbstractBoard<BoardCell, Player, Player>::performMove(player, cell);
+        cell->setValue(player->getId());
+    }
 
-    return true;
+    return ret;
 }
 
 const Move<BoardCell, Player> Board::revertMove()
 {
-    auto& move = AbstractBoard<BoardCell, Player, Player>::revertMove();
+    auto &move = AbstractBoard<BoardCell, Player, Player>::revertMove();
     move.target->setValue(0);
+    // if (move.from)
+    // {
+    //     move.from->setValue(42);
+    // }
     return move;
 }
 
@@ -193,6 +201,32 @@ Player *Board::getPawnById(const unsigned int id)
     default:
         return nullptr;
     }
+}
+
+AbstractBoard<BoardCell, Player, Player> *Board::clone() const
+{
+    Board *nb = new Board();
+    for (size_t ii = 0; ii < boardValues.size(); ++ii)
+    {
+        for (size_t jj = 0; jj < boardValues[0].size(); ++jj)
+        {
+            BoardCell *cell = boardValues[ii][jj];
+            nb->boardValues[ii][jj] = new BoardCell(*cell);
+        }
+    }
+
+    const BoardCell *cell;
+    if ((cell = player1.getCurrentCell()) != nullptr)
+    {
+        const Position &pos = cell->getPosition();
+        nb->player1.setCurrentCell(nb->getCell(pos.x, pos.y));
+    }
+    if ((cell = player2.getCurrentCell()) != nullptr)
+    {
+        const Position &pos = cell->getPosition();
+        nb->player2.setCurrentCell(nb->getCell(pos.x, pos.y));
+    }
+    return nb;
 }
 
 } // namespace tic_tac_toe

@@ -9,6 +9,7 @@ namespace game
 namespace penguin
 {
 class PenguinPawn;
+class Board;
 
 class BoardCell : public AbstractBoardCell
 {
@@ -46,6 +47,8 @@ public:
      */
     explicit BoardCell(const Position &position, unsigned int number_fish);
 
+    explicit BoardCell(const BoardCell& ) = delete;
+
     /**
      * @brief Get the Position object
      * 
@@ -73,7 +76,7 @@ public:
      * 
      * @param penguin The penguin that stands on top of the cell
      */
-    void setOwner(PenguinPawn* penguin) { _owner = penguin; };
+    void setOwner(PenguinPawn *penguin) { _owner = penguin; };
 
     /**
      * @brief Nobody owns the cell now
@@ -86,7 +89,7 @@ public:
      * 
      * @return PenguinPawn* the penguin
      */
-    PenguinPawn *getOwner() { return _owner; };
+    PenguinPawn *getOwner() const { return _owner; };
 
     /**
      * @brief Is a penguin on the cell
@@ -94,7 +97,7 @@ public:
      * @return true there is a penguin on the cell
      * @return false there is no penguin on the cell
      */
-    bool isOwned() { return _owner != nullptr; };
+    bool isOwned() const { return _owner != nullptr; };
 
     /**
      * @brief Get the number of fish contained inside the cell
@@ -102,6 +105,10 @@ public:
      * @return int the number of fish
      */
     unsigned int getFish() const { return _number_fish; }
+
+    bool equals_to(const AbstractBoardCell &cell) const override;
+
+    BoardCell *clone(const Board *const &from) const;
 };
 } // namespace penguin
 } // namespace game

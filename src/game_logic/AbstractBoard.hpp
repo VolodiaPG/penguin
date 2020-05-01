@@ -22,10 +22,14 @@ private:
     History<CellT, PawnT> _history;
 
 public:
+    explicit AbstractBoard() = default;
+
+    explicit AbstractBoard(const AbstractBoard<CellT, PlayerT, PawnT>&) = delete;
+
     virtual ~AbstractBoard(){};
 
     /**
-    * @brief perform a movement on the board
+    * @brief perform a movement on the board, sets the current cell on the pawn
     * 
     * @param player the player that realizes the movement
     * @param cell the cell targeted
@@ -34,6 +38,11 @@ public:
     */
     virtual bool performMove(PawnT *pawn, CellT *cell);
 
+    /**
+     * @brief revertMove & sets the current cell on the pawn
+     * 
+     * @return const Move<CellT, PawnT> 
+     */
     virtual const Move<CellT, PawnT> revertMove();
 
     /**
@@ -90,6 +99,8 @@ public:
     virtual PlayerT *getPlayerById(const unsigned int id) = 0;
 
     virtual size_t size() const = 0;
+
+    virtual AbstractBoard<CellT, PlayerT, PawnT> *clone() const = 0;
 };
 
 } // namespace game

@@ -16,8 +16,9 @@ History<CellT, PawnT>::History()
 {
 }
 
+
 template <class CellT, class PawnT>
-void History<CellT, PawnT>::enqueue(const Move<CellT, PawnT>& move)
+void History<CellT, PawnT>::enqueue(const Move<CellT, PawnT> &move)
 {
     _stack.push(move);
 }
@@ -43,7 +44,6 @@ size_t History<CellT, PawnT>::size() const
 {
     return _stack.size();
 }
-
 template class History<tic_tac_toe::BoardCell, tic_tac_toe::Player>;
 template class History<penguin::BoardCell, penguin::PenguinPawn>;
 
