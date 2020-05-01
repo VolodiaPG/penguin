@@ -25,15 +25,26 @@ When developing the angular side of the project, you'll need to go the the `www/
 - `make ENV=native MODE=debug` to compile the release version on the OS
 - `make ENV=native MODE=debug` to compile the debug version on the OS
 - the executable can be found in `./bin/main`
-- `make serve` to serve the Doxygen documentation on port `8080`
+- `make doc` to compile the Doxygen documentation
 - `clean` to clean
+Note that the attribute `MULTITHREADED` can be set to `true` or `false` to enable it or not (works for both `emscripten` and `native`).
 <br>
-All these commands are accessible via the `tasks` of VSCode!
+Most of these commands are accessible via the `tasks` of VSCode!
+
+## Documentation
+Generated documentation (for the cpp part) is put in a generated folder: `doxygen`. To make use of the html format generated, please execute the script `serve_doc.sh`.
 
 ## Web part
 Everyting is as you are developing normally.
 - If you have `.env` related errors, type `yarn run env -s`
 - to serve : `ng serve --host 0.0.0.0` (the host part is needed for the server to be accessible from the host OS)
+
+## Ports
+This environnement makes use of different ports:
+- `4200` for `angular`
+- `8080` to serve the `doxygen` doc
+- `5500` to make use of the `go live` extension in VsCode
+- `9876` is the default test port for test in `angular`
 
 # Useful other commands
 - `c++filt _ZN4game14AbstractPlayer6actionEPNS_17AbstractBoardCellE` gives us `game::AbstractPlayer::action(game::AbstractBoardCell*)`

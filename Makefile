@@ -1,4 +1,6 @@
 EMSCRIPTEN_PATH ?= /emsdk/upstream/emscripten
+DOXYGEN := doxygen
+DOXYGEN_FLAGS := 
 
 GREEN   := \033[1;32m
 
@@ -81,13 +83,15 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 #specific rules
 build: $(BUILD_DIR)/$(TARGET_EXEC)
 
-.PHONY: clean serve
+.PHONY: clean serve doc
+
+doc:
+	$(MKDIR_P) ./$(DOC_DIRS)/$(DOXYGEN) 
+	$(RM) -r ./$(DOC_DIRS)/$(DOXYGEN)/*
+	cd $(DOC_DIRS)/ && $(DOXYGEN) $(DOXYGEN_FLAGS)
 
 clean:
 	$(RM) -r $(BUILD_DIR)
-
-serve:
-	$(DOC_DIRS)/serve_nginx.sh
 
 -include $(DEPS)
 
