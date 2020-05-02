@@ -2,12 +2,15 @@
 title: Exercices cours de Secu sur les clouds
 author: Volodia PAROL-GUARINO
 date: mercredi 29 avril 2020
+biblio-style: plain-fr
+bibliography: references
 ...
 
 # Installation
 ## Docker
-Docker is required in order to set up the development environment, so it can work with VSCode.<br>
+Docker is required in order to set up the development environment, so it can work with VSCode.
 Toto [@handsOnWebAssembly]
+
 *Note that for Windows, docker desktop will only work with Windows Pro!*
 
 ## Setup
@@ -58,7 +61,7 @@ This environnement makes use of different ports:
 - to access container from another computer, for DockerWindows : https://github.com/docker/for-win/issues/4391#issuecomment-520420942
 
 # Basis
-- Initial Tutorial : https://www.baeldung.com/java-monte-carlo-tree-search
+- [Initial Tutorial](https://www.baeldung.com/java-monte-carlo-tree-search)
 - The basis of the project is https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous-1/src/main/java/com/baeldung/algorithms/mcts
 - https://www.codeflow.site/fr/article/java-monte-carlo-tree-search
 - https://github.com/memo/ofxMSAmcts/tree/master/src
@@ -77,5 +80,3 @@ This environnement makes use of different ports:
 ### Angular
 - installation came using this resource : https://github.com/nvm-sh/nvm (tutorial : http://redgreenrepeat.com/2018/02/09/setting-up-angular-in-virtualbox/)
 - https://github.com/nodesource/distributions/tree/master/deb
-
-# References
