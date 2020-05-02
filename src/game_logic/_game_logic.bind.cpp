@@ -48,6 +48,7 @@ EMSCRIPTEN_BINDINGS(game_logic_bind)
         .function("getId", &AbstractPlayer::getId);                                             \
                                                                                                 \
     class_<AbstractPawn>(name_prefix "_AbstractPawn")                                           \
+        .function("getOwner", &AbstractPawn::getOwner)                                          \
         .function("getId", &AbstractPawn::getId);
 
     typedef AbstractBoard<penguin::BoardCell, penguin::HumanPlayer, penguin::PenguinPawn> penguin_board_t;
