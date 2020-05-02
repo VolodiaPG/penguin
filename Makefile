@@ -19,7 +19,7 @@ ifeq ($(ENV),native)
 TARGET_EXEC ?= main
 CXX := g++
 else
-TARGET_EXEC ?= main.html
+TARGET_EXEC ?= main.js
 CXX := $(EMSCRIPTEN_PATH)/em++
 endif
 

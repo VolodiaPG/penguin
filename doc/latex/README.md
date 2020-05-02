@@ -4,11 +4,24 @@ author: Volodia PAROL-GUARINO
 date: mercredi 29 avril 2020
 ...
 
+# Pandoc
+We use pandoc to go from `markdown` to \LaTeX\
+And https://github.com/tomduck/pandoc-fignos#installation for references
+
 # Installation
+
+$$
+f(x) = 0 \iff x = 1
+$$
+
 ## Docker
 Docker is required in order to set up the development environment, so it can work with VSCode.<br>
 Toto [@handsOnWebAssembly]
 *Note that for Windows, docker desktop will only work with Windows Pro!*
+
+I can make a ref to the image of the Yaktocat @fig:yaktocat
+
+![Image of Yaktocat](yaktocat.png){#fig:yaktocat .class width=5cm}
 
 ## Setup
 ### General setup

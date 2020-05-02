@@ -16,7 +16,7 @@ $(BUILD_DIR)/abstract.tex: $(ABSTRACT)
 
 $(BUILD_DIR)/output.tex: $(SRC) $(BUILD_DIR)/abstract.tex $(BIB)
 	@$(MKDIR_P) $(dir $@)
-	pandoc -N --template=template.tex $(SRC) --variable abstract=$(BUILD_DIR)/abstract.tex --bibliography $(BIB) --toc -o $@
+	pandoc -N --template=template.tex $(SRC) --filter pandoc-fignos --variable abstract=$(BUILD_DIR)/abstract.tex --bibliography $(BIB) --toc -o $@
 
 # tex: abstract.tex references.bib
 # 	pandoc -N --template=template.tex README.md --bibliography references.bib --toc -o test.tex
