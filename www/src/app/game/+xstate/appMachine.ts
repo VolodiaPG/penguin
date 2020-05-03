@@ -25,7 +25,22 @@ export const appMachine = Machine(
           }
         }
       },
-      initPosWasmPenguin: {}
+      initPosWasmPenguin: {
+        on: {
+          STARTGAME: {
+            target: 'gameStarted',
+            actions: ['notifyGameStarted']
+          }
+        }
+      },
+      gameStarted: {
+        on: {
+          PENGUINSPOSED: {
+            target: 'initPosWasmPenguin',
+            actions: ['notifyPenguinPosed']
+          }
+        }
+      }
     }
   },
   {
@@ -34,7 +49,10 @@ export const appMachine = Machine(
         // console.log('You choice to play with', context.nbHexa, context.nbPeng);
       },
       notifyPenguinPosed: (context, event) => {
-        console.log('Now we could begin !');
+        console.log('Penguins posed');
+      },
+      notifyGameStarted: (context, event) => {
+        console.log('Game Started');
       }
     }
   }

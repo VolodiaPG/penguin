@@ -13,7 +13,8 @@ export const gameMachine = Machine(
           HUMANTURN: {
             target: 'waiting',
             actions: ['notifyHumanTurn']
-          }
+          },
+          MCTSPLAYED: 'movePerformed'
         }
       },
       waiting: {

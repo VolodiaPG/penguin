@@ -56,6 +56,7 @@ export class BoardComponent implements OnInit {
   nbPenguin: number = 2;
   penguins: Array<Penguin>;
   penguinSelected: Penguin;
+  cellClicked: Cell;
 
   currentPlayerId: number;
 
@@ -65,13 +66,13 @@ export class BoardComponent implements OnInit {
   wasmGame: any;
   wasmBoard: any;
   wasmPenguins: any;
-  
+
   mctsConstraints: any;
   wasmMCTSPlayer: any;
   wasmMove: any;
 
 
-  constructor(private toastController: ToastController) {}
+  constructor(private toastController: ToastController) { }
 
   ngOnInit(): void {
     this.isLoaded = false;
@@ -104,6 +105,8 @@ export class BoardComponent implements OnInit {
 
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
     this.humanPlayerId = this.currentPlayerId;
+
+    this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, { time: 150 });
 
     this.playTurn();
   }
@@ -207,17 +210,45 @@ export class BoardComponent implements OnInit {
     } else {
       this.presentErrorToast('Wasm is playing !');
 
-      this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, {time: 150});
-
-      console.log('MCTSPlayer : ', this.wasmMCTSPlayer);
-      // this.wasmMCTSPlayer.updateTree();
-
-      this.wasmMove = this.wasmMCTSPlayer.bestMove();
-      // this.wasmGame.play()
-
-
-
+      this.setMCTSBestMove();
+      this.playWasmMove();
     }
+  }
+
+  setMCTSBestMove() {
+    this.wasmMove = this.wasmMCTSPlayer.bestMove();
+
+    for (let ii = 0; ii < this.penguins.length; ii++) {
+      if (this.penguins[ii].wasmPenguin.getId() === this.wasmMove.getPawn().getId()) {
+        this.penguinSelected = this.penguins[ii];
+      }
+    }
+
+    // console.log('pawn : ', this.penguinSelected, 'from : ', this.wasmMove.getFrom().getPosition(), 'target : ', wasmCellClicked.getPosition());
+    let wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition()));
+    this.cellClicked = this.cells[wasmCellPos.row][wasmCellPos.column];
+  }
+
+  playWasmMove() {
+    console.log('pawn : ', this.penguinSelected, 'from : ', this.penguinSelected.cellPosition, 'target : ', this.cellClicked);
+    console.log('wasmPawn : ', this.penguinSelected.wasmPenguin, 'to wasmCell : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.cellClicked.wasmCell.getPosition())));
+
+    if (this.wasmGame.play(this.penguinSelected.wasmPenguin, this.cellClicked.wasmCell)) {
+      this.penguinSelected.moveTo(this.cellClicked);
+      this.wasmMCTSPlayer.updateTree(this.wasmMove);
+
+      gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
+      gameService.send(gameService.machine.states.moveBlocked.on.MCTSPLAYED[0].eventType);
+
+      this.movePerformed();
+    } else {
+      console.log('Wasm blocked the move');
+      this.setAvailableCellColor(true);
+      this.setSelectedPenguinColor(true);
+    }
+
+    this.penguinSelected = undefined;
+    this.cellClicked = undefined;
   }
 
   switchCurrentPlayer() {
@@ -288,37 +319,12 @@ export class BoardComponent implements OnInit {
         this.setAvailableCellColor(false);
         this.setSelectedPenguinColor(false);
 
-        if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
-          this.penguinSelected.moveTo(cellClicked);
-          this.penguinSelected = undefined;
-          gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
-          this.movePerformed();
-        } else {
-          console.log('Wasm blocked the move');
-          this.setAvailableCellColor(true);
-          this.setSelectedPenguinColor(true);
-        }
+        this.cellClicked = cellClicked;
+
+        this.wasmMove = new Module.penguin_Move(this.penguinSelected.cellPosition.wasmCell, this.cellClicked.wasmCell, this.penguinSelected.wasmPenguin);
+        this.playWasmMove();
         break;
     }
-
-    // if (appService.state.value === 'initPosPenguin') {
-    //   // console.log('Pose a penguin here');
-    //   this.posePenguinOn(cellClicked);
-    // } else if (gameService.state.value === 'penguinSelected') {
-    //   this.setAvailableCellColor(false);
-    //   this.setSelectedPenguinColor(false);
-
-    //   if (this.wasmGame.play(this.penguinSelected.wasmPenguin, cellClicked.wasmCell)) {
-    //     this.penguinSelected.moveTo(cellClicked);
-    //     this.penguinSelected = undefined;
-    //     gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
-    //     this.movePerformed();
-    //   } else {
-    //     console.log('Wasm blocked the move');
-    //     this.setAvailableCellColor(true);
-    //     this.setSelectedPenguinColor(true);
-    //   }
-    // }
   }
 
   setSelectedPenguinColor(set: boolean) {
