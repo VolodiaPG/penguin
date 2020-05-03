@@ -65,6 +65,11 @@ export class BoardComponent implements OnInit {
   wasmGame: any;
   wasmBoard: any;
   wasmPenguins: any;
+  
+  mctsConstraints: any;
+  wasmMCTSPlayer: any;
+  wasmMove: any;
+
 
   constructor(private toastController: ToastController) {}
 
@@ -201,6 +206,17 @@ export class BoardComponent implements OnInit {
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
       this.presentErrorToast('Wasm is playing !');
+
+      this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, {time: 150});
+
+      console.log('MCTSPlayer : ', this.wasmMCTSPlayer);
+      // this.wasmMCTSPlayer.updateTree();
+
+      this.wasmMove = this.wasmMCTSPlayer.bestMove();
+      // this.wasmGame.play()
+
+
+
     }
   }
 
