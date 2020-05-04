@@ -71,8 +71,7 @@ export class BoardComponent implements OnInit {
   wasmMCTSPlayer: any;
   wasmMove: any;
 
-
-  constructor(private toastController: ToastController) { }
+  constructor(private toastController: ToastController) {}
 
   ngOnInit(): void {
     this.isLoaded = false;
@@ -215,6 +214,11 @@ export class BoardComponent implements OnInit {
   setMCTSBestMove() {
     this.wasmMove = this.wasmMCTSPlayer.bestMove();
 
+    console.log('wasmMove: ');
+    console.log(this.wasmMove.getPawn());
+    console.log(this.wasmMove.getTarget());
+    console.log(this.wasmMove.getFrom());
+
     let pawnId = this.wasmMove.getPawn().getId();
 
     for (let ii = 0; ii < this.penguins.length; ii++) {
@@ -229,17 +233,25 @@ export class BoardComponent implements OnInit {
   }
 
   playWasmMove() {
-    // console.log('pawn : ', this.penguinSelected.wasmPenguin.getId(), this.penguinSelected, 
-    //             'from : ', this.penguinSelected.cellPosition, 
+    // console.log('pawn : ', this.penguinSelected.wasmPenguin.getId(), this.penguinSelected,
+    //             'from : ', this.penguinSelected.cellPosition,
     //             'target : ', this.cellClicked);
-    console.log('pawn : ', this.wasmMove.getPawn().getId(),  
-                this.wasmMove.getPawn().getId() === this.penguinSelected.wasmPenguin.getId(),
-                '\n from : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getFrom().getPosition())), 
-                '\n target : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition())));
+    console.log(
+      'pawn : ',
+      this.wasmMove.getPawn().getId(),
+      this.wasmMove.getPawn().getId() === this.penguinSelected.wasmPenguin.getId(),
+      '\n from : ',
+      Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getFrom().getPosition())),
+      '\n target : ',
+      Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition()))
+    );
+
+    // if the move is to be rejected, then it will also be in the trees,
+    //but this function needs to be called before changing the state of the _main_ game board
+    this.wasmMCTSPlayer.updateTree(this.wasmMove);
 
     if (this.wasmGame.play(this.penguinSelected.wasmPenguin, this.cellClicked.wasmCell)) {
       this.penguinSelected.moveTo(this.cellClicked);
-      this.wasmMCTSPlayer.updateTree(this.wasmMove);
 
       // this.penguinSelected.wasmPenguin = this.wasmGame.getBoard().getPawnById(this.penguinSelected.wasmPenguin.getId());
 
@@ -327,7 +339,11 @@ export class BoardComponent implements OnInit {
 
         this.cellClicked = cellClicked;
 
-        this.wasmMove = new Module.penguin_Move(this.penguinSelected.cellPosition.wasmCell, this.cellClicked.wasmCell, this.penguinSelected.wasmPenguin);
+        this.wasmMove = new Module.penguin_Move(
+          this.penguinSelected.cellPosition.wasmCell,
+          this.cellClicked.wasmCell,
+          this.penguinSelected.wasmPenguin
+        );
         this.playWasmMove();
         break;
     }
