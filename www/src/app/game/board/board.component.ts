@@ -161,7 +161,6 @@ export class BoardComponent implements OnInit {
   }
 
   generateWasmPenguin() {
-    console.log('Generate Penguins');
     let rndRow: number, rndColumn: number;
     for (let ii = 0; ii < this.nbPenguin; ii++) {
       this.penguins.push(undefined);
@@ -179,8 +178,6 @@ export class BoardComponent implements OnInit {
   }
 
   putPenguinOnWasmBoard() {
-    console.log(this.penguins.length, this.wasmPenguins.size());
-
     for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
       let penguinPosed = false;
       let wasmPenguin = this.wasmPenguins.get(ii);
@@ -218,8 +215,10 @@ export class BoardComponent implements OnInit {
   setMCTSBestMove() {
     this.wasmMove = this.wasmMCTSPlayer.bestMove();
 
+    let pawnId = this.wasmMove.getPawn().getId();
+
     for (let ii = 0; ii < this.penguins.length; ii++) {
-      if (this.penguins[ii].wasmPenguin.getId() === this.wasmMove.getPawn().getId()) {
+      if (this.penguins[ii].wasmPenguin.getId() === pawnId) {
         this.penguinSelected = this.penguins[ii];
       }
     }
@@ -230,12 +229,19 @@ export class BoardComponent implements OnInit {
   }
 
   playWasmMove() {
-    console.log('pawn : ', this.penguinSelected, 'from : ', this.penguinSelected.cellPosition, 'target : ', this.cellClicked);
-    console.log('wasmPawn : ', this.penguinSelected.wasmPenguin, 'to wasmCell : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.cellClicked.wasmCell.getPosition())));
+    // console.log('pawn : ', this.penguinSelected.wasmPenguin.getId(), this.penguinSelected, 
+    //             'from : ', this.penguinSelected.cellPosition, 
+    //             'target : ', this.cellClicked);
+    console.log('pawn : ', this.wasmMove.getPawn().getId(),  
+                this.wasmMove.getPawn().getId() === this.penguinSelected.wasmPenguin.getId(),
+                '\n from : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getFrom().getPosition())), 
+                '\n target : ', Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition())));
 
     if (this.wasmGame.play(this.penguinSelected.wasmPenguin, this.cellClicked.wasmCell)) {
       this.penguinSelected.moveTo(this.cellClicked);
       this.wasmMCTSPlayer.updateTree(this.wasmMove);
+
+      // this.penguinSelected.wasmPenguin = this.wasmGame.getBoard().getPawnById(this.penguinSelected.wasmPenguin.getId());
 
       gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
       gameService.send(gameService.machine.states.moveBlocked.on.MCTSPLAYED[0].eventType);
@@ -364,8 +370,6 @@ export class BoardComponent implements OnInit {
       cell = new Cell(this.nbHexagonal - 1, column);
       this.cells[this.nbHexagonal - 1][column] = cell;
     }
-
-    console.log('New nb of hexagonals : ', this.nbHexagonal);
   }
 
   removeHexagonal(): void {
@@ -376,8 +380,6 @@ export class BoardComponent implements OnInit {
     }
     //Remove a row
     this.cells.pop();
-
-    console.log('New nb of hexagonals : ', this.nbHexagonal);
   }
 
   addPenguin(): void {
