@@ -17,7 +17,7 @@
 #include "MCTSPlayer.hpp"
 
 #ifndef NUMBER_THREADS
-#define NUMBER_THREADS 1
+#define NUMBER_THREADS 4 
 #endif
 
 namespace mcts
