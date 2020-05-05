@@ -44,4 +44,18 @@ int main(int argn, char **argv)
 // 	return EXIT_SUCCESS;
 // }
 
+#else
+
+// int main()
+// {
+//  	for (int ii = 0; ii < 1; ++ii)
+//  	{
+//  		game::penguin::ConsoleGame consoleGame(false);
+
+//  		consoleGame.loop();
+//  	}
+
+//  	return EXIT_SUCCESS;
+// }
+
 #endif

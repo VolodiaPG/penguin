@@ -7,6 +7,7 @@ GREEN   := \033[1;32m
 WHITE   := \033[0;m
 
 NUMBER_PTHREADS_WORKERS := 4
+INITIAL_MEMORY := 33554432 # more than 16777216
 
 # default environement
 
@@ -47,7 +48,7 @@ CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -We
 
 ifeq ($(ENV),emscripten)
 ifeq ($(MULTITHREADED),true)
-	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS)
+	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS) -s INITIAL_MEMORY=$(INITIAL_MEMORY)
 endif
 	CPPFLAGS += --bind -s WASM=1
 	EXECPPFLAGS := 
