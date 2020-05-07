@@ -99,7 +99,7 @@ $header-includes$
 $endfor$
 
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+\title{\textbf{$title$}$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 $if(subtitle)$
 
@@ -112,8 +112,14 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 $if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
+\author{$for(author)$$author$$sep$ \and $endfor$
+$if(coauthor)$ \\ $for(coauthor)$$coauthor$$sep$ \and $endfor$$endif$}
 $endif$
+
+% \author{Francesco \textsc{Bariatti} \and Adrien \textsc{Gasté} \and Mikael \textsc{Le} \and Romain \textsc{Lebouc}
+%         \\
+%         Encadrant : Pascal \textsc{Garcia}}
+
 \date{$date$}
 $if(beamer)$
 $if(institute)$
