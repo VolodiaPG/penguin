@@ -1,0 +1,104 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+
+\documentclass[a4paper,11pt]{article}
+% \usepackage[]{natbib}
+\usepackage[numbers]{natbib}
+\bibliographystyle{plain-fr}
+\usepackage{exptech}
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+  \usepackage{textcomp} % provides euro and other symbols
+
+\usepackage{fancyhdr}
+
+
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Exercices cours de Secu sur les clouds},
+  pdfauthor={Clément ; Romain ; Romain ; Maxime ; Volodia },
+  pdfborder={0 0 0},
+  breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+
+
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% 
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{\textbf{Exercices cours de Secu sur les clouds}}
+\author{Clément \textsc{Chavanon} \and Romain \textsc{Hu} \and Romain
+\textsc{Hubert} \and Maxime \textsc{Grimaud} \and Volodia
+\textsc{Parol-Guarino} \and 
+ \\ Encadrant : Pascal \textsc{Garcia}}
+
+% \author{Francesco \textsc{Bariatti} \and Adrien \textsc{Gasté} \and Mikael \textsc{Le} \and Romain \textsc{Lebouc}
+%         \\
+%         Encadrant : Pascal \textsc{Garcia}}
+
+\date{2019-2020}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{o_abstract.tex}
+\end{abstract}
+
+{
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\section*{Introduction}\label{introduction}}
+\addcontentsline{toc}{section}{Introduction}
+
+\hypertarget{le-jeu-des-pingouins}{%
+\subsection{Le jeu des pingouins}\label{le-jeu-des-pingouins}}
+
+Le jeu des pingouins est un jeu de stratégie sur plateau de 4 joueurs.
+Le plateau contient 60 cases hexagonales sur lesquelles se trouvent 1 à
+3 poissons.
+
+En début de partie, chaque joueur place un certain nombre de pingouins
+(de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour,
+le joueur doit, si possible, bouger l'un de ses pingouins. Les
+mouvements de ceux se font sur en ligne droite depuis les 6 faces de la
+case hexagonale sur laquelle il se trouve. Il ne peut passer par des
+trous ou au-dessus d'autres pingouins, peu importe leur couleur. Une
+fois le mouvement achevé, la case de départ est retiré du plateau. Le
+joueur peut alors incrémenter du nombre de poisson qu'il y avait sur
+cette case son score.
+
+Le jeu se termine lorsque plus aucun pingouins ne peut se déplacer. Le
+joueur avec le plus de points (poissons) remporte la partie.
+
+% % \bibliography{references}
+% 
+\bibliography{references}
+
+\end{document}
