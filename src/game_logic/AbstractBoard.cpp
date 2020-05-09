@@ -14,22 +14,22 @@ namespace game
 template <class CellT, class PlayerT, class PawnT>
 bool AbstractBoard<CellT, PlayerT, PawnT>::performMove(PawnT *pawn, CellT *cell)
 {
-    assert(pawn != nullptr);
-    assert(cell != nullptr);
+    if (pawn)
+    {
+        _history.enqueue({pawn->getCurrentCell(),
+                          cell,
+                          pawn});
+        pawn->setCurrentCell(cell);
+    }
 
-    _history.enqueue({pawn->getCurrentCell(),
-                      cell,
-                      pawn});
-    pawn->setCurrentCell(cell);
-
-    return true;
+    return pawn != nullptr;
 }
 
 template <class CellT, class PlayerT, class PawnT>
 const Move<CellT, PawnT> AbstractBoard<CellT, PlayerT, PawnT>::revertMove()
 {
     assert("Cannot dequeue, empty stack" && _history.size() > 0);
-    const Move<CellT, PawnT>& move = _history.dequeue();
+    const Move<CellT, PawnT> &move = _history.dequeue();
     move.pawn->setCurrentCell(move.from);
     return move;
 }

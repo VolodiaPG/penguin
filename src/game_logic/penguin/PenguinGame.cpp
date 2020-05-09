@@ -25,10 +25,10 @@ PenguinGame::~PenguinGame()
 bool PenguinGame::play(PenguinPawn *pawn, BoardCell *move)
 {
     bool moved = board->performMove(pawn, move);
-    if (moved)
-    {
-        ++numberMoves;
-    }
+    // if (moved)
+    // {
+    //     ++numberMoves;
+    // }
     return moved;
 }
 

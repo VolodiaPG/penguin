@@ -42,8 +42,6 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 LDFLAGS := -lpthread
 
-# CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
-#-Wcast-align -Wover-aligned
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
@@ -59,7 +57,7 @@ endif
 endif
 
 ifeq ($(MODE),debug)
-	CPPFLAGS += -O0 -g
+	CPPFLAGS += -O0 -g -gstabs+
 ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s STACK_OVERFLOW_CHECK=2 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 -s SAFE_HEAP=1 -s WARN_UNALIGNED=1
 endif

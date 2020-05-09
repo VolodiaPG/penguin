@@ -11,6 +11,8 @@
 
 #include "Board.hpp"
 
+#include "../../dbg.h"
+
 namespace game
 {
 namespace penguin
@@ -118,34 +120,34 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
 
 bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 {
-    assert(penguin != nullptr);
-    assert(cell != nullptr);
-
-    HumanPlayer *human_player = penguin->getOwner();
-    BoardCell *cell_standing_on = penguin->getCurrentCell();
-    bool isCorrect = true;
-    // std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
-
-    if (cell_standing_on)
+    bool isCorrect = false;
+    if (penguin)
     {
-        isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
-    }
+        isCorrect = true;
+        HumanPlayer *human_player = penguin->getOwner();
+        BoardCell *cell_standing_on = penguin->getCurrentCell();
+        // std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
 
-    if (isCorrect)
-    {
         if (cell_standing_on)
         {
-            // clear the owner and create a hole in the board
-            cell_standing_on->clearOwner();
-            cell_standing_on->setGone(true);
+            isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
         }
 
-        cell->setOwner(penguin);
-        human_player->addScore(cell->getFish());
+        if (isCorrect)
+        {
+            if (cell_standing_on)
+            {
+                // clear the owner and create a hole in the board
+                cell_standing_on->clearOwner();
+                cell_standing_on->setGone(true);
+            }
 
-        AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::performMove(penguin, cell);
+            cell->setOwner(penguin);
+            human_player->addScore(cell->getFish());
+
+            AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::performMove(penguin, cell);
+        }
     }
-
     return isCorrect;
 }
 
@@ -176,28 +178,51 @@ const Move<BoardCell, PenguinPawn> Board::revertMove()
 
 int Board::checkStatus()
 {
-    bool all_zero = true;
+    // only 1 penguin can move = keep going !
+    bool can_still_play = false;
     int winner_id = IN_PROGRESS;
 
     //TODO Optimize, we can just look at the cells around
     for (auto &human : _players)
     {
-        all_zero = true;
         for (auto &penguin : human->getPenguins())
         {
-            if (getAvailableCells(penguin).size() > 0)
+            BoardCell *cell = penguin->getCurrentCell();
+            if (cell != nullptr)
             {
-                all_zero = false;
+                const Position pos = cell->getPosition();
+                int ii = -1, rr = 0, inc_ii = 1;
+                while (ii >= -1)
+                {
+                    if ((cell = boardValues[{pos.x + ii, pos.y + rr}]) && (!cell->isGone() || cell->getOwner()))
+                    {
+                        can_still_play = true;
+                        break;
+                    }
+
+                    rr += ii;
+                    if (ii == 1)
+                    {
+                        inc_ii = -1;
+                    }
+                    else
+                    {
+                        ii += inc_ii;
+                    }
+                }
+            }
+            if (can_still_play)
+            {
                 break;
             }
         }
-        if (all_zero)
+        if (can_still_play)
         {
             break;
         }
     }
 
-    if (all_zero)
+    if (!can_still_play)
     {
         winner_id = _players[1]->getId();
         int score_player_0 = _players[0]->getScore();
@@ -301,7 +326,7 @@ PenguinPawn *Board::getPawnById(const unsigned int penguin_id)
     return _penguins_on_board[penguin_id];
 }
 
-PenguinPawn *Board::getPawnById(const unsigned int& penguin_id) const
+PenguinPawn *Board::getPawnById(const unsigned int &penguin_id) const
 {
     return _penguins_on_board[penguin_id];
 }
