@@ -35,12 +35,12 @@
 version 7.1.0</p>
 <h1 id="getting-started">Getting started</h1>
 <ol>
-<li>Go to project folder and install dependencies:</li>
+<li>Go to project folder, then www/ and install dependencies:</li>
 </ol>
-<div><pre class="line-numbers"><code class="language-sh">npm install</code></pre></div><ol start="2">
+<div><pre class="line-numbers"><code class="language-sh">yarn install</code></pre></div><ol start="2">
 <li>Launch development server, and open <code>localhost:4200</code> in your browser:</li>
 </ol>
-<div><pre class="line-numbers"><code class="language-sh">npm start</code></pre></div><h1 id="project-structure">Project structure</h1>
+<div><pre class="line-numbers"><code class="language-sh">ng serve --host 0.0.0.0</code></pre></div><h1 id="project-structure">Project structure</h1>
 <div><pre class="line-numbers"><code class="language-none">dist/                        web app production build
 docs/                        project docs and coding guides
 e2e/                         end-to-end tests
@@ -48,10 +48,19 @@ src/                         project source code
 |- app/                      app components
 |  |- core/                  core module (singleton services and single-use components)
 |  |- shared/                shared module  (common components, directives and pipes)
+|  |- shell/                 shell component (routing service)
 |  |- app.component.*        app root component (shell)
 |  |- app.module.ts          app root module definition
 |  |- app-routing.module.ts  app routes
-|  +- ...                    additional modules and components
+|  |- home/                  home page (only the home page)
+|  |- game/                  game page (contents all the components relatives to the game)
+|  |  |- +xstate/            final state machine
+|  |  |- board/              board component (the game map)
+|  |  |- console/            console component (show the interactions with the C++)
+|  |  |- control/            control component (control pane, initial settings)
+|  |  |- info/               information component (state of the game, number of penguins, fishes)
+|  |- team/                  team page (present all the members of the project)
+|  |- about/                 about page (with all the credits)
 |- assets/                   app assets (images, fonts, sounds...)
 |- environments/             values for various build environments
 |- theme/                    app global scss variables and theme
@@ -63,7 +72,6 @@ src/                         project source code
 +- test.ts                   unit tests entry point
 reports/                     test and coverage reports
 proxy.conf.js                backend proxy configuration</code></pre></div><h1 id="main-tasks">Main tasks</h1>
-<p>Task automation is based on <a href="https://docs.npmjs.com/misc/scripts">NPM scripts</a>.</p>
 <table class="table table-bordered compodoc-table">
 <thead>
 <tr>
@@ -73,40 +81,20 @@ proxy.conf.js                backend proxy configuration</code></pre></div><h1 i
 </thead>
 <tbody>
 <tr>
-<td><code>npm start</code></td>
-<td>Run development server on <code>http://localhost:4200/</code></td>
-</tr>
-<tr>
-<td><code>npm run build [-- --configuration=production]</code></td>
+<td><code>yarn install</code></td>
 <td>Lint code and build web app for production (with <a href="https://angular.io/guide/aot-compiler">AOT</a>) in <code>dist/</code> folder</td>
 </tr>
 <tr>
-<td><code>npm test</code></td>
-<td>Run unit tests via <a href="https://karma-runner.github.io">Karma</a> in watch mode</td>
+<td><code>ng serve --host 0.0.0.0</code></td>
+<td>Run development server on <code>http://localhost:4200/</code></td>
 </tr>
 <tr>
-<td><code>npm run test:ci</code></td>
-<td>Lint code and run unit tests once for continuous integration</td>
+<td><code>yarn run env -s</code></td>
+<td>Fix <code>.env</code> related errors integration</td>
 </tr>
 <tr>
-<td><code>npm run e2e</code></td>
-<td>Run e2e tests using <a href="http://www.protractortest.org">Protractor</a></td>
-</tr>
-<tr>
-<td><code>npm run lint</code></td>
-<td>Lint code</td>
-</tr>
-<tr>
-<td><code>npm run translations:extract</code></td>
-<td>Extract strings from code and templates to <code>src/app/translations/template.json</code></td>
-</tr>
-<tr>
-<td><code>npm run docs</code></td>
-<td>Display project documentation and coding guides</td>
-</tr>
-<tr>
-<td><code>npm run prettier</code></td>
-<td>Automatically format all <code>.ts</code>, <code>.js</code> &amp; <code>.scss</code> files</td>
+<td><code>yarn compodoc</code></td>
+<td>Generate the documentation</td>
 </tr>
 </tbody>
 </table>
@@ -114,12 +102,12 @@ proxy.conf.js                backend proxy configuration</code></pre></div><h1 i
 <code>--configuration &lt;name&gt;</code> (do not forget to prepend <code>--</code> to pass arguments to npm scripts).</p>
 <p>The default build configuration is <code>prod</code>.</p>
 <h2 id="development-server">Development server</h2>
-<p>Run <code>npm start</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change
+<p>Run <code>ng serve --host 0.0.0.0</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change
 any of the source files.
 You should not use <code>ng serve</code> directly, as it does not use the backend proxy configuration by default.</p>
 <h2 id="code-scaffolding">Code scaffolding</h2>
-<p>Run <code>npm run generate -- component &lt;name&gt;</code> to generate a new component. You can also use
-<code>npm run generate -- directive|pipe|service|class|module</code>.</p>
+<p>Run <code>ionic generate -- component &lt;name&gt;</code> to generate a new component. You can also use
+<code>ionic generate -- directive|pipe|service|class|module</code>.</p>
 <p>If you have installed <a href="https://github.com/angular/angular-cli">angular-cli</a> globally with <code>npm install -g @angular/cli</code>,
 you can also use the command <code>ng generate</code> directly.</p>
 <h2 id="additional-tools">Additional tools</h2>
