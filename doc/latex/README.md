@@ -43,3 +43,17 @@ Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombr
 ### Notre objectif
 
 Principalement nous nous sommes concentré sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'on fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
+
+# Réalisation
+
+## Représentation du jeu
+
+## MCTS
+
+## Multihtreading
+
+## Interface graphique
+
+## _Bindings_ MCTS
+
+# Conclusion
