@@ -56,17 +56,23 @@ Principalement nous nous sommes concentré sur le fonctionnement correct de tout
   Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un navigateur, nous avons du mettre en place une interface graphique pour notre jeu. Avec les contraintes de temps et les contraintes techniques, nous avons été amenés à faire des choix aux niveaux des technologies utilisées et des méthodes d'implémentation afin de pouvoir produire rapidement une interface utilisable.
 ### Angular / Ionic
   Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour mettre en place le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre Proof Of Concept, où le moteur du tic-tac-toe était en _Javascript_. 
-  D'autre part, nous voulions mettre en place une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Nous souhaitions disposer des éléments suivants :
-  * une page d'accueil présentant le projet,
-  * une page avec le jeu en lui même,
-  * une page de présentation pour les membres de l'équipe,
-  * et une page pour les crédits.
- Afin de mettre en place cette architecture web sur pied au plus vite, nous nous sommes tournés vers `Angular`. En utilisant _ngx rocket_, la base de l'application a pu être générée rapidement et avec une qualité de production. 
- 
-  Concernant la mise en place de la chartre graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants responsives. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.  
+  D'autre part, nous voulions mettre en place une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous sommes tournés vers `Angular`. 
+  
+  Pour mettre en place la chartre graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants responsives. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.  
 
 ### Organisation de l'application
-
+  Dans sa version finale notre application se compose des pages principales suivantes :
+    * une page d'accueil présentant le projet,
+    * une page avec le jeu en lui même,
+    * une page de présentation pour les membres de l'équipe,
+    * et une page pour les crédits.
+    
+   Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participés à sa réalisation. 
+   
+   En utilisant `ngx rocket`, la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposé d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités. 
+   
+   Durant nos recherches dans les différentes possibilités que pouvait nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième chartre graphique, définissant le `Dark Theme`.
+   
 ### Développement du jeu
 
 ## _Bindings_ MCTS
