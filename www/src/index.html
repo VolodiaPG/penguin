@@ -16,6 +16,14 @@
       var Module = {
         locateFile: function(s) {
           return 'assets/bin/' + s;
+        },
+        print: (function() {
+          return function(text) {
+            console.log(text);
+          };
+        })(),
+        printErr: function(e) {
+          1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(' ')), console.error(e);
         }
       };
     </script>
