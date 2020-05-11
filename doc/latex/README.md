@@ -62,6 +62,7 @@ Principalement nous nous sommes concentré sur le fonctionnement correct de tout
 
 ### Organisation de l'application
   Dans sa version finale notre application se compose des pages principales suivantes :
+    
     * une page d'accueil présentant le projet,
     * une page avec le jeu en lui même,
     * une page de présentation pour les membres de l'équipe,
