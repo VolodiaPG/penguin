@@ -83,14 +83,6 @@ protected:
     penguin_board_map_t boardValues;
 
     /**
-    * @brief Check a line (col or row) for a win
-    * 
-    * @param line array: col or row or diag
-    * @return int the player who won, 0 if nobody has won at the call  
-    */
-    // int checkForWin(const board_line_t &line) const;
-
-    /**
      * @brief Checks wether or not the move is allowed to be performed
      * 
      * @param start the starting position
@@ -138,11 +130,20 @@ public:
     int checkStatus() override;
 
     /**
+     * @brief Is the player able to move
+     * 
+     * @param player the refered player
+     * @return true if he can
+     * @return false if he cannot
+     */
+    bool isAbleToMove(const HumanPlayer *const &player);
+
+        /**
      * @brief Get a list of available cells, ie player can move onto
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<BoardCell *> getAvailableCells(PenguinPawn *penguin) override;
+        std::vector<BoardCell *> getAvailableCells(PenguinPawn *penguin) override;
 
     /**
      * @brief Get a list of all cells
