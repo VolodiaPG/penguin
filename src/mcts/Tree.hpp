@@ -9,11 +9,6 @@
 #include "../game_logic/AbstractBoardCell.hpp"
 #include "../game_logic/utils/Move.hpp"
 
-#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
-#define INCREMENT_VICTORY 1.0
-#define INCREMENT_DRAW 0.5
-#define INCREMENT_DEFEAT -1.0
-
 namespace mcts
 {
 

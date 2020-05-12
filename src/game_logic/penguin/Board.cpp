@@ -11,8 +11,6 @@
 
 #include "Board.hpp"
 
-#include "../../dbg.h"
-
 namespace game
 {
 namespace penguin
@@ -189,29 +187,31 @@ bool Board::isAbleToMove(const HumanPlayer *const &human)
             int ii = -1, rr = 0, inc_ii = 1;
             while (ii >= -1)
             {
-                if ((cell = boardValues[{pos.x + ii, pos.y + rr}]) &&
-                    (!cell->isGone() || cell->getOwner()))
+                // iterate over all the neighbours
+                if (
+                    (cell = boardValues[{pos.x + ii, pos.y + rr}]) != nullptr &&
+                    !cell->isGone() &&
+                    !cell->getOwner())
                 {
                     can_it_move = true;
                     break;
                 }
 
                 rr += ii;
-                if (ii == 1)
+                if (ii == 1 && rr == 0)
                 {
+                    ii = 2;
                     inc_ii = -1;
                 }
-                else
-                {
-                    ii += inc_ii;
-                }
+
+                ii += inc_ii;
             }
-        }
-        if (can_it_move)
-        {
-            break;
+            if (can_it_move)
+                break;
         }
     }
+
+    return can_it_move;
 }
 
 int Board::checkStatus()
@@ -222,12 +222,14 @@ int Board::checkStatus()
 
     for (auto &human : _players)
     {
-
         if (isAbleToMove(human))
         {
+            can_still_play = true;
             break;
         }
     }
+
+
 
     if (!can_still_play)
     {
