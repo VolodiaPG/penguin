@@ -42,8 +42,6 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 LDFLAGS := -lpthread
 
-# CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror
-#-Wcast-align -Wover-aligned
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
