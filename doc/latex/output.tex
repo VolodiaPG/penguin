@@ -4,7 +4,7 @@
 \documentclass[a4paper,11pt]{article}
 % \usepackage[]{natbib}
 \usepackage[numbers]{natbib}
-\bibliographystyle{plain-fr}
+\bibliographystyle{plainnat}
 \usepackage{exptech}
 
 \usepackage{lmodern}
@@ -18,8 +18,6 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Exercices cours de Secu sur les clouds},
-  pdfauthor={Clément ; Romain ; Romain ; Maxime ; Volodia },
   pdfborder={0 0 0},
   breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -52,20 +50,14 @@
 \makeatother
 
 
-\title{\textbf{Exercices cours de Secu sur les clouds}}
-\author{Clément \textsc{Chavanon} \and Romain \textsc{Hu} \and Romain
-\textsc{Hubert} \and Maxime \textsc{Grimaud} \and Volodia
-\textsc{Parol-Guarino} \and 
- \\ Encadrant : Pascal \textsc{Garcia}}
 
 % \author{Francesco \textsc{Bariatti} \and Adrien \textsc{Gasté} \and Mikael \textsc{Le} \and Romain \textsc{Lebouc}
 %         \\
 %         Encadrant : Pascal \textsc{Garcia}}
 
-\date{2019-2020}
+\date{}
 
 \begin{document}
-\maketitle
 \begin{abstract}
 \input{o_abstract.tex}
 \end{abstract}
@@ -73,6 +65,28 @@
 {
 \tableofcontents
 }
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+title: Exercices cours de Secu sur les clouds author:
+
+\begin{itemize}
+\tightlist
+\item
+  Clément \textsc{Chavanon}
+\item
+  Romain \textsc{Hu}
+\item
+  Romain \textsc{Hubert}
+\item
+  Maxime \textsc{Grimaud}
+\item
+  Volodia \textsc{Parol-Guarino}
+\item
+\end{itemize}
+
+coauthor: ``Encadrant : Pascal \textbackslash textsc\{Garcia\}'' date:
+2019-2020 biblio-style: plain-fr bibliography: references \ldots{}
+
 \hypertarget{introduction}{%
 \section*{Introduction}\label{introduction}}
 \addcontentsline{toc}{section}{Introduction}
@@ -164,7 +178,11 @@ sur un navigateur, nous avons du mettre en place une interface graphique
 pour notre jeu. Avec les contraintes de temps et les contraintes
 techniques, nous avons été amenés à faire des choix aux niveaux des
 technologies utilisées et des méthodes d'implémentation afin de pouvoir
-produire rapidement une interface utilisable. \#\#\# Angular / Ionic
+produire rapidement une interface utilisable.
+
+\hypertarget{angular-ionic}{%
+\subsubsection{Angular / Ionic}\label{angular-ionic}}
+
 Afin de mettre en place, un code solide et rapidement exploitable, nous
 voulions impérativement utiliser \texttt{Typescript}, pour mettre en
 place le moteur de jeu côté graphisme. En effet, son contrôle de typage
@@ -188,12 +206,9 @@ l'application}\label{organisation-de-lapplication}}
 Dans sa version finale notre application se compose des pages
 principales suivantes :
 
-\begin{verbatim}
-* une page d'accueil présentant le projet,
-* une page avec le jeu en lui même,
-* une page de présentation pour les membres de l'équipe,
-* et une page pour les crédits.
-\end{verbatim}
+\_ une page d'accueil présentant le projet, \_ une page avec le jeu en
+lui même, \_ une page de présentation pour les membres de l'équipe, \_
+et une page pour les crédits.
 
 Cette dernière permet de présenter le projet dans sa globalité, ainsi
 que les membres de l'équipe ayant participés à sa réalisation.
@@ -215,7 +230,6 @@ une deuxième chartre graphique, définissant le \texttt{Dark\ Theme}.
 \subsection{\texorpdfstring{\emph{Bindings}
 MCTS}{Bindings MCTS}}\label{bindings-mcts}}
 
-% % \bibliography{references}
 % 
 \bibliography{references}
 

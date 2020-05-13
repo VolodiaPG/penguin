@@ -68,8 +68,8 @@ Pour mettre en place la chartre graphique de notre application, nous nous sommes
 ### Organisation de l'application
 
 Dans sa version finale notre application se compose des pages principales suivantes :
-  
- _ une page d'accueil présentant le projet,
+
+_ une page d'accueil présentant le projet,
 _ une page avec le jeu en lui même,
 _ une page de présentation pour les membres de l'équipe,
 _ et une page pour les crédits.
