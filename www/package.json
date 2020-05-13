@@ -17,7 +17,8 @@
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "postinstall": "npm run prettier -s",
     "generate": "ng generate",
-    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json"
+    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json",
+    "compodoc -n": "npx compodoc -p /workspace/www/tsconfig.app.json -n \"App Penguin documentation\""
   },
   "dependencies": {
     "@angular/animations": "^8.1.0",
@@ -91,7 +92,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged --no-verify"
     }
   }
 }

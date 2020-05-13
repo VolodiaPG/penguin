@@ -5,16 +5,16 @@ version 7.1.0
 
 # Getting started
 
-1. Go to project folder and install dependencies:
+1. Go to project folder, then www/ and install dependencies:
 
 ```sh
-npm install
+yarn install
 ```
 
 2. Launch development server, and open `localhost:4200` in your browser:
 
 ```sh
-npm start
+ng serve --host 0.0.0.0
 ```
 
 # Project structure
@@ -27,10 +27,19 @@ src/                         project source code
 |- app/                      app components
 |  |- core/                  core module (singleton services and single-use components)
 |  |- shared/                shared module  (common components, directives and pipes)
+|  |- shell/                 shell component (routing service)
 |  |- app.component.*        app root component (shell)
 |  |- app.module.ts          app root module definition
 |  |- app-routing.module.ts  app routes
-|  +- ...                    additional modules and components
+|  |- home/                  home page (only the home page)
+|  |- game/                  game page (contents all the components relatives to the game)
+|  |  |- +xstate/            final state machine
+|  |  |- board/              board component (the game map)
+|  |  |- console/            console component (show the interactions with the C++)
+|  |  |- control/            control component (control pane, initial settings)
+|  |  |- info/               information component (state of the game, number of penguins, fishes)
+|  |- team/                  team page (present all the members of the project)
+|  |- about/                 about page (with all the credits)
 |- assets/                   app assets (images, fonts, sounds...)
 |- environments/             values for various build environments
 |- theme/                    app global scss variables and theme
@@ -46,19 +55,12 @@ proxy.conf.js                backend proxy configuration
 
 # Main tasks
 
-Task automation is based on [NPM scripts](https://docs.npmjs.com/misc/scripts).
-
 | Task                                            | Description                                                                                                      |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `npm start`                                     | Run development server on `http://localhost:4200/`                                                               |
-| `npm run build [-- --configuration=production]` | Lint code and build web app for production (with [AOT](https://angular.io/guide/aot-compiler)) in `dist/` folder |
-| `npm test`                                      | Run unit tests via [Karma](https://karma-runner.github.io) in watch mode                                         |
-| `npm run test:ci`                               | Lint code and run unit tests once for continuous integration                                                     |
-| `npm run e2e`                                   | Run e2e tests using [Protractor](http://www.protractortest.org)                                                  |
-| `npm run lint`                                  | Lint code                                                                                                        |
-| `npm run translations:extract`                  | Extract strings from code and templates to `src/app/translations/template.json`                                  |
-| `npm run docs`                                  | Display project documentation and coding guides                                                                  |
-| `npm run prettier`                              | Automatically format all `.ts`, `.js` & `.scss` files                                                            |
+| `yarn install` | Lint code and build web app for production (with [AOT](https://angular.io/guide/aot-compiler)) in `dist/` folder |
+| `ng serve --host 0.0.0.0`                                     | Run development server on `http://localhost:4200/`                                                               |
+| `yarn run env -s`                               | Fix `.env` related errors                                                   |
+| `yarn compodoc`                                   | Generate the documentation                                               |
 
 When building the application, you can specify the target configuration using the additional flag
 `--configuration <name>` (do not forget to prepend `--` to pass arguments to npm scripts).
@@ -67,14 +69,14 @@ The default build configuration is `prod`.
 
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
+Run `ng serve --host 0.0.0.0` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
 any of the source files.
 You should not use `ng serve` directly, as it does not use the backend proxy configuration by default.
 
 ## Code scaffolding
 
-Run `npm run generate -- component <name>` to generate a new component. You can also use
-`npm run generate -- directive|pipe|service|class|module`.
+Run `ionic generate -- component <name>` to generate a new component. You can also use
+`ionic generate -- directive|pipe|service|class|module`.
 
 If you have installed [angular-cli](https://github.com/angular/angular-cli) globally with `npm install -g @angular/cli`,
 you can also use the command `ng generate` directly.
