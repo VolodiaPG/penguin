@@ -11,8 +11,6 @@
 
 #include "Board.hpp"
 
-#include "../../dbg.h"
-
 namespace game
 {
 namespace penguin
@@ -120,34 +118,34 @@ bool Board::checkForCorrectness(const Position &start_axial, const Position &des
 
 bool Board::performMove(PenguinPawn *penguin, BoardCell *cell)
 {
-    bool isCorrect = false;
-    if (penguin)
-    {
-        isCorrect = true;
-        HumanPlayer *human_player = penguin->getOwner();
-        BoardCell *cell_standing_on = penguin->getCurrentCell();
-        // std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
+    assert(penguin != nullptr);
+    assert(cell != nullptr);
 
+    HumanPlayer *human_player = penguin->getOwner();
+    BoardCell *cell_standing_on = penguin->getCurrentCell();
+    bool isCorrect = true;
+    // std::cout << "Asked penguin#" << penguin->getId() << " (" << cell->getPosition().x << "," << cell->getPosition().y << ")" << std::endl;
+
+    if (cell_standing_on)
+    {
+        isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
+    }
+
+    if (isCorrect)
+    {
         if (cell_standing_on)
         {
-            isCorrect = checkForCorrectness(cell_standing_on->getPosition(), cell->getPosition());
+            // clear the owner and create a hole in the board
+            cell_standing_on->clearOwner();
+            cell_standing_on->setGone(true);
         }
 
-        if (isCorrect)
-        {
-            if (cell_standing_on)
-            {
-                // clear the owner and create a hole in the board
-                cell_standing_on->clearOwner();
-                cell_standing_on->setGone(true);
-            }
+        cell->setOwner(penguin);
+        human_player->addScore(cell->getFish());
 
-            cell->setOwner(penguin);
-            human_player->addScore(cell->getFish());
-
-            AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::performMove(penguin, cell);
-        }
+        AbstractBoard<BoardCell, HumanPlayer, PenguinPawn>::performMove(penguin, cell);
     }
+
     return isCorrect;
 }
 
@@ -176,51 +174,62 @@ const Move<BoardCell, PenguinPawn> Board::revertMove()
     return last_top_move;
 }
 
+bool Board::isAbleToMove(const HumanPlayer *const &human)
+{
+    bool can_it_move = false;
+
+    for (auto &penguin : human->getPenguins())
+    {
+        BoardCell *cell = penguin->getCurrentCell();
+        if (cell != nullptr)
+        {
+            const Position pos = cell->getPosition();
+            int ii = -1, rr = 0, inc_ii = 1;
+            while (ii >= -1)
+            {
+                // iterate over all the neighbours
+                if (
+                    (cell = boardValues[{pos.x + ii, pos.y + rr}]) != nullptr &&
+                    !cell->isGone() &&
+                    !cell->getOwner())
+                {
+                    can_it_move = true;
+                    break;
+                }
+
+                rr += ii;
+                if (ii == 1 && rr == 0)
+                {
+                    ii = 2;
+                    inc_ii = -1;
+                }
+
+                ii += inc_ii;
+            }
+            if (can_it_move)
+                break;
+        }
+    }
+
+    return can_it_move;
+}
+
 int Board::checkStatus()
 {
     // only 1 penguin can move = keep going !
     bool can_still_play = false;
     int winner_id = IN_PROGRESS;
 
-    //TODO Optimize, we can just look at the cells around
     for (auto &human : _players)
     {
-        for (auto &penguin : human->getPenguins())
+        if (isAbleToMove(human))
         {
-            BoardCell *cell = penguin->getCurrentCell();
-            if (cell != nullptr)
-            {
-                const Position pos = cell->getPosition();
-                int ii = -1, rr = 0, inc_ii = 1;
-                while (ii >= -1)
-                {
-                    if ((cell = boardValues[{pos.x + ii, pos.y + rr}]) && (!cell->isGone() || cell->getOwner()))
-                    {
-                        can_still_play = true;
-                        break;
-                    }
-
-                    rr += ii;
-                    if (ii == 1)
-                    {
-                        inc_ii = -1;
-                    }
-                    else
-                    {
-                        ii += inc_ii;
-                    }
-                }
-            }
-            if (can_still_play)
-            {
-                break;
-            }
-        }
-        if (can_still_play)
-        {
+            can_still_play = true;
             break;
         }
     }
+
+
 
     if (!can_still_play)
     {

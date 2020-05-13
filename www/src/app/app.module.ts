@@ -13,6 +13,8 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TeamComponent } from './team/team.component';
+import { TeamModule } from './team/team.module';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     ShellModule,
     HomeModule,
-    AppRoutingModule // must be imported as the last module as it contains the fallback route
+    AppRoutingModule,
+    TeamModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [],

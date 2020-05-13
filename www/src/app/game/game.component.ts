@@ -15,6 +15,9 @@ declare var Module: any;
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  /**
+    Value of the last operation
+  */
   @ViewChild('numberbtn', { read: ElementRef, static: true }) private btn: ElementRef;
   flipAnim: any = null;
 

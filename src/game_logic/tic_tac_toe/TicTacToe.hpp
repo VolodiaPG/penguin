@@ -26,7 +26,7 @@ public:
     bool isFinished() const override;
     bool play(Player *player, BoardCell *cell) override;
     const Move<BoardCell, Player> revertPlay() override;
-    unsigned int getPlayerToPlay() const override;
+    unsigned int getPlayerToPlay() override;
     int checkStatus() const override;
     std::vector<Move<BoardCell, Player>> getAvailableMoves(Player *player) override;
     AbstractGame<BoardCell, Player, Player>* clone() const override;

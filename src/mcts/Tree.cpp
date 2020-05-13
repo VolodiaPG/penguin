@@ -39,6 +39,7 @@ Tree<CellT, PlayerT, PawnT>::~Tree()
 template <class CellT, class PlayerT, class PawnT>
 game::Move<CellT, PawnT> Tree<CellT, PlayerT, PawnT>::bestMove() const
 {
+    std::cout << "Number of simulations done: " << rootNode->visits << std::endl;
     return nodeWithMaxVisits(rootNode)->move;
 }
 

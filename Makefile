@@ -57,7 +57,7 @@ endif
 endif
 
 ifeq ($(MODE),debug)
-	CPPFLAGS += -O0 -g -gstabs+
+	CPPFLAGS += -O0 -g
 ifeq ($(ENV),emscripten)
 	CPPFLAGS += -s STACK_OVERFLOW_CHECK=2 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 -s SAFE_HEAP=1 -s WARN_UNALIGNED=1
 endif

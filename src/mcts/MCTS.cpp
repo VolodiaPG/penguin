@@ -11,6 +11,11 @@
 
 #include "MCTS.hpp"
 
+#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
+#define INCREMENT_VICTORY 1.0
+#define INCREMENT_DRAW 0.5
+#define INCREMENT_DEFEAT -1.0
+
 namespace mcts
 {
 
@@ -95,29 +100,24 @@ double MCTS<CellT, PlayerT, PawnT>::formula(
 template <class CellT, class PlayerT, class PawnT>
 void MCTS<CellT, PlayerT, PawnT>::doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom)
 {
-#ifndef NDEBUG
+    #ifndef NDEBUG
     bool ret = tree->game->play(nodeToGetTheActionFrom.move.pawn,
-                                nodeToGetTheActionFrom.move.target);
+                     nodeToGetTheActionFrom.move.target);
     assert("the MCTS cannot do this action on the board" && ret == true);
-#else
+    #else
     tree->game->play(nodeToGetTheActionFrom.move.pawn,
                      nodeToGetTheActionFrom.move.target);
-#endif
+    #endif
 }
 
 template <class CellT, class PlayerT, class PawnT>
 const game::Move<CellT, PawnT> MCTS<CellT, PlayerT, PawnT>::getRandomAvailableMoveFromBoard(const unsigned int &player_id) const
 {
-    PlayerT* player = tree->game->board->getPlayerById(player_id);
-    std::vector<game::Move<CellT, PawnT>> cells = tree->game->getAvailableMoves(player);
-    // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included)
-    if (cells.size() > 0)
-    {
-        unsigned int index = rand() % cells.size();
-        return cells[index];
-    }
+    std::vector<game::Move<CellT, PawnT>> cells = tree->game->getAvailableMoves(tree->game->board->getPlayerById(player_id));
+    // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included
+    unsigned int index = rand() % cells.size();
 
-    return {nullptr, nullptr, nullptr};
+    return cells[index];
 }
 
 template <class CellT, class PlayerT, class PawnT>

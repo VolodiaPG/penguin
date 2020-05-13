@@ -130,11 +130,20 @@ public:
     int checkStatus() override;
 
     /**
+     * @brief Is the player able to move
+     * 
+     * @param player the refered player
+     * @return true if he can
+     * @return false if he cannot
+     */
+    bool isAbleToMove(const HumanPlayer *const &player);
+
+        /**
      * @brief Get a list of available cells, ie player can move onto
      * 
      * @return the list of available cells to move onto
      */
-    std::vector<BoardCell *> getAvailableCells(PenguinPawn *penguin) override;
+        std::vector<BoardCell *> getAvailableCells(PenguinPawn *penguin) override;
 
     /**
      * @brief Get a list of all cells

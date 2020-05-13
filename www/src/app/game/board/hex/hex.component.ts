@@ -56,17 +56,17 @@ export class HexComponent implements OnInit {
   onCellHover(hover: boolean) {
     if (this.isSelectable()) {
       this.setSelectedColor(hover);
-    } 
+    }
   }
 
   setSelectedColor(newStatus: boolean) {
-      if (this.isSelected && !newStatus) {
-        this.cell.setSelectedColor(false);
-        this.isSelected = false;
-      } else if (!this.isSelected && newStatus) {
-        this.cell.setSelectedColor(true);
-        this.isSelected = true;
-      }
+    if (this.isSelected && !newStatus) {
+      this.cell.setSelectedColor(false);
+      this.isSelected = false;
+    } else if (!this.isSelected && newStatus) {
+      this.cell.setSelectedColor(true);
+      this.isSelected = true;
+    }
   }
 
   isSelectable(): boolean {
