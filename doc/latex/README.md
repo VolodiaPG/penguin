@@ -1,15 +1,12 @@
 ---
-
 title: Exercices cours de Secu sur les clouds
 author:
-
 - Clément \textsc{Chavanon}
 - Romain \textsc{Hu}
 - Romain \textsc{Hubert}
 - Maxime \textsc{Grimaud}
 - Volodia \textsc{Parol-Guarino}
 -
-
 coauthor: "Encadrant : Pascal \\textsc{Garcia}"
 date: 2019-2020
 biblio-style: plain-fr
