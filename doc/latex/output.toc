@@ -1,3 +1,18 @@
 \babel@toc {french}{}
 \contentsline {section}{Introduction}{1}{section*.2}% 
 \contentsline {subsection}{\numberline {0.1}Le jeu des pingouins}{1}{subsection.0.1}% 
+\contentsline {subsection}{\numberline {0.2}Notre tâche}{1}{subsection.0.2}% 
+\contentsline {subsubsection}{\numberline {0.2.1}Au départ}{1}{subsubsection.0.2.1}% 
+\contentsline {subsubsection}{\numberline {0.2.2}Bref suivi}{2}{subsubsection.0.2.2}% 
+\contentsline {subsubsection}{\numberline {0.2.3}Nos prédécesseurs}{2}{subsubsection.0.2.3}% 
+\contentsline {subsubsection}{\numberline {0.2.4}Notre objectif}{2}{subsubsection.0.2.4}% 
+\contentsline {section}{\numberline {1}Réalisation}{2}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Représentation du jeu}{2}{subsection.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1}Représentation}{2}{subsubsection.1.1.1}% 
+\contentsline {subsection}{\numberline {1.2}MCTS}{2}{subsection.1.2}% 
+\contentsline {subsection}{\numberline {1.3}Multihtreading}{2}{subsection.1.3}% 
+\contentsline {subsection}{\numberline {1.4}Interface graphique}{2}{subsection.1.4}% 
+\contentsline {subsubsection}{\numberline {1.4.1}Angular / Ionic}{2}{subsubsection.1.4.1}% 
+\contentsline {subsubsection}{\numberline {1.4.2}Organisation de l'application}{3}{subsubsection.1.4.2}% 
+\contentsline {subsubsection}{\numberline {1.4.3}Développement du jeu}{3}{subsubsection.1.4.3}% 
+\contentsline {subsection}{\numberline {1.5}\emph {Bindings} MCTS}{3}{subsection.1.5}% 
