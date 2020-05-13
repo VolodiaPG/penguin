@@ -6,23 +6,35 @@ import { Cell } from '../cell';
 import { gameService } from '@app/game/+xstate/gameMachine';
 import { appService } from '@app/game/+xstate/appMachine';
 
+/**
+ * Hexagonal Component
+ */
 @Component({
   selector: 'app-hex',
   templateUrl: './hex.component.html',
   styleUrls: ['./hex.component.scss']
 })
 export class HexComponent implements OnInit {
+  /**
+   * Set the cell of the componennt from the parent Board Component.
+   */
   @Input() cell: Cell;
+
+  /**
+   * Set the boolean variable from the parent Board Component, if the cell has to be show or not.
+   */
   @Input() isLoaded: boolean;
 
+  /**
+   * Emitter to the parent Board Component, to raise an event when the user clicked on the component.
+   */
   @Output() cellClicked = new EventEmitter<Cell>();
 
-  center: Pos;
-
-  // Specify the types of terrain available on the map. Map cells reference these terrain
-  // types by index. Add custom properties to extend functionality.
-
-  // Array of textures. Can be referenced by index in terrainType.
+  /**
+   * Array of textures. Can be referenced by index in terrainType.
+   * Specify the types of terrain available on the map. Map cells reference these terrain
+   * types by index. Add custom properties to extend functionality.
+   */
   textures: string[] = [
     '/assets/game/empty.png',
     '/assets/game/tileSnow_big.png',
@@ -37,15 +49,26 @@ export class HexComponent implements OnInit {
     '/assets/game/available_fish3.png'
   ];
 
+  /**
+   * Variable to know if the cell is selected or not.
+   */
   isSelected: boolean;
 
+  /**
+   * @ignore
+   */
   constructor() {}
 
+  /**
+   * @ignore 
+   */
   ngOnInit() {
     this.isSelected = false;
-    this.center = this.cell.getCellCenter();
   }
 
+  /**
+   * Raise an event to the parent Board Component, when the user clicked on the hex component.
+   */
   onCellClick() {
     // console.log(this.cell.toString());
     if (this.isSelectable()) {
@@ -53,12 +76,20 @@ export class HexComponent implements OnInit {
     }
   }
 
+  /**
+   * To react, when the mouse over or mouse out of the chex component.
+   * @param {boolean} hover 
+   */
   onCellHover(hover: boolean) {
     if (this.isSelectable()) {
       this.setSelectedColor(hover);
     }
   }
 
+  /**
+   * To set the color on the cell, if it is selected or not.
+   * @param {boolean} newStatus 
+   */
   setSelectedColor(newStatus: boolean) {
     if (this.isSelected && !newStatus) {
       this.cell.setSelectedColor(false);
@@ -69,6 +100,9 @@ export class HexComponent implements OnInit {
     }
   }
 
+  /**
+   * @returns if the cell is selectable or not
+   */
   isSelectable(): boolean {
     return (
       this.isLoaded === true &&

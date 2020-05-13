@@ -17,8 +17,7 @@
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "postinstall": "npm run prettier -s",
     "generate": "ng generate",
-    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json",
-    "compodoc -n": "npx compodoc -p /workspace/www/tsconfig.app.json -n \"App Penguin documentation\""
+    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json -s"
   },
   "dependencies": {
     "@angular/animations": "^8.1.0",

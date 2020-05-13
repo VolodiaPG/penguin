@@ -34,7 +34,7 @@ All these commands are accessible via the `tasks` of VSCode!
 Everyting is as you are developing normally.
 - If you have `.env` related errors, type `yarn run env -s`
 - to serve : `ng serve --host 0.0.0.0` (the host part is needed for the server to be accessible from the host OS)
-- to document : `yarn run compodoc`
+- to document and run server : `yarn run compodoc`
 
 # Useful other commands
 - `c++filt _ZN4game14AbstractPlayer6actionEPNS_17AbstractBoardCellE` gives us `game::AbstractPlayer::action(game::AbstractBoardCell*)`

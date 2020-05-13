@@ -12,6 +12,9 @@ import { Pos } from './pos';
 
 declare var Module: any;
 
+/**
+ * Component for all the components about the Penguin Game.
+ */
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -38,42 +41,114 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+
+  /**
+   * Value to check if the game has been started by the user.
+   * Two-way bindings with the game component.
+   */
   @Input() gameStarted: boolean;
+
+  /**
+   * Emitter to the game component to notify when the user posed one of his penguins.
+   */
   @Output() penguinPosed = new EventEmitter<any>();
 
+
+  /**
+   * Value to bind the State Controler FSM and to use its value.
+   */
   stateControler: any = appService;
 
   isLoaded = false;
 
+  /**
+   * Value of hexagonals contains in one line on the board.
+   */
   nbHexagonal: number = 8; // 8
 
-  // The pixel width of a hex.
+  /**
+   * The pixel width of a hex.
+   */
   hexWidth: number = 90; // 90
-  // The pixel height of a hex.
+  /**
+   * The pixel height of a hex.
+   */
   hexHeight: number = 90; // 90
 
+  /**
+   * 2D Array with all the cells on the map (row of column).
+   */
   cells: Array<Array<Cell>>;
 
+  /**
+   * Value of penguins contains on the board.
+   */
   nbPenguin: number = 2;
+
+  /**
+   * Array with all the penguins on the board.
+   */
   penguins: Array<Penguin>;
+
+  /**
+   * Pointer to the current penguin selected by the curent player to play.
+   */
   penguinSelected: Penguin;
+  /**
+   * Pointer to the current cell clicked by the curent player to play.
+   */
   cellClicked: Cell;
 
+  /**
+   * Value of the current player id.
+   */
   currentPlayerId: number;
 
+  /**
+   * Value of the user's id.
+   */
   humanPlayerId: number = 2;
 
-  // Wasm objects
+  /**
+   * Pointer to the C++ object : Game.
+   */
   wasmGame: any;
+  /**
+   * Pointer to the C++ object : Board.
+   */
   wasmBoard: any;
+  /**
+   * Pointer to the C++ object : vector<Penguin>.
+   */
   wasmPenguins: any;
 
+  /**
+   * Pointer to the C++ object, which contains the constraints for the MCTS.
+   */
   mctsConstraints: any;
+  /**
+   * Pointer to the C++ object : MCTSPlayer.
+   */
   wasmMCTSPlayer: any;
+
+  /**
+   * Pointer to the C++ object : Move, to be able to perform a move and update the MCTS tree.
+   */
   wasmMove: any;
 
-  constructor(private toastController: ToastController) {}
 
+  /**
+  * @ignore
+  */
+  constructor(private toastController: ToastController) { }
+
+  /**
+  * Call when the Board Component is created.
+  * Initialize :
+  *     - the Array of Cells,
+  *     - the Array of Penguins,
+  * Then call the generateMap() function.
+  */
   ngOnInit(): void {
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
@@ -82,8 +157,13 @@ export class BoardComponent implements OnInit {
     console.log('Board ok');
   }
 
+  /**
+   * Call when the Board Component is destroyed.
+   * Delete the c++ object Game if and only if it has been initialized.
+   * Set null in all the others variables used in the front part.
+   */
   ngOnDestroy(): void {
-    if(this.gameStarted) {
+    if (this.gameStarted) {
       console.log('Game destroyed');
       this.wasmGame.delete();
       this.cells = null;
@@ -92,9 +172,16 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ START GAME ***************************************************************
-   ***************************************************************************************************************************/
+
+  //*************************************************************************************************************************
+  //********************************************** START GAME ***************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Get the random board genrated by the C++ code.
+   * Set the current player Id, the human player id, in agrement with the first player which has to play.
+   * Then call the generateMapFromWasmBoard function to update the front part.
+   */
   initWasmBoard() {
     console.log('Init WasmGame', this.nbHexagonal, this.nbPenguin);
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
@@ -106,6 +193,12 @@ export class BoardComponent implements OnInit {
     this.generateMapFromWasmBoard();
   }
 
+  /**
+   * Get a random vector of penguins generated in C++, when the IA penguins has to be initialize.
+   * Generate the penguins of the Mcts player and then put these in the board.
+   * Create the C++ object to use the MCTS.
+   * Finally, launch the game !
+   */
   startWasmGame() {
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
     this.generateWasmPenguin();
@@ -116,9 +209,13 @@ export class BoardComponent implements OnInit {
     this.playTurn();
   }
 
-  /***************************************************************************************************************************
-   ************************************* MAP/TEXTURES ************************************************************************
-   ***************************************************************************************************************************/
+  //*************************************************************************************************************************
+  //********************************************** MAP/TEXTURES *************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Create an empty map, with a size of the hexagonals number, and with x penguins.
+   */
   generateMap() {
     console.log('Generate Map', this.nbHexagonal, this.nbPenguin);
     let cell: Cell;
@@ -132,6 +229,10 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Pose a penguin, not put yet, in the cell in parameter. 
+   * @param {Cell} cellPos 
+   */
   posePenguinOn(cellPos: Cell) {
     if (this.penguins.length < this.nbPenguin) {
       let penguin = new Penguin();
@@ -151,6 +252,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Update the fish number on all the cells on the board, accordingly with the C++ board.
+   */
   generateMapFromWasmBoard() {
     console.log('Generate Map from WasmBoard');
 
@@ -165,6 +269,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Generate the penguins for the wasm player.
+   */
   generateWasmPenguin() {
     let rndRow: number, rndColumn: number;
     for (let ii = 0; ii < this.nbPenguin; ii++) {
@@ -182,6 +289,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Put the penguin on the right cell in C++, with a fake move.
+   */
   putPenguinOnWasmBoard() {
     for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
       let penguinPosed = false;
@@ -202,21 +312,29 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ GAME LOGIC ***************************************************************
-   ***************************************************************************************************************************/
-  playTurn() {
+  //*************************************************************************************************************************
+  //********************************************** GAME LOGIC ***************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Allow each player to play, when it is his turn.
+   * Show a little toast to alert the user.
+   */
+   playTurn() {
     if (this.currentPlayerId === this.humanPlayerId) {
-      this.presentSuccessToast('It is your turn ' + this.currentPlayerId +' !');
+      this.presentSuccessToast('It is your turn ' + this.currentPlayerId + ' !');
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
-      this.presentErrorToast('Wasm is playing ' + this.currentPlayerId +' !');
+      this.presentErrorToast('Wasm is playing ' + this.currentPlayerId + ' !');
 
       this.setMCTSBestMove();
       this.playWasmMove();
     }
   }
 
+  /**
+   * Ask the MCTS PLayer to get the best move to play.
+   */
   setMCTSBestMove() {
     this.wasmMove = this.wasmMCTSPlayer.bestMove();
 
@@ -238,6 +356,9 @@ export class BoardComponent implements OnInit {
     this.cellClicked = this.cells[wasmCellPos.row][wasmCellPos.column];
   }
 
+  /**
+   * Play a move in the C++ game, then update the tree.
+   */
   playWasmMove() {
     console.log(
       'pawn : ',
@@ -270,11 +391,23 @@ export class BoardComponent implements OnInit {
     this.cellClicked = undefined;
   }
 
+  /**
+   * Switch the id of the current player, accordingly with the changement in the C++ game.
+   */
   switchCurrentPlayer() {
-    this.currentPlayerId = (this.currentPlayerId % 2) + 1;
+    this.currentPlayerId = this.wasmGame.getPlayerToPlay();
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
 
+  /**
+   * Check the game status, after a move was performed.
+   * Then react in agrement with the wasm return.
+   * 
+   * @exemple 
+   * 0 : game not finish yet,
+   * -1 : a draw,
+   * 1 or 2 : id of the player which has won.
+   */
   movePerformed() {
     let currentStatus = this.wasmBoard.checkStatus();
     if (currentStatus === 0) {
@@ -292,9 +425,15 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ ANIMATION ****************************************************************
-   ***************************************************************************************************************************/
+  //*************************************************************************************************************************
+  //********************************************** ANIMATION ****************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * React on the click event on a penguin. The reaction depends of the current state of the stateControler and the game State Machine.
+   * Some features are only available on our own penguins.
+   * @param {Penguin} newPenguinClicked pointer on the penguin selected
+   */
   onPenguinClick(newPenguinClicked: Penguin) {
     if (newPenguinClicked.textureIndex === 0) {
       // The user clicked on the same penguin
@@ -325,6 +464,11 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * React on the click event on a cell. The reaction depends of the current state of the stateControler and the game State Machine.
+   * Some features are only available when a penguin are selected or not.
+   * @param {Cell} cellClicked pointer on the cell clicked
+   */
   onCellClick(cellClicked: Cell) {
     switch (appService.state.value) {
       case 'initPosPenguin':
@@ -350,11 +494,19 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Set/Remove the color penguin, if he is selected or not.
+   * @param {boolean} set if the penguin had to be colorized or not
+   */
   setSelectedPenguinColor(set: boolean) {
     this.penguinSelected.switchPenguinColor();
     this.setAvailableCellColor(set);
   }
 
+  /**
+   * Set/Remove the color cell, if he is selected or not.
+   * @param {boolean} set if the cell had to be colorized or not
+   */
   setAvailableCellColor(set: boolean) {
     if (this.penguinSelected !== undefined) {
       var availableCells: any = this.wasmBoard.getAvailableCells(this.penguinSelected.wasmPenguin);
@@ -366,10 +518,18 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ PREVIEW ******************************************************************
-   ***************************************************************************************************************************/
-  addHexagonal(): void {
+  //*************************************************************************************************************************
+  //********************************************** PREVIEW ******************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Increase the number of hexagonal.
+   * Add a cell on each row, and initialize it.
+   * Then add a row.
+   * @exemple
+   * 7x7 -> 8x8
+   */
+   addHexagonal(): void {
     this.nbHexagonal++;
 
     let cell: Cell;
@@ -389,6 +549,13 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Decrease the number of hexagonal.
+   * Remove a cell on each row.
+   * Then Remove a row.
+   * @exemple
+   * 7x7 -> 6x6
+   */
   removeHexagonal(): void {
     this.nbHexagonal--;
     //Remove a cell on all the row
@@ -399,17 +566,28 @@ export class BoardComponent implements OnInit {
     this.cells.pop();
   }
 
+  /**
+   * Increase the number of penguins.
+   */
   addPenguin(): void {
     this.nbPenguin++;
   }
 
+  /**
+   * Decrease the number of penguins.
+   */
   removePenguin(): void {
     this.nbPenguin--;
   }
 
-  /***************************************************************************************************************************
-   ************************************************ TOAST ********************************************************************
-   ***************************************************************************************************************************/
+  //************************************************************************************************************************
+  //*********************************************** TOAST ******************************************************************
+  //************************************************************************************************************************
+
+  /**
+   * Create a toast, in the top of the window, using the success theme.
+   * @param {string} message that will be written in the toast
+   */
   async presentSuccessToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -420,6 +598,10 @@ export class BoardComponent implements OnInit {
     toast.present();
   }
 
+   /**
+   * Create a toast, in the top of the window, using the error theme.
+   * @param {string} message that will be written in the toast
+   */
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
