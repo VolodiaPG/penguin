@@ -11,11 +11,7 @@
 
 #include "MCTS.hpp"
 
-#include "../game_logic/penguin/Board.hpp"
-#include "../game_logic/penguin/PrintHex.hpp"
-#include "../dbg.h"
-
-#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 1000
+#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
 #define INCREMENT_VICTORY 1.0
 #define INCREMENT_DRAW 0.5
 #define INCREMENT_DEFEAT -1.0
@@ -119,13 +115,6 @@ const game::Move<CellT, PawnT> MCTS<CellT, PlayerT, PawnT>::getRandomAvailableMo
 {
     std::vector<game::Move<CellT, PawnT>> cells = tree->game->getAvailableMoves(tree->game->board->getPlayerById(player_id));
     // random index ranging between 0 and cells.size() not included; (eg. 0 and 3, 3 not included
-    if (!reinterpret_cast<game::penguin::Board *>(tree->game->board)->isAbleToMove(reinterpret_cast<game::penguin::Board *>(tree->game->board)->getPlayerById(player_id)))
-    {
-        dbg(tree->game->getPlayerToPlay());
-        dbg(reinterpret_cast<game::penguin::Board *>(tree->game->board)->isAbleToMove(reinterpret_cast<game::penguin::Board *>(tree->game->board)->getPlayerById(1)));
-        dbg(reinterpret_cast<game::penguin::Board *>(tree->game->board)->isAbleToMove(reinterpret_cast<game::penguin::Board *>(tree->game->board)->getPlayerById(2)));
-        game::penguin::PrintHex(reinterpret_cast<game::penguin::Board *>(tree->game->board)).print();
-    }
     unsigned int index = rand() % cells.size();
 
     return cells[index];

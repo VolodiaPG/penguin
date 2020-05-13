@@ -7,8 +7,6 @@
 #include "HumanPlayer.hpp"
 #include "PenguinGame.hpp"
 
-#include "../../dbg.h"
-
 namespace game
 {
 namespace penguin
@@ -65,9 +63,6 @@ unsigned int PenguinGame::getPlayerToPlay()
         {
             // ther player won't be able to move then, let's just ignore him while the number of turns is sup to this state
             number_moves_when_cannot_move = numberMoves;
-            dbg(last_next_player);
-            dbg(board->isAbleToMove(board->getPlayerById(nextPlayer)));
-            dbg(board->isAbleToMove(board->getPlayerById(last_next_player)));
             // next player doesn't have to change then
         }
         else
