@@ -48,7 +48,7 @@
         <ion-card text-center translucent fixed size="auto">
           <ion-card-header></ion-card-header>
           <ion-card-content>
-            <app-board (penguinPosed)="penguinPosed()"></app-board>
+            <app-board [(gameStarted)]="gameStarted" (penguinPosed)="penguinPosed()"></app-board>
           </ion-card-content>
         </ion-card>
       </ion-col>

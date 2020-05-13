@@ -38,6 +38,7 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+  @Input() gameStarted: boolean;
   @Output() penguinPosed = new EventEmitter<any>();
 
   stateControler: any = appService;
@@ -82,8 +83,13 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    console.log('Game destroyed');
-    this.wasmGame.delete();
+    if(this.gameStarted) {
+      console.log('Game destroyed');
+      this.wasmGame.delete();
+      this.cells = null;
+      this.penguins = null;
+      this.gameStarted = false;
+    }
   }
 
   /***************************************************************************************************************************
@@ -93,7 +99,10 @@ export class BoardComponent implements OnInit {
     console.log('Init WasmGame', this.nbHexagonal, this.nbPenguin);
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
-    this.humanPlayerId = this.wasmGame.getPlayerToPlay();
+
+    this.currentPlayerId = this.wasmGame.getPlayerToPlay();
+    this.humanPlayerId = this.currentPlayerId;
+
     this.generateMapFromWasmBoard();
   }
 
@@ -102,10 +111,7 @@ export class BoardComponent implements OnInit {
     this.generateWasmPenguin();
     this.putPenguinOnWasmBoard();
 
-    this.currentPlayerId = this.wasmGame.getPlayerToPlay();
-    this.humanPlayerId = this.currentPlayerId;
-
-    this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, { time: 150 });
+    this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, { time: 2000 });
 
     this.playTurn();
   }
@@ -201,10 +207,10 @@ export class BoardComponent implements OnInit {
    ***************************************************************************************************************************/
   playTurn() {
     if (this.currentPlayerId === this.humanPlayerId) {
-      this.presentSuccessToast('It is your turn !');
+      this.presentSuccessToast('It is your turn ' + this.currentPlayerId +' !');
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
-      this.presentErrorToast('Wasm is playing !');
+      this.presentErrorToast('Wasm is playing ' + this.currentPlayerId +' !');
 
       this.setMCTSBestMove();
       this.playWasmMove();
