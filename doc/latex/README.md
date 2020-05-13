@@ -1,8 +1,6 @@
 ---
-
 title: Exercices cours de Secu sur les clouds
 author:
-
 - Clément \textsc{Chavanon}
 - Romain \textsc{Hu}
 - Romain \textsc{Hubert}
