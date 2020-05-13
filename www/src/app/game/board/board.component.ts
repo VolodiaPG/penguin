@@ -233,9 +233,6 @@ export class BoardComponent implements OnInit {
   }
 
   playWasmMove() {
-    // console.log('pawn : ', this.penguinSelected.wasmPenguin.getId(), this.penguinSelected,
-    //             'from : ', this.penguinSelected.cellPosition,
-    //             'target : ', this.cellClicked);
     console.log(
       'pawn : ',
       this.wasmMove.getPawn().getId(),
@@ -252,8 +249,6 @@ export class BoardComponent implements OnInit {
 
     if (this.wasmGame.play(this.penguinSelected.wasmPenguin, this.cellClicked.wasmCell)) {
       this.penguinSelected.moveTo(this.cellClicked);
-
-      // this.penguinSelected.wasmPenguin = this.wasmGame.getBoard().getPawnById(this.penguinSelected.wasmPenguin.getId());
 
       gameService.send(gameService.machine.states.penguinSelected.on.CELLSELECTED[0].eventType);
       gameService.send(gameService.machine.states.moveBlocked.on.MCTSPLAYED[0].eventType);
