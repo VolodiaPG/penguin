@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
-import { appService } from '../+xstate/appMachine';
+import { appService } from '@app/game/models/appMachine';
 
 /**
  * Control component for the game settings.

@@ -4,8 +4,8 @@ import { InfoComponent } from './info/info.component';
 
 import { Flip } from 'number-flip';
 
-import { gameService } from './+xstate/gameMachine';
-import { appService } from './+xstate/appMachine';
+import { gameService } from '@app/game/models/gameMachine';
+import { appService } from '@app/game/models/appMachine';
 
 /**
  * Wasm Module

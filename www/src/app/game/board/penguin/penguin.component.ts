@@ -3,10 +3,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pos } from '../pos';
 import { Cell } from '../cell';
 
-import { gameService } from '../../+xstate/gameMachine';
+import { gameService } from '../../models/gameMachine';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Penguin } from '../penguin';
-import { appService } from '@app/game/+xstate/appMachine';
+import { appService } from '@app/game/models/appMachine';
 
 /**
  * Penguin Component

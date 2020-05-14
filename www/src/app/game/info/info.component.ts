@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Penguin } from '../board/penguin';
 
-import { appService } from '@app/game/+xstate/appMachine';
+import { appService } from '@app/game/models/appMachine';
 import { AlertController, ToastController } from '@ionic/angular';
 
 /**

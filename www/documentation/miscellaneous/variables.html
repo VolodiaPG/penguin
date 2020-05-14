@@ -109,10 +109,10 @@
                             <a href="#Module" title="src/app/game/game.component.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../game.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#Module" title="src/app/game/board/board.component.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../board.component.ts)</a>
+                            <a href="#Module" title="src/app/game/board/cell.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../cell.ts)</a>
                         </li>
                         <li>
-                            <a href="#Module" title="src/app/game/board/cell.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../cell.ts)</a>
+                            <a href="#Module" title="src/app/game/board/board.component.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../board.component.ts)</a>
                         </li>
                         <li>
                             <a href="#Module" title="src/app/game/board/penguin.ts"><b>Module</b>&nbsp;&nbsp;&nbsp;(src/.../penguin.ts)</a>
@@ -209,6 +209,21 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Final State Machine to control the state of the whole application
+|- id: noun of the FSM,
+|- initial: state in the beginning of the app,
+|- context: initial part,
+|- states: to define all the states in the FSM
+| |- settings: describe the state
+| | |-on: define a possible action,
+| | | |- {identifier}
+| | | | |- target: destination state
+| | | | |- actions: to perform when the action was called</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -235,6 +250,13 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Define a service to be able to access the application Final State Machine, in the angular components,
+Then start it.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -563,6 +585,21 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Final State Machine to control the state of the whole penguin game
+|- id: noun of the FSM,
+|- initial: state in the beginning of the app,
+|- context: initial part,
+|- states: to define all the states in the FSM
+| |- settings: describe the state
+| | |-on: define a possible action,
+| | | |- {identifier}
+| | | | |- target: destination state
+| | | | |- actions: to perform when the action was called</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -589,6 +626,13 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Define a service to be able to access the ^penguin game Final State Machine, in the angular components,
+Then start it.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>

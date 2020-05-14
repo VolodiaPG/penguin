@@ -3,8 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pos } from '../pos';
 import { Cell } from '../cell';
 
-import { gameService } from '@app/game/+xstate/gameMachine';
-import { appService } from '@app/game/+xstate/appMachine';
+import { gameService } from '@app/game/models/gameMachine';
+import { appService } from '@app/game/models/appMachine';
 
 /**
  * Hexagonal Component

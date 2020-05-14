@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { environment } from '@env/environment';
 
+/**
+ * About component
+ */
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -10,7 +13,13 @@ import { environment } from '@env/environment';
 export class AboutComponent implements OnInit {
   version: string | null = environment.version;
 
+  /**
+   * @ignore
+   */
   constructor() {}
 
+  /**
+   * @ignore
+   */
   ngOnInit() {}
 }

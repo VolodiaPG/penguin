@@ -5,8 +5,8 @@ import { trigger, transition, animate, style, query, stagger, state } from '@ang
 import { Cell } from './cell';
 import { Penguin } from './penguin';
 
-import { gameService } from '../+xstate/gameMachine';
-import { appService } from '../+xstate/appMachine';
+import { gameService } from '@app/game/models/gameMachine';
+import { appService } from '@app/game/models/appMachine';
 
 import { Pos } from './pos';
 
