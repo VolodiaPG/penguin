@@ -33,7 +33,6 @@
     "animate.css": "^3.7.2",
     "animejs": "^3.2.0",
     "number-flip": "^1.1.8",
-    "pixi.js-legacy": "^5.2.1",
     "rxjs": "^6.5.2",
     "xstate": "^4.9.0",
     "zone.js": "^0.9.1"

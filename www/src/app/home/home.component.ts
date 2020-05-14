@@ -13,23 +13,21 @@ export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
 
+  srcWasm = '/assets/angular-web-assembly.png';
+
   constructor(private quoteService: QuoteService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
-  }
-
-  onChangeText() {
-    this.text = 'Changed !';
+    // this.quoteService
+    //   .getRandomQuote({ category: 'dev' })
+    //   .pipe(
+    //     finalize(() => {
+    //       this.isLoading = false;
+    //     })
+    //   )
+    //   .subscribe((quote: string) => {
+    //     this.quote = quote;
+    //   });
   }
 }
