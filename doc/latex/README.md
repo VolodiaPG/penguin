@@ -49,7 +49,12 @@ Principalement nous nous sommes concentré sur le fonctionnement correct de tout
 
 ## MCTS
 
+
+
 ## Multihtreading
+
+Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulés. Il y a différentes manières de multithreader le MCTS; le tree parallelization, la root parallelization et la leaf parallelization. Nous avons choisi la root parallelization puisqu'il offre un meilleur score que les autres, et d'être facile à implémenter. Pour cela, nous développons un arbre par thread. A la fin du temps alloué, nous mettons en commun les arbres et choisissons le meilleur coup à jouer. Nous mettons en commun uniquement la première couche afin d'éviter d'allonger le temps de calcul.
+Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ces enfants, gardant ainsi le sous arbre de l'enfant.
 
 ## Interface graphique
 
