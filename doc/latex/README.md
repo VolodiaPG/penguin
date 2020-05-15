@@ -1,6 +1,7 @@
 ---
-title: Exercices cours de Secu sur les clouds
+title: Jeu des pingouins à base de MCTS (*Monte Carlo Tree Search*) sur le navigateur en utilisant le format *WebAssembly*
 author:
+
 - Clément \textsc{Chavanon}
 - Romain \textsc{Hu}
 - Romain \textsc{Hubert}
@@ -21,7 +22,7 @@ Le jeu des pingouins est un jeu de stratégie sur plateau de 4 joueurs. Le plate
 
 En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les mouvements de ceux se font sur en ligne droite depuis les 6 faces de la case hexagonale sur laquelle il se trouve. Il ne peut passer par des trous ou au-dessus d'autres pingouins, peu importe leur couleur. Une fois le mouvement achevé, la case de départ est retiré du plateau. Le joueur peut alors incrémenter du nombre de poisson qu'il y avait sur cette case son score.
 
-Le jeu se termine lorsque plus aucun pingouins ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
+Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
 
 ## Notre tâche
 
@@ -39,7 +40,7 @@ Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombr
 
 ### Notre objectif
 
-Principalement nous nous sommes concentré sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'on fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
+Principalement nous nous sommes concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
 
 # Réalisation
 
@@ -51,18 +52,18 @@ Principalement nous nous sommes concentré sur le fonctionnement correct de tout
 
 
 
-## Multihtreading
+## Multithreading
 
-Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulés. Il y a différentes manières de multithreader le MCTS; le tree parallelization, la root parallelization et la leaf parallelization. Nous avons choisi la root parallelization puisqu'il offre un meilleur score que les autres, et d'être facile à implémenter. Pour cela, nous développons un arbre par thread. A la fin du temps alloué, nous mettons en commun les arbres et choisissons le meilleur coup à jouer. Nous mettons en commun uniquement la première couche afin d'éviter d'allonger le temps de calcul.
+Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulés. Il y a différentes manières de multithreader le MCTS; la *tree parallelization*, la *root parallelization* et la *leaf parallelization*. Nous avons choisi la *root parallelization* puisqu'il offre un meilleur score que les autres, et d'être facile à implémenter. Pour cela, nous développons un arbre par thread. A la fin du temps alloué, nous mettons en commun les arbres et choisissons le meilleur coup à jouer. Nous mettons en commun uniquement la première couche afin d'éviter d'allonger le temps de calcul.
 Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ces enfants, gardant ainsi le sous arbre de l'enfant.
 
 ## Interface graphique
 
-Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un navigateur, nous avons du mettre en place une interface graphique pour notre jeu. Avec les contraintes de temps et les contraintes techniques, nous avons été amenés à faire des choix aux niveaux des technologies utilisées et des méthodes d'implémentation afin de pouvoir produire rapidement une interface utilisable.
+Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un navigateur, nous avons dû mettre en place une interface graphique pour notre jeu. Avec les contraintes de temps et les contraintes techniques, nous avons été amenés à faire des choix aux niveaux des technologies utilisées et des méthodes d'implémentation afin de pouvoir produire rapidement une interface utilisable.
 
 ### Angular / Ionic
 
-Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour mettre en place le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre Proof Of Concept, où le moteur du tic-tac-toe était en _Javascript_.
+Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour mettre en place le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre *Proof Of Concept*, où le moteur du Tic-Tac-Toe était en _Javascript_.
 D'autre part, nous voulions mettre en place une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous sommes tournés vers `Angular`.
 
 Pour mettre en place la chartre graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants responsives. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
@@ -76,11 +77,11 @@ Dans sa version finale notre application se compose des pages principales suivan
 - une page de présentation pour les membres de l'équipe,
 - et une page pour les crédits.
 
-Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participés à sa réalisation.
+Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation.
 
-En utilisant `ngx rocket`, la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposé d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
+En utilisant `ngx rocket`, la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
 
-Durant nos recherches dans les différentes possibilités que pouvait nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième chartre graphique, définissant le `Dark Theme`.
+Durant nos recherches dans les différentes possibilités que pouvait nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
 ### Développement du jeu
 
