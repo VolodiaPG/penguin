@@ -18,7 +18,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Exercices cours de Secu sur les clouds},
+  pdftitle={Jeu des pingouins à base de MCTS (Monte Carlo Tree Search) sur le navigateur en utilisant le format WebAssembly},
   pdfauthor={Clément ; Romain ; Romain ; Maxime ; Volodia },
   pdfborder={0 0 0},
   breaklinks=true}
@@ -52,7 +52,8 @@
 \makeatother
 
 
-\title{\textbf{Exercices cours de Secu sur les clouds}}
+\title{\textbf{Jeu des pingouins à base de MCTS (\emph{Monte Carlo Tree
+Search}) sur le navigateur en utilisant le format \emph{WebAssembly}}}
 \author{Clément \textsc{Chavanon} \and Romain \textsc{Hu} \and Romain
 \textsc{Hubert} \and Maxime \textsc{Grimaud} \and Volodia
 \textsc{Parol-Guarino} \and 
@@ -91,7 +92,7 @@ fois le mouvement achevé, la case de départ est retiré du plateau. Le
 joueur peut alors incrémenter du nombre de poisson qu'il y avait sur
 cette case son score.
 
-Le jeu se termine lorsque plus aucun pingouins ne peut se déplacer. Le
+Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le
 joueur avec le plus de points (poissons) remporte la partie.
 
 \hypertarget{notre-tuxe2che}{%
@@ -131,11 +132,11 @@ porter en \emph{WebAssembly} qu'à réécrire.
 \hypertarget{notre-objectif}{%
 \subsubsection{Notre objectif}\label{notre-objectif}}
 
-Principalement nous nous sommes concentré sur le fonctionnement correct
+Principalement nous nous sommes concentrés sur le fonctionnement correct
 de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour
 cela que nous avons choisi de présenter un résultat plus correct
 qu'optimal (par exemple nous n'avons pas utilisé de représentation en
-\emph{bitboards}, comme l'on fait nos prédécesseurs, de même qu'ils
+\emph{bitboards}, comme l'ont fait nos prédécesseurs, de même qu'ils
 n'ont pas eu l'algorithme à gérer).
 
 \hypertarget{ruxe9alisation}{%
@@ -150,14 +151,29 @@ n'ont pas eu l'algorithme à gérer).
 \hypertarget{mcts}{%
 \subsection{MCTS}\label{mcts}}
 
-\hypertarget{multihtreading}{%
-\subsection{Multihtreading}\label{multihtreading}}
+\hypertarget{multithreading}{%
+\subsection{Multithreading}\label{multithreading}}
+
+Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur
+le multithreading. En effet, cela nous débloque la possibilité de
+simuler plusieurs parties en même temps, impliquant une augmentation du
+nombre de parties simulés. Il y a différentes manières de multithreader
+le MCTS; la \emph{tree parallelization}, la \emph{root parallelization}
+et la \emph{leaf parallelization}. Nous avons choisi la \emph{root
+parallelization} puisqu'il offre un meilleur score que les autres, et
+d'être facile à implémenter. Pour cela, nous développons un arbre par
+thread. A la fin du temps alloué, nous mettons en commun les arbres et
+choisissons le meilleur coup à jouer. Nous mettons en commun uniquement
+la première couche afin d'éviter d'allonger le temps de calcul. Pour
+éviter de recréer l'arbre à chaque fois, nous avons mis en place un
+système de déplacement de la racine à un de ces enfants, gardant ainsi
+le sous arbre de l'enfant.
 
 \hypertarget{interface-graphique}{%
 \subsection{Interface graphique}\label{interface-graphique}}
 
 Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu
-sur un navigateur, nous avons du mettre en place une interface graphique
+sur un navigateur, nous avons dû mettre en place une interface graphique
 pour notre jeu. Avec les contraintes de temps et les contraintes
 techniques, nous avons été amenés à faire des choix aux niveaux des
 technologies utilisées et des méthodes d'implémentation afin de pouvoir
@@ -169,8 +185,8 @@ produire rapidement une interface utilisable.
 Afin de mettre en place, un code solide et rapidement exploitable, nous
 voulions impérativement utiliser \texttt{Typescript}, pour mettre en
 place le moteur de jeu côté graphisme. En effet, son contrôle de typage
-est un véritable plus, par rapport à notre Proof Of Concept, où le
-moteur du tic-tac-toe était en \emph{Javascript}. D'autre part, nous
+est un véritable plus, par rapport à notre \emph{Proof Of Concept}, où
+le moteur du Tic-Tac-Toe était en \emph{Javascript}. D'autre part, nous
 voulions mettre en place une architecture de site Web plus globale qui
 viendrait englober la partie véritablement jouable. Afin de mettre en
 place cette architecture web sur pied au plus vite, nous nous sommes
@@ -189,22 +205,30 @@ l'application}\label{organisation-de-lapplication}}
 Dans sa version finale notre application se compose des pages
 principales suivantes :
 
-\_ une page d'accueil présentant le projet, \_ une page avec le jeu en
-lui même, \_ une page de présentation pour les membres de l'équipe, \_
-et une page pour les crédits.
+\begin{itemize}
+\tightlist
+\item
+  une page d'accueil présentant le projet,
+\item
+  une page avec le jeu en lui même,
+\item
+  une page de présentation pour les membres de l'équipe,
+\item
+  et une page pour les crédits.
+\end{itemize}
 
 Cette dernière permet de présenter le projet dans sa globalité, ainsi
-que les membres de l'équipe ayant participés à sa réalisation.
+que les membres de l'équipe ayant participé à sa réalisation.
 
 En utilisant \texttt{ngx\ rocket}, la base de l'application a pu être
 générée rapidement et avec une qualité de production. De cette manière
-notre application a pu disposé d'un service de routage et d'un autre de
+notre application a pu disposer d'un service de routage et d'un autre de
 traduction que nous avons agrémenté au fur et à mesure des différents
 ajouts de pages et de fonctionnalités.
 
 Durant nos recherches dans les différentes possibilités que pouvait nous
 offrir \emph{Ionic}, nous avons mis en place la possibilité d'accéder à
-une deuxième chartre graphique, définissant le \texttt{Dark\ Theme}.
+une deuxième charte graphique, définissant le \texttt{Dark\ Theme}.
 
 \hypertarget{duxe9veloppement-du-jeu}{%
 \subsubsection{Développement du jeu}\label{duxe9veloppement-du-jeu}}
