@@ -34,6 +34,7 @@ public:
      */
     void updateTree(const game::Move<CellT, PawnT> &last_move_played);
 
+    const game::Move<CellT, PawnT> getLastBestMove() const;
 protected:
     /**
      * @brief Unleashe the power of the MCTS !!!!
@@ -49,6 +50,7 @@ protected:
     //  * @return AbstractBoardCell*
     //  */
     const game::Move<CellT, PawnT> getCorrespondingMove(const game::Move<CellT, PawnT> &cell) const;
+
 
     /**
      * @brief Join the multiple trees into 1 so that we can get the best move
@@ -81,11 +83,9 @@ protected:
      */
     mcts::MCTSConstraints constraints;
 
-    /**
-     * @brief Number of threads used by the mcts, default = 1
-     * 
-     */
-    int num_threads = 1;
+    game::Move<CellT, PawnT> last_best_move;
+
+
 };
 
 } // namespace mcts

@@ -13,26 +13,27 @@
 
 namespace mcts
 {
-using namespace emscripten;
+    using namespace emscripten;
 
-// Binding code
-EMSCRIPTEN_BINDINGS(mcts_bind)
+    // Binding code
+    EMSCRIPTEN_BINDINGS(mcts_bind)
 
-{
-    value_object<MCTSConstraints>("MCTSConstraints")
-        .field("time", &MCTSConstraints::time);
+    {
+        value_object<MCTSConstraints>("MCTSConstraints")
+            .field("time", &MCTSConstraints::time);
 
 #define __MCTS_BIND__(name_prefix, MCTSPlayer, AbstractGame)                               \
                                                                                            \
     class_<MCTSPlayer>(name_prefix "_MCTSPlayer")                                          \
         .constructor<AbstractGame *const &, const MCTSConstraints &>(allow_raw_pointers()) \
         .function("bestMove", &MCTSPlayer::bestMove)                                       \
-        .function("updateTree", &MCTSPlayer::updateTree)
+        .function("updateTree", &MCTSPlayer::updateTree)                                   \
+        .function("getLastBestMove", &MCTSPlayer::getLastBestMove)
 
-    typedef MCTSPlayer<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn> penguin_mcts_player_t;
-    typedef game::AbstractGame<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn> penguin_game_t;
-    __MCTS_BIND__("penguin", penguin_mcts_player_t, penguin_game_t);
-}
+        typedef MCTSPlayer<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn> penguin_mcts_player_t;
+        typedef game::AbstractGame<game::penguin::BoardCell, game::penguin::HumanPlayer, game::penguin::PenguinPawn> penguin_game_t;
+        __MCTS_BIND__("penguin", penguin_mcts_player_t, penguin_game_t);
+    }
 } // namespace mcts
 
 #endif

@@ -47,15 +47,17 @@ LDFLAGS := -lpthread
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
-ifeq ($(MULTITHREADED),true)
-	CPPFLAGS += -s USE_PTHREADS=1 -s PROXY_TO_PTHREAD -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS) -s INITIAL_MEMORY=$(INITIAL_MEMORY)
-endif
-	CPPFLAGS += --bind -s WASM=1
+	CPPFLAGS += --bind -s WASM=1 -s ASYNCIFY=1
 	EXECPPFLAGS := 
-else
+ifeq ($(MULTITHREADED),true)
+	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS) -s INITIAL_MEMORY=$(INITIAL_MEMORY)
+endif
+endif
+
+# -s ASYNCIFY_IGNORE_INDIRECT
+
 ifeq ($(MULTITHREADED),true)
 	CPPFLAGS += -DNUMBER_THREADS=$(NUMBER_PTHREADS_WORKERS)
-endif
 endif
 
 ifeq ($(MODE),debug)

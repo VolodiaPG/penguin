@@ -9,6 +9,7 @@ import { gameService } from '@app/game/models/gameMachine';
 import { appService } from '@app/game/models/appMachine';
 
 import { Pos } from './pos';
+import { BehaviorSubject } from 'rxjs';
 
 declare var Module: any;
 
@@ -41,7 +42,6 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
-
   /**
    * Value to check if the game has been started by the user.
    * Two-way bindings with the game component.
@@ -52,7 +52,6 @@ export class BoardComponent implements OnInit {
    * Emitter to the game component to notify when the user posed one of his penguins.
    */
   @Output() penguinPosed = new EventEmitter<any>();
-
 
   /**
    * Value to bind the State Controler FSM and to use its value.
@@ -136,20 +135,23 @@ export class BoardComponent implements OnInit {
    */
   wasmMove: any;
 
+  /**
+   * @ignore
+   */
+  constructor(private toastController: ToastController) {}
 
   /**
-  * @ignore
-  */
-  constructor(private toastController: ToastController) { }
-
-  /**
-  * Call when the Board Component is created.
-  * Initialize :
-  *     - the Array of Cells,
-  *     - the Array of Penguins,
-  * Then call the generateMap() function.
-  */
+   * Call when the Board Component is created.
+   * Initialize :
+   *     - the Array of Cells,
+   *     - the Array of Penguins,
+   * Then call the generateMap() function.
+   */
   ngOnInit(): void {
+    document.addEventListener('new_best_move', (_: any) => {
+      this.processBestMove(this.wasmMCTSPlayer.getLastBestMove());
+    });
+
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
     this.penguins = new Array();
@@ -171,7 +173,6 @@ export class BoardComponent implements OnInit {
       this.gameStarted = false;
     }
   }
-
 
   //*************************************************************************************************************************
   //********************************************** START GAME ***************************************************************
@@ -230,8 +231,8 @@ export class BoardComponent implements OnInit {
   }
 
   /**
-   * Pose a penguin, not put yet, in the cell in parameter. 
-   * @param {Cell} cellPos 
+   * Pose a penguin, not put yet, in the cell in parameter.
+   * @param {Cell} cellPos
    */
   posePenguinOn(cellPos: Cell) {
     if (this.penguins.length < this.nbPenguin) {
@@ -320,24 +321,30 @@ export class BoardComponent implements OnInit {
    * Allow each player to play, when it is his turn.
    * Show a little toast to alert the user.
    */
-   playTurn() {
+  playTurn() {
     if (this.currentPlayerId === this.humanPlayerId) {
       this.presentSuccessToast('It is your turn ' + this.currentPlayerId + ' !');
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
       this.presentErrorToast('Wasm is playing ' + this.currentPlayerId + ' !');
 
-      this.setMCTSBestMove();
-      this.playWasmMove();
+      this.getBestMoveAndProcess();
     }
   }
 
   /**
-   * Ask the MCTS PLayer to get the best move to play.
+   * Ask the MCTS PLayer to get the best move to play and go on with the event
    */
-  setMCTSBestMove() {
-    this.wasmMove = this.wasmMCTSPlayer.bestMove();
+  getBestMoveAndProcess() {
+    this.wasmMCTSPlayer.bestMove();
+  }
 
+  /**
+   * Process the best Move event sent on document
+   * @param bestMove
+   */
+  processBestMove(bestMove: any) {
+    this.wasmMove = bestMove;
     console.log('wasmMove: ');
     console.log(this.wasmMove.getPawn());
     console.log(this.wasmMove.getTarget());
@@ -354,6 +361,8 @@ export class BoardComponent implements OnInit {
     // console.log('pawn : ', this.penguinSelected, 'from : ', this.wasmMove.getFrom().getPosition(), 'target : ', wasmCellClicked.getPosition());
     let wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition()));
     this.cellClicked = this.cells[wasmCellPos.row][wasmCellPos.column];
+
+    this.playWasmMove();
   }
 
   /**
@@ -402,8 +411,8 @@ export class BoardComponent implements OnInit {
   /**
    * Check the game status, after a move was performed.
    * Then react in agrement with the wasm return.
-   * 
-   * @exemple 
+   *
+   * @exemple
    * 0 : game not finish yet,
    * -1 : a draw,
    * 1 or 2 : id of the player which has won.
@@ -529,7 +538,7 @@ export class BoardComponent implements OnInit {
    * @exemple
    * 7x7 -> 8x8
    */
-   addHexagonal(): void {
+  addHexagonal(): void {
     this.nbHexagonal++;
 
     let cell: Cell;
@@ -598,7 +607,7 @@ export class BoardComponent implements OnInit {
     toast.present();
   }
 
-   /**
+  /**
    * Create a toast, in the top of the window, using the error theme.
    * @param {string} message that will be written in the toast
    */
