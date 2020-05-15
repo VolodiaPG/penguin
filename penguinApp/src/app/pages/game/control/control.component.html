@@ -1,3 +1,70 @@
-<p>
-  control works!
-</p>
+<ion-card class="control">
+  <ion-card-header>
+    <ion-title>
+      <h2>Settings</h2>
+    </ion-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <h2>Education</h2>
+        </ion-label>
+        <ion-toggle slot="end" color="primary"></ion-toggle>
+      </ion-item>
+
+      <ion-item lines="full">
+        <!-- Icon top -->
+        <ion-segment value="normal">
+          <ion-segment-button value="normal">
+            <ion-label>Normal</ion-label>
+            <ion-icon name="heart"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="hard">
+            <ion-label>Hard</ion-label>
+            <ion-icon src="/assets/icon/skull.svg"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+      <ion-item>
+        <ion-label>Number of Hexagonals : </ion-label>
+        <ion-range
+          *ngIf="stateControler.state.value === 'settings'"
+          min="6"
+          max="12"
+          step="1"
+          snaps
+          color="primary"
+          value="{{ valueRangeHexagonal }}"
+          (ionChange)="newNumberHexagonal($event)"
+        >
+          <ion-label slot="start">6</ion-label>
+          <ion-label slot="end">12</ion-label>
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label>Number of Penguins : </ion-label>
+        <!-- [(ngModel)]="valueRangePenguin" //  value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"-->
+        <ion-range
+          *ngIf="stateControler.state.value === 'settings'"
+          min="1"
+          max="6"
+          step="1"
+          snaps
+          color="primary"
+          value="{{ valueRangePenguin }}"
+          (ionChange)="newNumberPenguin($event)"
+        >
+          <ion-label slot="start">1</ion-label>
+          <ion-label slot="end">6</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-list>
+
+    <ion-button slot="end" color="danger">Cancel</ion-button>
+
+    <ion-button class="animated infinite rubberBand slower" slot="end" (click)="presentConfirm()" translate
+      >Next</ion-button
+    >
+  </ion-card-content>
+</ion-card>
