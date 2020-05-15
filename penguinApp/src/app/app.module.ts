@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { enterAnimation } from './animations/nav-animation';
 
 import { FormsModule } from '@angular/forms';
 
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      navAnimation: enterAnimation
+    }),
     AppRoutingModule
   ],
   providers: [

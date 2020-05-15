@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">penguinApp</string>
+    <string name="title_activity_main">penguinApp</string>
+    <string name="package_name">com.penguin.app</string>
+    <string name="custom_url_scheme">com.penguin.app</string>
+</resources>
