@@ -1,3 +1,0 @@
-pandoc pdflatex pandoc-citeproc pandoc-fignos
-
-pip install pandoc-fignos --user
