@@ -2,9 +2,8 @@
 \expandafter\ifx\csname fonteauteurs\endcsname\relax
 \def\fonteauteurs{\scshape}\fi
 
-\bibitem{handsOnWebAssembly}
-Rick \bgroup\fonteauteurs\bgroup Battagline\egroup\egroup{} :
-\newblock {\em Game Development with WebAssembly}.
-\newblock Packt, 2019.
+\bibitem{patel_blobs_2019}
+Amit \bgroup\fonteauteurs\bgroup Patel\egroup\egroup{} :
+\newblock Blobs in games: Improving hexagon map storage diagram.
 
 \end{thebibliography}

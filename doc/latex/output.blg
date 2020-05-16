@@ -3,44 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: output.aux
 The style file: plain-fr.bst
 Database file #1: references.bib
+Warning--entry type for "patel_blobs_2019" isn't style-file defined
+--line 19 of file references.bib
 You've used 1 entry,
             2238 wiz_defined-function locations,
-            541 strings with 4664 characters,
-and the built_in function-call counts, 278 in all, are:
-= -- 25
+            538 strings with 4651 characters,
+and the built_in function-call counts, 255 in all, are:
+= -- 22
 > -- 7
 < -- 0
 + -- 3
 - -- 2
-* -- 13
-:= -- 62
-add.period$ -- 2
+* -- 10
+:= -- 55
+add.period$ -- 1
 call.type$ -- 1
-change.case$ -- 3
+change.case$ -- 4
 chr.to.int$ -- 0
 cite$ -- 1
-duplicate$ -- 12
+duplicate$ -- 7
 empty$ -- 24
 format.name$ -- 2
-if$ -- 56
+if$ -- 51
 int.to.chr$ -- 0
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 10
+missing$ -- 0
+newline$ -- 9
 num.names$ -- 2
 pop$ -- 8
 preamble$ -- 1
 purify$ -- 3
 quote$ -- 0
-skip$ -- 6
+skip$ -- 10
 stack$ -- 0
 substring$ -- 11
 swap$ -- 1
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 2
+type$ -- 4
 warning$ -- 0
 while$ -- 2
 width$ -- 2
-write$ -- 14
+write$ -- 11
+(There was 1 warning)

@@ -159,7 +159,7 @@ le multithreading. En effet, cela nous débloque la possibilité de
 simuler plusieurs parties en même temps, impliquant une augmentation du
 nombre de parties simulés. Il y a différentes manières de multithreader
 le MCTS; la \emph{tree parallelization}, la \emph{root parallelization}
-et la \emph{leaf parallelization}. \citep{handsOnWebAssembly} Nous avons
+et la \emph{leaf parallelization}. \citep{patel_blobs_2019} Nous avons
 choisi la \emph{root parallelization} puisqu'elle offre un meilleur
 score que les autres, et d'être facile à implémenter. Pour cela, nous
 développons un arbre par thread. A la fin du temps alloué, nous mettons
