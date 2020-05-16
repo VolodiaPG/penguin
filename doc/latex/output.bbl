@@ -2,8 +2,13 @@
 \expandafter\ifx\csname fonteauteurs\endcsname\relax
 \def\fonteauteurs{\scshape}\fi
 
-\bibitem{patel_blobs_2019}
-Amit \bgroup\fonteauteurs\bgroup Patel\egroup\egroup{} :
-\newblock Blobs in games: Improving hexagon map storage diagram.
+\bibitem{par_mcts}
+H.~Jaap van den~Herik \bgroup\fonteauteurs\bgroup Guillaume
+  M.J-B.~Chaslot\egroup\egroup{}, Mark H.M.~Winands :
+\newblock Parallel monte-carlo tree search.
+
+\bibitem{mass_par_mcts}
+Reiji~Suda \bgroup\fonteauteurs\bgroup Kamil~Rocki\egroup\egroup{} :
+\newblock Massively parallel monte carlo tree search.
 
 \end{thebibliography}
