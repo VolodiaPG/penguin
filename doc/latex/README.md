@@ -54,6 +54,12 @@ Finalement, la partie qui consistait à permettre de transporter le jeu codé en
 
 # Réalisation
 
+## Notre environnement de développement
+
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `c++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un container Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra]]} mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+
+[^conseilSopra]: un ingénieur chez Sopra Steria nous l'avait conseillé, en effet Docker possède une faille majeure sur Windows : il n'est disponible sur les versions non professionnelles que en tant que _Docker Toolbox_ qui ne permet pas une utilisation avec VSCode.
+
 ## Représentation du jeu
 
 Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec une `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques `std::map`{.cpp}. D'autre part puisque qu'une telle représentation d'une carte rectangulaire serait lacunaire dans une structure de donnée tabulaire [@patel_blobs_2019][map-storage].
