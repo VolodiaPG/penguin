@@ -1,5 +1,10 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 \expandafter\ifx\csname fonteauteurs\endcsname\relax
 \def\fonteauteurs{\scshape}\fi
+
+\bibitem{handsOnWebAssembly}
+Rick \bgroup\fonteauteurs\bgroup Battagline\egroup\egroup{} :
+\newblock {\em Game Development with WebAssembly}.
+\newblock Packt, 2019.
 
 \end{thebibliography}

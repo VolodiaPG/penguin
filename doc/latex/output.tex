@@ -103,9 +103,9 @@ joueur avec le plus de points (poissons) remporte la partie.
 
 Le sujet portait sur l'implémentation de ce jeu dans un environnement
 Web, en utilisant le nouveau standard \emph{WebAssembly}. Les sources du
-projet sont compilés avec \emph{Emscripten} qui permet de coder en
-\texttt{c++} pour la partie technique. L'interface devait se faire avec
-les libraires \emph{Simple DirectMedia Layer}.
+projet sont compilées avec \emph{Emscripten} qui permet de coder en
+\texttt{C++} pour la partie technique. L'interface devait se faire avec
+les bibliothèques \emph{Simple DirectMedia Layer}.
 
 \hypertarget{bref-suivi}{%
 \subsubsection{Bref suivi}\label{bref-suivi}}
@@ -159,15 +159,15 @@ le multithreading. En effet, cela nous débloque la possibilité de
 simuler plusieurs parties en même temps, impliquant une augmentation du
 nombre de parties simulés. Il y a différentes manières de multithreader
 le MCTS; la \emph{tree parallelization}, la \emph{root parallelization}
-et la \emph{leaf parallelization}. Nous avons choisi la \emph{root
-parallelization} puisqu'il offre un meilleur score que les autres, et
-d'être facile à implémenter. Pour cela, nous développons un arbre par
-thread. A la fin du temps alloué, nous mettons en commun les arbres et
-choisissons le meilleur coup à jouer. Nous mettons en commun uniquement
-la première couche afin d'éviter d'allonger le temps de calcul. Pour
-éviter de recréer l'arbre à chaque fois, nous avons mis en place un
-système de déplacement de la racine à un de ces enfants, gardant ainsi
-le sous arbre de l'enfant.
+et la \emph{leaf parallelization}. \citep{handsOnWebAssembly} Nous avons
+choisi la \emph{root parallelization} puisqu'elle offre un meilleur
+score que les autres, et d'être facile à implémenter. Pour cela, nous
+développons un arbre par thread. A la fin du temps alloué, nous mettons
+en commun les arbres et choisissons le meilleur coup à jouer. Nous
+mettons en commun uniquement la première couche afin d'éviter d'allonger
+le temps de calcul. Pour éviter de recréer l'arbre à chaque fois, nous
+avons mis en place un système de déplacement de la racine à un de ses
+enfants, gardant ainsi le sous-arbre de l'enfant.
 
 \hypertarget{interface-graphique}{%
 \subsection{Interface graphique}\label{interface-graphique}}
@@ -192,10 +192,10 @@ viendrait englober la partie véritablement jouable. Afin de mettre en
 place cette architecture web sur pied au plus vite, nous nous sommes
 tournés vers \texttt{Angular}.
 
-Pour mettre en place la chartre graphique de notre application, nous
-nous sommes tournés vers le framework \texttt{Ionic\ 4}, sorti
-récemment, qui offre aux développeurs des thèmes pré-conçus et des
-composants responsives. Basé sur \emph{Angular}, il s'intègre donc
+Pour mettre en place la charte graphique de notre application, nous nous
+sommes tournés vers le framework \texttt{Ionic\ 4}, sorti récemment, qui
+offre aux développeurs des thèmes pré-conçus et des composants
+\emph{responsives}. Basé sur \emph{Angular}, il s'intègre donc
 parfaitement dans notre projet.
 
 \hypertarget{organisation-de-lapplication}{%
