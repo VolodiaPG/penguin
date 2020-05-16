@@ -64,6 +64,13 @@
     <code>src/app/game/console/console.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Console component</p>
+
+    </p>
 
 
     <p class="comment">
@@ -121,6 +128,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#console_outputs">console_outputs</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -145,24 +167,6 @@
     </table>
 </section>
 
-    <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/game/console/console.component.ts:8</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -195,14 +199,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/app/game/console/console.component.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/game/console/console.component.ts:30</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Create an EventListener, when the Console Component is created, to bind with the C++ console.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -213,6 +219,51 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="console_outputs"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            console_outputs</b>
+                            <a href="#console_outputs"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/game/console/console.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The message which has to be show in the console.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
 
 </div>
 
@@ -220,15 +271,40 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 
+/**
+ * Bind with the C++ Wasm Module
+ */
+declare var Module: any;
+
+/**
+ * Console component
+ */
 @Component({
   selector: &#x27;app-console&#x27;,
   templateUrl: &#x27;./console.component.html&#x27;,
   styleUrls: [&#x27;./console.component.scss&#x27;]
 })
 export class ConsoleComponent implements OnInit {
+  /**
+   * The message which has to be show in the console.
+   */
+  public console_outputs: String &#x3D; &#x27;&#x27;;
+
+  /**
+   * @ignore
+   */
   constructor() {}
 
-  ngOnInit() {}
+  /**
+   * Create an EventListener, when the Console Component is created, to bind with the C++ console.
+   */
+  ngOnInit() {
+    document.addEventListener(&#x27;mcts_console&#x27;, (e: any) &#x3D;&gt; {
+      console.log(e);
+      this.console_outputs +&#x3D; e.detail.replace(new RegExp(&#x27;\n&#x27;, &#x27;g&#x27;), &#x27;&lt;br /&gt;&#x27;) + &#x27;&lt;br /&gt;&#x27;;
+      console.log(this.console_outputs);
+    });
+  }
 }
 </code></pre>
     </div>
@@ -241,25 +317,7 @@ export class ConsoleComponent implements OnInit {
     &lt;/ion-list-header&gt;
 
     &lt;ion-item&gt;
-      &lt;ion-avatar slot&#x3D;&quot;start&quot;&gt;
-        &lt;img src&#x3D;&quot;http://placekitten.com/200/300&quot; /&gt;
-      &lt;/ion-avatar&gt;
-      &lt;ion-label&gt;
-        &lt;h2&gt;Finn&lt;/h2&gt;
-        &lt;h3&gt;I&#x27;m a big deal&lt;/h3&gt;
-        &lt;p&gt;Listen, I&#x27;ve had a&lt;/p&gt;
-      &lt;/ion-label&gt;
-    &lt;/ion-item&gt;
-
-    &lt;ion-item lines&#x3D;&quot;full&quot;&gt;
-      &lt;ion-avatar slot&#x3D;&quot;start&quot;&gt;
-        &lt;img src&#x3D;&quot;http://placekitten.com/300/300&quot; /&gt;
-      &lt;/ion-avatar&gt;
-      &lt;ion-label&gt;
-        &lt;h2&gt;Han&lt;/h2&gt;
-        &lt;h3&gt;Look, kid...&lt;/h3&gt;
-        &lt;p&gt;I&#x27;ve got enough on&lt;/p&gt;
-      &lt;/ion-label&gt;
+      &lt;ion-label [innerHTML]&#x3D;&quot;console_outputs&quot;&gt; &lt;/ion-label&gt;
     &lt;/ion-item&gt;
   &lt;/ion-list&gt;
 &lt;/ion-card&gt;
@@ -298,7 +356,7 @@ export class ConsoleComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-card>  <ion-list>    <ion-list-header>      Console    </ion-list-header>    <ion-item>      <ion-avatar slot="start">        <img src="http://placekitten.com/200/300" />      </ion-avatar>      <ion-label>        <h2>Finn</h2>        <h3>I\'m a big deal</h3>        <p>Listen, I\'ve had a</p>      </ion-label>    </ion-item>    <ion-item lines="full">      <ion-avatar slot="start">        <img src="http://placekitten.com/300/300" />      </ion-avatar>      <ion-label>        <h2>Han</h2>        <h3>Look, kid...</h3>        <p>I\'ve got enough on</p>      </ion-label>    </ion-item>  </ion-list></ion-card></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-card>  <ion-list>    <ion-list-header>      Console    </ion-list-header>    <ion-item>      <ion-label [innerHTML]="console_outputs"> </ion-label>    </ion-item>  </ion-list></ion-card></div>'
     var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BoardComponent', 'selector': 'app-board'},{'name': 'ConsoleComponent', 'selector': 'app-console'},{'name': 'ControlComponent', 'selector': 'app-control'},{'name': 'GameComponent', 'selector': 'app-game'},{'name': 'HexComponent', 'selector': 'app-hex'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'InfoComponent', 'selector': 'app-info'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'PenguinComponent', 'selector': 'app-penguin'},{'name': 'ShellComponent', 'selector': 'app-shell'},{'name': 'TeamComponent', 'selector': 'app-team'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ConsoleComponent'};

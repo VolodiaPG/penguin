@@ -64,6 +64,13 @@
     <code>src/app/game/board/board.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for all the components about the Penguin Game.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -273,6 +280,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#gameStarted">gameStarted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -295,56 +316,38 @@
     </table>
 </section>
 
+
     <section>
-    <h3 id="constructor">Constructor</h3>
+    <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(toastController: ToastController)</code>
+                        <a name="gameStarted"></a>
+                        <b>gameStarted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
                     </td>
                 </tr>
                         <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/game/board/board.component.ts:72</a></div>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/game/board/board.component.ts:49</a></div>
                             </td>
                         </tr>
-
                 <tr>
                     <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>toastController</td>
-                                                  
-                                                        <td>
-                                                                    <code>ToastController</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
+                        <div class="io-description"><p>Value to check if the game has been started by the user.
+Two-way bindings with the game component.</p>
+</div>
                     </td>
                 </tr>
             </tbody>
         </table>
 </section>
-
-
     <section>
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -363,9 +366,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/game/board/board.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/game/board/board.component.ts:54</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emitter to the game component to notify when the user posed one of his penguins.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -398,17 +407,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="366"
-                            class="link-to-prism">src/app/game/board/board.component.ts:366</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="532"
+                            class="link-to-prism">src/app/game/board/board.component.ts:532</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> PREVIEW <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>Increase the number of hexagonal.
+Add a cell on each row, and initialize it.
+Then add a row.</p>
 </div>
 
                     <div class="io-description">
@@ -441,14 +450,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="396"
-                            class="link-to-prism">src/app/game/board/board.component.ts:396</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="572"
+                            class="link-to-prism">src/app/game/board/board.component.ts:572</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Increase the number of penguins.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -480,17 +491,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/app/game/board/board.component.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="219"
+                            class="link-to-prism">src/app/game/board/board.component.ts:219</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong> MAP/TEXTURES <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>Create an empty map, with a size of the hexagonals number, and with x penguins.</p>
 </div>
 
                     <div class="io-description">
@@ -523,14 +532,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/app/game/board/board.component.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="258"
+                            class="link-to-prism">src/app/game/board/board.component.ts:258</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Update the fish number on all the cells on the board, accordingly with the C++ board.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -562,14 +573,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="162"
-                            class="link-to-prism">src/app/game/board/board.component.ts:162</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/app/game/board/board.component.ts:275</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Generate the penguins for the wasm player.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -601,17 +614,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/app/game/board/board.component.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/game/board/board.component.ts:185</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> START GAME <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>Get the random board genrated by the C++ code.
+Set the current player Id, the human player id, in agrement with the first player which has to play.
+Then call the generateMapFromWasmBoard function to update the front part.</p>
 </div>
 
                     <div class="io-description">
@@ -644,14 +657,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="272"
-                            class="link-to-prism">src/app/game/board/board.component.ts:272</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="411"
+                            class="link-to-prism">src/app/game/board/board.component.ts:411</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Check the game status, after a move was performed.
+Then react in agrement with the wasm return.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -683,14 +699,18 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/app/game/board/board.component.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/app/game/board/board.component.ts:165</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Call when the Board Component is destroyed.
+Delete the c++ object Game if and only if it has been initialized.
+Set null in all the others variables used in the front part.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -722,14 +742,20 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/game/board/board.component.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/game/board/board.component.ts:152</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Call when the Board Component is created.
+Initialize :
+     - the Array of Cells,
+     - the Array of Penguins,
+Then call the generateMap() function.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -761,14 +787,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="322"
-                            class="link-to-prism">src/app/game/board/board.component.ts:322</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="472"
+                            class="link-to-prism">src/app/game/board/board.component.ts:472</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>React on the click event on a cell. The reaction depends of the current state of the stateControler and the game State Machine.
+Some features are only available when a penguin are selected or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -778,6 +807,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -792,6 +822,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>pointer on the cell clicked</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -831,17 +865,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="292"
-                            class="link-to-prism">src/app/game/board/board.component.ts:292</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="437"
+                            class="link-to-prism">src/app/game/board/board.component.ts:437</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> ANIMATION <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>React on the click event on a penguin. The reaction depends of the current state of the stateControler and the game State Machine.
+Some features are only available on our own penguins.</p>
 </div>
 
                     <div class="io-description">
@@ -852,6 +885,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -866,6 +900,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>pointer on the penguin selected</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -905,17 +943,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/game/board/board.component.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="323"
+                            class="link-to-prism">src/app/game/board/board.component.ts:323</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> GAME LOGIC <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>Allow each player to play, when it is his turn.
+Show a little toast to alert the user.</p>
 </div>
 
                     <div class="io-description">
@@ -948,14 +985,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="235"
-                            class="link-to-prism">src/app/game/board/board.component.ts:235</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="362"
+                            class="link-to-prism">src/app/game/board/board.component.ts:362</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Play a move in the C++ game, then update the tree.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -987,14 +1026,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/app/game/board/board.component.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/app/game/board/board.component.ts:236</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Pose a penguin, not put yet, in the cell in parameter. </p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1059,14 +1100,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="417"
-                            class="link-to-prism">src/app/game/board/board.component.ts:417</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="605"
+                            class="link-to-prism">src/app/game/board/board.component.ts:605</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Create a toast, in the top of the window, using the error theme.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1076,6 +1119,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1090,6 +1134,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>that will be written in the toast</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1131,17 +1179,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="407"
-                            class="link-to-prism">src/app/game/board/board.component.ts:407</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="591"
+                            class="link-to-prism">src/app/game/board/board.component.ts:591</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> TOAST <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>****</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-<hr>
+                    <div class="io-description"><p>Create a toast, in the top of the window, using the success theme.</p>
 </div>
 
                     <div class="io-description">
@@ -1152,6 +1198,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1166,6 +1213,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>that will be written in the toast</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1205,14 +1256,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="179"
-                            class="link-to-prism">src/app/game/board/board.component.ts:179</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="295"
+                            class="link-to-prism">src/app/game/board/board.component.ts:295</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Put the penguin on the right cell in C++, with a fake move.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1244,14 +1297,18 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="386"
-                            class="link-to-prism">src/app/game/board/board.component.ts:386</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="559"
+                            class="link-to-prism">src/app/game/board/board.component.ts:559</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Decrease the number of hexagonal.
+Remove a cell on each row.
+Then Remove a row.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1283,14 +1340,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="400"
-                            class="link-to-prism">src/app/game/board/board.component.ts:400</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="579"
+                            class="link-to-prism">src/app/game/board/board.component.ts:579</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Decrease the number of penguins.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1322,14 +1381,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="352"
-                            class="link-to-prism">src/app/game/board/board.component.ts:352</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="510"
+                            class="link-to-prism">src/app/game/board/board.component.ts:510</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Set/Remove the color cell, if he is selected or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1339,6 +1400,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1353,6 +1415,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>if the cell had to be colorized or not</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1392,14 +1458,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="214"
-                            class="link-to-prism">src/app/game/board/board.component.ts:214</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/app/game/board/board.component.ts:338</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Ask the MCTS PLayer to get the best move to play.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1431,14 +1499,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="347"
-                            class="link-to-prism">src/app/game/board/board.component.ts:347</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="501"
+                            class="link-to-prism">src/app/game/board/board.component.ts:501</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Set/Remove the color penguin, if he is selected or not.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1448,6 +1518,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1462,6 +1533,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>if the penguin had to be colorized or not</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1501,14 +1576,19 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/app/game/board/board.component.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/app/game/board/board.component.ts:202</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get a random vector of penguins generated in C++, when the IA penguins has to be initialize.
+Generate the penguins of the Mcts player and then put these in the board.
+Create the C++ object to use the MCTS.
+Finally, launch the game !</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1540,14 +1620,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="267"
-                            class="link-to-prism">src/app/game/board/board.component.ts:267</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="397"
+                            class="link-to-prism">src/app/game/board/board.component.ts:397</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Switch the id of the current player, accordingly with the changement in the C++ game.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1583,10 +1665,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/game/board/board.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/game/board/board.component.ts:100</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the current cell clicked by the curent player to play.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1610,10 +1698,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/game/board/board.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/game/board/board.component.ts:81</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>2D Array with all the cells on the map (row of column).</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1637,10 +1731,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/game/board/board.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/game/board/board.component.ts:105</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value of the current player id.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1669,10 +1769,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/game/board/board.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/game/board/board.component.ts:76</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The pixel height of a hex.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1701,10 +1807,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/game/board/board.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/game/board/board.component.ts:72</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The pixel width of a hex.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1733,10 +1845,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/game/board/board.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/game/board/board.component.ts:110</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value of the user&#39;s id.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1759,7 +1877,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/game/board/board.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/game/board/board.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1786,10 +1904,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/game/board/board.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/game/board/board.component.ts:128</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object, which contains the constraints for the MCTS.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1818,10 +1942,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/game/board/board.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/game/board/board.component.ts:67</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value of hexagonals contains in one line on the board.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1850,10 +1980,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/game/board/board.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/game/board/board.component.ts:86</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value of penguins contains on the board.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1877,10 +2013,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/game/board/board.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/game/board/board.component.ts:91</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array with all the penguins on the board.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1904,10 +2046,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/game/board/board.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/game/board/board.component.ts:96</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the current penguin selected by the curent player to play.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1936,10 +2084,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/game/board/board.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/game/board/board.component.ts:60</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value to bind the State Controler FSM and to use its value.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1963,10 +2117,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/game/board/board.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/game/board/board.component.ts:119</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object : Board.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1990,10 +2150,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/game/board/board.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/game/board/board.component.ts:115</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object : Game.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2017,10 +2183,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/game/board/board.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/game/board/board.component.ts:132</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object : MCTSPlayer.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2044,10 +2216,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/game/board/board.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/game/board/board.component.ts:137</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object : Move, to be able to perform a move and update the MCTS tree.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2071,10 +2249,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/game/board/board.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/game/board/board.component.ts:123</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Pointer to the C++ object : vector<Penguin>.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -2098,6 +2282,9 @@ import { Pos } from &#x27;./pos&#x27;;
 
 declare var Module: any;
 
+/**
+ * Component for all the components about the Penguin Game.
+ */
 @Component({
   selector: &#x27;app-board&#x27;,
   templateUrl: &#x27;./board.component.html&#x27;,
@@ -2124,41 +2311,114 @@ declare var Module: any;
   ]
 })
 export class BoardComponent implements OnInit {
+
+  /**
+   * Value to check if the game has been started by the user.
+   * Two-way bindings with the game component.
+   */
+  @Input() gameStarted: boolean;
+
+  /**
+   * Emitter to the game component to notify when the user posed one of his penguins.
+   */
   @Output() penguinPosed &#x3D; new EventEmitter&lt;any&gt;();
 
+
+  /**
+   * Value to bind the State Controler FSM and to use its value.
+   */
   stateControler: any &#x3D; appService;
 
   isLoaded &#x3D; false;
 
+  /**
+   * Value of hexagonals contains in one line on the board.
+   */
   nbHexagonal: number &#x3D; 8; // 8
 
-  // The pixel width of a hex.
+  /**
+   * The pixel width of a hex.
+   */
   hexWidth: number &#x3D; 90; // 90
-  // The pixel height of a hex.
+  /**
+   * The pixel height of a hex.
+   */
   hexHeight: number &#x3D; 90; // 90
 
+  /**
+   * 2D Array with all the cells on the map (row of column).
+   */
   cells: Array&lt;Array&lt;Cell&gt;&gt;;
 
+  /**
+   * Value of penguins contains on the board.
+   */
   nbPenguin: number &#x3D; 2;
+
+  /**
+   * Array with all the penguins on the board.
+   */
   penguins: Array&lt;Penguin&gt;;
+
+  /**
+   * Pointer to the current penguin selected by the curent player to play.
+   */
   penguinSelected: Penguin;
+  /**
+   * Pointer to the current cell clicked by the curent player to play.
+   */
   cellClicked: Cell;
 
+  /**
+   * Value of the current player id.
+   */
   currentPlayerId: number;
 
+  /**
+   * Value of the user&#x27;s id.
+   */
   humanPlayerId: number &#x3D; 2;
 
-  // Wasm objects
+  /**
+   * Pointer to the C++ object : Game.
+   */
   wasmGame: any;
+  /**
+   * Pointer to the C++ object : Board.
+   */
   wasmBoard: any;
+  /**
+   * Pointer to the C++ object : vector&lt;Penguin&gt;.
+   */
   wasmPenguins: any;
 
+  /**
+   * Pointer to the C++ object, which contains the constraints for the MCTS.
+   */
   mctsConstraints: any;
+  /**
+   * Pointer to the C++ object : MCTSPlayer.
+   */
   wasmMCTSPlayer: any;
+
+  /**
+   * Pointer to the C++ object : Move, to be able to perform a move and update the MCTS tree.
+   */
   wasmMove: any;
 
-  constructor(private toastController: ToastController) {}
 
+  /**
+  * @ignore
+  */
+  constructor(private toastController: ToastController) { }
+
+  /**
+  * Call when the Board Component is created.
+  * Initialize :
+  *     - the Array of Cells,
+  *     - the Array of Penguins,
+  * Then call the generateMap() function.
+  */
   ngOnInit(): void {
     this.isLoaded &#x3D; false;
     this.cells &#x3D; new Array(this.nbHexagonal);
@@ -2167,38 +2427,65 @@ export class BoardComponent implements OnInit {
     console.log(&#x27;Board ok&#x27;);
   }
 
+  /**
+   * Call when the Board Component is destroyed.
+   * Delete the c++ object Game if and only if it has been initialized.
+   * Set null in all the others variables used in the front part.
+   */
   ngOnDestroy(): void {
-    console.log(&#x27;Game destroyed&#x27;);
-    this.wasmGame.delete();
+    if (this.gameStarted) {
+      console.log(&#x27;Game destroyed&#x27;);
+      this.wasmGame.delete();
+      this.cells &#x3D; null;
+      this.penguins &#x3D; null;
+      this.gameStarted &#x3D; false;
+    }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ START GAME ***************************************************************
-   ***************************************************************************************************************************/
+
+  //*************************************************************************************************************************
+  //********************************************** START GAME ***************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Get the random board genrated by the C++ code.
+   * Set the current player Id, the human player id, in agrement with the first player which has to play.
+   * Then call the generateMapFromWasmBoard function to update the front part.
+   */
   initWasmBoard() {
     console.log(&#x27;Init WasmGame&#x27;, this.nbHexagonal, this.nbPenguin);
     this.wasmGame &#x3D; new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard &#x3D; this.wasmGame.getBoard();
-    this.humanPlayerId &#x3D; this.wasmGame.getPlayerToPlay();
+
+    this.currentPlayerId &#x3D; this.wasmGame.getPlayerToPlay();
+    this.humanPlayerId &#x3D; this.currentPlayerId;
+
     this.generateMapFromWasmBoard();
   }
 
+  /**
+   * Get a random vector of penguins generated in C++, when the IA penguins has to be initialize.
+   * Generate the penguins of the Mcts player and then put these in the board.
+   * Create the C++ object to use the MCTS.
+   * Finally, launch the game !
+   */
   startWasmGame() {
     this.wasmPenguins &#x3D; this.wasmBoard.getPawnsOnBoard();
     this.generateWasmPenguin();
     this.putPenguinOnWasmBoard();
 
-    this.currentPlayerId &#x3D; this.wasmGame.getPlayerToPlay();
-    this.humanPlayerId &#x3D; this.currentPlayerId;
-
-    this.wasmMCTSPlayer &#x3D; new Module.penguin_MCTSPlayer(this.wasmGame, { time: 150 });
+    this.wasmMCTSPlayer &#x3D; new Module.penguin_MCTSPlayer(this.wasmGame, { time: 2000 });
 
     this.playTurn();
   }
 
-  /***************************************************************************************************************************
-   ************************************* MAP/TEXTURES ************************************************************************
-   ***************************************************************************************************************************/
+  //*************************************************************************************************************************
+  //********************************************** MAP/TEXTURES *************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Create an empty map, with a size of the hexagonals number, and with x penguins.
+   */
   generateMap() {
     console.log(&#x27;Generate Map&#x27;, this.nbHexagonal, this.nbPenguin);
     let cell: Cell;
@@ -2212,6 +2499,10 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Pose a penguin, not put yet, in the cell in parameter. 
+   * @param {Cell} cellPos 
+   */
   posePenguinOn(cellPos: Cell) {
     if (this.penguins.length &lt; this.nbPenguin) {
       let penguin &#x3D; new Penguin();
@@ -2231,6 +2522,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Update the fish number on all the cells on the board, accordingly with the C++ board.
+   */
   generateMapFromWasmBoard() {
     console.log(&#x27;Generate Map from WasmBoard&#x27;);
 
@@ -2245,6 +2539,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Generate the penguins for the wasm player.
+   */
   generateWasmPenguin() {
     let rndRow: number, rndColumn: number;
     for (let ii &#x3D; 0; ii &lt; this.nbPenguin; ii++) {
@@ -2262,6 +2559,9 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Put the penguin on the right cell in C++, with a fake move.
+   */
   putPenguinOnWasmBoard() {
     for (let ii &#x3D; 0; ii &lt; this.wasmPenguins.size(); ii++) {
       let penguinPosed &#x3D; false;
@@ -2282,21 +2582,29 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ GAME LOGIC ***************************************************************
-   ***************************************************************************************************************************/
-  playTurn() {
+  //*************************************************************************************************************************
+  //********************************************** GAME LOGIC ***************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Allow each player to play, when it is his turn.
+   * Show a little toast to alert the user.
+   */
+   playTurn() {
     if (this.currentPlayerId &#x3D;&#x3D;&#x3D; this.humanPlayerId) {
-      this.presentSuccessToast(&#x27;It is your turn !&#x27;);
+      this.presentSuccessToast(&#x27;It is your turn &#x27; + this.currentPlayerId + &#x27; !&#x27;);
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
-      this.presentErrorToast(&#x27;Wasm is playing !&#x27;);
+      this.presentErrorToast(&#x27;Wasm is playing &#x27; + this.currentPlayerId + &#x27; !&#x27;);
 
       this.setMCTSBestMove();
       this.playWasmMove();
     }
   }
 
+  /**
+   * Ask the MCTS PLayer to get the best move to play.
+   */
   setMCTSBestMove() {
     this.wasmMove &#x3D; this.wasmMCTSPlayer.bestMove();
 
@@ -2318,6 +2626,9 @@ export class BoardComponent implements OnInit {
     this.cellClicked &#x3D; this.cells[wasmCellPos.row][wasmCellPos.column];
   }
 
+  /**
+   * Play a move in the C++ game, then update the tree.
+   */
   playWasmMove() {
     console.log(
       &#x27;pawn : &#x27;,
@@ -2350,11 +2661,23 @@ export class BoardComponent implements OnInit {
     this.cellClicked &#x3D; undefined;
   }
 
+  /**
+   * Switch the id of the current player, accordingly with the changement in the C++ game.
+   */
   switchCurrentPlayer() {
-    this.currentPlayerId &#x3D; (this.currentPlayerId % 2) + 1;
+    this.currentPlayerId &#x3D; this.wasmGame.getPlayerToPlay();
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
 
+  /**
+   * Check the game status, after a move was performed.
+   * Then react in agrement with the wasm return.
+   * 
+   * @exemple 
+   * 0 : game not finish yet,
+   * -1 : a draw,
+   * 1 or 2 : id of the player which has won.
+   */
   movePerformed() {
     let currentStatus &#x3D; this.wasmBoard.checkStatus();
     if (currentStatus &#x3D;&#x3D;&#x3D; 0) {
@@ -2372,9 +2695,15 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ ANIMATION ****************************************************************
-   ***************************************************************************************************************************/
+  //*************************************************************************************************************************
+  //********************************************** ANIMATION ****************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * React on the click event on a penguin. The reaction depends of the current state of the stateControler and the game State Machine.
+   * Some features are only available on our own penguins.
+   * @param {Penguin} newPenguinClicked pointer on the penguin selected
+   */
   onPenguinClick(newPenguinClicked: Penguin) {
     if (newPenguinClicked.textureIndex &#x3D;&#x3D;&#x3D; 0) {
       // The user clicked on the same penguin
@@ -2405,6 +2734,11 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * React on the click event on a cell. The reaction depends of the current state of the stateControler and the game State Machine.
+   * Some features are only available when a penguin are selected or not.
+   * @param {Cell} cellClicked pointer on the cell clicked
+   */
   onCellClick(cellClicked: Cell) {
     switch (appService.state.value) {
       case &#x27;initPosPenguin&#x27;:
@@ -2430,11 +2764,19 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Set/Remove the color penguin, if he is selected or not.
+   * @param {boolean} set if the penguin had to be colorized or not
+   */
   setSelectedPenguinColor(set: boolean) {
     this.penguinSelected.switchPenguinColor();
     this.setAvailableCellColor(set);
   }
 
+  /**
+   * Set/Remove the color cell, if he is selected or not.
+   * @param {boolean} set if the cell had to be colorized or not
+   */
   setAvailableCellColor(set: boolean) {
     if (this.penguinSelected !&#x3D;&#x3D; undefined) {
       var availableCells: any &#x3D; this.wasmBoard.getAvailableCells(this.penguinSelected.wasmPenguin);
@@ -2446,10 +2788,18 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /***************************************************************************************************************************
-   ************************************************ PREVIEW ******************************************************************
-   ***************************************************************************************************************************/
-  addHexagonal(): void {
+  //*************************************************************************************************************************
+  //********************************************** PREVIEW ******************************************************************
+  //*************************************************************************************************************************
+
+  /**
+   * Increase the number of hexagonal.
+   * Add a cell on each row, and initialize it.
+   * Then add a row.
+   * @exemple
+   * 7x7 -&gt; 8x8
+   */
+   addHexagonal(): void {
     this.nbHexagonal++;
 
     let cell: Cell;
@@ -2469,6 +2819,13 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Decrease the number of hexagonal.
+   * Remove a cell on each row.
+   * Then Remove a row.
+   * @exemple
+   * 7x7 -&gt; 6x6
+   */
   removeHexagonal(): void {
     this.nbHexagonal--;
     //Remove a cell on all the row
@@ -2479,17 +2836,28 @@ export class BoardComponent implements OnInit {
     this.cells.pop();
   }
 
+  /**
+   * Increase the number of penguins.
+   */
   addPenguin(): void {
     this.nbPenguin++;
   }
 
+  /**
+   * Decrease the number of penguins.
+   */
   removePenguin(): void {
     this.nbPenguin--;
   }
 
-  /***************************************************************************************************************************
-   ************************************************ TOAST ********************************************************************
-   ***************************************************************************************************************************/
+  //************************************************************************************************************************
+  //*********************************************** TOAST ******************************************************************
+  //************************************************************************************************************************
+
+  /**
+   * Create a toast, in the top of the window, using the success theme.
+   * @param {string} message that will be written in the toast
+   */
   async presentSuccessToast(message: string) {
     const toast &#x3D; await this.toastController.create({
       message: message,
@@ -2500,6 +2868,10 @@ export class BoardComponent implements OnInit {
     toast.present();
   }
 
+   /**
+   * Create a toast, in the top of the window, using the error theme.
+   * @param {string} message that will be written in the toast
+   */
   async presentErrorToast(message: string) {
     const toast &#x3D; await this.toastController.create({
       message: message,

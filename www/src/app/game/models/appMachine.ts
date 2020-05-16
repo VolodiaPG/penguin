@@ -1,5 +1,17 @@
 import { Machine, interpret } from 'xstate';
 
+/**
+ * Final State Machine to control the state of the whole application
+ * |- id: noun of the FSM,
+ * |- initial: state in the beginning of the app,
+ * |- context: initial part,
+ * |- states: to define all the states in the FSM
+ * | |- settings: describe the state
+ * | | |-on: define a possible action,
+ * | | | |- {identifier}
+ * | | | | |- target: destination state
+ * | | | | |- actions: to perform when the action was called
+ */
 export const appMachine = Machine(
   {
     id: 'appLogic',
@@ -58,6 +70,10 @@ export const appMachine = Machine(
   }
 );
 
+/**
+ * Define a service to be able to access the application Final State Machine, in the angular components,
+ * Then start it.
+ */
 export const appService = interpret(appMachine)
   .onTransition(state => {
     console.log(state.toStrings());

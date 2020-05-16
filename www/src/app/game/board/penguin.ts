@@ -1,6 +1,6 @@
 import { Pos } from './pos';
 import { Cell } from './cell';
-import { appService } from '../+xstate/appMachine';
+import { appService } from '../models/appMachine';
 
 declare var Module: any;
 

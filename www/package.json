@@ -17,8 +17,7 @@
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "postinstall": "npm run prettier -s",
     "generate": "ng generate",
-    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json",
-    "compodoc -n": "npx compodoc -p /workspace/www/tsconfig.app.json -n \"App Penguin documentation\""
+    "compodoc": "npx compodoc -p /workspace/www/tsconfig.app.json -s"
   },
   "dependencies": {
     "@angular/animations": "^8.1.0",
@@ -34,7 +33,6 @@
     "animate.css": "^3.7.2",
     "animejs": "^3.2.0",
     "number-flip": "^1.1.8",
-    "pixi.js-legacy": "^5.2.1",
     "rxjs": "^6.5.2",
     "xstate": "^4.9.0",
     "zone.js": "^0.9.1"

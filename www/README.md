@@ -55,12 +55,13 @@ proxy.conf.js                backend proxy configuration
 
 # Main tasks
 
-| Task                                            | Description                                                                                                      |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `yarn install` | Lint code and build web app for production (with [AOT](https://angular.io/guide/aot-compiler)) in `dist/` folder |
-| `ng serve --host 0.0.0.0`                                     | Run development server on `http://localhost:4200/`                                                               |
-| `yarn run env -s`                               | Fix `.env` related errors                                                   |
-| `yarn compodoc`                                   | Generate the documentation                                               |
+| Task                      | Description                                                                                                      |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `yarn install`            | Lint code and build web app for production (with [AOT](https://angular.io/guide/aot-compiler)) in `dist/` folder |
+| `ng serve --host 0.0.0.0` | Run development server on `http://localhost:4200/`                                                               |
+| `yarn run env -s`         | Fix `.env` related errors                                                                                        |
+| `yarn run compodoc`       | Generate the documentation and run documentation server on `http://localhost:8080/`                              |
+| `yarn run compodoc -n`    | Generate the documentation with a certain name                                                                   |
 
 When building the application, you can specify the target configuration using the additional flag
 `--configuration <name>` (do not forget to prepend `--` to pass arguments to npm scripts).

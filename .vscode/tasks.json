@@ -52,11 +52,42 @@
       "linux": {
         "command": "bash"
       },
-      "args": ["-c", "make ENV=native MODE=debug MULTITHREADED=false"],
+      "args": ["-c", "make ENV=native MODE=debug"],
       "problemMatcher": []
     },
     {
       "label": "Debug: build & run",
+      "type": "shell",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "windows": {
+        "command": "powershell"
+      },
+      "linux": {
+        "command": "bash"
+      },
+      "args": ["-c", "make ENV=native MODE=debug && ./bin/main"]
+    },
+    {
+      "label": "Debug: build (no multithread)",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "windows": {
+        "command": "powershell"
+      },
+      "linux": {
+        "command": "bash"
+      },
+      "args": ["-c", "make ENV=native MODE=debug MULTITHREADED=false "],
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: build & run (no multithread)",
       "type": "shell",
       "group": {
         "kind": "test",
@@ -86,10 +117,7 @@
       "linux": {
         "command": "bash"
       },
-      "args": [
-        "-c",
-        "make ENV=native MODE=debug MULTITHREADED=false && ./bin/main > ./bin/log.log"
-      ]
+      "args": ["-c", "make ENV=native MODE=debug && ./bin/main > ./bin/log.log"]
     },
     {
       "label": "clean",

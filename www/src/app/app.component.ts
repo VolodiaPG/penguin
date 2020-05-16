@@ -22,14 +22,28 @@ export function changeTheme(): void {
   toggleDarkTheme(!darkTheme);
 }
 
+/**
+ * Root component
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
+  /**
+   * To know if the user uses the dark theme or not.
+   */
   public darkTheme: boolean;
 
+  /**
+   * Constructor of the root element with the router and the translater.
+   * @param router
+   * @param activatedRoute 
+   * @param titleService 
+   * @param translateService 
+   * @param i18nService 
+   */
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -50,6 +64,9 @@ export class AppComponent implements OnInit, OnDestroy {
     prefersDark.addListener(mediaQuery => toggleDarkTheme(mediaQuery.matches));
   }
 
+  /**
+   * @ignore
+   */
   ngOnInit() {
     this.darkTheme = false;
     // Setup logger
@@ -86,6 +103,9 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * @ignore
+   */
   ngOnDestroy() {
     this.i18nService.destroy();
   }
