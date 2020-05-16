@@ -28,7 +28,7 @@ Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur av
 
 ### Au départ
 
-Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilés avec _Emscripten_ qui permet de coder en `c++` pour la partie technique. L'interface devait se faire avec les libraires _Simple DirectMedia Layer_.
+Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en `C++` pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
 ### Bref suivi
 
@@ -54,8 +54,8 @@ Principalement nous nous sommes concentrés sur le fonctionnement correct de tou
 
 ## Multithreading
 
-Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulés. Il y a différentes manières de multithreader le MCTS; la *tree parallelization*, la *root parallelization* et la *leaf parallelization*. Nous avons choisi la *root parallelization* puisqu'il offre un meilleur score que les autres, et d'être facile à implémenter. Pour cela, nous développons un arbre par thread. A la fin du temps alloué, nous mettons en commun les arbres et choisissons le meilleur coup à jouer. Nous mettons en commun uniquement la première couche afin d'éviter d'allonger le temps de calcul.
-Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ces enfants, gardant ainsi le sous arbre de l'enfant.
+Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulés. Il y a différentes manières de multithreader le MCTS; la *tree parallelization*, la *root parallelization* et la *leaf parallelization*. Nous avons choisi la *root parallelization* puisqu'elle offre un meilleur score que les autres, et d'être facile à implémenter. Pour cela, nous développons un arbre par thread. A la fin du temps alloué, nous mettons en commun les arbres et choisissons le meilleur coup à jouer. Nous mettons en commun uniquement la première couche afin d'éviter d'allonger le temps de calcul.
+Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ses enfants, gardant ainsi le sous-arbre de l'enfant.
 
 ## Interface graphique
 
@@ -66,7 +66,7 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour mettre en place le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre *Proof Of Concept*, où le moteur du Tic-Tac-Toe était en _Javascript_.
 D'autre part, nous voulions mettre en place une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous sommes tournés vers `Angular`.
 
-Pour mettre en place la chartre graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants responsives. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
+Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants *responsives*. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
 
 ### Organisation de l'application
 
