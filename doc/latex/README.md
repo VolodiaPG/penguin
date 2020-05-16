@@ -1,5 +1,6 @@
 ---
-title: Jeu des pingouins à base de MCTS (*Monte Carlo Tree Search*) sur le navigateur en utilisant le format *WebAssembly*
+
+title: Jeu des pingouins à base de MCTS (_Monte Carlo Tree Search_) sur le navigateur en utilisant le format _WebAssembly_
 author:
 
 - Clément \textsc{Chavanon}
@@ -8,6 +9,7 @@ author:
 - Maxime \textsc{Grimaud}
 - Volodia \textsc{Parol-Guarino}
 -
+
 coauthor: "Encadrant : Pascal \\textsc{Garcia}"
 date: 2019-2020
 biblio-style: plain-fr
@@ -18,9 +20,9 @@ bibliography: references
 
 ## Le jeu des pingouins
 
-Le jeu des pingouins est un jeu de stratégie sur plateau de 4 joueurs. Le plateau contient 60 cases hexagonales sur lesquelles se trouvent 1 à 3 poissons.
+"Pingouins" est jeu de stratégie et de plateau surlequel s'affrontent 2 à 4 joueurs. Le plateau contient 60 cases hexagonales et qui comportent 1 à 3 poissons.
 
-En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les mouvements de ceux se font sur en ligne droite depuis les 6 faces de la case hexagonale sur laquelle il se trouve. Il ne peut passer par des trous ou au-dessus d'autres pingouins, peu importe leur couleur. Une fois le mouvement achevé, la case de départ est retiré du plateau. Le joueur peut alors incrémenter du nombre de poisson qu'il y avait sur cette case son score.
+En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les déplacements autorisés se font en ligne droite suivant les 6 faces de la case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer par dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils appartiennent ou non au même joueur. Une fois le mouvement achevé, la case de départ est retirée du plateau. Le joueur peut alors incrémenter son score du nombre de poisson qu'il y avait sur cette case. Si un pinguoin ne peut plus se déplacer, le joueur retire ce dernier ainsi que la case sur laquelle il était. Dans ce cas, là, le joueur remporte aussi les poissons contenus dans cette case.
 
 Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
 
@@ -42,6 +44,15 @@ Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombr
 
 Principalement nous nous sommes concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
 
+### Répartition des tâches du projet
+
+Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été crées :
+
+- Volodia et Romain Hubert pour la création du moteur du jeu en C++ et optimisation du code (multithreading)
+- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur et la partie graphique
+
+Finalement, la partie qui consistait à permettre de transporter le jeu codé en C++ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+
 # Réalisation
 
 ## Représentation du jeu
@@ -58,7 +69,7 @@ On répète ces 4 étapes jusqu'à ce qu'on arrête l'algorithme. Ensuite, il no
 
 ## Multithreading
 
-Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulées. Il y a différentes manières de multithreader le MCTS; la *tree parallelization*, la *root parallelization* et la *leaf parallelization*. D'après cette étude [@mass_par_mcts] [@par_mcts], la *root parallelization* semble la meilleure puisqu'elle permet d'explorer plus d'issues que les autres méthodes. Ainsi, cela augmente les chances de victoire du MCTS. De plus, cette méthode est facile à implémenter. En effet, il suffit d'assigner un arbre sur chaque thread. Les arbres sont donc développés indépendamment entre eux, donc il y a moins de chances que l'algorithme se bloque sur un minimum local. A la fin du temps alloué, nous mettons en commun les arbres, uniquement la première couche pour diminuer le temps de calcul. Ensuite, nous choisissons le meilleur coup à jouer.
+Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulées. Il y a différentes manières de multithreader le MCTS; la _tree parallelization_, la _root parallelization_ et la _leaf parallelization_. D'après cette étude [@mass_par_mcts][@par_mcts], la _root parallelization_ semble la meilleure puisqu'elle permet d'explorer plus d'issues que les autres méthodes. Ainsi, cela augmente les chances de victoire du MCTS. De plus, cette méthode est facile à implémenter. En effet, il suffit d'assigner un arbre sur chaque thread. Les arbres sont donc développés indépendamment entre eux, donc il y a moins de chances que l'algorithme se bloque sur un minimum local. A la fin du temps alloué, nous mettons en commun les arbres, uniquement la première couche pour diminuer le temps de calcul. Ensuite, nous choisissons le meilleur coup à jouer.
 
 Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ses enfants, gardant ainsi le sous-arbre de l'enfant.
 
@@ -68,10 +79,10 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 
 ### Angular / Ionic
 
-Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour mettre en place le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre *Proof Of Concept*, où le moteur du Tic-Tac-Toe était en _Javascript_.
-D'autre part, nous voulions mettre en place une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous sommes tournés vers `Angular`.
+Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre _Proof Of Concept_, où le moteur du Tic-Tac-Toe était en Javascript\_.
+D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser `Angular`.
 
-Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants *responsives*. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
+Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants _responsives_. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
 
 ### Organisation de l'application
 
