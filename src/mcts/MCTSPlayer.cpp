@@ -27,10 +27,13 @@
 #include <emscripten.h>
 
 EM_JS(void, dispatchEvent, (), {
-    setTimeout(function() {
-        let event = new CustomEvent('new_best_move');
-        document.dispatchEvent(event);
-    },0);
+    console.log("Dispatching event from wasm");
+    setTimeout(
+        function() {
+            let event = new CustomEvent('new_best_move');
+            document.dispatchEvent(event);
+        },
+        0);
 });
 #endif
 
@@ -80,7 +83,7 @@ namespace mcts
     void MCTSPlayer<CellT, PlayerT, PawnT>::updateTree(const game::Move<CellT, PawnT> &last_move_played)
     {
         //Moves all rootNodes to the corresponding cell
-        for (unsigned long i = 0; i < trees.size(); i++)
+        for (size_t i = 0; i < trees.size(); i++)
         {
             trees.at(i)->moveRootToMove(last_move_played);
         }
@@ -89,28 +92,77 @@ namespace mcts
     template <class CellT, class PlayerT, class PawnT>
     void MCTSPlayer<CellT, PlayerT, PawnT>::unleash_mcts()
     {
+        size_t i;
         if (trees.size() == 0)
         {
-            for (int i = 0; i < NUMBER_THREADS; i++)
+            for (i = 0; i < NUMBER_THREADS; i++)
                 trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
         }
         //We test here if there are more than 1 thread
         //We don't really need to launch a new thread if we only have 1 tree
 #if NUMBER_THREADS > 1
-        std::vector<std::thread> threads;
+        // std::vector<std::thread> threads;
+        pthread_t threads[NUMBER_THREADS];
+        MCTS<CellT, PlayerT, PawnT> *ais[NUMBER_THREADS];
+        pthread_attr_t attr;
+        void *status;
+
+        // Initialize and set thread joinable
+        pthread_attr_init(&attr);
+        pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+
+        int rc;
 
         //Create an ai for every thread with the clone of the board
         //If we used the current board, it gets very messy very quick
-        for (int i = 0; i < NUMBER_THREADS; i++)
+        for (i = 0; i < NUMBER_THREADS; i++)
         {
-            mcts::MCTS<CellT, PlayerT, PawnT> ai(trees.at(i), constraints);
-            threads.push_back(std::thread(&mcts::MCTS<CellT, PlayerT, PawnT>::begin, ai));
+            // mcts::MCTS<CellT, PlayerT, PawnT> ai(trees.at(i), constraints);
+            ais[i] = new MCTS<CellT, PlayerT, PawnT>(trees.at(i), constraints);
+            rc = pthread_create(&threads[i], &attr, &MCTS<CellT, PlayerT, PawnT>::begin_mcts, static_cast<void *>(ais[i]));
+            if (rc)
+            {
+                std::cout << "Error:unable to create thread," << rc << std::endl;
+                assert(false && "Error:unable to create thread");
+                exit(-1);
+            }
+            // threads.push_back(std::thread(&mcts::MCTS<CellT, PlayerT, PawnT>::begin, ai));
         }
-        //Wait for all threads to finish
-        for (int i = 0; i < NUMBER_THREADS; i++)
+
+        // free attribute and wait for the other threads
+        pthread_attr_destroy(&attr);
+        bool all_finished = false;
+        while (!all_finished)
         {
-            threads.at(i).join();
+            all_finished = true;
+            for (i = 0; i < NUMBER_THREADS; i++)
+            {
+                if (ais[i])
+                {
+                    if (all_finished)
+                        all_finished = false;
+                    // threads.at(i).join();
+                    rc = pthread_tryjoin_np(threads[i], &status);
+                    if (rc)
+                    {
+                        // std::cout << "Error:unable to join," << rc << std::endl;
+                        // assert(false && "Error:unable to join thread");
+                        // exit(-1);
+                    }
+                    else
+                    {
+                        // thread joined, cleaning
+                        if (ais[i])
+                            delete ais[i];
+                        ais[i] = nullptr;
+                    }
+                }
+            }
+#ifdef __EMSCRIPTEN__
+            emscripten_sleep(500);
+#endif
         }
+        // pthread_exit(NULL);
 
 #else
         //Create only 1 ai and run it

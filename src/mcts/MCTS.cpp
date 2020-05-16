@@ -1,4 +1,7 @@
 #include <assert.h>
+#if NUMBER_THREADS > 1
+#include <thread>
+#endif
 
 #include "../game_logic/AbstractBoard.hpp"
 
@@ -59,8 +62,8 @@ namespace mcts
 
                 backPropagateAndRevertAction(winnerId, nodeToExplore);
             }
-#ifdef __EMSCRIPTEN__
-            emscripten_sleep(50);
+#if defined(__EMSCRIPTEN__) && NUMBER_THREADS == 1
+            emscripten_sleep(10);
 #endif
         }
 
@@ -238,6 +241,19 @@ namespace mcts
         }
 
         return ret;
+    }
+
+    template <class CellT, class PlayerT, class PawnT>
+    void *MCTS<CellT, PlayerT, PawnT>::begin_mcts(void *ptr)
+    {
+        auto mcts = static_cast<MCTS *>(ptr);
+        mcts->begin();
+
+#if NUMBER_THREADS > 1
+        pthread_exit(NULL);
+#endif
+
+        return NULL;
     }
 
     template class MCTS<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;

@@ -6,42 +6,53 @@
 
 namespace mcts
 {
-template <class CellT, class PlayerT, class PawnT>
-class MCTS
-{
-public:
-    explicit MCTS(
-         Tree<CellT, PlayerT, PawnT>*& tree,
-         const MCTSConstraints &constraints);
-    ~MCTS();
-    size_t begin();
+    template <class CellT, class PlayerT, class PawnT>
+    class MCTS
+    {
+    public:
+        explicit MCTS(
+            Tree<CellT, PlayerT, PawnT> *&tree,
+            const MCTSConstraints &constraints);
+        ~MCTS();
+        /**
+         * @brief Start the mcts
+         * 
+         * @return size_t the number of visits done in the attached tree
+         */
+        size_t begin();
 
-protected:
+        /**
+         * @brief Start the mcts externally (useful for multithreading)
+         * 
+         * @param mcts the mcts to start
+         */
+        static void *begin_mcts(void* mcts);
 
-    void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
+    protected:
+        void backPropagateAndRevertAction(int winnerId, Node<CellT, PawnT> *terminalNode);
 
-    const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int &player_id) const;
+        const game::Move<CellT, PawnT> getRandomAvailableMoveFromBoard(const unsigned int &player_id) const;
 
-    double formula(
-        const Node<CellT, PawnT> &node,
-        const Node<CellT, PawnT> &nodeSuccessor) const;
+        double formula(
+            const Node<CellT, PawnT> &node,
+            const Node<CellT, PawnT> &nodeSuccessor) const;
 
-    void doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom);
+        void doActionOnBoard(const Node<CellT, PawnT> &nodeToGetTheActionFrom);
 
-    void expandNode();
+        void expandNode();
 
-    Node<CellT, PawnT> *selectBestChildAndDoAction(Node<CellT, PawnT> *node);
+        Node<CellT, PawnT> *selectBestChildAndDoAction(Node<CellT, PawnT> *node);
 
-    Node<CellT, PawnT> *randomChooseChildOrFallbackOnNode(Node<CellT, PawnT> *node) const;
+        Node<CellT, PawnT> *randomChooseChildOrFallbackOnNode(Node<CellT, PawnT> *node) const;
 
-    int randomSimulation() const;
+        int randomSimulation() const;
 
-    void expandNode(Node<CellT, PawnT> *nodeToExpand);
+        void expandNode(Node<CellT, PawnT> *nodeToExpand);
 
-private:
-    MCTSConstraints constraints;
-    Tree<CellT, PlayerT, PawnT>* tree;
-};
+    private:
+        MCTSConstraints constraints;
+        Tree<CellT, PlayerT, PawnT> *tree;
+    };
 
-}
+} // namespace mcts
 #endif
