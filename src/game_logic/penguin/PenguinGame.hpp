@@ -18,7 +18,7 @@ class PenguinGame : public AbstractGame<BoardCell, HumanPlayer, PenguinPawn>
 {
 private:
     int number_moves_when_cannot_move = std::numeric_limits<int>::max();
-    unsigned int last_next_player = 0;
+    unsigned int last_next_player;
 
 protected:
     /**
@@ -40,6 +40,14 @@ public:
      * @return unsigned int the id of the human player to play
      */
     unsigned int getPlayerToPlay() override;
+
+    /**
+     * @brief Get the first player to play
+     * 
+     * @return unsigned int the id of the fist player to play
+     */
+    unsigned int getFirstPlayerToPlay() const;
+
     int checkStatus() const override;
     Board *getBoard() const;
     std::vector<Move<BoardCell, PenguinPawn>> getAvailableMoves(HumanPlayer *player) override;

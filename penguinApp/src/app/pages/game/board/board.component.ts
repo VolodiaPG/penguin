@@ -122,7 +122,7 @@ export class BoardComponent implements OnInit {
   /**
    * Value of the user's id.
    */
-  humanPlayerId: number = 2;
+  humanPlayerId: number = 1;
 
   /**
    * Pointer to the C++ object : Game.
@@ -165,6 +165,10 @@ export class BoardComponent implements OnInit {
   * Then call the generateMap() function.
   */
   ngOnInit(): void {
+    document.addEventListener('new_best_move', (_: any) => {
+      this.processBestMove(this.wasmMCTSPlayer.getLastBestMove());
+    });
+
     this.isLoaded = false;
     this.cells = new Array(this.nbHexagonal);
     this.penguins = new Array();
@@ -202,7 +206,7 @@ export class BoardComponent implements OnInit {
     this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
     this.wasmBoard = this.wasmGame.getBoard();
 
-    this.currentPlayerId = this.wasmGame.getPlayerToPlay();
+    this.currentPlayerId = this.wasmGame.getFirstPlayerToPlay();
     this.humanPlayerId = this.currentPlayerId;
 
     this.generateMapFromWasmBoard();
@@ -318,7 +322,9 @@ export class BoardComponent implements OnInit {
         ) {
           this.penguins[jj].setWasmPenguin(wasmPenguin);
 
-          this.wasmBoard.performMove(this.penguins[jj].wasmPenguin, this.penguins[jj].cellPosition.wasmCell);
+          let ret = this.wasmBoard.performMove(this.penguins[jj].wasmPenguin, this.penguins[jj].cellPosition.wasmCell);
+          console.log(`Added penguin #${this.penguins[jj].wasmPenguin.getId()}: ${ret ? "success" : "fail"}`);
+          
 
           this.penguins[jj].isVisible = true;
           penguinPosed = true;
@@ -335,24 +341,32 @@ export class BoardComponent implements OnInit {
    * Allow each player to play, when it is his turn.
    * Show a little toast to alert the user.
    */
-   playTurn() {
+  playTurn() {
+    console.log(`Turn of player #${this.currentPlayerId}`);
+    
     if (this.currentPlayerId === this.humanPlayerId) {
       this.presentSuccessToast('It is your turn ' + this.currentPlayerId + ' !');
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
     } else {
       this.presentErrorToast('Wasm is playing ' + this.currentPlayerId + ' !');
 
-      this.setMCTSBestMove();
-      this.playWasmMove();
+      this.getBestMoveAndProcess();
     }
   }
 
   /**
-   * Ask the MCTS PLayer to get the best move to play.
-   */
-  setMCTSBestMove() {
-    this.wasmMove = this.wasmMCTSPlayer.bestMove();
+  * Ask the MCTS PLayer to get the best move to play and go on with the event
+  */
+  getBestMoveAndProcess() {
+    this.wasmMCTSPlayer.bestMove();
+  }
 
+  /**
+   * Process the best Move event sent on document
+   * @param bestMove
+   */
+  processBestMove(bestMove: any) {
+    this.wasmMove = bestMove;
     console.log('wasmMove: ');
     console.log(this.wasmMove.getPawn());
     console.log(this.wasmMove.getTarget());
@@ -369,6 +383,8 @@ export class BoardComponent implements OnInit {
     // console.log('pawn : ', this.penguinSelected, 'from : ', this.wasmMove.getFrom().getPosition(), 'target : ', wasmCellClicked.getPosition());
     let wasmCellPos = Module.hex_cube_to_offset(Module.hex_axial_to_cube(this.wasmMove.getTarget().getPosition()));
     this.cellClicked = this.cells[wasmCellPos.row][wasmCellPos.column];
+
+    this.playWasmMove();
   }
 
   /**
@@ -548,7 +564,7 @@ export class BoardComponent implements OnInit {
    * @exemple
    * 7x7 -> 8x8
    */
-   addHexagonal(): void {
+  addHexagonal(): void {
     this.nbHexagonal++;
 
     let cell: Cell;
@@ -617,10 +633,10 @@ export class BoardComponent implements OnInit {
     toast.present();
   }
 
-   /**
-   * Create a toast, in the top of the window, using the error theme.
-   * @param {string} message that will be written in the toast
-   */
+  /**
+  * Create a toast, in the top of the window, using the error theme.
+  * @param {string} message that will be written in the toast
+  */
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message: message,

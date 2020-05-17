@@ -30,17 +30,17 @@ export class PenguinComponent implements OnInit {
   /**
    * Array of textures. Texture can be referenced by index of the penguin's owner.
    */
-  textures: string[] = ['/assets/penguin_selected.png', '/assets/penguin.png', '/assets/penguin_enemie.png' ];
+  textures: string[] = ['/assets/penguin_selected.png', '/assets/penguin_enemie.png', '/assets/penguin.png'];
 
   /**
    * @ignore
    */
-  constructor() {}
+  constructor() { }
 
   /**
    * @ignore
    */
-  ngOnInit() {}
+  ngOnInit() { }
 
   //***************************************************************************************************************************
   //************************************************ ANIMATION ****************************************************************

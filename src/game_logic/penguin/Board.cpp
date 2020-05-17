@@ -209,6 +209,7 @@ bool Board::isAbleToMove(const HumanPlayer *const &human)
             if (can_it_move)
                 break;
         }
+        
     }
 
     return can_it_move;
