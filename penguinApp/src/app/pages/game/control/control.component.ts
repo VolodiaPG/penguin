@@ -110,7 +110,7 @@ export class ControlComponent implements OnInit {
     const toast = await this.toastController.create({
       message: "Let's go !!! ",
       color: 'success',
-      position: 'top',
+      position: 'bottom',
       duration: 1000
     });
     toast.present();

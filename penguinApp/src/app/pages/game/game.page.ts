@@ -24,12 +24,24 @@ export class GamePage implements OnInit {
   /**
    * To control the flip and the button to show the current score.
    */
-  @ViewChild('numberbtn', { read: ElementRef, static: true }) private btn: ElementRef;
+  @ViewChild('divHuman', { read: ElementRef, static: true }) private scoreHuman: ElementRef;
 
   /**
-   * To animate, to flip, the score when it changes.
+   * To control the flip and the button to show the current score.
    */
-  flipAnim: any = null;
+  @ViewChild('divMcts', { read: ElementRef, static: true }) private scoreMcts: ElementRef;
+
+  playerToPlay: string = "human";
+
+  /**
+   * To animate, to flip, the human score when it changes.
+   */
+  flipHumanScore: any = null;
+
+    /**
+   * To animate, to flip, the MCTS score when it changes.
+   */
+  flipMctsScore: any = null;
 
   /**
    * Allow us to control the son component : InfoComponent
@@ -66,6 +78,16 @@ export class GamePage implements OnInit {
   nbPenguin: number = 2;
 
   /**
+   * Value to count the fishes owned by the user.
+   */
+  nbHumanFish: number;
+
+  /**
+   * Value to count the fishes owned by the mcts.
+   */
+  nbMctsFish: number;
+
+  /**
    * @ignore
    */
   constructor() {}
@@ -73,7 +95,10 @@ export class GamePage implements OnInit {
   /**
    * @ignore
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.nbHumanFish = 0;
+    this.nbMctsFish = 0;
+  }
 
   //***************************************************************************************************************************
   // ************************************************ START GAME **************************************************************
@@ -101,6 +126,7 @@ export class GamePage implements OnInit {
     appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
     this.gameStarted = true;
     this.boardComponent.startWasmGame();
+    this.flipScore();
   }
 
   //***************************************************************************************************************************
@@ -110,17 +136,48 @@ export class GamePage implements OnInit {
   /**
    * Create the animation for the button which show the current score.
    */
-  flip() {
-    console.log('Number-flip in action');
-    if (!this.flipAnim) {
-      this.flipAnim = new Flip({
-        node: this.btn.nativeElement,
-        from: '9999'
+  flipScore() {
+    if (!this.flipHumanScore) {
+      this.flipHumanScore = new Flip({
+        node: this.scoreHuman.nativeElement,
+        from: '99'
       });
     }
-    this.flipAnim.flipTo({
-      to: Math.floor(Math.random() * 1000 + 1)
+    if (!this.flipMctsScore) {
+      this.flipMctsScore = new Flip({
+        node: this.scoreMcts.nativeElement,
+        from: '99'
+      });
+    }
+
+    this.flipHumanScore.flipTo({
+      to: this.nbHumanFish
     });
+
+    this.flipMctsScore.flipTo({
+      to: this.nbMctsFish
+    });
+  }
+
+  /**
+   * Function to switch the visual information of which player to play.
+   */
+  switchPlayerTurn(humanPlayerId: number, currentPlayerId: number) {
+    let choice = humanPlayerId === currentPlayerId;
+    if(choice) {
+      this.playerToPlay = "human";
+    } else {
+      this.playerToPlay = "mcts"
+    }
+  }
+
+  switchPlayerToPlay() {
+    if(this.playerToPlay === "human") {
+      this.playerToPlay = "mcts";
+    } else {
+      this.playerToPlay = "human";
+    }
+    this.flipScore();
   }
 
   //***************************************************************************************************************************

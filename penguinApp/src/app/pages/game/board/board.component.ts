@@ -48,10 +48,26 @@ export class BoardComponent implements OnInit {
   @Input() gameStarted: boolean;
 
   /**
+   * Value to count the fishes owned by the user.
+   * Two-way bindings with the game component.
+   */
+  @Input() nbHumanFish: number;
+
+  /**
+   * Value to count the fishes owned by the mcts.
+   * Two-way bindings with the game component.
+   */
+  @Input() nbMctsFish: number;
+
+  /**
    * Emitter to the game component to notify when the user posed one of his penguins.
    */
   @Output() penguinPosed = new EventEmitter<any>();
 
+  /**
+   * Emitter to the game component to notify when the player to play changed.
+   */
+  @Output() switchPlayerToPlay = new EventEmitter<any>();
 
   /**
    * Value to bind the State Controler FSM and to use its value.
@@ -395,7 +411,9 @@ export class BoardComponent implements OnInit {
    */
   switchCurrentPlayer() {
     console.log('Current player : ', this.currentPlayerId);
+    this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
+    this.switchPlayerToPlay.emit();
     console.log('Switch current player : ', this.currentPlayerId);
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
@@ -593,7 +611,7 @@ export class BoardComponent implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       color: 'success',
-      position: 'top',
+      position: 'bottom',
       duration: 3000
     });
     toast.present();
@@ -606,7 +624,7 @@ export class BoardComponent implements OnInit {
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      position: 'top',
+      position: 'bottom',
       color: 'danger',
       duration: 3000
     });

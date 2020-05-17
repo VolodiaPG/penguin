@@ -3,21 +3,47 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title><span translate>Game</span></ion-title>
 
-    <ion-buttons slot="end">
-      <div #numberbtn></div>
-    </ion-buttons>
+    <ion-title slot="start"><span translate>Game</span></ion-title>
 
-    <ion-chip slot="end" (click)="flip()">
-      <ion-avatar>
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+"
-        />
-      </ion-avatar>
-      <ion-label>Avatar Chip</ion-label>
-      <ion-icon name="close-circle"></ion-icon>
-    </ion-chip>
+    <ion-segment [(ngModel)]="playerToPlay" color="success" [style.pointerEvents]="'none'" slot="start">
+      <ion-segment-button value="human">
+        <ion-chip>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="camera"></ion-icon>
+              </ion-col>
+              <ion-col>
+                <ion-label>HUMAN : </ion-label>
+              </ion-col>
+              <ion-col>
+                <div #divHuman></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-chip>
+      </ion-segment-button>
+      <ion-segment-button value="mcts" layout="icon-end">
+        <ion-chip>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div #divMcts></div>
+              </ion-col>
+              <ion-col>
+                <ion-label> : MCTS</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-icon name="bookmark"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-chip>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-button (click)="switchPlayerToPlay()" slot="end">Switch</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -48,7 +74,8 @@
         <ion-card text-center translucent fixed size="auto">
           <ion-card-header></ion-card-header>
           <ion-card-content>
-            <app-board [(gameStarted)]="gameStarted" (penguinPosed)="penguinPosed()"></app-board>
+            <app-board [(gameStarted)]="gameStarted" [(nbHumanFish)]="nbHumanFish" [(nbMctsFish)]="nbMctsFish"
+              (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"></app-board>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -57,17 +84,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <app-control
-    *ngIf="stateControler.state.value === 'settings'"
-    class="control"
-    (nbHexagonalChanged)="nbHexagonalChanged($event)"
-    (nbPenguinChanged)="nbPenguinChanged($event)"
-    (nextStep)="initGameBoard()"
-  ></app-control>
+  <app-control *ngIf="stateControler.state.value === 'settings'" class="control"
+    (nbHexagonalChanged)="nbHexagonalChanged($event)" (nbPenguinChanged)="nbPenguinChanged($event)"
+    (nextStep)="initGameBoard()">
+  </app-control>
 
-  <app-info
-    *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'informations'"
-    [nbPenguin]="nbPenguin"
-    (launchGame)="launchGame()"
-  ></app-info>
+  <app-info *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'informations'"
+    [nbPenguin]="nbPenguin" (launchGame)="launchGame()">
+  </app-info>
 </ion-content>
