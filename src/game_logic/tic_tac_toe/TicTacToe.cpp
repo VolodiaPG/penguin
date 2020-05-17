@@ -40,7 +40,7 @@ bool TicTacToe::isFinished() const
     return board->checkStatus() != 0;
 }
 
-unsigned int TicTacToe::getPlayerToPlay() const
+unsigned int TicTacToe::getPlayerToPlay()
 {
     int nextPlayer = 2;
 

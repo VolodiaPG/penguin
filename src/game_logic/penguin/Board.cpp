@@ -174,30 +174,64 @@ const Move<BoardCell, PenguinPawn> Board::revertMove()
     return last_top_move;
 }
 
+bool Board::isAbleToMove(const HumanPlayer *const &human)
+{
+    bool can_it_move = false;
+
+    for (auto &penguin : human->getPenguins())
+    {
+        BoardCell *cell = penguin->getCurrentCell();
+        if (cell != nullptr)
+        {
+            const Position pos = cell->getPosition();
+            int ii = -1, rr = 0, inc_ii = 1;
+            while (ii >= -1)
+            {
+                // iterate over all the neighbours
+                if (
+                    (cell = boardValues[{pos.x + ii, pos.y + rr}]) != nullptr &&
+                    !cell->isGone() &&
+                    !cell->getOwner())
+                {
+                    can_it_move = true;
+                    break;
+                }
+
+                rr += ii;
+                if (ii == 1 && rr == 0)
+                {
+                    ii = 2;
+                    inc_ii = -1;
+                }
+
+                ii += inc_ii;
+            }
+            if (can_it_move)
+                break;
+        }
+    }
+
+    return can_it_move;
+}
+
 int Board::checkStatus()
 {
-    bool all_zero = true;
+    // only 1 penguin can move = keep going !
+    bool can_still_play = false;
     int winner_id = IN_PROGRESS;
 
-    //TODO Optimize, we can just look at the cells around
     for (auto &human : _players)
     {
-        all_zero = true;
-        for (auto &penguin : human->getPenguins())
+        if (isAbleToMove(human))
         {
-            if (getAvailableCells(penguin).size() > 0)
-            {
-                all_zero = false;
-                break;
-            }
-        }
-        if (all_zero)
-        {
+            can_still_play = true;
             break;
         }
     }
 
-    if (all_zero)
+
+
+    if (!can_still_play)
     {
         winner_id = _players[1]->getId();
         int score_player_0 = _players[0]->getScore();
@@ -301,7 +335,7 @@ PenguinPawn *Board::getPawnById(const unsigned int penguin_id)
     return _penguins_on_board[penguin_id];
 }
 
-PenguinPawn *Board::getPawnById(const unsigned int& penguin_id) const
+PenguinPawn *Board::getPawnById(const unsigned int &penguin_id) const
 {
     return _penguins_on_board[penguin_id];
 }

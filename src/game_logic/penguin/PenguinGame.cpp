@@ -35,6 +35,7 @@ bool PenguinGame::play(PenguinPawn *pawn, BoardCell *move)
 const Move<BoardCell, PenguinPawn> PenguinGame::revertPlay()
 {
     --numberMoves;
+    number_moves_when_cannot_move = std::numeric_limits<int>::max();
     assert("A negative number of moves has been registered !!!" && numberMoves >= 0);
     return board->revertMove();
 }
@@ -44,16 +45,32 @@ bool PenguinGame::isFinished() const
     return board->checkStatus() != 0;
 }
 
-unsigned int PenguinGame::getPlayerToPlay() const
+unsigned int PenguinGame::getPlayerToPlay()
 {
-    int nextPlayer = 2;
-
-    if (numberMoves % 2)
+    if (numberMoves < number_moves_when_cannot_move)
     {
-        nextPlayer = 1;
-    }
+        int nextPlayer = 2;
+        last_next_player = 1;
+        if (numberMoves % 2)
+        {
+            nextPlayer = 1;
+            last_next_player = 2;
+        }
 
-    return nextPlayer;
+        Board *board = getBoard();
+        bool ability_move = board->isAbleToMove(board->getPlayerById(nextPlayer));
+        if (!ability_move)
+        {
+            // ther player won't be able to move then, let's just ignore him while the number of turns is sup to this state
+            number_moves_when_cannot_move = numberMoves;
+            // next player doesn't have to change then
+        }
+        else
+        {
+            last_next_player = nextPlayer;
+        }
+    }
+    return last_next_player;
 }
 
 std::vector<Move<BoardCell, PenguinPawn>> PenguinGame::getAvailableMoves(HumanPlayer *human_player)
@@ -93,7 +110,7 @@ Board *PenguinGame::getBoard() const
 
 AbstractGame<BoardCell, HumanPlayer, PenguinPawn> *PenguinGame::clone() const
 {
-    PenguinGame* game = new PenguinGame(*this);
+    PenguinGame *game = new PenguinGame(*this);
     game->board = board->clone();
     return game;
 }

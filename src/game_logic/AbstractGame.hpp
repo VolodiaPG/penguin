@@ -46,7 +46,7 @@ public:
      * 
      * @return const int the player id 
      */
-  virtual unsigned int getPlayerToPlay() const = 0;
+  virtual unsigned int getPlayerToPlay() = 0;
 
   /**
      * @brief Checks the status of the game, if won, draw
