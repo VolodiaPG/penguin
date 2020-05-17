@@ -174,8 +174,10 @@ export class GamePage implements OnInit {
   switchPlayerToPlay() {
     if(this.playerToPlay === "human") {
       this.playerToPlay = "mcts";
+      this.nbHumanFish +=3;
     } else {
       this.playerToPlay = "human";
+      this.nbMctsFish += 3;
     }
     this.flipScore();
   }
