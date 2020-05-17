@@ -56,7 +56,7 @@ Finalement, la partie qui consistait à permettre de transporter le jeu codé en
 
 ## Notre environnement de développement
 
-Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra]]} mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra]) mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
 Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facilement visible sur notre _repository_.
 
@@ -64,7 +64,7 @@ Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facile
 
 ## Représentation du jeu
 
-Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec une `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques `std::map`{.cpp}. D'autre part puisque qu'une telle représentation d'une carte rectangulaire serait lacunaire dans une structure de donnée tabulaire [@patel_blobs_2019][map-storage].
+Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec une `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques `std::map`{.cpp}. D'autre part puisqu'une telle représentation d'une carte rectangulaire serait lacunaire dans une structure de donnée tabulaire [@patel_blobs_2019][map-storage].
 
 ## Points sensibles
 
