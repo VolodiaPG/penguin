@@ -19,9 +19,9 @@ bibliography: references
 
 ## Le jeu des pingouins
 
-"Pingouins" est jeu de stratégie et de plateau surlequel s'affrontent 2 à 4 joueurs. Le plateau contient 60 cases hexagonales et qui comportent 1 à 3 poissons.
+"Pingouins" est un jeu de stratégie et de plateau sur lequel s'affrontent 2 à 4 joueurs. Le plateau contient 60 cases hexagonales et qui comportent 1 à 3 poissons.
 
-En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les déplacements autorisés se font en ligne droite suivant les 6 faces de la case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer par dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils appartiennent ou non au même joueur. Une fois le mouvement achevé, la case de départ est retirée du plateau. Le joueur peut alors incrémenter son score du nombre de poisson qu'il y avait sur cette case. Si un pinguoin ne peut plus se déplacer, le joueur retire ce dernier ainsi que la case sur laquelle il était. Dans ce cas, là, le joueur remporte aussi les poissons contenus dans cette case.
+En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les déplacements autorisés se font en ligne droite suivant les 6 faces de la case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer par-dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils appartiennent ou non au même joueur. Une fois le mouvement achevé, la case de départ est retirée du plateau. Le joueur peut alors incrémenter son score du nombre de poisson qu'il y avait sur cette case. Si un pingouin ne peut plus se déplacer, le joueur retire ce dernier ainsi que la case sur laquelle il était. Dans ce cas-là, le joueur remporte aussi les poissons contenus dans cette case.
 
 Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
 
@@ -45,18 +45,18 @@ Principalement nous nous sommes concentrés sur le fonctionnement correct de tou
 
 ### Répartition des tâches du projet
 
-Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été crées :
+Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été créées :
 
-- Volodia et Romain Hubert pour la création du moteur du jeu en C++ et optimisation du code (multithreading)
+- Volodia et Romain Hubert pour la création du moteur du jeu en `C++` et optimisation du code (multithreading)
 - Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur et la partie graphique
 
-Finalement, la partie qui consistait à permettre de transporter le jeu codé en C++ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+Finalement, la partie qui consistait à permettre de transporter le jeu codé en `C++` vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
 
 # Réalisation
 
 ## Notre environnement de développement
 
-Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `c++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un container Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra]]} mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra]]} mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
 Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facilement visible sur notre _repository_.
 
@@ -68,20 +68,20 @@ Notre encadrant nous a indiqué au tout début du projet un guide de méthodolog
 
 ## Points sensibles
 
-Utiliser un algorithme tel que le MCTS implique que la vitesse et l’efficacité de ce dernier va grandement être impacté par la puissance de la représentation. Sur le MCTS il existe 2 méthodes qui sont principalement des goulots d'étranglements :
+Utiliser un algorithme tel que le MCTS implique que la vitesse et l’efficacité de ce dernier va grandement être impacté par la puissance de la représentation. Sur le MCTS il existe 2 méthodes qui sont principalement des goulots d'étranglement :
 
-- la méthode servant à donner tous les cas disponibles pour un joueur, qui doit en effet analyser si les quelles routes sont possible et jusqu'à quel endroit[^movesavailable];
+- la méthode servant à donner tous les cas disponibles pour un joueur, qui doit en effet analyser quelles routes sont possibles et jusqu'à quel endroit[^movesavailable];
 - la méthode servant à donner l'état du jeu (aussi utilisée pour connaître le joueur suivant [^nextplayer]) qui doit vérifier s'il est encore possible pour un joueur de bouger [^movesavailable].
 
 Une passe d'optimisation a déjà été réalisée sur la deuxième méthode qui reposait à la base sur la première (dans un effort d'obtenir le plus vite une démo fonctionnelle afin de déboguer des points plus vitaux). Cependant le temps manque pour faire plus, notamment nos prédécesseurs ont eu le temps[^theyhadtime] de vraiment attaquer le vif de l'optimisation, notamment avec les _bitboards_, qui leur ont permis une belle différence de performance (sans compter ici le fait que nous développons pour le web).
 
 [^movesavailable]: Un pingouin peut être bloqué par un trou dans le plateau ou un autre pingouin.
-[^nextplayer]: Il arrive qu'un joueur soit bloqué et que attendre son tour ne serve à rien, son adversaire peut lui continuer à récolter tous les points.
-[^theyhadtime]: L'équipe précédente n'a pas eu à faire le MCTS et avaient directement une interface connectant la représentation avec cet algorithme, sur laquelle nous avons dû faire quelques ajustements après avoir développé la représentation du jeu des pingouins. Nous faisons allusions ici à une différence entre le pion et le joueur : un joueur peut posséder plusieurs pions et ceci n'était pas une contrainte sur notre première phase de tests avec un morpion...
+[^nextplayer]: Il arrive qu'un joueur soit bloqué et qu'attendre son tour ne serve à rien, son adversaire peut lui continuer à récolter tous les points.
+[^theyhadtime]: L'équipe précédente n'a pas eu à faire le MCTS et avaient directement une interface connectant la représentation avec cet algorithme, sur laquelle nous avons dû faire quelques ajustements après avoir développé la représentation du jeu des pingouins. Nous faisons allusion ici à une différence entre le pion et le joueur : un joueur peut posséder plusieurs pions et ceci n'était pas une contrainte sur notre première phase de tests avec un morpion...
 
 ## MCTS
 
-Le Monte Carlo Tree Search (ou MCTS) est un algorithme de recherche heuristique. C'est un algorithme qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Il essaye d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables pour lui. L'arbre est composé de noeuds répartis sur plusieurs couches. Chaque noeud représente une configuration et ses enfants, sont les configurations suivantes. Les noeuds doivent aussi stocker le nombre de parties gagnantes et le nombre total de simulation (à partir de ce noeud).
+Le *Monte Carlo Tree Search* (ou MCTS) est un algorithme de recherche heuristique. C'est un algorithme qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Il essaye d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables pour lui. L'arbre est composé de noeuds répartis sur plusieurs couches. Chaque noeud représente une configuration et ses enfants, sont les configurations suivantes. Les noeuds doivent aussi stocker le nombre de parties gagnantes et le nombre total de simulation (à partir de ce noeud).
 
 Le principe de l'algorithme est simple ; il n'y a que quatre étapes. On commence par choisir le "meilleur" noeud terminal. On détermine le meilleur noeud terminal grâce à la fonction UCT qui permet d'évaluer le meilleur compromis entre le nombre de visites et le résultat du noeud. Puis on crée ses enfants. Ensuite, on choisit un de ses enfants et on simule une partie aléatoire. Enfin, on transmet ce résultat sur tous les noeuds jusqu'à la racine.
 
@@ -99,7 +99,7 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 
 ### Angular / Ionic
 
-Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre _Proof Of Concept_, où le moteur du Tic-Tac-Toe était en Javascript\_.
+Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre _Proof Of Concept_, où le moteur du Tic-Tac-Toe était en `Javascript`.
 D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser `Angular`.
 
 Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants _responsives_. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
@@ -125,9 +125,9 @@ Durant nos recherches dans les différentes possibilités que pouvait nous offri
 
 Il existe deux façons de faire des _bindings_ sur _Emscripten_. La première consiste à indiquer tous les noms des fonctions à exporter. Nous l'avons testé lors de notre _Proof Of Concept_ sur le morpion. Nous avons retenu la seconde : _Embind_[@embind]. Cette dernière permet de réaliser des _bindings_ plus proprement sur des classes entières et leur ascendance. Nous avons mis en place une organisation un peu à la _Angular_ : une fichier par dossier qui joue le rôle d'un module et qui contient tous les exports des classes locales. Ceci permet également de garder une compatibilité parfaite entre les deux plateformes sur lesquels nous développons : le Web et l'environnement Linux natif. _Embind_ permet également l'export des pointeurs[^whatpointers], ce qui est tout à notre bénéfice pour éviter d'avoir à ajouter des méthodes juste pour _Emscripten_.
 
-Un second défis aura été de lier le programme une fois multithreadé avec `pthreads`[@pthreads_emscripten]. En effet, le Web a introduit des threads particulier : les _WebWorkers_. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via `int` ou `strings`. Heureusement pour nous le plus gros du travail est réalisé par _Emscripten_ mais nous avons néanmoins eu un problème inacceptable : le blocage du _thread_ principal de notre application (à cause de la méthode d'attente de résolution des threads). Pour pallier à cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permets de des `pause` et `resume` dans le code `c++` et donc la poursuite des évènements asynchrones tant appréciés de `JS`. La solution ne s'arrête pas là puisque nous avons dû utiliser un mécanisme d'attente des _threads_ non-bloquant en utilisant une boucle infinie accompagné d'un temporisateur, permettant ainsi de faire reprendre la main à l'application _Angular_ pendant quelques millisecondes. Mais ce n'est pas fini, en effet, il faut également pouvoir retourner une valeur, ce que _Asyncify_ ne permet apparemment pas, la subtilité ici a été d'écrire une fonction `JavaScript` directement dans le code source `c++` afin de notifier l'application qu'une nouvelle valeur était prête à être lue.
+Un second défi aura été de lier le programme une fois multithreadé avec `pthreads`[@pthreads_emscripten]. En effet, le Web a introduit des threads particulier : les _WebWorkers_. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via `int` ou `strings`. Heureusement pour nous le plus gros du travail est réalisé par _Emscripten_ mais nous avons néanmoins eu un problème inacceptable : le blocage du _thread_ principal de notre application (à cause de la méthode d'attente de résolution des threads). Pour pallier cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet des `pause` et `resume` dans le code `C++` et donc la poursuite des évènements asynchrones tant appréciés de `JS`. La solution ne s'arrête pas là puisque nous avons dû utiliser un mécanisme d'attente des _threads_ non-bloquant en utilisant une boucle infinie accompagné d'un temporisateur, permettant ainsi de faire reprendre la main à l'application `Angular` pendant quelques millisecondes. Mais ce n'est pas fini, en effet, il faut également pouvoir retourner une valeur, ce que _Asyncify_ ne permet apparemment pas, la subtilité ici a été d'écrire une fonction `JavaScript` directement dans le code source `C++` afin de notifier l'application qu'une nouvelle valeur était prête à être lue.
 
-[^whatpointers]: Il existe les pointeurs intelligents en c++, seulement notre première utilisations de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattu sur le classique des pointeurs `c`. Si nous avions continuer nous aurions certainement abusé des pointeurs `shared` et finis par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de multithreader notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réélement les mécanismes de _ownership_ des `unique_pointers`.
+[^whatpointers]: Il existe les pointeurs intelligents en C++, seulement notre première utilisation de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattus sur le classique des pointeurs `C`. Si nous avions continué nous aurions certainement abusé des pointeurs `shared` et fini par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de multithreader notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réellement les mécanismes de _ownership_ des `unique_pointers`.
 
 # Conclusion
 
