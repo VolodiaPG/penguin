@@ -57,6 +57,7 @@ EMSCRIPTEN_BINDINGS(game_logic_penguin_bind)
         .function("play", &PenguinGame::play, allow_raw_pointers())
         .function("revertPlay", &PenguinGame::revertPlay, allow_raw_pointers())
         .function("getPlayerToPlay", &PenguinGame::getPlayerToPlay)
+        .function("getFirstPlayerToPlay", &PenguinGame::getFirstPlayerToPlay)
         .function("checkStatus", &PenguinGame::checkStatus);
 }
 } // namespace penguin

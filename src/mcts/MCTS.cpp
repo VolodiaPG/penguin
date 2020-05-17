@@ -72,7 +72,7 @@ namespace mcts
 #endif
         }
 
-        std::cout << rootNode.visits << std::endl;
+        // std::cout << rootNode.visits << std::endl;
 
         return rootNode.visits;
     }

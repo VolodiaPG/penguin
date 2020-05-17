@@ -46,9 +46,13 @@ namespace game
             return board->checkStatus() != 0;
         }
 
+        unsigned int PenguinGame::getFirstPlayerToPlay() const
+        {
+            return 2;
+        }
+
         unsigned int PenguinGame::getPlayerToPlay()
         {
-            std::cout << number_moves_when_cannot_move << std::endl;
             if (numberMoves < number_moves_when_cannot_move)
             {
                 int nextPlayer = 2;
