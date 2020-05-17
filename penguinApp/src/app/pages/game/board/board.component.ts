@@ -394,7 +394,9 @@ export class BoardComponent implements OnInit {
    * Switch the id of the current player, accordingly with the changement in the C++ game.
    */
   switchCurrentPlayer() {
+    console.log('Current player : ', this.currentPlayerId);
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
+    console.log('Switch current player : ', this.currentPlayerId);
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
 
