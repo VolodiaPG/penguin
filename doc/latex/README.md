@@ -33,7 +33,7 @@ Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en u
 
 ### Récapitulatif
 
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de `Preuve de Concept` - PdC). Pour la partie graphique nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur la PdC avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le bindings avec le WebAssembly devenait alors trop complexe. 
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur la PdC avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet `PixiJS` nécessite une gestion asynchrone de son canvas, son intégration dans une application `Angular` doit donc se faire dans une zone indépendante, le bindings avec le `WebAssembly` devenait alors trop complexe. 
 
 ### Nos prédécesseurs
 
@@ -89,7 +89,7 @@ Le principe de l'algorithme est simple ; il n'y a que quatre étapes. On commenc
 
 On répète ces 4 étapes jusqu'à ce qu'on arrête l'algorithme. Ensuite, il nous retourne le meilleur coup à jouer, basé sur le nombre de visites des enfants de la racine.
 
-## Multithreading
+## Parallélisation
 
 Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulées. Il y a différentes manières de multithreader le MCTS; la _tree parallelization_, la _root parallelization_ et la _leaf parallelization_. D'après cette étude [@mass_par_mcts; @par_mcts], la _root parallelization_ semble la meilleure puisqu'elle permet d'explorer plus d'issues que les autres méthodes. Ainsi, cela augmente les chances de victoire du MCTS. De plus, cette méthode est facile à implémenter. En effet, il suffit d'assigner un arbre sur chaque thread. Les arbres sont donc développés indépendamment entre eux, donc il y a moins de chances que l'algorithme se bloque sur un minimum local. A la fin du temps alloué, nous mettons en commun les arbres, uniquement la première couche pour diminuer le temps de calcul. Ensuite, nous choisissons le meilleur coup à jouer.
 
@@ -173,4 +173,15 @@ Notre second défi a été de lier la version parallélisée de notre programme 
 
 # Conclusion
 
-La mise en place de ce projet a permis de mettre en évidences les difficultés liées à la gestion de ce type de travail, l'organisation et les échéances temporelles. Les technologies utilisées, certaines déjà connues voir maîtrisées par des membres du groupe, ont pour la plupart été une découverte. Il fallait être en capacité d'acquérir des connaissances et des compétences dans les outils nécessaires (WebAssembly, MCTS, Multithreading, Angular ...) tout en les pratiquant pour permettre au projet d'avancer. Finalement, le résultat final attendu par le cahier des charges a plutôt bien été atteint : en effet, nous sommes en mesure de proposer un jeu des pinguoins, implémentant un mécanisme "d'intelligence artificielle", et jouable à partir d'un navigateur Web. Cette expérience, nous a permis, en plus de développer nos compétences dans le domaine de nos études, de mieux connaître le fonctionnement de chacun, d'apprendre à présenter son travail devant une audience dans une langue étrangère, mais aussi de mener des recherches plus efficaces pour trouver des solutions à nos problèmes, et de savoir communiquer avec notre encadrant lorsque la résolution de ces derniers nous échappait.
+La mise en place de ce projet a permis de mettre en évidences les difficultés liées à la gestion de ce type de travail, notamment au niveau de l'organisation et les échéances temporelles. Notablement, au début nous n'avions pas les mêmes quantité de travail pour l'équipe graphique que pour la première version du MCTS.
+
+Les technologies utilisées étaient le second point important de ce projet, certaines étaient déjà connues – voir maîtrisées – par des membres du groupe, néanmoins la plupart se sont avérées être une totale découverte. Il fallait donc être capable d'acquérir des connaissances technologiques (`WebAssembly`, MCTS, _Multithreading_, `Angular` ...) mais également dans les outils nécessaires pour travailler dans une position peu commune (_VSCode_, `Docker`, `Doxygen`, `Compodoc`)  tout en développant  – pour permettre au projet d'avancer. Finalement, le résultat attendu par le cahier des charges a été plus qu'atteint : en effet, nous sommes en mesure de proposer un jeu des pingouins, implémentant une "intelligence artificielle", et jouable à partir d'un navigateur Web. Nous avons démontré la viabilité et la maturité du _WebAssembly_[^wasmmature], tout en se heurtant à des obstacles – pas impossible à passer – mais néanmoins gênant pour un environnement de production. Cette expérience nous a permis, en plus d'approfondir nos connaissances acquises au cours de l'année, de mieux connaître le fonctionnement de chacun et d'apprendre, en demandant conseil à notre encadrant lorsque cela devenait ardu, mais aussi à présenter notre travail [^englishisnotmyfav].
+
+Pour finir : 
+
+> _Laissons l'avenir dire la vérité, et évaluer chacun en fonction de son travail et de ses accomplissements. Le présent est à eux ; le futur, pour lequel j'ai réellement travaillé, est mien._
+>
+> -- <cite>Nikola Tesla</cite>
+
+[^wasmmature]: un point étonnant est la possibilité d'allié deux géants dans leurs domaines : la versatilité du `JavaScript` et la puissance crue du `c++`.
+[^englishisnotmyfav]: L’exercice s'est avéré étrange mais encourageant. 
