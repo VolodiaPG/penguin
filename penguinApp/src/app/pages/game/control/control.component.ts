@@ -12,25 +12,45 @@ import { appService } from '../board/models/appMachine';
   styleUrls: ['./control.component.scss']
 })
 export class ControlComponent implements OnInit {
-    /**
+  /**
    * Value of the Penguin Range element in the template.
    */
-  @Input() valueRangePenguin: number;
+  rangePenguinValue: number;
 
-   /**
-   * Value of the Hexagonal Range element in the template.
-   */
-  @Input() valueRangeHexagonal: number;
+  @Input()
+  get rangePenguin() {
+    return this.rangePenguinValue;
+  }
 
   /**
    * Emitter to notify the parent Game Component, when the number of penguins changed.
    */
-  @Output() nbPenguinChanged = new EventEmitter<any>();
+  @Output() rangePenguinChange = new EventEmitter();
+
+  set rangePenguin(val:number) {
+    this.rangePenguinValue = val;
+    this.rangePenguinChange.emit(this.rangePenguinValue);
+  }
+
+  /**
+   * Value of the Hexagonal Range element in the template.
+   */
+  rangeHexagonalValue: number;
+
+  @Input()
+  get rangeHexagonal() {
+    return this.rangeHexagonalValue;
+  }
 
   /**
    * Emitter to notify the parent Game Component, when the number of hexagonals changed.
    */
-  @Output() nbHexagonalChanged = new EventEmitter<any>();
+  @Output() rangeHexagonalChange = new EventEmitter();
+
+  set rangeHexagonal(val:number) {
+    this.rangeHexagonalValue = val;
+    this.rangeHexagonalChange.emit(this.rangeHexagonalValue);
+  }
 
   /**
    * Emitter to notify the parent Game Component, when the user clicked on next button.
@@ -53,22 +73,6 @@ export class ControlComponent implements OnInit {
    * @ignore
    */
   ngOnInit(): void {}
-
-  /**
-   * Raise event when the penguin range value changed
-   * @param {any} event 
-   */
-  newNumberPenguin(event: any) {
-    this.nbPenguinChanged.emit(event);
-  }
-
-  /**
-   * Raise event when the hexagonal range value changed
-   * @param {any} event 
-   */
-  newNumberHexagonal(event: any) {
-    this.nbHexagonalChanged.emit(event);
-  }
 
   //***************************************************************************************************************************
   //******************************************** CONFIRM / TOAST **************************************************************

@@ -23,16 +23,6 @@ declare var Module: any;
 export class GamePage implements OnInit {
 
   /**
-   * Value of hexagonals on a single row on the board.
-   */
-  @Input() nbHexagonal: number = 5;
-
-  /**
-   * Value of penguins on the board.
-   */
-  @Input() nbPenguin: number = 1;
-
-  /**
    * To control the flip and the button to show the current score.
    */
   @ViewChild('divHuman', { read: ElementRef, static: true }) private scoreHuman: ElementRef;
@@ -77,6 +67,16 @@ export class GamePage implements OnInit {
    * Variable to control when the game is started or not.
    */
   gameStarted: boolean = false;
+
+  /**
+   * Value of hexagonals on a single line on the board.
+   */
+  nbHexagonal: number = 6;
+
+  /**
+   * Value of penguins on the board.
+   */
+  nbPenguin: number = 2;
 
   /**
    * Value to count the fishes owned by the user.
@@ -163,53 +163,12 @@ export class GamePage implements OnInit {
   /**
    * Function to switch the visual information of which player to play.
    */
-  switchPlayerTurn(humanPlayerId: number, currentPlayerId: number) {
-    let choice = humanPlayerId === currentPlayerId;
-    if(choice) {
-      this.playerToPlay = "human";
-    } else {
-      this.playerToPlay = "mcts"
-    }
-  }
-
   switchPlayerToPlay() {
     if(this.playerToPlay === "human") {
       this.playerToPlay = "mcts";
-      this.nbHumanFish +=3;
     } else {
       this.playerToPlay = "human";
-      this.nbMctsFish += 3;
     }
     this.flipScore();
-  }
-
-  //***************************************************************************************************************************
-  //************************************************ PREVIEW ******************************************************************
-  //***************************************************************************************************************************
-
-  /**
-   * Function which react on an event coming from the Consol Component, raise when the number of hexagonals changed.
-   * @param {any} event 
-   */
-  nbHexagonalChanged(event: any) {
-    if (this.nbHexagonal - event.detail.value < 0) {
-      this.boardComponent.addHexagonal();
-    } else {
-      this.boardComponent.removeHexagonal();
-    }
-    this.nbHexagonal = event.detail.value;
-  }
-
-  /**
-   * Function which react on an event coming from the Consol Component, raise when the number of penguins changed.
-   * @param {any} event 
-   */
-  nbPenguinChanged(event: any) {
-    if (this.nbPenguin - event.detail.value < 0) {
-      this.boardComponent.addPenguin();
-    } else {
-      this.boardComponent.removePenguin();
-    }
-    this.nbPenguin = event.detail.value;
   }
 }

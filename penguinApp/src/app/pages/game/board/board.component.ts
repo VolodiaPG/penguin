@@ -47,15 +47,53 @@ export class BoardComponent implements OnInit {
    */
   @Input() gameStarted: boolean;
 
-    /**
-   * Value of hexagonals contains in one line on the board.
+  /**
+   * Value of the Penguin Range element in the template.
    */
-  @Input() nbHexagonal: number;
+  numberPenguinValue: number;
+
+  @Input()
+  get numberPenguin() {
+    return this.numberPenguinValue;
+  }
 
   /**
-   * Value of penguins contains on the board.
+   * Emitter to notify the parent Game Component, when the number of penguins changed.
    */
-  @Input() nbPenguin: number;
+  @Output() numberPenguinChange = new EventEmitter();
+
+  set numberPenguin(val:number) {
+    this.numberPenguinValue = val;
+    this.numberPenguinChange.emit(this.numberPenguinValue);
+  }
+
+  /**
+   * Value of the Hexagonal Range element in the template.
+   */
+  numberHexagonalValue: number;
+
+  @Input()
+  get numberHexagonal() {
+    return this.numberHexagonalValue;
+  }
+
+  /**
+   * Emitter to notify the parent Game Component, when the number of hexagonals changed.
+   */
+  @Output() numberHexagonalChange = new EventEmitter();
+
+  set numberHexagonal(val:number) {
+    if(this.numberHexagonalValue !== undefined) {
+      if (this.numberHexagonalValue - val < 0) {
+        this.addHexagonal();
+      } else {
+        this.removeHexagonal();
+      }
+    }
+
+    this.numberHexagonalValue = val;
+    this.numberHexagonalChange.emit(this.numberHexagonalValue);
+  }
 
   /**
    * Value to count the fishes owned by the user.
@@ -85,8 +123,6 @@ export class BoardComponent implements OnInit {
   stateControler: any = appService;
 
   isLoaded = false;
-
-
 
   /**
    * The pixel width of a hex.
@@ -170,9 +206,8 @@ export class BoardComponent implements OnInit {
     document.addEventListener('new_best_move', (_: any) => {
       this.processBestMove(this.wasmMCTSPlayer.getLastBestMove());
     });
-
     this.isLoaded = false;
-    this.cells = new Array(this.nbHexagonal);
+    this.cells = new Array(this.numberHexagonalValue);
     this.penguins = new Array();
     this.generateMap();
     console.log('Board ok');
@@ -204,8 +239,8 @@ export class BoardComponent implements OnInit {
    * Then call the generateMapFromWasmBoard function to update the front part.
    */
   initWasmBoard() {
-    console.log('Init WasmGame', this.nbHexagonal, this.nbPenguin);
-    this.wasmGame = new Module.PenguinGame(this.nbHexagonal, this.nbPenguin);
+    console.log('Init WasmGame', this.numberHexagonalValue, this.numberPenguinValue);
+    this.wasmGame = new Module.PenguinGame(this.numberHexagonalValue, this.numberPenguinValue);
     this.wasmBoard = this.wasmGame.getBoard();
 
     this.currentPlayerId = this.wasmGame.getFirstPlayerToPlay();
@@ -238,12 +273,12 @@ export class BoardComponent implements OnInit {
    * Create an empty map, with a size of the hexagonals number, and with x penguins.
    */
   generateMap() {
-    console.log('Generate Map', this.nbHexagonal, this.nbPenguin);
+    console.log('Generate Map', this.numberHexagonalValue, this.numberPenguinValue);
     let cell: Cell;
-    for (let row = 0; row < this.nbHexagonal; row++) {
-      this.cells[row] = new Array(this.nbHexagonal);
+    for (let row = 0; row < this.numberHexagonalValue; row++) {
+      this.cells[row] = new Array(this.numberHexagonalValue);
 
-      for (let column = 0; column < this.nbHexagonal; column++) {
+      for (let column = 0; column < this.numberHexagonalValue; column++) {
         cell = new Cell(row, column);
         this.cells[row][column] = cell;
       }
@@ -255,7 +290,7 @@ export class BoardComponent implements OnInit {
    * @param {Cell} cellPos 
    */
   posePenguinOn(cellPos: Cell) {
-    if (this.penguins.length < this.nbPenguin) {
+    if (this.penguins.length < this.numberPenguinValue) {
       let penguin = new Penguin();
       if (!cellPos.hasPenguin) {
         cellPos.hasPenguin = true;
@@ -295,16 +330,16 @@ export class BoardComponent implements OnInit {
    */
   generateWasmPenguin() {
     let rndRow: number, rndColumn: number;
-    for (let ii = 0; ii < this.nbPenguin; ii++) {
+    for (let ii = 0; ii < this.numberPenguinValue; ii++) {
       this.penguins.push(undefined);
-      while (this.penguins[this.nbPenguin + ii] === undefined) {
-        rndRow = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
-        rndColumn = Math.floor(0 + Math.random() * (this.nbHexagonal - 0));
+      while (this.penguins[this.numberPenguinValue + ii] === undefined) {
+        rndRow = Math.floor(0 + Math.random() * (this.numberHexagonalValue - 0));
+        rndColumn = Math.floor(0 + Math.random() * (this.numberHexagonalValue - 0));
         if (!this.cells[rndRow][rndColumn].hasPenguin) {
-          this.penguins[this.nbPenguin + ii] = new Penguin();
-          this.penguins[this.nbPenguin + ii].cellPosition = this.cells[rndRow][rndColumn];
+          this.penguins[this.numberPenguinValue + ii] = new Penguin();
+          this.penguins[this.numberPenguinValue + ii].cellPosition = this.cells[rndRow][rndColumn];
           this.cells[rndRow][rndColumn].hasPenguin = true;
-          this.penguins[this.nbPenguin + ii].textureIndex = (this.humanPlayerId % 2) + 1;
+          this.penguins[this.numberPenguinValue + ii].textureIndex = (this.humanPlayerId % 2) + 1;
         }
       }
     }
@@ -429,9 +464,10 @@ export class BoardComponent implements OnInit {
    */
   switchCurrentPlayer() {
     console.log('Current player : ', this.currentPlayerId);
-    // this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
+    this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
+    this.nbMctsFish = this.wasmBoard.getPlayerById(this.humanPlayerId %2 +1).getScore();
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
-    // this.switchPlayerToPlay.emit();
+    this.switchPlayerToPlay.emit();
     console.log('Switch current player : ', this.currentPlayerId);
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
@@ -567,9 +603,8 @@ export class BoardComponent implements OnInit {
    * 7x7 -> 8x8
    */
   addHexagonal(): void {
-    this.nbHexagonal++;
-
-    let cell: Cell;
+    this.numberHexagonalValue++;
+     let cell: Cell;
 
     //Add a cell on all the row
     for (let row = 0; row < this.cells.length; row++) {
@@ -578,11 +613,11 @@ export class BoardComponent implements OnInit {
     }
 
     //Add a row
-    this.cells.push(new Array(this.nbHexagonal));
+    this.cells.push(new Array(this.numberHexagonalValue));
 
-    for (let column = 0; column < this.cells[this.nbHexagonal - 1].length; column++) {
-      cell = new Cell(this.nbHexagonal - 1, column);
-      this.cells[this.nbHexagonal - 1][column] = cell;
+    for (let column = 0; column < this.cells[this.numberHexagonalValue - 1].length; column++) {
+      cell = new Cell(this.numberHexagonalValue - 1, column);
+      this.cells[this.numberHexagonalValue - 1][column] = cell;
     }
   }
 
@@ -594,27 +629,13 @@ export class BoardComponent implements OnInit {
    * 7x7 -> 6x6
    */
   removeHexagonal(): void {
-    this.nbHexagonal--;
+    this.numberHexagonalValue--;
     //Remove a cell on all the row
     for (let row = 0; row < this.cells.length; row++) {
       this.cells[row].pop();
     }
     //Remove a row
     this.cells.pop();
-  }
-
-  /**
-   * Increase the number of penguins.
-   */
-  addPenguin(): void {
-    this.nbPenguin++;
-  }
-
-  /**
-   * Decrease the number of penguins.
-   */
-  removePenguin(): void {
-    this.nbPenguin--;
   }
 
   //************************************************************************************************************************

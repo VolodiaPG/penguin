@@ -31,17 +31,17 @@
       </ion-item>
       <ion-item>
         <ion-label>Hex : </ion-label>
-        <ion-range *ngIf="stateControler.state.value === 'settings'" min="5" max="10" step="1" snaps color="primary"
-          value="{{ valueRangeHexagonal }}" (ionChange)="newNumberHexagonal($event)">
+        <ion-range *ngIf="stateControler.state.value === 'settings'" min="5" max="8" step="1" snaps color="primary"
+          [(ngModel)]="rangeHexagonal">
           <ion-label slot="start">5</ion-label>
-          <ion-label slot="end">10</ion-label>
+          <ion-label slot="end">8</ion-label>
         </ion-range>
       </ion-item>
       <ion-item>
         <ion-label>Peng : </ion-label>
         <!-- [(ngModel)]="valueRangePenguin" //  value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"-->
         <ion-range *ngIf="stateControler.state.value === 'settings'" min="1" max="4" step="1" snaps color="primary"
-          value="{{ valueRangePenguin }}" (ionChange)="newNumberPenguin($event)">
+          [(ngModel)]="rangePenguin">
           <ion-label slot="start">1</ion-label>
           <ion-label slot="end">4</ion-label>
         </ion-range>
