@@ -427,9 +427,9 @@ export class BoardComponent implements OnInit {
    */
   switchCurrentPlayer() {
     console.log('Current player : ', this.currentPlayerId);
-    this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
+    // this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
-    this.switchPlayerToPlay.emit();
+    // this.switchPlayerToPlay.emit();
     console.log('Switch current player : ', this.currentPlayerId);
     gameService.send(gameService.machine.states.playerSwitched.on.PLAYERSWITCHED[0].eventType);
   }
