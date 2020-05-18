@@ -8,7 +8,7 @@ o_abstract.tex: abstract.md
 	pandoc abstract.md -o o_abstract.tex
 
 output.pdf: o_abstract.tex references.bib $(SRC)
-	pandoc $(SRC) -N -t latex --template=template.tex --natbib \
+	pandoc $(SRC) -N -t latex --template=template.tex --natbib --highlight-style=monochrome \
 	--variable style=exptech --variable links-as-notes --variable graphics --variable abstract=o_abstract.tex \
 	-s -o output.tex
 	pdflatex output

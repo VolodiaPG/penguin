@@ -1,5 +1,5 @@
 ---
-title: Jeu des pingouins à base de MCTS (_Monte Carlo Tree Search_) sur le navigateur en utilisant le format _WebAssembly_
+title: Jeu des pingouins à base de MCTS (_Monte Carlo Tree Search_) sur le navigateur en utilisant le format `WebAssembly`
 author:
 
 - Clément \textsc{Chavanon}
@@ -37,7 +37,7 @@ Afin de tester la faisabilité et les différentes technologies, nous avons déc
 
 ### Nos prédécesseurs
 
-Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombreuses heures. Cependant, afin de simplifier notre travail il a été décidé de tout refaire, y compris le MCTS dont le code leur avait été donné déjà optimisé. En effet, notre technologie étant récente, le _multithreading_ par exemple pouvait s'avérer plus compliqué à porter en `WebAssembly` qu'à réécrire.
+Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombreuses heures. Cependant, afin de simplifier notre travail il a été décidé de tout refaire, y compris le MCTS dont le code leur avait été donné déjà optimisé. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en `WebAssembly` qu'à réécrire.
 
 ### Notre objectif
 
@@ -52,7 +52,9 @@ Pour mener à bien notre projet, les différentes tâches ont été réparties a
 
 Finalement, la partie qui consistait à permettre de transporter le jeu codé en `C++` vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
 
-# Réalisation
+# Réalisation [^realisation]
+
+[^realisation]: Toutes nos sources sont disponibles [@repo_git]. Nous avons également une démonstration en ligne [@repo_demo].
 
 ## Notre environnement de développement
 
@@ -97,9 +99,9 @@ Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un syst
 
 Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un navigateur, nous avons dû mettre en place une interface graphique pour notre jeu. Avec les contraintes de temps et les contraintes techniques, nous avons été amenés à faire des choix aux niveaux des technologies utilisées et des méthodes d'implémentation afin de pouvoir produire rapidement une interface utilisable.
 
-### Angular / Ionic
+### `Angular` & `Ionic`
 
-Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du Tic-Tac-Toe était en `Javascript`.
+Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du morpion était en `Javascript`.
 D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser `Angular`.
 
 Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants adaptatifs. Basé sur `Angular`, il s'intègre donc parfaitement dans notre projet.
@@ -127,11 +129,58 @@ Durant nos recherches dans les différentes possibilités que pouvaient nous off
 
 ## _Bindings_ MCTS
 
-Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu. Il existe plusieurs niveaux de difficulté pour réaliser ces liens. Le plus simple nous l'avons utilisé lors de notre preuve de concept avec le morpion. Elle consiste à lier marquer les fonctions à exporter directement dans la commande de compilation et est adaptée pour une petite quantité de fonctions. Cependant, le passage à l'échelle ne se fait pas bien, c'est pour cela que nous avons utilisé la seconde méthode : _Embind_ [@embind]. Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en c++ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant ou l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportée dans le dossier courant et permet ainsi d'avoir très peu de méthode à écrire juste pour les liens. Le compilateur se charge alors de réaliser les liens automatiquement (et mêmes des pointeurs !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants.
+Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu. Il existe plusieurs niveaux de difficulté pour réaliser ces liens. Le plus simple nous l'avons utilisé lors de notre preuve de concept avec le morpion. Elle consiste à lier marquer les fonctions à exporter directement dans la commande de compilation et est adaptée pour une petite quantité de fonctions. Cependant, le passage à l'échelle ne se fait pas bien, c'est pour cela que nous avons utilisé la seconde méthode : _Embind_ [@embind]. Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en `c++` qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant ou l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de `Angular` nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportée dans le dossier courant et permet ainsi d'avoir très peu de méthode à écrire juste pour les liens. Le compilateur se charge alors de réaliser les liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants. Un exemple d'un tel code est le suivant :
 
-Notre second défi a été de lier le programmela version parallélisée de notre programme avec `pthreads`[@pthreads_emscripten]. En effet, le Web a introduit sa propre version des _threads_ : les _WebWorkers_[^onwebworkers]. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via des types primitifs : les `int` ou les `strings`. Il n'est donc pas aisé de communiquer des valeurs d'instances entres ces _WebWorkers_. Heureusement pour nous, le plus gros du travail est réalisé par _Emscripten_. Néanmoins, nous avons eu un problème inacceptable : le blocage du _thread_ principal de notre application lors du développement des arbres du MCTS, l'interface ne répondait alors plus. Pour pallier à cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet de faire des `pause` et `resume` dans le code `C++` exporté. Plus largement ce module permet de rendre le code asynchrone et donc de poursuivre le traitement des évènements tant appréciés de _JavaScript_ lors de l’exécution de notre algorithme qui n'est alors plus bloquant. Le résultat n'est pourtant pas ce que nous espérions, puisque la fonction exécutant le MCTS ne revoie alors plus de valeur au final. Nous avons alors défini une fonction _JavaScript_ dans le code `c++`, de façon à ce que ce dernier puisse l'appeler. Cette fonction permet alors d'émettre un événement après que la fonction c++ ait terminé [^whyafterterm]. Cette notification permet alors à l'interface de savoir quand récupérée la valeur de sortie et de palier au problème initial.
+```{.cpp .numberLines startFrom="0"}
+...
+    // Only compile if it is for the Emscripten target,
+    // to keep compatibilty between plateforms
+#ifdef __EMSCRIPTEN__
+...
+using namespace emscripten;
 
-[^onwebworkers]: Tout comme le _WebAssembly_ les _WebWorkers_ ont un support encore limité aux versions récentes des navigateurs, pour ceux ne l'ayant pas désactivé pour des raisons de sécurité.
+// Binding code
+EMSCRIPTEN_BINDINGS(mcts_bind)
+
+{
+    // Here exporting a c style structure with a field
+    value_object<MCTSConstraints>("MCTSConstraints")
+        .field("time", &MCTSConstraints::time);
+
+    // It is a bit more complex to export a template,
+    // especially if we want to atke fully advantage 
+    // of the templates that we chose to made in the first place :
+    // multiple types, so it is interesing to keep 
+    // this advantage with a simple preprocessor
+#define __MCTS_BIND__(name_prefix, MCTSPlayer, AbstractGame)                               \
+                                                                                           \
+    class_<MCTSPlayer>(name_prefix "_MCTSPlayer")                                          \
+        .constructor<AbstractGame *const &, const MCTSConstraints &>
+    										(allow_raw_pointers()) \
+        .function("bestMove", &MCTSPlayer::bestMove)                                       \
+        .function("updateTree", &MCTSPlayer::updateTree)
+
+    // We need to define the types (by clarity + 
+    // 					limitation of the preprocessors)
+    typedef MCTSPlayer< game::penguin::BoardCell,
+						game::penguin::HumanPlayer,
+    					game::penguin::PenguinPawn
+            		  > penguin_mcts_player_t;
+    typedef game::AbstractGame< game::penguin::BoardCell,
+    							game::penguin::HumanPlayer, 
+    							game::penguin::PenguinPawn
+                              > penguin_game_t;
+    // We use it for the penguin game,
+    // but it is as easy to export for the tic tac toe demo
+    __MCTS_BIND__("penguin", penguin_mcts_player_t, penguin_game_t);
+}
+
+#endif
+```
+
+Notre second défi a été de lier la version parallélisée de notre programme avec `pthreads`[@pthreads_emscripten] et l'interface graphique. En effet, le Web a introduit sa propre version des _threads_ : les _WebWorkers_[^onwebworkers]. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via des types primitifs : les `int` ou les `strings`. Il n'est donc pas aisé de communiquer des valeurs d'instances entres ces _WebWorkers_. Heureusement pour nous, le plus gros du travail est réalisé par _Emscripten_. Néanmoins, nous avons eu un problème inacceptable : le blocage du _thread_ principal de notre application lors du développement des arbres du MCTS, l'interface ne répondait alors plus. Pour pallier à cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet de faire des `pause` et `resume` dans le code `c++` exporté. Plus largement ce module permet de rendre le code asynchrone et donc de poursuivre le traitement des évènements tant appréciés de _JavaScript_ lors de l’exécution de notre algorithme qui n'est alors plus bloquant. Le résultat n'est pourtant pas ce que nous espérions, puisque la fonction exécutant le MCTS ne revoie alors plus de valeur au final. Nous avons alors défini une fonction _JavaScript_ dans le code `c++`, de façon à ce que ce dernier puisse l'appeler. Cette fonction permet alors d'émettre un événement après que la fonction c++ ait terminé [^whyafterterm]. Cette notification permet alors à l'interface de savoir quand récupérée la valeur de sortie et de palier au problème initial.
+
+[^onwebworkers]: Tout comme le `WebAssembly` les _WebWorkers_ ont un support encore limité aux versions récentes des navigateurs, pour ceux ne l'ayant pas désactivé pour des raisons de sécurité.
 [^whatpointers]: Il existe les pointeurs intelligents en C++, seulement notre première utilisation de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattus sur le classique des pointeurs `C`. Si nous avions continué nous aurions certainement abusé des pointeurs `shared` et fini par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de multithreader notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réellement les mécanismes de _ownership_ des `unique_pointers`.
 
 # Conclusion
