@@ -77,7 +77,7 @@ Une passe d'optimisation a déjà été réalisée sur la deuxième méthode qui
 
 [^movesavailable]: Un pingouin peut être bloqué par un trou dans le plateau ou un autre pingouin.
 [^nextplayer]: Il arrive qu'un joueur soit bloqué et qu'attendre son tour ne serve à rien, son adversaire peut lui continuer à récolter tous les points.
-[^theyhadtime]: L'équipe précédente n'a pas eu à faire le MCTS et avaient directement une interface connectant la représentation avec cet algorithme, sur laquelle nous avons dû faire quelques ajustements après avoir développé la représentation du jeu des pingouins. Nous faisons allusion ici à une différence entre le pion et le joueur : un joueur peut posséder plusieurs pions et ceci n'était pas une contrainte sur notre première phase de tests avec un morpion...
+[^theyhadtime]: L'équipe précédente n'a pas eu à faire le MCTS et avait directement une interface connectant la représentation avec cet algorithme, sur laquelle nous avons dû faire quelques ajustements après avoir développé la représentation du jeu des pingouins. Nous faisons allusion ici à une différence entre le pion et le joueur : un joueur peut posséder plusieurs pions et ceci n'était pas une contrainte sur notre première phase de tests avec un morpion...
 
 ## MCTS
 
@@ -117,7 +117,7 @@ Cette dernière permet de présenter le projet dans sa globalité, ainsi que les
 
 En utilisant `ngx rocket`, la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
 
-Durant nos recherches dans les différentes possibilités que pouvait nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
+Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
 ### Développement du jeu
 
