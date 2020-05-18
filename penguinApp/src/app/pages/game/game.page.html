@@ -74,7 +74,7 @@
         <ion-card text-center translucent fixed size="auto">
           <ion-card-header></ion-card-header>
           <ion-card-content>
-            <app-board [(gameStarted)]="gameStarted" [(nbHumanFish)]="nbHumanFish" [(nbMctsFish)]="nbMctsFish"
+            <app-board [(gameStarted)]="gameStarted" [(nbPenguin)]="nbPenguin" [(nbHexagonal)]="nbHexagonal" [(nbHumanFish)]="nbHumanFish" [(nbMctsFish)]="nbMctsFish"
               (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"></app-board>
           </ion-card-content>
         </ion-card>
@@ -85,7 +85,7 @@
     </ion-row>
   </ion-grid>
   <app-control *ngIf="stateControler.state.value === 'settings'" class="control"
-    (nbHexagonalChanged)="nbHexagonalChanged($event)" (nbPenguinChanged)="nbPenguinChanged($event)"
+    [(valueRangePenguin)]="nbPenguin" [(valueRangeHexagonal)]="nbHexagonal"
     (nextStep)="initGameBoard()">
   </app-control>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { BoardComponent } from './board/board.component';
 import { InfoComponent } from './info/info.component';
 
@@ -21,6 +21,17 @@ declare var Module: any;
   styleUrls: ['./game.page.scss']
 })
 export class GamePage implements OnInit {
+
+  /**
+   * Value of hexagonals on a single row on the board.
+   */
+  @Input() nbHexagonal: number = 5;
+
+  /**
+   * Value of penguins on the board.
+   */
+  @Input() nbPenguin: number = 1;
+
   /**
    * To control the flip and the button to show the current score.
    */
@@ -66,16 +77,6 @@ export class GamePage implements OnInit {
    * Variable to control when the game is started or not.
    */
   gameStarted: boolean = false;
-
-  /**
-   * Value of hexagonals on a single row on the board.
-   */
-  nbHexagonal: number = 8;
-
-  /**
-   * Value of penguins on the board.
-   */
-  nbPenguin: number = 2;
 
   /**
    * Value to count the fishes owned by the user.

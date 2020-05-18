@@ -15,22 +15,22 @@ export class AppComponent implements OnInit {
     {
       title: 'Home',
       url: '/home',
-      icon: 'mail'
+      icon: 'home'
     },
     {
       title: 'Game',
       url: '/game',
-      icon: 'paper-plane'
+      icon: 'cube'
     },
     {
       title: 'Team',
       url: '/team',
-      icon: 'heart'
+      icon: 'people'
     },
     {
       title: 'About',
       url: '/about',
-      icon: 'heart'
+      icon: 'bookmarks'
     }
   ];
 

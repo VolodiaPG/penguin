@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
 import { appService } from '../board/models/appMachine';
@@ -12,6 +12,16 @@ import { appService } from '../board/models/appMachine';
   styleUrls: ['./control.component.scss']
 })
 export class ControlComponent implements OnInit {
+    /**
+   * Value of the Penguin Range element in the template.
+   */
+  @Input() valueRangePenguin: number;
+
+   /**
+   * Value of the Hexagonal Range element in the template.
+   */
+  @Input() valueRangeHexagonal: number;
+
   /**
    * Emitter to notify the parent Game Component, when the number of penguins changed.
    */
@@ -31,16 +41,6 @@ export class ControlComponent implements OnInit {
    * Service to access on the application Final State Machine.
    */
   stateControler: any = appService;
-
-  /**
-   * Value of the Penguin Range element in the template.
-   */
-  valueRangePenguin: number = 2;
-
-   /**
-   * Value of the Hexagonal Range element in the template.
-   */
-  valueRangeHexagonal: number = 8;
 
   /**
    * Constructor of the Control Component

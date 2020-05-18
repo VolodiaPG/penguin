@@ -47,6 +47,16 @@ export class BoardComponent implements OnInit {
    */
   @Input() gameStarted: boolean;
 
+    /**
+   * Value of hexagonals contains in one line on the board.
+   */
+  @Input() nbHexagonal: number;
+
+  /**
+   * Value of penguins contains on the board.
+   */
+  @Input() nbPenguin: number;
+
   /**
    * Value to count the fishes owned by the user.
    * Two-way bindings with the game component.
@@ -76,10 +86,7 @@ export class BoardComponent implements OnInit {
 
   isLoaded = false;
 
-  /**
-   * Value of hexagonals contains in one line on the board.
-   */
-  nbHexagonal: number = 8; // 8
+
 
   /**
    * The pixel width of a hex.
@@ -94,11 +101,6 @@ export class BoardComponent implements OnInit {
    * 2D Array with all the cells on the map (row of column).
    */
   cells: Array<Array<Cell>>;
-
-  /**
-   * Value of penguins contains on the board.
-   */
-  nbPenguin: number = 2;
 
   /**
    * Array with all the penguins on the board.

@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    RouterModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
