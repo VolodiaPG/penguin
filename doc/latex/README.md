@@ -115,9 +115,13 @@ Dans sa version finale notre application se compose des pages principales suivan
 
 Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation.
 
-En utilisant `ngx rocket`, la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
+En utilisant _ngX-Rocket_ [@ngxrocket][^whatisngxrocket], la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
 
 Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
+
+[^whatisngxrocket]: _ngX-Rocket_ est un modèle pour générer facilement une première application. Il permet de débuter avec une architecture de projet robuste, des plugins déjà présent (_I18n_), d'avoir accès à des services (authentification, api) et de choisir un style facilement.
+
+
 
 ### Développement du jeu
 
