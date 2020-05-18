@@ -64,7 +64,7 @@ Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facile
 
 ## Représentation du jeu
 
-Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec une `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques `std::map`{.cpp}. D'autre part puisqu'une telle représentation d'une carte rectangulaire serait lacunaire dans une structure de donnée tabulaire [@patel_blobs_2019][map-storage].
+Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hâchage : `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. D'autre part puisqu'une telle représentation d'une carte rectangulaire serait lacunaire dans une structure de donnée tabulaire [@patel_blobs_2019][map-storage].
 
 ## Points sensibles
 
