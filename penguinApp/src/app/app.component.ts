@@ -34,6 +34,8 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  public isWeb = true;
+
   public darkTheme: boolean;
 
   constructor(

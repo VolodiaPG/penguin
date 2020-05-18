@@ -35,17 +35,17 @@ export class HexComponent implements OnInit {
    * types by index. Add custom properties to extend functionality.
    */
   textures: string[] = [
-    '/assets/game/empty.png',
-    '/assets/game/tileSnow_big.png',
-    '/assets/game/normal_fish1.png',
-    '/assets/game/normal_fish2.png',
-    '/assets/game/normal_fish3.png',
-    '/assets/game/selected_fish1.png',
-    '/assets/game/selected_fish2.png',
-    '/assets/game/selected_fish3.png',
-    '/assets/game/available_fish1.png',
-    '/assets/game/available_fish2.png',
-    '/assets/game/available_fish3.png'
+    'assets/game/empty.png',
+    'assets/game/tileSnow_big.png',
+    'assets/game/normal_fish1.png',
+    'assets/game/normal_fish2.png',
+    'assets/game/normal_fish3.png',
+    'assets/game/selected_fish1.png',
+    'assets/game/selected_fish2.png',
+    'assets/game/selected_fish3.png',
+    'assets/game/available_fish1.png',
+    'assets/game/available_fish2.png',
+    'assets/game/available_fish3.png'
   ];
 
   /**

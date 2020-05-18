@@ -7,7 +7,7 @@ GREEN   := \033[1;32m
 WHITE   := \033[0;m
 
 NUMBER_PTHREADS_WORKERS := 4
-INITIAL_MEMORY := 33554432 # more than 16777216
+INITIAL_MEMORY := 134217728 #33554432 # more than 16777216
 
 # default environement
 
