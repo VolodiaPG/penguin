@@ -1,6 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>about</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title slot="start"><span translate>About</span></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +15,7 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
+      <ion-card>
         <ion-item>
           <ion-text text-center>
             Hexagon tiles by Kenney Vleugels (www.kenney.nl) 
@@ -26,7 +29,7 @@
             Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.
           </ion-text>
         </ion-item>
-      </ion-list>
+      </ion-card>
     </ion-card-content>
   </ion-card>
 </ion-content>
