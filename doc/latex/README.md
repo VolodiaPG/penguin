@@ -33,7 +33,7 @@ Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en u
 
 ### Récapitulatif
 
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion. Pour la partie graphique nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur la preuve de concept nous avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet `PixiJS` nécessite une gestion asynchrone de son canvas, son intégration dans une application `Angular` doit donc se faire dans une zone indépendante, le _binding_ avec le `WebAssembly` devenait alors trop complexe. 
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de `Proof Of Concept` - Poc). Pour la partie graphique nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur le PoC avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le bindings avec le WebAssembly devenait alors trop complexe. 
 
 ### Nos prédécesseurs
 
@@ -41,7 +41,7 @@ Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombr
 
 ### Notre objectif
 
-Principalement nous nous sommes concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
+Nous nous sommes principalement concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
 
 ### Répartition des tâches du projet
 
