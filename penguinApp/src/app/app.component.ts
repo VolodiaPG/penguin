@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
       icon: 'paper-plane'
     },
     {
+      title: 'Team',
+      url: '/team',
+      icon: 'heart'
+    },
+    {
       title: 'About',
       url: '/about',
       icon: 'heart'
