@@ -19,7 +19,7 @@ bibliography: references
 
 ## Le jeu des pingouins
 
-"Pingouins" est un jeu de stratégie et de plateau sur lequel s'affrontent 2 à 4 joueurs. Le plateau contient 60 cases hexagonales et qui comportent 1 à 3 poissons.
+"Pingouins" est un jeu de stratégie et de plateau sur lequel s'affrontent 2 à 4 joueurs. Le plateau contient 60 cases hexagonales qui comportent 1 à 3 poissons.
 
 En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les déplacements autorisés se font en ligne droite suivant les 6 faces de la case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer par-dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils appartiennent ou non au même joueur. Une fois le mouvement achevé, la case de départ est retirée du plateau. Le joueur peut alors incrémenter son score du nombre de poisson qu'il y avait sur cette case. Si un pingouin ne peut plus se déplacer, le joueur retire ce dernier ainsi que la case sur laquelle il était. Dans ce cas-là, le joueur remporte aussi les poissons contenus dans cette case.
 
@@ -27,13 +27,13 @@ Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur av
 
 ## Notre tâche
 
-### Au départ
+### Sujet
 
 Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en `C++` pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
-### Bref suivi
+### Récapitulatif
 
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion. Pour la partie graphique nous avions simplement codé en JavaScript vanilla. En parallèle nous avons testé une autre technologie pour cela : `PixiJS`. Cependant cela ne s'est pas avéré satisfaisant pour notre utilisation et avons décidé de choisir quelque chose de plus simple : `Angular`.
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion. Pour la partie graphique nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur le PoC avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le bindings avec le WebAssembly devenait alors trop complexe. 
 
 ### Nos prédécesseurs
 
