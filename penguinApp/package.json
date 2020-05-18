@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "npx compodoc -p tsconfig.app.json -s",
-    "gh-pages": "ionic build --engine='browser' --base-href 'https://volodiapg.github.io/penguin/' --prod && npx ngh --dir=www/ --branch='githubpages'"
+    "gh-pages": "cd .. && make clean && make && cd penguinApp && ionic build --prod -- --base-href='https://volodiapg.github.io/penguin/' && npx angular-cli-ghpages --dir='www' --branch='master'"
   },
   "private": true,
   "dependencies": {
