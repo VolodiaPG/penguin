@@ -1,5 +1,0 @@
-\begin{thebibliography}{}
-\expandafter\ifx\csname fonteauteurs\endcsname\relax
-\def\fonteauteurs{\scshape}\fi
-
-\end{thebibliography}

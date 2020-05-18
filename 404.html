@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Penguin MCTS App</title>
+
+  <base href="https://volodiapg.github.io/penguin/">
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/logo/landscape.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <script>
+    var Module = {
+      locateFile: function(s) {
+        return 'assets/bin/' + s;
+      },
+      print: (function() {
+        var element = document.getElementById('mcts_console');
+        if (element) element.value = ''; // clear browser cache
+        var that = this;
+        return function(text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          // // These replacements are necessary if you render to raw HTML
+          // text = text.replace(/&/g, "&amp;");
+          // text = text.replace(/</g, "&lt;");
+          // text = text.replace(/>/g, "&gt;");
+          // text = text.replace('\n', '<br>', 'g');
+          console.log(text);
+          let event = new CustomEvent('mcts_console', { detail: text });
+          // that.dispatchEvent(event);
+          document.dispatchEvent(event);
+          // if (element) {
+          //   // element.value += text + "\n";
+          //   // element.scrollTop = element.scrollHeight; // focus on bottom
+          //   element.innerHTML += text + "<br>";
+          // }
+        };
+      })(),
+      printErr: function(e) {
+        1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(' ')), console.error(e);
+      }
+    };
+  </script>
+  <script src="assets/bin/main.js"></script>
+<link rel="stylesheet" href="styles.601eb775e01ce2585ba7.css"></head>
+
+<body>
+  <noscript>
+    <p>
+      This page requires JavaScript to work properly. Please enable JavaScript in your browser.
+    </p>
+  </noscript>
+  <app-root></app-root>
+<script src="runtime-es2015.4e13eb40a4bd9bc760d8.js" type="module"></script><script src="runtime-es5.4e13eb40a4bd9bc760d8.js" nomodule defer></script><script src="polyfills-es5.befa4caa6291a171b67f.js" nomodule defer></script><script src="polyfills-es2015.f4d09162f068ef1dd55d.js" type="module"></script><script src="main-es2015.8b6809028714c71e9c10.js" type="module"></script><script src="main-es5.8b6809028714c71e9c10.js" nomodule defer></script></body>
+
+</html>

@@ -1,7 +1,0 @@
-{
-  "name": "penguinApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
