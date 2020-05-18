@@ -133,43 +133,31 @@ Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu.
 
 ```{.cpp .numberLines startFrom="0"}
 ...
-    // Only compile if it is for the Emscripten target,
-    // to keep compatibilty between plateforms
+    // Only target Emscripten compilation (auto-generated flag)
 #ifdef __EMSCRIPTEN__
 ...
 using namespace emscripten;
 
 // Binding code
 EMSCRIPTEN_BINDINGS(mcts_bind)
-
 {
     // Here exporting a c style structure with a field
     value_object<MCTSConstraints>("MCTSConstraints")
         .field("time", &MCTSConstraints::time);
 
     // It is a bit more complex to export a template,
-    // especially if we want to atke fully advantage 
-    // of the templates that we chose to made in the first place :
-    // multiple types, so it is interesing to keep 
-    // this advantage with a simple preprocessor
+    // especially if we want to take fully advantage 
+    // of why they were made in the first place :
+    // multiple types
 #define __MCTS_BIND__(name_prefix, MCTSPlayer, AbstractGame)                               \
-                                                                                           \
     class_<MCTSPlayer>(name_prefix "_MCTSPlayer")                                          \
         .constructor<AbstractGame *const &, const MCTSConstraints &>
     										(allow_raw_pointers()) \
-        .function("bestMove", &MCTSPlayer::bestMove)                                       \
-        .function("updateTree", &MCTSPlayer::updateTree)
-
+        .function("bestMove", &MCTSPlayer::bestMove) 
     // We need to define the types (by clarity + 
     // 					limitation of the preprocessors)
-    typedef MCTSPlayer< game::penguin::BoardCell,
-						game::penguin::HumanPlayer,
-    					game::penguin::PenguinPawn
-            		  > penguin_mcts_player_t;
-    typedef game::AbstractGame< game::penguin::BoardCell,
-    							game::penguin::HumanPlayer, 
-    							game::penguin::PenguinPawn
-                              > penguin_game_t;
+    typedef MCTSPlayer< ... > penguin_mcts_player_t;
+    typedef game::AbstractGame< ... > penguin_game_t;
     // We use it for the penguin game,
     // but it is as easy to export for the tic tac toe demo
     __MCTS_BIND__("penguin", penguin_mcts_player_t, penguin_game_t);
