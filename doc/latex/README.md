@@ -68,7 +68,7 @@ Notre encadrant nous a indiqué au tout début du projet un guide de méthodolog
 
 ## Points sensibles
 
-Utiliser un algorithme tel que le MCTS implique que la vitesse et l’efficacité de ce dernier va grandement être impacté par la représentation. Pour le MCTS, deux méthodes de la représentation du jeu ont un impact très important pour le niveau de l'intelligence artificielle que l'on obtient :
+Utiliser un algorithme tel que le MCTS implique que la vitesse et l’efficacité de ce dernier vont grandement être impactés par la représentation. Pour le MCTS, deux méthodes de la représentation du jeu ont un impact très important pour le niveau de l'intelligence artificielle que l'on obtient :
 
 - la méthode servant à donner tous les cas disponibles pour un joueur, qui doit en effet analyser quelles routes sont possibles et jusqu'à quel endroit[^movesavailable];
 - la méthode servant à donner l'état du jeu (aussi utilisée pour connaître le joueur suivant [^nextplayer]) qui doit vérifier s'il est encore possible pour un joueur de bouger [^movesavailable].
