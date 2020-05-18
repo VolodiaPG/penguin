@@ -56,11 +56,9 @@ Finalement, la partie qui consistait à permettre de transporter le jeu codé en
 
 ## Notre environnement de développement
 
-Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker (nous avons également tenté un petit laps de temps sur Vagrant[^conseilSopra] mais l'expérience n'a pas eu grand succès). Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
 Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facilement visible sur notre _repository_.
-
-[^conseilSopra]: un ingénieur chez Sopra Steria nous l'avait conseillé, en effet Docker possède une faille majeure sur Windows : il n'est disponible sur les versions non professionnelles que en tant que _Docker Toolbox_ qui ne permet pas une utilisation avec VSCode.
 
 ## Représentation du jeu
 
