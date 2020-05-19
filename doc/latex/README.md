@@ -35,7 +35,7 @@ Pour la partie graphique nous avions simplement codé en _JavaScript_ pur. Par l
 
 ## Précédemment
 
-Ce projet n'est pas nouveau [@other_penguin]. Une précédente équipe y a déjà passé de nombreuses heures. Le cachier des charges était cependant différent car le jeu devait s'apparenté à une application bureau (écrite en _Java_), et n'était pas destiné a être porté sur le web. Afin de simplifier notre travail, il a été décidé de tout refaire, y compris le MCTS dont le code déjà optimisé leur avait été donné. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en _WebAssembly_ qu'à réécrire.
+Ce projet n'est pas nouveau [@other_penguin]. Une précédente équipe y a déjà passé de nombreuses heures. Le cahier des charges demandait une application bureau (écrite en _Java_), et n'était pas destiné a être porté sur le web. Afin de simplifier notre travail, il a été décidé de tout refaire, y compris le MCTS dont le code déjà optimisé leur avait été donné. En effet, notre technologie étant récente, la parallélisation de l'algorithme, ce serait avéré plus compliquée à adapter en _WebAssembly_ qu'à réécrire complètement.
 
 ## Objectif
 
