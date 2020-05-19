@@ -31,7 +31,7 @@ Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en u
 
 Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de la représentation de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). 
 
-Pour la partie graphique nous avions simplement codé en _JavaScript_ pur. Par la suite le choix s'est porté sur _Angular_ afin de faciliter le développement de la partie graphique. Nous avions testé une technologie complémlentaire pour gérer le graphisme du jeu : _PixiJS_. Cependant, l'expérience n'a pas abouti. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le lien avec le _WebAssembly_ devenait alors trop complexe. 
+Pour la partie graphique nous avions simplement codé en _JavaScript_ pur. Par la suite le choix s'est porté sur _Angular_ afin de faciliter le développement de la partie graphique. Nous avions testé une technologie complémentaire pour gérer le graphisme du jeu : _PixiJS_. Cependant, l'expérience n'a pas abouti. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le lien avec le _WebAssembly_ devenait alors trop complexe. 
 
 ## Précédemment
 
