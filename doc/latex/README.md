@@ -57,7 +57,7 @@ Et en bonus nous avons réalisé ce rapport en _Markdown_ afin qu'il soit facile
 
 ## Représentation du jeu
 
-Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage – une `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques  basés sur des arbres équilibrés – les `std::map`{.cpp}. La représentation de la grille hexagonale sous forme tabulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
+Il est important de noter que le jeu, impose un plateau rectangulaire de N x N cases hexagonales. C'est pourquoi, une première étape de la représentation a été d'appréhander cette représentation, notamment à l'aide d'un guide de méthodologies complet [@patel_blobs_2019]. A partir de ce guide et des règles du jeu, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage : `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. La représentation de la grille hexagonale sous forme rectangulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
 
 
 ## Points sensibles
@@ -76,17 +76,22 @@ Pour obtenir au plus vite une démonstration fonctionnelle pour le débogage, no
 # MCTS
 ## Principe
 
-Le *Monte Carlo Tree Search* (ou MCTS) est un algorithme de recherche heuristique. C'est un algorithme qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Il essaye d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables pour lui. L'arbre est composé de noeuds répartis sur plusieurs couches. Chaque noeud représente une configuration, et ses enfants sont les configurations suivantes. Les noeuds doivent aussi stocker le nombre de parties gagnantes et le nombre total de simulations (à partir de ce noeud).
+Le *Monte Carlo Tree Search* (_MCTS_) est un algorithme de recherche heuristique, qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Son objectif est d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables. L'arbre est composé de noeuds, représentant une configuration particulière, les noeuds fils qui en découlent, proviennent d'un mouvement particulier. Les noeuds doivent aussi stocker le nombre de parties gagnées jusque là, ainsi que le nombre simulations effectuées à partir de cette configuration.
 
-Le principe de l'algorithme est simple ; il n'y a que quatre étapes. On commence par choisir le "meilleur" noeud terminal. On détermine le meilleur noeud terminal grâce à la fonction UCT qui permet d'évaluer le meilleur compromis entre le nombre de visites et le résultat du noeud. Puis on crée ses enfants. Ensuite, on choisit un de ses enfants et on simule une partie aléatoire. Enfin, on transmet ce résultat sur tous les noeuds jusqu'à la racine.
+L'algorithme se compose de quatre étapes :
+
+- _Selection_ du "meilleur" noeud terminal, à l'aide de l'heuristique définie grâce à la fonction UCT, qui évalue le meilleur compromis entre le nombre de visites et le résultat du noeud,
+- _Expansion_ de l'arbre, en créant les noeuds fils à partir des mouvements possibles, 
+- _Simulation_ d'une partie aléatoire à partir d'un de ses noeuds fils,
+- _Back Propagation_ du résultat de cette partie sur tous les noeuds ancêtres jusqu'à la racine.
 
 ![Les quatre étapes du MCTS](mcts.png)
 
-On répète ces 4 étapes jusqu'à ce qu'on arrête l'algorithme. Ensuite, il nous retourne le meilleur coup à jouer, basé sur le nombre de visites des enfants de la racine.
+Ces 4 étapes sont répétés jusqu'à arrêt de l'algorithme, soit à cause d'une limite de temps, soit à cause d'une limite d'itération. Après l'arrêt de la recherche, il retourne le meilleur coup à jouer, correspondant au noeud fils qui a le plus grand nombre de visites.
 
 ## Parallélisation
 
-Afin d'augmenter les performances du MCTS, nous nous sommes penchés sur le multithreading. En effet, cela nous débloque la possibilité de simuler plusieurs parties en même temps, impliquant une augmentation du nombre de parties simulées. Il y a différentes manières de multithreader le MCTS; la _tree parallelization_, la _root parallelization_ et la _leaf parallelization_. D'après cette étude [@mass_par_mcts; @par_mcts], la _root parallelization_ semble la meilleure puisqu'elle permet d'explorer plus d'issues que les autres méthodes. Ainsi, cela augmente les chances de victoire du MCTS. De plus, cette méthode est facile à implémenter. En effet, il suffit d'assigner un arbre sur chaque thread. Les arbres sont donc développés indépendamment entre eux, donc il y a moins de chances que l'algorithme se bloque sur un minimum local. A la fin du temps alloué, nous mettons en commun les arbres, uniquement la première couche pour diminuer le temps de calcul. Ensuite, nous choisissons le meilleur coup à jouer.
+Les performances du MCTS sont donc liées au nombre de parties qu'il peut simuler dans les limites imparties. Une des optimisation possible est donc de simuler plusieurs parties en même temps, avec du multithreading. Il y a différentes manières de multithreader le MCTS; la _tree parallelization_, la _root parallelization_ et la _leaf parallelization_. D'après cette étude [@mass_par_mcts; @par_mcts], la _root parallelization_ semble la meilleure puisqu'elle permet d'explorer plus d'issues que les autres méthodes. Ainsi, cela augmente les chances de victoire du MCTS. De plus, cette méthode est facile à implémenter. En effet, il suffit d'assigner un arbre sur chaque thread. Les arbres sont donc développés indépendamment entre eux, donc il y a moins de chances que l'algorithme se bloque sur un minimum local. A la fin du temps alloué, nous mettons en commun les arbres, uniquement la première couche pour diminuer le temps de calcul. Ensuite, nous choisissons le meilleur coup à jouer.
 
 Pour éviter de recréer l'arbre à chaque fois, nous avons mis en place un système de déplacement de la racine à un de ses enfants, gardant ainsi le sous-arbre de l'enfant.
 
