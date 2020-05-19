@@ -109,9 +109,9 @@ Pour mettre en place la charte graphique de notre application, nous nous sommes 
 
 Dans sa version finale notre application se compose des pages principales suivantes :
 
-- une page d'accueil présentant le projet,
-- une page avec le jeu en lui même,
-- une page de présentation pour les membres de l'équipe,
+- une page d'accueil présentant le projet ;
+- une page avec le jeu en lui même ;
+- une page de présentation pour les membres de l'équipe ;
 - et une page pour les crédits.
 
 ![Aperçu interface graphique](penguinApp.png)
