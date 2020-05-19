@@ -1,5 +1,5 @@
 ---
-title: Jeu des pingouins à base de MCTS (_Monte Carlo Tree Search_) sur le navigateur en utilisant le format `WebAssembly`
+title: Jeu des pingouins à base de MCTS (_Monte Carlo Tree Search_) sur le navigateur en utilisant le format _WebAssembly_
 author:
 
 - Clément \textsc{Chavanon}
