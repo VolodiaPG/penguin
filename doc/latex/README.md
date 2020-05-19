@@ -100,10 +100,10 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 
 ## _Angular_ & _Ionic_
 
-Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser `Typescript`, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du morpion était en `Javascript`.
+Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser _Typescript_, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du morpion était en _Javascript_.
 D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser `Angular`.
 
-Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework `Ionic 4`, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants adaptatifs. Basé sur `Angular`, il s'intègre donc parfaitement dans notre projet.
+Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework _Ionic 4_, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants adaptatifs. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
 
 ## Organisation de l'application
 
