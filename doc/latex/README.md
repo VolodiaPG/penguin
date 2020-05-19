@@ -145,6 +145,8 @@ Le flot de contrôle est contenu par 2 machines à états :
 
 Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le jormat _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
+!["Aperçu Automate fini du jeu"](gameMachine.png)
+
 
 
 # Liens entres toutes les parties
