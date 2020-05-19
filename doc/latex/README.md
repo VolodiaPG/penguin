@@ -84,7 +84,7 @@ Le *Monte Carlo Tree Search* (ou MCTS) est un algorithme de recherche heuristiqu
 
 Le principe de l'algorithme est simple ; il n'y a que quatre étapes. On commence par choisir le "meilleur" noeud terminal. On détermine le meilleur noeud terminal grâce à la fonction UCT qui permet d'évaluer le meilleur compromis entre le nombre de visites et le résultat du noeud. Puis on crée ses enfants. Ensuite, on choisit un de ses enfants et on simule une partie aléatoire. Enfin, on transmet ce résultat sur tous les noeuds jusqu'à la racine.
 
-!["Les quatre étapes du MCTS"](mcts.png)
+![Les quatre étapes du MCTS](mcts.png)
 
 On répète ces 4 étapes jusqu'à ce qu'on arrête l'algorithme. Ensuite, il nous retourne le meilleur coup à jouer, basé sur le nombre de visites des enfants de la racine.
 
@@ -114,9 +114,9 @@ Dans sa version finale notre application se compose des pages principales suivan
 - une page de présentation pour les membres de l'équipe,
 - et une page pour les crédits.
 
-!["Aperçu interface graphique"](penguinApp.png)
+![Aperçu interface graphique](penguinApp.png)
 
-Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages Ionic_. La gestion et la levée d'évènement se fait conformément au standart _Angular_, et par un jeu de double bindings dans la hiérarchie des composants.
+Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages_ `Ionic`. La gestion et la levée d'évènement se fait conformément au standard `Angular`, et par un jeu de double bindings dans la hiérarchie des composants.
 
 ```{.cpp .numberLines startFrom="0"}
 // Organisation de penguinApp
@@ -134,12 +134,12 @@ Cette dernière permet, en plus de mettre à disposition le jeu des pingouins da
      |-> about
 ```
 
-Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
+Durant nos recherches dans les différentes possibilités que pouvaient nous offrir `Ionic`, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
 
-## Automates finis
+## Automates à états finis
 
-Que ce soit pour l'application entière, ou le jeu en particuler il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avencement. 
+Que ce soit pour l'application entière, ou le jeu en particulier il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avancement. 
 
 
 Le flot de contrôle est contenu par 2 machines à états : 
@@ -147,13 +147,13 @@ Le flot de contrôle est contenu par 2 machines à états :
 - une pour l'application globale (apparition des différents composants en fonction des interactions avec l'utilisateur)
 - une deuxième pour gérer exclusivement le jeu
 
-Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le jormat _JSON_. Cette dernière offre aussi un système de visualisation des machines.
+Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le format _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
-!["Aperçu Automate fini du jeu"](gameMachine.png)
+![Aperçu Automate fini du jeu](gameMachine.png)
 
-L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en limitant les interactions en fonction du joueur qui doit jouer. Le passage d'un état à un autre se fait par le déclenchement d'une action pré-enregistrée, souvent cette dernière est associée à un événement sur un composants _Ionic_. La progression dans le jeu se fait donc complètement indépendamment de l'application dans laquelle il est intégré. 
+L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en limitant les interactions en fonction du joueur qui doit jouer. Le passage d'un état à un autre se fait par le déclenchement d'une action pré-enregistrée, souvent cette dernière est associée à un événement sur un composant `Ionic`. La progression dans le jeu se fait donc complètement indépendamment de l'application dans laquelle il est intégré. 
 
-Cette manipulation d'état et d'événements permet d'offrir à l'utilisateur une intéraction agréable et visuelle avec le plateau de jeu.
+Cette manipulation d'états et d'événements permet d'offrir à l'utilisateur une interaction agréable et visuelle avec le plateau de jeu.
 
 
 
@@ -205,7 +205,7 @@ Notre second défi a été de lier la version parallélisée de notre programme 
 
 La mise en place de ce projet a permis de mettre en évidence les difficultés liées à la gestion de ce type de travail, notamment au niveau de l'organisation et les échéances temporelles. Notablement, au début nous n'avions pas les mêmes quantités de travail pour l'équipe graphique que pour la première version du MCTS.
 
-Les technologies utilisées étaient le second point important de ce projet, certaines étaient déjà connues – voire maîtrisées – par des membres du groupe, néanmoins la plupart se sont avérées être une totale découverte. Il fallait donc être capable d'acquérir des connaissances technologiques (`WebAssembly`, MCTS_, _Multithreading_, `Angular` ...) mais également dans les outils nécessaires pour travailler dans une position peu commune (_VSCode_, `Docker`, `Doxygen`, `Compodoc`)  tout en développant  – pour permettre au projet d'avancer. Finalement, le résultat attendu par le cahier des charges a été plus qu'atteint : en effet, nous sommes en mesure de proposer un jeu des pingouins, implémentant une intelligence artificielle, et jouable à partir d'un navigateur Web. Nous avons démontré la viabilité et la maturité du _WebAssembly_[^wasmmature], tout en se heurtant à des obstacles – pas impossibles à passer – mais néanmoins gênants pour un environnement de production. Cette expérience nous a permis, en plus d'approfondir nos connaissances acquises au cours de l'année, de mieux connaître le fonctionnement de chacun et d'apprendre, en demandant conseil à notre encadrant lorsque cela devenait ardu, mais aussi à présenter notre travail [^englishisnotmyfav].
+Les technologies utilisées étaient le second point important de ce projet, certaines étaient déjà connues – voire maîtrisées – par des membres du groupe, néanmoins la plupart se sont avérées être une totale découverte. Il fallait donc être capable d'acquérir des connaissances technologiques (`WebAssembly`, MCTS, _Multithreading_, `Angular` ...) mais également dans les outils nécessaires pour travailler dans une position peu commune (_VSCode_, `Docker`, `Doxygen`, `Compodoc`)  tout en développant  – pour permettre au projet d'avancer. Finalement, le résultat attendu par le cahier des charges a été plus qu'atteint : en effet, nous sommes en mesure de proposer un jeu des pingouins, implémentant une intelligence artificielle, et jouable à partir d'un navigateur Web. Nous avons démontré la viabilité et la maturité du _WebAssembly_[^wasmmature], tout en se heurtant à des obstacles – pas impossibles à passer – mais néanmoins gênants pour un environnement de production. Cette expérience nous a permis, en plus d'approfondir nos connaissances acquises au cours de l'année, de mieux connaître le fonctionnement de chacun et d'apprendre, en demandant conseil à notre encadrant lorsque cela devenait ardu, mais aussi à présenter notre travail [^englishisnotmyfav].
 
 Pour finir : 
 
@@ -213,5 +213,5 @@ Pour finir :
 >
 > -- <cite>Nikola Tesla</cite>
 
-[^wasmmature]: un point étonnant est la possibilité d'allier deux géants dans leurs domaines : la versatilité du `JavaScript` et la puissance crue du `c++`.
+[^wasmmature]: un point étonnant est la possibilité d'allier deux géants dans leurs domaines : la versatilité du `JavaScript` et la puissance crue du `C++`.
 [^englishisnotmyfav]: L’exercice s'est avéré étrange mais encourageant. 
