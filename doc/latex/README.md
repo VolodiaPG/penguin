@@ -52,7 +52,7 @@ Finalement, la partie qui consistait à permettre de transporter le jeu codé en
 
 [^realisation]: Toutes nos sources sont disponibles [@repo_git]. Nous avons également une démonstration en ligne [@repo_demo].
 
-## Notre environnement de développement
+## Environnement de développement
 
 Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `C++` nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
