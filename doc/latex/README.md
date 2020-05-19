@@ -116,7 +116,7 @@ Dans sa version finale notre application se compose des pages principales suivan
 
 Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages Ionic_. La gestion et la levée d'évènement se fait conformément au standart _Angular_, et par un jeu de double bindings dans la hiérarchie des composants.
 
-```{.javascript}
+```{.cpp .numberLines startFrom="0"}
 // Organisation de penguinApp
 |-> animations
 |-> pages
