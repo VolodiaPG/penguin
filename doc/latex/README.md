@@ -33,7 +33,7 @@ Afin de tester la faisabilité et les différentes technologies, nous avons déc
 
 ## Précédemment
 
-Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombreuses heures. Cependant, afin de simplifier notre travail il a été décidé de tout refaire, y compris le MCTS dont le code leur avait été donné déjà optimisé. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en `WebAssembly` qu'à réécrire.
+Ce projet n'est pas nouveau. Une équipe précédente y avait déjà passé de nombreuses heures il y a quelques années [@other_penguin]. Cependant, afin de simplifier notre travail il a été décidé de tout refaire, y compris le MCTS dont le code leur avait été donné déjà optimisé. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en `WebAssembly` qu'à réécrire.
 
 ## Objectif
 
