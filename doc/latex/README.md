@@ -21,15 +21,17 @@ bibliography: references
 
 En début de partie, chaque joueur place un certain nombre de pingouins (de 2 à 4 suivant le nombre de joueurs) sur le plateau. A chaque tour, le joueur doit, si possible, bouger l'un de ses pingouins. Les déplacements autorisés se font en ligne droite suivant les 6 faces de la case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer par-dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils appartiennent ou non au même joueur. Une fois le mouvement achevé, la case de départ est retirée du plateau. Le joueur peut alors incrémenter son score du nombre de poissons qu'il y avait sur cette case. 
 
-Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
+Le jeu se termine lorsque qu'aucun pingouin ne peut se déplacer. Le joueur avec le plus de points (poissons) remporte la partie.
 
 # Sujet
 
-Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en _c++_ pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
+Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en _c++_ la partie algorithmique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
 ## Récapitulatif
 
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique nous avions simplement codé en _JavaScript_ pur. Pour la suite du projet, pour faciliter le développement de la partie graphique, nous avons décidé de choisir _Angular_. Sur la PdC, nous avions testé une autre technologie pour gérer le graphisme du jeu : _PixiJS_. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le lien avec le _WebAssembly_ devenait alors trop complexe. 
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de la représentation de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). 
+
+Pour la partie graphique nous avions simplement codé en _JavaScript_ pur. Par la suite le choix s'est porté sur _Angular_ afin de faciliter le développement de la partie graphique. Nous avions testé une technologie complémentaire pour gérer le graphisme du jeu : _PixiJS_. Cependant, l'expérience n'a pas abouti. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le lien avec le _WebAssembly_ devenait alors trop complexe. 
 
 ## Précédemment
 
