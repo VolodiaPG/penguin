@@ -16,6 +16,7 @@ RUN apt-get install -y cmake cppcheck clang gdb valgrind git && \
 
 # Angular
 RUN npm install -g @angular/cli
+RUN npm install -g @ionic/cli
 
 RUN git clone https://github.com/emscripten-core/emsdk.git /emsdk
 WORKDIR /emsdk
