@@ -39,10 +39,10 @@ Afin de tester la faisabilité et les différentes technologies, nous avons déc
 
 Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été créées :
 
-- Volodia et Romain Hubert pour la création du moteur du jeu en _C++_ et optimisation du code (multithreading) ;
-- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique.
+- Volodia P.-G. et Romain Hubert pour la création du moteur du jeu en _C++_ et optimisation du code ;
+- Maxime G., Romain Hu et Clément C. pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique.
 
-Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en _C++_ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en _C++_ vers le navigateur a été faite par les membres des deux équipes.
 
 
 # Réalisation [^realisation]
