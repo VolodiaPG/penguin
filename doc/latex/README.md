@@ -62,12 +62,12 @@ Notre encadrant nous a indiqué au tout début du projet un guide de méthodolog
 
 ## Points sensibles
 
-Les performances du MCTS sont liées à son efficacité et à sa vitesse d'execution, ces derniers sont grandement impactés par la représentation du jeu. Pour le MCTS, deux méthodes de représentation sont alors possible :
+Les performances du MCTS sont liées à son efficacité et à sa vitesse d'exécution, ces derniers sont grandement impactés par la représentation du jeu. Pour le MCTS, deux méthodes de représentation sont alors possibles :
 
-- basée sur l'énumération de tous les cas disponibles pour un joueur, et d'une analyse des mouvements possibles.[^movesavailable] ;
-- basée sur l'état du jeu, afin de connaître à tout instant le joueur qui doit jouer [^nextplayer], et s'il est encore possible pour lui de bouger [^movesavailable].
+- une basée sur l'énumération de tous les cas disponibles pour un joueur, et d'une analyse des mouvements possibles.[^movesavailable] ;
+- l'autre basée sur l'état du jeu, afin de connaître à tout instant le joueur qui doit jouer [^nextplayer], et s'il est encore possible pour lui de bouger [^movesavailable].
 
-Pour obtenir au plus vite une démonstration fonctionnelle pour le debuguage, nous avons optimisé la deuxième représentation avec une énumération efficace des cas possibles. Cependant par manque de temps, contrairement à nos prédécesseurs [^theyhadtime], nous n'avons pas pu pousser l'optimisation aussi loin. En particulier avec la mise en place de _bitboards_, qui augmentent de manière significative les performances, qui nécessitent pas mal de temps pour le déployer sur le Web.
+Pour obtenir au plus vite une démonstration fonctionnelle pour le débogage, nous avons optimisé la deuxième représentation avec une énumération efficace des cas possibles. Cependant par manque de temps, contrairement à nos prédécesseurs [^theyhadtime], nous n'avons pas pu pousser l'optimisation aussi loin. En particulier avec la mise en place de _bitboards_, qui augmentent de manière significative les performances, qui nécessitent pas mal de temps pour le déployer sur le Web.
 
 [^movesavailable]: Un pingouin peut être bloqué par un trou dans le plateau ou un autre pingouin.
 [^nextplayer]: Il arrive qu'un joueur soit bloqué et qu'attendre son tour ne serve à rien, son adversaire peut lui continuer à récolter tous les points.
@@ -97,7 +97,7 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 ## _Angular_ & _Ionic_
 
 Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser _Typescript_, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du morpion était en _Javascript_.
-D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture Web sur pied au plus vite, nous nous avons décidé d'utiliser _Angular_.
+D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture Web sur pied au plus vite, nous avons décidé d'utiliser _Angular_.
 
 Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework _Ionic 4_, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants adaptatifs. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
 
@@ -127,7 +127,7 @@ Le flot de contrôle est modélisé par 2 machines à états :
 - une pour l'application globale (apparition des différents composants en fonction des interactions avec l'utilisateur) ;
 - une deuxième pour gérer exclusivement le jeu.
 
-Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le format _JSON_. Cette dernière offre aussi un système de visualisation des machines.
+Pour mettre en place ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le format _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
 ![Aperçu Automate fini du jeu](gameMachine.png)
 
@@ -137,13 +137,13 @@ Cette manipulation d'états et d'événements permet d'offrir à l'utilisateur u
 
 
 
-# Liens entres toutes les parties
+# Liens entre toutes les parties
 
 ## Lien entre interface graphique, représentation et MCTS
 
 Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu. Il existe plusieurs niveaux de difficulté pour réaliser ces liens. Le plus simple nous l'avons utilisé lors de notre preuve de concept avec le morpion. Il consiste à marquer les fonctions à exporter directement dans la commande de compilation et est adaptée pour une petite quantité de fonctions. Cependant, le passage à l'échelle ne se fait pas bien, c'est pour cela que nous avons utilisé la seconde méthode : _Embind_ [@embind].
 
-Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _C++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants.
+Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _C++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un fichier avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants.
 
 ## Parallélisation
 
