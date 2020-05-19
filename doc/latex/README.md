@@ -33,20 +33,22 @@ Afin de tester la faisabilité et les différentes technologies, nous avons déc
 
 ## Précédemment
 
-Ce projet n'est pas nouveau. Une équipe précédente y avait déjà passé de nombreuses heures il y a quelques années [@other_penguin]. Cependant, afin de simplifier notre travail il a été décidé de tout refaire, y compris le MCTS dont le code leur avait été donné déjà optimisé. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en _WebAssembly_ qu'à réécrire.
+Ce projet n'est pas nouveau [@other_penguin]. Une précédente équipe y a déjà passé de nombreuses heures. Le cachier des charges était cependant différent car le jeu devait s'apparenté à une application bureau (écrite en _Java_), et n'était pas destiné a être porté sur le web. Afin de simplifier notre travail, il a été décidé de tout refaire, y compris le MCTS dont le code déjà optimisé leur avait été donné. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en _WebAssembly_ qu'à réécrire.
 
 ## Objectif
 
-Nous nous sommes principalement concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme à gérer).
+Nous nous sommes principalement concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme lié au MCTS à gérer).
 
 ## Répartition
 
 Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été créées :
 
-- Volodia et Romain Hubert pour la création du moteur du jeu en _c++_ et optimisation du code (multithreading)
-- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur et la partie graphique
+- Volodia et Romain Hubert pour la création du moteur du jeu en _c++_ et optimisation du code (parallélisation) ;
+- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique.
 
-Finalement, la partie qui consistait à permettre de transporter le jeu codé en _c++_ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en _c++_ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+
+
 
 # Réalisation [^realisation]
 
@@ -60,7 +62,7 @@ Et en bonus nous avons réalisé ce rapport en _Markdown_ afin qu'il soit facile
 
 ## Représentation du jeu
 
-Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage : `std::unordered_map`{.cpp}, d'une part afin d'obtenir une complexité en temps en $O(1)$ moyen et pas de $O(log(n))$ moyen avec les classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. La représentation de la grille hexagonale sous forme rectangulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
+Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage : `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. La représentation de la grille hexagonale sous forme rectangulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
 
 ## Points sensibles
 
@@ -82,7 +84,7 @@ Le *Monte Carlo Tree Search* (ou MCTS) est un algorithme de recherche heuristiqu
 
 Le principe de l'algorithme est simple ; il n'y a que quatre étapes. On commence par choisir le "meilleur" noeud terminal. On détermine le meilleur noeud terminal grâce à la fonction UCT qui permet d'évaluer le meilleur compromis entre le nombre de visites et le résultat du noeud. Puis on crée ses enfants. Ensuite, on choisit un de ses enfants et on simule une partie aléatoire. Enfin, on transmet ce résultat sur tous les noeuds jusqu'à la racine.
 
-!["Les quatre étapes du MCTS"](mcts.png)
+![Les quatre étapes du MCTS](mcts.png)
 
 On répète ces 4 étapes jusqu'à ce qu'on arrête l'algorithme. Ensuite, il nous retourne le meilleur coup à jouer, basé sur le nombre de visites des enfants de la racine.
 
@@ -112,7 +114,7 @@ Dans sa version finale notre application se compose des pages principales suivan
 - une page de présentation pour les membres de l'équipe,
 - et une page pour les crédits.
 
-!["Aperçu interface graphique"](penguinApp.png)
+![Aperçu interface graphique](penguinApp.png)
 
 Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages_ _Ionic_. La gestion et la levée d'évènement se fait conformément au standard _Angular_, et par un jeu de double bindings dans la hiérarchie des composants.
 
@@ -147,11 +149,11 @@ Le flot de contrôle est contenu par 2 machines à états :
 
 Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ _+xstate_, permettant de mettre en place rapidement des automates sous le jormat _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
-!["Aperçu Automate fini du jeu"](gameMachine.png)
+![Aperçu Automate fini du jeu](gameMachine.png)
 
 L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en limitant les interactions en fonction du joueur qui doit jouer. Le passage d'un état à un autre se fait par le déclenchement d'une action pré-enregistrée, souvent cette dernière est associée à un événement sur un composants _Ionic_. La progression dans le jeu se fait donc complètement indépendamment de l'application dans laquelle il est intégré. 
 
-Cette manipulation d'état et d'événements permet d'offrir à l'utilisateur une intéraction agréable et visuelle avec le plateau de jeu.
+Cette manipulation d'états et d'événements permet d'offrir à l'utilisateur une interaction agréable et visuelle avec le plateau de jeu.
 
 
 
