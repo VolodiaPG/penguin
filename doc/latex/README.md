@@ -51,13 +51,13 @@ Finalement,  la tâche qui consistait à permettre de transporter le jeu codé e
 
 ## Environnement de développement
 
-Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en _C++_, nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un _stack_ technique peu commun en _C++_, nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode – développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
-Et en bonus nous avons réalisé ce rapport en _Markdown_ afin qu'il soit facilement visible sur notre _repository_.
+Et en bonus nous avons réalisé ce rapport en _Markdown_ afin qu'il soit facilement visible sur notre _repository_ [@repo_git].
 
 ## Représentation du jeu
 
-Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage : `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. La représentation de la grille hexagonale sous forme rectangulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
+Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage – une `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques  basés sur des arbres équilibrés – les `std::map`{.cpp}. La représentation de la grille hexagonale sous forme tabulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
 
 
 ## Points sensibles
