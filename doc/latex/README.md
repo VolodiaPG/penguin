@@ -114,13 +114,40 @@ Dans sa version finale notre application se compose des pages principales suivan
 
 !["Aperçu interface graphique"](penguinApp.png)
 
-Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation.
+Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages Ionic_. La gestion et la levée d'évènement se fait conformément au standart _Angular_, et par un jeu de double bindings dans la hiérarchie des composants.
 
-En utilisant _ngX-Rocket_ [@ngxrocket][^whatisngxrocket], la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
+```{.javascript}
+// Organisation de penguinApp
+|-> animations
+|-> pages
+    |-> home
+    |-> game
+        |-> board
+            |-> hex
+            |-> penguin
+            |-> models
+        |-> control
+        |-> console
+        |-> info
+     |-> team
+     |-> about
+|-> services
+|-> translations
+|-> assets
+```
 
 Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
-[^whatisngxrocket]: _ngX-Rocket_ est un modèle pour générer facilement une première application. Il permet de débuter avec une architecture de projet robuste, des plugins déjà présent (_I18n_), d'avoir accès à des services (authentification, api) et de choisir un style facilement.
+
+## Automates finis
+
+Que ce soit pour l'application entière, ou le jeu en particuler il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avencement. 
+
+Le flot de contrôle est contenu par 2 machines à états : 
+- une pour l'application globale (apparition des différents composants en fonction des interactions avec l'utilisateur)
+- une deuxième pour gérer exclusivement le jeu
+
+Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le jormat _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
 
 
