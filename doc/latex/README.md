@@ -126,10 +126,10 @@ Durant nos recherches dans les différentes possibilités que pouvaient nous off
 Que ce soit pour l'application entière, ou le jeu en particulier il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avancement. 
 
 
-Le flot de contrôle est contenu par 2 machines à états : 
+Le flot de contrôle est modélisé par 2 machines à états : 
 
-- une pour l'application globale (apparition des différents composants en fonction des interactions avec l'utilisateur)
-- une deuxième pour gérer exclusivement le jeu
+- une pour l'application globale (apparition des différents composants en fonction des interactions avec l'utilisateur) ;
+- une deuxième pour gérer exclusivement le jeu.
 
 Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typescript_ `+xstate`, permettant de mettre en place rapidement des automates sous le format _JSON_. Cette dernière offre aussi un système de visualisation des machines.
 
