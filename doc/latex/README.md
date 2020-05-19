@@ -25,24 +25,24 @@ Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur av
 
 # Sujet
 
-Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard `WebAssembly`. Les sources du projet sont compilées avec `Emscripten` qui permet de coder en `c++` pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
+Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en _C++_ pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
 ## Précédemment
 
-Ce projet n'est pas nouveau. Une précédente équipe a déjà réalisé une application bureau, en `Java`. Cependant, notre cachier des charges était différent, notamment nous devions déployer le jeu sur le web. Ainsi pour préparer ce passage sur le web, et faciliter notre compréhension du MCTS, nous avons décidé de reprendre la logique du début. De plus le fait que `WebAssembly`soit aussi récent, certaines fonctionnnalités, comme la parallélisation de l'algorithme, semblaient plus simple à réécrire qu'à porter telles quelles.
+Ce projet n'est pas nouveau. Une précédente équipe a déjà réalisé une application bureau, en _Java_. Cependant, notre cachier des charges était différent, notamment nous devions déployer le jeu sur le web. Ainsi pour préparer ce passage sur le web, et faciliter notre compréhension du MCTS, nous avons décidé de reprendre la logique du début. De plus le fait que _WebAssembly_soit aussi récent, certaines fonctionnnalités, comme la parallélisation de l'algorithme, semblaient plus simple à réécrire qu'à porter telles quelles.
 
 ## Preuve de Concept
 
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique, nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie _front-end_, nous avons décidé de choisir : `Angular`. Sur la PdC, nous avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet `PixiJS` nécessite une gestion asynchrone de son canvas, son intégration dans une application `Angular` doit donc se faire dans une zone indépendante, le lien avec le `WebAssembly` devenait alors trop complexe. 
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique, nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie _front-end_, nous avons décidé de choisir : _Angular_. Sur la PdC, nous avions testé une autre technologie pour gérer le graphisme du jeu : _PixiJS_. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet _PixiJS_ nécessite une gestion asynchrone de son canvas, son intégration dans une application _Angular_ doit donc se faire dans une zone indépendante, le lien avec le _WebAssembly_ devenait alors trop complexe. 
 
 ## Répartition
 
 Pour mener à bien notre projet, les différentes tâches ont été réparties au sein des membres du groupe. Deux équipes ont été créées :
 
-- Volodia et Romain Hubert pour la création du moteur du jeu en `c++` et optimisation du code (multithreading)
-- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique
+- Volodia et Romain Hubert pour la création du moteur du jeu en _C++_ et optimisation du code (multithreading) ;
+- Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique.
 
-Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en `c++` vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
+Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en _C++_ vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
 
 
 # Réalisation [^realisation]
@@ -51,9 +51,9 @@ Finalement,  la tâche qui consistait à permettre de transporter le jeu codé e
 
 ## Environnement de développement
 
-Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en `c++`, nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
+Devant la variété d'OS utilisés au cours de cette année par les membres de notre équipe et le fait que nous allions développer un stack technique peu commun en _C++_, nous avons décidé de "simplifier" notre développement en utilisant les dernières fonctionnalités de VSCode et en utilisant le développement dans un *container* Docker. Cela permet au projet d'être extrêmement portable et d'être fonctionnel chez n'importe quel développeur !
 
-Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facilement visible sur notre _repository_.
+Et en bonus nous avons réalisé ce rapport en _Markdown_ afin qu'il soit facilement visible sur notre _repository_.
 
 ## Représentation du jeu
 
@@ -64,7 +64,7 @@ Notre encadrant nous a indiqué au tout début du projet un guide de méthodolog
 
 Les performances du MCTS sont liées à son efficacité et à sa vitesse d'execution, ces derniers sont grandement impactés par la représentation du jeu. Pour le MCTS, deux méthodes de représentation sont alors possible :
 
-- basée sur l'énumération de tous les cas disponibles pour un joueur, et d'une analyse des mouvements possibles.[^movesavailable];
+- basée sur l'énumération de tous les cas disponibles pour un joueur, et d'une analyse des mouvements possibles.[^movesavailable] ;
 - basée sur l'état du jeu, afin de connaître à tout instant le joueur qui doit jouer [^nextplayer], et s'il est encore possible pour lui de bouger [^movesavailable].
 
 Pour obtenir au plus vite une démonstration fonctionnelle pour le debuguage, nous avons optimisé la deuxième représentation avec une énumération efficace des cas possibles. Cependant par manque de temps, contrairement à nos prédécesseurs [^theyhadtime], nous n'avons pas pu pousser l'optimisation aussi loin. En particulier avec la mise en place de _bitboards_, qui augmentent de manière significative les performances, qui nécessitent pas mal de temps pour le déployer sur le web.
@@ -97,7 +97,7 @@ Pour offrir une expérience de jeu optimale, et afin d'exporter le jeu sur un na
 ## _Angular_ & _Ionic_
 
 Afin de mettre en place, un code solide et rapidement exploitable, nous voulions impérativement utiliser _Typescript_, pour réaliser le moteur de jeu côté graphisme. En effet, son contrôle de typage est un véritable plus, par rapport à notre preuve de concept, où le moteur du morpion était en _Javascript_.
-D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser `Angular`.
+D'autre part, nous voulions construire une architecture de site Web plus globale qui viendrait englober la partie véritablement jouable. Afin de mettre en place cette architecture web sur pied au plus vite, nous nous avons décidé d'utiliser _Angular_.
 
 Pour mettre en place la charte graphique de notre application, nous nous sommes tournés vers le framework _Ionic 4_, sorti récemment, qui offre aux développeurs des thèmes pré-conçus et des composants adaptatifs. Basé sur _Angular_, il s'intègre donc parfaitement dans notre projet.
 
@@ -114,7 +114,7 @@ Dans sa version finale notre application se compose des pages principales suivan
 
 Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages_ _Ionic_. La gestion et la levée d'évènements se fait conformément au standard _Angular_, et par un jeu de double lien dans la hiérarchie des composants.
 
-Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
+Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le _Dark Theme_.
 
 
 ## Automates à états finis
@@ -143,7 +143,7 @@ Cette manipulation d'états et d'événements permet d'offrir à l'utilisateur u
 
 Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu. Il existe plusieurs niveaux de difficulté pour réaliser ces liens. Le plus simple nous l'avons utilisé lors de notre preuve de concept avec le morpion. Il consiste à marquer les fonctions à exporter directement dans la commande de compilation et est adaptée pour une petite quantité de fonctions. Cependant, le passage à l'échelle ne se fait pas bien, c'est pour cela que nous avons utilisé la seconde méthode : _Embind_ [@embind].
 
-Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _c++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants. Un exemple de code dans un tel fichier est le suivant :
+Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _C++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants. Un exemple de code dans un tel fichier est le suivant :
 
 ```{.cpp .numberLines startFrom="0"}
 ...
@@ -177,17 +177,17 @@ EMSCRIPTEN_BINDINGS(mcts_bind) // Binding code
 
 ## Parallélisation
 
-Notre second défi a été de lier la version parallélisée de notre programme avec `pthreads`[@pthreads_emscripten] et l'interface graphique. En effet, le Web a introduit sa propre version des _threads_ : les _WebWorkers_[^onwebworkers]. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via des types primitifs : les `int` ou les `strings`. Il n'est donc pas aisé de communiquer des valeurs d'instances entres ces _WebWorkers_. Heureusement pour nous, le plus gros du travail est réalisé par _Emscripten_. Néanmoins, nous avons eu un problème inacceptable : le blocage du _thread_ principal de notre application lors du développement des arbres du MCTS, l'interface ne répondait alors plus. Pour pallier cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet de faire des `pause` et `resume` dans le code _c++_ exporté. Plus largement ce module permet de rendre le code asynchrone et donc de poursuivre le traitement des évènements tant appréciés de _JavaScript_ lors de l’exécution de notre algorithme qui n'est alors plus bloquant. Le résultat n'est pourtant pas ce que nous espérions, puisque la fonction exécutant le MCTS ne renvoie alors plus de valeur au final. Nous avons alors défini une fonction _JavaScript_ dans le code _c++_, de façon à ce que ce dernier puisse l'appeler. Cette fonction permet alors d'émettre un événement après que la fonction _c++_ ait terminé [^whyafterterm]. Cette notification permet alors à l'interface de savoir quand récupérer la valeur de sortie et de pallier le problème initial.
+Notre second défi a été de lier la version parallélisée de notre programme avec `pthreads`[@pthreads_emscripten] et l'interface graphique. En effet, le Web a introduit sa propre version des _threads_ : les _WebWorkers_[^onwebworkers]. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via des types primitifs : les `int` ou les `strings`. Il n'est donc pas aisé de communiquer des valeurs d'instances entres ces _WebWorkers_. Heureusement pour nous, le plus gros du travail est réalisé par _Emscripten_. Néanmoins, nous avons eu un problème inacceptable : le blocage du _thread_ principal de notre application lors du développement des arbres du MCTS, l'interface ne répondait alors plus. Pour pallier cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet de faire des `pause` et `resume` dans le code _C++_ exporté. Plus largement ce module permet de rendre le code asynchrone et donc de poursuivre le traitement des évènements tant appréciés de _JavaScript_ lors de l’exécution de notre algorithme qui n'est alors plus bloquant. Le résultat n'est pourtant pas ce que nous espérions, puisque la fonction exécutant le MCTS ne renvoie alors plus de valeur au final. Nous avons alors défini une fonction _JavaScript_ dans le code _C++_, de façon à ce que ce dernier puisse l'appeler. Cette fonction permet alors d'émettre un événement après que la fonction _C++_ ait terminé [^whyafterterm]. Cette notification permet alors à l'interface de savoir quand récupérer la valeur de sortie et de pallier le problème initial.
 
-[^onwebworkers]: Tout comme le `WebAssembly` les _WebWorkers_ ont un support encore limité aux versions récentes des navigateurs, pour ceux ne l'ayant pas désactivé pour des raisons de sécurité.
-[^whatpointers]: Il existe les pointeurs intelligents en c++, seulement notre première utilisation de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattus sur le classique des pointeurs `C`. Si nous avions continué nous aurions certainement abusé des pointeurs `shared` et fini par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de multithreader notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réellement les mécanismes de propriété des `unique_pointers`.
+[^onwebworkers]: Tout comme le _WebAssembly_ les _WebWorkers_ ont un support encore limité aux versions récentes des navigateurs, pour ceux ne l'ayant pas désactivé pour des raisons de sécurité.
+[^whatpointers]: Il existe les pointeurs intelligents en C++, seulement notre première utilisation de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattus sur le classique des pointeurs _C_. Si nous avions continué nous aurions certainement abusé des pointeurs `shared` et fini par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de multithreader notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réellement les mécanismes de propriété des `unique_pointers`.
 [^whyafterterm]: Cela garantie que le traitement de l’événement se produit après la sortie de la fonction qui crée cet événement.
 
 # Conclusion {.unnumbered}
 
 La mise en place de ce projet a permis de mettre en évidence les difficultés liées à la gestion de ce type de travail, notamment au niveau de l'organisation et les échéances temporelles. Notablement, au début nous n'avions pas les mêmes quantités de travail pour l'équipe graphique que pour la première version du MCTS.
 
-Les technologies utilisées étaient le second point important de ce projet, certaines étaient déjà connues – voire maîtrisées – par des membres du groupe, néanmoins la plupart se sont avérées être une totale découverte. Il fallait donc être capable d'acquérir des connaissances technologiques (`WebAssembly`, MCTS, _Multithreading_, `Angular` ...) mais également dans les outils nécessaires pour travailler dans une position peu commune (_VSCode_, `Docker`, `Doxygen`, `Compodoc`)  tout en développant  – pour permettre au projet d'avancer. Finalement, le résultat attendu par le cahier des charges a été plus qu'atteint : en effet, nous sommes en mesure de proposer un jeu des pingouins, implémentant une intelligence artificielle, et jouable à partir d'un navigateur Web. Nous avons démontré la viabilité et la maturité du _WebAssembly_[^wasmmature], tout en se heurtant à des obstacles – pas impossibles à passer – mais néanmoins gênants pour un environnement de production. Cette expérience nous a permis, en plus d'approfondir nos connaissances acquises au cours de l'année, de mieux connaître le fonctionnement de chacun et d'apprendre, en demandant conseil à notre encadrant lorsque cela devenait ardu, mais aussi à présenter notre travail [^englishisnotmyfav].
+Les technologies utilisées étaient le second point important de ce projet, certaines étaient déjà connues – voire maîtrisées – par des membres du groupe, néanmoins la plupart se sont avérées être une totale découverte. Il fallait donc être capable d'acquérir des connaissances technologiques (_WebAssembly_, MCTS, _Multithreading_, _Angular_ ...) mais également dans les outils nécessaires pour travailler dans une position peu commune (_VSCode_, _Docker_, _Doxygen_, _Compodoc_)  tout en développant  – pour permettre au projet d'avancer. Finalement, le résultat attendu par le cahier des charges a été plus qu'atteint : en effet, nous sommes en mesure de proposer un jeu des pingouins, implémentant une intelligence artificielle, et jouable à partir d'un navigateur Web. Nous avons démontré la viabilité et la maturité du _WebAssembly_[^wasmmature], tout en se heurtant à des obstacles – pas impossibles à passer – mais néanmoins gênants pour un environnement de production. Cette expérience nous a permis, en plus d'approfondir nos connaissances acquises au cours de l'année, de mieux connaître le fonctionnement de chacun et d'apprendre, en demandant conseil à notre encadrant lorsque cela devenait ardu, mais aussi à présenter notre travail [^englishisnotmyfav].
 
 Pour finir : 
 
@@ -195,5 +195,5 @@ Pour finir :
 >
 > -- <cite>Nikola Tesla</cite>
 
-[^wasmmature]: un point étonnant est la possibilité d'allier deux géants dans leurs domaines : la versatilité du `JavaScript` et la puissance crue du `C++`.
+[^wasmmature]: un point étonnant est la possibilité d'allier deux géants dans leurs domaines : la versatilité du _JavaScript_ et la puissance crue du _C++_.
 [^englishisnotmyfav]: L’exercice s'est avéré étrange mais encourageant. 
