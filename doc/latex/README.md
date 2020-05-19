@@ -114,7 +114,7 @@ Dans sa version finale notre application se compose des pages principales suivan
 
 !["Aperçu interface graphique"](penguinApp.png)
 
-Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages Ionic_. La gestion et la levée d'évènement se fait conformément au standard `Angular`, et par un jeu de double bindings dans la hiérarchie des composants.
+Cette dernière permet, en plus de mettre à disposition le jeu des pingouins dans un navigateur web, de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation. L'ensemble du rendu graphique est défini par un ensemble de composants venant s'incruster dans des _pages_ `Ionic`. La gestion et la levée d'évènement se fait conformément au standard `Angular`, et par un jeu de double bindings dans la hiérarchie des composants.
 
 ```{.cpp .numberLines startFrom="0"}
 // Organisation de penguinApp
@@ -132,7 +132,7 @@ Cette dernière permet, en plus de mettre à disposition le jeu des pingouins da
      |-> about
 ```
 
-Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
+Durant nos recherches dans les différentes possibilités que pouvaient nous offrir `Ionic`, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
 
 ## Automates finis
@@ -149,7 +149,7 @@ Pour mettre en place, ces automates finis, nous avons utilisé la librairie _Typ
 
 !["Aperçu Automate fini du jeu"](gameMachine.png)
 
-L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en limitant les interactions en fonction du joueur qui doit jouer. Le passage d'un état à un autre se fait par le déclenchement d'une action pré-enregistrée, souvent cette dernière est associée à un événement sur un composants _Ionic_. La progression dans le jeu se fait donc complètement indépendamment de l'application dans laquelle il est intégré. 
+L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en limitant les interactions en fonction du joueur qui doit jouer. Le passage d'un état à un autre se fait par le déclenchement d'une action pré-enregistrée, souvent cette dernière est associée à un événement sur un composants `Ionic`. La progression dans le jeu se fait donc complètement indépendamment de l'application dans laquelle il est intégré. 
 
 Cette manipulation d'état et d'événements permet d'offrir à l'utilisateur une intéraction agréable et visuelle avec le plateau de jeu.
 
