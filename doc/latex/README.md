@@ -118,7 +118,6 @@ Cette dernière permet, en plus de mettre à disposition le jeu des pingouins da
 
 ```{.cpp .numberLines startFrom="0"}
 // Organisation de penguinApp
-|-> animations
 |-> pages
     |-> home
     |-> game
@@ -131,9 +130,6 @@ Cette dernière permet, en plus de mettre à disposition le jeu des pingouins da
         |-> info
      |-> team
      |-> about
-|-> services
-|-> translations
-|-> assets
 ```
 
 Durant nos recherches dans les différentes possibilités que pouvaient nous offrir _Ionic_, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
