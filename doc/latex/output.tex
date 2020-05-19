@@ -122,10 +122,7 @@ case hexagonale sur laquelle se trouve le pingouin. Il ne peut passer
 par-dessus des trous ou au-dessus d'autres pingouins, peu importe qu'ils
 appartiennent ou non au même joueur. Une fois le mouvement achevé, la
 case de départ est retirée du plateau. Le joueur peut alors incrémenter
-son score du nombre de poissons qu'il y avait sur cette case. Si un
-pingouin ne peut plus se déplacer, le joueur retire ce dernier ainsi que
-la case sur laquelle il était. Dans ce cas-là, le joueur remporte aussi
-les poissons contenus dans cette case.
+son score du nombre de poissons qu'il y avait sur cette case.
 
 Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le
 joueur avec le plus de points (poissons) remporte la partie.
@@ -417,6 +414,12 @@ Pour mettre en place, ces automates finis, nous avons utilisé la
 librairie \emph{Typescript} \texttt{+xstate}, permettant de mettre en
 place rapidement des automates sous le jormat \emph{JSON}. Cette
 dernière offre aussi un système de visualisation des machines.
+
+\begin{figure}
+\centering
+\includegraphics{gameMachine.png}
+\caption{``Aperçu Automate fini du jeu''}
+\end{figure}
 
 \section{Liens entres toutes les
 parties}\label{liens-entres-toutes-les-parties}
