@@ -132,7 +132,7 @@ joueur avec le plus de points (poissons) remporte la partie.
 Le sujet portait sur l'implémentation de ce jeu dans un environnement
 Web, en utilisant le nouveau standard \texttt{WebAssembly}. Les sources
 du projet sont compilées avec \texttt{Emscripten} qui permet de coder en
-\texttt{C++} pour la partie technique. L'interface devait se faire avec
+\texttt{c++} pour la partie technique. L'interface devait se faire avec
 les bibliothèques \emph{Simple DirectMedia Layer}.
 
 \subsection{Récapitulatif}\label{ruxe9capitulatif}
@@ -148,7 +148,7 @@ une autre technologie pour gérer le graphisme du jeu : \texttt{PixiJS}.
 Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre
 utilisation. En effet \texttt{PixiJS} nécessite une gestion asynchrone
 de son canvas, son intégration dans une application \texttt{Angular}
-doit donc se faire dans une zone indépendante, le \emph{binding} avec le
+doit donc se faire dans une zone indépendante, le lien avec le
 \texttt{WebAssembly} devenait alors trop complexe.
 
 \subsection{Précédemment}\label{pruxe9cuxe9demment}
@@ -178,14 +178,14 @@ au sein des membres du groupe. Deux équipes ont été créées :
 \tightlist
 \item
   Volodia et Romain Hubert pour la création du moteur du jeu en
-  \texttt{C++} et optimisation du code (multithreading)
+  \texttt{c++} et optimisation du code (multithreading)
 \item
   Maxime, Romain Hu et Clément pour la création de l'interface Web et
   préparation du lien entre le moteur et la partie graphique
 \end{itemize}
 
 Finalement, la partie qui consistait à permettre de transporter le jeu
-codé en \texttt{C++} vers le navigateur a été faite par les membres des
+codé en \texttt{c++} vers le navigateur a été faite par les membres des
 deux équipes (cf Bindings MCTS).
 
 \section[Réalisation ]{\texorpdfstring{Réalisation \footnote{Toutes nos
@@ -197,7 +197,7 @@ développement}\label{environnement-de-duxe9veloppement}
 
 Devant la variété d'OS utilisés au cours de cette année par les membres
 de notre équipe et le fait que nous allions développer un stack
-technique peu commun en \texttt{C++} nous avons décidé de ``simplifier''
+technique peu commun en \texttt{c++} nous avons décidé de ``simplifier''
 notre développement en utilisant les dernières fonctionnalités de VSCode
 et en utilisant le développement dans un \emph{container} Docker. Cela
 permet au projet d'être extrêmement portable et d'être fonctionnel chez
@@ -405,10 +405,16 @@ fallu mettre en place des automates finis (\emph{Finite-State Machine}),
 afin de gérer le flot de contrôle, et contenir les actions possibles en
 fonction de l'état d'avencement.
 
-Le flot de contrôle est contenu par 2 machines à états : - une pour
-l'application globale (apparition des différents composants en fonction
-des interactions avec l'utilisateur) - une deuxième pour gérer
-exclusivement le jeu
+Le flot de contrôle est contenu par 2 machines à états :
+
+\begin{itemize}
+\tightlist
+\item
+  une pour l'application globale (apparition des différents composants
+  en fonction des interactions avec l'utilisateur)
+\item
+  une deuxième pour gérer exclusivement le jeu
+\end{itemize}
 
 Pour mettre en place, ces automates finis, nous avons utilisé la
 librairie \emph{Typescript} \texttt{+xstate}, permettant de mettre en
@@ -420,6 +426,18 @@ dernière offre aussi un système de visualisation des machines.
 \includegraphics{gameMachine.png}
 \caption{``Aperçu Automate fini du jeu''}
 \end{figure}
+
+L'Automate du jeu permet de dérouler la logique du jeu des pingouins, en
+limitant les interactions en fonction du joueur qui doit jouer. Le
+passage d'un état à un autre se fait par le déclenchement d'une action
+pré-enregistrée, souvent cette dernière est associée à un événement sur
+un composants \emph{Ionic}. La progression dans le jeu se fait donc
+complètement indépendamment de l'application dans laquelle il est
+intégré.
+
+Cette manipulation d'état et d'événements permet d'offrir à
+l'utilisateur une intéraction agréable et visuelle avec le plateau de
+jeu.
 
 \section{Liens entres toutes les
 parties}\label{liens-entres-toutes-les-parties}
@@ -434,7 +452,7 @@ se fait pas bien, c'est pour cela que nous avons utilisé la seconde
 méthode : \emph{Embind} \citep{embind}. Elle se traduit pour
 l'utilisateur en de simples lignes d'export de méthodes dans un
 préprocesseur. Les seules difficultés peuvent venir des \emph{templates}
-en \texttt{C++} qui peuvent faire grossir le code, mais un préprocesseur
+en \texttt{c++} qui peuvent faire grossir le code, mais un préprocesseur
 adapté suffit à limiter cela et de l'organisation générale du projet.
 C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir
 du mal à savoir quels classes sont concernées, c'est pour cela qu'en
@@ -443,7 +461,7 @@ nous inspirant de \texttt{Angular} nous avons un ficher avec l'extension
 dossier courant et permet ainsi d'avoir très peu de méthodes à écrire
 juste pour les liens. Le compilateur se charge alors de réaliser les
 liens automatiquement (et mêmes des pointeurs\footnote{Il existe les
-  pointeurs intelligents en C++, seulement notre première utilisation de
+  pointeurs intelligents en c++, seulement notre première utilisation de
   ces derniers a été d'utiliser la version
   \VERB|\BuiltInTok{std::}\NormalTok{shared_pointers}| à la première
   occasion. Devant notre ignorance nous nous sommes rabattus sur le
@@ -518,9 +536,9 @@ traitement des évènements tant appréciés de \emph{JavaScript} lors de
 l'exécution de notre algorithme qui n'est alors plus bloquant. Le
 résultat n'est pourtant pas ce que nous espérions, puisque la fonction
 exécutant le MCTS ne renvoie alors plus de valeur au final. Nous avons
-alors défini une fonction \emph{JavaScript} dans le code \texttt{C++},
+alors défini une fonction \emph{JavaScript} dans le code \texttt{c++},
 de façon à ce que ce dernier puisse l'appeler. Cette fonction permet
-alors d'émettre un événement après que la fonction \texttt{C++} ait
+alors d'émettre un événement après que la fonction \texttt{c++} ait
 terminé {[}\^{}whyafterterm{]}. Cette notification permet alors à
 l'interface de savoir quand récupérer la valeur de sortie et de pallier
 le problème initial.
@@ -549,7 +567,7 @@ implémentant une intelligence artificielle, et jouable à partir d'un
 navigateur Web. Nous avons démontré la viabilité et la maturité du
 \emph{WebAssembly}\footnote{un point étonnant est la possibilité
   d'allier deux géants dans leurs domaines : la versatilité du
-  \texttt{JavaScript} et la puissance crue du \texttt{C++}.}, tout en se
+  \texttt{JavaScript} et la puissance crue du \texttt{c++}.}, tout en se
 heurtant à des obstacles -- pas impossibles à passer -- mais néanmoins
 gênants pour un environnement de production. Cette expérience nous a
 permis, en plus d'approfondir nos connaissances acquises au cours de
