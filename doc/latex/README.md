@@ -143,37 +143,7 @@ Cette manipulation d'états et d'événements permet d'offrir à l'utilisateur u
 
 Il faut maintenant faire le lien entre l'interface graphique et le cœur du jeu. Il existe plusieurs niveaux de difficulté pour réaliser ces liens. Le plus simple nous l'avons utilisé lors de notre preuve de concept avec le morpion. Il consiste à marquer les fonctions à exporter directement dans la commande de compilation et est adaptée pour une petite quantité de fonctions. Cependant, le passage à l'échelle ne se fait pas bien, c'est pour cela que nous avons utilisé la seconde méthode : _Embind_ [@embind].
 
-Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _C++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants. Un exemple de code dans un tel fichier est le suivant :
-
-```{.cpp .numberLines startFrom="0"}
-...
-    // Only target Emscripten compilation (auto-generated flag)
-#ifdef __EMSCRIPTEN__
-...
-using namespace emscripten;
-EMSCRIPTEN_BINDINGS(mcts_bind) // Binding code
-{
-    // Here exporting a c style structure with a field
-    value_object<MCTSConstraints>("MCTSConstraints")
-        .field("time", &MCTSConstraints::time);
-
-    // Templates are more complex if 
-    // we want to keep their multi-types advantages
-#define __MCTS_BIND__(name_prefix, MCTSPlayer, AbstractGame)                               \
-    class_<MCTSPlayer>(name_prefix "_MCTSPlayer")                                          \
-        .constructor<AbstractGame *const &, const MCTSConstraints &>
-    										(allow_raw_pointers()) \
-        .function("bestMove", &MCTSPlayer::bestMove) 
-    // We need to define the types (by clarity + 
-    // 					limitation of the preprocessors)
-    typedef MCTSPlayer< ... > penguin_mcts_player_t;
-    typedef game::AbstractGame< ... > penguin_game_t;
-    // We use it for the penguin game,
-    // but it is as easy to export for the tic tac toe demo
-    __MCTS_BIND__("penguin", penguin_mcts_player_t, penguin_game_t);
-}
-#endif
-```
+Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes dans un préprocesseur. Les seules difficultés peuvent venir des _templates_ en _C++_ qui peuvent faire grossir le code, mais un préprocesseur adapté suffit à limiter cela et de l'organisation générale du projet. C'est-à-dire que suivant où l'on situe ces lignes de lien, on peut avoir du mal à savoir quels classes sont concernées, c'est pour cela qu'en nous inspirant de _Angular_ nous avons un ficher avec l'extension `*.bind.cpp` qui reprend toutes les fonctions exportées dans le dossier courant et permet ainsi d'avoir très peu de méthodes à écrire spécifiques aux les liens. Le compilateur se charge alors de réaliser ces liens automatiquement (et mêmes des pointeurs[^whatpointers] !). De plus la clarté gagnée par cette structure permet aussi de continuer à garder deux plateformes pour développer : le Web et Linux pour avoir accès à l'éventail d'outils de débogage existants.
 
 ## Parallélisation
 
