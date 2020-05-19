@@ -112,6 +112,8 @@ Dans sa version finale notre application se compose des pages principales suivan
 - une page de présentation pour les membres de l'équipe,
 - et une page pour les crédits.
 
+!["Aperçu interface graphique"](penguinApp.png)
+
 Cette dernière permet de présenter le projet dans sa globalité, ainsi que les membres de l'équipe ayant participé à sa réalisation.
 
 En utilisant _ngX-Rocket_ [@ngxrocket][^whatisngxrocket], la base de l'application a pu être générée rapidement et avec une qualité de production. De cette manière notre application a pu disposer d'un service de routage et d'un autre de traduction que nous avons agrémenté au fur et à mesure des différents ajouts de pages et de fonctionnalités.
