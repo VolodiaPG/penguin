@@ -29,7 +29,7 @@ Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en u
 
 ## Précédemment
 
-Ce projet n'est pas nouveau. Une précédente équipe a déjà réalisé une application bureau, en _Java_. Cependant, notre cachier des charges était différent, notamment nous devions déployer le jeu sur le web. Ainsi pour préparer ce passage sur le web, et faciliter notre compréhension du MCTS, nous avons décidé de reprendre la logique du début. De plus le fait que _WebAssembly_soit aussi récent, certaines fonctionnalités, comme la parallélisation de l'algorithme, semblaient plus simple à réécrire qu'à porter telles quelles.
+Ce projet n'est pas nouveau. Une précédente équipe a déjà réalisé une application bureau, en _Java_. Cependant, notre cahier des charges était différent, notamment nous devions déployer le jeu sur le web. Ainsi pour préparer ce passage sur le web, et faciliter notre compréhension du MCTS, nous avons décidé de reprendre la logique du début. De plus le fait que _WebAssembly_soit aussi récent, certaines fonctionnalités, comme la parallélisation de l'algorithme, semblaient plus simple à réécrire qu'à porter telles quelles.
 
 ## Preuve de Concept
 
