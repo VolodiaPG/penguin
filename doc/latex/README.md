@@ -80,7 +80,7 @@ Le *Monte Carlo Tree Search* (_MCTS_) est un algorithme de recherche heuristique
 
 L'algorithme se compose de quatre étapes :
 
-- _Selection_ du "meilleur" nœud terminal, à l'aide de l'heuristique définie grâce à la fonction UCT, qui évalue le meilleur compromis entre le nombre de visites et le résultat du nœud,
+- _Selection_ du "meilleur" nœud terminal, à l'aide de l'heuristique définie grâce à la fonction UCT [^uctformula], qui évalue le meilleur compromis entre le nombre de visites et le résultat du nœud,
 - _Expansion_ de l'arbre, en créant les nœuds fils à partir des mouvements possibles, 
 - _Simulation_ d'une partie aléatoire à partir d'un de ses nœuds fils,
 - _Back Propagation_ du résultat de cette partie sur tous les nœuds ancêtres jusqu'à la racine.
@@ -88,6 +88,8 @@ L'algorithme se compose de quatre étapes :
 ![Les quatre étapes du MCTS](mcts.png)
 
 Ces 4 étapes sont répétées jusqu'à arrêt de l'algorithme, soit à cause d'une limite de temps, soit à cause d'une limite d'itération. Après l'arrêt de la recherche, il retourne le meilleur coup à jouer, correspondant au nœud fils qui a le plus grand nombre de visites.
+
+[^uctformula]: $\frac{w}{n} + c\sqrt{\frac{\ln N}{n}}$
 
 ## Parallélisation
 
@@ -154,7 +156,7 @@ Elle se traduit pour l'utilisateur en de simples lignes d'export de méthodes da
 
 Notre second défi a été de lier la version parallélisée de notre programme avec `pthreads`[@pthreads_emscripten] et l'interface graphique. En effet, le Web a introduit sa propre version des _threads_ : les _WebWorkers_[^onWebworkers]. Cependant ils possèdent leur propre espace mémoire complètement séparé de l'application et ne permettent qu'une communication via des types primitifs : les `int` ou les `strings`. Il n'est donc pas aisé de communiquer des valeurs d'instances entres ces _WebWorkers_. Heureusement pour nous, le plus gros du travail est réalisé par _Emscripten_. Néanmoins, nous avons eu un problème inacceptable : le blocage du _thread_ principal de notre application lors du développement des arbres du MCTS, l'interface ne répondait alors plus. Pour pallier cela nous avons mis en place un mécanisme reposant sur _Asyncify_ [@asyncify] qui permet de faire des `pause` et `resume` dans le code _C++_ exporté. Plus largement ce module permet de rendre le code asynchrone et donc de poursuivre le traitement des évènements tant appréciés de _JavaScript_ lors de l’exécution de notre algorithme qui n'est alors plus bloquant. Le résultat n'est pourtant pas ce que nous espérions, puisque la fonction exécutant le MCTS ne renvoie alors plus de valeur au final. Nous avons alors défini une fonction _JavaScript_ dans le code _C++_, de façon à ce que ce dernier puisse l'appeler. Cette fonction permet alors d'émettre un événement après que la fonction _C++_ ait terminé [^whyafterterm]. Cette notification permet alors à l'interface de savoir quand récupérer la valeur de sortie et de pallier le problème initial.
 
-[^whyafterterm]: Cela garantie que le traitement de l’événement se produit après la sortie de la fonction qui crée cet événement.
+[^whyafterterm]: Cela garantit que le traitement de l’événement se produit après la sortie de la fonction qui crée cet événement.
 [^onWebworkers]: Tout comme le _WebAssembly_ les _WebWorkers_ ont un support encore limité aux versions récentes des navigateurs, pour ceux ne l'ayant pas désactivé pour des raisons de sécurité.
 [^whatpointers]: Il existe les pointeurs intelligents en C++, seulement notre première utilisation de ces derniers a été d'utiliser la version `std::shared_pointers`{.cpp} à la première occasion. Devant notre ignorance nous nous sommes rabattus sur le classique des pointeurs _C_. Si nous avions continué nous aurions certainement abusé des pointeurs `shared` et fini par perdre massivement en performance et en mémoire, surtout que nous avions déjà en tête de paralléliser notre application. Nous ne parlons que des `shared_pointers` puisque nous ne connaissions pas réellement les mécanismes de propriété des `unique_pointers`.
 
