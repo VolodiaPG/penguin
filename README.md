@@ -21,8 +21,8 @@ _Note that for Windows, docker desktop will only work with Windows Pro!_
 
 ### For the Web Part
 
-When developing the angular side of the project, you'll need to go the the `www/` folder and do a `yarn install`.
-Creating a symlink to the bin folder of the cpp part is also required : `ln -s /workspace/bin /workspace/www/src/assets/`.
+When developing the angular side of the project, you'll need to go the the `penguinApp/` folder and do a `npm install`.
+Creating a symlink to the `bin` folder of the cpp part is also required : `ln -s /workspace/bin /workspace/www/src/assets/`.
 
 # Usage
 
