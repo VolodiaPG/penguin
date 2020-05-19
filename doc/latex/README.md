@@ -76,18 +76,18 @@ Pour obtenir au plus vite une démonstration fonctionnelle pour le débogage, no
 # MCTS
 ## Principe
 
-Le *Monte Carlo Tree Search* (_MCTS_) est un algorithme de recherche heuristique, qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Son objectif est d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables. L'arbre est composé de noeuds, représentant une configuration particulière, les noeuds fils qui en découlent, proviennent d'un mouvement particulier. Les noeuds doivent aussi stocker le nombre de parties gagnées jusque là, ainsi que le nombre simulations effectuées à partir de cette configuration.
+Le *Monte Carlo Tree Search* (_MCTS_) est un algorithme de recherche heuristique, qui explore l'arbre des possibles. Au fur et à mesure que l'algorithme se déroule, cet arbre grandit. Son objectif est d'explorer toutes les parties possibles du jeu, en privilégiant les issues favorables. L'arbre est composé de nœuds, représentant une configuration particulière, les nœuds fils qui en découlent, proviennent d'un mouvement particulier. Les nœuds doivent aussi stocker le nombre de parties gagnées jusque là, ainsi que le nombre simulations effectuées à partir de cette configuration.
 
 L'algorithme se compose de quatre étapes :
 
-- _Selection_ du "meilleur" noeud terminal, à l'aide de l'heuristique définie grâce à la fonction UCT, qui évalue le meilleur compromis entre le nombre de visites et le résultat du noeud,
-- _Expansion_ de l'arbre, en créant les noeuds fils à partir des mouvements possibles, 
-- _Simulation_ d'une partie aléatoire à partir d'un de ses noeuds fils,
-- _Back Propagation_ du résultat de cette partie sur tous les noeuds ancêtres jusqu'à la racine.
+- _Selection_ du "meilleur" nœud terminal, à l'aide de l'heuristique définie grâce à la fonction UCT, qui évalue le meilleur compromis entre le nombre de visites et le résultat du nœud,
+- _Expansion_ de l'arbre, en créant les nœuds fils à partir des mouvements possibles, 
+- _Simulation_ d'une partie aléatoire à partir d'un de ses nœuds fils,
+- _Back Propagation_ du résultat de cette partie sur tous les nœuds ancêtres jusqu'à la racine.
 
 ![Les quatre étapes du MCTS](mcts.png)
 
-Ces 4 étapes sont répétés jusqu'à arrêt de l'algorithme, soit à cause d'une limite de temps, soit à cause d'une limite d'itération. Après l'arrêt de la recherche, il retourne le meilleur coup à jouer, correspondant au noeud fils qui a le plus grand nombre de visites.
+Ces 4 étapes sont répétées jusqu'à arrêt de l'algorithme, soit à cause d'une limite de temps, soit à cause d'une limite d'itération. Après l'arrêt de la recherche, il retourne le meilleur coup à jouer, correspondant au nœud fils qui a le plus grand nombre de visites.
 
 ## Parallélisation
 
