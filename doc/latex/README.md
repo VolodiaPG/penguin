@@ -135,7 +135,7 @@ Cette dernière permet, en plus de mettre à disposition le jeu des pingouins da
 Durant nos recherches dans les différentes possibilités que pouvaient nous offrir `Ionic`, nous avons mis en place la possibilité d'accéder à une deuxième charte graphique, définissant le `Dark Theme`.
 
 
-## Automates finis
+## Automates à états finis
 
 Que ce soit pour l'application entière, ou le jeu en particuler il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avencement. 
 
