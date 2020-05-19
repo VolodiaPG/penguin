@@ -25,7 +25,7 @@ Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur av
 
 # Sujet
 
-Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en _C++_ pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
+Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard _WebAssembly_. Les sources du projet sont compilées avec _Emscripten_ qui permet de coder en _C++_ pour la partie algorithmique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
 ## Précédemment
 
