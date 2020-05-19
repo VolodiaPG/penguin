@@ -27,17 +27,13 @@ Le jeu se termine lorsque plus aucun pingouin ne peut se déplacer. Le joueur av
 
 Le sujet portait sur l'implémentation de ce jeu dans un environnement Web, en utilisant le nouveau standard `WebAssembly`. Les sources du projet sont compilées avec `Emscripten` qui permet de coder en `c++` pour la partie technique. L'interface devait se faire avec les bibliothèques _Simple DirectMedia Layer_.
 
-## Récapitulatif
-
-Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique, nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie front-end, nous avons décidé de choisir : `Angular`. Sur la PdC, nous avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet `PixiJS` nécessite une gestion asynchrone de son canvas, son intégration dans une application `Angular` doit donc se faire dans une zone indépendante, le lien avec le `WebAssembly` devenait alors trop complexe. 
-
 ## Précédemment
 
-Ce projet n'est pas nouveau. Une précédente équipe y a déjà passé de nombreuses heures. Le cachier des charges était cependant différent car le jeu devait s'apparenté à une application bureau (écrite en Java), et n'était pas destiné a être porté sur le web. Afin de simplifier notre travail, il a été décidé de tout refaire, y compris le MCTS dont le code déjà optimisé leur avait été donné. En effet, notre technologie étant récente, la parallélisation de l'algorithme, par exemple, pouvait s'avérer plus compliquée à porter en `WebAssembly` qu'à réécrire.
+Ce projet n'est pas nouveau. Une précédente équipe a déjà réalisé une application bureau, en `Java`. Cependant, notre cachier des charges était différent, notamment nous devions déployer le jeu sur le web. Ainsi pour préparer ce passage sur le web, et faciliter notre compréhension du MCTS, nous avons décidé de reprendre la logique du début. De plus le fait que `WebAssembly`soit aussi récent, certaines fonctionnnalités, comme la parallélisation de l'algorithme, semblaient plus simple à réécrire qu'à porter telles quelles.
 
-## Objectif
+## Preuve de Concept
 
-Nous nous sommes principalement concentrés sur le fonctionnement correct de tout le projet et pas seulement de l'algorithme et du jeu. C'est pour cela que nous avons choisi de présenter un résultat plus correct qu'optimal (par exemple nous n'avons pas utilisé de représentation en _bitboards_, comme l'ont fait nos prédécesseurs, de même qu'ils n'ont pas eu l'algorithme lié au MCTS à gérer).
+Afin de tester la faisabilité et les différentes technologies, nous avons décidé de procéder à la création de l'algorithme de façon abstraite et de tester avec un jeu simple et facilement implémentable : le morpion (servant alors de _Preuve de Concept_ - PdC). Pour la partie graphique, nous avions simplement codé en JavaScript pur. Pour la suite du projet, pour faciliter le développement de la partie _front-end_, nous avons décidé de choisir : `Angular`. Sur la PdC, nous avions testé une autre technologie pour gérer le graphisme du jeu : `PixiJS`. Cependant, plus tard, cela ne s'est pas avéré satisfaisant pour notre utilisation. En effet `PixiJS` nécessite une gestion asynchrone de son canvas, son intégration dans une application `Angular` doit donc se faire dans une zone indépendante, le lien avec le `WebAssembly` devenait alors trop complexe. 
 
 ## Répartition
 
@@ -47,7 +43,6 @@ Pour mener à bien notre projet, les différentes tâches ont été réparties a
 - Maxime, Romain Hu et Clément pour la création de l'interface Web et préparation du lien entre le moteur du jeu et la partie graphique
 
 Finalement,  la tâche qui consistait à permettre de transporter le jeu codé en `c++` vers le navigateur a été faite par les membres des deux équipes (cf Bindings MCTS).
-
 
 
 # Réalisation [^realisation]
@@ -63,6 +58,7 @@ Et en bonus nous avons réalisé ce rapport en `Markdown` afin qu'il soit facile
 ## Représentation du jeu
 
 Notre encadrant nous a indiqué au tout début du projet un guide de méthodologies complet sur les plateaux hexagonaux et leurs représentations en informatique [@patel_blobs_2019]. En se basant sur ce guide et sur la forme rectangulaire de notre plateau, nous avons choisi une représentation en mémoire avec un conteneur associatif sous forme de table de hachage : `std::unordered_map`{.cpp}. Cela permet d'obtenir une complexité moyenne en temps de $O(1)$ et pas de $O(log(n))$ avec les représentations classiques, soit avec un conteneur associatif basé sur des arbres équilibrés : `std::map`{.cpp}. La représentation de la grille hexagonale sous forme rectangulaire crée des parties non utilisées dans le tableau  [@patel_blobs_2019, voir la section _map storage_].
+
 
 ## Points sensibles
 
