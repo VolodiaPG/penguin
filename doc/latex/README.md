@@ -137,7 +137,7 @@ Durant nos recherches dans les différentes possibilités que pouvaient nous off
 
 ## Automates à états finis
 
-Que ce soit pour l'application entière, ou le jeu en particuler il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avencement. 
+Que ce soit pour l'application entière, ou le jeu en particulier il a fallu mettre en place des automates finis (_Finite-State Machine_), afin de gérer le flot de contrôle, et contenir les actions possibles en fonction de l'état d'avancement. 
 
 
 Le flot de contrôle est contenu par 2 machines à états : 
