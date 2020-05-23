@@ -61,7 +61,6 @@ export class BoardComponent implements OnInit {
    * Emitter to notify the parent Game Component, when the number of penguins changed.
    */
   @Output() numberPenguinChange = new EventEmitter();
-
   set numberPenguin(val:number) {
     this.numberPenguinValue = val;
     this.numberPenguinChange.emit(this.numberPenguinValue);
@@ -81,7 +80,6 @@ export class BoardComponent implements OnInit {
    * Emitter to notify the parent Game Component, when the number of hexagonals changed.
    */
   @Output() numberHexagonalChange = new EventEmitter();
-
   set numberHexagonal(val:number) {
     if(this.numberHexagonalValue !== undefined) {
       if (this.numberHexagonalValue - val < 0) {
@@ -96,18 +94,6 @@ export class BoardComponent implements OnInit {
   }
 
   /**
-   * Value to count the fishes owned by the user.
-   * Two-way bindings with the game component.
-   */
-  @Input() nbHumanFish: number;
-
-  /**
-   * Value to count the fishes owned by the mcts.
-   * Two-way bindings with the game component.
-   */
-  @Input() nbMctsFish: number;
-
-  /**
    * Emitter to the game component to notify when the user posed one of his penguins.
    */
   @Output() penguinPosed = new EventEmitter<any>();
@@ -116,6 +102,12 @@ export class BoardComponent implements OnInit {
    * Emitter to the game component to notify when the player to play changed.
    */
   @Output() switchPlayerToPlay = new EventEmitter<any>();
+
+  humanScore: number = 0;
+  mctsScore: number = 0;
+
+  @Output() flipHumanScore = new EventEmitter<number>();
+  @Output() flipMctsScore = new EventEmitter<number>();
 
   /**
    * Value to bind the State Controler FSM and to use its value.
@@ -246,6 +238,9 @@ export class BoardComponent implements OnInit {
     this.currentPlayerId = this.wasmGame.getFirstPlayerToPlay();
     this.humanPlayerId = this.currentPlayerId;
 
+    this.flipHumanScore.emit(this.humanScore);
+    this.flipMctsScore.emit(this.mctsScore);
+
     this.generateMapFromWasmBoard();
   }
 
@@ -368,6 +363,11 @@ export class BoardComponent implements OnInit {
         }
       }
     }
+    this.humanScore = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
+    this.flipHumanScore.emit(this.humanScore);
+
+    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId%2 + 1).getScore();
+    this.flipMctsScore.emit(this.mctsScore);
   }
 
   //*************************************************************************************************************************
@@ -464,8 +464,6 @@ export class BoardComponent implements OnInit {
    */
   switchCurrentPlayer() {
     console.log('Current player : ', this.currentPlayerId);
-    this.nbHumanFish = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
-    this.nbMctsFish = this.wasmBoard.getPlayerById(this.humanPlayerId %2 +1).getScore();
     this.currentPlayerId = this.wasmGame.getPlayerToPlay();
     this.switchPlayerToPlay.emit();
     console.log('Switch current player : ', this.currentPlayerId);
@@ -482,6 +480,12 @@ export class BoardComponent implements OnInit {
    * 1 or 2 : id of the player which has won.
    */
   movePerformed() {
+    this.humanScore = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
+    this.flipHumanScore.emit(this.humanScore);
+
+    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId%2 + 1).getScore();
+    this.flipMctsScore.emit(this.mctsScore);
+
     let currentStatus = this.wasmBoard.checkStatus();
     if (currentStatus === 0) {
       // The game isn't finished

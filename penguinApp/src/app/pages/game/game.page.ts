@@ -127,7 +127,6 @@ export class GamePage implements OnInit {
     appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
     this.gameStarted = true;
     this.boardComponent.startWasmGame();
-    this.flipScore();
   }
 
   //***************************************************************************************************************************
@@ -137,16 +136,12 @@ export class GamePage implements OnInit {
   /**
    * Create the animation for the button which show the current score.
    */
-  flipScore() {
+  doflipHumanScore(event: number) {
+    this.nbHumanFish = event;
+
     if (!this.flipHumanScore) {
       this.flipHumanScore = new Flip({
         node: this.scoreHuman.nativeElement,
-        from: '99'
-      });
-    }
-    if (!this.flipMctsScore) {
-      this.flipMctsScore = new Flip({
-        node: this.scoreMcts.nativeElement,
         from: '99'
       });
     }
@@ -154,6 +149,16 @@ export class GamePage implements OnInit {
     this.flipHumanScore.flipTo({
       to: this.nbHumanFish
     });
+  }
+
+  doflipMctsScore(event: any) {
+    this.nbMctsFish = event;
+    if (!this.flipMctsScore) {
+      this.flipMctsScore = new Flip({
+        node: this.scoreMcts.nativeElement,
+        from: '99'
+      });
+    }
 
     this.flipMctsScore.flipTo({
       to: this.nbMctsFish
@@ -169,6 +174,5 @@ export class GamePage implements OnInit {
     } else {
       this.playerToPlay = "human";
     }
-    this.flipScore();
   }
 }

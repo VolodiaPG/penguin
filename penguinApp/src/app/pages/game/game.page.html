@@ -43,7 +43,7 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-button (click)="switchPlayerToPlay()" slot="end">Switch</ion-button>
+    <!-- <ion-button (click)="flipHumanScore()" slot="end">Flip</ion-button> -->
   </ion-toolbar>
 </ion-header>
 
@@ -75,7 +75,7 @@
           <ion-card-header></ion-card-header>
           <ion-card-content>
             <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal" [(nbHumanFish)]="nbHumanFish" [(nbMctsFish)]="nbMctsFish"
-              (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"></app-board>
+              (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()" (flipHumanScore)="doflipHumanScore($event)" (flipMctsScore)="doflipMctsScore($event)"></app-board>
           </ion-card-content>
         </ion-card>
       </ion-col>
