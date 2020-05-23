@@ -8,3 +8,4 @@ node_modules/
 *.log
 multithreaded
 singlethreaded
+penguinApp/src/assets/bin
