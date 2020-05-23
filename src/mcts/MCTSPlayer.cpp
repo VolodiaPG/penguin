@@ -70,7 +70,7 @@ namespace mcts
 
         auto ret = getCorrespondingMove(move);
 
-        last_best_move = ret;
+        latest_result = {ret, tree.getRootNode().score, tree.getRootNode().visits};
 
 #ifdef __EMSCRIPTEN__
         dispatchEvent();
@@ -206,9 +206,9 @@ namespace mcts
         return tree;
     }
     template <class CellT, class PlayerT, class PawnT>
-    const game::Move<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getLastBestMove() const
+    const Result<CellT, PawnT> MCTSPlayer<CellT, PlayerT, PawnT>::getResult() const
     {
-        return last_best_move;
+        return latest_result;
     }
 
     template class MCTSPlayer<game::tic_tac_toe::BoardCell, game::tic_tac_toe::Player, game::tic_tac_toe::Player>;
