@@ -6,3 +6,4 @@ package-lock.json
 yarn.lock
 node_modules/
 *.log
+penguinApp/src/assets/bin
