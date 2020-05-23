@@ -21,7 +21,6 @@ export class ConsoleComponent implements OnInit {
 
   console_conv = [
     {
-      icon: 'book',
       color: 'success',
       text: 'Welcome Back !!!'
     }
@@ -41,7 +40,7 @@ export class ConsoleComponent implements OnInit {
       let line = e.detail.replace(new RegExp('\n', 'g'), '<br />');
 
       console.log(line);
-      this.console_conv.push({icon: 'contact', color: 'warning', text: line});
+      this.console_conv.push({color: 'warning', text: line});
 
       this.console_outputs += line + '<br />';
       console.log(this.console_outputs);
