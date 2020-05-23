@@ -61,7 +61,7 @@ export class BoardComponent implements OnInit {
    * Emitter to notify the parent Game Component, when the number of penguins changed.
    */
   @Output() numberPenguinChange = new EventEmitter();
-  set numberPenguin(val:number) {
+  set numberPenguin(val: number) {
     this.numberPenguinValue = val;
     this.numberPenguinChange.emit(this.numberPenguinValue);
   }
@@ -80,8 +80,8 @@ export class BoardComponent implements OnInit {
    * Emitter to notify the parent Game Component, when the number of hexagonals changed.
    */
   @Output() numberHexagonalChange = new EventEmitter();
-  set numberHexagonal(val:number) {
-    if(this.numberHexagonalValue !== undefined) {
+  set numberHexagonal(val: number) {
+    if (this.numberHexagonalValue !== undefined) {
       if (this.numberHexagonalValue - val < 0) {
         this.addHexagonal();
       } else {
@@ -196,7 +196,9 @@ export class BoardComponent implements OnInit {
   */
   ngOnInit(): void {
     document.addEventListener('new_best_move', (_: any) => {
-      this.processBestMove(this.wasmMCTSPlayer.getLastBestMove());
+      if (this.wasmMCTSPlayer !== undefined) {
+        this.processBestMove(this.wasmMCTSPlayer.getResult().best_move);
+      }
     });
     this.isLoaded = false;
     this.cells = new Array(this.numberHexagonalValue);
@@ -356,7 +358,7 @@ export class BoardComponent implements OnInit {
 
           let ret = this.wasmBoard.performMove(this.penguins[jj].wasmPenguin, this.penguins[jj].cellPosition.wasmCell);
           console.log(`Added penguin #${this.penguins[jj].wasmPenguin.getId()}: ${ret ? "success" : "fail"}`);
-          
+
 
           this.penguins[jj].isVisible = true;
           penguinPosed = true;
@@ -366,7 +368,7 @@ export class BoardComponent implements OnInit {
     this.humanScore = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
     this.flipHumanScore.emit(this.humanScore);
 
-    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId%2 + 1).getScore();
+    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId % 2 + 1).getScore();
     this.flipMctsScore.emit(this.mctsScore);
   }
 
@@ -380,7 +382,7 @@ export class BoardComponent implements OnInit {
    */
   playTurn() {
     console.log(`Turn of player #${this.currentPlayerId}`);
-    
+
     if (this.currentPlayerId === this.humanPlayerId) {
       this.presentSuccessToast('It is your turn ' + this.currentPlayerId + ' !');
       gameService.send(gameService.machine.states.moveBlocked.on.HUMANTURN[0].eventType);
@@ -483,7 +485,7 @@ export class BoardComponent implements OnInit {
     this.humanScore = this.wasmBoard.getPlayerById(this.humanPlayerId).getScore();
     this.flipHumanScore.emit(this.humanScore);
 
-    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId%2 + 1).getScore();
+    this.mctsScore = this.wasmBoard.getPlayerById(this.humanPlayerId % 2 + 1).getScore();
     this.flipMctsScore.emit(this.mctsScore);
 
     let currentStatus = this.wasmBoard.checkStatus();
@@ -608,7 +610,7 @@ export class BoardComponent implements OnInit {
    */
   addHexagonal(): void {
     this.numberHexagonalValue++;
-     let cell: Cell;
+    let cell: Cell;
 
     //Add a cell on all the row
     for (let row = 0; row < this.cells.length; row++) {

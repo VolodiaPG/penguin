@@ -28,7 +28,7 @@ namespace mcts
         .constructor<AbstractGame *const &, const MCTSConstraints &>(allow_raw_pointers()) \
         .function("bestMove", &MCTSPlayer::bestMove)                                       \
         .function("updateTree", &MCTSPlayer::updateTree)                                   \
-        .function("getLastBestMove", &MCTSPlayer::getResult);                              \
+        .function("getResult", &MCTSPlayer::getResult);                              \
                                                                                            \
     value_object<Result>(name_prefix "_Result")                                            \
         .field("best_move", &Result::best_move)                                            \
