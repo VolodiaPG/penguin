@@ -8,7 +8,8 @@
   <base href="/" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
@@ -20,15 +21,25 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
   <script>
+    function locate_file(s) {
+      path = 'assets/singlethreaded/'
+      try {
+        if (window.Worker !== undefined && SharedArrayBuffer !== undefined) {
+          path = 'assets/multithreaded/';
+        }
+      }
+      catch{ }
+      return path + s;
+    }
     var Module = {
-      locateFile: function(s) {
-        return 'assets/bin/' + s;
+      locateFile: function (s) {
+        return locate_file(s);
       },
-      print: (function() {
+      print: (function () {
         var element = document.getElementById('mcts_console');
         if (element) element.value = ''; // clear browser cache
         var that = this;
-        return function(text) {
+        return function (text) {
           if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
           // // These replacements are necessary if you render to raw HTML
           // text = text.replace(/&/g, "&amp;");
@@ -46,12 +57,19 @@
           // }
         };
       })(),
-      printErr: function(e) {
+      printErr: function (e) {
         1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(' ')), console.error(e);
       }
     };
+
+    // locate the correct version of 'main.js' (multithreaded or not)
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = locate_file('main.js');
+    console.log(`Loading ${script.src}`);
+    document.head.appendChild(script);
+
   </script>
-  <script src="assets/bin/main.js"></script>
 </head>
 
 <body>
