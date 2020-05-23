@@ -19,6 +19,14 @@ export class ConsoleComponent implements OnInit {
    */
   public console_outputs: String = '';
 
+  console_conv = [
+    {
+      icon: 'book',
+      color: 'success',
+      text: 'Welcome Back !!!'
+    }
+  ];
+
   /**
    * @ignore
    */
@@ -30,7 +38,12 @@ export class ConsoleComponent implements OnInit {
   ngOnInit() {
     document.addEventListener('mcts_console', (e: any) => {
       console.log(e);
-      this.console_outputs += e.detail.replace(new RegExp('\n', 'g'), '<br />') + '<br />';
+      let line = e.detail.replace(new RegExp('\n', 'g'), '<br />');
+
+      console.log(line);
+      this.console_conv.push({icon: 'contact', color: 'warning', text: line});
+
+      this.console_outputs += line + '<br />';
       console.log(this.console_outputs);
     });
   }
