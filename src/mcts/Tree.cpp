@@ -118,6 +118,7 @@ void Tree<CellT, PlayerT, PawnT>::merge(const Tree *const &tree)
     //and add them to rootNode->childNodes
     if (rootNode->childNodes.size() == 0)
     {
+        rootNode->childNodes.reserve(tree->rootNode->childNodes.size());
         for (Node<CellT, PawnT> *node : tree->rootNode->childNodes)
         {
             Node<CellT, PawnT> *new_node = new Node<CellT, PawnT>();
