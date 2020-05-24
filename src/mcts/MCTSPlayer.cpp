@@ -160,7 +160,7 @@ namespace mcts
                 }
             }
 #ifdef __EMSCRIPTEN__
-            emscripten_sleep(500);
+            emscripten_sleep(10);
 #endif
         }
         // pthread_exit(NULL);
