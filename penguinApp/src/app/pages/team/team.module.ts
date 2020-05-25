@@ -8,6 +8,8 @@ import { TeamPageRoutingModule } from './team-routing.module';
 
 import { TeamPage } from './team.page';
 
+import {TeamCardComponent} from './team-card/team-card.component'
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { TeamPage } from './team.page';
     IonicModule,
     TeamPageRoutingModule
   ],
-  declarations: [TeamPage]
+  declarations: [TeamPage, TeamCardComponent]
 })
 export class TeamPageModule {}
