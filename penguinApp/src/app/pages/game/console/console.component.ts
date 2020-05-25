@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsoleService } from 'src/app/services/console.service';
+import { Subscription } from 'rxjs';
 
 /**
  * Bind with the C++ Wasm Module
@@ -19,6 +21,9 @@ export class ConsoleComponent implements OnInit {
    */
   public console_outputs: String = '';
 
+  messages: any[] = [];
+  subscription: Subscription;
+
   console_conv = [
     {
       human: false,
@@ -37,7 +42,14 @@ export class ConsoleComponent implements OnInit {
   /**
    * @ignore
    */
-  constructor() {}
+  constructor(private consoleService: ConsoleService) {
+    this.subscription = this.consoleService.getResults().subscribe(res => {
+      if(res) {
+        this.messages.push(res);
+        console.log(res.score, res.visits);
+      }
+    })
+  }
 
   /**
    * Create an EventListener, when the Console Component is created, to bind with the C++ console.
@@ -56,4 +68,9 @@ export class ConsoleComponent implements OnInit {
       console.log(this.console_outputs);
     });
   }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.consoleService.unsubscribe();
+}
 }

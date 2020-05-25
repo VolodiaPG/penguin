@@ -7,6 +7,7 @@ import { Penguin } from './models/penguin';
 
 import { gameService } from './models/gameMachine';
 import { appService } from './models/appMachine';
+import { ConsoleService } from 'src/app/services/console.service';
 
 
 declare var Module: any;
@@ -185,7 +186,7 @@ export class BoardComponent implements OnInit {
   /**
   * @ignore
   */
-  constructor(private toastController: ToastController) { }
+  constructor(private toastController: ToastController, private consoleService: ConsoleService) { }
 
   /**
   * Call when the Board Component is created.
@@ -197,7 +198,10 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     document.addEventListener('new_best_move', (_: any) => {
       if (this.wasmMCTSPlayer !== undefined) {
-        let wasmRes = this.wasmMCTSPlayer.getResult()
+        let wasmRes = this.wasmMCTSPlayer.getResult();
+        console.log('Score : ', wasmRes.score, ' / Visits : ', wasmRes.visits);
+        console.log('Ratio : ',  wasmRes.score/wasmRes.visits);
+        this.consoleService.sendResults(wasmRes.score, wasmRes.visits);
         this.processBestMove(wasmRes.best_move);
       }
     });
