@@ -33,6 +33,7 @@
         "@ionic/angular": "^5.0.0",
         "angular-cli-ghpages": "^0.6.2",
         "chart.js": "^2.9.3",
+        "ng2-charts": "^2.3.2",
         "number-flip": "^1.1.8",
         "rxjs": "~6.5.1",
         "tslib": "^1.10.0",

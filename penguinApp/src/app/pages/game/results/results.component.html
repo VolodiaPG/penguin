@@ -1,0 +1,12 @@
+<ion-card color="primary">
+    <ion-card-content>
+        <!-- <canvas #resultsCanvas></canvas> -->
+        <canvas baseChart 
+        [datasets]="chartData" 
+        [labels]="chartLabels"
+        [chartType]="chartType"
+        [colors]="chartColors"
+        >
+        </canvas>
+    </ion-card-content>
+</ion-card>
