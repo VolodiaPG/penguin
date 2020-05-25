@@ -39,9 +39,9 @@ export class GamePage implements OnInit {
    */
   flipHumanScore: any = null;
 
-    /**
-   * To animate, to flip, the MCTS score when it changes.
-   */
+  /**
+ * To animate, to flip, the MCTS score when it changes.
+ */
   flipMctsScore: any = null;
 
   /**
@@ -57,7 +57,7 @@ export class GamePage implements OnInit {
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
-  
+
   /**
    * Service to use the State Machine which controle the app flux.
    */
@@ -89,9 +89,14 @@ export class GamePage implements OnInit {
   nbMctsFish: number;
 
   /**
+   * Difficulty level
+   */
+  difficultyLevel: number;
+
+  /**
    * @ignore
    */
-  constructor() {}
+  constructor() { }
 
   /**
    * @ignore
@@ -104,7 +109,7 @@ export class GamePage implements OnInit {
   //***************************************************************************************************************************
   // ************************************************ START GAME **************************************************************
   // **************************************************************************************************************************
-  
+
   /**
    * Launch the init oh the wasm part and the C++ game.
    */
@@ -176,7 +181,7 @@ export class GamePage implements OnInit {
    * Function to switch the visual information of which player to play.
    */
   switchPlayerToPlay() {
-    if(this.playerToPlay === "human") {
+    if (this.playerToPlay === "human") {
       this.playerToPlay = "mcts";
     } else {
       this.playerToPlay = "human";

@@ -184,6 +184,25 @@ export class BoardComponent implements OnInit {
 
 
   /**
+   * Emitter to notify the parent Game Component, when the number of penguins changed.
+   */
+  @Output() difficultyLevelChange = new EventEmitter();
+  set difficultyLevel(val: number) {
+    this.difficultyLevelValue = val;
+    this.difficultyLevelChange.emit(this.difficultyLevelValue);
+  }
+
+  /**
+   * Value of the Hexagonal Range element in the template.
+   */
+  difficultyLevelValue: number;
+
+  @Input()
+  get difficultyLevel() {
+    return this.difficultyLevelValue;
+  }
+
+  /**
   * @ignore
   */
   constructor(private toastController: ToastController, private consoleService: ConsoleService) { }
@@ -261,8 +280,10 @@ export class BoardComponent implements OnInit {
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
     // this.generateWasmPenguin();
     this.putPenguinOnWasmBoard();
-
-    this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, { time: 2000 });
+    let time = this.difficultyLevel === 2 ? 5000 : 1000;
+    console.log("time " + time);
+    this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, {
+       time: time });
 
     this.playTurn();
   }

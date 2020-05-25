@@ -47,9 +47,24 @@ export class ControlComponent implements OnInit {
    */
   @Output() rangeHexagonalChange = new EventEmitter();
 
+
   set rangeHexagonal(val:number) {
     this.rangeHexagonalValue = val;
     this.rangeHexagonalChange.emit(this.rangeHexagonalValue);
+  }
+
+  difficultyValue: number;
+
+  @Input()
+  get difficulty() {
+    return this.difficultyValue;
+  }
+  
+  @Output() difficultyChange = new EventEmitter();
+
+  set difficulty(val:number) {
+    this.difficultyValue = val;
+    this.difficultyChange.emit(this.difficultyValue);
   }
 
   /**
@@ -107,6 +122,12 @@ export class ControlComponent implements OnInit {
     alert.present();
   }
 
+  segmentChanged(event: any)
+  {
+    console.log(event.detail.value);
+    this.difficulty = event.detail.value === "hard" ? 2 : 1;
+  }
+
   /**
    * Create a little toast to show the current state of the app.
    */
@@ -119,4 +140,5 @@ export class ControlComponent implements OnInit {
     });
     toast.present();
   }
+  
 }

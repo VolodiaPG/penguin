@@ -77,7 +77,7 @@
                     <ion-card-content>
                     </ion-card-content>
                 </ion-card> -->
-                <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal"
+                <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal" [(difficultyLevel)]="difficultyLevel"
                     (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"
                     (flipHumanScore)="doflipHumanScore($event)" (flipMctsScore)="doflipMctsScore($event)"></app-board>
             </ion-col>
@@ -87,7 +87,7 @@
         </ion-row>
     </ion-grid>
     <app-control *ngIf="stateControler.state.value === 'settings'" [(rangePenguin)]="nbPenguin"
-        [(rangeHexagonal)]="nbHexagonal" (nextStep)="initGameBoard()">
+        [(rangeHexagonal)]="nbHexagonal" [(difficulty)]="difficultyLevel" (nextStep)="initGameBoard()">
     </app-control>
 
     <app-info

@@ -9,16 +9,16 @@
   </ion-card-header>
   <ion-card-content>
     <ion-list>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>
           <h2>Education</h2>
         </ion-label>
         <ion-toggle slot="end" color="primary"></ion-toggle>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item lines="full">
         <!-- Icon top -->
-        <ion-segment value="normal">
+        <ion-segment value="normal" (ionChange)="segmentChanged($event)">
           <ion-segment-button value="normal">
             <ion-label>Normal</ion-label>
             <ion-icon name="heart"></ion-icon>
@@ -38,7 +38,7 @@
         </ion-range>
       </ion-item>
       <ion-item>
-        <ion-label>Peng : </ion-label>
+        <ion-label>Penguins : </ion-label>
         <!-- [(ngModel)]="valueRangePenguin" //  value={{valueRangePenguin}} (ionChange)="newNumberPenguin($event)"-->
         <ion-range *ngIf="stateControler.state.value === 'settings'" min="1" max="4" step="1" snaps color="primary"
           [(ngModel)]="rangePenguin">
@@ -48,7 +48,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-button slot="end" color="danger">Cancel</ion-button>
+    <!-- <ion-button slot="end" color="danger">Cancel</ion-button> -->
 
     <ion-button class="animated infinite rubberBand slower" slot="end" (click)="presentConfirm()" translate>Next
     </ion-button>
