@@ -6,14 +6,6 @@
             <ion-badge color="primary" slot="end">{{ console_conv.length }}</ion-badge>
         </ion-item>
     </ion-card-header>
-    <!-- <ion-list>
-    <ion-item>
-      <ion-label [innerHTML]="console_outputs"> </ion-label>
-    </ion-item>
-  </ion-list> -->
-</ion-card>
-
-<ion-card class="container">
     <ion-list class="container">
         <ng-container *ngFor="let l of console_conv">
             <ion-item *ngIf="!l.human" lines="full" class="item">
@@ -39,5 +31,7 @@
             </ion-item>
         </ng-container>
     </ion-list>
-    <app-results></app-results>
 </ion-card>
+<!-- <ion-col>
+    <app-results></app-results>
+</ion-col> -->

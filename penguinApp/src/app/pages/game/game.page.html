@@ -47,7 +47,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="secondary">
             <ion-icon src="assets/icon/options-outline.svg" click=""></ion-icon>
         </ion-fab-button>
@@ -65,26 +65,31 @@
                 <ion-icon src="assets/icon/log-out-outline.svg"></ion-icon>
             </ion-fab-button>
         </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
 
-    <ion-grid class="ion-no-padding">
-        <ion-row justify-content-center style="height: 100%">
-            <ion-col style="height: 100%" size="auto">
-                <ion-card text-center translucent fixed size="auto">
+    <ion-grid>
+        <ion-row center style="height: 100%">
+            <ion-col size="auto">
+                <!-- <ion-card text-center translucent fixed size="auto">
                     <ion-card-header></ion-card-header>
                     <ion-card-content>
-                        <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal" (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()" (flipHumanScore)="doflipHumanScore($event)" (flipMctsScore)="doflipMctsScore($event)"></app-board>
                     </ion-card-content>
-                </ion-card>
+                </ion-card> -->
+                <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal"
+                    (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"
+                    (flipHumanScore)="doflipHumanScore($event)" (flipMctsScore)="doflipMctsScore($event)"></app-board>
             </ion-col>
-            <ion-col style="height: 100%">
+            <ion-col>
                 <app-console></app-console>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <app-control *ngIf="stateControler.state.value === 'settings'" [(rangePenguin)]="nbPenguin" [(rangeHexagonal)]="nbHexagonal" (nextStep)="initGameBoard()">
+    <app-control *ngIf="stateControler.state.value === 'settings'" [(rangePenguin)]="nbPenguin"
+        [(rangeHexagonal)]="nbHexagonal" (nextStep)="initGameBoard()">
     </app-control>
 
-    <app-info *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'initPosWasmPenguin' || stateControler.state.value === 'informations'" [nbPenguin]="nbPenguin" (nextStep)="initPosWasmPenguin()" (launchGame)="launchGame()">
+    <app-info
+        *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'initPosWasmPenguin' || stateControler.state.value === 'informations'"
+        [nbPenguin]="nbPenguin" (nextStep)="initPosWasmPenguin()" (launchGame)="launchGame()">
     </app-info>
 </ion-content>
