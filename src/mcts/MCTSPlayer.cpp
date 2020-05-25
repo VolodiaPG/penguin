@@ -95,6 +95,7 @@ namespace mcts
         size_t i;
         if (trees.size() == 0)
         {
+            trees.reserve(NUMBER_THREADS);
             for (i = 0; i < NUMBER_THREADS; i++)
                 trees.push_back(new mcts::Tree<CellT, PlayerT, PawnT>(game->clone(), constraints));
         }
@@ -159,7 +160,7 @@ namespace mcts
                 }
             }
 #ifdef __EMSCRIPTEN__
-            emscripten_sleep(500);
+            emscripten_sleep(10);
 #endif
         }
         // pthread_exit(NULL);

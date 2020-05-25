@@ -43,9 +43,10 @@ Creating a symlink to the `bin` folder of the cpp part is also required : `ln -s
 
 Everyting is as you are developing normally.
 
-- If you have `.env` related errors, type `yarn run env -s`
-- to serve : `ng serve --host 0.0.0.0` (the host part is needed for the server to be accessible from the host OS)
-- to document and run server : `yarn run compodoc`
+- If you have `.env` related errors, type `npm run env -s`
+- to serve : `npm run start` (the host part is needed for the server to be accessible from the host OS)
+- to document and run server : `npm run compodoc`
+- `npm run wasm` to generate all the wasm files requiered for the appt to run
 
 # Useful other commands
 

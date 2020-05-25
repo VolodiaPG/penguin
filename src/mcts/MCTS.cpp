@@ -18,7 +18,7 @@
 
 #include "MCTS.hpp"
 
-#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 100
+#define NUMBER_ITERATIONS_BEFORE_CHECKING_CHRONO 2000
 #define INCREMENT_VICTORY 1.0
 #define INCREMENT_DRAW 0.5
 #define INCREMENT_DEFEAT -1.0
@@ -82,8 +82,11 @@ namespace mcts
     {
         // the turn has already been played, now it's the next player's turn
         PlayerT *player = tree->game->board->getPlayerById(tree->game->getPlayerToPlay());
+        auto moves = tree->game->getAvailableMoves(player);
 
-        for (const game::Move<CellT, PawnT> &move : tree->game->getAvailableMoves(player))
+        nodeToExpand->childNodes.reserve(moves.size());
+
+        for (const game::Move<CellT, PawnT> &move : moves)
         {
             assert("The player that should be playing is not the one that owns the pawns" && player->getId() == move.pawn->getOwner()->getId());
             Node<CellT, PawnT> *node = new Node<CellT, PawnT>();

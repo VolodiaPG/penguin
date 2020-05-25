@@ -258,6 +258,7 @@ std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
     const Position &penguin_current_pos = current_cell->getPosition();
 
     std::vector<BoardCell *> ret;
+    ret.reserve(3*this->_dimension); // reserve some space, to make it more efficient (not copying everytime...)
 
     int inc_val = -1;
     while (inc_val == -1 || inc_val == 1)
@@ -304,6 +305,7 @@ std::vector<BoardCell *> Board::getAvailableCells(PenguinPawn *penguin)
 std::vector<BoardCell *> Board::getBoardCells()
 {
     std::vector<BoardCell *> ret;
+    ret.reserve(ret.size());
 
     for (const auto &entry : boardValues) // iterate over the "map"
     {
@@ -323,6 +325,7 @@ BoardCell *Board::getCell(int xx, int yy)
 std::vector<PenguinPawn *> Board::getPawnsOnBoard()
 {
     std::vector<PenguinPawn *> ret;
+    ret.reserve(ret.size());
     for (PenguinPawn *penguin : _penguins_on_board)
     {
         ret.push_back(penguin);
