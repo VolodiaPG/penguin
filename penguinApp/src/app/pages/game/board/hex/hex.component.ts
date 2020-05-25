@@ -107,6 +107,7 @@ export class HexComponent implements OnInit {
       this.isLoaded === true &&
       this.cell.terrainIndex !== 0 &&
       (appService.state.value === 'initPosPenguin' ||
+        appService.state.value === 'initPosWasmPenguin' ||
         gameService.state.value === 'waiting' ||
         (gameService.state.value === 'penguinSelected' && this.cell.isAvailable))
     );

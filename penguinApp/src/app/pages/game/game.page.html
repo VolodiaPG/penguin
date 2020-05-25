@@ -3,7 +3,6 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-
     <ion-title slot="start"><span translate>Game</span></ion-title>
 
     <ion-segment [(ngModel)]="playerToPlay" color="warning" [style.pointerEvents]="'none'" slot="start">
@@ -89,7 +88,7 @@
     (nextStep)="initGameBoard()">
   </app-control>
 
-  <app-info *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'informations'"
-    [nbPenguin]="nbPenguin" (launchGame)="launchGame()">
+  <app-info *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'initPosWasmPenguin' || stateControler.state.value === 'informations'"
+    [nbPenguin]="nbPenguin" (nextStep)="initPosWasmPenguin()" (launchGame)="launchGame()">
   </app-info>
 </ion-content>

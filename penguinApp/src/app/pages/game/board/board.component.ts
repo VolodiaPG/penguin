@@ -197,7 +197,8 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     document.addEventListener('new_best_move', (_: any) => {
       if (this.wasmMCTSPlayer !== undefined) {
-        this.processBestMove(this.wasmMCTSPlayer.getResult().best_move);
+        let wasmRes = this.wasmMCTSPlayer.getResult()
+        this.processBestMove(wasmRes.best_move);
       }
     });
     this.isLoaded = false;
@@ -254,7 +255,7 @@ export class BoardComponent implements OnInit {
    */
   startWasmGame() {
     this.wasmPenguins = this.wasmBoard.getPawnsOnBoard();
-    this.generateWasmPenguin();
+    // this.generateWasmPenguin();
     this.putPenguinOnWasmBoard();
 
     this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, { time: 2000 });
@@ -286,16 +287,17 @@ export class BoardComponent implements OnInit {
    * Pose a penguin, not put yet, in the cell in parameter. 
    * @param {Cell} cellPos 
    */
-  posePenguinOn(cellPos: Cell) {
-    if (this.penguins.length < this.numberPenguinValue) {
+  posePenguinOn(cellPos: Cell, id: number, len: number) {
+    if (this.penguins.length < len) {
       let penguin = new Penguin();
       if (!cellPos.hasPenguin) {
         cellPos.hasPenguin = true;
         penguin.cellPosition = cellPos;
-        penguin.textureIndex = this.humanPlayerId;
+        penguin.textureIndex = id;
         penguin.isVisible = true;
 
         this.penguins.push(penguin);
+  
         this.penguinPosed.emit();
       } else {
         this.presentErrorToast("This case isn't empty !");
@@ -346,6 +348,7 @@ export class BoardComponent implements OnInit {
    * Put the penguin on the right cell in C++, with a fake move.
    */
   putPenguinOnWasmBoard() {
+    console.log('Bind penguins posed');
     for (let ii = 0; ii < this.wasmPenguins.size(); ii++) {
       let penguinPosed = false;
       let wasmPenguin = this.wasmPenguins.get(ii);
@@ -552,7 +555,11 @@ export class BoardComponent implements OnInit {
     switch (appService.state.value) {
       case 'initPosPenguin':
         // console.log('Pose a penguin here');
-        this.posePenguinOn(cellClicked);
+        this.posePenguinOn(cellClicked, this.humanPlayerId, this.numberPenguin);
+        break;
+      case 'initPosWasmPenguin':
+        // console.log('Pose a penguin here');
+        this.posePenguinOn(cellClicked, this.humanPlayerId%2 + 1, this.numberPenguin*2);
         break;
     }
 
