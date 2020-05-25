@@ -1,0 +1,14 @@
+<ion-card class="card">
+  <ion-toolbar>
+    <ion-title> {{ name }} </ion-title>
+  </ion-toolbar>
+
+  <ion-card-content>
+    <p class="image-card">
+      <img *ngIf="description === 'Penguin'" src="./assets/penguin.png" />
+      <img *ngIf="role === 'Encadrant'" src="./assets/crazy_penguin.png" />
+    </p>
+    <p>{{ role }}</p>
+    <p>{{ description }}</p>
+  </ion-card-content>
+</ion-card>
