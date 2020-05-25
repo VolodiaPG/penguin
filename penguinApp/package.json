@@ -11,7 +11,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "npx compodoc -p tsconfig.app.json -s",
-    "gh-pages": "cd .. && make clean && make && cd penguinApp && ionic build --prod -- --base-href='https://volodiapg.github.io/penguin/' && npx angular-cli-ghpages --dir='www' --branch='master'"
+    "single_thread": "CWD=$(pwd) DIR=singlethreaded && cd .. && make BUILD_DIR=bin/$DIR MULTITHREADED=false && BIN_DIR=$(pwd) &&  ln -sfn $BIN_DIR/bin/$DIR $CWD/src/assets/$DIR",
+    "multi_thread": "CWD=$(pwd) DIR=multithreaded && cd .. && make BUILD_DIR=bin/$DIR && BIN_DIR=$(pwd) &&  ln -sfn $BIN_DIR/bin/$DIR $CWD/src/assets/$DIR",
+    "wasm": "npm run single_thread & npm run multi_thread",
+    "gh-pages": "npm run wasm && npx ionic build --prod -- --base-href='https://volodiapg.github.io/penguin/' && npx angular-cli-ghpages --dir='www' --branch='gh-pages'"
   },
   "private": true,
   "dependencies": {
