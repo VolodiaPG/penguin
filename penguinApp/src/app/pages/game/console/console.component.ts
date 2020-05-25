@@ -47,6 +47,8 @@ export class ConsoleComponent implements OnInit {
       if(res) {
         this.messages.push(res);
         console.log(res.score, res.visits);
+        let line = "Easy !!! I will win : " + res.score/res.visits;
+        this.console_conv.push({human: false, avatar: 'assets/penguin_enemie.png', color: 'warning', text: line});
       }
     })
   }
@@ -71,6 +73,6 @@ export class ConsoleComponent implements OnInit {
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.consoleService.unsubscribe();
+    this.subscription.unsubscribe();
 }
 }
