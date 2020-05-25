@@ -2,83 +2,82 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Penguin MCTS App</title>
+    <meta charset="utf-8" />
+    <title>Penguin MCTS App</title>
 
-  <base href="/" />
+    <base href="/" />
 
-  <meta name="color-scheme" content="light dark" />
-  <meta name="viewport"
-    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
 
-  <link rel="icon" type="image/png" href="assets/logo/landscape.png" />
+    <link rel="icon" type="image/png" href="assets/logo/landscape.png" />
 
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
-  <script>
-    function locate_file(s) {
-      path = 'assets/singlethreaded/'
-      try {
-        if (window.Worker !== undefined && SharedArrayBuffer !== undefined) {
-          path = 'assets/multithreaded/';
+    <script>
+        function locate_file(s) {
+            path = 'assets/singlethreaded/'
+            try {
+                if (window.Worker !== undefined && SharedArrayBuffer !== undefined) {
+                    path = 'assets/multithreaded/';
+                }
+            } catch {}
+            return path + s;
         }
-      }
-      catch{ }
-      return path + s;
-    }
-    var Module = {
-      locateFile: function (s) {
-        return locate_file(s);
-      },
-      print: (function () {
-        var element = document.getElementById('mcts_console');
-        if (element) element.value = ''; // clear browser cache
-        var that = this;
-        return function (text) {
-          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-          // // These replacements are necessary if you render to raw HTML
-          // text = text.replace(/&/g, "&amp;");
-          // text = text.replace(/</g, "&lt;");
-          // text = text.replace(/>/g, "&gt;");
-          // text = text.replace('\n', '<br>', 'g');
-          console.log(text);
-          let event = new CustomEvent('mcts_console', { detail: text });
-          // that.dispatchEvent(event);
-          document.dispatchEvent(event);
-          // if (element) {
-          //   // element.value += text + "\n";
-          //   // element.scrollTop = element.scrollHeight; // focus on bottom
-          //   element.innerHTML += text + "<br>";
-          // }
+        var Module = {
+            locateFile: function(s) {
+                return locate_file(s);
+            },
+            print: (function() {
+                var element = document.getElementById('mcts_console');
+                if (element) element.value = ''; // clear browser cache
+                var that = this;
+                return function(text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    // // These replacements are necessary if you render to raw HTML
+                    // text = text.replace(/&/g, "&amp;");
+                    // text = text.replace(/</g, "&lt;");
+                    // text = text.replace(/>/g, "&gt;");
+                    // text = text.replace('\n', '<br>', 'g');
+                    console.log(text);
+                    let event = new CustomEvent('mcts_console', {
+                        detail: text
+                    });
+                    // that.dispatchEvent(event);
+                    document.dispatchEvent(event);
+                    // if (element) {
+                    //   // element.value += text + "\n";
+                    //   // element.scrollTop = element.scrollHeight; // focus on bottom
+                    //   element.innerHTML += text + "<br>";
+                    // }
+                };
+            })(),
+            printErr: function(e) {
+                1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(' ')), console.error(e);
+            }
         };
-      })(),
-      printErr: function (e) {
-        1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(' ')), console.error(e);
-      }
-    };
 
-    // locate the correct version of 'main.js' (multithreaded or not)
-    let script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = locate_file('main.js');
-    console.log(`Loading ${script.src}`);
-    document.head.appendChild(script);
-
-  </script>
+        // locate the correct version of 'main.js' (multithreaded or not)
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = locate_file('main.js');
+        console.log(`Loading ${script.src}`);
+        document.head.appendChild(script);
+    </script>
 </head>
 
 <body>
-  <noscript>
+    <noscript>
     <p>
       This page requires JavaScript to work properly. Please enable JavaScript in your browser.
     </p>
   </noscript>
-  <app-root></app-root>
+    <app-root></app-root>
 </body>
 
 </html>

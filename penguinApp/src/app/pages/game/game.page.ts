@@ -121,10 +121,17 @@ export class GamePage implements OnInit {
   }
 
   /**
+   * Go to the Init Wasm Penguin when the user press the Next button.
+   */
+  initPosWasmPenguin() {
+    appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+  }
+
+  /**
    * Launch the wasm Game when the user press the Start button.
    */
   launchGame() {
-    appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+    appService.send(appService.machine.states.initPosWasmPenguin.on.STARTGAME[0].eventType);
     this.gameStarted = true;
     this.boardComponent.startWasmGame();
   }
