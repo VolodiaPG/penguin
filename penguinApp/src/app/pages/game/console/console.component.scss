@@ -4,12 +4,6 @@
   width: 100%;
 }
 
-.container::after {
-content: "";
-clear: both;
-display: table;
-}
-
 .container .item {
   align-self: flex-start
 }
