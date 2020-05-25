@@ -1,11 +1,20 @@
-// .msgMcts {
-//     float: left;
-//     position: relative;
-//     overflow: ;
-// }
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
-// .msgHuman {
-//     float: right;
-//     position: relative;
-//     overflow: auto;
-// }
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container .item {
+    align-self: flex-start
+}
+
+.container .item.right {
+    align-self: flex-end;
+    text-align: right;
+}

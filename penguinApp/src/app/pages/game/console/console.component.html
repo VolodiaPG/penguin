@@ -13,17 +13,30 @@
   </ion-list> -->
 </ion-card>
 
-<ion-card>
-    <ion-list>
-        <ion-item *ngFor="let l of console_conv" lines="full">
-            <ion-avatar>
-                <img [src]="l.avatar">
-            </ion-avatar>
-            <ion-chip [color]="l.color">
-                <ion-label>
-                    {{ l.text }}
-                </ion-label>
-            </ion-chip>
-        </ion-item>
+<ion-card class="container">
+    <ion-list class="container">
+        <ng-container *ngFor="let l of console_conv">
+            <ion-item *ngIf="!l.human" lines="full" class="item">
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+            </ion-item>
+
+            <ion-item *ngIf="l.human" class="item right">
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+            </ion-item>
+        </ng-container>
     </ion-list>
 </ion-card>
