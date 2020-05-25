@@ -7,7 +7,7 @@
         </ion-item>
     </ion-card-header>
     <ion-list class="container">
-        <ng-container *ngFor="let l of console_conv">
+        <ng-container *ngFor="let l of console_conv.slice().reverse()">
             <ion-item *ngIf="!l.human" lines="full" class="item">
                 <ion-avatar>
                     <img [src]="l.avatar">
