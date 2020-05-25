@@ -71,6 +71,6 @@ export class ConsoleComponent implements OnInit {
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.consoleService.unsubscribe();
+    this.subscription.unsubscribe();
 }
 }
