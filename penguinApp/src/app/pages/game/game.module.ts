@@ -11,6 +11,7 @@ import { GamePage } from './game.page';
 import { BoardComponent } from './board/board.component';
 import { ControlComponent } from './control/control.component';
 import { ConsoleComponent } from './console/console.component';
+import { ResultsComponent } from './console/results/results.component';
 import { HexComponent } from './board/hex/hex.component';
 import { PenguinComponent } from './board/penguin/penguin.component';
 import { InfoComponent } from './info/info.component';
@@ -29,7 +30,8 @@ import { InfoComponent } from './info/info.component';
     ControlComponent,
     ConsoleComponent,
     HexComponent,
-    PenguinComponent
+    PenguinComponent,
+    ResultsComponent
   ]
 })
 export class GamePageModule {}

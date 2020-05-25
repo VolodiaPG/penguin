@@ -12,7 +12,7 @@ declare var Module: any;
  */
 @Component({
   selector: 'app-console',
-  templateUrl: './console.component.html',
+  templateUrl: './console.component.html',l
   styleUrls: ['./console.component.scss']
 })
 export class ConsoleComponent implements OnInit {
@@ -50,7 +50,7 @@ export class ConsoleComponent implements OnInit {
         let line = "Easy !!! I will win : " + res.score/res.visits;
         this.console_conv.push({human: false, avatar: 'assets/penguin_enemie.png', color: 'warning', text: line});
       }
-    })
+    });
   }
 
   /**

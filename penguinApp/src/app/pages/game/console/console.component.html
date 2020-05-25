@@ -1,12 +1,12 @@
 <ion-card>
-  <ion-card-header>
-    <ion-item>
-      <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
-      <ion-title>Console</ion-title>
-      <ion-badge color="primary" slot="end">{{ console_conv.length }}</ion-badge>
-    </ion-item>
-  </ion-card-header>
-  <!-- <ion-list>
+    <ion-card-header>
+        <ion-item>
+            <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+            <ion-title>Console</ion-title>
+            <ion-badge color="primary" slot="end">{{ console_conv.length }}</ion-badge>
+        </ion-item>
+    </ion-card-header>
+    <!-- <ion-list>
     <ion-item>
       <ion-label [innerHTML]="console_outputs"> </ion-label>
     </ion-item>
@@ -14,29 +14,30 @@
 </ion-card>
 
 <ion-card>
-  <ion-list>
-    <div *ngFor="let l of console_conv">
-      <ion-item *ngIf="!l.human" [class.msgMcts]="!l.human" lines="full">
-        <ion-avatar>
-          <img [src]="l.avatar">
-        </ion-avatar>
-        <ion-chip [color]="l.color">
-          <ion-label>
-            {{ l.text }}
-          </ion-label>
-        </ion-chip>
-      </ion-item>
+    <ion-list>
+        <div *ngFor="let l of console_conv">
+            <ion-item *ngIf="!l.human" [class.msgMcts]="!l.human" lines="full">
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+            </ion-item>
 
-      <ion-item *ngIf="l.human" [class.msgHuman]="l.human" >
-        <ion-chip [color]="l.color">
-          <ion-label>
-            {{ l.text }}
-          </ion-label>
-        </ion-chip>
-        <ion-avatar>
-          <img [src]="l.avatar">
-        </ion-avatar>
-      </ion-item>
-    </div>
-  </ion-list>
+            <ion-item *ngIf="l.human" [class.msgHuman]="l.human">
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+            </ion-item>
+        </div>
+    </ion-list>
+    <app-results></app-results>
 </ion-card>
