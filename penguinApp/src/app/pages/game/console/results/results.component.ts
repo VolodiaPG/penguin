@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { ConsoleService } from 'src/app/services/console.service';
 import { Subscription } from 'rxjs';
-import { Chart } from 'chart.js';
+import { Chart } from "chart.js";
 
 @Component({
   selector: 'app-results',
@@ -36,7 +36,7 @@ export class ResultsComponent implements OnInit {
         datasets: [
           {
             label: "# of wins",
-            data: [12, 19, 3, 5, 2, 3],
+            data: [0.53, 0.47],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)"
