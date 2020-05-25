@@ -23,6 +23,9 @@
                     </ion-grid>
                 </ion-chip>
             </ion-segment-button>
+            <ion-segment-button class="chart" value="">
+                <app-results></app-results>
+            </ion-segment-button>
             <ion-segment-button value="mcts" layout="icon-end">
                 <ion-chip>
                     <ion-grid>
@@ -42,7 +45,7 @@
             </ion-segment-button>
         </ion-segment>
 
-        <app-results slot="end"></app-results>
+        <!-- <app-results slot="end"></app-results> -->
 
         <!-- <ion-button (click)="flipHumanScore()" slot="end">Flip</ion-button> -->
     </ion-toolbar>

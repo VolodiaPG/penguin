@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConsoleService } from 'src/app/services/console.service';
 import { Subscription } from 'rxjs';
 import { Chart, ChartDataSets } from "chart.js";
@@ -29,7 +29,6 @@ export class ResultsComponent implements OnInit {
 
   chartOptions = {
     responsive: true,
-    maintainAspectRatio: false,
     title: {
       display: false,
       text: 'Score'
