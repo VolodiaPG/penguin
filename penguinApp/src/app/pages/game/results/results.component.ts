@@ -29,6 +29,7 @@ export class ResultsComponent implements OnInit {
 
   chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     title: {
       display: false,
       text: 'Score'
