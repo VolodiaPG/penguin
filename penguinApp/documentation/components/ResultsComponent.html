@@ -96,7 +96,7 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AboutPage.html"  class="active" >AboutPage</a>
+                                    <a href="../components/AboutPage.html" >AboutPage</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
@@ -126,7 +126,7 @@
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                    <a href="../components/ResultsComponent.html"  class="active" >ResultsComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
@@ -291,7 +291,7 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AboutPage.html"  class="active" >AboutPage</a>
+                                           <a href="../components/AboutPage.html" >AboutPage</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
@@ -321,7 +321,7 @@
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                           <a href="../components/ResultsComponent.html"  class="active" >ResultsComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
@@ -410,7 +410,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AboutPage</li>
+  <li>ResultsComponent</li>
 </ol>
 
 
@@ -428,7 +428,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/pages/about/about.page.ts</code>
+    <code>src/app/pages/game/results/results.component.ts</code>
 </p>
 
 
@@ -451,19 +451,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-about</code></td>
+                <td class="col-md-9"><code>app-results</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>about.page.scss</code></td>
+                <td class="col-md-9"><code>results.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>about.page.html</code></td>
+                <td class="col-md-9"><code>results.component.html</code></td>
             </tr>
 
 
@@ -479,7 +479,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor()</code>
+                            <code>constructor(consoleService: any)</code>
                         </td>
                     </tr>
     
@@ -488,22 +488,241 @@
     </section>
 
 
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> chart</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>chart:     <code>Chart</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> chartColors</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>chartColors:     <code>Color[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> chartData</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>chartData:     <code>ChartDataSets[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> chartLabels</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>chartLabels:     <code>Label[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> chartOptions</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>chartOptions:     <code>{ responsive: boolean; title: { display: boolean; text: string; }; pan: { enabled: boolean; mode:...</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> chartType</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>chartType:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>doughnut</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> humanRatio</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>humanRatio:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> mctsRatio</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>mctsRatio:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> showLegend</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>showLegend:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Private</span> subscription</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-lock"></span><code>subscription:     <code>Subscription</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ConsoleService } from &#x27;src/app/services/console.service&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { Chart, ChartDataSets } from &quot;chart.js&quot;;
+import { Color, Label } from &#x27;ng2-charts&#x27;;
 
 @Component({
-  selector: &#x27;app-about&#x27;,
-  templateUrl: &#x27;./about.page.html&#x27;,
-  styleUrls: [&#x27;./about.page.scss&#x27;],
+  selector: &#x27;app-results&#x27;,
+  templateUrl: &#x27;./results.component.html&#x27;,
+  styleUrls: [&#x27;./results.component.scss&#x27;],
 })
-export class AboutPage implements OnInit {
+export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  // @ViewChild(&#x27;canvas&#x27;, { read: ElementRef, static: true }) private resultsCanvas: ElementRef;
 
-  ngOnInit() {
+  private chart: Chart;
+
+  private subscription: Subscription;
+
+  private mctsRatio: number;
+  private humanRatio: number;
+
+  chartData: ChartDataSets[] &#x3D;
+    [
+      { data: [0.5, 0.5], label: &#x27;% of wins&#x27; }
+    ];
+
+  chartLabels: Label[] &#x3D; [&#x27;MCTS&#x27;, &#x27;YOU&#x27;];
+
+  chartOptions &#x3D; {
+    responsive: true,
+    title: {
+      display: false,
+      text: &#x27;Score&#x27;
+    },
+    pan: {
+      enabled: false,
+      mode: &#x27;xy&#x27;
+    },
+    zoom: {
+      enabled: false,
+      mode: &#x27;xy&#x27;
+    }
+  };
+
+  chartColors: Color[] &#x3D; [
+    {
+      borderColor: &#x27;#3880ff&#x27;,
+      backgroundColor: [&#x27;#f04141&#x27;, &#x27;#10dc60&#x27;]
+    }
+  ];
+
+  chartType &#x3D; &#x27;doughnut&#x27;;
+  showLegend &#x3D; false;
+
+  constructor(private consoleService: ConsoleService) {
+    this.subscription &#x3D; this.consoleService.getResults().subscribe(res &#x3D;&gt; {
+      if (res) {
+        this.mctsRatio &#x3D; res.score / res.visits;
+        this.humanRatio &#x3D; 1 - this.mctsRatio;
+
+        this.chartData[0].data &#x3D; [];
+
+        this.chartData[0].data.push(this.mctsRatio);
+        this.chartData[0].data.push(this.humanRatio);
+      }
+    });
   }
 
+  ngOnInit() { }
 }
 </code></pre>
         </div>

@@ -126,6 +126,12 @@
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
                                 </li>
                         </ul>
@@ -173,6 +179,9 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -312,6 +321,12 @@
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
                                        </li>
                                </ul>
@@ -359,6 +374,9 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -498,6 +516,21 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>nextStep</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Emitter to go to the next step in the game init in the Game Component.</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 
     <section>
@@ -573,6 +606,35 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b><span class="modifier"></span> nextConfirm</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play ">
+                                    <span class="fa fa-"></span>
+                                </span>
+                            <code>nextConfirm()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>To create a little controller, to confirm or not the action to be performed.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b><span class="modifier"></span> startConfirm</b>
                         </td>
                     </tr>
@@ -627,10 +689,59 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier"></span> errorToast</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon method fa fa-play ">
+                                    <span class="fa fa-"></span>
+                                </span>
+                            <code>errorToast()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Create a little toast to show the current state of the app service.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> initPosHumanPenguin</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>initPosHumanPenguin:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -650,6 +761,26 @@
     </div>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> srcPenguinTexture</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>srcPenguinTexture:     <code>string</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>assets/penguin.png</code>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
     </section>
@@ -676,6 +807,13 @@ export class InfoComponent implements OnInit {
   @Input() nbPenguin: number;
 
   /**
+   * Emitter to go to the next step in the game init in the Game Component.
+   */
+  @Output() nextStep &#x3D; new EventEmitter&lt;any&gt;();
+
+  initPosHumanPenguin: boolean &#x3D; false;
+
+  /**
    * Emitter to launch the game in the Game Component.
    */
   @Output() launchGame &#x3D; new EventEmitter&lt;any&gt;();
@@ -684,6 +822,8 @@ export class InfoComponent implements OnInit {
    * Arraw to describe the stock of non-posed penguins.
    */
   penguinsNotPosed: Array&lt;boolean&gt;;
+
+  srcPenguinTexture: string &#x3D; &quot;assets/penguin.png&quot;;
 
   /**
    * Constructor of the Info Component.
@@ -709,6 +849,37 @@ export class InfoComponent implements OnInit {
   //***************************************************************************************************************************
   //******************************************** CONFIRM / TOAST **************************************************************
   //***************************************************************************************************************************
+   /**
+   * To create a little controller, to confirm or not the action to be performed.
+   */
+  async nextConfirm() {
+    let alert &#x3D; await this.alertController.create({
+      // title: &#x27;Confirm purchase&#x27;,
+      message: &#x27;Is it okay, for your pawns ?&#x27;,
+      buttons: [
+        {
+          text: &#x27;Cancel&#x27;,
+          role: &#x27;cancel&#x27;,
+          handler: () &#x3D;&gt; {
+            console.log(&#x27;Cancel clicked&#x27;);
+          }
+        },
+        {
+          text: &#x27;Confirm&#x27;,
+          handler: () &#x3D;&gt; {
+            console.log(&#x27;Human Penguins ok, now please init the mcts !&#x27;);
+            this.penguinsNotPosed &#x3D; new Array(this.nbPenguin);
+            this.initPosHumanPenguin &#x3D; true;
+            this.srcPenguinTexture &#x3D; &quot;assets/penguin_enemie.png&quot;;
+            this.nextStep.emit();
+            this.errorToast();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   /**
    * To create a little controller, to confirm or not the action to be performed.
    */
@@ -744,6 +915,19 @@ export class InfoComponent implements OnInit {
     const toast &#x3D; await this.toastController.create({
       message: &quot;Let&#x27;s go !!! &quot;,
       color: &#x27;success&#x27;,
+      position: &#x27;bottom&#x27;,
+      duration: 1000
+    });
+    toast.present();
+  }
+
+    /**
+   * Create a little toast to show the current state of the app service.
+   */
+  async errorToast() {
+    const toast &#x3D; await this.toastController.create({
+      message: &quot;Now, where should I go !?&quot;,
+      color: &#x27;error&#x27;,
       position: &#x27;bottom&#x27;,
       duration: 1000
     });

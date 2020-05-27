@@ -126,6 +126,12 @@
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
                                 </li>
                         </ul>
@@ -173,6 +179,9 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -312,6 +321,12 @@
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
                                        </li>
                                </ul>
@@ -359,6 +374,9 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -452,6 +470,9 @@
                             <li class="list-group-item">
                                 <a href="../components/PenguinComponent.html">PenguinComponent</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="../components/ResultsComponent.html">ResultsComponent</a>
+                            </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
@@ -479,16 +500,20 @@ import { GamePage } from &#x27;./game.page&#x27;;
 import { BoardComponent } from &#x27;./board/board.component&#x27;;
 import { ControlComponent } from &#x27;./control/control.component&#x27;;
 import { ConsoleComponent } from &#x27;./console/console.component&#x27;;
+import { ResultsComponent } from &#x27;./results/results.component&#x27;;
 import { HexComponent } from &#x27;./board/hex/hex.component&#x27;;
 import { PenguinComponent } from &#x27;./board/penguin/penguin.component&#x27;;
 import { InfoComponent } from &#x27;./info/info.component&#x27;;
+
+import { ChartsModule } from &#x27;ng2-charts&#x27;;
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GamePageRoutingModule
+    GamePageRoutingModule,
+    ChartsModule
   ],
   declarations: [
     GamePage,
@@ -497,7 +522,8 @@ import { InfoComponent } from &#x27;./info/info.component&#x27;;
     ControlComponent,
     ConsoleComponent,
     HexComponent,
-    PenguinComponent
+    PenguinComponent,
+    ResultsComponent
   ]
 })
 export class GamePageModule {}

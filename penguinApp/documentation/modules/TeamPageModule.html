@@ -126,6 +126,12 @@
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
                                 </li>
                         </ul>
@@ -173,6 +179,9 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -312,6 +321,12 @@
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
                                        </li>
                                </ul>
@@ -359,6 +374,9 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -434,6 +452,9 @@
                             <li class="list-group-item">
                                 <a href="../s/TeamPage.html">TeamPage</a>
                             </li>
+                            <li class="list-group-item">
+                                <a href="../components/TeamCardComponent.html">TeamCardComponent</a>
+                            </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
@@ -458,6 +479,8 @@ import { TeamPageRoutingModule } from &#x27;./team-routing.module&#x27;;
 
 import { TeamPage } from &#x27;./team.page&#x27;;
 
+import {TeamCardComponent} from &#x27;./team-card/team-card.component&#x27;
+
 @NgModule({
   imports: [
     CommonModule,
@@ -465,7 +488,7 @@ import { TeamPage } from &#x27;./team.page&#x27;;
     IonicModule,
     TeamPageRoutingModule
   ],
-  declarations: [TeamPage]
+  declarations: [TeamPage, TeamCardComponent]
 })
 export class TeamPageModule {}
 </code></pre>

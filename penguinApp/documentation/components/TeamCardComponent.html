@@ -96,7 +96,7 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AboutPage.html"  class="active" >AboutPage</a>
+                                    <a href="../components/AboutPage.html" >AboutPage</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/AppComponent.html" >AppComponent</a>
@@ -129,7 +129,7 @@
                                     <a href="../components/ResultsComponent.html" >ResultsComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                    <a href="../components/TeamCardComponent.html"  class="active" >TeamCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
@@ -291,7 +291,7 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AboutPage.html"  class="active" >AboutPage</a>
+                                           <a href="../components/AboutPage.html" >AboutPage</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/AppComponent.html" >AppComponent</a>
@@ -324,7 +324,7 @@
                                            <a href="../components/ResultsComponent.html" >ResultsComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                           <a href="../components/TeamCardComponent.html"  class="active" >TeamCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
@@ -410,7 +410,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AboutPage</li>
+  <li>TeamCardComponent</li>
 </ol>
 
 
@@ -428,7 +428,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/pages/about/about.page.ts</code>
+    <code>src/app/pages/team/team-card/team-card.component.ts</code>
 </p>
 
 
@@ -451,19 +451,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-about</code></td>
+                <td class="col-md-9"><code>app-team-card</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>about.page.scss</code></td>
+                <td class="col-md-9"><code>team-card.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>about.page.html</code></td>
+                <td class="col-md-9"><code>team-card.component.html</code></td>
             </tr>
 
 
@@ -471,6 +471,54 @@
     </table>
 </section>
 
+    <section>
+        <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>description</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>name</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>role</code>
+                        </td>
+                        <td class="col-md-10">
+                              <p>
+                                <em>Type:</em>    <code>string</code>
+
+                              </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -490,20 +538,21 @@
 
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+            <pre><code class="hljs javascript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 
 @Component({
-  selector: &#x27;app-about&#x27;,
-  templateUrl: &#x27;./about.page.html&#x27;,
-  styleUrls: [&#x27;./about.page.scss&#x27;],
+  selector: &#x27;app-team-card&#x27;,
+  templateUrl: &#x27;./team-card.component.html&#x27;,
+  styleUrls: [&#x27;./team-card.component.scss&#x27;]
 })
-export class AboutPage implements OnInit {
+export class TeamCardComponent implements OnInit {
+  @Input() name: string;
+  @Input() role: string;
+  @Input() description: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 </code></pre>
         </div>

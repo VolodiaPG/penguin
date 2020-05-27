@@ -126,6 +126,12 @@
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
                                 </li>
                         </ul>
@@ -173,6 +179,9 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -312,6 +321,12 @@
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
                                        </li>
                                </ul>
@@ -359,6 +374,9 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -466,6 +484,17 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
+                            <code>difficulty</code>
+                        </td>
+                        <td class="col-md-10">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
                             <code>rangeHexagonal</code>
                         </td>
                         <td class="col-md-10">
@@ -488,6 +517,19 @@
 
     <section>
         <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <code>difficultyChange</code>
+                        </td>
+                        <td class="col-md-10">
+                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html" target="_blank" >EventEmitter</a></code>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -611,6 +653,30 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> segmentChanged</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>segmentChanged(event: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b><span class="modifier"></span> presentToast</b>
                         </td>
                     </tr>
@@ -640,6 +706,21 @@
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> difficultyValue</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>difficultyValue:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -760,9 +841,24 @@ export class ControlComponent implements OnInit {
    */
   @Output() rangeHexagonalChange &#x3D; new EventEmitter();
 
+
   set rangeHexagonal(val:number) {
     this.rangeHexagonalValue &#x3D; val;
     this.rangeHexagonalChange.emit(this.rangeHexagonalValue);
+  }
+
+  difficultyValue: number;
+
+  @Input()
+  get difficulty() {
+    return this.difficultyValue;
+  }
+  
+  @Output() difficultyChange &#x3D; new EventEmitter();
+
+  set difficulty(val:number) {
+    this.difficultyValue &#x3D; val;
+    this.difficultyChange.emit(this.difficultyValue);
   }
 
   /**
@@ -820,6 +916,12 @@ export class ControlComponent implements OnInit {
     alert.present();
   }
 
+  segmentChanged(event: any)
+  {
+    console.log(event.detail.value);
+    this.difficulty &#x3D; event.detail.value &#x3D;&#x3D;&#x3D; &quot;hard&quot; ? 2 : 1;
+  }
+
   /**
    * Create a little toast to show the current state of the app.
    */
@@ -832,6 +934,7 @@ export class ControlComponent implements OnInit {
     });
     toast.present();
   }
+  
 }</code></pre>
         </div>
     </div>
