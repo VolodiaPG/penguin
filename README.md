@@ -10,7 +10,8 @@ _Note that for Windows, Docker desktop will only work with Windows Pro!_
 ## Setup
 
 ### How to start
-First, you need to clone our git repositorie : `https://github.com/VolodiaPG/penguin.git`.
+First, you can just use the deployed version on : `https://volodiapg.github.io/penguin/game`
+Or you can clone our git repositorie : `https://github.com/VolodiaPG/penguin.git` and setup the project environnement.
 
 ### General setup
 
