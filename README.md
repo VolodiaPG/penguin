@@ -19,7 +19,7 @@ _Note that for Windows, Docker desktop will only work with Windows Pro!_
 >
 > - Check you switched and used Linux container in the Docker Desktop
 > - Check you have enough memory in your disk
-> - If you are reading this line, you have to change your DNS address to etablish the connection with the server
+> - If you are reading this line, you have to change your DNS address to establish the connection with the server
 
 # Launch
 
@@ -30,7 +30,6 @@ When using the application, you'll need to go the the `penguinApp/` folder and d
 - `npm install` to install dependencies
 - `npm run wasm` to generate all the wasm files required for the app to run
 - `npm run start` to serve (the host part is needed for the server to be accessible from the host OS)
-- `npm run compodoc` to document and run server
 
 > ### Some issues
 >
