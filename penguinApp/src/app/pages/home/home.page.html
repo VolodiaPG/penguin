@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      <span translate>Home</span>
+    </ion-title>
+
+    <!-- <ion-chip slot="end">
+      <ion-avatar>
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+" />
+      </ion-avatar>
+      <ion-label>Avatar Chip</ion-label>
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-chip> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Title -->
+  <ion-card padding>
+    <ion-card-header>
+      <ion-card-title style="height: 100%; display: flex; align-items: center; justify-content: center;">
+        <h1>Penguin Game</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="height: 100%; display: flex; align-items: center; justify-content: center;">
+      <img class="logo" src="assets/logo/landscape.svg" />
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Contents -->
+  <ion-card text-center padding>
+    <ion-card-title color="primary">
+      <span translate>
+        <h2><strong>TECHNOLOGIES USED</strong></h2>
+      </span>
+    </ion-card-title>
+    <ion-card-content>
+
+      <ion-grid>
+        <ion-row>
+          <!-- FRONT-END -->
+          <ion-col>
+            <ion-label color="secondary">
+              <h2><strong>Front-End</strong></h2>
+            </ion-label>
+            <ion-list>
+              <!-- <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/ngx-rocket-logo.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>Ngx-Rocket 4</h3>
+                  <p>
+                    This application was created using ngx-rocket, to start the project with correct structure.
+                  </p>
+                </ion-label>
+              </ion-item> -->
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/Angular-Logo.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>Angular 8</h3>
+                  <p>
+                    Angular is the framework used to build the whole architecture and all the components of the
+                    application.
+                  </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/Ionic-logo200.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>Ionic 4</h3>
+                  <p>
+                    Ionic is an Angular framework to easily build responsive and thematic components. It was used to
+                    define the graphical charter.
+                  </p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <!-- BACK-END -->
+          <ion-col>
+            <ion-label color="secondary">
+              <h2><strong>Back-End</strong></h2>
+            </ion-label>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/C++_Logo.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>C++ 17</h3>
+                  <p>
+                    The game engine was developped in C++, to provide efficient performance.
+                  </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/Emscripten_logo.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>Emscripten</h3>
+                  <p>
+                    The C++ code needs to be compile, with Emscripten, in javascript to allow its interpratation into a
+                    web browser .
+                  </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="assets/logo/WebAssembly_Logo.png">
+                </ion-avatar>
+                <ion-label text-wrap>
+                  <h3>WebAssembly</h3>
+                  <p>
+                    The game engine is now usable on the web, with WebAssembly.
+                  </p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card text-center padding>
+    <ion-card-title color="primary">
+      <span translate>
+        <h2><strong>CONCLUSION</strong></h2>
+      </span>
+    </ion-card-title>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="assets/logo/angular-web-assembly.png">
+          </ion-avatar>
+          <ion-label text-wrap>
+            <h3>Angular AND WebAssembly</h3>
+            <p>
+              This application is a mix between both technologies, to use the power of WebAssembly directly on a browser
+              and in an Angualar application.
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

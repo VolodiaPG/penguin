@@ -1,0 +1,186 @@
+\hypertarget{classgame_1_1penguin_1_1_human_player}{}\section{game\+:\+:penguin\+:\+:Human\+Player Class Reference}
+\label{classgame_1_1penguin_1_1_human_player}\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+
+
+{\ttfamily \#include $<$Human\+Player.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:penguin\+:\+:Human\+Player\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classgame_1_1penguin_1_1_human_player__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:penguin\+:\+:Human\+Player\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classgame_1_1penguin_1_1_human_player__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1penguin_1_1_human_player_a4f91e8095a6c97c1a099d1576910267e}{Human\+Player} (unsigned int id)
+\item 
+void \hyperlink{classgame_1_1penguin_1_1_human_player_a1474720bb1f767c195ac316dd6a8ee82}{add\+Score} (int score)
+\begin{DoxyCompactList}\small\item\em Adds to the score;. \end{DoxyCompactList}\item 
+void \hyperlink{classgame_1_1penguin_1_1_human_player_ac164fc99bfe3fc2c6818aeb7d41fc885}{substract\+Score} (int score)
+\begin{DoxyCompactList}\small\item\em Substract to the score. \end{DoxyCompactList}\item 
+int \hyperlink{classgame_1_1penguin_1_1_human_player_afe805f2359ba2c909c078a7fc3833ede}{get\+Score} ()
+\begin{DoxyCompactList}\small\item\em Returns the player\textquotesingle{}s score. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ $>$ \hyperlink{classgame_1_1penguin_1_1_human_player_a28c5485b12e0c8fcd340458255c06587}{get\+Penguins} () const
+\begin{DoxyCompactList}\small\item\em Get the penguins possessed by the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgame_1_1penguin_1_1_human_player_ad0f5548eee1fb7b866c592da4b529b69}{equals\+\_\+to} (const \hyperlink{classgame_1_1_abstract_player}{Abstract\+Player} \&pawn) const override
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_human_player_a12525b6ed7c8186be0bee5cf78e2a49c}{Board}
+\begin{DoxyCompactList}\small\item\em Allow the \hyperlink{classgame_1_1penguin_1_1_board}{Board} Object to access private properties and methods, especially useful for add\+Penguin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_a4f91e8095a6c97c1a099d1576910267e}\label{classgame_1_1penguin_1_1_human_player_a4f91e8095a6c97c1a099d1576910267e}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!Human\+Player@{Human\+Player}}
+\index{Human\+Player@{Human\+Player}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{Human\+Player()}{HumanPlayer()}}
+{\footnotesize\ttfamily game\+::penguin\+::\+Human\+Player\+::\+Human\+Player (\begin{DoxyParamCaption}\item[{unsigned int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_a1474720bb1f767c195ac316dd6a8ee82}\label{classgame_1_1penguin_1_1_human_player_a1474720bb1f767c195ac316dd6a8ee82}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!add\+Score@{add\+Score}}
+\index{add\+Score@{add\+Score}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{add\+Score()}{addScore()}}
+{\footnotesize\ttfamily void game\+::penguin\+::\+Human\+Player\+::add\+Score (\begin{DoxyParamCaption}\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+Adds to the score;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & the score to add \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_human_player_a1474720bb1f767c195ac316dd6a8ee82_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_ad0f5548eee1fb7b866c592da4b529b69}\label{classgame_1_1penguin_1_1_human_player_ad0f5548eee1fb7b866c592da4b529b69}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!equals\+\_\+to@{equals\+\_\+to}}
+\index{equals\+\_\+to@{equals\+\_\+to}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{equals\+\_\+to()}{equals\_to()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Human\+Player\+::equals\+\_\+to (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_player}{Abstract\+Player} \&}]{pawn }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classgame_1_1_abstract_player_adacb7220ee80c15058b9e2619bd9c72b}{game\+::\+Abstract\+Player}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_human_player_ad0f5548eee1fb7b866c592da4b529b69_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_a28c5485b12e0c8fcd340458255c06587}\label{classgame_1_1penguin_1_1_human_player_a28c5485b12e0c8fcd340458255c06587}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!get\+Penguins@{get\+Penguins}}
+\index{get\+Penguins@{get\+Penguins}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{get\+Penguins()}{getPenguins()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ $>$ game\+::penguin\+::\+Human\+Player\+::get\+Penguins (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the penguins possessed by the player. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$const unsigned int$>$ the list of all the penguins 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_human_player_a28c5485b12e0c8fcd340458255c06587_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_afe805f2359ba2c909c078a7fc3833ede}\label{classgame_1_1penguin_1_1_human_player_afe805f2359ba2c909c078a7fc3833ede}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!get\+Score@{get\+Score}}
+\index{get\+Score@{get\+Score}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{get\+Score()}{getScore()}}
+{\footnotesize\ttfamily int game\+::penguin\+::\+Human\+Player\+::get\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the player\textquotesingle{}s score. 
+
+\begin{DoxyReturn}{Returns}
+int the score 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_human_player_afe805f2359ba2c909c078a7fc3833ede_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_ac164fc99bfe3fc2c6818aeb7d41fc885}\label{classgame_1_1penguin_1_1_human_player_ac164fc99bfe3fc2c6818aeb7d41fc885}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!substract\+Score@{substract\+Score}}
+\index{substract\+Score@{substract\+Score}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{substract\+Score()}{substractScore()}}
+{\footnotesize\ttfamily void game\+::penguin\+::\+Human\+Player\+::substract\+Score (\begin{DoxyParamCaption}\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+Substract to the score. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & the score to substract \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_human_player_ac164fc99bfe3fc2c6818aeb7d41fc885_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_human_player_a12525b6ed7c8186be0bee5cf78e2a49c}\label{classgame_1_1penguin_1_1_human_player_a12525b6ed7c8186be0bee5cf78e2a49c}} 
+\index{game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}!Board@{Board}}
+\index{Board@{Board}!game\+::penguin\+::\+Human\+Player@{game\+::penguin\+::\+Human\+Player}}
+\subsubsection{\texorpdfstring{Board}{Board}}
+{\footnotesize\ttfamily friend class \hyperlink{classgame_1_1penguin_1_1_board}{Board}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Allow the \hyperlink{classgame_1_1penguin_1_1_board}{Board} Object to access private properties and methods, especially useful for add\+Penguin. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{_human_player_8hpp}{Human\+Player.\+hpp}\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{_human_player_8cpp}{Human\+Player.\+cpp}\end{DoxyCompactItemize}

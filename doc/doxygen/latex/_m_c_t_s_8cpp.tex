@@ -1,0 +1,61 @@
+\hypertarget{_m_c_t_s_8cpp}{}\section{/workspace/src/mcts/\+M\+C\+TS.cpp File Reference}
+\label{_m_c_t_s_8cpp}\index{/workspace/src/mcts/\+M\+C\+T\+S.\+cpp@{/workspace/src/mcts/\+M\+C\+T\+S.\+cpp}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/\+Abstract\+Board.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\+Board\+Cell.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\+Player.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/penguin/\+Board\+Cell.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/penguin/\+Human\+Player.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+logic/penguin/\+Penguin\+Pawn.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}M\+C\+T\+S.\+hpp\char`\"{}}\newline
+Include dependency graph for M\+C\+T\+S.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_m_c_t_s_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacemcts}{mcts}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_m_c_t_s_8cpp_ac6b54b14bf5cce1c4eea29a192470559}{N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO}~2000
+\item 
+\#define \hyperlink{_m_c_t_s_8cpp_abda4613cd2e4020006a428bfa20fa642}{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY}~1.\+0
+\item 
+\#define \hyperlink{_m_c_t_s_8cpp_a1bebc3101e157f67025e0558cecfe364}{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW}~0.\+5
+\item 
+\#define \hyperlink{_m_c_t_s_8cpp_a63055a58815b7bcc34492bd8c886eccd}{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT}~-\/1.\+0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_m_c_t_s_8cpp_a63055a58815b7bcc34492bd8c886eccd}\label{_m_c_t_s_8cpp_a63055a58815b7bcc34492bd8c886eccd}} 
+\index{M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}!I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT}}
+\index{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT}!M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}}
+\subsubsection{\texorpdfstring{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT}{INCREMENT\_DEFEAT}}
+{\footnotesize\ttfamily \#define I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+E\+F\+E\+AT~-\/1.\+0}
+
+\mbox{\Hypertarget{_m_c_t_s_8cpp_a1bebc3101e157f67025e0558cecfe364}\label{_m_c_t_s_8cpp_a1bebc3101e157f67025e0558cecfe364}} 
+\index{M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}!I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW}}
+\index{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW}!M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}}
+\subsubsection{\texorpdfstring{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW}{INCREMENT\_DRAW}}
+{\footnotesize\ttfamily \#define I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+D\+R\+AW~0.\+5}
+
+\mbox{\Hypertarget{_m_c_t_s_8cpp_abda4613cd2e4020006a428bfa20fa642}\label{_m_c_t_s_8cpp_abda4613cd2e4020006a428bfa20fa642}} 
+\index{M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}!I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY}}
+\index{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY@{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY}!M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}}
+\subsubsection{\texorpdfstring{I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY}{INCREMENT\_VICTORY}}
+{\footnotesize\ttfamily \#define I\+N\+C\+R\+E\+M\+E\+N\+T\+\_\+\+V\+I\+C\+T\+O\+RY~1.\+0}
+
+\mbox{\Hypertarget{_m_c_t_s_8cpp_ac6b54b14bf5cce1c4eea29a192470559}\label{_m_c_t_s_8cpp_ac6b54b14bf5cce1c4eea29a192470559}} 
+\index{M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}!N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO@{N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO}}
+\index{N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO@{N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO}!M\+C\+T\+S.\+cpp@{M\+C\+T\+S.\+cpp}}
+\subsubsection{\texorpdfstring{N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO}{NUMBER\_ITERATIONS\_BEFORE\_CHECKING\_CHRONO}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+C\+H\+E\+C\+K\+I\+N\+G\+\_\+\+C\+H\+R\+O\+NO~2000}
+

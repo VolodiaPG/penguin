@@ -1,0 +1,190 @@
+\hypertarget{classgame_1_1_abstract_pawn}{}\section{game\+:\+:Abstract\+Pawn$<$ PlayerT, CellT $>$ Class Template Reference}
+\label{classgame_1_1_abstract_pawn}\index{game\+::\+Abstract\+Pawn$<$ Player\+T, Cell\+T $>$@{game\+::\+Abstract\+Pawn$<$ Player\+T, Cell\+T $>$}}
+
+
+{\ttfamily \#include $<$Abstract\+Pawn.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:Abstract\+Pawn$<$ PlayerT, CellT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_pawn__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:Abstract\+Pawn$<$ PlayerT, CellT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classgame_1_1_abstract_pawn__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1_abstract_pawn_af1bc0b6647a170f6d4be38a6475757e3}{Abstract\+Pawn} (unsigned int id, PlayerT \&owner)
+\item 
+\hyperlink{classgame_1_1_abstract_pawn_af83fab32ac2e13daf3c693d465a061ed}{Abstract\+Pawn} (const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&)=delete
+\item 
+virtual \hyperlink{classgame_1_1_abstract_pawn_a3fa5336d077fb00b3b3df2bc662e62eb}{$\sim$\+Abstract\+Pawn} ()
+\item 
+PlayerT $\ast$ \hyperlink{classgame_1_1_abstract_pawn_aac49fdd8bd4aa4386fd47d3f6993b8df}{get\+Owner} () const
+\item 
+unsigned int \hyperlink{classgame_1_1_abstract_pawn_a49354506912d0e1bf5272627aa2bc86e}{get\+Id} () const
+\begin{DoxyCompactList}\small\item\em Get pawn\textquotesingle{}s id. \end{DoxyCompactList}\item 
+void \hyperlink{classgame_1_1_abstract_pawn_a678ab4c2f0191bafa3e1e16cf04fa9d0}{set\+Current\+Cell} (CellT $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Queue the move done at the top of the stack. \end{DoxyCompactList}\item 
+CellT $\ast$ \hyperlink{classgame_1_1_abstract_pawn_ae9ad3bf0ee738571d0dd5992feae6bb7}{get\+Current\+Cell} () const
+\item 
+bool \hyperlink{classgame_1_1_abstract_pawn_a65dada55fadc0df1169d8a6b0661c05a}{operator==} (const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&pawn) const
+\item 
+bool \hyperlink{classgame_1_1_abstract_pawn_a8c5ef6187be3592d15ba9cf6a433c91c}{operator!=} (const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&pawn) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classgame_1_1_abstract_pawn_aa1911c1f88d6b345a4a004cded7e6904}{equals\+\_\+to} (const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&pawn) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_af1bc0b6647a170f6d4be38a6475757e3}\label{classgame_1_1_abstract_pawn_af1bc0b6647a170f6d4be38a6475757e3}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!Abstract\+Pawn@{Abstract\+Pawn}}
+\index{Abstract\+Pawn@{Abstract\+Pawn}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{Abstract\+Pawn()}{AbstractPawn()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT $>$ \\
+\hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::\hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn} (\begin{DoxyParamCaption}\item[{unsigned int}]{id,  }\item[{PlayerT \&}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_af83fab32ac2e13daf3c693d465a061ed}\label{classgame_1_1_abstract_pawn_af83fab32ac2e13daf3c693d465a061ed}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!Abstract\+Pawn@{Abstract\+Pawn}}
+\index{Abstract\+Pawn@{Abstract\+Pawn}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{Abstract\+Pawn()}{AbstractPawn()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+\hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::\hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn} (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_a3fa5336d077fb00b3b3df2bc662e62eb}\label{classgame_1_1_abstract_pawn_a3fa5336d077fb00b3b3df2bc662e62eb}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!````~Abstract\+Pawn@{$\sim$\+Abstract\+Pawn}}
+\index{````~Abstract\+Pawn@{$\sim$\+Abstract\+Pawn}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{$\sim$\+Abstract\+Pawn()}{~AbstractPawn()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+virtual \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::$\sim$\hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_aa1911c1f88d6b345a4a004cded7e6904}\label{classgame_1_1_abstract_pawn_aa1911c1f88d6b345a4a004cded7e6904}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!equals\+\_\+to@{equals\+\_\+to}}
+\index{equals\+\_\+to@{equals\+\_\+to}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{equals\+\_\+to()}{equals\_to()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+bool \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::equals\+\_\+to (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&}]{pawn }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classgame_1_1_abstract_pawn_aa1911c1f88d6b345a4a004cded7e6904_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_ae9ad3bf0ee738571d0dd5992feae6bb7}\label{classgame_1_1_abstract_pawn_ae9ad3bf0ee738571d0dd5992feae6bb7}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!get\+Current\+Cell@{get\+Current\+Cell}}
+\index{get\+Current\+Cell@{get\+Current\+Cell}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{get\+Current\+Cell()}{getCurrentCell()}}
+{\footnotesize\ttfamily template$<$class PlayerT , class CellT $>$ \\
+CellT $\ast$ \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::get\+Current\+Cell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_pawn_ae9ad3bf0ee738571d0dd5992feae6bb7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_a49354506912d0e1bf5272627aa2bc86e}\label{classgame_1_1_abstract_pawn_a49354506912d0e1bf5272627aa2bc86e}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{get\+Id()}{getId()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+unsigned int \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get pawn\textquotesingle{}s id. 
+
+\begin{DoxyReturn}{Returns}
+constexpr unsigned int the id 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_pawn_a49354506912d0e1bf5272627aa2bc86e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_aac49fdd8bd4aa4386fd47d3f6993b8df}\label{classgame_1_1_abstract_pawn_aac49fdd8bd4aa4386fd47d3f6993b8df}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!get\+Owner@{get\+Owner}}
+\index{get\+Owner@{get\+Owner}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{get\+Owner()}{getOwner()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+PlayerT$\ast$ \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::get\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_pawn_aac49fdd8bd4aa4386fd47d3f6993b8df_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_a8c5ef6187be3592d15ba9cf6a433c91c}\label{classgame_1_1_abstract_pawn_a8c5ef6187be3592d15ba9cf6a433c91c}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+bool \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&}]{pawn }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_a65dada55fadc0df1169d8a6b0661c05a}\label{classgame_1_1_abstract_pawn_a65dada55fadc0df1169d8a6b0661c05a}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!operator==@{operator==}}
+\index{operator==@{operator==}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$class PlayerT, class CellT$>$ \\
+bool \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}$<$ PlayerT, CellT $>$ \&}]{pawn }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_pawn_a678ab4c2f0191bafa3e1e16cf04fa9d0}\label{classgame_1_1_abstract_pawn_a678ab4c2f0191bafa3e1e16cf04fa9d0}} 
+\index{game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}!set\+Current\+Cell@{set\+Current\+Cell}}
+\index{set\+Current\+Cell@{set\+Current\+Cell}!game\+::\+Abstract\+Pawn@{game\+::\+Abstract\+Pawn}}
+\subsubsection{\texorpdfstring{set\+Current\+Cell()}{setCurrentCell()}}
+{\footnotesize\ttfamily template$<$class PlayerT , class CellT$>$ \\
+void \hyperlink{classgame_1_1_abstract_pawn}{game\+::\+Abstract\+Pawn}$<$ PlayerT, CellT $>$\+::set\+Current\+Cell (\begin{DoxyParamCaption}\item[{CellT $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Queue the move done at the top of the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & the move to stack \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_pawn_a678ab4c2f0191bafa3e1e16cf04fa9d0_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/\hyperlink{_abstract_pawn_8hpp}{Abstract\+Pawn.\+hpp}\item 
+/workspace/src/game\+\_\+logic/\hyperlink{_abstract_pawn_8cpp}{Abstract\+Pawn.\+cpp}\end{DoxyCompactItemize}

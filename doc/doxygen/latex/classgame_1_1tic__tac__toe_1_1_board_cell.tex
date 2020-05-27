@@ -1,0 +1,174 @@
+\hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell}{}\section{game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Board\+Cell Class Reference}
+\label{classgame_1_1tic__tac__toe_1_1_board_cell}\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+
+
+{\ttfamily \#include $<$Board\+Cell.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Board\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classgame_1_1tic__tac__toe_1_1_board_cell__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Board\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classgame_1_1tic__tac__toe_1_1_board_cell__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_abef7037c86f1ca3bcac123fc9383ae90}{Board\+Cell} (const \hyperlink{structgame_1_1_position}{Position} \&position)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classgame_1_1tic__tac__toe_1_1_board}{Board} Cell object. \end{DoxyCompactList}\item 
+int \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_a14b1c802c346bbeec7263b77ea6266c8}{get\+Value} () const
+\begin{DoxyCompactList}\small\item\em Get the value of the cell. \end{DoxyCompactList}\item 
+int \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_a3ee72b5b70a0d0eb8abbe4cdcdf4038d}{set\+Value} (int value)
+\begin{DoxyCompactList}\small\item\em Set the value of the cell. \end{DoxyCompactList}\item 
+const \hyperlink{structgame_1_1_position}{Position} \& \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_aa418994b5cdf5c74b105701193d72a1b}{get\+Position} () const
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{structgame_1_1_position}{Position} object. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_a800b9a8409ad28086ad1e7cb275fa25e}{is\+Claimed} () const
+\begin{DoxyCompactList}\small\item\em tells if the cell is claimed or not \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell_a909bb91d32553cebbe9749bd6814b8f4}{equals\+\_\+to} (const \hyperlink{classgame_1_1_abstract_board_cell}{Abstract\+Board\+Cell} \&cell) const override
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_abef7037c86f1ca3bcac123fc9383ae90}\label{classgame_1_1tic__tac__toe_1_1_board_cell_abef7037c86f1ca3bcac123fc9383ae90}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!Board\+Cell@{Board\+Cell}}
+\index{Board\+Cell@{Board\+Cell}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{Board\+Cell()}{BoardCell()}}
+{\footnotesize\ttfamily game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::\+Board\+Cell (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position}{Position} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new \hyperlink{classgame_1_1tic__tac__toe_1_1_board}{Board} Cell object. 
+
+Construct a new \hyperlink{classgame_1_1tic__tac__toe_1_1_board}{Board} Cell object
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & passed by value to guarantee copy \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_a909bb91d32553cebbe9749bd6814b8f4}\label{classgame_1_1tic__tac__toe_1_1_board_cell_a909bb91d32553cebbe9749bd6814b8f4}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!equals\+\_\+to@{equals\+\_\+to}}
+\index{equals\+\_\+to@{equals\+\_\+to}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{equals\+\_\+to()}{equals\_to()}}
+{\footnotesize\ttfamily bool game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::equals\+\_\+to (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_board_cell}{Abstract\+Board\+Cell} \&}]{cell }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_cell_a3939330bed75f3a408af228e86ec93af}{game\+::\+Abstract\+Board\+Cell}.
+
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_aa418994b5cdf5c74b105701193d72a1b}\label{classgame_1_1tic__tac__toe_1_1_board_cell_aa418994b5cdf5c74b105701193d72a1b}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily const \hyperlink{structgame_1_1_position}{Position}\& game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \hyperlink{structgame_1_1_position}{Position} object. 
+
+\begin{DoxyReturn}{Returns}
+the position 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_board_cell_aa418994b5cdf5c74b105701193d72a1b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_board_cell_aa418994b5cdf5c74b105701193d72a1b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_a14b1c802c346bbeec7263b77ea6266c8}\label{classgame_1_1tic__tac__toe_1_1_board_cell_a14b1c802c346bbeec7263b77ea6266c8}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+{\footnotesize\ttfamily int game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the value of the cell. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_a800b9a8409ad28086ad1e7cb275fa25e}\label{classgame_1_1tic__tac__toe_1_1_board_cell_a800b9a8409ad28086ad1e7cb275fa25e}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!is\+Claimed@{is\+Claimed}}
+\index{is\+Claimed@{is\+Claimed}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{is\+Claimed()}{isClaimed()}}
+{\footnotesize\ttfamily bool game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::is\+Claimed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+tells if the cell is claimed or not 
+
+\begin{DoxyReturn}{Returns}
+true the cell is claimed 
+
+false the cell isn\textquotesingle{}t 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_board_cell_a800b9a8409ad28086ad1e7cb275fa25e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_board_cell_a3ee72b5b70a0d0eb8abbe4cdcdf4038d}\label{classgame_1_1tic__tac__toe_1_1_board_cell_a3ee72b5b70a0d0eb8abbe4cdcdf4038d}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{set\+Value()}{setValue()}}
+{\footnotesize\ttfamily int game\+::tic\+\_\+tac\+\_\+toe\+::\+Board\+Cell\+::set\+Value (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the value of the cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int the value 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{classgame_1_1tic__tac__toe_1_1_board_cell_a3ee72b5b70a0d0eb8abbe4cdcdf4038d_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\hyperlink{tic__tac__toe_2_board_cell_8hpp}{Board\+Cell.\+hpp}\item 
+/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\hyperlink{tic__tac__toe_2_board_cell_8cpp}{Board\+Cell.\+cpp}\end{DoxyCompactItemize}

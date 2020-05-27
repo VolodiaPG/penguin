@@ -1,0 +1,118 @@
+\hypertarget{namespacegame}{}\section{game Namespace Reference}
+\label{namespacegame}\index{game@{game}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacegame_1_1penguin}{penguin}
+\item 
+ \hyperlink{namespacegame_1_1tic__tac__toe}{tic\+\_\+tac\+\_\+toe}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}
+\begin{DoxyCompactList}\small\item\em Describe the basics of a Board. \end{DoxyCompactList}\item 
+class \hyperlink{classgame_1_1_abstract_board_cell}{Abstract\+Board\+Cell}
+\item 
+class \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}
+\item 
+class \hyperlink{classgame_1_1_abstract_interface}{Abstract\+Interface}
+\item 
+class \hyperlink{classgame_1_1_abstract_pawn}{Abstract\+Pawn}
+\item 
+class \hyperlink{classgame_1_1_abstract_player}{Abstract\+Player}
+\item 
+class \hyperlink{classgame_1_1_history}{History}
+\item 
+struct \hyperlink{structgame_1_1_move}{Move}
+\item 
+struct \hyperlink{structgame_1_1_position}{Position}
+\item 
+struct \hyperlink{structgame_1_1_position3_d}{Position3D}
+\item 
+struct \hyperlink{structgame_1_1position__3_d__hash__function}{position\+\_\+3\+D\+\_\+hash\+\_\+function}
+\begin{DoxyCompactList}\small\item\em Proper hash function specialized for \hyperlink{structgame_1_1_position}{Position}. \end{DoxyCompactList}\item 
+struct \hyperlink{structgame_1_1position__hash__function}{position\+\_\+hash\+\_\+function}
+\begin{DoxyCompactList}\small\item\em Proper hash function specialized for \hyperlink{structgame_1_1_position}{Position}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structgame_1_1_position3_d}{Position3D} \hyperlink{namespacegame_a758b3d0eea6eae0e6ce5ea1b8dc90ed9}{hex\+\_\+axial\+\_\+to\+\_\+cube} (const \hyperlink{structgame_1_1_position}{Position} \&position)
+\begin{DoxyCompactList}\small\item\em Converts an axial position to a cube position in an hexagonal grid. \end{DoxyCompactList}\item 
+\hyperlink{structgame_1_1_position}{Position} \hyperlink{namespacegame_a850c02ba5e94fc33424e8d7a34c93e9f}{hex\+\_\+cube\+\_\+to\+\_\+axial} (const \hyperlink{structgame_1_1_position3_d}{Position3D} \&position)
+\begin{DoxyCompactList}\small\item\em Converts position in a cube coordinate system to position in an axial system for a hexagonal grid. \end{DoxyCompactList}\item 
+\hyperlink{structgame_1_1_position}{Position} \hyperlink{namespacegame_a0fb03836882da582210ce59b390ad61f}{hex\+\_\+cube\+\_\+to\+\_\+offset} (const \hyperlink{structgame_1_1_position3_d}{Position3D} \&position)
+\begin{DoxyCompactList}\small\item\em Converts a cube position in an offset system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacegame_a758b3d0eea6eae0e6ce5ea1b8dc90ed9}\label{namespacegame_a758b3d0eea6eae0e6ce5ea1b8dc90ed9}} 
+\index{game@{game}!hex\+\_\+axial\+\_\+to\+\_\+cube@{hex\+\_\+axial\+\_\+to\+\_\+cube}}
+\index{hex\+\_\+axial\+\_\+to\+\_\+cube@{hex\+\_\+axial\+\_\+to\+\_\+cube}!game@{game}}
+\subsubsection{\texorpdfstring{hex\+\_\+axial\+\_\+to\+\_\+cube()}{hex\_axial\_to\_cube()}}
+{\footnotesize\ttfamily \hyperlink{structgame_1_1_position3_d}{Position3D} game\+::hex\+\_\+axial\+\_\+to\+\_\+cube (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position}{Position} \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Converts an axial position to a cube position in an hexagonal grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & the postion to be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structgame_1_1_position3_d}{Position3D} the resulting position 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegame_a758b3d0eea6eae0e6ce5ea1b8dc90ed9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegame_a850c02ba5e94fc33424e8d7a34c93e9f}\label{namespacegame_a850c02ba5e94fc33424e8d7a34c93e9f}} 
+\index{game@{game}!hex\+\_\+cube\+\_\+to\+\_\+axial@{hex\+\_\+cube\+\_\+to\+\_\+axial}}
+\index{hex\+\_\+cube\+\_\+to\+\_\+axial@{hex\+\_\+cube\+\_\+to\+\_\+axial}!game@{game}}
+\subsubsection{\texorpdfstring{hex\+\_\+cube\+\_\+to\+\_\+axial()}{hex\_cube\_to\_axial()}}
+{\footnotesize\ttfamily \hyperlink{structgame_1_1_position}{Position} game\+::hex\+\_\+cube\+\_\+to\+\_\+axial (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position3_d}{Position3D} \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Converts position in a cube coordinate system to position in an axial system for a hexagonal grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & the postion to be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structgame_1_1_position3_d}{Position3D} the resulting position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacegame_a0fb03836882da582210ce59b390ad61f}\label{namespacegame_a0fb03836882da582210ce59b390ad61f}} 
+\index{game@{game}!hex\+\_\+cube\+\_\+to\+\_\+offset@{hex\+\_\+cube\+\_\+to\+\_\+offset}}
+\index{hex\+\_\+cube\+\_\+to\+\_\+offset@{hex\+\_\+cube\+\_\+to\+\_\+offset}!game@{game}}
+\subsubsection{\texorpdfstring{hex\+\_\+cube\+\_\+to\+\_\+offset()}{hex\_cube\_to\_offset()}}
+{\footnotesize\ttfamily \hyperlink{structgame_1_1_position}{Position} game\+::hex\+\_\+cube\+\_\+to\+\_\+offset (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position3_d}{Position3D} \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Converts a cube position in an offset system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & the position to be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structgame_1_1_position}{Position} the position, in an offset fashion 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegame_a0fb03836882da582210ce59b390ad61f_icgraph}
+\end{center}
+\end{figure}

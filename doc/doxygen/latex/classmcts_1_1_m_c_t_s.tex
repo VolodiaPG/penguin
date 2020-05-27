@@ -1,0 +1,266 @@
+\hypertarget{classmcts_1_1_m_c_t_s}{}\section{mcts\+:\+:M\+C\+TS$<$ CellT, PlayerT, PawnT $>$ Class Template Reference}
+\label{classmcts_1_1_m_c_t_s}\index{mcts\+::\+M\+C\+T\+S$<$ Cell\+T, Player\+T, Pawn\+T $>$@{mcts\+::\+M\+C\+T\+S$<$ Cell\+T, Player\+T, Pawn\+T $>$}}
+
+
+{\ttfamily \#include $<$M\+C\+T\+S.\+hpp$>$}
+
+
+
+Collaboration diagram for mcts\+:\+:M\+C\+TS$<$ CellT, PlayerT, PawnT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{classmcts_1_1_m_c_t_s__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmcts_1_1_m_c_t_s_afa6deaf4737e68bee60a9bbd0d8178d2}{M\+C\+TS} (\hyperlink{classmcts_1_1_tree}{Tree}$<$ CellT, PlayerT, PawnT $>$ $\ast$\&tree, const \hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \&constraints)
+\item 
+\hyperlink{classmcts_1_1_m_c_t_s_a8b88bfdafadbfe716dd10cd464e56e61}{$\sim$\+M\+C\+TS} ()
+\item 
+size\+\_\+t \hyperlink{classmcts_1_1_m_c_t_s_ae8b2818e7a34e858e9dd284d33bca874}{begin} ()
+\begin{DoxyCompactList}\small\item\em Start the mcts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \hyperlink{classmcts_1_1_m_c_t_s_ab1b102cd67bb285c669f3fbb405ef5aa}{begin\+\_\+mcts} (void $\ast$mcts)
+\begin{DoxyCompactList}\small\item\em Start the mcts externally (useful for multithreading) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classmcts_1_1_m_c_t_s_a53275dba0c93543b2fa8c24ad928e4a8}{back\+Propagate\+And\+Revert\+Action} (int winner\+Id, \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$terminal\+Node)
+\item 
+const \hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \hyperlink{classmcts_1_1_m_c_t_s_a3e918b416dfe1e5155b077788936f137}{get\+Random\+Available\+Move\+From\+Board} (const unsigned int \&player\+\_\+id) const
+\item 
+double \hyperlink{classmcts_1_1_m_c_t_s_ac75ac1b12fbb40dca468f1c31a9fc8cd}{formula} (const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&node, const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&node\+Successor) const
+\item 
+void \hyperlink{classmcts_1_1_m_c_t_s_a9b161c003bc21fe3910d7800c09fff1d}{do\+Action\+On\+Board} (const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&node\+To\+Get\+The\+Action\+From)
+\item 
+void \hyperlink{classmcts_1_1_m_c_t_s_a8c65e74d070a037e5ad0331a39379c9c}{expand\+Node} ()
+\item 
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_m_c_t_s_a5a3c4a056b0611c19839d6757871653b}{select\+Best\+Child\+And\+Do\+Action} (\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$node)
+\item 
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_m_c_t_s_a6b5686f91610bb4f46c395634a17a5b8}{random\+Choose\+Child\+Or\+Fallback\+On\+Node} (\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$node) const
+\item 
+int \hyperlink{classmcts_1_1_m_c_t_s_ad465558c1f4933cae2a32ff7394fc49b}{random\+Simulation} () const
+\item 
+void \hyperlink{classmcts_1_1_m_c_t_s_a08a528ef0f9ad4b113d56b96718f6dfc}{expand\+Node} (\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$node\+To\+Expand)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_afa6deaf4737e68bee60a9bbd0d8178d2}\label{classmcts_1_1_m_c_t_s_afa6deaf4737e68bee60a9bbd0d8178d2}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!M\+C\+TS@{M\+C\+TS}}
+\index{M\+C\+TS@{M\+C\+TS}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{M\+C\+T\+S()}{MCTS()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::\hyperlink{classmcts_1_1_m_c_t_s}{M\+C\+TS} (\begin{DoxyParamCaption}\item[{\hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$ $\ast$\&}]{tree,  }\item[{const \hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \&}]{constraints }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a8b88bfdafadbfe716dd10cd464e56e61}\label{classmcts_1_1_m_c_t_s_a8b88bfdafadbfe716dd10cd464e56e61}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!````~M\+C\+TS@{$\sim$\+M\+C\+TS}}
+\index{````~M\+C\+TS@{$\sim$\+M\+C\+TS}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{$\sim$\+M\+C\+T\+S()}{~MCTS()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::$\sim$\hyperlink{classmcts_1_1_m_c_t_s}{M\+C\+TS} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a53275dba0c93543b2fa8c24ad928e4a8}\label{classmcts_1_1_m_c_t_s_a53275dba0c93543b2fa8c24ad928e4a8}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!back\+Propagate\+And\+Revert\+Action@{back\+Propagate\+And\+Revert\+Action}}
+\index{back\+Propagate\+And\+Revert\+Action@{back\+Propagate\+And\+Revert\+Action}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{back\+Propagate\+And\+Revert\+Action()}{backPropagateAndRevertAction()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::back\+Propagate\+And\+Revert\+Action (\begin{DoxyParamCaption}\item[{int}]{winner\+Id,  }\item[{\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$}]{terminal\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a53275dba0c93543b2fa8c24ad928e4a8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_ae8b2818e7a34e858e9dd284d33bca874}\label{classmcts_1_1_m_c_t_s_ae8b2818e7a34e858e9dd284d33bca874}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!begin@{begin}}
+\index{begin@{begin}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+size\+\_\+t \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start the mcts. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t the number of visits done in the attached tree 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_ae8b2818e7a34e858e9dd284d33bca874_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_ae8b2818e7a34e858e9dd284d33bca874_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_ab1b102cd67bb285c669f3fbb405ef5aa}\label{classmcts_1_1_m_c_t_s_ab1b102cd67bb285c669f3fbb405ef5aa}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!begin\+\_\+mcts@{begin\+\_\+mcts}}
+\index{begin\+\_\+mcts@{begin\+\_\+mcts}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{begin\+\_\+mcts()}{begin\_mcts()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void $\ast$ \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::begin\+\_\+mcts (\begin{DoxyParamCaption}\item[{void $\ast$}]{mcts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start the mcts externally (useful for multithreading) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mcts} & the mcts to start \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a9b161c003bc21fe3910d7800c09fff1d}\label{classmcts_1_1_m_c_t_s_a9b161c003bc21fe3910d7800c09fff1d}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!do\+Action\+On\+Board@{do\+Action\+On\+Board}}
+\index{do\+Action\+On\+Board@{do\+Action\+On\+Board}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{do\+Action\+On\+Board()}{doActionOnBoard()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::do\+Action\+On\+Board (\begin{DoxyParamCaption}\item[{const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&}]{node\+To\+Get\+The\+Action\+From }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a9b161c003bc21fe3910d7800c09fff1d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a8c65e74d070a037e5ad0331a39379c9c}\label{classmcts_1_1_m_c_t_s_a8c65e74d070a037e5ad0331a39379c9c}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!expand\+Node@{expand\+Node}}
+\index{expand\+Node@{expand\+Node}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{expand\+Node()}{expandNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+void \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::expand\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a8c65e74d070a037e5ad0331a39379c9c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a08a528ef0f9ad4b113d56b96718f6dfc}\label{classmcts_1_1_m_c_t_s_a08a528ef0f9ad4b113d56b96718f6dfc}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!expand\+Node@{expand\+Node}}
+\index{expand\+Node@{expand\+Node}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{expand\+Node()}{expandNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::expand\+Node (\begin{DoxyParamCaption}\item[{\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$}]{node\+To\+Expand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_ac75ac1b12fbb40dca468f1c31a9fc8cd}\label{classmcts_1_1_m_c_t_s_ac75ac1b12fbb40dca468f1c31a9fc8cd}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!formula@{formula}}
+\index{formula@{formula}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{formula()}{formula()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+double \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::formula (\begin{DoxyParamCaption}\item[{const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&}]{node,  }\item[{const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \&}]{node\+Successor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_ac75ac1b12fbb40dca468f1c31a9fc8cd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a3e918b416dfe1e5155b077788936f137}\label{classmcts_1_1_m_c_t_s_a3e918b416dfe1e5155b077788936f137}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!get\+Random\+Available\+Move\+From\+Board@{get\+Random\+Available\+Move\+From\+Board}}
+\index{get\+Random\+Available\+Move\+From\+Board@{get\+Random\+Available\+Move\+From\+Board}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{get\+Random\+Available\+Move\+From\+Board()}{getRandomAvailableMoveFromBoard()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+const \hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::get\+Random\+Available\+Move\+From\+Board (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{player\+\_\+id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a3e918b416dfe1e5155b077788936f137_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a6b5686f91610bb4f46c395634a17a5b8}\label{classmcts_1_1_m_c_t_s_a6b5686f91610bb4f46c395634a17a5b8}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!random\+Choose\+Child\+Or\+Fallback\+On\+Node@{random\+Choose\+Child\+Or\+Fallback\+On\+Node}}
+\index{random\+Choose\+Child\+Or\+Fallback\+On\+Node@{random\+Choose\+Child\+Or\+Fallback\+On\+Node}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{random\+Choose\+Child\+Or\+Fallback\+On\+Node()}{randomChooseChildOrFallbackOnNode()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::random\+Choose\+Child\+Or\+Fallback\+On\+Node (\begin{DoxyParamCaption}\item[{\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a6b5686f91610bb4f46c395634a17a5b8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_ad465558c1f4933cae2a32ff7394fc49b}\label{classmcts_1_1_m_c_t_s_ad465558c1f4933cae2a32ff7394fc49b}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!random\+Simulation@{random\+Simulation}}
+\index{random\+Simulation@{random\+Simulation}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{random\+Simulation()}{randomSimulation()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+int \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::random\+Simulation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_ad465558c1f4933cae2a32ff7394fc49b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_ad465558c1f4933cae2a32ff7394fc49b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_m_c_t_s_a5a3c4a056b0611c19839d6757871653b}\label{classmcts_1_1_m_c_t_s_a5a3c4a056b0611c19839d6757871653b}} 
+\index{mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}!select\+Best\+Child\+And\+Do\+Action@{select\+Best\+Child\+And\+Do\+Action}}
+\index{select\+Best\+Child\+And\+Do\+Action@{select\+Best\+Child\+And\+Do\+Action}!mcts\+::\+M\+C\+TS@{mcts\+::\+M\+C\+TS}}
+\subsubsection{\texorpdfstring{select\+Best\+Child\+And\+Do\+Action()}{selectBestChildAndDoAction()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_m_c_t_s}{mcts\+::\+M\+C\+TS}$<$ CellT, PlayerT, PawnT $>$\+::select\+Best\+Child\+And\+Do\+Action (\begin{DoxyParamCaption}\item[{\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a5a3c4a056b0611c19839d6757871653b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_m_c_t_s_a5a3c4a056b0611c19839d6757871653b_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/mcts/\hyperlink{_m_c_t_s_8hpp}{M\+C\+T\+S.\+hpp}\item 
+/workspace/src/mcts/\hyperlink{_m_c_t_s_8cpp}{M\+C\+T\+S.\+cpp}\end{DoxyCompactItemize}

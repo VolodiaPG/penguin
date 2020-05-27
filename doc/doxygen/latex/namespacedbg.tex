@@ -1,0 +1,543 @@
+\hypertarget{namespacedbg}{}\section{dbg Namespace Reference}
+\label{namespacedbg}\index{dbg@{dbg}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacedbg_1_1detail}{detail}
+\item 
+ \hyperlink{namespacedbg_1_1detail__detector}{detail\+\_\+detector}
+\item 
+ \hyperlink{namespacedbg_1_1pretty__function}{pretty\+\_\+function}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdbg_1_1_debug_output}{Debug\+Output}
+\item 
+struct \hyperlink{structdbg_1_1pretty__print__tuple}{pretty\+\_\+print\+\_\+tuple}
+\item 
+struct \hyperlink{structdbg_1_1pretty__print__tuple_3_010_01_4}{pretty\+\_\+print\+\_\+tuple$<$ 0 $>$}
+\item 
+struct \hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}
+\item 
+struct \hyperlink{structdbg_1_1print__type}{print\+\_\+type}
+\item 
+struct \hyperlink{structdbg_1_1time}{time}
+\item 
+struct \hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$template$<$ class... $>$ class Op, class... Args$>$ }\\using \hyperlink{namespacedbg_a4fff29dc9282f3e887a7c1290477708c}{is\+\_\+detected} = typename \hyperlink{structdbg_1_1detail__detector_1_1detector}{detail\+\_\+detector\+::detector}$<$ \hyperlink{structdbg_1_1detail__detector_1_1nonesuch}{detail\+\_\+detector\+::nonesuch}, void, Op, Args... $>$\+::value\+\_\+t
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacedbg_a4dffa8fa9b0dd86306608691d534a050}{is\+Colorized\+Output\+Enabled} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$ \hyperlink{namespacedbg_afe9f0e1588144f8bb978cdc78d346682}{hex} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$ \hyperlink{namespacedbg_af52f01dbdbb25506c5cfecab4c57d52a}{oct} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$ \hyperlink{namespacedbg_a554c31997738273466a9f1fd426a3369}{bin} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\const char $\ast$ \hyperlink{namespacedbg_aaf90b7c26aa95f1666f2446996973cac}{type\+\_\+name\+\_\+impl} ()
+\item 
+{\footnotesize template$<$int \&... Explicit\+Argument\+Barrier, typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ T $>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_aab63fa619583229308f148088ffac7a0}{type\+\_\+name} ()
+\item 
+std\+::string \hyperlink{namespacedbg_a77b693006b8b158eb9a4604fba56a782}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ short $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_ae70efee8c9a9d398975f71b216602097}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ unsigned short $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a380f1bf409dda5e8c67a269b27d14aee}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ long $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a5316d9f58e72c20cfbb14496326d89f1}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ unsigned long $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a3bcf58cf4aba1da7a34e79b0fb2ce036}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::string $>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a09680fe23089b62fd2879bd1f38897a6}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::vector$<$ T, std\+::allocator$<$ T $>$$>$$>$)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\std\+::string \hyperlink{namespacedbg_aa4daf4ad755b0a3b4206debc162f064d}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::pair$<$ T1, T2 $>$$>$)
+\item 
+{\footnotesize template$<$typename... T$>$ }\\std\+::string \hyperlink{namespacedbg_aef0097e53230ee373eaabc4981048cac}{type\+\_\+list\+\_\+to\+\_\+string} ()
+\item 
+{\footnotesize template$<$typename... T$>$ }\\std\+::string \hyperlink{namespacedbg_a1d187f8063d8c8c024e57a7985bcac78}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::tuple$<$ T... $>$$>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a6224c816a1c695160e869f427854d569}{get\+\_\+type\+\_\+name} (\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ \hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$$>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{structdbg_1_1print__type}{print\+\_\+type}$<$ T $>$ \hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespacedbg_a4ba5b016ce65b09fef3935a945310904}{pretty\+\_\+print} (std\+::ostream \&stream, const T \&value, std\+::true\+\_\+type)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespacedbg_ab875770941388a1d8279e9b5257e5a93}{pretty\+\_\+print} (std\+::ostream \&, const T \&, std\+::false\+\_\+type)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if$<$!\hyperlink{structdbg_1_1detail_1_1is__container}{detail\+::is\+\_\+container}$<$ const T \& $>$\+::value \&\&!std\+::is\+\_\+enum$<$ T $>$\+::value, bool $>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} \hyperlink{namespacedbg_a4920208faa7096e0333f9d14119a9c2f}{pretty\+\_\+print} (std\+::ostream \&stream, const T \&value)
+\item 
+bool \hyperlink{namespacedbg_a4f9989bfef507d5034cc50d015654ca4}{pretty\+\_\+print} (std\+::ostream \&stream, const bool \&value)
+\item 
+bool \hyperlink{namespacedbg_acc6a678f0c3954671e247468e249e5a4}{pretty\+\_\+print} (std\+::ostream \&stream, const char \&value)
+\item 
+{\footnotesize template$<$typename P $>$ }\\bool \hyperlink{namespacedbg_a2194ca6a2105fd8c57e5cb43f688d240}{pretty\+\_\+print} (std\+::ostream \&stream, P $\ast$const \&value)
+\item 
+{\footnotesize template$<$typename T , typename Deleter $>$ }\\bool \hyperlink{namespacedbg_a6cbcb99c1fdd640925d80c390af3954a}{pretty\+\_\+print} (std\+::ostream \&stream, std\+::unique\+\_\+ptr$<$ T, Deleter $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_ae36a726fc12c4b6c13878e051f4f3ad7}{pretty\+\_\+print} (std\+::ostream \&stream, std\+::shared\+\_\+ptr$<$ T $>$ \&value)
+\item 
+{\footnotesize template$<$size\+\_\+t N$>$ }\\bool \hyperlink{namespacedbg_adb407af036065563d2e8ef131305475a}{pretty\+\_\+print} (std\+::ostream \&stream, const char(\&value)\mbox{[}N\mbox{]})
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a17cebbee60948a473318356a59d7f825}{pretty\+\_\+print} (std\+::ostream \&stream, const char $\ast$const \&value)
+\item 
+{\footnotesize template$<$typename... Ts$>$ }\\bool \hyperlink{namespacedbg_a48e38a2e7f91709c4eac1c3ff1532f35}{pretty\+\_\+print} (std\+::ostream \&stream, const std\+::tuple$<$ Ts... $>$ \&value)
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a077f3d4254963a89c600b07eb1b8608b}{pretty\+\_\+print} (std\+::ostream \&stream, const std\+::tuple$<$$>$ \&)
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a43fb1da62bd4a702ea7ca37e665c53c9}{pretty\+\_\+print} (std\+::ostream \&stream, const \hyperlink{structdbg_1_1time}{time} \&)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_acbbd001b36aaa78716ea7d9d2aeb3e46}{decimal\+To\+Binary} (T n)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_a3f0682f5939ac9a18ba7ee86a5c63243}{pretty\+\_\+print} (std\+::ostream \&stream, const \hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_abb85fb70314b6ada2e66eebeafcd15bf}{pretty\+\_\+print} (std\+::ostream \&stream, const \hyperlink{structdbg_1_1print__type}{print\+\_\+type}$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$typename Container $>$ }\\std\+::enable\+\_\+if$<$ \hyperlink{structdbg_1_1detail_1_1is__container}{detail\+::is\+\_\+container}$<$ const Container \& $>$\+::value, bool $>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} \hyperlink{namespacedbg_a1212dc990d58f20efcf5d66eb4a5781c}{pretty\+\_\+print} (std\+::ostream \&stream, const Container \&value)
+\item 
+{\footnotesize template$<$typename Enum $>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+enum$<$ Enum $>$\+::value, bool $>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} \hyperlink{namespacedbg_acd3034b7476cdf474e46eb2bbca6e0d1}{pretty\+\_\+print} (std\+::ostream \&stream, Enum const \&value)
+\item 
+bool \hyperlink{namespacedbg_ae620aa6031e088dc11e1df853e38f5fa}{pretty\+\_\+print} (std\+::ostream \&stream, const std\+::string \&value)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \hyperlink{namespacedbg_adf02078069da78815c208dd638a01640}{pretty\+\_\+print} (std\+::ostream \&stream, const std\+::pair$<$ T1, T2 $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \&\& \hyperlink{namespacedbg_a23f10decf1edf2d34e226437e5562452}{identity} (T \&\&t)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacedbg_a4fff29dc9282f3e887a7c1290477708c}\label{namespacedbg_a4fff29dc9282f3e887a7c1290477708c}} 
+\index{dbg@{dbg}!is\+\_\+detected@{is\+\_\+detected}}
+\index{is\+\_\+detected@{is\+\_\+detected}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{is\+\_\+detected}{is\_detected}}
+{\footnotesize\ttfamily template$<$template$<$ class... $>$ class Op, class... Args$>$ \\
+using \hyperlink{namespacedbg_a4fff29dc9282f3e887a7c1290477708c}{dbg\+::is\+\_\+detected} = typedef typename detail\+\_\+detector\+:: detector$<$\hyperlink{structdbg_1_1detail__detector_1_1nonesuch}{detail\+\_\+detector\+::nonesuch}, void, Op, Args...$>$\+::value\+\_\+t}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacedbg_a554c31997738273466a9f1fd426a3369}\label{namespacedbg_a554c31997738273466a9f1fd426a3369}} 
+\index{dbg@{dbg}!bin@{bin}}
+\index{bin@{bin}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{bin()}{bin()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$T$>$ dbg\+::bin (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedbg_acbbd001b36aaa78716ea7d9d2aeb3e46}\label{namespacedbg_acbbd001b36aaa78716ea7d9d2aeb3e46}} 
+\index{dbg@{dbg}!decimal\+To\+Binary@{decimal\+To\+Binary}}
+\index{decimal\+To\+Binary@{decimal\+To\+Binary}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{decimal\+To\+Binary()}{decimalToBinary()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string dbg\+::decimal\+To\+Binary (\begin{DoxyParamCaption}\item[{T}]{n }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{namespacedbg_acbbd001b36aaa78716ea7d9d2aeb3e46_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00}\label{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily template$<$int \&... Explicit\+Argument\+Barrier, typename T $>$ \\
+std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ T $>$}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a77b693006b8b158eb9a4604fba56a782}\label{namespacedbg_a77b693006b8b158eb9a4604fba56a782}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ short $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_ae70efee8c9a9d398975f71b216602097}\label{namespacedbg_ae70efee8c9a9d398975f71b216602097}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ unsigned short $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a380f1bf409dda5e8c67a269b27d14aee}\label{namespacedbg_a380f1bf409dda5e8c67a269b27d14aee}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ long $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a5316d9f58e72c20cfbb14496326d89f1}\label{namespacedbg_a5316d9f58e72c20cfbb14496326d89f1}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ unsigned long $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a3bcf58cf4aba1da7a34e79b0fb2ce036}\label{namespacedbg_a3bcf58cf4aba1da7a34e79b0fb2ce036}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::string $>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a09680fe23089b62fd2879bd1f38897a6}\label{namespacedbg_a09680fe23089b62fd2879bd1f38897a6}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::vector$<$ T, std\+::allocator$<$ T $>$$>$$>$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedbg_aa4daf4ad755b0a3b4206debc162f064d}\label{namespacedbg_aa4daf4ad755b0a3b4206debc162f064d}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::pair$<$ T1, T2 $>$$>$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedbg_a1d187f8063d8c8c024e57a7985bcac78}\label{namespacedbg_a1d187f8063d8c8c024e57a7985bcac78}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ std\+::tuple$<$ T... $>$$>$}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedbg_a1d187f8063d8c8c024e57a7985bcac78_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a6224c816a1c695160e869f427854d569}\label{namespacedbg_a6224c816a1c695160e869f427854d569}} 
+\index{dbg@{dbg}!get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}}
+\index{get\+\_\+type\+\_\+name@{get\+\_\+type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{get\+\_\+type\+\_\+name()}{get\_type\_name()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string dbg\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{\hyperlink{structdbg_1_1type__tag}{type\+\_\+tag}$<$ \hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$$>$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_afe9f0e1588144f8bb978cdc78d346682}\label{namespacedbg_afe9f0e1588144f8bb978cdc78d346682}} 
+\index{dbg@{dbg}!hex@{hex}}
+\index{hex@{hex}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{hex()}{hex()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$T$>$ dbg\+::hex (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{namespacedbg_afe9f0e1588144f8bb978cdc78d346682_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a23f10decf1edf2d34e226437e5562452}\label{namespacedbg_a23f10decf1edf2d34e226437e5562452}} 
+\index{dbg@{dbg}!identity@{identity}}
+\index{identity@{identity}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{identity()}{identity()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T\&\& dbg\+::identity (\begin{DoxyParamCaption}\item[{T \&\&}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedbg_a4dffa8fa9b0dd86306608691d534a050}\label{namespacedbg_a4dffa8fa9b0dd86306608691d534a050}} 
+\index{dbg@{dbg}!is\+Colorized\+Output\+Enabled@{is\+Colorized\+Output\+Enabled}}
+\index{is\+Colorized\+Output\+Enabled@{is\+Colorized\+Output\+Enabled}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{is\+Colorized\+Output\+Enabled()}{isColorizedOutputEnabled()}}
+{\footnotesize\ttfamily bool dbg\+::is\+Colorized\+Output\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_af52f01dbdbb25506c5cfecab4c57d52a}\label{namespacedbg_af52f01dbdbb25506c5cfecab4c57d52a}} 
+\index{dbg@{dbg}!oct@{oct}}
+\index{oct@{oct}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{oct()}{oct()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$T$>$ dbg\+::oct (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacedbg_a4ba5b016ce65b09fef3935a945310904}\label{namespacedbg_a4ba5b016ce65b09fef3935a945310904}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [1/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const T \&}]{value,  }\item[{std\+::true\+\_\+type}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{namespacedbg_a4ba5b016ce65b09fef3935a945310904_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_ab875770941388a1d8279e9b5257e5a93}\label{namespacedbg_ab875770941388a1d8279e9b5257e5a93}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [2/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{,  }\item[{const T \&}]{,  }\item[{std\+::false\+\_\+type}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{namespacedbg_ab875770941388a1d8279e9b5257e5a93_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a4920208faa7096e0333f9d14119a9c2f}\label{namespacedbg_a4920208faa7096e0333f9d14119a9c2f}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [3/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::enable\+\_\+if$<$!\hyperlink{structdbg_1_1detail_1_1is__container}{detail\+::is\+\_\+container}$<$const T\&$>$\+::value \&\& !std\+::is\+\_\+enum$<$T$>$\+::value, bool$>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const T \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacedbg_a4920208faa7096e0333f9d14119a9c2f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a4f9989bfef507d5034cc50d015654ca4}\label{namespacedbg_a4f9989bfef507d5034cc50d015654ca4}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [4/19]}}
+{\footnotesize\ttfamily bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const bool \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_acc6a678f0c3954671e247468e249e5a4}\label{namespacedbg_acc6a678f0c3954671e247468e249e5a4}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [5/19]}}
+{\footnotesize\ttfamily bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const char \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{namespacedbg_acc6a678f0c3954671e247468e249e5a4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a2194ca6a2105fd8c57e5cb43f688d240}\label{namespacedbg_a2194ca6a2105fd8c57e5cb43f688d240}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [6/19]}}
+{\footnotesize\ttfamily template$<$typename P $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{P $\ast$const \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a6cbcb99c1fdd640925d80c390af3954a}\label{namespacedbg_a6cbcb99c1fdd640925d80c390af3954a}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [7/19]}}
+{\footnotesize\ttfamily template$<$typename T , typename Deleter $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{std\+::unique\+\_\+ptr$<$ T, Deleter $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacedbg_a6cbcb99c1fdd640925d80c390af3954a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_ae36a726fc12c4b6c13878e051f4f3ad7}\label{namespacedbg_ae36a726fc12c4b6c13878e051f4f3ad7}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [8/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{std\+::shared\+\_\+ptr$<$ T $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacedbg_ae36a726fc12c4b6c13878e051f4f3ad7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_adb407af036065563d2e8ef131305475a}\label{namespacedbg_adb407af036065563d2e8ef131305475a}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [9/19]}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N$>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const char(\&)}]{value\mbox{[}\+N\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a17cebbee60948a473318356a59d7f825}\label{namespacedbg_a17cebbee60948a473318356a59d7f825}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [10/19]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const char $\ast$const \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a48e38a2e7f91709c4eac1c3ff1532f35}\label{namespacedbg_a48e38a2e7f91709c4eac1c3ff1532f35}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [11/19]}}
+{\footnotesize\ttfamily template$<$typename... Ts$>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::tuple$<$ Ts... $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a077f3d4254963a89c600b07eb1b8608b}\label{namespacedbg_a077f3d4254963a89c600b07eb1b8608b}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [12/19]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::tuple$<$$>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a43fb1da62bd4a702ea7ca37e665c53c9}\label{namespacedbg_a43fb1da62bd4a702ea7ca37e665c53c9}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [13/19]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const \hyperlink{structdbg_1_1time}{time} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_a3f0682f5939ac9a18ba7ee86a5c63243}\label{namespacedbg_a3f0682f5939ac9a18ba7ee86a5c63243}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [14/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const \hyperlink{structdbg_1_1print__formatted}{print\+\_\+formatted}$<$ T $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{namespacedbg_a3f0682f5939ac9a18ba7ee86a5c63243_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_abb85fb70314b6ada2e66eebeafcd15bf}\label{namespacedbg_abb85fb70314b6ada2e66eebeafcd15bf}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [15/19]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const \hyperlink{structdbg_1_1print__type}{print\+\_\+type}$<$ T $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{namespacedbg_abb85fb70314b6ada2e66eebeafcd15bf_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a1212dc990d58f20efcf5d66eb4a5781c}\label{namespacedbg_a1212dc990d58f20efcf5d66eb4a5781c}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [16/19]}}
+{\footnotesize\ttfamily template$<$typename Container $>$ \\
+std\+::enable\+\_\+if$<$\hyperlink{structdbg_1_1detail_1_1is__container}{detail\+::is\+\_\+container}$<$const Container\&$>$\+::value, bool$>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const Container \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacedbg_a1212dc990d58f20efcf5d66eb4a5781c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_acd3034b7476cdf474e46eb2bbca6e0d1}\label{namespacedbg_acd3034b7476cdf474e46eb2bbca6e0d1}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [17/19]}}
+{\footnotesize\ttfamily template$<$typename Enum $>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+enum$<$Enum$>$\+::value, bool$>$\+::\hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{type} dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{Enum const \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{namespacedbg_acd3034b7476cdf474e46eb2bbca6e0d1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_ae620aa6031e088dc11e1df853e38f5fa}\label{namespacedbg_ae620aa6031e088dc11e1df853e38f5fa}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [18/19]}}
+{\footnotesize\ttfamily bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacedbg_adf02078069da78815c208dd638a01640}\label{namespacedbg_adf02078069da78815c208dd638a01640}} 
+\index{dbg@{dbg}!pretty\+\_\+print@{pretty\+\_\+print}}
+\index{pretty\+\_\+print@{pretty\+\_\+print}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{pretty\+\_\+print()}{pretty\_print()}\hspace{0.1cm}{\footnotesize\ttfamily [19/19]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool dbg\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream,  }\item[{const std\+::pair$<$ T1, T2 $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacedbg_adf02078069da78815c208dd638a01640_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_a2365d80e3a3525e6025040383ff8661b}\label{namespacedbg_a2365d80e3a3525e6025040383ff8661b}} 
+\index{dbg@{dbg}!type@{type}}
+\index{type@{type}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structdbg_1_1print__type}{print\+\_\+type}$<$T$>$ dbg\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedbg_a2365d80e3a3525e6025040383ff8661b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_aef0097e53230ee373eaabc4981048cac}\label{namespacedbg_aef0097e53230ee373eaabc4981048cac}} 
+\index{dbg@{dbg}!type\+\_\+list\+\_\+to\+\_\+string@{type\+\_\+list\+\_\+to\+\_\+string}}
+\index{type\+\_\+list\+\_\+to\+\_\+string@{type\+\_\+list\+\_\+to\+\_\+string}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{type\+\_\+list\+\_\+to\+\_\+string()}{type\_list\_to\_string()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+std\+::string dbg\+::type\+\_\+list\+\_\+to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedbg_aef0097e53230ee373eaabc4981048cac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_aab63fa619583229308f148088ffac7a0}\label{namespacedbg_aab63fa619583229308f148088ffac7a0}} 
+\index{dbg@{dbg}!type\+\_\+name@{type\+\_\+name}}
+\index{type\+\_\+name@{type\+\_\+name}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{type\+\_\+name()}{type\_name()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string dbg\+::type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedbg_aab63fa619583229308f148088ffac7a0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacedbg_aaf90b7c26aa95f1666f2446996973cac}\label{namespacedbg_aaf90b7c26aa95f1666f2446996973cac}} 
+\index{dbg@{dbg}!type\+\_\+name\+\_\+impl@{type\+\_\+name\+\_\+impl}}
+\index{type\+\_\+name\+\_\+impl@{type\+\_\+name\+\_\+impl}!dbg@{dbg}}
+\subsubsection{\texorpdfstring{type\+\_\+name\+\_\+impl()}{type\_name\_impl()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char$\ast$ dbg\+::type\+\_\+name\+\_\+impl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

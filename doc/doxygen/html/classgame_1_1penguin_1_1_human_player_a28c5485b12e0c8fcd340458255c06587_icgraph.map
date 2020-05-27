@@ -1,0 +1,9 @@
+<map id="game::penguin::HumanPlayer::getPenguins" name="game::penguin::HumanPlayer::getPenguins">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#ae85ef3019829098c5ad5afb1c3ebceb5" title="Is the player able to move. " alt="" coords="295,37,460,79"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_human_player.html#afe805f2359ba2c909c078a7fc3833ede" title="Returns the player&#39;s score. " alt="" coords="270,103,485,144"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_penguin_game.html#ae92f96626c8d88f77279b6a76822fbe0" title="game::penguin::PenguinGame\l::getAvailableMoves" alt="" coords="268,168,487,209"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#a3d659743bc33b43168c82dc4e2d3b00e" title="Chek wether or not the game is finished. " alt="" coords="561,5,727,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_penguin_game.html#aac449b76f27098b1d2218cc51e7f70b4" title="Get the Human player to play, not the penguin one. " alt="" coords="535,71,753,112"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="801,71,1020,112"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="1068,78,1123,105"/>
+</map>

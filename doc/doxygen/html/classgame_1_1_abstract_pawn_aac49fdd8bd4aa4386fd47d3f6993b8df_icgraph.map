@@ -1,0 +1,5 @@
+<map id="game::AbstractPawn::getOwner" name="game::AbstractPawn::getOwner">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="208,5,373,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board.html#a45ecb5bba50b4d03592ac4ddf9255b49" title="Revert the last move made on the behalf of the human player. " alt="" coords="208,71,373,112"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="421,5,640,47"/>
+</map>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title><span translate>Team</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-toolbar>
+      <ion-title>Les étudiants</ion-title>
+    </ion-toolbar>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let member of teamMembers">
+        <app-team-card [name]="member.name" [role]="member.role" [description]="member.description"></app-team-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-toolbar>
+      <ion-title>L'encadrant</ion-title>
+    </ion-toolbar>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <app-team-card [name]="'Pascal Garcia'" [role]="'Encadrant'" [description]="'Supervision'"></app-team-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

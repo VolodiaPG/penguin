@@ -1,0 +1,97 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title slot="start"><span translate>Game</span></ion-title>
+
+        <ion-segment [(ngModel)]="playerToPlay" color="warning" [style.pointerEvents]="'none'" slot="start">
+            <ion-segment-button value="human">
+                <ion-chip>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-icon name="camera"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <ion-label>HUMAN : </ion-label>
+                            </ion-col>
+                            <ion-col>
+                                <div #divHuman></div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-chip>
+            </ion-segment-button>
+            <ion-segment-button class="chart" value="">
+                <app-results></app-results>
+            </ion-segment-button>
+            <ion-segment-button value="mcts" layout="icon-end">
+                <ion-chip>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <div #divMcts></div>
+                            </ion-col>
+                            <ion-col>
+                                <ion-label> : MCTS</ion-label>
+                            </ion-col>
+                            <ion-col>
+                                <ion-icon name="bookmark"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-chip>
+            </ion-segment-button>
+        </ion-segment>
+        <!-- <ion-button (click)="flipHumanScore()" slot="end">Flip</ion-button> -->
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="secondary">
+            <ion-icon src="assets/icon/options-outline.svg" click=""></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list>
+            <ion-fab-button color="light">
+                <ion-icon src="assets/icon/settings-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="assets/icon/reload-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="assets/icon/information-outline.svg"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="light">
+                <ion-icon src="assets/icon/log-out-outline.svg"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab> -->
+
+    <ion-grid>
+        <ion-row center style="height: 100%">
+            <ion-col size="auto">
+                <!-- <ion-card text-center translucent fixed size="auto">
+                    <ion-card-header></ion-card-header>
+                    <ion-card-content>
+                    </ion-card-content>
+                </ion-card> -->
+                <app-board [(gameStarted)]="gameStarted" [(numberPenguin)]="nbPenguin" [(numberHexagonal)]="nbHexagonal" [(difficultyLevel)]="difficultyLevel"
+                    (penguinPosed)="penguinPosed()" (switchPlayerToPlay)="switchPlayerToPlay()"
+                    (flipHumanScore)="doflipHumanScore($event)" (flipMctsScore)="doflipMctsScore($event)"></app-board>
+            </ion-col>
+            <ion-col>
+                <app-console></app-console>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <app-control *ngIf="stateControler.state.value === 'settings'" [(rangePenguin)]="nbPenguin"
+        [(rangeHexagonal)]="nbHexagonal" [(difficulty)]="difficultyLevel" (nextStep)="initGameBoard()">
+    </app-control>
+
+    <app-info
+        *ngIf="stateControler.state.value === 'initPosPenguin' || stateControler.state.value === 'initPosWasmPenguin' || stateControler.state.value === 'informations'"
+        [nbPenguin]="nbPenguin" (nextStep)="initPosWasmPenguin()" (launchGame)="launchGame()">
+    </app-info>
+</ion-content>

@@ -1,0 +1,14 @@
+<map id="game::penguin::BoardCell::getOwner" name="game::penguin::BoardCell::getOwner">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#a45ecb5bba50b4d03592ac4ddf9255b49" title="Revert the last move made on the behalf of the human player. " alt="" coords="730,5,895,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#ae85ef3019829098c5ad5afb1c3ebceb5" title="Is the player able to move. " alt="" coords="257,185,422,227"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board_cell.html#a4d3577488552bf0ba4822ac265532825" title="game::penguin::BoardCell\l::clone" alt="" coords="244,68,435,109"/>
+<area shape="rect" id="node12" href="$classgame_1_1penguin_1_1_print_hex.html#a87a58be4fea97f043e6dbe01a3045c1d" title="game::penguin::PrintHex\l::print" alt="" coords="721,136,904,177"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board.html#a3d659743bc33b43168c82dc4e2d3b00e" title="Chek wether or not the game is finished. " alt="" coords="495,185,661,227"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_penguin_game.html#aac449b76f27098b1d2218cc51e7f70b4" title="Get the Human player to play, not the penguin one. " alt="" coords="952,232,1171,273"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="1219,200,1437,241"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="1485,207,1540,234"/>
+<area shape="rect" id="node9" href="$classgame_1_1penguin_1_1_board_cell.html#abe8f2dc0eef3aed1e8701dc0b021c5a6" title="Get the number of fish contained inside the cell. " alt="" coords="483,68,673,109"/>
+<area shape="rect" id="node10" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="730,71,895,112"/>
+<area shape="rect" id="node11" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="952,71,1171,112"/>
+<area shape="rect" id="node13" href="$classgame_1_1penguin_1_1_console_game.html#a71c697742201f71b29327bf8554c2ef0" title="game::penguin::ConsoleGame\l::draw" alt="" coords="952,148,1171,189"/>
+</map>

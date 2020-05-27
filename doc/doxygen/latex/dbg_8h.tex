@@ -1,0 +1,183 @@
+\hypertarget{dbg_8h}{}\section{/workspace/src/dbg.h File Reference}
+\label{dbg_8h}\index{/workspace/src/dbg.\+h@{/workspace/src/dbg.\+h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$ios$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for dbg.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dbg_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdbg_1_1time}{dbg\+::time}
+\item 
+struct \hyperlink{structdbg_1_1print__formatted}{dbg\+::print\+\_\+formatted$<$ T $>$}
+\item 
+struct \hyperlink{structdbg_1_1type__tag}{dbg\+::type\+\_\+tag$<$ T $>$}
+\item 
+struct \hyperlink{structdbg_1_1detail__detector_1_1nonesuch}{dbg\+::detail\+\_\+detector\+::nonesuch}
+\item 
+struct \hyperlink{structdbg_1_1detail__detector_1_1detector}{dbg\+::detail\+\_\+detector\+::detector$<$ Default, Always\+Void, Op, Args $>$}
+\item 
+struct \hyperlink{structdbg_1_1detail__detector_1_1detector_3_01_default_00_01void__t_3_01_op_3_01_args_8_8_8_01_4b82e02bb2aa06b0130d0ab9c715e6bdd}{dbg\+::detail\+\_\+detector\+::detector$<$ Default, void\+\_\+t$<$ Op$<$ Args... $>$ $>$, Op, Args... $>$}
+\item 
+struct \hyperlink{structdbg_1_1detail_1_1is__container}{dbg\+::detail\+::is\+\_\+container$<$ T $>$}
+\item 
+struct \hyperlink{structdbg_1_1detail_1_1has__ostream__operator}{dbg\+::detail\+::has\+\_\+ostream\+\_\+operator$<$ T $>$}
+\item 
+struct \hyperlink{structdbg_1_1print__type}{dbg\+::print\+\_\+type$<$ T $>$}
+\item 
+struct \hyperlink{structdbg_1_1pretty__print__tuple}{dbg\+::pretty\+\_\+print\+\_\+tuple$<$ Idx $>$}
+\item 
+struct \hyperlink{structdbg_1_1pretty__print__tuple_3_010_01_4}{dbg\+::pretty\+\_\+print\+\_\+tuple$<$ 0 $>$}
+\item 
+class \hyperlink{classdbg_1_1_debug_output}{dbg\+::\+Debug\+Output}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacedbg}{dbg}
+\item 
+ \hyperlink{namespacedbg_1_1pretty__function}{dbg\+::pretty\+\_\+function}
+\item 
+ \hyperlink{namespacedbg_1_1detail__detector}{dbg\+::detail\+\_\+detector}
+\item 
+ \hyperlink{namespacedbg_1_1detail}{dbg\+::detail}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{dbg_8h_a5b19b2bf905b9fbc11d19b9f8365e32d}{D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD}~11
+\item 
+\#define \hyperlink{dbg_8h_aadf47595f4fdb31176441bb4415eecac}{dbg}(...)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename... $>$ }\\using \hyperlink{namespacedbg_1_1detail__detector_a1dbadccf461338e71c55ea392d4ed47c}{dbg\+::detail\+\_\+detector\+::void\+\_\+t} = void
+\item 
+{\footnotesize template$<$template$<$ class... $>$ class Op, class... Args$>$ }\\using \hyperlink{namespacedbg_a4fff29dc9282f3e887a7c1290477708c}{dbg\+::is\+\_\+detected} = typename detail\+\_\+detector\+::detector$<$ detail\+\_\+detector\+::nonesuch, void, Op, Args... $>$\+::value\+\_\+t
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_acfad41bd0b116575799b79d85fc5c883}{dbg\+::detail\+::detect\+\_\+begin\+\_\+t} = decltype(detail\+::begin(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_ab462e0c9e2d1686d323d638613692839}{dbg\+::detail\+::detect\+\_\+end\+\_\+t} = decltype(detail\+::end(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_a19adefcfcaddecb9f32e810ebcae4856}{dbg\+::detail\+::detect\+\_\+size\+\_\+t} = decltype(detail\+::size(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_a2c6a2bc0c8581b3b0d285d1d2971e44d}{dbg\+::detail\+::ostream\+\_\+operator\+\_\+t} = decltype(std\+::declval$<$ std\+::ostream \& $>$()$<$$<$ std\+::declval$<$ T $>$())
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacedbg_a4dffa8fa9b0dd86306608691d534a050}{dbg\+::is\+Colorized\+Output\+Enabled} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\print\+\_\+formatted$<$ T $>$ \hyperlink{namespacedbg_afe9f0e1588144f8bb978cdc78d346682}{dbg\+::hex} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\print\+\_\+formatted$<$ T $>$ \hyperlink{namespacedbg_af52f01dbdbb25506c5cfecab4c57d52a}{dbg\+::oct} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\print\+\_\+formatted$<$ T $>$ \hyperlink{namespacedbg_a554c31997738273466a9f1fd426a3369}{dbg\+::bin} (T value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\const char $\ast$ \hyperlink{namespacedbg_aaf90b7c26aa95f1666f2446996973cac}{dbg\+::type\+\_\+name\+\_\+impl} ()
+\item 
+{\footnotesize template$<$int \&... Explicit\+Argument\+Barrier, typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a20edc7ca4e92e4b3bddc6b983384aa00}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ T $>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_aab63fa619583229308f148088ffac7a0}{dbg\+::type\+\_\+name} ()
+\item 
+std\+::string \hyperlink{namespacedbg_a77b693006b8b158eb9a4604fba56a782}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ short $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_ae70efee8c9a9d398975f71b216602097}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ unsigned short $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a380f1bf409dda5e8c67a269b27d14aee}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ long $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a5316d9f58e72c20cfbb14496326d89f1}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ unsigned long $>$)
+\item 
+std\+::string \hyperlink{namespacedbg_a3bcf58cf4aba1da7a34e79b0fb2ce036}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ std\+::string $>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a09680fe23089b62fd2879bd1f38897a6}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ std\+::vector$<$ T, std\+::allocator$<$ T $>$$>$$>$)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\std\+::string \hyperlink{namespacedbg_aa4daf4ad755b0a3b4206debc162f064d}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ std\+::pair$<$ T1, T2 $>$$>$)
+\item 
+{\footnotesize template$<$typename... T$>$ }\\std\+::string \hyperlink{namespacedbg_aef0097e53230ee373eaabc4981048cac}{dbg\+::type\+\_\+list\+\_\+to\+\_\+string} ()
+\item 
+{\footnotesize template$<$typename... T$>$ }\\std\+::string \hyperlink{namespacedbg_a1d187f8063d8c8c024e57a7985bcac78}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ std\+::tuple$<$ T... $>$$>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_a6224c816a1c695160e869f427854d569}{dbg\+::get\+\_\+type\+\_\+name} (type\+\_\+tag$<$ print\+\_\+formatted$<$ T $>$$>$)
+\item 
+{\footnotesize template$<$typename T $>$ }\\print\+\_\+type$<$ T $>$ \hyperlink{namespacedbg_a2365d80e3a3525e6025040383ff8661b}{dbg\+::type} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespacedbg_a4ba5b016ce65b09fef3935a945310904}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const T \&value, std\+::true\+\_\+type)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespacedbg_ab875770941388a1d8279e9b5257e5a93}{dbg\+::pretty\+\_\+print} (std\+::ostream \&, const T \&, std\+::false\+\_\+type)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if$<$!detail\+::is\+\_\+container$<$ const T \& $>$\+::value \&\&!std\+::is\+\_\+enum$<$ T $>$\+::value, bool $>$\+::type \hyperlink{namespacedbg_a4920208faa7096e0333f9d14119a9c2f}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const T \&value)
+\item 
+bool \hyperlink{namespacedbg_a4f9989bfef507d5034cc50d015654ca4}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const bool \&value)
+\item 
+bool \hyperlink{namespacedbg_acc6a678f0c3954671e247468e249e5a4}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const char \&value)
+\item 
+{\footnotesize template$<$typename P $>$ }\\bool \hyperlink{namespacedbg_a2194ca6a2105fd8c57e5cb43f688d240}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, P $\ast$const \&value)
+\item 
+{\footnotesize template$<$typename T , typename Deleter $>$ }\\bool \hyperlink{namespacedbg_a6cbcb99c1fdd640925d80c390af3954a}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, std\+::unique\+\_\+ptr$<$ T, Deleter $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_ae36a726fc12c4b6c13878e051f4f3ad7}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, std\+::shared\+\_\+ptr$<$ T $>$ \&value)
+\item 
+{\footnotesize template$<$size\+\_\+t N$>$ }\\bool \hyperlink{namespacedbg_adb407af036065563d2e8ef131305475a}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const char(\&value)\mbox{[}N\mbox{]})
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a17cebbee60948a473318356a59d7f825}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const char $\ast$const \&value)
+\item 
+{\footnotesize template$<$typename... Ts$>$ }\\bool \hyperlink{namespacedbg_a48e38a2e7f91709c4eac1c3ff1532f35}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const std\+::tuple$<$ Ts... $>$ \&value)
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a077f3d4254963a89c600b07eb1b8608b}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const std\+::tuple$<$$>$ \&)
+\item 
+{\footnotesize template$<$$>$ }\\bool \hyperlink{namespacedbg_a43fb1da62bd4a702ea7ca37e665c53c9}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const time \&)
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespacedbg_acbbd001b36aaa78716ea7d9d2aeb3e46}{dbg\+::decimal\+To\+Binary} (T n)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_a3f0682f5939ac9a18ba7ee86a5c63243}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const print\+\_\+formatted$<$ T $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{namespacedbg_abb85fb70314b6ada2e66eebeafcd15bf}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const print\+\_\+type$<$ T $>$ \&)
+\item 
+{\footnotesize template$<$typename Container $>$ }\\std\+::enable\+\_\+if$<$ detail\+::is\+\_\+container$<$ const Container \& $>$\+::value, bool $>$\+::type \hyperlink{namespacedbg_a1212dc990d58f20efcf5d66eb4a5781c}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const Container \&value)
+\item 
+{\footnotesize template$<$typename Enum $>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+enum$<$ Enum $>$\+::value, bool $>$\+::type \hyperlink{namespacedbg_acd3034b7476cdf474e46eb2bbca6e0d1}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, Enum const \&value)
+\item 
+bool \hyperlink{namespacedbg_ae620aa6031e088dc11e1df853e38f5fa}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const std\+::string \&value)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \hyperlink{namespacedbg_adf02078069da78815c208dd638a01640}{dbg\+::pretty\+\_\+print} (std\+::ostream \&stream, const std\+::pair$<$ T1, T2 $>$ \&value)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \&\& \hyperlink{namespacedbg_a23f10decf1edf2d34e226437e5562452}{dbg\+::identity} (T \&\&t)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dbg_8h_aadf47595f4fdb31176441bb4415eecac}\label{dbg_8h_aadf47595f4fdb31176441bb4415eecac}} 
+\index{dbg.\+h@{dbg.\+h}!dbg@{dbg}}
+\index{dbg@{dbg}!dbg.\+h@{dbg.\+h}}
+\subsubsection{\texorpdfstring{dbg}{dbg}}
+{\footnotesize\ttfamily \#define dbg(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\hyperlink{classdbg_1_1_debug_output}{dbg::DebugOutput}(\_\_FILE\_\_, \_\_LINE\_\_, \_\_func\_\_, #\_\_VA\_ARGS\_\_) \(\backslash\)
+      .\hyperlink{classdbg_1_1_debug_output_a1cb30d4b0445e697de3a653c5cb10b7c}{print}(\hyperlink{namespacedbg_aab63fa619583229308f148088ffac7a0}{dbg::type\_name}<decltype(\_\_VA\_ARGS\_\_)>(), (\_\_VA\_ARGS\_\_))
+\end{DoxyCode}
+\mbox{\Hypertarget{dbg_8h_a5b19b2bf905b9fbc11d19b9f8365e32d}\label{dbg_8h_a5b19b2bf905b9fbc11d19b9f8365e32d}} 
+\index{dbg.\+h@{dbg.\+h}!D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD@{D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD}}
+\index{D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD@{D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD}!dbg.\+h@{dbg.\+h}}
+\subsubsection{\texorpdfstring{D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD}{DBG\_MACRO\_CXX\_STANDARD}}
+{\footnotesize\ttfamily \#define D\+B\+G\+\_\+\+M\+A\+C\+R\+O\+\_\+\+C\+X\+X\+\_\+\+S\+T\+A\+N\+D\+A\+RD~11}
+

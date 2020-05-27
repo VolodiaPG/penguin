@@ -1,0 +1,6 @@
+<map id="game::AbstractPawn&lt; PlayerT, CellT &gt;" name="game::AbstractPawn&lt; PlayerT, CellT &gt;">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_pawn.html" title="{game::AbstractPawn\l\&lt; HumanPlayer, BoardCell \&gt;\n||+ AbstractPawn()\l+ AbstractPawn()\l+ ~AbstractPawn()\l+ getOwner()\l+ getId()\l+ setCurrentCell()\l+ getCurrentCell()\l+ operator==()\l+ operator!=()\l# equals_to()\l}" alt="" coords="7,292,217,516"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_pawn.html" title="{game::AbstractPawn\l\&lt; Player, BoardCell \&gt;\n||+ AbstractPawn()\l+ AbstractPawn()\l+ ~AbstractPawn()\l+ getOwner()\l+ getId()\l+ setCurrentCell()\l+ getCurrentCell()\l+ operator==()\l+ operator!=()\l# equals_to()\l}" alt="" coords="254,292,418,516"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_penguin_pawn.html" title="{game::penguin::PenguinPawn\n||+ PenguinPawn()\l}" alt="" coords="5,573,219,650"/>
+<area shape="rect" id="node5" href="$classgame_1_1tic__tac__toe_1_1_player.html" title="{game::tic_tac_toe::\lPlayer\n||+ Player()\l}" alt="" coords="263,565,409,657"/>
+</map>

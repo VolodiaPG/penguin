@@ -1,0 +1,73 @@
+\hypertarget{namespacegame_1_1penguin}{}\section{game\+:\+:penguin Namespace Reference}
+\label{namespacegame_1_1penguin}\index{game\+::penguin@{game\+::penguin}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_board}{Board}
+\begin{DoxyCompactList}\small\item\em Describes the hexagonal board of the game, based on an axial coordinate system. \end{DoxyCompactList}\item 
+class \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_console_game}{Console\+Game}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_penguin_game}{Penguin\+Game}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_print_hex}{Print\+Hex}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}{penguin\+\_\+board\+\_\+map\+\_\+t} = std\+::unordered\+\_\+map$<$ const \hyperlink{structgame_1_1_position}{Position}, \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$, \hyperlink{structgame_1_1position__hash__function}{position\+\_\+hash\+\_\+function} $>$
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1f}{Game\+Status} \{ \hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fae6b9b95a7357f479db5bc6aeb7095326}{I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS} = 0, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa7e613d06f8efbc14d301845a962b44c4}{D\+R\+AW} = -\/1, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa09b845adf1c0cc2907b94612181505d6}{P1\+\_\+\+W\+ON} = 1, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fab5231e5293e5a97fc383444a428ab31c}{P2\+\_\+\+W\+ON} = 2
+ \}\begin{DoxyCompactList}\small\item\em Describe possibles states of the game. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}\label{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}} 
+\index{game\+::penguin@{game\+::penguin}!penguin\+\_\+board\+\_\+map\+\_\+t@{penguin\+\_\+board\+\_\+map\+\_\+t}}
+\index{penguin\+\_\+board\+\_\+map\+\_\+t@{penguin\+\_\+board\+\_\+map\+\_\+t}!game\+::penguin@{game\+::penguin}}
+\subsubsection{\texorpdfstring{penguin\+\_\+board\+\_\+map\+\_\+t}{penguin\_board\_map\_t}}
+{\footnotesize\ttfamily using \hyperlink{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}{game\+::penguin\+::penguin\+\_\+board\+\_\+map\+\_\+t} = typedef std\+::unordered\+\_\+map$<$const \hyperlink{structgame_1_1_position}{Position}, \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$, \hyperlink{structgame_1_1position__hash__function}{position\+\_\+hash\+\_\+function}$>$}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1f}\label{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1f}} 
+\index{game\+::penguin@{game\+::penguin}!Game\+Status@{Game\+Status}}
+\index{Game\+Status@{Game\+Status}!game\+::penguin@{game\+::penguin}}
+\subsubsection{\texorpdfstring{Game\+Status}{GameStatus}}
+{\footnotesize\ttfamily enum \hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1f}{game\+::penguin\+::\+Game\+Status}}
+
+
+
+Describe possibles states of the game. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS@{I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS}!game\+::penguin@{game\+::penguin}}\index{game\+::penguin@{game\+::penguin}!I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS@{I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS}}}\mbox{\Hypertarget{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fae6b9b95a7357f479db5bc6aeb7095326}\label{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fae6b9b95a7357f479db5bc6aeb7095326}} 
+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS&Game in progress. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+R\+AW@{D\+R\+AW}!game\+::penguin@{game\+::penguin}}\index{game\+::penguin@{game\+::penguin}!D\+R\+AW@{D\+R\+AW}}}\mbox{\Hypertarget{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa7e613d06f8efbc14d301845a962b44c4}\label{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa7e613d06f8efbc14d301845a962b44c4}} 
+D\+R\+AW&Draw. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P1\+\_\+\+W\+ON@{P1\+\_\+\+W\+ON}!game\+::penguin@{game\+::penguin}}\index{game\+::penguin@{game\+::penguin}!P1\+\_\+\+W\+ON@{P1\+\_\+\+W\+ON}}}\mbox{\Hypertarget{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa09b845adf1c0cc2907b94612181505d6}\label{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa09b845adf1c0cc2907b94612181505d6}} 
+P1\+\_\+\+W\+ON&P1\textquotesingle{}s won. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P2\+\_\+\+W\+ON@{P2\+\_\+\+W\+ON}!game\+::penguin@{game\+::penguin}}\index{game\+::penguin@{game\+::penguin}!P2\+\_\+\+W\+ON@{P2\+\_\+\+W\+ON}}}\mbox{\Hypertarget{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fab5231e5293e5a97fc383444a428ab31c}\label{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fab5231e5293e5a97fc383444a428ab31c}} 
+P2\+\_\+\+W\+ON&P2\textquotesingle{}s won. \\
+\hline
+
+\end{DoxyEnumFields}

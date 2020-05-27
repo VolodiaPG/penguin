@@ -1,0 +1,34 @@
+<ion-card>
+    <ion-card-header>
+        <ion-item>
+            <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+            <ion-title>Console</ion-title>
+            <ion-badge color="primary" slot="end">{{ console_conv.length }}</ion-badge>
+        </ion-item>
+    </ion-card-header>
+    <ion-list class="container">
+        <ng-container *ngFor="let l of console_conv.slice().reverse()">
+            <ion-item *ngIf="!l.human" lines="full" class="item">
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+            </ion-item>
+
+            <ion-item *ngIf="l.human" class="item right">
+                <ion-chip [color]="l.color">
+                    <ion-label>
+                        {{ l.text }}
+                    </ion-label>
+                </ion-chip>
+                <ion-avatar>
+                    <img [src]="l.avatar">
+                </ion-avatar>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+</ion-card>

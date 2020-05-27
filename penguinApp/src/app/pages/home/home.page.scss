@@ -1,0 +1,40 @@
+.logo {
+    width: 10em;
+    margin: 0 auto;
+}
+
+q {
+    font-style: italic;
+    quotes: "« " " »";
+}
+
+#helloworld {
+    position: relative;
+    background-color: #34495e;
+    color: #77b5fe;
+    font-size: 200%;
+    font-weight: 700;
+    outline: none;
+    text-align: center;
+    height: 100%;
+    text-shadow: 4px 1px 0 #fff5ee;
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    font-weight: lighter;
+    font-family: Arial, Helvetica, sans-serif;
+    /* color: white; */
+    width: 100%;
+    // position: absolute;
+    // top: 42%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

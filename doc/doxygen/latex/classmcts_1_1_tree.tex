@@ -1,0 +1,202 @@
+\hypertarget{classmcts_1_1_tree}{}\section{mcts\+:\+:Tree$<$ CellT, PlayerT, PawnT $>$ Class Template Reference}
+\label{classmcts_1_1_tree}\index{mcts\+::\+Tree$<$ Cell\+T, Player\+T, Pawn\+T $>$@{mcts\+::\+Tree$<$ Cell\+T, Player\+T, Pawn\+T $>$}}
+
+
+{\ttfamily \#include $<$Tree.\+hpp$>$}
+
+
+
+Collaboration diagram for mcts\+:\+:Tree$<$ CellT, PlayerT, PawnT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmcts_1_1_tree_aa0f841a62bc4884486260200fb1bef10}{Tree} (\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ $\ast$const \&\hyperlink{classmcts_1_1_tree_a39aa3a398cd8a0c431ffd39fbe4965f6}{game}, const \hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \&\hyperlink{classmcts_1_1_tree_a3abe0cefe48df8d8ee080458497d8969}{constraints})
+\item 
+\hyperlink{classmcts_1_1_tree_a4656482e061c8dd2b78fcf048c1b20a3}{$\sim$\+Tree} ()
+\item 
+\hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \hyperlink{classmcts_1_1_tree_a0431bd1074e29e682fe3c7bc6a3aee89}{best\+Move} () const
+\item 
+void \hyperlink{classmcts_1_1_tree_abe24265d4d862d951163be405384f2b3}{move\+Root\+To\+Move} (const \hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \&move)
+\begin{DoxyCompactList}\small\item\em Moves the root to a given cell. \end{DoxyCompactList}\item 
+void \hyperlink{classmcts_1_1_tree_a06139b9922488bb26feb25745e54e508}{merge} (const \hyperlink{classmcts_1_1_tree}{Tree} $\ast$const \&tree)
+\begin{DoxyCompactList}\small\item\em Merges tree into the current tree. \end{DoxyCompactList}\item 
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \& \hyperlink{classmcts_1_1_tree_a75496cb3742583b221c1b95d8fd85718}{get\+Root\+Node} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_tree_a39aa3a398cd8a0c431ffd39fbe4965f6}{game}
+\item 
+\hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \hyperlink{classmcts_1_1_tree_a3abe0cefe48df8d8ee080458497d8969}{constraints}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classmcts_1_1_tree_a4cdd4b2dc809c29fe376dc251155d2cf}{expand\+Node} ()
+\item 
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_tree_a2cf4616df96cb68014ebd8fa6d0aebc4}{node\+With\+Max\+Visits} (const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$node\+From) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_tree_a96e2576ffcf962ad46140e100586ca81}{root\+Node}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmcts_1_1_tree_aa0f841a62bc4884486260200fb1bef10}\label{classmcts_1_1_tree_aa0f841a62bc4884486260200fb1bef10}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!Tree@{Tree}}
+\index{Tree@{Tree}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{Tree()}{Tree()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::\hyperlink{classmcts_1_1_tree}{Tree} (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ $\ast$const \&}]{game,  }\item[{const \hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \&}]{constraints }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classmcts_1_1_tree_a4656482e061c8dd2b78fcf048c1b20a3}\label{classmcts_1_1_tree_a4656482e061c8dd2b78fcf048c1b20a3}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!````~Tree@{$\sim$\+Tree}}
+\index{````~Tree@{$\sim$\+Tree}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{$\sim$\+Tree()}{~Tree()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::$\sim$\hyperlink{classmcts_1_1_tree}{Tree} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmcts_1_1_tree_a0431bd1074e29e682fe3c7bc6a3aee89}\label{classmcts_1_1_tree_a0431bd1074e29e682fe3c7bc6a3aee89}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!best\+Move@{best\+Move}}
+\index{best\+Move@{best\+Move}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{best\+Move()}{bestMove()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::best\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree_a0431bd1074e29e682fe3c7bc6a3aee89_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree_a0431bd1074e29e682fe3c7bc6a3aee89_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_tree_a4cdd4b2dc809c29fe376dc251155d2cf}\label{classmcts_1_1_tree_a4cdd4b2dc809c29fe376dc251155d2cf}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!expand\+Node@{expand\+Node}}
+\index{expand\+Node@{expand\+Node}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{expand\+Node()}{expandNode()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+void \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::expand\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classmcts_1_1_tree_a75496cb3742583b221c1b95d8fd85718}\label{classmcts_1_1_tree_a75496cb3742583b221c1b95d8fd85718}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!get\+Root\+Node@{get\+Root\+Node}}
+\index{get\+Root\+Node@{get\+Root\+Node}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{get\+Root\+Node()}{getRootNode()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ \& \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::get\+Root\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree_a75496cb3742583b221c1b95d8fd85718_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_tree_a06139b9922488bb26feb25745e54e508}\label{classmcts_1_1_tree_a06139b9922488bb26feb25745e54e508}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!merge@{merge}}
+\index{merge@{merge}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::merge (\begin{DoxyParamCaption}\item[{const \hyperlink{classmcts_1_1_tree}{Tree}$<$ CellT, PlayerT, PawnT $>$ $\ast$const \&}]{tree }\end{DoxyParamCaption})}
+
+
+
+Merges tree into the current tree. 
+
+Does it only for 2 layers
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree_a06139b9922488bb26feb25745e54e508_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classmcts_1_1_tree_abe24265d4d862d951163be405384f2b3}\label{classmcts_1_1_tree_abe24265d4d862d951163be405384f2b3}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!move\+Root\+To\+Move@{move\+Root\+To\+Move}}
+\index{move\+Root\+To\+Move@{move\+Root\+To\+Move}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{move\+Root\+To\+Move()}{moveRootToMove()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+void \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::move\+Root\+To\+Move (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \&}]{move }\end{DoxyParamCaption})}
+
+
+
+Moves the root to a given cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmcts_1_1_tree_a2cf4616df96cb68014ebd8fa6d0aebc4}\label{classmcts_1_1_tree_a2cf4616df96cb68014ebd8fa6d0aebc4}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!node\+With\+Max\+Visits@{node\+With\+Max\+Visits}}
+\index{node\+With\+Max\+Visits@{node\+With\+Max\+Visits}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{node\+With\+Max\+Visits()}{nodeWithMaxVisits()}}
+{\footnotesize\ttfamily template$<$class CellT , class PlayerT , class PawnT $>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$ \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::node\+With\+Max\+Visits (\begin{DoxyParamCaption}\item[{const \hyperlink{structmcts_1_1_node}{Node}$<$ CellT, PawnT $>$ $\ast$}]{node\+From }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcts_1_1_tree_a2cf4616df96cb68014ebd8fa6d0aebc4_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmcts_1_1_tree_a3abe0cefe48df8d8ee080458497d8969}\label{classmcts_1_1_tree_a3abe0cefe48df8d8ee080458497d8969}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!constraints@{constraints}}
+\index{constraints@{constraints}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{constraints}{constraints}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{structmcts_1_1_m_c_t_s_constraints}{M\+C\+T\+S\+Constraints} \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::constraints}
+
+\mbox{\Hypertarget{classmcts_1_1_tree_a39aa3a398cd8a0c431ffd39fbe4965f6}\label{classmcts_1_1_tree_a39aa3a398cd8a0c431ffd39fbe4965f6}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!game@{game}}
+\index{game@{game}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{game}{game}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$CellT, PlayerT, PawnT$>$$\ast$ \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::game}
+
+\mbox{\Hypertarget{classmcts_1_1_tree_a96e2576ffcf962ad46140e100586ca81}\label{classmcts_1_1_tree_a96e2576ffcf962ad46140e100586ca81}} 
+\index{mcts\+::\+Tree@{mcts\+::\+Tree}!root\+Node@{root\+Node}}
+\index{root\+Node@{root\+Node}!mcts\+::\+Tree@{mcts\+::\+Tree}}
+\subsubsection{\texorpdfstring{root\+Node}{rootNode}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$<$CellT, PawnT$>$$\ast$ \hyperlink{classmcts_1_1_tree}{mcts\+::\+Tree}$<$ CellT, PlayerT, PawnT $>$\+::root\+Node\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/mcts/\hyperlink{_tree_8hpp}{Tree.\+hpp}\item 
+/workspace/src/mcts/\hyperlink{_tree_8cpp}{Tree.\+cpp}\end{DoxyCompactItemize}

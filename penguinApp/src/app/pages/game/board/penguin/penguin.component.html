@@ -1,0 +1,13 @@
+<ion-img
+  class="penguin"
+  style="position: absolute;"
+  [style.width.px]="90"
+  [style.height.px]="90"
+  [style.left.px]="penguin.cellPosition.center.x"
+  [style.top.px]="penguin.cellPosition.center.y"
+  src="{{ penguin.isSelected ? textures[0] : textures[penguin.textureIndex] }}"
+  (click)="onPenguinClick()"
+>
+</ion-img>
+
+<!--   [@initPenguin]="penguin.isVisible ? 'appear' : 'disappear'" -->

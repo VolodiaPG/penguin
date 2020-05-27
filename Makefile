@@ -7,7 +7,7 @@ GREEN   := \033[1;32m
 WHITE   := \033[0;m
 
 NUMBER_PTHREADS_WORKERS := 4
-INITIAL_MEMORY := 33554432 # more than 16777216
+INITIAL_MEMORY := 134217728 #33554432 # more than 16777216
 
 # default environement
 
@@ -45,15 +45,17 @@ LDFLAGS := -lpthread
 CPPFLAGS := $(INC_FLAGS) -std=c++17 -Wall -Wextra -pedantic -pedantic-errors -Werror -Wcast-align -Wold-style-cast
 
 ifeq ($(ENV),emscripten)
+	CPPFLAGS += --bind -s WASM=1 -s ASYNCIFY=1
+	EXECPPFLAGS := 
 ifeq ($(MULTITHREADED),true)
 	CPPFLAGS += -s USE_PTHREADS=1 -s PTHREAD_POOL_SIZE=$(NUMBER_PTHREADS_WORKERS) -s INITIAL_MEMORY=$(INITIAL_MEMORY)
 endif
-	CPPFLAGS += --bind -s WASM=1
-	EXECPPFLAGS := 
-else
+endif
+
+# -s ASYNCIFY_IGNORE_INDIRECT
+
 ifeq ($(MULTITHREADED),true)
 	CPPFLAGS += -DNUMBER_THREADS=$(NUMBER_PTHREADS_WORKERS)
-endif
 endif
 
 ifeq ($(MODE),debug)

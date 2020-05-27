@@ -1,0 +1,4 @@
+<map id="game::tic_tac_toe::ConsoleGame::draw" name="game::tic_tac_toe::ConsoleGame::draw">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#a73d6bef66826688cd6e2bc0f37acb4b0" title="Get all of the AbstractBoardCell. " alt="" coords="207,5,365,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_board.html#a17bd6905ded76d0005437d288fe8ac21" title="game::AbstractBoard\l::size" alt="" coords="207,71,365,112"/>
+</map>

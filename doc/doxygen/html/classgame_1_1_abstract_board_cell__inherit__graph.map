@@ -1,0 +1,4 @@
+<map id="game::AbstractBoardCell" name="game::AbstractBoardCell">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board_cell.html" title="{game::penguin::BoardCell\n||+ BoardCell()\l+ BoardCell()\l+ getPosition()\l+ isGone()\l+ setGone()\l+ setOwner()\l+ clearOwner()\l+ getOwner()\l+ isOwned()\l+ getFish()\l+ equals_to()\l+ clone()\l}" alt="" coords="5,204,196,443"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html" title="{game::tic_tac_toe::\lBoardCell\n||+ BoardCell()\l+ getValue()\l+ setValue()\l+ getPosition()\l+ isClaimed()\l# equals_to()\l}" alt="" coords="221,241,367,406"/>
+</map>

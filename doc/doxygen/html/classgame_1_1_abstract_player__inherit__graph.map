@@ -1,0 +1,4 @@
+<map id="game::AbstractPlayer" name="game::AbstractPlayer">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_human_player.html" title="{game::penguin::HumanPlayer\n||+ HumanPlayer()\l+ addScore()\l+ substractScore()\l+ getScore()\l+ getPenguins()\l# equals_to()\l}" alt="" coords="5,219,220,369"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_player.html" title="{game::tic_tac_toe::\lPlayer\n||+ Player()\l}" alt="" coords="245,248,391,340"/>
+</map>

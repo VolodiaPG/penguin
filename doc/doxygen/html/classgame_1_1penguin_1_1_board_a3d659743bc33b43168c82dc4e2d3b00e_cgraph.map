@@ -1,0 +1,7 @@
+<map id="game::penguin::Board::checkStatus" name="game::penguin::Board::checkStatus">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#ae85ef3019829098c5ad5afb1c3ebceb5" title="Is the player able to move. " alt="" coords="219,104,384,145"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_human_player.html#a28c5485b12e0c8fcd340458255c06587" title="Get the penguins possessed by the player. " alt="" coords="432,5,647,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a802b2f75d1e3136146625266f6a2c03a" title="Get the Position object. " alt="" coords="444,71,635,112"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="444,136,635,177"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="444,201,635,243"/>
+</map>

@@ -1,0 +1,45 @@
+<body>
+  <ion-app>
+    <ion-split-pane contentId="main-content" when="(min-width: 2000px)">
+      <ion-menu contentId="main-content" type="overlay" drag-content="true">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-buttons *ngIf="isWeb" slot="end">
+              <ion-menu-toggle auto-hide="false">
+                <!-- <ion-button class="profile-button" (click)="changeLanguage()">
+                  <ion-icon name="globe"></ion-icon>
+                </ion-button> -->
+              </ion-menu-toggle>
+            </ion-buttons>
+            <ion-title>Penguin App</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list id="inbox-list">
+            <ion-list-header>Practical Studies</ion-list-header>
+            <ion-note>3INFO INSA Rennes</ion-note>
+  
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" [class.selected]="selectedIndex == i">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item>
+                <ion-icon slot="start" name="moon"></ion-icon>
+                <ion-label>
+                  <span translate>
+                    Toggle Dark Theme
+                  </span>
+                </ion-label>
+                <ion-toggle [checked]="darkTheme" slot="end" (ionChange)="toggleTheme()"></ion-toggle>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
+  </ion-app> 
+</body>

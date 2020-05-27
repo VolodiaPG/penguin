@@ -1,0 +1,326 @@
+\hypertarget{classgame_1_1penguin_1_1_board_cell}{}\section{game\+:\+:penguin\+:\+:Board\+Cell Class Reference}
+\label{classgame_1_1penguin_1_1_board_cell}\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+
+
+{\ttfamily \#include $<$Board\+Cell.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:penguin\+:\+:Board\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classgame_1_1penguin_1_1_board_cell__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:penguin\+:\+:Board\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classgame_1_1penguin_1_1_board_cell__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1penguin_1_1_board_cell_a2c76e638f5d0d4374b422756b08cb61f}{Board\+Cell} (const \hyperlink{structgame_1_1_position}{Position} \&position, unsigned int number\+\_\+fish)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classgame_1_1penguin_1_1_board}{Board} Cell object. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1penguin_1_1_board_cell_a5637880645cc7230fa2091aee3588bed}{Board\+Cell} (const \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} \&)=delete
+\item 
+const \hyperlink{structgame_1_1_position}{Position} \& \hyperlink{classgame_1_1penguin_1_1_board_cell_a802b2f75d1e3136146625266f6a2c03a}{get\+Position} () const
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{structgame_1_1_position}{Position} object. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_cell_a6a978b7e72ef20475771eb6e453e0a39}{is\+Gone} () const
+\begin{DoxyCompactList}\small\item\em tells if the cell is gone or not \end{DoxyCompactList}\item 
+void \hyperlink{classgame_1_1penguin_1_1_board_cell_a097c6986431cadcf0adac373fe01ccee}{set\+Gone} (bool gone)
+\begin{DoxyCompactList}\small\item\em Sets the gone flag. \end{DoxyCompactList}\item 
+void \hyperlink{classgame_1_1penguin_1_1_board_cell_a5d3fd7b5a5e170bd6fbc101f5240f4b1}{set\+Owner} (\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$penguin)
+\begin{DoxyCompactList}\small\item\em Set the penguin who stands on the cell, ie the cell\textquotesingle{}s owner atm. \end{DoxyCompactList}\item 
+void \hyperlink{classgame_1_1penguin_1_1_board_cell_a923c503caf2ed45b2fb0f49eb0cf3201}{clear\+Owner} ()
+\begin{DoxyCompactList}\small\item\em Nobody owns the cell now. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_cell_a011487b961b356a891144edcccc1473f}{get\+Owner} () const
+\begin{DoxyCompactList}\small\item\em Get the penguin standing on the cell. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_cell_a12cd55e333821bcecaa201dde758c1a1}{is\+Owned} () const
+\begin{DoxyCompactList}\small\item\em Is a penguin on the cell. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classgame_1_1penguin_1_1_board_cell_abe8f2dc0eef3aed1e8701dc0b021c5a6}{get\+Fish} () const
+\begin{DoxyCompactList}\small\item\em Get the number of fish contained inside the cell. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_cell_a1ed5a3134f831bef111c6294c07388bf}{equals\+\_\+to} (const \hyperlink{classgame_1_1_abstract_board_cell}{Abstract\+Board\+Cell} \&cell) const override
+\item 
+\hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_cell_a4d3577488552bf0ba4822ac265532825}{clone} (const \hyperlink{classgame_1_1penguin_1_1_board}{Board} $\ast$const \&from) const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a2c76e638f5d0d4374b422756b08cb61f}\label{classgame_1_1penguin_1_1_board_cell_a2c76e638f5d0d4374b422756b08cb61f}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!Board\+Cell@{Board\+Cell}}
+\index{Board\+Cell@{Board\+Cell}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{Board\+Cell()}{BoardCell()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily game\+::penguin\+::\+Board\+Cell\+::\+Board\+Cell (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position}{Position} \&}]{position,  }\item[{unsigned int}]{number\+\_\+fish }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new \hyperlink{classgame_1_1penguin_1_1_board}{Board} Cell object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position \\
+\hline
+{\em number\+\_\+fish} & the number of fish contained in this cell \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a2c76e638f5d0d4374b422756b08cb61f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a5637880645cc7230fa2091aee3588bed}\label{classgame_1_1penguin_1_1_board_cell_a5637880645cc7230fa2091aee3588bed}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!Board\+Cell@{Board\+Cell}}
+\index{Board\+Cell@{Board\+Cell}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{Board\+Cell()}{BoardCell()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily game\+::penguin\+::\+Board\+Cell\+::\+Board\+Cell (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a923c503caf2ed45b2fb0f49eb0cf3201}\label{classgame_1_1penguin_1_1_board_cell_a923c503caf2ed45b2fb0f49eb0cf3201}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!clear\+Owner@{clear\+Owner}}
+\index{clear\+Owner@{clear\+Owner}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{clear\+Owner()}{clearOwner()}}
+{\footnotesize\ttfamily void game\+::penguin\+::\+Board\+Cell\+::clear\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Nobody owns the cell now. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a923c503caf2ed45b2fb0f49eb0cf3201_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a4d3577488552bf0ba4822ac265532825}\label{classgame_1_1penguin_1_1_board_cell_a4d3577488552bf0ba4822ac265532825}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!clone@{clone}}
+\index{clone@{clone}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ game\+::penguin\+::\+Board\+Cell\+::clone (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1penguin_1_1_board}{Board} $\ast$const \&}]{from }\end{DoxyParamCaption}) const}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a4d3577488552bf0ba4822ac265532825_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a4d3577488552bf0ba4822ac265532825_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a1ed5a3134f831bef111c6294c07388bf}\label{classgame_1_1penguin_1_1_board_cell_a1ed5a3134f831bef111c6294c07388bf}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!equals\+\_\+to@{equals\+\_\+to}}
+\index{equals\+\_\+to@{equals\+\_\+to}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{equals\+\_\+to()}{equals\_to()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+Cell\+::equals\+\_\+to (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_board_cell}{Abstract\+Board\+Cell} \&}]{cell }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_cell_a3939330bed75f3a408af228e86ec93af}{game\+::\+Abstract\+Board\+Cell}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a1ed5a3134f831bef111c6294c07388bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a1ed5a3134f831bef111c6294c07388bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_abe8f2dc0eef3aed1e8701dc0b021c5a6}\label{classgame_1_1penguin_1_1_board_cell_abe8f2dc0eef3aed1e8701dc0b021c5a6}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!get\+Fish@{get\+Fish}}
+\index{get\+Fish@{get\+Fish}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{get\+Fish()}{getFish()}}
+{\footnotesize\ttfamily unsigned int game\+::penguin\+::\+Board\+Cell\+::get\+Fish (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of fish contained inside the cell. 
+
+\begin{DoxyReturn}{Returns}
+int the number of fish 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_abe8f2dc0eef3aed1e8701dc0b021c5a6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_abe8f2dc0eef3aed1e8701dc0b021c5a6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a011487b961b356a891144edcccc1473f}\label{classgame_1_1penguin_1_1_board_cell_a011487b961b356a891144edcccc1473f}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!get\+Owner@{get\+Owner}}
+\index{get\+Owner@{get\+Owner}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{get\+Owner()}{getOwner()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn}$\ast$ game\+::penguin\+::\+Board\+Cell\+::get\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the penguin standing on the cell. 
+
+\begin{DoxyReturn}{Returns}
+Penguin\+Pawn$\ast$ the penguin 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a011487b961b356a891144edcccc1473f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a802b2f75d1e3136146625266f6a2c03a}\label{classgame_1_1penguin_1_1_board_cell_a802b2f75d1e3136146625266f6a2c03a}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily const \hyperlink{structgame_1_1_position}{Position}\& game\+::penguin\+::\+Board\+Cell\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \hyperlink{structgame_1_1_position}{Position} object. 
+
+\begin{DoxyReturn}{Returns}
+the position 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a802b2f75d1e3136146625266f6a2c03a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a6a978b7e72ef20475771eb6e453e0a39}\label{classgame_1_1penguin_1_1_board_cell_a6a978b7e72ef20475771eb6e453e0a39}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!is\+Gone@{is\+Gone}}
+\index{is\+Gone@{is\+Gone}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{is\+Gone()}{isGone()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+Cell\+::is\+Gone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+tells if the cell is gone or not 
+
+\begin{DoxyReturn}{Returns}
+true the cell is gone 
+
+false the cell is still available for the players to move onto 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a6a978b7e72ef20475771eb6e453e0a39_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a12cd55e333821bcecaa201dde758c1a1}\label{classgame_1_1penguin_1_1_board_cell_a12cd55e333821bcecaa201dde758c1a1}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!is\+Owned@{is\+Owned}}
+\index{is\+Owned@{is\+Owned}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{is\+Owned()}{isOwned()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+Cell\+::is\+Owned (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Is a penguin on the cell. 
+
+\begin{DoxyReturn}{Returns}
+true there is a penguin on the cell 
+
+false there is no penguin on the cell 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a12cd55e333821bcecaa201dde758c1a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a097c6986431cadcf0adac373fe01ccee}\label{classgame_1_1penguin_1_1_board_cell_a097c6986431cadcf0adac373fe01ccee}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!set\+Gone@{set\+Gone}}
+\index{set\+Gone@{set\+Gone}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{set\+Gone()}{setGone()}}
+{\footnotesize\ttfamily void game\+::penguin\+::\+Board\+Cell\+::set\+Gone (\begin{DoxyParamCaption}\item[{bool}]{gone }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the gone flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gone} & \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a097c6986431cadcf0adac373fe01ccee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_cell_a5d3fd7b5a5e170bd6fbc101f5240f4b1}\label{classgame_1_1penguin_1_1_board_cell_a5d3fd7b5a5e170bd6fbc101f5240f4b1}} 
+\index{game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}!set\+Owner@{set\+Owner}}
+\index{set\+Owner@{set\+Owner}!game\+::penguin\+::\+Board\+Cell@{game\+::penguin\+::\+Board\+Cell}}
+\subsubsection{\texorpdfstring{set\+Owner()}{setOwner()}}
+{\footnotesize\ttfamily void game\+::penguin\+::\+Board\+Cell\+::set\+Owner (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$}]{penguin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the penguin who stands on the cell, ie the cell\textquotesingle{}s owner atm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em penguin} & The penguin that stands on top of the cell \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_cell_a5d3fd7b5a5e170bd6fbc101f5240f4b1_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{penguin_2_board_cell_8hpp}{Board\+Cell.\+hpp}\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{penguin_2_board_cell_8cpp}{Board\+Cell.\+cpp}\end{DoxyCompactItemize}

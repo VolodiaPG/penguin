@@ -1,0 +1,4 @@
+<map id="game::tic_tac_toe::Board" name="game::tic_tac_toe::Board">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html" title="{game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;\n||+ AbstractBoard()\l+ AbstractBoard()\l+ ~AbstractBoard()\l+ performMove()\l+ revertMove()\l+ checkStatus()\l+ getAvailableCells()\l+ getBoardCells()\l+ getCell()\l+ getPawnsOnBoard()\l+ getPawnById()\l+ getPlayerById()\l+ size()\l+ clone()\l}" alt="" coords="19,365,184,663"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_board.html" title="Describe the basics of a Board. " alt="" coords="5,5,197,288"/>
+</map>

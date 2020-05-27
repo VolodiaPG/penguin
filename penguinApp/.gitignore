@@ -1,0 +1,19 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+npm-debug.log*
+
+coverage/
+dist/
+node_modules/
+platforms/
+plugins/
+www/
+src/assets/bin

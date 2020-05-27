@@ -1,0 +1,4 @@
+<map id="game::AbstractInterface" name="game::AbstractInterface">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_console_game.html" title="{game::penguin::ConsoleGame\n||+ ConsoleGame()\l+ ~ConsoleGame()\l+ draw()\l+ loop()\l}" alt="" coords="5,153,224,274"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_console_game.html" title="{game::tic_tac_toe::\lConsoleGame\n||+ ConsoleGame()\l+ ~ConsoleGame()\l+ draw()\l+ loop()\l}" alt="" coords="248,145,397,281"/>
+</map>

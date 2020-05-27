@@ -1,0 +1,48 @@
+\hypertarget{penguin_2_board_8hpp}{}\section{/workspace/src/game\+\_\+logic/penguin/\+Board.hpp File Reference}
+\label{penguin_2_board_8hpp}\index{/workspace/src/game\+\_\+logic/penguin/\+Board.\+hpp@{/workspace/src/game\+\_\+logic/penguin/\+Board.\+hpp}}
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Position.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Abstract\+Board.\+hpp\char`\"{}}\newline
+Include dependency graph for Board.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{penguin_2_board_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{penguin_2_board_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgame_1_1penguin_1_1_board}{game\+::penguin\+::\+Board}
+\begin{DoxyCompactList}\small\item\em Describes the hexagonal board of the game, based on an axial coordinate system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacegame}{game}
+\item 
+ \hyperlink{namespacegame_1_1penguin}{game\+::penguin}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}{game\+::penguin\+::penguin\+\_\+board\+\_\+map\+\_\+t} = std\+::unordered\+\_\+map$<$ const Position, Board\+Cell $\ast$, position\+\_\+hash\+\_\+function $>$
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1f}{game\+::penguin\+::\+Game\+Status} \{ \hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fae6b9b95a7357f479db5bc6aeb7095326}{game\+::penguin\+::\+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS} = 0, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa7e613d06f8efbc14d301845a962b44c4}{game\+::penguin\+::\+D\+R\+AW} = -\/1, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fa09b845adf1c0cc2907b94612181505d6}{game\+::penguin\+::\+P1\+\_\+\+W\+ON} = 1, 
+\hyperlink{namespacegame_1_1penguin_abede3b915ccaae3188a174adcfeaaf1fab5231e5293e5a97fc383444a428ab31c}{game\+::penguin\+::\+P2\+\_\+\+W\+ON} = 2
+ \}\begin{DoxyCompactList}\small\item\em Describe possibles states of the game. \end{DoxyCompactList}
+\end{DoxyCompactItemize}

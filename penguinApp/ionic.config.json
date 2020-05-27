@@ -1,5 +1,7 @@
 {
-  "name": "New Ionic App",
-  "integrations": {},
+  "name": "penguinApp",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

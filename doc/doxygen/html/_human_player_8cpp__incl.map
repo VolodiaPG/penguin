@@ -1,0 +1,11 @@
+<map id="/workspace/src/game_logic/penguin/HumanPlayer.cpp" name="/workspace/src/game_logic/penguin/HumanPlayer.cpp">
+<area shape="rect" id="node2" href="$_abstract_player_8hpp.html" title="../AbstractPlayer.hpp" alt="" coords="5,169,161,196"/>
+<area shape="rect" id="node3" href="$_penguin_pawn_8hpp.html" title="PenguinPawn.hpp" alt="" coords="563,95,699,121"/>
+<area shape="rect" id="node5" href="$penguin_2_board_8hpp.html" title="Board.hpp" alt="" coords="321,95,409,121"/>
+<area shape="rect" id="node14" href="$_human_player_8hpp.html" title="HumanPlayer.hpp" alt="" coords="131,95,268,121"/>
+<area shape="rect" id="node4" href="$_abstract_pawn_8hpp.html" title="../AbstractPawn.hpp" alt="" coords="688,169,839,196"/>
+<area shape="rect" id="node8" href="$_position_8hpp.html" title="../utils/Position.hpp" alt="" coords="517,169,663,196"/>
+<area shape="rect" id="node10" href="$_abstract_board_8hpp.html" title="../AbstractBoard.hpp" alt="" coords="287,169,442,196"/>
+<area shape="rect" id="node11" href="$_history_8hpp.html" title="History.hpp" alt="" coords="311,244,405,271"/>
+<area shape="rect" id="node13" href="$_move_8hpp.html" title="utils/Move.hpp" alt="" coords="355,319,473,345"/>
+</map>

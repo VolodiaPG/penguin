@@ -1,0 +1,64 @@
+\hypertarget{tic__tac__toe_2_board_8hpp}{}\section{/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\+Board.hpp File Reference}
+\label{tic__tac__toe_2_board_8hpp}\index{/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\+Board.\+hpp@{/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\+Board.\+hpp}}
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include \char`\"{}../utils/\+Position.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Abstract\+Board.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Player.\+hpp\char`\"{}}\newline
+Include dependency graph for Board.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tic__tac__toe_2_board_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tic__tac__toe_2_board_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgame_1_1tic__tac__toe_1_1_board}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Board}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacegame}{game}
+\item 
+ \hyperlink{namespacegame_1_1tic__tac__toe}{game\+::tic\+\_\+tac\+\_\+toe}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tic__tac__toe_2_board_8hpp_a1db39eb31d1315ce982608fe25587b6d}{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE}~3
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{namespacegame_1_1tic__tac__toe_a3959bb4b3346bd3cdbf5ae9a5c58cacb}{game\+::tic\+\_\+tac\+\_\+toe\+::board\+\_\+line\+\_\+t} = std\+::array$<$ Board\+Cell $\ast$, \hyperlink{tic__tac__toe_2_board_8hpp_a1db39eb31d1315ce982608fe25587b6d}{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE} $>$
+\item 
+using \hyperlink{namespacegame_1_1tic__tac__toe_a58fc706fe9ae58c6e9045f6927230232}{game\+::tic\+\_\+tac\+\_\+toe\+::board\+\_\+matrix\+\_\+t} = std\+::array$<$ board\+\_\+line\+\_\+t, \hyperlink{tic__tac__toe_2_board_8hpp_a1db39eb31d1315ce982608fe25587b6d}{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE} $>$
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacegame_1_1tic__tac__toe_ad0db24b270912af1e5c2eedaa34409e5}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Game\+Status} \{ \hyperlink{namespacegame_1_1tic__tac__toe_ad0db24b270912af1e5c2eedaa34409e5ada0c2ecabe85165c0e767374ec3916a2}{game\+::tic\+\_\+tac\+\_\+toe\+::\+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS} = 0, 
+\hyperlink{namespacegame_1_1tic__tac__toe_ad0db24b270912af1e5c2eedaa34409e5a2c6d0232386e6edce2a3f4393745c4e9}{game\+::tic\+\_\+tac\+\_\+toe\+::\+D\+R\+AW} = -\/1, 
+\hyperlink{namespacegame_1_1tic__tac__toe_ad0db24b270912af1e5c2eedaa34409e5ac9693168ae3c964c72ef362e4d60123a}{game\+::tic\+\_\+tac\+\_\+toe\+::\+P1\+\_\+\+W\+ON} = 1, 
+\hyperlink{namespacegame_1_1tic__tac__toe_ad0db24b270912af1e5c2eedaa34409e5a9e843cf6a12f9af1997567910ec42387}{game\+::tic\+\_\+tac\+\_\+toe\+::\+P2\+\_\+\+W\+ON} = 2
+ \}\begin{DoxyCompactList}\small\item\em Describe possibles states of the game. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tic__tac__toe_2_board_8hpp_a1db39eb31d1315ce982608fe25587b6d}\label{tic__tac__toe_2_board_8hpp_a1db39eb31d1315ce982608fe25587b6d}} 
+\index{tic\+\_\+tac\+\_\+toe/\+Board.\+hpp@{tic\+\_\+tac\+\_\+toe/\+Board.\+hpp}!B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE@{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE}}
+\index{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE@{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE}!tic\+\_\+tac\+\_\+toe/\+Board.\+hpp@{tic\+\_\+tac\+\_\+toe/\+Board.\+hpp}}
+\subsubsection{\texorpdfstring{B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE}{BOARD\_SIZE}}
+{\footnotesize\ttfamily \#define B\+O\+A\+R\+D\+\_\+\+S\+I\+ZE~3}
+

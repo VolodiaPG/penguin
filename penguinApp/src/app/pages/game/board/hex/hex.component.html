@@ -1,0 +1,11 @@
+<ion-img
+  class="hex"
+  [style.width.px]="cell.hexWidth"
+  [style.height.px]="cell.hexHeight + 33"
+  style="position:absolue"
+  src="{{ textures[cell.terrainIndex] }}"
+  (click)="onCellClick()"
+  (mouseover)="onCellHover(true)"
+  (mouseout)="onCellHover(false)"
+>
+</ion-img>

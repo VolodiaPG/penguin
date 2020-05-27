@@ -1,0 +1,6 @@
+<map id="game::tic_tac_toe::ConsoleGame" name="game::tic_tac_toe::ConsoleGame">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html" title="{game::tic_tac_toe::\lTicTacToe\n|# numberMoves\l|+ TicTacToe()\l+ ~TicTacToe()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="16,595,187,804"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; BoardCell, Player,\l Player \&gt;\n|+ board\l|+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="16,307,187,545"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; CellT, PlayerT, PawnT \&gt;\n|+ board\l|+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="5,5,197,229"/>
+<area shape="rect" id="node5" href="$classgame_1_1_abstract_interface.html" title="{game::AbstractInterface\n||+ ~AbstractInterface()\l+ draw()\l}" alt="" coords="211,653,389,745"/>
+</map>

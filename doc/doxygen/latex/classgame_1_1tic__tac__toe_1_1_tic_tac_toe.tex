@@ -1,0 +1,262 @@
+\hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe}{}\section{game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Tic\+Tac\+Toe Class Reference}
+\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe}\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+
+
+{\ttfamily \#include $<$Tic\+Tac\+Toe.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Tic\+Tac\+Toe\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:tic\+\_\+tac\+\_\+toe\+:\+:Tic\+Tac\+Toe\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a93cde8c52c356cd36a622d33964596d8}{Tic\+Tac\+Toe} ()
+\item 
+\hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a96ffdd3e87d5102414ac5862e19c975d}{$\sim$\+Tic\+Tac\+Toe} ()
+\item 
+bool \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989}{is\+Finished} () const override
+\begin{DoxyCompactList}\small\item\em Tells if the game is finished yet. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a68edd6e6abdd924bc2eae503621492bb}{play} (\hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $\ast$player, \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell} $\ast$cell) override
+\item 
+const \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a38a848001838eb4ccbafa9800f3cbfd4}{revert\+Play} () override
+\item 
+unsigned int \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_ae460add5608bc785e202c876dea8f9ba}{get\+Player\+To\+Play} () override
+\begin{DoxyCompactList}\small\item\em Get the player who hadn\textquotesingle{}t play yet. \end{DoxyCompactList}\item 
+int \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a033d73237ae31a39c23a0e887adbce2f}{check\+Status} () const override
+\begin{DoxyCompactList}\small\item\em Checks the status of the game, if won, draw. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ $>$ \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_af5dd08e48f442a4f54402423e996887f}{get\+Available\+Moves} (\hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $\ast$player) override
+\item 
+\hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ $\ast$ \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a11f31f44ee9ebe8c394bcc9f2a74fab4}{clone} () const override
+\begin{DoxyCompactList}\small\item\em Clone function for clonning games. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_aa4d91a411bde0547ce24551f61f4772b}{number\+Moves} = 0
+\begin{DoxyCompactList}\small\item\em The cound of the moves done. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a93cde8c52c356cd36a622d33964596d8}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a93cde8c52c356cd36a622d33964596d8}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{Tic\+Tac\+Toe()}{TicTacToe()}}
+{\footnotesize\ttfamily game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::\+Tic\+Tac\+Toe (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a93cde8c52c356cd36a622d33964596d8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a96ffdd3e87d5102414ac5862e19c975d}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a96ffdd3e87d5102414ac5862e19c975d}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!````~Tic\+Tac\+Toe@{$\sim$\+Tic\+Tac\+Toe}}
+\index{````~Tic\+Tac\+Toe@{$\sim$\+Tic\+Tac\+Toe}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{$\sim$\+Tic\+Tac\+Toe()}{~TicTacToe()}}
+{\footnotesize\ttfamily game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::$\sim$\+Tic\+Tac\+Toe (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a033d73237ae31a39c23a0e887adbce2f}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a033d73237ae31a39c23a0e887adbce2f}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!check\+Status@{check\+Status}}
+\index{check\+Status@{check\+Status}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{check\+Status()}{checkStatus()}}
+{\footnotesize\ttfamily int game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::check\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks the status of the game, if won, draw. 
+
+\begin{DoxyReturn}{Returns}
+int when won \+: the id of the winner, -\/1 if draw, 0 otherwise 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_game_a3683d4f37908f769a470af6ebf73d849}{game\+::\+Abstract\+Game$<$ Board\+Cell, Player, Player $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a033d73237ae31a39c23a0e887adbce2f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a11f31f44ee9ebe8c394bcc9f2a74fab4}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a11f31f44ee9ebe8c394bcc9f2a74fab4}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!clone@{clone}}
+\index{clone@{clone}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ $\ast$ game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clone function for clonning games. 
+
+\begin{DoxyReturn}{Returns}
+Abstract\+Game$\ast$ 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_game_a226baac1f32a8f6672d922675ffddbf6}{game\+::\+Abstract\+Game$<$ Board\+Cell, Player, Player $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a11f31f44ee9ebe8c394bcc9f2a74fab4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_af5dd08e48f442a4f54402423e996887f}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_af5dd08e48f442a4f54402423e996887f}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!get\+Available\+Moves@{get\+Available\+Moves}}
+\index{get\+Available\+Moves@{get\+Available\+Moves}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{get\+Available\+Moves()}{getAvailableMoves()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ $>$ game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::get\+Available\+Moves (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $\ast$}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_af5dd08e48f442a4f54402423e996887f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_ae460add5608bc785e202c876dea8f9ba}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_ae460add5608bc785e202c876dea8f9ba}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!get\+Player\+To\+Play@{get\+Player\+To\+Play}}
+\index{get\+Player\+To\+Play@{get\+Player\+To\+Play}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{get\+Player\+To\+Play()}{getPlayerToPlay()}}
+{\footnotesize\ttfamily unsigned int game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::get\+Player\+To\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the player who hadn\textquotesingle{}t play yet. 
+
+\begin{DoxyReturn}{Returns}
+const int the player id 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_game_a059d72564d4658be3c246d8865080d92}{game\+::\+Abstract\+Game$<$ Board\+Cell, Player, Player $>$}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_ae460add5608bc785e202c876dea8f9ba_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!is\+Finished@{is\+Finished}}
+\index{is\+Finished@{is\+Finished}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{is\+Finished()}{isFinished()}}
+{\footnotesize\ttfamily bool game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tells if the game is finished yet. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_game_a598679eebf40ccc300e9065bce875fd1}{game\+::\+Abstract\+Game$<$ Board\+Cell, Player, Player $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a68edd6e6abdd924bc2eae503621492bb}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a68edd6e6abdd924bc2eae503621492bb}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!play@{play}}
+\index{play@{play}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily bool game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::play (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $\ast$}]{player,  }\item[{\hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell} $\ast$}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a68edd6e6abdd924bc2eae503621492bb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a68edd6e6abdd924bc2eae503621492bb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a38a848001838eb4ccbafa9800f3cbfd4}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a38a848001838eb4ccbafa9800f3cbfd4}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!revert\+Play@{revert\+Play}}
+\index{revert\+Play@{revert\+Play}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{revert\+Play()}{revertPlay()}}
+{\footnotesize\ttfamily const \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1tic__tac__toe_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1tic__tac__toe_1_1_player}{Player} $>$ game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::revert\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classgame_1_1_abstract_game_af6088ae12ed47989dde7f8869e79d934}{game\+::\+Abstract\+Game$<$ Board\+Cell, Player, Player $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a38a848001838eb4ccbafa9800f3cbfd4_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_aa4d91a411bde0547ce24551f61f4772b}\label{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_aa4d91a411bde0547ce24551f61f4772b}} 
+\index{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}!number\+Moves@{number\+Moves}}
+\index{number\+Moves@{number\+Moves}!game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe@{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}}
+\subsubsection{\texorpdfstring{number\+Moves}{numberMoves}}
+{\footnotesize\ttfamily int game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe\+::number\+Moves = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The cound of the moves done. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\hyperlink{_tic_tac_toe_8hpp}{Tic\+Tac\+Toe.\+hpp}\item 
+/workspace/src/game\+\_\+logic/tic\+\_\+tac\+\_\+toe/\hyperlink{_tic_tac_toe_8cpp}{Tic\+Tac\+Toe.\+cpp}\end{DoxyCompactItemize}

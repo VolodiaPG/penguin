@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container .item {
+    align-self: flex-start
+}
+
+.container .item.right {
+    align-self: flex-end;
+    text-align: right;
+}
