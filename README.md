@@ -21,19 +21,6 @@ _Note that for Windows, docker desktop will only work with Windows Pro!_
 
 # Launch
 
-## Cpp part
-
-- `make` to compile the release with the emscriten compiler
-- `make ENV=emscripten MODE=release` to compile the emscripten release version
-- `make ENV=emscripten MODE=debug` to compile the emscripten debug version
-- `make ENV=native MODE=debug` to compile the release version on the OS
-- `make ENV=native MODE=debug` to compile the debug version on the OS
-- the executable can be found in `./bin/main`
-- `make serve` to serve the Doxygen documentation on port `8080`
-- `clean` to clean
-  <br>
-  All these commands are accessible via the `tasks` of VSCode!
-
 ## Web part
 
 When using the application, you'll need to go the the `penguinApp/` folder and do : 
