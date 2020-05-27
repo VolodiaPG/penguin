@@ -19,12 +19,7 @@ _Note that for Windows, docker desktop will only work with Windows Pro!_
 > - Check you have enough memory in your disk
 > - If you are reading this line, you have to change your DNS address to etablish the connection with the server
 
-### For the Web Part
-
-When developing the angular side of the project, you'll need to go the the `penguinApp/` folder and do a `npm install`.
-Creating a symlink to the `bin` folder of the cpp part is also required : `ln -s /workspace/bin /workspace/www/src/assets/`.
-
-# Usage
+# Launch
 
 ## Cpp part
 
@@ -41,12 +36,46 @@ Creating a symlink to the `bin` folder of the cpp part is also required : `ln -s
 
 ## Web part
 
-Everyting is as you are developing normally.
+When using the application, you'll need to go the the `penguinApp/` folder and do : 
 
-- If you have `.env` related errors, type `npm run env -s`
-- to serve : `npm run start` (the host part is needed for the server to be accessible from the host OS)
-- to document and run server : `npm run compodoc`
+- `npm install` to install dependencies
 - `npm run wasm` to generate all the wasm files requiered for the appt to run
+- `npm run start` to serve (the host part is needed for the server to be accessible from the host OS)
+- `npm run compodoc` to document and run server
+
+> ### Some issues
+>
+> - If you have `.env` related errors, type `npm run env -s`
+
+
+# Application
+
+## Organisation
+`
+|- Home
+|- Game
+| |- Board
+| |- Console
+| |- Control
+| |- Info
+|- Team
+|- Documentation
+|- About
+`
+
+## Game
+### Settings & Launch
+First you need to set all the variables of the board and the IA level (restriction by time).
+Then you have to pose your penguin on the board, by clicking on an available cell, while you have penguins in your stock.
+Click the NEXT button and do the same for the IA penguins.
+Finally START the game.
+
+### Move
+Only possible when it is your turn.
+First, you have to select one of your penguin, and then click one of its availables cells to move to it.
+
+### Restart
+You can restart, at any moment, by refreshing all the site with F5.
 
 # Useful other commands
 
