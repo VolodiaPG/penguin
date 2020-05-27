@@ -1,0 +1,5 @@
+<map id="game::penguin::Board::checkForCorrectness" name="game::penguin::Board::checkForCorrectness">
+<area shape="rect" id="node2" href="$namespacegame.html#a758b3d0eea6eae0e6ce5ea1b8dc90ed9" title="Converts an axial position to a cube position in an hexagonal grid. " alt="" coords="220,5,408,32"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="219,57,409,98"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="219,122,409,163"/>
+</map>

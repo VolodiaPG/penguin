@@ -1,0 +1,7 @@
+<map id="game::AbstractBoard::revertMove" name="game::AbstractBoard::revertMove">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#a1331343872024287df1749cea4a96f5e" title="game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;::~AbstractBoard" alt="" coords="225,5,418,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#a45ecb5bba50b4d03592ac4ddf9255b49" title="Revert the last move made on the behalf of the human player. " alt="" coords="239,86,404,127"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board.html#ac77aad0bb0945d12a959bb8db0e31908" title="revertMove &amp; sets the current cell on the pawn " alt="" coords="248,151,395,193"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_penguin_game.html#a16aabdfdf43ad7b5b417b58eb593e063" title="game::penguin::PenguinGame\l::revertPlay" alt="" coords="212,217,431,258"/>
+<area shape="rect" id="node6" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html#a38a848001838eb4ccbafa9800f3cbfd4" title="game::tic_tac_toe::\lTicTacToe::revertPlay" alt="" coords="242,282,401,323"/>
+</map>

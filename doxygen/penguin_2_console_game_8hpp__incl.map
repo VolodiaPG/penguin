@@ -1,0 +1,8 @@
+<map id="/workspace/src/game_logic/penguin/ConsoleGame.hpp" name="/workspace/src/game_logic/penguin/ConsoleGame.hpp">
+<area shape="rect" id="node2" href="$_abstract_interface_8hpp.html" title="../AbstractInterface.hpp" alt="" coords="5,95,180,121"/>
+<area shape="rect" id="node3" href="$_penguin_game_8hpp.html" title="PenguinGame.hpp" alt="" coords="205,95,346,121"/>
+<area shape="rect" id="node8" href="$_print_hex_8hpp.html" title="PrintHex.hpp" alt="" coords="383,95,490,121"/>
+<area shape="rect" id="node5" href="$_abstract_game_8hpp.html" title="../AbstractGame.hpp" alt="" coords="198,169,353,196"/>
+<area shape="rect" id="node7" href="$_move_8hpp.html" title="utils/Move.hpp" alt="" coords="231,244,349,271"/>
+<area shape="rect" id="node9" href="$_position_8hpp.html" title="../utils/Position.hpp" alt="" coords="377,169,523,196"/>
+</map>

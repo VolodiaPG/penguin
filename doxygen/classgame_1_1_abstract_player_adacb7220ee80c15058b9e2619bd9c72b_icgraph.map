@@ -1,0 +1,5 @@
+<map id="game::AbstractPlayer::equals_to" name="game::AbstractPlayer::equals_to">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_player.html#aaffd1859f7b8b2cd3a00fc47432800e4" title="game::AbstractPlayer\l::operator==" alt="" coords="242,5,405,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_player.html#a3c88c5ef8f89fd74b3e48ff636049c94" title="game::AbstractPlayer\l::operator!=" alt="" coords="242,71,405,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_human_player.html#ad0f5548eee1fb7b866c592da4b529b69" title="game::penguin::HumanPlayer\l::equals_to" alt="" coords="216,136,431,177"/>
+</map>

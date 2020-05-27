@@ -1,0 +1,3 @@
+<map id="game::penguin::HumanPlayer::substractScore" name="game::penguin::HumanPlayer::substractScore">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#a45ecb5bba50b4d03592ac4ddf9255b49" title="Revert the last move made on the behalf of the human player. " alt="" coords="268,5,433,47"/>
+</map>

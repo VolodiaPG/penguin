@@ -1,0 +1,9 @@
+<map id="game::hex_axial_to_cube" name="game::hex_axial_to_cube">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#a2864b1af9dbdf19273185c504257435c" title="Checks wether or not the move is allowed to be performed. " alt="" coords="250,5,415,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_print_hex.html#a87a58be4fea97f043e6dbe01a3045c1d" title="game::penguin::PrintHex\l::print" alt="" coords="241,71,424,112"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="499,5,664,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="739,5,957,47"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_console_game.html#a71c697742201f71b29327bf8554c2ef0" title="game::penguin::ConsoleGame\l::draw" alt="" coords="472,71,691,112"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="739,71,957,112"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="1005,78,1060,105"/>
+</map>

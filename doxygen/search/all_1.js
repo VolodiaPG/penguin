@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['abstractboard',['AbstractBoard',['../classgame_1_1_abstract_board.html',1,'game::AbstractBoard&lt; CellT, PlayerT, PawnT &gt;'],['../classgame_1_1_abstract_board.html#a09c49d38999e508f5bc1915209b3cb56',1,'game::AbstractBoard::AbstractBoard()=default'],['../classgame_1_1_abstract_board.html#a648d91d9ffa74ec73fa0844903d9a0fa',1,'game::AbstractBoard::AbstractBoard(const AbstractBoard&lt; CellT, PlayerT, PawnT &gt; &amp;)=delete']]],
+  ['abstractboard_2ecpp',['AbstractBoard.cpp',['../_abstract_board_8cpp.html',1,'']]],
+  ['abstractboard_2ehpp',['AbstractBoard.hpp',['../_abstract_board_8hpp.html',1,'']]],
+  ['abstractboard_3c_20boardcell_2c_20humanplayer_2c_20penguinpawn_20_3e',['AbstractBoard&lt; BoardCell, HumanPlayer, PenguinPawn &gt;',['../classgame_1_1_abstract_board.html',1,'game']]],
+  ['abstractboard_3c_20boardcell_2c_20player_2c_20player_20_3e',['AbstractBoard&lt; BoardCell, Player, Player &gt;',['../classgame_1_1_abstract_board.html',1,'game']]],
+  ['abstractboardcell',['AbstractBoardCell',['../classgame_1_1_abstract_board_cell.html',1,'game::AbstractBoardCell'],['../classgame_1_1_abstract_board_cell.html#a7270efe993a1dfeafc93b41b21590b18',1,'game::AbstractBoardCell::AbstractBoardCell()=default'],['../classgame_1_1_abstract_board_cell.html#ae4e615cb466fa0ce4fa028c8f840e065',1,'game::AbstractBoardCell::AbstractBoardCell(const AbstractBoardCell &amp;)=default']]],
+  ['abstractboardcell_2ecpp',['AbstractBoardCell.cpp',['../_abstract_board_cell_8cpp.html',1,'']]],
+  ['abstractboardcell_2ehpp',['AbstractBoardCell.hpp',['../_abstract_board_cell_8hpp.html',1,'']]],
+  ['abstractgame',['AbstractGame',['../classgame_1_1_abstract_game.html',1,'game::AbstractGame&lt; CellT, PlayerT, PawnT &gt;'],['../classgame_1_1_abstract_game.html#ae01d0d7523f6958450a404e6aafa5cd0',1,'game::AbstractGame::AbstractGame(AbstractBoard&lt; CellT, PlayerT, PawnT &gt; *board)'],['../classgame_1_1_abstract_game.html#a4947b8268696a1d6d2d15bfad1cbe197',1,'game::AbstractGame::AbstractGame(const AbstractGame&lt; CellT, PlayerT, PawnT &gt; &amp;)=default']]],
+  ['abstractgame_2ecpp',['AbstractGame.cpp',['../_abstract_game_8cpp.html',1,'']]],
+  ['abstractgame_2ehpp',['AbstractGame.hpp',['../_abstract_game_8hpp.html',1,'']]],
+  ['abstractgame_3c_20boardcell_2c_20humanplayer_2c_20penguinpawn_20_3e',['AbstractGame&lt; BoardCell, HumanPlayer, PenguinPawn &gt;',['../classgame_1_1_abstract_game.html',1,'game']]],
+  ['abstractgame_3c_20boardcell_2c_20player_2c_20player_20_3e',['AbstractGame&lt; BoardCell, Player, Player &gt;',['../classgame_1_1_abstract_game.html',1,'game']]],
+  ['abstractinterface',['AbstractInterface',['../classgame_1_1_abstract_interface.html',1,'game']]],
+  ['abstractinterface_2ecpp',['AbstractInterface.cpp',['../_abstract_interface_8cpp.html',1,'']]],
+  ['abstractinterface_2ehpp',['AbstractInterface.hpp',['../_abstract_interface_8hpp.html',1,'']]],
+  ['abstractpawn',['AbstractPawn',['../classgame_1_1_abstract_pawn.html',1,'game::AbstractPawn&lt; PlayerT, CellT &gt;'],['../classgame_1_1_abstract_pawn.html#af1bc0b6647a170f6d4be38a6475757e3',1,'game::AbstractPawn::AbstractPawn(unsigned int id, PlayerT &amp;owner)'],['../classgame_1_1_abstract_pawn.html#af83fab32ac2e13daf3c693d465a061ed',1,'game::AbstractPawn::AbstractPawn(const AbstractPawn&lt; PlayerT, CellT &gt; &amp;)=delete']]],
+  ['abstractpawn_2ecpp',['AbstractPawn.cpp',['../_abstract_pawn_8cpp.html',1,'']]],
+  ['abstractpawn_2ehpp',['AbstractPawn.hpp',['../_abstract_pawn_8hpp.html',1,'']]],
+  ['abstractpawn_3c_20humanplayer_2c_20boardcell_20_3e',['AbstractPawn&lt; HumanPlayer, BoardCell &gt;',['../classgame_1_1_abstract_pawn.html',1,'game']]],
+  ['abstractpawn_3c_20player_2c_20boardcell_20_3e',['AbstractPawn&lt; Player, BoardCell &gt;',['../classgame_1_1_abstract_pawn.html',1,'game']]],
+  ['abstractplayer',['AbstractPlayer',['../classgame_1_1_abstract_player.html',1,'game::AbstractPlayer'],['../classgame_1_1_abstract_player.html#a7164932ca617a90d1b67a58b6d32e095',1,'game::AbstractPlayer::AbstractPlayer(unsigned int id)'],['../classgame_1_1_abstract_player.html#aa2ee6723a58b2432368d845c16ca978f',1,'game::AbstractPlayer::AbstractPlayer(const AbstractPlayer &amp;)=default']]],
+  ['abstractplayer_2ecpp',['AbstractPlayer.cpp',['../_abstract_player_8cpp.html',1,'']]],
+  ['abstractplayer_2ehpp',['AbstractPlayer.hpp',['../_abstract_player_8hpp.html',1,'']]],
+  ['addscore',['addScore',['../classgame_1_1penguin_1_1_human_player.html#a1474720bb1f767c195ac316dd6a8ee82',1,'game::penguin::HumanPlayer']]]
+];
