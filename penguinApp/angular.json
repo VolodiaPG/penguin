@@ -26,6 +26,16 @@
                 "output": "assets"
               },
               {
+                "glob": "**/*",
+                "input": "src/assets/compodoc",
+                "output": "compodoc"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/doxygen",
+                "output": "doxygen"
+              },
+              {
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
