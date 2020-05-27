@@ -219,7 +219,7 @@ export class BoardComponent implements OnInit {
       if (this.wasmMCTSPlayer !== undefined) {
         let wasmRes = this.wasmMCTSPlayer.getResult();
         console.log('Score : ', wasmRes.score, ' / Visits : ', wasmRes.visits);
-        console.log('Ratio : ',  wasmRes.score/wasmRes.visits);
+        console.log('Ratio : ', wasmRes.score / wasmRes.visits);
         this.consoleService.sendResults(wasmRes.score, wasmRes.visits);
         this.processBestMove(wasmRes.best_move);
       }
@@ -283,7 +283,8 @@ export class BoardComponent implements OnInit {
     let time = this.difficultyLevel === 2 ? 5000 : 1000;
     console.log("time " + time);
     this.wasmMCTSPlayer = new Module.penguin_MCTSPlayer(this.wasmGame, {
-       time: time });
+      time: time
+    });
 
     this.playTurn();
   }
@@ -322,7 +323,7 @@ export class BoardComponent implements OnInit {
         penguin.isVisible = true;
 
         this.penguins.push(penguin);
-  
+
         this.penguinPosed.emit();
       } else {
         this.presentErrorToast("This case isn't empty !");
@@ -524,11 +525,21 @@ export class BoardComponent implements OnInit {
       this.playTurn();
     } else {
       gameService.send(gameService.machine.states.movePerformed.on.FINISHED[0].eventType);
+      let answer = "";
       if (currentStatus === -1) {
-        // draw
+        answer = "This is a draw! 🤫";
+        this.presentSuccessToast(answer);
+      } else if (currentStatus === this.humanPlayerId) {
+        answer = "This is a draw! 🤗"
+        this.presentSuccessToast(answer);
       } else {
-        console.log(currentStatus + ' has won !');
+        answer = "The AI won! 💪";
+        this.presentErrorToast(answer);
       }
+
+      this.consoleService.sendEndMessage(currentStatus === -1, currentStatus === this.humanPlayerId, answer);
+
+      console.log(currentStatus + ' has won !');
     }
   }
 
@@ -584,7 +595,7 @@ export class BoardComponent implements OnInit {
         break;
       case 'initPosWasmPenguin':
         // console.log('Pose a penguin here');
-        this.posePenguinOn(cellClicked, this.humanPlayerId%2 + 1, this.numberPenguin*2);
+        this.posePenguinOn(cellClicked, this.humanPlayerId % 2 + 1, this.numberPenguin * 2);
         break;
     }
 
