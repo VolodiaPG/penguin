@@ -1,80 +1,78 @@
+title: Penguin game : user documentation
+
 # Installation
+
+## Setup
+
+### How to start
+You can just use the deployed version on : `https://volodiapg.github.io/penguin/game`
+Or you can clone our git repository : `https://github.com/VolodiaPG/penguin.git` and setup the project environment.
 
 ## Docker
 
-Docker is required in order to set up the development environment, so it can work with VSCode.<br>
-_Note that for Windows, docker desktop will only work with Windows Pro!_
-
-## Setup
+Docker is required in order to set up the environment to launch the game. Visual Studio Code (VSCode) is also required.<br>
+_Note that for Windows, Docker desktop will only work with Windows Pro!_
 
 ### General setup
 
 1. Open VSCode and make sure you have the _Remote - Containers_ extension installed (`ms-vscode-remote.remote-containers`)
 2. Choose (at the bottom left corner) `open folder in container`
-3. Let the process finish (sometimes when building the docker image the process can be stuck and you'll need to restart VSCode)
+3. Let the process finish (sometimes when building the Docker image the process can be stuck and you'll need to restart VSCode)
 
 > ### Some issues
 >
 > - Check you switched and used Linux container in the Docker Desktop
 > - Check you have enough memory in your disk
-> - If you are reading this line, you have to change your DNS address to etablish the connection with the server
+> - If you are reading this line, you have to change your DNS address to establish the connection with the server
 
-### For the Web Part
-
-When developing the angular side of the project, you'll need to go the the `penguinApp/` folder and do a `npm install`.
-Creating a symlink to the `bin` folder of the cpp part is also required : `ln -s /workspace/bin /workspace/www/src/assets/`.
-
-# Usage
-
-## Cpp part
-
-- `make` to compile the release with the emscriten compiler
-- `make ENV=emscripten MODE=release` to compile the emscripten release version
-- `make ENV=emscripten MODE=debug` to compile the emscripten debug version
-- `make ENV=native MODE=debug` to compile the release version on the OS
-- `make ENV=native MODE=debug` to compile the debug version on the OS
-- the executable can be found in `./bin/main`
-- `make serve` to serve the Doxygen documentation on port `8080`
-- `clean` to clean
-  <br>
-  All these commands are accessible via the `tasks` of VSCode!
+# Launch
 
 ## Web part
 
-Everyting is as you are developing normally.
+When using the application, you'll need to go the the `penguinApp/` folder and do : 
 
-- If you have `.env` related errors, type `npm run env -s`
-- to serve : `npm run start` (the host part is needed for the server to be accessible from the host OS)
-- to document and run server : `npm run compodoc`
-- `npm run wasm` to generate all the wasm files requiered for the appt to run
+- `npm install` to install dependencies
+- `npm run wasm` to generate all the wasm files required for the app to run
+- `npm run start` to serve (the host part is needed for the server to be accessible from the host OS)
 
-# Useful other commands
+> ### Some issues
+>
+> - If you have `.env` related errors, type `npm run env -s`
 
-- `c++filt _ZN4game14AbstractPlayer6actionEPNS_17AbstractBoardCellE` gives us `game::AbstractPlayer::action(game::AbstractBoardCell*)`
-- to access container from another computer, for DockerWindows : https://github.com/docker/for-win/issues/4391#issuecomment-520420942
+# Penguin Game
+## Presentation
+This project is an implementation of the game "Pingouins", made by 5 INSA students, during their Practical Studies in their 3rd year in the Computer Science Department of INSA Rennes. 
+The application allows the user to play this game against an Artificial Intelligence (AI). The AI coded in C++, is compiled with Emscripten in WebAssembly, to be able to display the game in a web browser. Warning it works better on Chromium-based web browser.
 
-# Basis
+## Rules
+Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or 3 fish. You dispose a certain number of penguins posed on one hexagonal cell. Each turn you will move one penguin, to an available cell (diagonals), and "eat" the fish in the cell you came from. The goal is to eat more fish than your opponent.
 
-- Initial Tutorial : https://www.baeldung.com/java-monte-carlo-tree-search
-- The basis of the project is https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous-1/src/main/java/com/baeldung/algorithms/mcts
-- https://www.codeflow.site/fr/article/java-monte-carlo-tree-search
-- https://github.com/memo/ofxMSAmcts/tree/master/src
 
-- https://github.com/hayoung-kim/mcts-tic-tac-toe
-- http://codegatherer.com/mcts_tic_tac_toe.php
+# Application
 
-## Resources
+## Organisation
+`
+|- Home
+|- Game
+| |- Board
+| |- Console
+| |- Control
+| |- Info
+|- Team
+|- Documentation
+|- About
+`
 
-### Board
+## Game
+### Settings & Launch
+First you need to set all the variables of the board and the IA level (restriction by time).
+Then you have to put your penguins on the board, by clicking on an available cell, while you have penguins in stock.
+Click the NEXT button and do the same for the IA penguins.
+Finally START the game.
 
-- https://simblob.blogspot.com/2019/03/improving-hexagon-map-storage-diagram.html#more
-- https://moodle.insa-rennes.fr/pluginfile.php/45332/mod_resource/content/1/bitboards.pdf
+### Move
+Only possible when it is your turn.
+First, you have to select one of your penguins, and then click one of its available cells to move to it.
 
-### Penguins
-
-- https://gitlab.insa-rennes.fr/francesco-bariatti/pingouins/tree/master
-
-### Angular
-
-- installation came using this resource : https://github.com/nvm-sh/nvm (tutorial : http://redgreenrepeat.com/2018/02/09/setting-up-angular-in-virtualbox/)
-- https://github.com/nodesource/distributions/tree/master/deb
+### Restart
+You can restart, at any moment, by refreshing all the website with F5.
