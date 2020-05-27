@@ -9,6 +9,9 @@ _Note that for Windows, Docker desktop will only work with Windows Pro!_
 
 ## Setup
 
+### How to start
+First, you need to clone our git repositories : `https://github.com/VolodiaPG/penguin.git`.
+
 ### General setup
 
 1. Open VSCode and make sure you have the _Remote - Containers_ extension installed (`ms-vscode-remote.remote-containers`)
@@ -39,7 +42,7 @@ When using the application, you'll need to go the the `penguinApp/` folder and d
 # Penguin Game
 ## Presentation
 This project is an implementation of the game "Pingouins", made by 5 INSA students, during their Practical Studies in their 3rd year in the Computer Science Department of INSA Rennes. 
-The application allows the user to play this game against an Artificial Intelligence (AI). The AI coded in C++, is compiled with emscripten in WebAssembly, to be able to display the game in a web browser.
+The application allows the user to play this game against an Artificial Intelligence (AI). The AI coded in C++, is compiled with Emscripten in WebAssembly, to be able to display the game in a web browser. Warning it works better on Chromium-based web browser.
 
 ## Rules
 Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or 3 fish. You dispose a certain number of penguins posed on one hexagonal cell. Each turn you will move one penguin, to an available cell (diagonals), and "eat" the fish in the cell you came from. The goal is to eat more fish than your opponent.
