@@ -42,7 +42,7 @@ This project is an implementation of the game "Pingouins", made by 5 INSA studen
 The application allows the user to play this game against an Artificial Intelligence (AI). The AI coded in C++, is compiled with emscripten in WebAssembly, to be able to display the game in a web browser.
 
 ## Rules
-Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or 3 fish. You dispose a certain number of penguins posed on one hexagonal cell. Each turn you will move one penguin, to an available cells (diagonals), and "eat" the fish in the cell you came from. The goal is to eat more fish than your opponent.
+Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or 3 fish. You dispose a certain number of penguins posed on one hexagonal cell. Each turn you will move one penguin, to an available cell (diagonals), and "eat" the fish in the cell you came from. The goal is to eat more fish than your opponent.
 
 
 # Application
