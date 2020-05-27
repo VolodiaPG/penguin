@@ -1,9 +1,11 @@
+title: Penguin game : user documentation
+
 # Installation
 
 ## Docker
 
-Docker is required in order to set up the development environment, so it can work with VSCode.<br>
-_Note that for Windows, docker desktop will only work with Windows Pro!_
+Docker is required in order to set up the environment to launch the game.<br>
+_Note that for Windows, Docker desktop will only work with Windows Pro!_
 
 ## Setup
 
@@ -11,7 +13,7 @@ _Note that for Windows, docker desktop will only work with Windows Pro!_
 
 1. Open VSCode and make sure you have the _Remote - Containers_ extension installed (`ms-vscode-remote.remote-containers`)
 2. Choose (at the bottom left corner) `open folder in container`
-3. Let the process finish (sometimes when building the docker image the process can be stuck and you'll need to restart VSCode)
+3. Let the process finish (sometimes when building the Docker image the process can be stuck and you'll need to restart VSCode)
 
 > ### Some issues
 >
@@ -26,7 +28,7 @@ _Note that for Windows, docker desktop will only work with Windows Pro!_
 When using the application, you'll need to go the the `penguinApp/` folder and do : 
 
 - `npm install` to install dependencies
-- `npm run wasm` to generate all the wasm files requiered for the appt to run
+- `npm run wasm` to generate all the wasm files required for the app to run
 - `npm run start` to serve (the host part is needed for the server to be accessible from the host OS)
 - `npm run compodoc` to document and run server
 
@@ -36,11 +38,11 @@ When using the application, you'll need to go the the `penguinApp/` folder and d
 
 # Penguin Game
 ## Presentation
-This project is an implementation of the game "Pengouins", made by 5 INSA's students, during their Pratical Studies, in their 3rd year in the Computer Science Departement of the INSA Rennes. 
-The application allows the user to play this game against an IA (MCTS). The IA coded in C++, compiled with emscripten in WebAssembly, to be able to display the game in a web browser.
+This project is an implementation of the game "Pingouins", made by 5 INSA students, during their Practical Studies in their 3rd year in the Computer Science Department of INSA Rennes. 
+The application allows the user to play this game against an Artificial Intelligence (AI). The AI coded in C++, is compiled with emscripten in WebAssembly, to be able to display the game in a web browser.
 
 ## Rules
-Initially, the game is reprensented by a board of 60 hexagonals, with 1,2 or 3 fishes. You dispose a certain number of penguins posed on one hexagonal cell. In each turn you will moved one penguin, to an available cells (diagonals), and eat the fishes in this new cell. The goal is to eat more fishes than your opponent.
+Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or 3 fish. You dispose a certain number of penguins posed on one hexagonal cell. Each turn you will move one penguin, to an available cells (diagonals), and "eat" the fish in the cell you came from. The goal is to eat more fish than your opponent.
 
 
 # Application
@@ -61,13 +63,13 @@ Initially, the game is reprensented by a board of 60 hexagonals, with 1,2 or 3 f
 ## Game
 ### Settings & Launch
 First you need to set all the variables of the board and the IA level (restriction by time).
-Then you have to pose your penguin on the board, by clicking on an available cell, while you have penguins in your stock.
+Then you have to put your penguins on the board, by clicking on an available cell, while you have penguins in stock.
 Click the NEXT button and do the same for the IA penguins.
 Finally START the game.
 
 ### Move
 Only possible when it is your turn.
-First, you have to select one of your penguin, and then click one of its availables cells to move to it.
+First, you have to select one of your penguins, and then click one of its available cells to move to it.
 
 ### Restart
-You can restart, at any moment, by refreshing all the site with F5.
+You can restart, at any moment, by refreshing all the website with F5.
