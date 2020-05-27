@@ -5,12 +5,12 @@ title: Penguin game : user documentation
 ## Setup
 
 ### How to start
-First, you can just use the deployed version on : `https://volodiapg.github.io/penguin/game`
-Or you can clone our git repositorie : `https://github.com/VolodiaPG/penguin.git` and setup the project environnement.
+You can just use the deployed version on : `https://volodiapg.github.io/penguin/game`
+Or you can clone our git repository : `https://github.com/VolodiaPG/penguin.git` and setup the project environment.
 
 ## Docker
 
-Docker is required in order to set up the environment to launch the game.<br>
+Docker is required in order to set up the environment to launch the game. Visual Studio Code (VSCode) is also required.<br>
 _Note that for Windows, Docker desktop will only work with Windows Pro!_
 
 ### General setup
