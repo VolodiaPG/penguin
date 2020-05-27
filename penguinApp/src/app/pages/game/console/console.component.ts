@@ -49,7 +49,7 @@ export class ConsoleComponent implements OnInit {
           // this.messages.push(res);
           console.log(res.score, res.visits);
           let percentage = Math.floor(res.score / res.visits * 100);
-          let line = "Trust rate is " + percentage + ", played " + res.visits + " simulations total";
+          let line = "MCTS Trust rate is " + percentage + "%, played " + res.visits + " simulations total";
 
           this.console_conv.push({ human: true, avatar: 'assets/logo/favicon.png', color: 'secondary', text: line });
 

@@ -502,6 +502,30 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <b> sendEndMessage</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>sendEndMessage(draw: boolean, humanwon: boolean, msg: string)</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <b> getResults</b>
                                 </td>
                             </tr>
@@ -557,7 +581,11 @@ export class ConsoleService {
   constructor() { }
 
   sendResults(s: number, v: number): any {
-    this.subject.next({ score: s, visits: v });
+    this.subject.next({ type: &#x27;score&#x27;, score: s, visits: v });
+  }
+
+  sendEndMessage(draw: boolean, humanwon: boolean, msg: string) {
+    this.subject.next({ type: &#x27;end_message&#x27;, draw: draw, humanwon: humanwon, msg: msg });
   }
 
   getResults(): Observable&lt;any&gt; {

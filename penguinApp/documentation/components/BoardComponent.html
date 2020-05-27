@@ -2076,7 +2076,7 @@ export class BoardComponent implements OnInit {
       if (this.wasmMCTSPlayer !&#x3D;&#x3D; undefined) {
         let wasmRes &#x3D; this.wasmMCTSPlayer.getResult();
         console.log(&#x27;Score : &#x27;, wasmRes.score, &#x27; / Visits : &#x27;, wasmRes.visits);
-        console.log(&#x27;Ratio : &#x27;,  wasmRes.score/wasmRes.visits);
+        console.log(&#x27;Ratio : &#x27;, wasmRes.score / wasmRes.visits);
         this.consoleService.sendResults(wasmRes.score, wasmRes.visits);
         this.processBestMove(wasmRes.best_move);
       }
@@ -2140,7 +2140,8 @@ export class BoardComponent implements OnInit {
     let time &#x3D; this.difficultyLevel &#x3D;&#x3D;&#x3D; 2 ? 5000 : 1000;
     console.log(&quot;time &quot; + time);
     this.wasmMCTSPlayer &#x3D; new Module.penguin_MCTSPlayer(this.wasmGame, {
-       time: time });
+      time: time
+    });
 
     this.playTurn();
   }
@@ -2179,7 +2180,7 @@ export class BoardComponent implements OnInit {
         penguin.isVisible &#x3D; true;
 
         this.penguins.push(penguin);
-  
+
         this.penguinPosed.emit();
       } else {
         this.presentErrorToast(&quot;This case isn&#x27;t empty !&quot;);
@@ -2381,11 +2382,21 @@ export class BoardComponent implements OnInit {
       this.playTurn();
     } else {
       gameService.send(gameService.machine.states.movePerformed.on.FINISHED[0].eventType);
+      let answer &#x3D; &quot;&quot;;
       if (currentStatus &#x3D;&#x3D;&#x3D; -1) {
-        // draw
+        answer &#x3D; &quot;This is a draw! 🤫&quot;;
+        this.presentSuccessToast(answer);
+      } else if (currentStatus &#x3D;&#x3D;&#x3D; this.humanPlayerId) {
+        answer &#x3D; &quot;This is a draw! 🤗&quot;
+        this.presentSuccessToast(answer);
       } else {
-        console.log(currentStatus + &#x27; has won !&#x27;);
+        answer &#x3D; &quot;The AI won! 💪&quot;;
+        this.presentErrorToast(answer);
       }
+
+      this.consoleService.sendEndMessage(currentStatus &#x3D;&#x3D;&#x3D; -1, currentStatus &#x3D;&#x3D;&#x3D; this.humanPlayerId, answer);
+
+      console.log(currentStatus + &#x27; has won !&#x27;);
     }
   }
 
@@ -2441,7 +2452,7 @@ export class BoardComponent implements OnInit {
         break;
       case &#x27;initPosWasmPenguin&#x27;:
         // console.log(&#x27;Pose a penguin here&#x27;);
-        this.posePenguinOn(cellClicked, this.humanPlayerId%2 + 1, this.numberPenguin*2);
+        this.posePenguinOn(cellClicked, this.humanPlayerId % 2 + 1, this.numberPenguin * 2);
         break;
     }
 

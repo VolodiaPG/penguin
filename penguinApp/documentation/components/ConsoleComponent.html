@@ -531,12 +531,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> console_conv</b>
+                            <b><span class="modifier">Public</span> console_conv</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>console_conv:     <code>{ human: boolean; avatar: string; color: string; text: string; }[]</code>
+                            <span class="modifier-icon fa fa-circle"></span><code>console_conv:     <code>{ human: boolean; avatar: string; color: string; text: string; }[]</code>
     </bcode>
                         </td>
                     </tr>
@@ -596,7 +596,7 @@
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
-            <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+            <pre><code class="hljs javascript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 import { ConsoleService } from &#x27;src/app/services/console.service&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 
@@ -622,7 +622,7 @@ export class ConsoleComponent implements OnInit {
   messages: any[] &#x3D; [];
   subscription: Subscription;
 
-  console_conv &#x3D; [
+  public console_conv &#x3D; [
     {
       human: false,
       avatar: &#x27;assets/penguin_enemie.png&#x27;,
@@ -633,7 +633,7 @@ export class ConsoleComponent implements OnInit {
       human: true,
       avatar: &#x27;assets/penguin.png&#x27;,
       color: &#x27;success&#x27;,
-      text: &#x27;I am ready this time !!! Be careful &gt; &lt;&#x27;
+      text: &#x27;I am ready this time !!! Be careful 🤪&#x27;
     }
   ];
 
@@ -642,11 +642,52 @@ export class ConsoleComponent implements OnInit {
    */
   constructor(private consoleService: ConsoleService) {
     this.subscription &#x3D; this.consoleService.getResults().subscribe(res &#x3D;&gt; {
-      if(res) {
-        this.messages.push(res);
-        console.log(res.score, res.visits);
-        let line &#x3D; &quot;Easy !!! I will win : &quot; + res.score/res.visits;
-        this.console_conv.push({human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;warning&#x27;, text: line});
+      if (res) {
+        if (res.type &#x3D;&#x3D;&#x3D; &#x27;score&#x27;) {
+          // this.messages.push(res);
+          console.log(res.score, res.visits);
+          let percentage &#x3D; Math.floor(res.score / res.visits * 100);
+          let line &#x3D; &quot;Trust rate is &quot; + percentage + &quot;, played &quot; + res.visits + &quot; simulations total&quot;;
+
+          this.console_conv.push({ human: true, avatar: &#x27;assets/logo/favicon.png&#x27;, color: &#x27;secondary&#x27;, text: line });
+
+          line &#x3D; &quot;&quot;;
+
+          if (percentage &lt; -50)
+            line +&#x3D; &quot;Oh dear, will you stop now !?! 🤬&quot;;
+          else if (percentage &lt; 0)
+            line +&#x3D; &quot;I&#x27;m going to re-evaluate the situation... 🧐&quot;;
+          else if (percentage &lt; 10)
+            line +&#x3D; &quot;Hmmm...&quot;;
+          else if (percentage &lt; 15)
+            line +&#x3D; &quot;Let&#x27;s see where this goes! 🤭&quot;;
+          else if (percentage &lt; 25)
+            line +&#x3D; &quot;Well, I&#x27;m feeling good, and you? 🔥&quot;;
+          else if (percentage &lt; 30)
+            line +&#x3D; &quot;Are you sure about that? 🤪&quot;;
+          else if (percentage &lt; 40)
+            line +&#x3D; &quot;I&#x27;m feeling confident 🤫&quot;;
+          else if (percentage &lt; 50)
+            line +&#x3D; &quot;Are you letting me win? That&#x27;s so sweet 💗&quot;;
+          else if (percentage &lt; 60)
+            line +&#x3D; &quot;I don&#x27;t even know the rules and I still am playing better than you 🤤&quot;;
+          else if (percentage &lt; 75)
+            line +&#x3D; &quot;I&#x27;m seriously questionning your abilities right now... 🤓&quot;;
+          else if (percentage &lt; 90)
+            line +&#x3D; &quot;I wish I was playing with someone as strong as me... 🥱&quot;;
+          else
+            line +&#x3D; &quot;We might as well skip to the end, we know who will win 🤣&quot;;
+
+          this.console_conv.push({ human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;danger&#x27;, text: line });
+        } else if (res.type &#x3D;&#x3D;&#x3D; &#x27;end_message&#x27; &amp;&amp; res.msg !&#x3D;&#x3D; undefined) {
+          if (res.draw) {
+            this.console_conv.push({ human: true, avatar: &#x27;assets/penguin.png&#x27;, color: &#x27;warning&#x27;, text: res.msg });
+          } else if (res.humanwon) {
+            this.console_conv.push({ human: true, avatar: &#x27;assets/penguin.png&#x27;, color: &#x27;success&#x27;, text: res.msg });
+          } else {
+            this.console_conv.push({ human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;danger&#x27;, text: res.msg });
+          }
+        }
       }
     });
   }
@@ -661,8 +702,8 @@ export class ConsoleComponent implements OnInit {
       let line &#x3D; e.detail.replace(new RegExp(&#x27;\n&#x27;, &#x27;g&#x27;), &#x27;&lt;br /&gt;&#x27;);
 
       console.log(line);
-      this.console_conv.push({human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;warning&#x27;, text: line});
-      console.log(this.console_conv);
+      // this.console_conv.push({ human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;warning&#x27;, text: line });
+      // console.log(this.console_conv);
 
       this.console_outputs +&#x3D; line + &#x27;&lt;br /&gt;&#x27;;
       console.log(this.console_outputs);
@@ -672,7 +713,7 @@ export class ConsoleComponent implements OnInit {
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
-}
+  }
 }</code></pre>
         </div>
     </div>
