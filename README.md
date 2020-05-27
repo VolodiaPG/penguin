@@ -51,7 +51,7 @@ Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or
 # Application
 
 ## Organisation
-`
+```
 |- Home
 |- Game
 | |- Board
@@ -61,7 +61,7 @@ Initially, the game is represented by a board of 60 hexagonal cells, with 1,2 or
 |- Team
 |- Documentation
 |- About
-`
+```
 
 ## Game
 ### Settings & Launch
