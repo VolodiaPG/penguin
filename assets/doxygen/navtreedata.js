@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "tictactoe_mcts", "index.html", [
+  [ "penguin", "index.html", [
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
