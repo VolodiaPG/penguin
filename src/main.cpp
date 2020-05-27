@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <time.h> 
 
 #include "game_logic/penguin/ConsoleGame.hpp"
 #include "game_logic/tic_tac_toe/ConsoleGame.hpp"
@@ -30,32 +31,15 @@ int main(int argn, char **argv)
 
  	return EXIT_SUCCESS;
 }
- 
-
-// int main(int, char **)
-// {
-// 	for (int ii = 0; ii < 1; ++ii)
-// 	{
-// 		game::tic_tac_toe::ConsoleGame consoleGame;
-
-// 		consoleGame.loop();
-// 	}
-
-// 	return EXIT_SUCCESS;
-// }
 
 #else
 
-// int main()
-// {
-//  	for (int ii = 0; ii < 1; ++ii)
-//  	{
-//  		game::penguin::ConsoleGame consoleGame(false);
+int main()
+{
+	// only for emscipten, likely to be the deployed version
+	srand(time(0));
 
-//  		consoleGame.loop();
-//  	}
-
-//  	return EXIT_SUCCESS;
-// }
+ 	return EXIT_SUCCESS;
+}
 
 #endif
