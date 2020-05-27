@@ -47,6 +47,14 @@ When using the application, you'll need to go the the `penguinApp/` folder and d
 >
 > - If you have `.env` related errors, type `npm run env -s`
 
+# Penguin Game
+## Presentation
+This project is an implementation of the game "Pengouins", made by 5 INSA's students, during their Pratical Studies, in their 3rd year in the Computer Science Departement of the INSA Rennes. 
+The application allows the user to play this game against an IA (MCTS). The IA coded in C++, compiled with emscripten in WebAssembly, to be able to display the game in a web browser.
+
+## Rules
+Initially, the game is reprensented by a board of 60 hexagonals, with 1,2 or 3 fishes. You dispose a certain number of penguins posed on one hexagonal cell. In each turn you will moved one penguin, to an available cells (diagonals), and eat the fishes in this new cell. The goal is to eat more fishes than your opponent.
+
 
 # Application
 
@@ -76,34 +84,3 @@ First, you have to select one of your penguin, and then click one of its availab
 
 ### Restart
 You can restart, at any moment, by refreshing all the site with F5.
-
-# Useful other commands
-
-- `c++filt _ZN4game14AbstractPlayer6actionEPNS_17AbstractBoardCellE` gives us `game::AbstractPlayer::action(game::AbstractBoardCell*)`
-- to access container from another computer, for DockerWindows : https://github.com/docker/for-win/issues/4391#issuecomment-520420942
-
-# Basis
-
-- Initial Tutorial : https://www.baeldung.com/java-monte-carlo-tree-search
-- The basis of the project is https://github.com/eugenp/tutorials/tree/master/algorithms-miscellaneous-1/src/main/java/com/baeldung/algorithms/mcts
-- https://www.codeflow.site/fr/article/java-monte-carlo-tree-search
-- https://github.com/memo/ofxMSAmcts/tree/master/src
-
-- https://github.com/hayoung-kim/mcts-tic-tac-toe
-- http://codegatherer.com/mcts_tic_tac_toe.php
-
-## Resources
-
-### Board
-
-- https://simblob.blogspot.com/2019/03/improving-hexagon-map-storage-diagram.html#more
-- https://moodle.insa-rennes.fr/pluginfile.php/45332/mod_resource/content/1/bitboards.pdf
-
-### Penguins
-
-- https://gitlab.insa-rennes.fr/francesco-bariatti/pingouins/tree/master
-
-### Angular
-
-- installation came using this resource : https://github.com/nvm-sh/nvm (tutorial : http://redgreenrepeat.com/2018/02/09/setting-up-angular-in-virtualbox/)
-- https://github.com/nodesource/distributions/tree/master/deb
