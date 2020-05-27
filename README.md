@@ -10,7 +10,7 @@ _Note that for Windows, Docker desktop will only work with Windows Pro!_
 ## Setup
 
 ### How to start
-First, you need to clone our git repositories : `https://github.com/VolodiaPG/penguin.git`.
+First, you need to clone our git repositorie : `https://github.com/VolodiaPG/penguin.git`.
 
 ### General setup
 
