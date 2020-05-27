@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classgame_1_1_abstract_game.html" title="game::AbstractGame\l\&lt; BoardCell, Player,\l Player \&gt;" alt="" coords="5,5,165,61"/>
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html" title="game::tic_tac_toe::\lTicTacToe" alt="" coords="229,13,376,54"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_console_game.html" title="game::tic_tac_toe::\lConsoleGame" alt="" coords="476,13,623,54"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_interface.html" title="game::AbstractInterface" alt="" coords="213,79,392,105"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_console_game.html" title="game::penguin::ConsoleGame" alt="" coords="440,79,659,105"/>
+</map>

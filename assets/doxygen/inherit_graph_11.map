@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classgame_1_1_abstract_board.html" title="game::AbstractBoard\l\&lt; BoardCell, HumanPlayer,\l PenguinPawn \&gt;" alt="" coords="5,5,205,61"/>
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html" title="Describes the hexagonal board of the game, based on an axial coordinate system. " alt="" coords="253,20,419,47"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="mcts::MCTSPlayer::unleash_mcts" name="mcts::MCTSPlayer::unleash_mcts">
+<area shape="rect" id="node2" href="$classmcts_1_1_m_c_t_s.html#ae8b2818e7a34e858e9dd284d33bca874" title="Start the mcts. " alt="" coords="291,189,433,215"/>
+<area shape="rect" id="node3" href="$structmcts_1_1timer.html#af6b8b0201318b987bcab531de4b964f9" title="mcts::timer::milliseconds\l_elapsed" alt="" coords="501,5,688,47"/>
+<area shape="rect" id="node4" href="$classmcts_1_1_m_c_t_s.html#a5a3c4a056b0611c19839d6757871653b" title="mcts::MCTS::selectBestChild\lAndDoAction" alt="" coords="491,123,698,164"/>
+<area shape="rect" id="node5" href="$classmcts_1_1_m_c_t_s.html#a9b161c003bc21fe3910d7800c09fff1d" title="mcts::MCTS::doActionOnBoard" alt="" coords="767,75,986,102"/>
+<area shape="rect" id="node7" href="$classmcts_1_1_m_c_t_s.html#a8c65e74d070a037e5ad0331a39379c9c" title="mcts::MCTS::expandNode" alt="" coords="501,189,689,215"/>
+<area shape="rect" id="node8" href="$classmcts_1_1_m_c_t_s.html#a6b5686f91610bb4f46c395634a17a5b8" title="mcts::MCTS::randomChoose\lChildOrFallbackOnNode" alt="" coords="493,240,697,281"/>
+<area shape="rect" id="node9" href="$classmcts_1_1_m_c_t_s.html#ad465558c1f4933cae2a32ff7394fc49b" title="mcts::MCTS::randomSimulation" alt="" coords="481,306,708,333"/>
+<area shape="rect" id="node11" href="$classmcts_1_1_m_c_t_s.html#a53275dba0c93543b2fa8c24ad928e4a8" title="mcts::MCTS::backPropagate\lAndRevertAction" alt="" coords="493,357,696,399"/>
+<area shape="rect" id="node6" href="$classmcts_1_1_m_c_t_s.html#ac75ac1b12fbb40dca468f1c31a9fc8cd" title="mcts::MCTS::formula" alt="" coords="798,130,955,157"/>
+<area shape="rect" id="node10" href="$classmcts_1_1_m_c_t_s.html#a3e918b416dfe1e5155b077788936f137" title="mcts::MCTS::getRandomAvailable\lMoveFromBoard" alt="" coords="756,299,997,340"/>
+</map>

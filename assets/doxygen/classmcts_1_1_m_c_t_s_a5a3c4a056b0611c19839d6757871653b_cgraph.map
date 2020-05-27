@@ -1,0 +1,4 @@
+<map id="mcts::MCTS::selectBestChildAndDoAction" name="mcts::MCTS::selectBestChildAndDoAction">
+<area shape="rect" id="node2" href="$classmcts_1_1_m_c_t_s.html#a9b161c003bc21fe3910d7800c09fff1d" title="mcts::MCTS::doActionOnBoard" alt="" coords="260,5,479,32"/>
+<area shape="rect" id="node3" href="$classmcts_1_1_m_c_t_s.html#ac75ac1b12fbb40dca468f1c31a9fc8cd" title="mcts::MCTS::formula" alt="" coords="291,56,448,83"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="game::AbstractBoard::checkStatus" name="game::AbstractBoard::checkStatus">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#a1331343872024287df1749cea4a96f5e" title="game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;::~AbstractBoard" alt="" coords="225,5,418,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="479,107,697,149"/>
+<area shape="rect" id="node5" href="$classgame_1_1tic__tac__toe_1_1_console_game.html#a06b07e4c713a60999258b0b573b02a33" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="513,231,663,273"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_penguin_game.html#ae5e55157da5e8a1ed2ccc2c9cbbad50d" title="Tells if the game is finished yet. " alt="" coords="212,137,431,178"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_penguin_game.html#af255dc5b05ef5244ac864d4aa2d3be2e" title="Checks the status of the game, if won, draw. " alt="" coords="212,254,431,295"/>
+<area shape="rect" id="node8" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html#a06463011bee6de3d33946f9162970989" title="Tells if the game is finished yet. " alt="" coords="243,319,399,361"/>
+<area shape="rect" id="node9" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html#a033d73237ae31a39c23a0e887adbce2f" title="Checks the status of the game, if won, draw. " alt="" coords="236,385,407,426"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="745,115,800,141"/>
+</map>

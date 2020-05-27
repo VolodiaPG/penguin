@@ -1,0 +1,17 @@
+<map id="/workspace/src/game_logic/tic_tac_toe/Player.hpp" name="/workspace/src/game_logic/tic_tac_toe/Player.hpp">
+<area shape="rect" id="node2" href="$_abstract_board_8cpp.html" title="/workspace/src/game\l_logic/AbstractBoard.cpp" alt="" coords="5,102,188,143"/>
+<area shape="rect" id="node3" href="$_abstract_game_8cpp.html" title="/workspace/src/game\l_logic/AbstractGame.cpp" alt="" coords="213,102,397,143"/>
+<area shape="rect" id="node4" href="$_abstract_pawn_8cpp.html" title="/workspace/src/game\l_logic/AbstractPawn.cpp" alt="" coords="421,102,599,143"/>
+<area shape="rect" id="node5" href="$_history_8cpp.html" title="/workspace/src/game\l_logic/History.cpp" alt="" coords="623,102,783,143"/>
+<area shape="rect" id="node6" href="$tic__tac__toe_2_board_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Board.cpp" alt="" coords="613,206,817,247"/>
+<area shape="rect" id="node7" href="$tic__tac__toe_2_board_8hpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Board.hpp" alt="" coords="858,102,1063,143"/>
+<area shape="rect" id="node10" href="$tic__tac__toe_2_console_game_8hpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Console\lGame.hpp" alt="" coords="1088,95,1279,151"/>
+<area shape="rect" id="node12" href="$_player_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Player.cpp" alt="" coords="1303,102,1509,143"/>
+<area shape="rect" id="node13" href="$_move_8cpp.html" title="/workspace/src/game\l_logic/utils/Move.cpp" alt="" coords="1534,102,1694,143"/>
+<area shape="rect" id="node14" href="$_m_c_t_s_8cpp.html" title="/workspace/src/mcts\l/MCTS.cpp" alt="" coords="1718,102,1873,143"/>
+<area shape="rect" id="node15" href="$_m_c_t_s_player_8cpp.html" title="/workspace/src/mcts\l/MCTSPlayer.cpp" alt="" coords="1897,102,2051,143"/>
+<area shape="rect" id="node16" href="$_tree_8cpp.html" title="/workspace/src/mcts\l/Tree.cpp" alt="" coords="2075,102,2230,143"/>
+<area shape="rect" id="node8" href="$tic__tac__toe_2_console_game_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Console\lGame.cpp" alt="" coords="1093,199,1284,255"/>
+<area shape="rect" id="node9" href="$_tic_tac_toe_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/TicTacToe.cpp" alt="" coords="841,206,1069,247"/>
+<area shape="rect" id="node11" href="$main_8cpp.html" title="/workspace/src/main.cpp" alt="" coords="1308,213,1491,240"/>
+</map>

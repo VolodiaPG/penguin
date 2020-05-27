@@ -1,0 +1,3 @@
+<map id="game::tic_tac_toe::Board::getAvailableCells" name="game::tic_tac_toe::Board::getAvailableCells">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#a800b9a8409ad28086ad1e7cb275fa25e" title="tells if the cell is claimed or not " alt="" coords="235,5,393,47"/>
+</map>

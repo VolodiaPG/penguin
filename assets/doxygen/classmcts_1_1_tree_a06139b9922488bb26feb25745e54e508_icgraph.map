@@ -1,0 +1,7 @@
+<map id="mcts::Tree::merge" name="mcts::Tree::merge">
+<area shape="rect" id="node2" href="$classmcts_1_1_m_c_t_s_player.html#a9e8202cd2530b6ecc20f873d899823da" title="Join the multiple trees into 1 so that we can get the best move. " alt="" coords="192,46,397,73"/>
+<area shape="rect" id="node3" href="$classmcts_1_1_m_c_t_s_player.html#a48340fed9c5730f0d64ca177682f575e" title="Returns the best move after running the ai. " alt="" coords="445,46,656,73"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="704,5,923,47"/>
+<area shape="rect" id="node6" href="$classgame_1_1tic__tac__toe_1_1_console_game.html#a06b07e4c713a60999258b0b573b02a33" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="739,71,888,112"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="971,13,1025,39"/>
+</map>

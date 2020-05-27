@@ -1,0 +1,4 @@
+<map id="game::AbstractBoard::getAvailableCells" name="game::AbstractBoard::getAvailableCells">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#a1331343872024287df1749cea4a96f5e" title="game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;::~AbstractBoard" alt="" coords="223,5,416,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_tic_tac_toe.html#af5dd08e48f442a4f54402423e996887f" title="game::tic_tac_toe::\lTicTacToe::getAvailableMoves" alt="" coords="212,86,427,127"/>
+</map>

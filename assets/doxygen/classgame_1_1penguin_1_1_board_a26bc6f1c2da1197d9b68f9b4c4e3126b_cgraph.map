@@ -1,0 +1,6 @@
+<map id="game::penguin::Board::getAvailableCells" name="game::penguin::Board::getAvailableCells">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_pawn.html#ae9ad3bf0ee738571d0dd5992feae6bb7" title="game::AbstractPawn\l::getCurrentCell" alt="" coords="237,5,391,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board_cell.html#a802b2f75d1e3136146625266f6a2c03a" title="Get the Position object. " alt="" coords="219,71,409,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="219,136,409,177"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="219,201,409,243"/>
+</map>

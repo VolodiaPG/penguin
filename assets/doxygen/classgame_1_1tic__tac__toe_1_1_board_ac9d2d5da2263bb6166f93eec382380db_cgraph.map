@@ -1,0 +1,5 @@
+<map id="game::tic_tac_toe::Board::size" name="game::tic_tac_toe::Board::size">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#ab5c00479b4dabd60bef9ea00fce23779" title="Get the Cell. " alt="" coords="220,5,367,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#a84cb90a6d844d80ecd5857fb4dc9ad1a" title="Get the Players that are presently palying on the board. " alt="" coords="200,71,387,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7f11ea8d48d9613057dd8164a7610f9a" title="Get a player by it&#39;s id. " alt="" coords="217,136,369,177"/>
+</map>

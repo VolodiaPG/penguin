@@ -1,0 +1,4 @@
+<map id="game::penguin::PenguinPawn" name="game::penguin::PenguinPawn">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_pawn.html" title="{game::AbstractPawn\l\&lt; HumanPlayer, BoardCell \&gt;\n||+ AbstractPawn()\l+ AbstractPawn()\l+ ~AbstractPawn()\l+ getOwner()\l+ getId()\l+ setCurrentCell()\l+ getCurrentCell()\l+ operator==()\l+ operator!=()\l# equals_to()\l}" alt="" coords="7,292,217,516"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_pawn.html" title="{game::AbstractPawn\l\&lt; PlayerT, CellT \&gt;\n||+ AbstractPawn()\l+ AbstractPawn()\l+ ~AbstractPawn()\l+ getOwner()\l+ getId()\l+ setCurrentCell()\l+ getCurrentCell()\l+ operator==()\l+ operator!=()\l# equals_to()\l}" alt="" coords="35,5,189,229"/>
+</map>

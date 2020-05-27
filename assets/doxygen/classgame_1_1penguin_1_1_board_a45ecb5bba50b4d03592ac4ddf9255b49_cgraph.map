@@ -1,0 +1,16 @@
+<map id="game::penguin::Board::revertMove" name="game::penguin::Board::revertMove">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#acc2d5fac68ec019e42fe166b727b7299" title="revertMove &amp; sets the current cell on the pawn " alt="" coords="247,5,405,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="720,79,911,120"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a923c503caf2ed45b2fb0f49eb0cf3201" title="Nobody owns the cell now. " alt="" coords="231,123,421,164"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a097c6986431cadcf0adac373fe01ccee" title="Sets the gone flag. " alt="" coords="231,188,421,229"/>
+<area shape="rect" id="node6" href="$classgame_1_1_abstract_pawn.html#aac49fdd8bd4aa4386fd47d3f6993b8df" title="game::AbstractPawn\l::getOwner" alt="" coords="249,253,403,295"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_human_player.html#ac164fc99bfe3fc2c6818aeb7d41fc885" title="Substract to the score. " alt="" coords="219,319,433,360"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board_cell.html#abe8f2dc0eef3aed1e8701dc0b021c5a6" title="Get the number of fish contained inside the cell. " alt="" coords="231,384,421,425"/>
+<area shape="rect" id="node15" href="$classgame_1_1penguin_1_1_board_cell.html#a5d3fd7b5a5e170bd6fbc101f5240f4b1" title="Set the penguin who stands on the cell, ie the cell&#39;s owner atm. " alt="" coords="231,449,421,491"/>
+<area shape="rect" id="node9" href="$classgame_1_1penguin_1_1_board_cell.html#a1ed5a3134f831bef111c6294c07388bf" title="game::penguin::BoardCell\l::equals_to" alt="" coords="481,384,672,425"/>
+<area shape="rect" id="node11" href="$classgame_1_1penguin_1_1_board_cell.html#a4d3577488552bf0ba4822ac265532825" title="game::penguin::BoardCell\l::clone" alt="" coords="481,239,672,280"/>
+<area shape="rect" id="node10" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="738,384,893,425"/>
+<area shape="rect" id="node12" href="$classgame_1_1penguin_1_1_board_cell.html#a2c76e638f5d0d4374b422756b08cb61f" title="Construct a new Board Cell object. " alt="" coords="720,304,911,345"/>
+<area shape="rect" id="node13" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="720,173,911,215"/>
+<area shape="rect" id="node14" href="$classgame_1_1penguin_1_1_board.html#acae84c13dacef3bd988d1ea9a41d055f" title="Get a player by it&#39;s id. " alt="" coords="733,239,898,280"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="game::penguin::PenguinGame::getAvailableMoves" name="game::penguin::PenguinGame::getAvailableMoves">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_human_player.html#a28c5485b12e0c8fcd340458255c06587" title="Get the penguins possessed by the player. " alt="" coords="272,39,487,80"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#a26bc6f1c2da1197d9b68f9b4c4e3126b" title="Get a list of available cells, ie player can move onto. " alt="" coords="297,104,462,145"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_pawn.html#ae9ad3bf0ee738571d0dd5992feae6bb7" title="game::AbstractPawn\l::getCurrentCell" alt="" coords="553,5,707,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a802b2f75d1e3136146625266f6a2c03a" title="Get the Position object. " alt="" coords="535,71,725,112"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="535,136,725,177"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="535,201,725,243"/>
+</map>

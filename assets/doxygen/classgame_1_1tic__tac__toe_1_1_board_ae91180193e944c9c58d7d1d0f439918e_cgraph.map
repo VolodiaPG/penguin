@@ -1,0 +1,5 @@
+<map id="game::tic_tac_toe::Board::checkStatus" name="game::tic_tac_toe::Board::checkStatus">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#ac100c056a65c288951f7ffec0f3fd4ad" title="Check a line (col or row) for a win. " alt="" coords="215,5,366,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#a68eea4b31da1c8b4cf90ff0d6bc9d232" title="Get a list of empty cells, ie player not passed yet. " alt="" coords="200,71,381,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#a800b9a8409ad28086ad1e7cb275fa25e" title="tells if the cell is claimed or not " alt="" coords="429,71,588,112"/>
+</map>

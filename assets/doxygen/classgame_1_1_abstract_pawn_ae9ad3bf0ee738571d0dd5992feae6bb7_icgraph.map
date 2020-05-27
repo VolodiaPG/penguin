@@ -1,0 +1,9 @@
+<map id="game::AbstractPawn::getCurrentCell" name="game::AbstractPawn::getCurrentCell">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="213,5,368,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="208,86,373,127"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board.html#a26bc6f1c2da1197d9b68f9b4c4e3126b" title="Get a list of available cells, ie player can move onto. " alt="" coords="208,151,373,193"/>
+<area shape="rect" id="node7" href="$classgame_1_1tic__tac__toe_1_1_board.html#a9d7a2c225f06a3410b11b688d9d6bcf8" title="game::tic_tac_toe::\lBoard::clone" alt="" coords="217,217,364,258"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="421,86,640,127"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_penguin_game.html#ae92f96626c8d88f77279b6a76822fbe0" title="game::penguin::PenguinGame\l::getAvailableMoves" alt="" coords="421,151,640,193"/>
+<area shape="rect" id="node8" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7907b8fc363b7e33d585edbc7ec102ae" title="Gets the player corresponding to a certain id. " alt="" coords="451,217,610,258"/>
+</map>

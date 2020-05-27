@@ -1,0 +1,8 @@
+<map id="game::tic_tac_toe::Board::performMove" name="game::tic_tac_toe::Board::performMove">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#acd788fca5054228f6d44f4c0b5ffca1e" title="Check if the pos is allowed to move to. " alt="" coords="208,5,411,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#aa418994b5cdf5c74b105701193d72a1b" title="Get the Position object. " alt="" coords="226,71,393,112"/>
+<area shape="rect" id="node5" href="$classgame_1_1_abstract_board.html#ac2b6d96389ad0ac58d22323d75f91f97" title="perform a movement on the board, sets the current cell on the pawn " alt="" coords="230,136,389,177"/>
+<area shape="rect" id="node6" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#a3ee72b5b70a0d0eb8abbe4cdcdf4038d" title="Set the value of the cell. " alt="" coords="235,201,384,243"/>
+<area shape="rect" id="node7" href="$classgame_1_1_abstract_player.html#a88e33e40f98283588a535f66bf1b6640" title="Get player&#39;s id. " alt="" coords="228,267,391,308"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#a800b9a8409ad28086ad1e7cb275fa25e" title="tells if the cell is claimed or not " alt="" coords="459,71,617,112"/>
+</map>

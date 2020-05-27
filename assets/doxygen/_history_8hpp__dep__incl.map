@@ -1,0 +1,19 @@
+<map id="/workspace/src/game_logic/History.hpp" name="/workspace/src/game_logic/History.hpp">
+<area shape="rect" id="node2" href="$_abstract_board_8hpp.html" title="/workspace/src/game\l_logic/AbstractBoard.hpp" alt="" coords="1403,95,1587,136"/>
+<area shape="rect" id="node18" href="$_history_8cpp.html" title="/workspace/src/game\l_logic/History.cpp" alt="" coords="1611,95,1771,136"/>
+<area shape="rect" id="node3" href="$_abstract_board_8cpp.html" title="/workspace/src/game\l_logic/AbstractBoard.cpp" alt="" coords="611,184,793,225"/>
+<area shape="rect" id="node4" href="$penguin_2_board_8cpp.html" title="/workspace/src/game\l_logic/penguin/Board.cpp" alt="" coords="5,281,191,322"/>
+<area shape="rect" id="node5" href="$penguin_2_board_8hpp.html" title="/workspace/src/game\l_logic/penguin/Board.hpp" alt="" coords="869,184,1055,225"/>
+<area shape="rect" id="node11" href="$tic__tac__toe_2_board_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Board.cpp" alt="" coords="1464,281,1668,322"/>
+<area shape="rect" id="node12" href="$tic__tac__toe_2_board_8hpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Board.hpp" alt="" coords="1463,184,1669,225"/>
+<area shape="rect" id="node15" href="$_m_c_t_s_8cpp.html" title="/workspace/src/mcts\l/MCTS.cpp" alt="" coords="1693,184,1847,225"/>
+<area shape="rect" id="node16" href="$_m_c_t_s_player_8cpp.html" title="/workspace/src/mcts\l/MCTSPlayer.cpp" alt="" coords="1871,184,2026,225"/>
+<area shape="rect" id="node17" href="$_tree_8cpp.html" title="/workspace/src/mcts\l/Tree.cpp" alt="" coords="2050,184,2205,225"/>
+<area shape="rect" id="node6" href="$penguin_2_board_cell_8cpp.html" title="/workspace/src/game\l_logic/penguin/BoardCell.cpp" alt="" coords="215,281,426,322"/>
+<area shape="rect" id="node7" href="$penguin_2_console_game_8cpp.html" title="/workspace/src/game\l_logic/penguin/ConsoleGame.cpp" alt="" coords="451,281,689,322"/>
+<area shape="rect" id="node8" href="$_human_player_8cpp.html" title="/workspace/src/game\l_logic/penguin/HumanPlayer.cpp" alt="" coords="714,281,949,322"/>
+<area shape="rect" id="node9" href="$_penguin_game_8cpp.html" title="/workspace/src/game\l_logic/penguin/PenguinGame.cpp" alt="" coords="973,281,1212,322"/>
+<area shape="rect" id="node10" href="$_print_hex_8cpp.html" title="/workspace/src/game\l_logic/penguin/PrintHex.cpp" alt="" coords="1237,281,1439,322"/>
+<area shape="rect" id="node13" href="$tic__tac__toe_2_console_game_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/Console\lGame.cpp" alt="" coords="1692,273,1883,329"/>
+<area shape="rect" id="node14" href="$_tic_tac_toe_8cpp.html" title="/workspace/src/game\l_logic/tic_tac_toe/TicTacToe.cpp" alt="" coords="1907,281,2135,322"/>
+</map>

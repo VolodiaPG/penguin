@@ -1,0 +1,4 @@
+<map id="game::penguin::PenguinGame" name="game::penguin::PenguinGame">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; BoardCell, HumanPlayer,\l PenguinPawn \&gt;\n|+ board\l|+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="15,307,215,545"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; CellT, PlayerT, PawnT \&gt;\n|+ board\l|+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="19,5,211,229"/>
+</map>

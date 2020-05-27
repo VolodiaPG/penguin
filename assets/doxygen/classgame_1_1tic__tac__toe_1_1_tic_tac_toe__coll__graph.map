@@ -1,0 +1,6 @@
+<map id="game::tic_tac_toe::TicTacToe" name="game::tic_tac_toe::TicTacToe">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; BoardCell, Player,\l Player \&gt;\n||+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="117,740,288,979"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_board.html" title="{game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;\n||+ AbstractBoard()\l+ AbstractBoard()\l+ ~AbstractBoard()\l+ performMove()\l+ revertMove()\l+ checkStatus()\l+ getAvailableCells()\l+ getBoardCells()\l+ getCell()\l+ getPawnsOnBoard()\l+ getPawnById()\l+ getPlayerById()\l+ size()\l+ clone()\l}" alt="" coords="20,365,185,663"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_board.html" title="Describe the basics of a Board. " alt="" coords="5,5,197,288"/>
+<area shape="rect" id="node5" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; CellT, PlayerT, PawnT \&gt;\n||+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="209,402,401,626"/>
+</map>

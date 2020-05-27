@@ -1,0 +1,5 @@
+<map id="game::AbstractBoard::size" name="game::AbstractBoard::size">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#a1331343872024287df1749cea4a96f5e" title="game::AbstractBoard\l\&lt; BoardCell, Player,\l Player \&gt;::~AbstractBoard" alt="" coords="212,5,405,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_console_game.html#a209ec289b23e0325417d50a31a323b37" title="game::tic_tac_toe::\lConsoleGame::draw" alt="" coords="232,86,385,127"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_console_game.html#a06b07e4c713a60999258b0b573b02a33" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="453,86,603,127"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="game::AbstractPawn::setCurrentCell" name="game::AbstractPawn::setCurrentCell">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="208,5,363,61"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#a9d7a2c225f06a3410b11b688d9d6bcf8" title="game::tic_tac_toe::\lBoard::clone" alt="" coords="212,86,359,127"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7907b8fc363b7e33d585edbc7ec102ae" title="Gets the player corresponding to a certain id. " alt="" coords="411,86,569,127"/>
+</map>
