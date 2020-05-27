@@ -647,7 +647,7 @@ export class ConsoleComponent implements OnInit {
           // this.messages.push(res);
           console.log(res.score, res.visits);
           let percentage &#x3D; Math.floor(res.score / res.visits * 100);
-          let line &#x3D; &quot;Trust rate is &quot; + percentage + &quot;, played &quot; + res.visits + &quot; simulations total&quot;;
+          let line &#x3D; &quot;MCTS Trust rate is &quot; + percentage + &quot;%, played &quot; + res.visits + &quot; simulations total&quot;;
 
           this.console_conv.push({ human: true, avatar: &#x27;assets/logo/favicon.png&#x27;, color: &#x27;secondary&#x27;, text: line });
 
