@@ -1,0 +1,4 @@
+<map id="game::tic_tac_toe::Board::Board" name="game::tic_tac_toe::Board::Board">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#a9d7a2c225f06a3410b11b688d9d6bcf8" title="game::tic_tac_toe::\lBoard::clone" alt="" coords="200,5,347,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7907b8fc363b7e33d585edbc7ec102ae" title="Gets the player corresponding to a certain id. " alt="" coords="395,5,553,47"/>
+</map>

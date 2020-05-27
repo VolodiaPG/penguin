@@ -1,0 +1,5 @@
+<map id="game::penguin::Board::clone" name="game::penguin::Board::clone">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#aea5bd314dbc295e71759baf2051409c5" title="Construct a new Board object. " alt="" coords="219,5,384,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#acae84c13dacef3bd988d1ea9a41d055f" title="Get a player by it&#39;s id. " alt="" coords="219,71,384,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board.html#ac9fbe04a302208fcb5f66e717182b6d4" title="Get the Cell. " alt="" coords="219,136,384,177"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="mcts::MCTS::begin" name="mcts::MCTS::begin">
+<area shape="rect" id="node2" href="$classmcts_1_1_m_c_t_s_player.html#a53677f7c7f9cfe4b7999af8abcfb8641" title="Unleashe the power of the MCTS !!!! " alt="" coords="196,46,433,73"/>
+<area shape="rect" id="node3" href="$classmcts_1_1_m_c_t_s_player.html#a48340fed9c5730f0d64ca177682f575e" title="Returns the best move after running the ai. " alt="" coords="481,46,692,73"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="740,5,959,47"/>
+<area shape="rect" id="node6" href="$classgame_1_1tic__tac__toe_1_1_console_game.html#a06b07e4c713a60999258b0b573b02a33" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="775,71,924,112"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="1007,13,1061,39"/>
+</map>

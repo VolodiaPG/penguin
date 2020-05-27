@@ -1,0 +1,3 @@
+<map id="game::penguin::PenguinGame::play" name="game::penguin::PenguinGame::play">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_board.html#ac2b6d96389ad0ac58d22323d75f91f97" title="perform a movement on the board, sets the current cell on the pawn " alt="" coords="272,5,431,47"/>
+</map>

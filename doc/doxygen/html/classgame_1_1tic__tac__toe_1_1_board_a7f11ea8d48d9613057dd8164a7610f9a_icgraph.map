@@ -1,0 +1,4 @@
+<map id="game::tic_tac_toe::Board::getPawnById" name="game::tic_tac_toe::Board::getPawnById">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#ac9d2d5da2263bb6166f93eec382380db" title="game::tic_tac_toe::\lBoard::size" alt="" coords="211,5,358,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7907b8fc363b7e33d585edbc7ec102ae" title="Gets the player corresponding to a certain id. " alt="" coords="205,71,364,112"/>
+</map>

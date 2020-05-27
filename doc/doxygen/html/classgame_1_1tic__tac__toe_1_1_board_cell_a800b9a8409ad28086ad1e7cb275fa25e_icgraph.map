@@ -1,0 +1,8 @@
+<map id="game::tic_tac_toe::BoardCell::isClaimed" name="game::tic_tac_toe::BoardCell::isClaimed">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#a68eea4b31da1c8b4cf90ff0d6bc9d232" title="Get a list of empty cells, ie player not passed yet. " alt="" coords="212,5,393,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#aa418994b5cdf5c74b105701193d72a1b" title="Get the Position object. " alt="" coords="219,71,386,112"/>
+<area shape="rect" id="node3" href="$classgame_1_1tic__tac__toe_1_1_board.html#ae91180193e944c9c58d7d1d0f439918e" title="Chek wether or not the game is finished. " alt="" coords="445,5,592,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1tic__tac__toe_1_1_board.html#a08d914b0a618b2e35dcd5016ceba1b23" title="Performs a particular move. " alt="" coords="441,71,596,112"/>
+<area shape="rect" id="node6" href="$classgame_1_1tic__tac__toe_1_1_board.html#a9d7a2c225f06a3410b11b688d9d6bcf8" title="game::tic_tac_toe::\lBoard::clone" alt="" coords="445,136,592,177"/>
+<area shape="rect" id="node7" href="$classgame_1_1tic__tac__toe_1_1_board.html#a7907b8fc363b7e33d585edbc7ec102ae" title="Gets the player corresponding to a certain id. " alt="" coords="644,136,803,177"/>
+</map>

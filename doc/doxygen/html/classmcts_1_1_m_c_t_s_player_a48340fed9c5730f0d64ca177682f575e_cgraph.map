@@ -1,0 +1,19 @@
+<map id="mcts::MCTSPlayer::bestMove" name="mcts::MCTSPlayer::bestMove">
+<area shape="rect" id="node2" href="$classmcts_1_1_m_c_t_s_player.html#a53677f7c7f9cfe4b7999af8abcfb8641" title="Unleashe the power of the MCTS !!!! " alt="" coords="294,189,531,215"/>
+<area shape="rect" id="node13" href="$classmcts_1_1_m_c_t_s_player.html#a9e8202cd2530b6ecc20f873d899823da" title="Join the multiple trees into 1 so that we can get the best move. " alt="" coords="310,239,515,266"/>
+<area shape="rect" id="node15" href="$classmcts_1_1_tree.html#a0431bd1074e29e682fe3c7bc6a3aee89" title="mcts::Tree::bestMove" alt="" coords="333,290,493,317"/>
+<area shape="rect" id="node17" href="$classmcts_1_1_m_c_t_s_player.html#aa68be6bbbbd01044d42b9c2d0149b366" title="Get the Corresponding Move object. " alt="" coords="264,341,561,367"/>
+<area shape="rect" id="node18" href="$classmcts_1_1_tree.html#a75496cb3742583b221c1b95d8fd85718" title="mcts::Tree::getRootNode" alt="" coords="322,391,503,418"/>
+<area shape="rect" id="node3" href="$classmcts_1_1_m_c_t_s.html#ae8b2818e7a34e858e9dd284d33bca874" title="Start the mcts. " alt="" coords="649,189,792,215"/>
+<area shape="rect" id="node4" href="$structmcts_1_1timer.html#af6b8b0201318b987bcab531de4b964f9" title="mcts::timer::milliseconds\l_elapsed" alt="" coords="900,5,1087,47"/>
+<area shape="rect" id="node5" href="$classmcts_1_1_m_c_t_s.html#a5a3c4a056b0611c19839d6757871653b" title="mcts::MCTS::selectBestChild\lAndDoAction" alt="" coords="890,123,1097,164"/>
+<area shape="rect" id="node6" href="$classmcts_1_1_m_c_t_s.html#a9b161c003bc21fe3910d7800c09fff1d" title="mcts::MCTS::doActionOnBoard" alt="" coords="1166,75,1385,102"/>
+<area shape="rect" id="node8" href="$classmcts_1_1_m_c_t_s.html#a8c65e74d070a037e5ad0331a39379c9c" title="mcts::MCTS::expandNode" alt="" coords="899,189,1087,215"/>
+<area shape="rect" id="node9" href="$classmcts_1_1_m_c_t_s.html#a6b5686f91610bb4f46c395634a17a5b8" title="mcts::MCTS::randomChoose\lChildOrFallbackOnNode" alt="" coords="891,240,1095,281"/>
+<area shape="rect" id="node10" href="$classmcts_1_1_m_c_t_s.html#ad465558c1f4933cae2a32ff7394fc49b" title="mcts::MCTS::randomSimulation" alt="" coords="880,306,1107,333"/>
+<area shape="rect" id="node12" href="$classmcts_1_1_m_c_t_s.html#a53275dba0c93543b2fa8c24ad928e4a8" title="mcts::MCTS::backPropagate\lAndRevertAction" alt="" coords="892,357,1095,399"/>
+<area shape="rect" id="node7" href="$classmcts_1_1_m_c_t_s.html#ac75ac1b12fbb40dca468f1c31a9fc8cd" title="mcts::MCTS::formula" alt="" coords="1197,130,1354,157"/>
+<area shape="rect" id="node11" href="$classmcts_1_1_m_c_t_s.html#a3e918b416dfe1e5155b077788936f137" title="mcts::MCTS::getRandomAvailable\lMoveFromBoard" alt="" coords="1155,299,1396,340"/>
+<area shape="rect" id="node14" href="$classmcts_1_1_tree.html#a06139b9922488bb26feb25745e54e508" title="Merges tree into the current tree. " alt="" coords="651,239,790,266"/>
+<area shape="rect" id="node16" href="$classmcts_1_1_tree.html#a2cf4616df96cb68014ebd8fa6d0aebc4" title="mcts::Tree::nodeWithMaxVisits" alt="" coords="609,290,832,317"/>
+</map>

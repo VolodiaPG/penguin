@@ -1,0 +1,9 @@
+<map id="game::penguin::BoardCell::getFish" name="game::penguin::BoardCell::getFish">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board_cell.html#a1ed5a3134f831bef111c6294c07388bf" title="game::penguin::BoardCell\l::equals_to" alt="" coords="244,39,435,80"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a4d3577488552bf0ba4822ac265532825" title="game::penguin::BoardCell\l::clone" alt="" coords="244,136,435,177"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="501,5,655,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a2c76e638f5d0d4374b422756b08cb61f" title="Construct a new Board Cell object. " alt="" coords="483,71,673,112"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="483,136,673,177"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_board.html#acae84c13dacef3bd988d1ea9a41d055f" title="Get a player by it&#39;s id. " alt="" coords="495,201,661,243"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="483,267,673,308"/>
+</map>

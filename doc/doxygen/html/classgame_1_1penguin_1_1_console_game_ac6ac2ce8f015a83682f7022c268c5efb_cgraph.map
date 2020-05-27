@@ -1,0 +1,23 @@
+<map id="game::penguin::ConsoleGame::ConsoleGame" name="game::penguin::ConsoleGame::ConsoleGame">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="272,306,437,347"/>
+<area shape="rect" id="node19" href="$classgame_1_1penguin_1_1_board.html#acae84c13dacef3bd988d1ea9a41d055f" title="Get a player by it&#39;s id. " alt="" coords="999,88,1165,130"/>
+<area shape="rect" id="node22" href="$classgame_1_1penguin_1_1_board.html#ac9fbe04a302208fcb5f66e717182b6d4" title="Get the Cell. " alt="" coords="272,371,437,412"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_pawn.html#aac49fdd8bd4aa4386fd47d3f6993b8df" title="game::AbstractPawn\l::getOwner" alt="" coords="515,175,670,216"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_pawn.html#ae9ad3bf0ee738571d0dd5992feae6bb7" title="game::AbstractPawn\l::getCurrentCell" alt="" coords="515,240,670,282"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board.html#a2864b1af9dbdf19273185c504257435c" title="Checks wether or not the move is allowed to be performed. " alt="" coords="510,306,675,347"/>
+<area shape="rect" id="node9" href="$classgame_1_1penguin_1_1_board_cell.html#a802b2f75d1e3136146625266f6a2c03a" title="Get the Position object. " alt="" coords="497,502,688,543"/>
+<area shape="rect" id="node10" href="$classgame_1_1penguin_1_1_board_cell.html#a923c503caf2ed45b2fb0f49eb0cf3201" title="Nobody owns the cell now. " alt="" coords="497,567,688,608"/>
+<area shape="rect" id="node11" href="$classgame_1_1penguin_1_1_board_cell.html#a097c6986431cadcf0adac373fe01ccee" title="Sets the gone flag. " alt="" coords="497,632,688,674"/>
+<area shape="rect" id="node12" href="$classgame_1_1penguin_1_1_board_cell.html#a5d3fd7b5a5e170bd6fbc101f5240f4b1" title="Set the penguin who stands on the cell, ie the cell&#39;s owner atm. " alt="" coords="497,44,688,86"/>
+<area shape="rect" id="node13" href="$classgame_1_1penguin_1_1_human_player.html#a1474720bb1f767c195ac316dd6a8ee82" title="Adds to the score;. " alt="" coords="485,110,700,151"/>
+<area shape="rect" id="node14" href="$classgame_1_1penguin_1_1_board_cell.html#abe8f2dc0eef3aed1e8701dc0b021c5a6" title="Get the number of fish contained inside the cell. " alt="" coords="497,436,688,478"/>
+<area shape="rect" id="node21" href="$classgame_1_1_abstract_board.html#ac2b6d96389ad0ac58d22323d75f91f97" title="perform a movement on the board, sets the current cell on the pawn " alt="" coords="513,371,672,412"/>
+<area shape="rect" id="node6" href="$namespacegame.html#a758b3d0eea6eae0e6ce5ea1b8dc90ed9" title="Converts an axial position to a cube position in an hexagonal grid. " alt="" coords="749,338,937,365"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="748,222,939,263"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="987,280,1177,322"/>
+<area shape="rect" id="node15" href="$classgame_1_1penguin_1_1_board_cell.html#a1ed5a3134f831bef111c6294c07388bf" title="game::penguin::BoardCell\l::equals_to" alt="" coords="748,466,939,507"/>
+<area shape="rect" id="node17" href="$classgame_1_1penguin_1_1_board_cell.html#a4d3577488552bf0ba4822ac265532825" title="game::penguin::BoardCell\l::clone" alt="" coords="748,390,939,431"/>
+<area shape="rect" id="node16" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="1005,476,1159,518"/>
+<area shape="rect" id="node18" href="$classgame_1_1penguin_1_1_board_cell.html#a2c76e638f5d0d4374b422756b08cb61f" title="Construct a new Board Cell object. " alt="" coords="987,411,1177,452"/>
+<area shape="rect" id="node20" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="987,346,1177,387"/>
+</map>

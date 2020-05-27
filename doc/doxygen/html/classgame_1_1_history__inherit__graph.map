@@ -1,0 +1,4 @@
+<map id="game::History&lt; CellT, PawnT &gt;" name="game::History&lt; CellT, PawnT &gt;">
+<area shape="rect" id="node2" href="$classgame_1_1_history.html" title="{game::History\&lt; BoardCell,\l Player \&gt;\n||+ History()\l+ History()\l+ enqueue()\l+ dequeue()\l+ top()\l+ size()\l}" alt="" coords="5,233,201,399"/>
+<area shape="rect" id="node3" href="$classgame_1_1_history.html" title="{game::History\&lt; BoardCell,\l PenguinPawn \&gt;\n||+ History()\l+ History()\l+ enqueue()\l+ dequeue()\l+ top()\l+ size()\l}" alt="" coords="225,233,421,399"/>
+</map>

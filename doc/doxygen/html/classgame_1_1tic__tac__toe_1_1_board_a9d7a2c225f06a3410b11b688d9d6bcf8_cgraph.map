@@ -1,0 +1,8 @@
+<map id="game::tic_tac_toe::Board::clone" name="game::tic_tac_toe::Board::clone">
+<area shape="rect" id="node2" href="$classgame_1_1tic__tac__toe_1_1_board.html#a90e2255675eacaefca2cd89aea681096" title="Construct a new Board object. " alt="" coords="210,5,357,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_pawn.html#ae9ad3bf0ee738571d0dd5992feae6bb7" title="game::AbstractPawn\l::getCurrentCell" alt="" coords="206,71,361,112"/>
+<area shape="rect" id="node4" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#aa418994b5cdf5c74b105701193d72a1b" title="Get the Position object. " alt="" coords="200,136,367,177"/>
+<area shape="rect" id="node6" href="$classgame_1_1_abstract_pawn.html#a678ab4c2f0191bafa3e1e16cf04fa9d0" title="Queue the move done at the top of the stack. " alt="" coords="206,201,361,243"/>
+<area shape="rect" id="node7" href="$classgame_1_1tic__tac__toe_1_1_board.html#ab5c00479b4dabd60bef9ea00fce23779" title="Get the Cell. " alt="" coords="210,267,357,308"/>
+<area shape="rect" id="node5" href="$classgame_1_1tic__tac__toe_1_1_board_cell.html#a800b9a8409ad28086ad1e7cb275fa25e" title="tells if the cell is claimed or not " alt="" coords="415,136,573,177"/>
+</map>

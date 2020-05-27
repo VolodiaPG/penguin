@@ -1,0 +1,517 @@
+\hypertarget{classgame_1_1penguin_1_1_board}{}\section{game\+:\+:penguin\+:\+:Board Class Reference}
+\label{classgame_1_1penguin_1_1_board}\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+
+
+Describes the hexagonal board of the game, based on an axial coordinate system.  
+
+
+
+
+{\ttfamily \#include $<$Board.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:penguin\+:\+:Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classgame_1_1penguin_1_1_board__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:penguin\+:\+:Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classgame_1_1penguin_1_1_board__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1penguin_1_1_board_aea5bd314dbc295e71759baf2051409c5}{Board} (const size\+\_\+t dimension, const size\+\_\+t number\+\_\+of\+\_\+penguins\+\_\+per\+\_\+team)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classgame_1_1penguin_1_1_board}{Board} object. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1penguin_1_1_board_a7768c6b6dab42e72a3f3853af2ad1f5a}{$\sim$\+Board} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{classgame_1_1penguin_1_1_board}{Board} object. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_af297dc572afb02dafc61e3b8e849338f}{perform\+Move} (\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$pawn, \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$cell) override
+\begin{DoxyCompactList}\small\item\em Performs a particular move. \end{DoxyCompactList}\item 
+const \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $>$ \hyperlink{classgame_1_1penguin_1_1_board_a45ecb5bba50b4d03592ac4ddf9255b49}{revert\+Move} () override
+\begin{DoxyCompactList}\small\item\em Revert the last move made on the behalf of the human player. \end{DoxyCompactList}\item 
+int \hyperlink{classgame_1_1penguin_1_1_board_a3d659743bc33b43168c82dc4e2d3b00e}{check\+Status} () override
+\begin{DoxyCompactList}\small\item\em Chek wether or not the game is finished. \end{DoxyCompactList}\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_ae85ef3019829098c5ad5afb1c3ebceb5}{is\+Able\+To\+Move} (const \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player} $\ast$const \&player)
+\begin{DoxyCompactList}\small\item\em Is the player able to move. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ $>$ \hyperlink{classgame_1_1penguin_1_1_board_a26bc6f1c2da1197d9b68f9b4c4e3126b}{get\+Available\+Cells} (\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$penguin) override
+\begin{DoxyCompactList}\small\item\em Get a list of available cells, ie player can move onto. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ $>$ \hyperlink{classgame_1_1penguin_1_1_board_afae3ac9e82200303d28dd4cf7bfa12ec}{get\+Board\+Cells} () override
+\begin{DoxyCompactList}\small\item\em Get a list of all cells. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classgame_1_1penguin_1_1_board_a7636e3bdb2da72d2a6395b1a2d846394}{size} () const override
+\item 
+\hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_ac9fbe04a302208fcb5f66e717182b6d4}{get\+Cell} (int xx, int yy) override
+\begin{DoxyCompactList}\small\item\em Get the Cell. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ $>$ \hyperlink{classgame_1_1penguin_1_1_board_a13a38d7c935dd363d7ec9394488539ee}{get\+Pawns\+On\+Board} () override
+\begin{DoxyCompactList}\small\item\em Get the Players that are presently palying on the board. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_acae84c13dacef3bd988d1ea9a41d055f}{get\+Pawn\+By\+Id} (const unsigned int penguin\+\_\+id) override
+\begin{DoxyCompactList}\small\item\em Get a player by it\textquotesingle{}s id. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_a169a4af29387bc09929e12af674adc62}{get\+Pawn\+By\+Id} (const unsigned int \&penguin\+\_\+id) const
+\item 
+\hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player} $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_a8728b4381bc2e007710d275bb226cf95}{get\+Player\+By\+Id} (const unsigned int human\+\_\+player\+\_\+id) override
+\begin{DoxyCompactList}\small\item\em Gets the player corresponding to a certain id. \end{DoxyCompactList}\item 
+\hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player}, \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $>$ $\ast$ \hyperlink{classgame_1_1penguin_1_1_board_acad4a3c7bee2103aea4586356ceabb8e}{clone} () const override
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgame_1_1penguin_1_1_board_a2864b1af9dbdf19273185c504257435c}{check\+For\+Correctness} (const \hyperlink{structgame_1_1_position}{Position} \&start, const \hyperlink{structgame_1_1_position}{Position} \&destination)
+\begin{DoxyCompactList}\small\item\em Checks wether or not the move is allowed to be performed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}{penguin\+\_\+board\+\_\+map\+\_\+t} \hyperlink{classgame_1_1penguin_1_1_board_ab89d4ad0fcac9a4cb2ebebb3d0aa3eed}{board\+Values}
+\begin{DoxyCompactList}\small\item\em Array of the cell const pointers to variable element indexed in board\+Values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Describes the hexagonal board of the game, based on an axial coordinate system. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_aea5bd314dbc295e71759baf2051409c5}\label{classgame_1_1penguin_1_1_board_aea5bd314dbc295e71759baf2051409c5}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!Board@{Board}}
+\index{Board@{Board}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily game\+::penguin\+::\+Board\+::\+Board (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dimension,  }\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+penguins\+\_\+per\+\_\+team }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classgame_1_1penguin_1_1_board}{Board} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimension} & the board dimensions \\
+\hline
+{\em number\+\_\+of\+\_\+penguins\+\_\+per\+\_\+team} & the number of penguins available in 1 team \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_aea5bd314dbc295e71759baf2051409c5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a7768c6b6dab42e72a3f3853af2ad1f5a}\label{classgame_1_1penguin_1_1_board_a7768c6b6dab42e72a3f3853af2ad1f5a}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!````~Board@{$\sim$\+Board}}
+\index{````~Board@{$\sim$\+Board}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{$\sim$\+Board()}{~Board()}}
+{\footnotesize\ttfamily game\+::penguin\+::\+Board\+::$\sim$\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{classgame_1_1penguin_1_1_board}{Board} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a2864b1af9dbdf19273185c504257435c}\label{classgame_1_1penguin_1_1_board_a2864b1af9dbdf19273185c504257435c}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!check\+For\+Correctness@{check\+For\+Correctness}}
+\index{check\+For\+Correctness@{check\+For\+Correctness}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{check\+For\+Correctness()}{checkForCorrectness()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+::check\+For\+Correctness (\begin{DoxyParamCaption}\item[{const \hyperlink{structgame_1_1_position}{Position} \&}]{start,  }\item[{const \hyperlink{structgame_1_1_position}{Position} \&}]{destination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Checks wether or not the move is allowed to be performed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & the starting position \\
+\hline
+{\em destination} & the destination position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true the move can be performed 
+
+false the move is illegal 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a2864b1af9dbdf19273185c504257435c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a2864b1af9dbdf19273185c504257435c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a3d659743bc33b43168c82dc4e2d3b00e}\label{classgame_1_1penguin_1_1_board_a3d659743bc33b43168c82dc4e2d3b00e}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!check\+Status@{check\+Status}}
+\index{check\+Status@{check\+Status}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{check\+Status()}{checkStatus()}}
+{\footnotesize\ttfamily int game\+::penguin\+::\+Board\+::check\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Chek wether or not the game is finished. 
+
+\begin{DoxyReturn}{Returns}
+If not finised it will return 0, otherwise the id of the winning player or -\/1 if a draw 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a689982e6640633d78008157906c6d63a}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a3d659743bc33b43168c82dc4e2d3b00e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_acad4a3c7bee2103aea4586356ceabb8e}\label{classgame_1_1penguin_1_1_board_acad4a3c7bee2103aea4586356ceabb8e}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!clone@{clone}}
+\index{clone@{clone}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player}, \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $>$ $\ast$ game\+::penguin\+::\+Board\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_abd467b64fd2c0dfbc0ce87200afb3e9e}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_acad4a3c7bee2103aea4586356ceabb8e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_acad4a3c7bee2103aea4586356ceabb8e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a26bc6f1c2da1197d9b68f9b4c4e3126b}\label{classgame_1_1penguin_1_1_board_a26bc6f1c2da1197d9b68f9b4c4e3126b}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Available\+Cells@{get\+Available\+Cells}}
+\index{get\+Available\+Cells@{get\+Available\+Cells}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Available\+Cells()}{getAvailableCells()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ $>$ game\+::penguin\+::\+Board\+::get\+Available\+Cells (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$}]{penguin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Get a list of available cells, ie player can move onto. 
+
+\begin{DoxyReturn}{Returns}
+the list of available cells to move onto 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a26bc6f1c2da1197d9b68f9b4c4e3126b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a26bc6f1c2da1197d9b68f9b4c4e3126b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_afae3ac9e82200303d28dd4cf7bfa12ec}\label{classgame_1_1penguin_1_1_board_afae3ac9e82200303d28dd4cf7bfa12ec}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Board\+Cells@{get\+Board\+Cells}}
+\index{get\+Board\+Cells@{get\+Board\+Cells}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Board\+Cells()}{getBoardCells()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ $>$ game\+::penguin\+::\+Board\+::get\+Board\+Cells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get a list of all cells. 
+
+\begin{DoxyReturn}{Returns}
+the list of all cells 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a73d6bef66826688cd6e2bc0f37acb4b0}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_ac9fbe04a302208fcb5f66e717182b6d4}\label{classgame_1_1penguin_1_1_board_ac9fbe04a302208fcb5f66e717182b6d4}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Cell@{get\+Cell}}
+\index{get\+Cell@{get\+Cell}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Cell()}{getCell()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$ game\+::penguin\+::\+Board\+::get\+Cell (\begin{DoxyParamCaption}\item[{int}]{line,  }\item[{int}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the Cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & line coord \\
+\hline
+{\em col} & col coord \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the targeted cell 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_af02030d0ae3f44b95fff7c8012e7a066}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_ac9fbe04a302208fcb5f66e717182b6d4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_acae84c13dacef3bd988d1ea9a41d055f}\label{classgame_1_1penguin_1_1_board_acae84c13dacef3bd988d1ea9a41d055f}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Pawn\+By\+Id@{get\+Pawn\+By\+Id}}
+\index{get\+Pawn\+By\+Id@{get\+Pawn\+By\+Id}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Pawn\+By\+Id()}{getPawnById()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ game\+::penguin\+::\+Board\+::get\+Pawn\+By\+Id (\begin{DoxyParamCaption}\item[{const unsigned int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get a player by it\textquotesingle{}s id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the id of the player wanted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pawn\+T$\ast$ the pawn wanted, or null if it doesn\textquotesingle{}t exists 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a5d80fa5f0809c746349fc1bab1d8999b}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_acae84c13dacef3bd988d1ea9a41d055f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a169a4af29387bc09929e12af674adc62}\label{classgame_1_1penguin_1_1_board_a169a4af29387bc09929e12af674adc62}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Pawn\+By\+Id@{get\+Pawn\+By\+Id}}
+\index{get\+Pawn\+By\+Id@{get\+Pawn\+By\+Id}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Pawn\+By\+Id()}{getPawnById()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ game\+::penguin\+::\+Board\+::get\+Pawn\+By\+Id (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{penguin\+\_\+id }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a13a38d7c935dd363d7ec9394488539ee}\label{classgame_1_1penguin_1_1_board_a13a38d7c935dd363d7ec9394488539ee}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Pawns\+On\+Board@{get\+Pawns\+On\+Board}}
+\index{get\+Pawns\+On\+Board@{get\+Pawns\+On\+Board}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Pawns\+On\+Board()}{getPawnsOnBoard()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$ $>$ game\+::penguin\+::\+Board\+::get\+Pawns\+On\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the Players that are presently palying on the board. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Player\+T $\ast$$>$ a vector of the players 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a9c8a033b23ade01ecce24e95723ffd35}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a13a38d7c935dd363d7ec9394488539ee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a8728b4381bc2e007710d275bb226cf95}\label{classgame_1_1penguin_1_1_board_a8728b4381bc2e007710d275bb226cf95}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!get\+Player\+By\+Id@{get\+Player\+By\+Id}}
+\index{get\+Player\+By\+Id@{get\+Player\+By\+Id}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{get\+Player\+By\+Id()}{getPlayerById()}}
+{\footnotesize\ttfamily \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player} $\ast$ game\+::penguin\+::\+Board\+::get\+Player\+By\+Id (\begin{DoxyParamCaption}\item[{const unsigned int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the player corresponding to a certain id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & the id of the player \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Player\+T$\ast$ the player wanted 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a2ae30faf6d02d6d9757020a7ed7932cc}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a8728b4381bc2e007710d275bb226cf95_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_ae85ef3019829098c5ad5afb1c3ebceb5}\label{classgame_1_1penguin_1_1_board_ae85ef3019829098c5ad5afb1c3ebceb5}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!is\+Able\+To\+Move@{is\+Able\+To\+Move}}
+\index{is\+Able\+To\+Move@{is\+Able\+To\+Move}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{is\+Able\+To\+Move()}{isAbleToMove()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+::is\+Able\+To\+Move (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1penguin_1_1_human_player}{Human\+Player} $\ast$const \&}]{player }\end{DoxyParamCaption})}
+
+
+
+Is the player able to move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & the refered player \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if he can 
+
+false if he cannot 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_ae85ef3019829098c5ad5afb1c3ebceb5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_ae85ef3019829098c5ad5afb1c3ebceb5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_af297dc572afb02dafc61e3b8e849338f}\label{classgame_1_1penguin_1_1_board_af297dc572afb02dafc61e3b8e849338f}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!perform\+Move@{perform\+Move}}
+\index{perform\+Move@{perform\+Move}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{perform\+Move()}{performMove()}}
+{\footnotesize\ttfamily bool game\+::penguin\+::\+Board\+::perform\+Move (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $\ast$}]{pawn,  }\item[{\hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell} $\ast$}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Performs a particular move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & the player who moves \\
+\hline
+{\em pos} & the destination position \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_af297dc572afb02dafc61e3b8e849338f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_af297dc572afb02dafc61e3b8e849338f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a45ecb5bba50b4d03592ac4ddf9255b49}\label{classgame_1_1penguin_1_1_board_a45ecb5bba50b4d03592ac4ddf9255b49}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!revert\+Move@{revert\+Move}}
+\index{revert\+Move@{revert\+Move}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{revert\+Move()}{revertMove()}}
+{\footnotesize\ttfamily const \hyperlink{structgame_1_1_move}{Move}$<$ \hyperlink{classgame_1_1penguin_1_1_board_cell}{Board\+Cell}, \hyperlink{classgame_1_1penguin_1_1_penguin_pawn}{Penguin\+Pawn} $>$ game\+::penguin\+::\+Board\+::revert\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Revert the last move made on the behalf of the human player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em human\+\_\+player\+\_\+id} & the human player id \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classgame_1_1_abstract_board_acc2d5fac68ec019e42fe166b727b7299}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a45ecb5bba50b4d03592ac4ddf9255b49_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_a7636e3bdb2da72d2a6395b1a2d846394}\label{classgame_1_1penguin_1_1_board_a7636e3bdb2da72d2a6395b1a2d846394}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!size@{size}}
+\index{size@{size}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily size\+\_\+t game\+::penguin\+::\+Board\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classgame_1_1_abstract_board_a17bd6905ded76d0005437d288fe8ac21}{game\+::\+Abstract\+Board$<$ Board\+Cell, Human\+Player, Penguin\+Pawn $>$}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a7636e3bdb2da72d2a6395b1a2d846394_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1penguin_1_1_board_a7636e3bdb2da72d2a6395b1a2d846394_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgame_1_1penguin_1_1_board_ab89d4ad0fcac9a4cb2ebebb3d0aa3eed}\label{classgame_1_1penguin_1_1_board_ab89d4ad0fcac9a4cb2ebebb3d0aa3eed}} 
+\index{game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}!board\+Values@{board\+Values}}
+\index{board\+Values@{board\+Values}!game\+::penguin\+::\+Board@{game\+::penguin\+::\+Board}}
+\subsubsection{\texorpdfstring{board\+Values}{boardValues}}
+{\footnotesize\ttfamily \hyperlink{namespacegame_1_1penguin_a6ea7c0fc4c04931bf39fcac439c92735}{penguin\+\_\+board\+\_\+map\+\_\+t} game\+::penguin\+::\+Board\+::board\+Values\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Array of the cell const pointers to variable element indexed in board\+Values. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{penguin_2_board_8hpp}{Board.\+hpp}\item 
+/workspace/src/game\+\_\+logic/penguin/\hyperlink{penguin_2_board_8cpp}{Board.\+cpp}\end{DoxyCompactItemize}

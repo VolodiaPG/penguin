@@ -1,0 +1,4 @@
+<map id="game::penguin::Board::clone" name="game::penguin::Board::clone">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#a7636e3bdb2da72d2a6395b1a2d846394" title="game::penguin::Board\l::size" alt="" coords="219,5,384,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_print_hex.html#acdb07dd749d832db180a0f42040e33ed" title="game::penguin::PrintHex\l::PrintHex" alt="" coords="432,5,615,47"/>
+</map>

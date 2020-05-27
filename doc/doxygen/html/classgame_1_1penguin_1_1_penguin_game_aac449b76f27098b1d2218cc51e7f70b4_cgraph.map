@@ -1,0 +1,9 @@
+<map id="game::penguin::PenguinGame::getPlayerToPlay" name="game::penguin::PenguinGame::getPlayerToPlay">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_penguin_game.html#a7b65d0a9742a9cf07296839373a56143" title="game::penguin::PenguinGame\l::getBoard" alt="" coords="272,39,491,80"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#ae85ef3019829098c5ad5afb1c3ebceb5" title="Is the player able to move. " alt="" coords="299,104,464,145"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board.html#a8728b4381bc2e007710d275bb226cf95" title="Gets the player corresponding to a certain id. " alt="" coords="299,169,464,211"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_human_player.html#a28c5485b12e0c8fcd340458255c06587" title="Get the penguins possessed by the player. " alt="" coords="539,5,753,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a802b2f75d1e3136146625266f6a2c03a" title="Get the Position object. " alt="" coords="551,71,741,112"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="551,136,741,177"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="551,201,741,243"/>
+</map>

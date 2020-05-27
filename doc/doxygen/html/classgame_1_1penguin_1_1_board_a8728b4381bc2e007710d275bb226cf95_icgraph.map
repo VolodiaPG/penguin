@@ -1,0 +1,7 @@
+<map id="game::penguin::Board::getPlayerById" name="game::penguin::Board::getPlayerById">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#a7636e3bdb2da72d2a6395b1a2d846394" title="game::penguin::Board\l::size" alt="" coords="245,5,411,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_penguin_game.html#aac449b76f27098b1d2218cc51e7f70b4" title="Get the Human player to play, not the penguin one. " alt="" coords="219,71,437,112"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_print_hex.html#acdb07dd749d832db180a0f42040e33ed" title="game::penguin::PrintHex\l::PrintHex" alt="" coords="503,5,686,47"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="485,71,704,112"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="752,78,807,105"/>
+</map>

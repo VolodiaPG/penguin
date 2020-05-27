@@ -1,0 +1,5 @@
+<map id="game::penguin::PrintHex::print" name="game::penguin::PrintHex::print">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_console_game.html#a71c697742201f71b29327bf8554c2ef0" title="game::penguin::ConsoleGame\l::draw" alt="" coords="236,5,455,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="503,5,721,47"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="769,13,824,39"/>
+</map>

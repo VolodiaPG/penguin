@@ -1,0 +1,4 @@
+<map id="game::penguin::HumanPlayer::addScore" name="game::penguin::HumanPlayer::addScore">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#af297dc572afb02dafc61e3b8e849338f" title="Performs a particular move. " alt="" coords="268,5,433,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="481,5,700,47"/>
+</map>

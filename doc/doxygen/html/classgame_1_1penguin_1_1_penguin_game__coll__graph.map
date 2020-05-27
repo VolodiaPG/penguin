@@ -1,0 +1,6 @@
+<map id="game::penguin::PenguinGame" name="game::penguin::PenguinGame">
+<area shape="rect" id="node2" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; BoardCell, HumanPlayer,\l PenguinPawn \&gt;\n||+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="115,740,315,979"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_board.html" title="{game::AbstractBoard\l\&lt; BoardCell, HumanPlayer,\l PenguinPawn \&gt;\n||+ AbstractBoard()\l+ AbstractBoard()\l+ ~AbstractBoard()\l+ performMove()\l+ revertMove()\l+ checkStatus()\l+ getAvailableCells()\l+ getBoardCells()\l+ getCell()\l+ getPawnsOnBoard()\l+ getPawnById()\l+ getPlayerById()\l+ size()\l+ clone()\l}" alt="" coords="5,365,205,663"/>
+<area shape="rect" id="node4" href="$classgame_1_1_abstract_board.html" title="Describe the basics of a Board. " alt="" coords="9,5,201,288"/>
+<area shape="rect" id="node5" href="$classgame_1_1_abstract_game.html" title="{game::AbstractGame\l\&lt; CellT, PlayerT, PawnT \&gt;\n||+ AbstractGame()\l+ AbstractGame()\l+ ~AbstractGame()\l+ isFinished()\l+ play()\l+ revertPlay()\l+ getPlayerToPlay()\l+ checkStatus()\l+ getAvailableMoves()\l+ clone()\l}" alt="" coords="229,402,421,626"/>
+</map>

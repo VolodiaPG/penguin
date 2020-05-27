@@ -1,0 +1,12 @@
+<map id="/workspace/src/game_logic/tic_tac_toe/ConsoleGame.hpp" name="/workspace/src/game_logic/tic_tac_toe/ConsoleGame.hpp">
+<area shape="rect" id="node2" href="$_abstract_interface_8hpp.html" title="../AbstractInterface.hpp" alt="" coords="107,109,281,136"/>
+<area shape="rect" id="node3" href="$_tic_tac_toe_8hpp.html" title="TicTacToe.hpp" alt="" coords="71,184,183,211"/>
+<area shape="rect" id="node7" href="$_player_8hpp.html" title="Player.hpp" alt="" coords="818,109,909,136"/>
+<area shape="rect" id="node11" href="$_m_c_t_s_player_8hpp.html" title="../../mcts/MCTSPlayer.hpp" alt="" coords="357,109,543,136"/>
+<area shape="rect" id="node4" href="$_move_8hpp.html" title="../utils/Move.hpp" alt="" coords="5,348,135,375"/>
+<area shape="rect" id="node5" href="$_abstract_game_8hpp.html" title="../AbstractGame.hpp" alt="" coords="50,266,205,293"/>
+<area shape="rect" id="node9" href="$_abstract_player_8hpp.html" title="../AbstractPlayer.hpp" alt="" coords="780,266,936,293"/>
+<area shape="rect" id="node10" href="$_abstract_pawn_8hpp.html" title="../AbstractPawn.hpp" alt="" coords="967,184,1117,211"/>
+<area shape="rect" id="node12" href="$_abstract_board_cell_8hpp.html" title="../game_logic/AbstractBoard\lCell.hpp" alt="" coords="229,259,434,300"/>
+<area shape="rect" id="node13" href="$_tree_8hpp.html" title="Tree.hpp" alt="" coords="465,184,542,211"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="game::penguin::Board::getCell" name="game::penguin::Board::getCell">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_board.html#acad4a3c7bee2103aea4586356ceabb8e" title="game::penguin::Board\l::clone" alt="" coords="245,5,411,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#a7636e3bdb2da72d2a6395b1a2d846394" title="game::penguin::Board\l::size" alt="" coords="512,35,677,76"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_console_game.html#ac6ac2ce8f015a83682f7022c268c5efb" title="game::penguin::ConsoleGame\l::ConsoleGame" alt="" coords="219,123,437,164"/>
+<area shape="rect" id="node6" href="$classgame_1_1penguin_1_1_print_hex.html#a87a58be4fea97f043e6dbe01a3045c1d" title="game::penguin::PrintHex\l::print" alt="" coords="237,188,419,229"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_print_hex.html#acdb07dd749d832db180a0f42040e33ed" title="game::penguin::PrintHex\l::PrintHex" alt="" coords="770,35,953,76"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_console_game.html#a71c697742201f71b29327bf8554c2ef0" title="game::penguin::ConsoleGame\l::draw" alt="" coords="485,188,704,229"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="752,188,971,229"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="1019,195,1073,222"/>
+</map>

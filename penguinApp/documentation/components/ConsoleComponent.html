@@ -64,6 +64,12 @@
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +117,9 @@
                                     <a href="../components/ControlComponent.html" >ControlComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/GamePage.html" >GamePage</a>
                                 </li>
                                 <li class="link">
@@ -124,6 +133,12 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
@@ -173,6 +188,12 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/HrefService.html" >HrefService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -250,6 +271,12 @@
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                        </li>
                                        <li class="link">
@@ -297,6 +324,9 @@
                                            <a href="../components/ControlComponent.html" >ControlComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/GamePage.html" >GamePage</a>
                                        </li>
                                        <li class="link">
@@ -310,6 +340,12 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
@@ -359,6 +395,12 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/HrefService.html" >HrefService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -468,7 +510,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor()</code>
+                            <code>constructor(consoleService: any)</code>
                         </td>
                     </tr>
     
@@ -485,6 +527,21 @@
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> console_conv</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>console_conv:     <code>{ human: boolean; avatar: string; color: string; text: string; }[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -506,10 +563,42 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> messages</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>messages:     <code>any[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> subscription</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>subscription:     <code>Subscription</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ConsoleService } from &#x27;src/app/services/console.service&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 
 /**
  * Bind with the C++ Wasm Module
@@ -530,21 +619,60 @@ export class ConsoleComponent implements OnInit {
    */
   public console_outputs: String &#x3D; &#x27;&#x27;;
 
+  messages: any[] &#x3D; [];
+  subscription: Subscription;
+
+  console_conv &#x3D; [
+    {
+      human: false,
+      avatar: &#x27;assets/penguin_enemie.png&#x27;,
+      color: &#x27;danger&#x27;,
+      text: &#x27;Welcome Back !!!&#x27;
+    },
+    {
+      human: true,
+      avatar: &#x27;assets/penguin.png&#x27;,
+      color: &#x27;success&#x27;,
+      text: &#x27;I am ready this time !!! Be careful &gt; &lt;&#x27;
+    }
+  ];
+
   /**
    * @ignore
    */
-  constructor() {}
+  constructor(private consoleService: ConsoleService) {
+    this.subscription &#x3D; this.consoleService.getResults().subscribe(res &#x3D;&gt; {
+      if(res) {
+        this.messages.push(res);
+        console.log(res.score, res.visits);
+        let line &#x3D; &quot;Easy !!! I will win : &quot; + res.score/res.visits;
+        this.console_conv.push({human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;warning&#x27;, text: line});
+      }
+    });
+  }
 
   /**
    * Create an EventListener, when the Console Component is created, to bind with the C++ console.
    */
   ngOnInit() {
+    console.log(this.console_conv);
     document.addEventListener(&#x27;mcts_console&#x27;, (e: any) &#x3D;&gt; {
       console.log(e);
-      this.console_outputs +&#x3D; e.detail.replace(new RegExp(&#x27;\n&#x27;, &#x27;g&#x27;), &#x27;&lt;br /&gt;&#x27;) + &#x27;&lt;br /&gt;&#x27;;
+      let line &#x3D; e.detail.replace(new RegExp(&#x27;\n&#x27;, &#x27;g&#x27;), &#x27;&lt;br /&gt;&#x27;);
+
+      console.log(line);
+      this.console_conv.push({human: false, avatar: &#x27;assets/penguin_enemie.png&#x27;, color: &#x27;warning&#x27;, text: line});
+      console.log(this.console_conv);
+
+      this.console_outputs +&#x3D; line + &#x27;&lt;br /&gt;&#x27;;
       console.log(this.console_outputs);
     });
   }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+}
 }</code></pre>
         </div>
     </div>

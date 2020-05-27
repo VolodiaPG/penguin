@@ -1,0 +1,4 @@
+<map id="game::penguin::PenguinGame::clone" name="game::penguin::PenguinGame::clone">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_penguin_game.html#ad5bc5305347a5c28df1f41407e53303c" title="game::penguin::PenguinGame\l::PenguinGame" alt="" coords="272,5,491,47"/>
+<area shape="rect" id="node3" href="$classgame_1_1_abstract_board.html#abd467b64fd2c0dfbc0ce87200afb3e9e" title="game::AbstractBoard\l::clone" alt="" coords="302,71,461,112"/>
+</map>

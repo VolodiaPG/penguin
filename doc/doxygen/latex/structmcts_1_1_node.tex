@@ -1,0 +1,96 @@
+\hypertarget{structmcts_1_1_node}{}\section{mcts\+:\+:Node$<$ CellT, PawnT $>$ Struct Template Reference}
+\label{structmcts_1_1_node}\index{mcts\+::\+Node$<$ Cell\+T, Pawn\+T $>$@{mcts\+::\+Node$<$ Cell\+T, Pawn\+T $>$}}
+
+
+{\ttfamily \#include $<$Tree.\+hpp$>$}
+
+
+
+Collaboration diagram for mcts\+:\+:Node$<$ CellT, PawnT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmcts_1_1_node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structmcts_1_1_node_a4507ae7e449448f5e67ac79782558070}{$\sim$\+Node} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \hyperlink{structmcts_1_1_node}{Node} $\ast$ $>$ \hyperlink{structmcts_1_1_node_ae22ea6d47a865efe015fcc500bf4c217}{child\+Nodes}
+\item 
+\hyperlink{structmcts_1_1_node}{Node} $\ast$ \hyperlink{structmcts_1_1_node_a45967e40ee370988a6d14f9fa697d9fd}{parent} = nullptr
+\item 
+\hyperlink{structgame_1_1_move}{game\+::\+Move}$<$ CellT, PawnT $>$ \hyperlink{structmcts_1_1_node_a485be08ab0693648e76d350b7c330e04}{move}
+\item 
+double \hyperlink{structmcts_1_1_node_a9a63000d8d53ea603b846eb0163b9660}{score} = 0.\+0
+\item 
+int \hyperlink{structmcts_1_1_node_aca6c2aab11093323fb67357f25a31a3f}{visits} = 0
+\item 
+bool \hyperlink{structmcts_1_1_node_a0617583b89269c8df9bacf1f573c5657}{is\+Root} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structmcts_1_1_node_a4507ae7e449448f5e67ac79782558070}\label{structmcts_1_1_node_a4507ae7e449448f5e67ac79782558070}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!````~Node@{$\sim$\+Node}}
+\index{````~Node@{$\sim$\+Node}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{$\sim$\+Node()}{~Node()}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+\hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::$\sim$\hyperlink{structmcts_1_1_node}{Node} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structmcts_1_1_node_ae22ea6d47a865efe015fcc500bf4c217}\label{structmcts_1_1_node_ae22ea6d47a865efe015fcc500bf4c217}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!child\+Nodes@{child\+Nodes}}
+\index{child\+Nodes@{child\+Nodes}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{child\+Nodes}{childNodes}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+std\+::vector$<$\hyperlink{structmcts_1_1_node}{Node} $\ast$$>$ \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::child\+Nodes}
+
+\mbox{\Hypertarget{structmcts_1_1_node_a0617583b89269c8df9bacf1f573c5657}\label{structmcts_1_1_node_a0617583b89269c8df9bacf1f573c5657}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!is\+Root@{is\+Root}}
+\index{is\+Root@{is\+Root}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{is\+Root}{isRoot}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+bool \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::is\+Root = false}
+
+\mbox{\Hypertarget{structmcts_1_1_node_a485be08ab0693648e76d350b7c330e04}\label{structmcts_1_1_node_a485be08ab0693648e76d350b7c330e04}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!move@{move}}
+\index{move@{move}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{move}{move}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+\hyperlink{structgame_1_1_move}{game\+::\+Move}$<$CellT, PawnT$>$ \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::move}
+
+\mbox{\Hypertarget{structmcts_1_1_node_a45967e40ee370988a6d14f9fa697d9fd}\label{structmcts_1_1_node_a45967e40ee370988a6d14f9fa697d9fd}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!parent@{parent}}
+\index{parent@{parent}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+\hyperlink{structmcts_1_1_node}{Node}$\ast$ \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::parent = nullptr}
+
+\mbox{\Hypertarget{structmcts_1_1_node_a9a63000d8d53ea603b846eb0163b9660}\label{structmcts_1_1_node_a9a63000d8d53ea603b846eb0163b9660}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!score@{score}}
+\index{score@{score}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+double \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::score = 0.\+0}
+
+\mbox{\Hypertarget{structmcts_1_1_node_aca6c2aab11093323fb67357f25a31a3f}\label{structmcts_1_1_node_aca6c2aab11093323fb67357f25a31a3f}} 
+\index{mcts\+::\+Node@{mcts\+::\+Node}!visits@{visits}}
+\index{visits@{visits}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection{\texorpdfstring{visits}{visits}}
+{\footnotesize\ttfamily template$<$class CellT, class PawnT$>$ \\
+int \hyperlink{structmcts_1_1_node}{mcts\+::\+Node}$<$ CellT, PawnT $>$\+::visits = 0}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/mcts/\hyperlink{_tree_8hpp}{Tree.\+hpp}\end{DoxyCompactItemize}

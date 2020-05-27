@@ -64,6 +64,12 @@
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +117,9 @@
                                     <a href="../components/ControlComponent.html" >ControlComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/GamePage.html" >GamePage</a>
                                 </li>
                                 <li class="link">
@@ -124,6 +133,12 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TeamPage.html"  class="active" >TeamPage</a>
@@ -173,6 +188,12 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/HrefService.html" >HrefService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -250,6 +271,12 @@
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                        </li>
                                        <li class="link">
@@ -297,6 +324,9 @@
                                            <a href="../components/ControlComponent.html" >ControlComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/GamePage.html" >GamePage</a>
                                        </li>
                                        <li class="link">
@@ -310,6 +340,12 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TeamPage.html"  class="active" >TeamPage</a>
@@ -359,6 +395,12 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/HrefService.html" >HrefService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -470,6 +512,24 @@
     </section>
 
 
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> teamMembers</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>teamMembers:     <code>{ name: string; role: string; description: string; }[]</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
@@ -481,10 +541,37 @@
 })
 export class TeamPage implements OnInit {
 
-  constructor() { }
+  teamMembers: Array&lt;{ name: string; role: string; description: string }&gt; &#x3D; [
+    {
+      name: &#x27;Volodia&#x27;,
+      role: &#x27;C++ / MCTS / WebAssembly&#x27;,
+      description: &#x27;Penguin&#x27;
+    },
+    {
+      name: &#x27;Maxime&#x27;,
+      role: &#x27;Graphical designer / WebAssembly&#x27;,
+      description: &#x27;Penguin&#x27;
+    },
+    {
+      name: &#x27;Romain Hubert&#x27;,
+      role: &#x27;C++ / MCTS&#x27;,
+      description: &#x27;Penguin&#x27;
+    },
+    {
+      name: &#x27;Romain Hu&#x27;,
+      role: &#x27;Graphical desginer&#x27;,
+      description: &#x27;Penguin&#x27;
+    },
+    {
+      name: &#x27;Clément&#x27;,
+      role: &#x27;Graphical designer&#x27;,
+      description: &#x27;Penguin&#x27;
+    }
+  ];
 
-  ngOnInit() {
-  }
+  constructor() {}
+
+  ngOnInit() {}
 
 }
 </code></pre>

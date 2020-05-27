@@ -1,0 +1,271 @@
+\hypertarget{classgame_1_1_abstract_game}{}\section{game\+:\+:Abstract\+Game$<$ CellT, PlayerT, PawnT $>$ Class Template Reference}
+\label{classgame_1_1_abstract_game}\index{game\+::\+Abstract\+Game$<$ Cell\+T, Player\+T, Pawn\+T $>$@{game\+::\+Abstract\+Game$<$ Cell\+T, Player\+T, Pawn\+T $>$}}
+
+
+{\ttfamily \#include $<$Abstract\+Game.\+hpp$>$}
+
+
+
+Inheritance diagram for game\+:\+:Abstract\+Game$<$ CellT, PlayerT, PawnT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classgame_1_1_abstract_game__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for game\+:\+:Abstract\+Game$<$ CellT, PlayerT, PawnT $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classgame_1_1_abstract_game__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1_abstract_game_ae01d0d7523f6958450a404e6aafa5cd0}{Abstract\+Game} (\hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$ CellT, PlayerT, PawnT $>$ $\ast$\hyperlink{classgame_1_1_abstract_game_a6df5f611daa1731c4c8d3d5e6289e7e5}{board})
+\item 
+\hyperlink{classgame_1_1_abstract_game_a4947b8268696a1d6d2d15bfad1cbe197}{Abstract\+Game} (const \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ \&)=default
+\item 
+virtual \hyperlink{classgame_1_1_abstract_game_aadcf523d247e4f8beccc539a08f40464}{$\sim$\+Abstract\+Game} ()
+\item 
+virtual bool \hyperlink{classgame_1_1_abstract_game_a598679eebf40ccc300e9065bce875fd1}{is\+Finished} () const =0
+\begin{DoxyCompactList}\small\item\em Tells if the game is finished yet. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classgame_1_1_abstract_game_a5eb974a047c5179c28cf77ec60d77cdc}{play} (PawnT $\ast$pawn, CellT $\ast$cell)=0
+\begin{DoxyCompactList}\small\item\em play one round of the game \end{DoxyCompactList}\item 
+virtual const \hyperlink{structgame_1_1_move}{Move}$<$ CellT, PawnT $>$ \hyperlink{classgame_1_1_abstract_game_af6088ae12ed47989dde7f8869e79d934}{revert\+Play} ()=0
+\item 
+virtual unsigned int \hyperlink{classgame_1_1_abstract_game_a059d72564d4658be3c246d8865080d92}{get\+Player\+To\+Play} ()=0
+\begin{DoxyCompactList}\small\item\em Get the player who hadn\textquotesingle{}t play yet. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classgame_1_1_abstract_game_a3683d4f37908f769a470af6ebf73d849}{check\+Status} () const =0
+\begin{DoxyCompactList}\small\item\em Checks the status of the game, if won, draw. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{structgame_1_1_move}{Move}$<$ CellT, PawnT $>$ $>$ \hyperlink{classgame_1_1_abstract_game_a01bbff0af90cc978203726bc7f914a7b}{get\+Available\+Moves} (PlayerT $\ast$player)=0
+\begin{DoxyCompactList}\small\item\em Get the available moves to a player. \end{DoxyCompactList}\item 
+virtual \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ $\ast$ \hyperlink{classgame_1_1_abstract_game_a226baac1f32a8f6672d922675ffddbf6}{clone} () const =0
+\begin{DoxyCompactList}\small\item\em Clone function for clonning games. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$ CellT, PlayerT, PawnT $>$ $\ast$ \hyperlink{classgame_1_1_abstract_game_a6df5f611daa1731c4c8d3d5e6289e7e5}{board}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_ae01d0d7523f6958450a404e6aafa5cd0}\label{classgame_1_1_abstract_game_ae01d0d7523f6958450a404e6aafa5cd0}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!Abstract\+Game@{Abstract\+Game}}
+\index{Abstract\+Game@{Abstract\+Game}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{Abstract\+Game()}{AbstractGame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::\hyperlink{classgame_1_1_abstract_game}{Abstract\+Game} (\begin{DoxyParamCaption}\item[{\hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$ CellT, PlayerT, PawnT $>$ $\ast$}]{board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a4947b8268696a1d6d2d15bfad1cbe197}\label{classgame_1_1_abstract_game_a4947b8268696a1d6d2d15bfad1cbe197}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!Abstract\+Game@{Abstract\+Game}}
+\index{Abstract\+Game@{Abstract\+Game}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{Abstract\+Game()}{AbstractGame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::\hyperlink{classgame_1_1_abstract_game}{Abstract\+Game} (\begin{DoxyParamCaption}\item[{const \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [default]}}
+
+\mbox{\Hypertarget{classgame_1_1_abstract_game_aadcf523d247e4f8beccc539a08f40464}\label{classgame_1_1_abstract_game_aadcf523d247e4f8beccc539a08f40464}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!````~Abstract\+Game@{$\sim$\+Abstract\+Game}}
+\index{````~Abstract\+Game@{$\sim$\+Abstract\+Game}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{$\sim$\+Abstract\+Game()}{~AbstractGame()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::$\sim$\hyperlink{classgame_1_1_abstract_game}{Abstract\+Game} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a3683d4f37908f769a470af6ebf73d849}\label{classgame_1_1_abstract_game_a3683d4f37908f769a470af6ebf73d849}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!check\+Status@{check\+Status}}
+\index{check\+Status@{check\+Status}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{check\+Status()}{checkStatus()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual int \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::check\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Checks the status of the game, if won, draw. 
+
+\begin{DoxyReturn}{Returns}
+int when won \+: the id of the winner, -\/1 if draw, 0 otherwise 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgame_1_1penguin_1_1_penguin_game_af255dc5b05ef5244ac864d4aa2d3be2e}{game\+::penguin\+::\+Penguin\+Game}, and \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a033d73237ae31a39c23a0e887adbce2f}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a3683d4f37908f769a470af6ebf73d849_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a226baac1f32a8f6672d922675ffddbf6}\label{classgame_1_1_abstract_game_a226baac1f32a8f6672d922675ffddbf6}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!clone@{clone}}
+\index{clone@{clone}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual \hyperlink{classgame_1_1_abstract_game}{Abstract\+Game}$<$CellT, PlayerT, PawnT$>$$\ast$ \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Clone function for clonning games. 
+
+\begin{DoxyReturn}{Returns}
+Abstract\+Game$\ast$ 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgame_1_1penguin_1_1_penguin_game_af4277cfe44814a9b99051348f25ce264}{game\+::penguin\+::\+Penguin\+Game}, and \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a11f31f44ee9ebe8c394bcc9f2a74fab4}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a226baac1f32a8f6672d922675ffddbf6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a01bbff0af90cc978203726bc7f914a7b}\label{classgame_1_1_abstract_game_a01bbff0af90cc978203726bc7f914a7b}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!get\+Available\+Moves@{get\+Available\+Moves}}
+\index{get\+Available\+Moves@{get\+Available\+Moves}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{get\+Available\+Moves()}{getAvailableMoves()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual std\+::vector$<$\hyperlink{structgame_1_1_move}{Move}$<$CellT, PawnT$>$ $>$ \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::get\+Available\+Moves (\begin{DoxyParamCaption}\item[{PlayerT $\ast$}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the available moves to a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & the player (the human one) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structgame_1_1_move}{Move} containing all the necessary informations 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a01bbff0af90cc978203726bc7f914a7b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a059d72564d4658be3c246d8865080d92}\label{classgame_1_1_abstract_game_a059d72564d4658be3c246d8865080d92}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!get\+Player\+To\+Play@{get\+Player\+To\+Play}}
+\index{get\+Player\+To\+Play@{get\+Player\+To\+Play}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{get\+Player\+To\+Play()}{getPlayerToPlay()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual unsigned int \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::get\+Player\+To\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the player who hadn\textquotesingle{}t play yet. 
+
+\begin{DoxyReturn}{Returns}
+const int the player id 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgame_1_1penguin_1_1_penguin_game_aac449b76f27098b1d2218cc51e7f70b4}{game\+::penguin\+::\+Penguin\+Game}, and \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_ae460add5608bc785e202c876dea8f9ba}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a059d72564d4658be3c246d8865080d92_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a598679eebf40ccc300e9065bce875fd1}\label{classgame_1_1_abstract_game_a598679eebf40ccc300e9065bce875fd1}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!is\+Finished@{is\+Finished}}
+\index{is\+Finished@{is\+Finished}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{is\+Finished()}{isFinished()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual bool \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Tells if the game is finished yet. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgame_1_1penguin_1_1_penguin_game_ae5e55157da5e8a1ed2ccc2c9cbbad50d}{game\+::penguin\+::\+Penguin\+Game}, and \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a06463011bee6de3d33946f9162970989}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a598679eebf40ccc300e9065bce875fd1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a5eb974a047c5179c28cf77ec60d77cdc}\label{classgame_1_1_abstract_game_a5eb974a047c5179c28cf77ec60d77cdc}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!play@{play}}
+\index{play@{play}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual bool \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::play (\begin{DoxyParamCaption}\item[{PawnT $\ast$}]{pawn,  }\item[{CellT $\ast$}]{cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+play one round of the game 
+
+\begin{DoxyReturn}{Returns}
+the played cell 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_a5eb974a047c5179c28cf77ec60d77cdc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_af6088ae12ed47989dde7f8869e79d934}\label{classgame_1_1_abstract_game_af6088ae12ed47989dde7f8869e79d934}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!revert\+Play@{revert\+Play}}
+\index{revert\+Play@{revert\+Play}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{revert\+Play()}{revertPlay()}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+virtual const \hyperlink{structgame_1_1_move}{Move}$<$CellT, PawnT$>$ \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::revert\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classgame_1_1penguin_1_1_penguin_game_a16aabdfdf43ad7b5b417b58eb593e063}{game\+::penguin\+::\+Penguin\+Game}, and \hyperlink{classgame_1_1tic__tac__toe_1_1_tic_tac_toe_a38a848001838eb4ccbafa9800f3cbfd4}{game\+::tic\+\_\+tac\+\_\+toe\+::\+Tic\+Tac\+Toe}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgame_1_1_abstract_game_af6088ae12ed47989dde7f8869e79d934_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgame_1_1_abstract_game_a6df5f611daa1731c4c8d3d5e6289e7e5}\label{classgame_1_1_abstract_game_a6df5f611daa1731c4c8d3d5e6289e7e5}} 
+\index{game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}!board@{board}}
+\index{board@{board}!game\+::\+Abstract\+Game@{game\+::\+Abstract\+Game}}
+\subsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily template$<$class CellT, class PlayerT, class PawnT$>$ \\
+\hyperlink{classgame_1_1_abstract_board}{Abstract\+Board}$<$CellT, PlayerT, PawnT$>$$\ast$ \hyperlink{classgame_1_1_abstract_game}{game\+::\+Abstract\+Game}$<$ CellT, PlayerT, PawnT $>$\+::board}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/workspace/src/game\+\_\+logic/\hyperlink{_abstract_game_8hpp}{Abstract\+Game.\+hpp}\item 
+/workspace/src/game\+\_\+logic/\hyperlink{_abstract_game_8cpp}{Abstract\+Game.\+cpp}\end{DoxyCompactItemize}

@@ -1,8 +1,8 @@
 {
     "name": "penguinApp",
-    "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "https://ionicframework.com/",
+    "version": "1.0.0",
+    "author": "The Penguin Team",
+    "homepage": "https://volodiapg.github.io/penguin/",
     "scripts": {
         "ng": "ng",
         "start": "ionic serve --host 0.0.0.0 --port 4200",
@@ -11,10 +11,11 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "compodoc": "npx compodoc -p tsconfig.app.json -s",
+        "doc": "CWD=$(pwd) && ((npx compodoc -p tsconfig.app.json -t && ln -sfn $CWD/documentation $CWD/src/assets/compodoc) && (cd .. && make doc && ln -sfn $CWD/../doc/doxygen/html $CWD/src/assets/doxygen))",
         "single_thread": "CWD=$(pwd) DIR=singlethreaded && cd .. && make BUILD_DIR=bin/$DIR MULTITHREADED=false && BIN_DIR=$(pwd) &&  ln -sfn $BIN_DIR/bin/$DIR $CWD/src/assets/$DIR",
         "multi_thread": "CWD=$(pwd) DIR=multithreaded && cd .. && make BUILD_DIR=bin/$DIR && BIN_DIR=$(pwd) &&  ln -sfn $BIN_DIR/bin/$DIR $CWD/src/assets/$DIR",
         "wasm": "npm run single_thread & npm run multi_thread",
-        "gh-pages": "npm run wasm && npx ionic build --prod -- --base-href='https://volodiapg.github.io/penguin/' && npx angular-cli-ghpages --dir='www' --branch='gh-pages'"
+        "gh-pages": "npm run doc && npm run wasm && npx ionic build --prod -- --base-href='https://volodiapg.github.io/penguin/' && npx angular-cli-ghpages --dir='www' --branch='gh-pages'"
     },
     "private": true,
     "dependencies": {
@@ -64,5 +65,5 @@
         "tslint": "~6.1.0",
         "typescript": "~3.8.3"
     },
-    "description": "An Ionic project"
+    "description": "Penguin project"
 }

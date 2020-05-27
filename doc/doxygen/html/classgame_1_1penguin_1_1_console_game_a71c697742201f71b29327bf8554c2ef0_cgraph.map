@@ -1,0 +1,15 @@
+<map id="game::penguin::ConsoleGame::draw" name="game::penguin::ConsoleGame::draw">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_print_hex.html#a87a58be4fea97f043e6dbe01a3045c1d" title="game::penguin::PrintHex\l::print" alt="" coords="272,221,455,263"/>
+<area shape="rect" id="node3" href="$classgame_1_1penguin_1_1_board.html#ac9fbe04a302208fcb5f66e717182b6d4" title="Get the Cell. " alt="" coords="517,5,682,47"/>
+<area shape="rect" id="node4" href="$classgame_1_1penguin_1_1_board_cell.html#a6a978b7e72ef20475771eb6e453e0a39" title="tells if the cell is gone or not " alt="" coords="504,71,695,112"/>
+<area shape="rect" id="node5" href="$classgame_1_1penguin_1_1_board_cell.html#a011487b961b356a891144edcccc1473f" title="Get the penguin standing on the cell. " alt="" coords="983,57,1173,99"/>
+<area shape="rect" id="node6" href="$classgame_1_1_abstract_pawn.html#a49354506912d0e1bf5272627aa2bc86e" title="Get pawn&#39;s id. " alt="" coords="1001,319,1155,360"/>
+<area shape="rect" id="node7" href="$classgame_1_1penguin_1_1_board_cell.html#abe8f2dc0eef3aed1e8701dc0b021c5a6" title="Get the number of fish contained inside the cell. " alt="" coords="504,221,695,263"/>
+<area shape="rect" id="node13" href="$namespacegame.html#a0fb03836882da582210ce59b390ad61f" title="Converts a cube position in an offset system. " alt="" coords="503,370,696,397"/>
+<area shape="rect" id="node14" href="$namespacegame.html#a758b3d0eea6eae0e6ce5ea1b8dc90ed9" title="Converts an axial position to a cube position in an hexagonal grid. " alt="" coords="505,421,693,447"/>
+<area shape="rect" id="node8" href="$classgame_1_1penguin_1_1_board_cell.html#a1ed5a3134f831bef111c6294c07388bf" title="game::penguin::BoardCell\l::equals_to" alt="" coords="744,253,935,295"/>
+<area shape="rect" id="node9" href="$classgame_1_1penguin_1_1_board_cell.html#a4d3577488552bf0ba4822ac265532825" title="game::penguin::BoardCell\l::clone" alt="" coords="744,188,935,229"/>
+<area shape="rect" id="node10" href="$classgame_1_1penguin_1_1_board_cell.html#a2c76e638f5d0d4374b422756b08cb61f" title="Construct a new Board Cell object. " alt="" coords="983,123,1173,164"/>
+<area shape="rect" id="node11" href="$classgame_1_1penguin_1_1_board_cell.html#a12cd55e333821bcecaa201dde758c1a1" title="Is a penguin on the cell. " alt="" coords="983,188,1173,229"/>
+<area shape="rect" id="node12" href="$classgame_1_1penguin_1_1_board.html#acae84c13dacef3bd988d1ea9a41d055f" title="Get a player by it&#39;s id. " alt="" coords="995,253,1161,295"/>
+</map>

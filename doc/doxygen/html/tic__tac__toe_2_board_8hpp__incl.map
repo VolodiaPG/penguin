@@ -1,0 +1,9 @@
+<map id="/workspace/src/game_logic/tic_tac_toe/Board.hpp" name="/workspace/src/game_logic/tic_tac_toe/Board.hpp">
+<area shape="rect" id="node3" href="$_position_8hpp.html" title="../utils/Position.hpp" alt="" coords="89,95,235,121"/>
+<area shape="rect" id="node6" href="$_abstract_board_8hpp.html" title="../AbstractBoard.hpp" alt="" coords="259,95,414,121"/>
+<area shape="rect" id="node11" href="$_player_8hpp.html" title="Player.hpp" alt="" coords="519,95,610,121"/>
+<area shape="rect" id="node8" href="$_history_8hpp.html" title="History.hpp" alt="" coords="335,169,429,196"/>
+<area shape="rect" id="node10" href="$_move_8hpp.html" title="utils/Move.hpp" alt="" coords="379,244,497,271"/>
+<area shape="rect" id="node13" href="$_abstract_player_8hpp.html" title="../AbstractPlayer.hpp" alt="" coords="559,169,715,196"/>
+<area shape="rect" id="node14" href="$_abstract_pawn_8hpp.html" title="../AbstractPawn.hpp" alt="" coords="739,169,889,196"/>
+</map>

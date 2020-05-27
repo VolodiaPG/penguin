@@ -1,0 +1,51 @@
+\hypertarget{namespacedbg_1_1detail}{}\section{dbg\+:\+:detail Namespace Reference}
+\label{namespacedbg_1_1detail}\index{dbg\+::detail@{dbg\+::detail}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdbg_1_1detail_1_1has__ostream__operator}{has\+\_\+ostream\+\_\+operator}
+\item 
+struct \hyperlink{structdbg_1_1detail_1_1is__container}{is\+\_\+container}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_acfad41bd0b116575799b79d85fc5c883}{detect\+\_\+begin\+\_\+t} = decltype(detail\+::begin(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_ab462e0c9e2d1686d323d638613692839}{detect\+\_\+end\+\_\+t} = decltype(detail\+::end(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_a19adefcfcaddecb9f32e810ebcae4856}{detect\+\_\+size\+\_\+t} = decltype(detail\+::size(std\+::declval$<$ T $>$()))
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \hyperlink{namespacedbg_1_1detail_a2c6a2bc0c8581b3b0d285d1d2971e44d}{ostream\+\_\+operator\+\_\+t} = decltype(std\+::declval$<$ std\+::ostream \& $>$()$<$$<$ std\+::declval$<$ T $>$())
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacedbg_1_1detail_acfad41bd0b116575799b79d85fc5c883}\label{namespacedbg_1_1detail_acfad41bd0b116575799b79d85fc5c883}} 
+\index{dbg\+::detail@{dbg\+::detail}!detect\+\_\+begin\+\_\+t@{detect\+\_\+begin\+\_\+t}}
+\index{detect\+\_\+begin\+\_\+t@{detect\+\_\+begin\+\_\+t}!dbg\+::detail@{dbg\+::detail}}
+\subsubsection{\texorpdfstring{detect\+\_\+begin\+\_\+t}{detect\_begin\_t}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \hyperlink{namespacedbg_1_1detail_acfad41bd0b116575799b79d85fc5c883}{dbg\+::detail\+::detect\+\_\+begin\+\_\+t} = typedef decltype(detail\+::begin(std\+::declval$<$T$>$()))}
+
+\mbox{\Hypertarget{namespacedbg_1_1detail_ab462e0c9e2d1686d323d638613692839}\label{namespacedbg_1_1detail_ab462e0c9e2d1686d323d638613692839}} 
+\index{dbg\+::detail@{dbg\+::detail}!detect\+\_\+end\+\_\+t@{detect\+\_\+end\+\_\+t}}
+\index{detect\+\_\+end\+\_\+t@{detect\+\_\+end\+\_\+t}!dbg\+::detail@{dbg\+::detail}}
+\subsubsection{\texorpdfstring{detect\+\_\+end\+\_\+t}{detect\_end\_t}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \hyperlink{namespacedbg_1_1detail_ab462e0c9e2d1686d323d638613692839}{dbg\+::detail\+::detect\+\_\+end\+\_\+t} = typedef decltype(detail\+::end(std\+::declval$<$T$>$()))}
+
+\mbox{\Hypertarget{namespacedbg_1_1detail_a19adefcfcaddecb9f32e810ebcae4856}\label{namespacedbg_1_1detail_a19adefcfcaddecb9f32e810ebcae4856}} 
+\index{dbg\+::detail@{dbg\+::detail}!detect\+\_\+size\+\_\+t@{detect\+\_\+size\+\_\+t}}
+\index{detect\+\_\+size\+\_\+t@{detect\+\_\+size\+\_\+t}!dbg\+::detail@{dbg\+::detail}}
+\subsubsection{\texorpdfstring{detect\+\_\+size\+\_\+t}{detect\_size\_t}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \hyperlink{namespacedbg_1_1detail_a19adefcfcaddecb9f32e810ebcae4856}{dbg\+::detail\+::detect\+\_\+size\+\_\+t} = typedef decltype(detail\+::size(std\+::declval$<$T$>$()))}
+
+\mbox{\Hypertarget{namespacedbg_1_1detail_a2c6a2bc0c8581b3b0d285d1d2971e44d}\label{namespacedbg_1_1detail_a2c6a2bc0c8581b3b0d285d1d2971e44d}} 
+\index{dbg\+::detail@{dbg\+::detail}!ostream\+\_\+operator\+\_\+t@{ostream\+\_\+operator\+\_\+t}}
+\index{ostream\+\_\+operator\+\_\+t@{ostream\+\_\+operator\+\_\+t}!dbg\+::detail@{dbg\+::detail}}
+\subsubsection{\texorpdfstring{ostream\+\_\+operator\+\_\+t}{ostream\_operator\_t}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \hyperlink{namespacedbg_1_1detail_a2c6a2bc0c8581b3b0d285d1d2971e44d}{dbg\+::detail\+::ostream\+\_\+operator\+\_\+t} = typedef decltype(std\+::declval$<$std\+::ostream\&$>$() $<$$<$ std\+::declval$<$T$>$())}
+

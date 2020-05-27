@@ -1,0 +1,4 @@
+<map id="game::penguin::PenguinGame::getPlayerToPlay" name="game::penguin::PenguinGame::getPlayerToPlay">
+<area shape="rect" id="node2" href="$classgame_1_1penguin_1_1_console_game.html#a56af132d8e3d16902fb46b7979d37eae" title="Loop while the game is not finished, told by the isFinished method. " alt="" coords="272,5,491,47"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a1dfeea39dabf076270426c94def1a2a2" title="main" alt="" coords="539,13,593,39"/>
+</map>

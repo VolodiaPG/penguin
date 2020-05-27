@@ -64,6 +64,12 @@
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                 </li>
                                 <li class="link">
@@ -111,6 +117,9 @@
                                     <a href="../components/ControlComponent.html" >ControlComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/GamePage.html"  class="active" >GamePage</a>
                                 </li>
                                 <li class="link">
@@ -124,6 +133,12 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/TeamPage.html" >TeamPage</a>
@@ -173,6 +188,12 @@
                         <ul class="links collapse in"
                                 id="xs-injectables-links"
                             >
+                                <li class="link">
+                                    <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/HrefService.html" >HrefService</a>
+                                </li>
                                 <li class="link">
                                     <a href="../injectables/QuoteService.html" >QuoteService</a>
                                 </li>
@@ -250,6 +271,12 @@
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/DocumentationPageModule.html" >DocumentationPageModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/DocumentationPageRoutingModule.html" >DocumentationPageRoutingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/GamePageModule.html" >GamePageModule</a>
                                        </li>
                                        <li class="link">
@@ -297,6 +324,9 @@
                                            <a href="../components/ControlComponent.html" >ControlComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DocumentationPage.html" >DocumentationPage</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/GamePage.html"  class="active" >GamePage</a>
                                        </li>
                                        <li class="link">
@@ -310,6 +340,12 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/PenguinComponent.html" >PenguinComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ResultsComponent.html" >ResultsComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/TeamCardComponent.html" >TeamCardComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TeamPage.html" >TeamPage</a>
@@ -359,6 +395,12 @@
                                <ul class="links collapse in"
                                        id="injectables-links"
                    >
+                                       <li class="link">
+                                           <a href="../injectables/ConsoleService.html" >ConsoleService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/HrefService.html" >HrefService</a>
+                                       </li>
                                        <li class="link">
                                            <a href="../injectables/QuoteService.html" >QuoteService</a>
                                        </li>
@@ -540,6 +582,32 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <b> initPosWasmPenguin</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>initPosWasmPenguin()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Go to the Init Wasm Penguin when the user press the Next button.</p>
+    </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <b> launchGame</b>
                         </td>
                     </tr>
@@ -566,13 +634,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <b> flipScore</b>
+                            <b> doflipHumanScore</b>
                         </td>
                     </tr>
     
                     <tr>
                         <td class="col-md-4">
-    <code>flipScore()</code>
+    <code>doflipHumanScore(event: number)</code>
                         </td>
                     </tr>
     
@@ -580,6 +648,30 @@
                         <td class="col-md-4">
                                 <div class="io-description"><p>Create the animation for the button which show the current score.</p>
     </div>
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> doflipMctsScore</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>doflipMctsScore(event: any)</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
                                 <div class="io-description">
                                     <b>Returns: </b>    <code>void</code>
     
@@ -634,6 +726,27 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Allow us to control the son component : BoardComponent</p>
+    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> difficultyLevel</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>difficultyLevel:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Difficulty level</p>
     </div>
                         </td>
                     </tr>
@@ -954,9 +1067,9 @@ export class GamePage implements OnInit {
    */
   flipHumanScore: any &#x3D; null;
 
-    /**
-   * To animate, to flip, the MCTS score when it changes.
-   */
+  /**
+ * To animate, to flip, the MCTS score when it changes.
+ */
   flipMctsScore: any &#x3D; null;
 
   /**
@@ -972,7 +1085,7 @@ export class GamePage implements OnInit {
   @ViewChild(BoardComponent, { static: true })
   private boardComponent: BoardComponent;
 
-  
+
   /**
    * Service to use the State Machine which controle the app flux.
    */
@@ -1004,9 +1117,14 @@ export class GamePage implements OnInit {
   nbMctsFish: number;
 
   /**
+   * Difficulty level
+   */
+  difficultyLevel: number;
+
+  /**
    * @ignore
    */
-  constructor() {}
+  constructor() { }
 
   /**
    * @ignore
@@ -1019,7 +1137,7 @@ export class GamePage implements OnInit {
   //***************************************************************************************************************************
   // ************************************************ START GAME **************************************************************
   // **************************************************************************************************************************
-  
+
   /**
    * Launch the init oh the wasm part and the C++ game.
    */
@@ -1036,13 +1154,19 @@ export class GamePage implements OnInit {
   }
 
   /**
+   * Go to the Init Wasm Penguin when the user press the Next button.
+   */
+  initPosWasmPenguin() {
+    appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+  }
+
+  /**
    * Launch the wasm Game when the user press the Start button.
    */
   launchGame() {
-    appService.send(appService.machine.states.initPosPenguin.on.PENGUINSPOSED[0].eventType);
+    appService.send(appService.machine.states.initPosWasmPenguin.on.STARTGAME[0].eventType);
     this.gameStarted &#x3D; true;
     this.boardComponent.startWasmGame();
-    this.flipScore();
   }
 
   //***************************************************************************************************************************
@@ -1052,16 +1176,12 @@ export class GamePage implements OnInit {
   /**
    * Create the animation for the button which show the current score.
    */
-  flipScore() {
+  doflipHumanScore(event: number) {
+    this.nbHumanFish &#x3D; event;
+
     if (!this.flipHumanScore) {
       this.flipHumanScore &#x3D; new Flip({
         node: this.scoreHuman.nativeElement,
-        from: &#x27;99&#x27;
-      });
-    }
-    if (!this.flipMctsScore) {
-      this.flipMctsScore &#x3D; new Flip({
-        node: this.scoreMcts.nativeElement,
         from: &#x27;99&#x27;
       });
     }
@@ -1069,6 +1189,16 @@ export class GamePage implements OnInit {
     this.flipHumanScore.flipTo({
       to: this.nbHumanFish
     });
+  }
+
+  doflipMctsScore(event: any) {
+    this.nbMctsFish &#x3D; event;
+    if (!this.flipMctsScore) {
+      this.flipMctsScore &#x3D; new Flip({
+        node: this.scoreMcts.nativeElement,
+        from: &#x27;99&#x27;
+      });
+    }
 
     this.flipMctsScore.flipTo({
       to: this.nbMctsFish
@@ -1079,12 +1209,11 @@ export class GamePage implements OnInit {
    * Function to switch the visual information of which player to play.
    */
   switchPlayerToPlay() {
-    if(this.playerToPlay &#x3D;&#x3D;&#x3D; &quot;human&quot;) {
+    if (this.playerToPlay &#x3D;&#x3D;&#x3D; &quot;human&quot;) {
       this.playerToPlay &#x3D; &quot;mcts&quot;;
     } else {
       this.playerToPlay &#x3D; &quot;human&quot;;
     }
-    this.flipScore();
   }
 }
 </code></pre>
