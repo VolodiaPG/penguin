@@ -33,6 +33,7 @@ When using the application, you'll need to go the the `penguinApp/` folder and d
 
 - `npm install` to install dependencies
 - `npm run wasm` to generate all the wasm files required for the app to run
+- `npm run doc` to generate the documentation
 - `npm run start` to serve (the host part is needed for the server to be accessible from the host OS)
 
 > ### Some issues
